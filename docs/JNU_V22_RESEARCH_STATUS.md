@@ -8,13 +8,23 @@ No module is currently a `VALIDATED_JNU_MODULE`.
 
 | Module | First engine | Nautilus second engine | Overfit / multiple testing | Research disposition |
 |---|---|---|---|---|
-| volatility_regime | PASS_CANDIDATE | PASS_ENGINE_REPLAY | FAIL_OVERFIT_GATES | QUARANTINE / independent confirmation only |
+| dynamic_price_discovery | CLOUD PILOT COMPLETE | not eligible yet | proxy-only; venue coverage gate failed | CONDITIONAL_ARCHITECTURE_ONLY / NOT ALPHA |\n| volatility_regime | PASS_CANDIDATE | PASS_ENGINE_REPLAY | FAIL_OVERFIT_GATES | QUARANTINE / independent confirmation only |
 | cross_market_confirmation | PASS_CANDIDATE | PASS_ENGINE_REPLAY | FAIL_OVERFIT_GATES | REJECT_OVERFIT |
 | trend_momentum | FAIL | not eligible | not run | REJECT |
 | breakout | FAIL | not eligible | not run | REJECT |
 | drawdown_repair | FAIL | not eligible | not run | REJECT |
 | relative_strength_ndx | FAIL | not eligible | not run | REJECT |
 | SMA baseline | FAIL | not eligible | not run | BASELINE_ONLY |
+
+## Dynamic Price Discovery disposition
+
+The preregistered cloud pilot found strong same-bar synchronization but weak and unstable nonzero lead-lag effects. The 1-minute OOS split contained only two test trading days and is insufficient. In the 5-minute robustness run (15 OOS test days), ES/NQ incremental next-bar information for the CME Nikkei proxy was near zero or negative in most session tests. Therefore:
+
+- DPD remains useful as a **session-aware source-weighting architecture**.
+- It is **not** a validated directional alpha signal.
+- Fixed NQ/ES weights or a revived cross-market majority vote are prohibited.
+- Formal venue-leadership validation remains blocked until approved OSE and SGX intraday data are available.
+- The strongest no-extra-cost OSE candidate currently identified is 225Labo, subject to personal-use/member-access and storage-rights review.
 
 ## Why volatility_regime is quarantined rather than promoted
 
