@@ -316,19 +316,20 @@ def run_engine(
         ts_init=0,
     )
 
-    px = np.array(close.to_numpy(dtype=np.float64), dtype=np.float64, copy=True)
-    bars_df = pd.DataFrame(
-        {
-            "open": px.copy(),
-            "high": px.copy(),
-            "low": px.copy(),
-            "close": px.copy(),
-            "volume": np.ones(len(px), dtype=np.float64),
-        },
-        index=close.index.copy(),
-    ).copy(deep=True)
     bar_type = BarType.from_str("JNU-PROXY.SIM-1-DAY-LAST-EXTERNAL")
-    bars = BarDataWrangler(bar_type, instrument).process(bars_df)
+    bars = [
+        Bar(
+            bar_type=bar_type,
+            open=Price(float(value), precision=instrument.price_precision),
+            high=Price(float(value), precision=instrument.price_precision),
+            low=Price(float(value), precision=instrument.price_precision),
+            close=Price(float(value), precision=instrument.price_precision),
+            volume=Quantity.from_int(1),
+            ts_event=int(timestamp.value),
+            ts_init=int(timestamp.value),
+        )
+        for timestamp, value in close.items()
+    ]
 
     engine = BacktestEngine(
         BacktestEngineConfig(
