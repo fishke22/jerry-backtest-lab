@@ -85,12 +85,21 @@
       "order": 6,
       "id": "NEWS_EVENT_STATE",
       "role": "STATE_CANDIDATE",
-      "status": "PHASE4B_RUNNING",
+      "status": "NO_ADMITTED_CURRENT_SPEC",
       "current_family": "Broad GDELT six-category prior-day state screen",
       "gate": "QLIKE and MSE improve; QLIKE bootstrap P>=0.95; recent QLIKE/MSE nonnegative; Holm family correction passes.",
       "next_generation_if_needed": "config/jnu_news_state_language_session_g1_draft.json",
-      "next_generation_status": "DRAFT_NOT_TRIGGERED",
-      "rule": "News begins as volatility/event/confidence state; directional use requires a separate preregistered test."
+      "next_generation_status": "ELIGIBLE_FOR_REVIEW_NOT_TRIGGERED",
+      "rule": "News begins as volatility/event/confidence state; directional use requires a separate preregistered test.",
+      "results": [
+        {
+          "id": "PHASE4B_GDELT_BROAD_NEWS",
+          "status": "DATA_INCONCLUSIVE",
+          "reason": "Full preregistered panel could not be acquired under bounded multi-year, annual-chunk, adaptive-split, and final paced single-connection protocols.",
+          "statistical_result_available": false,
+          "guardrail": "Do not interpret as model FAIL; do not lower gates or drop categories post hoc."
+        }
+      ]
     },
     {
       "order": 7,
@@ -156,10 +165,10 @@
     "Intraday Path US proxy G0"
   ],
   "active_research": {
-    "only_active_formal_screen": "Phase4B six-category GDELT news state",
-    "run_id": 33330366995,
-    "branch": "research/phase4b-adaptive-v1",
-    "rule": "USDJPY current specification is resolved FAIL; do not change the news specification while run 33330366995 is active."
+    "only_active_formal_screen": null,
+    "run_id": null,
+    "branch": null,
+    "rule": "No active formal family. USDJPY current spec is FAIL; broad GDELT news is DATA_INCONCLUSIVE."
   },
-  "next_gate": "Resolve Phase4B news family. Then update news layer before selecting exactly one new formal information family."
+  "next_gate": "Select exactly one next family from the evidence-first priority queue; blocked candidates must remain blocked."
 }
