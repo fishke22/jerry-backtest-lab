@@ -85,7 +85,7 @@
       "order": 6,
       "id": "NEWS_EVENT_STATE",
       "role": "STATE_CANDIDATE",
-      "status": "NO_ADMITTED_CURRENT_SPEC",
+      "status": "PHASE4B_CACHED_RESUME_RUNNING",
       "current_family": "Broad GDELT six-category prior-day state screen",
       "gate": "QLIKE and MSE improve; QLIKE bootstrap P>=0.95; recent QLIKE/MSE nonnegative; Holm family correction passes.",
       "next_generation_if_needed": "config/jnu_news_state_language_session_g1_draft.json",
@@ -99,7 +99,8 @@
           "statistical_result_available": false,
           "guardrail": "Do not interpret as model FAIL; do not lower gates or drop categories post hoc."
         }
-      ]
+      ],
+      "acquisition_status": "GDELT provider instability handled by paced single-connection cumulative cache; formal evidence requires complete six-category family."
     },
     {
       "order": 7,
@@ -165,10 +166,12 @@
     "Intraday Path US proxy G0"
   ],
   "active_research": {
-    "only_active_formal_screen": null,
-    "run_id": null,
-    "branch": null,
-    "rule": "No active formal family. USDJPY current spec is FAIL; broad GDELT news is DATA_INCONCLUSIVE."
+    "only_active_formal_screen": "Phase4B six-category GDELT news state",
+    "run_id": 33341713229,
+    "branch": "research/phase4b-ratelimited-cache-v1",
+    "status": "CACHED_RESUME_1_RUNNING",
+    "acquisition_stop_rule": "config/jnu_phase4b_news_acquisition_stop_rule.json",
+    "rule": "USDJPY current specification is resolved FAIL. Do not alter news queries/statistical gates. If cached resume 1 fails, only one final cached resume is permitted under the frozen stop rule."
   },
-  "next_gate": "Select exactly one next family from the evidence-first priority queue; blocked candidates must remain blocked."
+  "next_gate": "Resolve the full Phase4B news family under the frozen acquisition stop rule; then choose exactly one next formal family."
 }
