@@ -1,0 +1,23 @@
+{
+  "version": "1.0",
+  "id": "USDJPY_1D_INCREMENTAL_PHASE4B",
+  "lineage": "Selected from Phase4A information-state screen; 5-day lag did not show stable evidence and is not tested here.",
+  "hypothesis": "Strictly lagged 1-day USDJPY change adds incremental OOS information for the next Nikkei Futures Index daily return, potentially with stronger effect in high global-risk states.",
+  "predictor": "1-day USDJPY log/percentage change available strictly before the Japanese target date",
+  "baseline_features": [
+    "prior Nikkei 1-day return",
+    "prior Nikkei 5-day return",
+    "prior 20-day realized volatility"
+  ],
+  "incremental_features": [
+    "prior USDJPY 1-day change"
+  ],
+  "evaluation": [
+    "expanding OOS forecast MSE improvement",
+    "OOS sign accuracy improvement",
+    "block-bootstrap forecast-loss differential",
+    "high/low VIX regime stability"
+  ],
+  "no_parameter_search": true,
+  "trading_allowed_at_this_stage": false
+}
