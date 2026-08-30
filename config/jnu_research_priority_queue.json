@@ -79,5 +79,17 @@
       "reason": "Bounded conservative acquisition protocol could not complete full preregistered panel.",
       "final_run_id": 33331409697
     }
+  ],
+  "screened_not_separate_families": [
+    {
+      "candidate": "FUTURES_CASH_BASIS_ALPHA",
+      "disposition": "DO_NOT_OPEN_SEPARATE_FAMILY",
+      "reason": [
+        "Direct Nikkei basis literature reports unstable/unit-root-like basis behavior for standalone prediction.",
+        "Modern spot-futures adjustment evidence overlaps conceptually with Dynamic Price Discovery.",
+        "Fair-value basis is mechanically driven by financing, dividends and time-to-expiry, so counting it as an independent directional vote risks duplication."
+      ],
+      "allowed_use": "DPD/fair-value sanity check, roll diagnostics and execution context only."
+    }
   ]
 }
