@@ -1,0 +1,157 @@
+{
+  "version": "1.0",
+  "updated_at": "2026-08-31",
+  "scoring": {
+    "evidence_grade": {
+      "A": "Direct Nikkei/Nikkei-futures evidence with methods closely matching the proposed module.",
+      "B": "Direct Japanese-equity evidence or closely related Nikkei instrument evidence.",
+      "C": "Cross-market/general evidence only; requires stronger local confirmation."
+    },
+    "data_grade": {
+      "A": "True/official target-market data available under current no-extra-cost and licensing policy.",
+      "B": "High-quality proxy or partially available target data; formal promotion still blocked.",
+      "C": "Key data unavailable, paid, too short, or licensing path unresolved."
+    },
+    "result_status": [
+      "VALIDATED_TRUE_JNU",
+      "TRUE_JNU_CONFIRMATION_PENDING",
+      "PROXY_METHOD_PASS",
+      "PROXY_NEGATIVE",
+      "REJECT_CURRENT_SPEC",
+      "DATA_INCONCLUSIVE",
+      "LITERATURE_ONLY"
+    ]
+  },
+  "modules": [
+    {
+      "module": "DYNAMIC_PRICE_DISCOVERY",
+      "evidence_grade": "A",
+      "data_grade": "C",
+      "literature": [
+        "Lee et al. 2015 — one-minute OSE/SGX/CME leadership changes over time",
+        "Moriyasu 2010/2012 — OSE/SGX price discovery",
+        "2023 nonlinear Nikkei spot/futures/cross-border price discovery"
+      ],
+      "internal_result": "Proxy pilot shows unstable/nonzero lead-lag; no robust directional alpha.",
+      "status": "LITERATURE_SUPPORTED_DATA_BLOCKED",
+      "admitted_role": "Dynamic venue/session source weighting only",
+      "forbidden": "Fixed NQ/ES/SGX/OSE weights or majority vote",
+      "next_evidence_needed": "Approved venue-specific OSE+SGX+CME intraday data"
+    },
+    {
+      "module": "HAR_RSV_VOLATILITY_STATE",
+      "evidence_grade": "A",
+      "data_grade": "B",
+      "literature": [
+        "Asai & McAleer 2017 — Nikkei 225 futures volatility forecasting",
+        "Maki & Ota 2020/2021 — Japanese futures/spot realized-semivariance asymmetry"
+      ],
+      "internal_result": "DI1 proxy-method PASS; MSE bootstrap P=0.9585, QLIKE support weaker.",
+      "status": "TRUE_JNU_CONFIRMATION_PENDING",
+      "admitted_role": "Risk state / sizing / stop-distance / confidence only",
+      "next_evidence_needed": "225Labo Mini 2006+ frozen confirmation, then Micro 2023+ exact-product consistency"
+    },
+    {
+      "module": "NEWS_LANGUAGE_SOURCE_STATE",
+      "evidence_grade": "A",
+      "data_grade": "B",
+      "literature": [
+        "Smales 2026 — CME Nikkei futures; Japanese/English sentiment-source effects",
+        "Feng, Fu & Shi 2022 — Japanese news sentiment and volatility states"
+      ],
+      "internal_result": "G1 currently running; broad GDELT predecessor was data-inconclusive.",
+      "status": "ACTIVE_FORMAL_SCREEN",
+      "admitted_role": "None yet; volatility/event state only if G1 passes",
+      "caveat": "GDELT sourcelang is an independent proxy structure, not TRNA replication."
+    },
+    {
+      "module": "PRIOR_US_RETURN_INTRADAY_PATH",
+      "evidence_grade": "A",
+      "data_grade": "B",
+      "literature": [
+        "Iwanaga 2026 — prior S&P 500 return vs first/last 30m Nikkei futures returns"
+      ],
+      "internal_result": "Proxy G0 negative: FIRST30 sign matched but OOS loss/hit worsened; LAST30 sign unstable.",
+      "status": "PROXY_NEGATIVE_TRUE_JNU_UNRESOLVED",
+      "admitted_role": "None",
+      "next_evidence_needed": "Only frozen true-JNU confirmation if independently justified; no window/predictor rescue."
+    },
+    {
+      "module": "ORDER_IMBALANCE",
+      "evidence_grade": "A",
+      "data_grade": "C",
+      "literature": [
+        "Li, Endo & Zuo 2010 — Nikkei 225 futures order imbalances explain returns",
+        "Nikkei futures trade-frequency/microstructure studies"
+      ],
+      "internal_result": "Not tested because no approved free directional trade/order-side history.",
+      "status": "LITERATURE_ONLY_DATA_BLOCKED",
+      "admitted_role": "None",
+      "forbidden": "Infer order imbalance from OHLC/VWAP/volume."
+    },
+    {
+      "module": "USDJPY_1D_STATE",
+      "evidence_grade": "B",
+      "data_grade": "A",
+      "literature": [
+        "General Japan equity/FX linkage literature; no universal-sign rule adopted."
+      ],
+      "internal_result": "642 OOS days; bootstrap P=0.7445; sign accuracy worsened.",
+      "status": "REJECT_CURRENT_SPEC",
+      "admitted_role": "None",
+      "forbidden": "Post-hoc rescue using high-VIX subset."
+    },
+    {
+      "module": "LEFT_TAIL_RISK_LTV",
+      "evidence_grade": "B",
+      "data_grade": "C",
+      "literature": [
+        "Andersen/Todorov/Ubukata Japanese-equity left-tail predictability",
+        "Cboe LTV methodology designed around extreme SPX downside option-implied risk"
+      ],
+      "internal_result": "Not tested.",
+      "status": "HIGH_EVIDENCE_DATA_BLOCKED",
+      "admitted_role": "None",
+      "next_evidence_needed": "Verified free/authorized historical LTV EOD series",
+      "forbidden": "Substitute VIX/SKEW and call it equivalent."
+    },
+    {
+      "module": "BOJ_MPM_EVENT_VOLATILITY",
+      "evidence_grade": "B",
+      "data_grade": "A",
+      "literature": [
+        "Intraday Japanese monetary-policy release evidence in Nikkei 225 VI / VI futures"
+      ],
+      "internal_result": "Not tested.",
+      "status": "LITERATURE_ONLY_READY_FOR_LATER_REVIEW",
+      "admitted_role": "None",
+      "proposed_role": "Event-volatility/risk state, not direction",
+      "data_candidate": "Official BOJ MPM/release calendar and timestamps"
+    },
+    {
+      "module": "SPOT_FUTURES_BASIS",
+      "evidence_grade": "B",
+      "data_grade": "B",
+      "literature": [
+        "Lim 1996 — Nikkei basis movements mostly unit-root/nonstationary in studied period"
+      ],
+      "internal_result": "No modern formal alpha test.",
+      "status": "EXECUTION_STATE_ONLY",
+      "admitted_role": "Relative pricing / execution / anomaly diagnostics",
+      "forbidden": "Simple basis magnitude directional vote."
+    },
+    {
+      "module": "BOJ_ETF_ANTICIPATION_LUNCH",
+      "evidence_grade": "A",
+      "data_grade": "A",
+      "literature": [
+        "2026 Finance Research Letters — anticipated BOJ ETF purchases raise Nikkei futures lunch volume without price change"
+      ],
+      "internal_result": "Not tested.",
+      "status": "HISTORICAL_ONLY_LOW_CURRENT_PRIORITY",
+      "admitted_role": "None",
+      "reason": "BOJ discontinued new ETF/J-REIT purchases on 2024-03-19."
+    }
+  ],
+  "selection_rule": "Prefer high evidence + executable data + non-duplicative role. A literature A-grade module with C-grade data remains blocked rather than proxied aggressively."
+}
