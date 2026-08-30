@@ -297,17 +297,17 @@
     {
       "id": "CBOE_SPX_LEFT_TAIL_VOLATILITY_LTV",
       "provider": "Cboe Global Indices",
-      "access_route": "Official LTV index/dashboard/methodology; free historical bulk-download route not yet verified.",
+      "access_route": "Official Cboe LTV dashboard/methodology and Cboe Global Indices Feed for streaming values. Free bulk historical EOD route not found; historical access appears to require Cboe index/data services.",
       "data_type": "S&P 500 option-implied Left Tail Volatility Index (LTV)",
       "coverage": "Base date 2006-01-03; launch 2024-03-14. Back-calculated history is implied by base date, but free downloadable historical series availability remains unverified.",
-      "cost_class": "UNKNOWN_FOR_HISTORICAL_BULK; PUBLIC_METHODOLOGY",
+      "cost_class": "PUBLIC_METHODOLOGY_AND_DASHBOARD; HISTORICAL_BULK_NOT_CONFIRMED_FREE",
       "storage_class": "NOT_USED_UNTIL_ACCESS_RIGHTS_AND_HISTORY_ROUTE_VERIFIED",
       "license_or_terms_status": "Official Cboe index; do not assume bulk historical archival rights until access route/terms are confirmed.",
       "provenance": "Cboe LTV methodology v1.2 (revised 2026-04-10), official dashboard and index product list.",
       "jnu_role": "High-priority U.S. option-implied left-tail-risk candidate. Methodology directly cites Andersen-Todorov-Ubukata (2021) Japanese equity predictability research.",
-      "status": "HIGH_EVIDENCE_CANDIDATE_ACCESS_PENDING",
+      "status": "HIGH_EVIDENCE_CANDIDATE_BLOCKED_NO_VERIFIED_FREE_HISTORY",
       "methodology_stability": "Methodology appendix lists no major changes since 2024 launch as of version 1.2.",
-      "formal_limitation": "Do not substitute SKEW/VIX and call it the paper's left-tail measure. LTV itself requires independent JNU OOS validation."
+      "formal_limitation": "No backtest until a free/authorized historical LTV series is verified. Do not substitute VIX/SKEW and claim equivalence."
     },
     {
       "id": "NYU_VLAB_LTV_HISTORY",
@@ -434,6 +434,16 @@
         "V-Lab CSV download requires login.",
         "No V-Lab connector is currently present in the connected ChatGPT tool inventory.",
         "Do not use logged-in CSV until access and data-use terms are reviewed."
+      ]
+    },
+    {
+      "date": "2026-08-31",
+      "topic": "Cboe LTV free-history access review",
+      "findings": [
+        "Official Cboe page confirms LTV and streaming access through the Cboe Global Indices Feed.",
+        "Cboe's public volatility historical-data page lists VIX and selected indices but not LTV.",
+        "No official free LTV bulk historical EOD route was verified in this review.",
+        "Do not start an LTV backtest under the no-extra-cost policy."
       ]
     }
   ],
