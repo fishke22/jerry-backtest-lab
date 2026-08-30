@@ -62,12 +62,24 @@
       "order": 5,
       "id": "CONDITIONAL_MACRO",
       "role": "STATE_CANDIDATE",
-      "status": "PHASE4B_RUNNING",
-      "candidates": [
-        "USDJPY 1-day incremental state"
-      ],
+      "status": "NO_ADMITTED_CURRENT_SPEC",
+      "candidates": [],
       "gate": "Must improve frozen OOS MSE with bootstrap P>=0.95 and sign accuracy not worse.",
-      "rule": "Never hard-code yen weakness => Nikkei up."
+      "rule": "No universal one-day USDJPY state is admitted. Any future FX design must be a newly preregistered family.",
+      "results": [
+        {
+          "id": "USDJPY_1D_PHASE4B",
+          "status": "REJECT_CURRENT_SPEC",
+          "oos_days": 642,
+          "mse_improvement": 0.0000028978076239843953,
+          "bootstrap_prob_positive": 0.7445,
+          "baseline_sign_accuracy": 0.5467289719626168,
+          "with_usdjpy_sign_accuracy": 0.5404984423676013,
+          "high_vix_bootstrap_prob_positive": 0.885,
+          "low_vix_mse_improvement": -0.000003183808249250422,
+          "guardrail": "Do not rescue post hoc by selecting the high-VIX subset."
+        }
+      ]
     },
     {
       "order": 6,
@@ -144,10 +156,10 @@
     "Intraday Path US proxy G0"
   ],
   "active_research": {
-    "only_active_formal_screen": "Phase4B USDJPY + six-category GDELT news state",
-    "run_id": 33327263924,
-    "branch": "research/phase4b-final-v1",
-    "rule": "Do not change research specification while this run is active."
+    "only_active_formal_screen": "Phase4B six-category GDELT news state",
+    "run_id": 33330366995,
+    "branch": "research/phase4b-adaptive-v1",
+    "rule": "USDJPY current specification is resolved FAIL; do not change the news specification while run 33330366995 is active."
   },
-  "next_gate": "Resolve Phase4B. Then update macro/news layers before choosing exactly one new formal information family."
+  "next_gate": "Resolve Phase4B news family. Then update news layer before selecting exactly one new formal information family."
 }
