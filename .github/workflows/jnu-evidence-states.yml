@@ -1,0 +1,49 @@
+name: JNU Evidence State Validation
+
+on:
+  push:
+    paths:
+      - "evidence_requests/*.json"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: jnu-evidence-state-validation
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+      - name: Set cache date
+        shell: bash
+        run: echo "CACHE_DATE=$(date -u +%Y-%m-%d)" >> "$GITHUB_ENV"
+      - name: Restore exact market-data cache
+        uses: actions/cache@v4
+        with:
+          path: .cache/market-data
+          key: market-data-${{ runner.os }}-${{ env.CACHE_DATE }}
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Run evidence-state validation
+        run: python scripts/process_evidence_states.py
+      - name: Commit results
+        shell: bash
+        run: |
+          git add evidence_results evidence_reports
+          if git diff --cached --quiet; then
+            echo "No new evidence results."
+            exit 0
+          fi
+          git config user.name "jerry-backtest-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git commit -m "research: publish evidence-state validation"
+          git push
