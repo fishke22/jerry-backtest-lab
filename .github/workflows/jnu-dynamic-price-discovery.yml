@@ -1,0 +1,51 @@
+name: JNU Dynamic Price Discovery Pilot
+
+on:
+  push:
+    paths:
+      - "dpd_requests/*.json"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: jnu-dynamic-price-discovery
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+      - name: Set cache date
+        shell: bash
+        run: echo "CACHE_DATE=$(date -u +%Y-%m-%d)" >> "$GITHUB_ENV"
+      - name: Restore market-data cloud cache
+        uses: actions/cache@v4
+        with:
+          path: .cache/market-data
+          key: market-data-${{ runner.os }}-${{ env.CACHE_DATE }}
+          restore-keys: |
+            market-data-${{ runner.os }}-
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Run Dynamic Price Discovery pilot
+        run: python scripts/process_dynamic_price_discovery.py
+      - name: Commit DPD results
+        shell: bash
+        run: |
+          git add dpd_results dpd_reports
+          if git diff --cached --quiet; then
+            echo "No new DPD results."
+            exit 0
+          fi
+          git config user.name "jerry-backtest-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git commit -m "research: publish JNU DPD pilot results"
+          git push
