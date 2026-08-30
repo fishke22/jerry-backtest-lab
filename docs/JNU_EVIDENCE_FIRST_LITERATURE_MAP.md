@@ -152,3 +152,17 @@ No currently tested module is VALIDATED_JNU_MODULE.
   2. GDELT `sourcelang` is a proxy for publication language, not a replication of TRNA sentiment analytics.
   3. Any GDELT pass must be described as independent proxy evidence only.
   4. G1 remains a volatility/event-state test; directional sentiment trading is a separate family.
+
+
+## 2026 BOJ policy-anticipation microstructure evidence
+
+### Market anticipation and intraday trading: Evidence from BOJ ETF purchases (2026)
+- Paper: *Market anticipation and intraday trading: Evidence from BOJ ETF purchases*
+- Journal: Finance Research Letters, 2026, 109421.
+- Direct market scope: Nikkei 225 futures on Osaka and Singapore venues.
+- Reported mechanism: when BOJ ETF intervention was anticipated, Nikkei futures trading volume rose during the lunch period while prices remained comparatively stable; similar volume-price decoupling appeared in OSE and SGX.
+- JNU consequence:
+  1. Policy/event information can enter through liquidity and execution intensity without an immediate directional price move.
+  2. RVOL/liquidity/session features should therefore remain execution/state variables unless separately validated for direction.
+  3. Do not translate a BOJ-policy headline into an automatic long/short vote.
+  4. The historical BOJ ETF-purchase mechanism is not treated as a current standalone alpha family.
