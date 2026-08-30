@@ -121,3 +121,18 @@ No currently tested module is VALIDATED_JNU_MODULE.
   2. Test prior-U.S.-return interactions with those states, not a universal NQ/ES sign.
   3. No parameter search around 30 minutes in generation 1.
   4. Treat the paper as support for **Intraday Path / session conditioning**, not immediate trading authorization.
+
+
+## Direct Japanese realized-volatility asymmetry evidence
+
+### Maki & Ota (2020) — realized volatility asymmetry in Japanese futures and spot markets
+- Paper: *The impacts of asymmetry on modeling and forecasting realized volatility in Japanese stock markets*
+- DOI: `10.48550/arXiv.2006.00158`
+- Market scope: Japanese spot market and Nikkei 225 futures.
+- Models explicitly compared include HAR variants using positive/negative realized semivariance, asymmetric jumps, and leverage effects.
+- Reported evidence: leverage effects are present in both spot and futures markets; realized semivariance is materially useful in modeling realized volatility, although performance depends on model specification.
+- JNU research consequence:
+  1. The existing DI1 HAR-RSV proxy pass has direct Japanese-futures literature support and is therefore higher priority than inventing a new volatility family.
+  2. Keep HAR-RSV frozen for true-JNU confirmation; do not expand the parameter grid merely because other asymmetric HAR variants exist.
+  3. HAR leverage/jump variants remain separate future families and cannot be added to rescue HAR-RSV if true-JNU confirmation fails.
+  4. Volatility remains a risk/sizing state first, not automatic directional alpha.
