@@ -20,13 +20,12 @@
     ]
   },
   "active": {
-    "rank": 1,
-    "candidate": "PHASE4B_GDELT_NEWS_STATE",
-    "run_id": 33331409697,
-    "branch": "research/phase4b-ratelimited-cache-v1",
-    "status": "RUNNING_FINAL_CONSERVATIVE_ACQUISITION",
-    "role": "Volatility/event/confidence state",
-    "note": "USDJPY subtest is resolved FAIL. News family uses single-connection paced GDELT retrieval with cumulative cache; same preregistered research specification."
+    "rank": null,
+    "candidate": null,
+    "run_id": null,
+    "branch": null,
+    "status": "NONE",
+    "note": "Phase4B broad news resolved DATA_INCONCLUSIVE; USDJPY resolved FAIL."
   },
   "queue": [
     {
@@ -59,7 +58,7 @@
       "candidate": "NEWS_LANGUAGE_SESSION_G1",
       "evidence": "Japanese/English sentiment and volatility-state literature",
       "target_role": "Language/session-specific event state",
-      "status": "DRAFT_ONLY_CONDITIONAL_ON_PHASE4B_DISPOSITION",
+      "status": "ELIGIBLE_FOR_REVIEW_NOT_TRIGGERED",
       "prereg_draft": "config/jnu_news_state_language_session_g1_draft.json",
       "next_action": "Activate only if current broad-news family fails/inconclusive and evidence justifies a genuinely new family."
     },
@@ -70,6 +69,14 @@
       "target_role": "Microstructure information",
       "status": "BLOCKED_NO_FREE_DIRECTIONAL_ORDER_FLOW_DATA",
       "next_action": "Do not infer from OHLC/volume. Wait for approved trade/order-side data."
+    }
+  ],
+  "resolved": [
+    {
+      "candidate": "PHASE4B_GDELT_NEWS_STATE",
+      "status": "DATA_INCONCLUSIVE",
+      "reason": "Bounded conservative acquisition protocol could not complete full preregistered panel.",
+      "final_run_id": 33331409697
     }
   ]
 }
