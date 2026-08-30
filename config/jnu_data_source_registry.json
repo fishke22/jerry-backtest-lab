@@ -182,7 +182,8 @@
         "https://225labo.com/modules/downloads_data/index.php?cid=11",
         "https://225labo.com/modules/downloads_data/index.php?cid=11&lid=175&page=singlefile"
       ],
-      "raw_storage_rule": "Do not put raw files in public/shareable storage. Before private cloud ingestion, confirm that automated private processing/storage remains within personal-use terms."
+      "raw_storage_rule": "Do not put raw files in public/shareable storage. Before private cloud ingestion, confirm that automated private processing/storage remains within personal-use terms.",
+      "credential_policy": "GitHub connector cannot create or read Actions Secrets. Member credentials/cookies must never be stored in repository files, request JSON, logs or artifacts. Cloud ingestion requires a user-authorized secret-manager setup first."
     },
     {
       "id": "JPX_JGATE_ITCH_HISTORICAL",
@@ -337,6 +338,18 @@
         "Fixed EST timestamps must be converted to America/New_York to restore daylight-saving-aware cash hours.",
         "Proxy G0 selects the most recent completed U.S. cash session strictly before Japan open to prevent look-ahead."
       ]
+    },
+    {
+      "date": "2026-08-31",
+      "topic": "OSE order-flow / participant-data feasibility",
+      "findings": [
+        "J-Quants API minute/tick add-on covers equities only and explicitly excludes derivatives such as futures.",
+        "JPX historical derivatives tick and one-minute OHLC are paid Market Data Service / DataCube products; not approved under the no-extra-cost policy.",
+        "JPX daily participant-volume archives are public, but the post-2023 daily disclosure combines buys and sells; it does not provide a directional net-flow signal.",
+        "Monthly participant reports separate buys and sells but are too coarse to serve as the intended intraday/daily JNU order-imbalance factor.",
+        "Do not proxy order imbalance from OHLC/VWAP/volume bars."
+      ],
+      "next_action": "Keep true order-imbalance research in the literature layer until an approved venue-level trade/order-side dataset is available."
     }
   ],
   "last_news_plugin_discovery": {
