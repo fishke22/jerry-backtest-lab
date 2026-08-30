@@ -1,0 +1,54 @@
+{
+  "request_id": "jnu_intraday_volatility_proxy_v1_di1",
+  "candidate_id": "INTRADAY_VOLATILITY_METHOD_PROXY",
+  "preregistration": "config/jnu_intraday_volatility_proxy_prereg_v1.json",
+  "years": [
+    2011,
+    2012,
+    2013,
+    2014,
+    2015,
+    2016,
+    2017,
+    2018
+  ],
+  "force_refresh": false,
+  "minimum_training_days": 504,
+  "data_quality": {
+    "expected_5m_returns_per_full_day": 58,
+    "min_5m_returns_per_day": 46,
+    "minimum_session_parts": 2
+  },
+  "bootstrap": {
+    "block_days": 5,
+    "samples": 2000,
+    "seed": 42
+  },
+  "pass_rules": {
+    "min_bootstrap_prob_positive": 0.95
+  },
+  "formal_promotion": false,
+  "control_plane_retrigger": {
+    "nonce": 4,
+    "reason": "Run DI1 historical-session correction; research model parameters unchanged."
+  },
+  "data_integrity_correction": {
+    "correction_id": "DI1_TSE_2011_MORNING_SESSION",
+    "original_result": "volatility_results/jnu_intraday_volatility_proxy_v1.json",
+    "original_result_preserved": true,
+    "discovered_after_original_run": true,
+    "change_only": "For dates before 2011-11-21, TSE cash morning session ends at 11:00 instead of 11:30.",
+    "unchanged": [
+      "source years and upstream commit",
+      "EST UTC-5 to JST conversion",
+      "5-minute sampling",
+      "HAR 1/5/22 windows",
+      "HAR_RV / HAR_LEVERAGE / HAR_RSV specifications",
+      "minimum training days",
+      "bootstrap block/sample/seed",
+      "0.95 pass threshold"
+    ],
+    "session_calendar": "config/jnu_session_calendar_versions.json",
+    "interpretation": "This is a data-integrity rerun, not post-hoc model tuning. Original fail remains in audit history."
+  }
+}
