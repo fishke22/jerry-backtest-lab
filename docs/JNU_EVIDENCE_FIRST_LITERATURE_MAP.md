@@ -105,3 +105,19 @@ No currently tested module is VALIDATED_JNU_MODULE.
 - volatility_regime: QUARANTINE; promising structural evidence but failed DSR/Holm gates.
 - cross_market_confirmation: rejected for extreme PBO.
 - literature-backed Phase 4 candidates must be pre-registered before testing.
+
+
+## 2026 direct intraday Nikkei-futures evidence
+
+### Iwanaga (2026) — prior-day S&P 500 and Nikkei 225 futures intraday returns
+- Paper: *How the prior day's S&P 500 returns influence the intraday returns of Nikkei 225 futures*
+- DOI: `10.1016/j.finr.2026.100108`
+- Status: open access / Finance Research Open.
+- Direct implication for JNU: the prior U.S. equity return should **not** enter as a fixed all-session directional weight.
+- Reported pattern: higher prior-day S&P 500 returns are associated with lower returns in the first 30 minutes of the Japanese session and higher returns in the last 30 minutes.
+- Interpretation offered by the paper: temporary overreaction/reversal near the open versus rebalancing/intraday momentum toward the close; mechanisms are interpretive rather than directly proven.
+- JNU research consequence:
+  1. Pre-register `FIRST_30M` and `LAST_30M` as separate states.
+  2. Test prior-U.S.-return interactions with those states, not a universal NQ/ES sign.
+  3. No parameter search around 30 minutes in generation 1.
+  4. Treat the paper as support for **Intraday Path / session conditioning**, not immediate trading authorization.
