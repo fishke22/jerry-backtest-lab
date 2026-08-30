@@ -1,0 +1,399 @@
+{
+  "request_id": "smoke_phase1_v3",
+  "status": "complete",
+  "engine": {
+    "name": "jerry-backtest-lab-phase1",
+    "vectorbt_version": "1.1.0"
+  },
+  "instrument": {
+    "name": "Nikkei 225 Futures Index",
+    "role": "daily proxy for JNU/Nikkei futures directional modules"
+  },
+  "data": {
+    "source": "Nikkei Indexes official CSV",
+    "source_url": "https://indexes.nikkei.co.jp/nkave/historical/nikkei_225_futures_index_series_daily_en.csv",
+    "source_sha256": "5cc80297eac490bcf76e23d3e355a03c5fcff5e4b3fa7c4f48c61f4c50021422",
+    "date_from": "2023-01-04",
+    "date_to": "2026-08-28",
+    "observations": 894,
+    "raw_data_committed": false
+  },
+  "cost_model": {
+    "commission_bps_per_position_unit": 1.5,
+    "slippage_bps_per_position_unit": 1.0
+  },
+  "backtest": {
+    "mode": "walk_forward",
+    "settings": {
+      "train_days": 252,
+      "test_days": 63,
+      "step_days": 63,
+      "fast_windows": [
+        5,
+        10,
+        20
+      ],
+      "slow_windows": [
+        40,
+        60,
+        100,
+        150
+      ],
+      "selection_metric": "sharpe"
+    },
+    "folds": [
+      {
+        "fold": 0,
+        "train_from": "2023-01-04",
+        "train_to": "2024-01-12",
+        "test_from": "2024-01-15",
+        "test_to": "2024-04-15",
+        "selected": {
+          "fast_window": 5,
+          "slow_window": 60,
+          "selection_metric": "sharpe"
+        },
+        "train_metrics": {
+          "days": 252,
+          "total_return": 0.21334388295469364,
+          "annualized_return": 0.21334388295469364,
+          "annualized_volatility": 0.14900197617583094,
+          "sharpe": 1.3727855023678512,
+          "max_drawdown": -0.10371105555802496,
+          "hit_rate": 0.526595744680851,
+          "turnover": 9.0
+        },
+        "test_metrics": {
+          "days": 63,
+          "total_return": 0.10886442035086263,
+          "annualized_return": 0.5118677208371412,
+          "annualized_volatility": 0.1786645555896117,
+          "sharpe": 2.4043667992172506,
+          "max_drawdown": -0.04249553103084225,
+          "hit_rate": 0.5555555555555556,
+          "turnover": 0.0
+        }
+      },
+      {
+        "fold": 1,
+        "train_from": "2023-04-06",
+        "train_to": "2024-04-15",
+        "test_from": "2024-04-16",
+        "test_to": "2024-07-17",
+        "selected": {
+          "fast_window": 5,
+          "slow_window": 60,
+          "selection_metric": "sharpe"
+        },
+        "train_metrics": {
+          "days": 252,
+          "total_return": 0.3588294750450576,
+          "annualized_return": 0.3588294750450576,
+          "annualized_volatility": 0.17276585785728987,
+          "sharpe": 1.8621233073824308,
+          "max_drawdown": -0.1037110555580254,
+          "hit_rate": 0.532258064516129,
+          "turnover": 8.0
+        },
+        "test_metrics": {
+          "days": 63,
+          "total_return": -0.11094975442392374,
+          "annualized_return": -0.3752514957507419,
+          "annualized_volatility": 0.17509986772261973,
+          "sharpe": -2.596064508713738,
+          "max_drawdown": -0.1337516828246339,
+          "hit_rate": 0.47619047619047616,
+          "turnover": 8.0
+        }
+      },
+      {
+        "fold": 2,
+        "train_from": "2023-07-07",
+        "train_to": "2024-07-17",
+        "test_from": "2024-07-18",
+        "test_to": "2024-10-18",
+        "selected": {
+          "fast_window": 20,
+          "slow_window": 150,
+          "selection_metric": "sharpe"
+        },
+        "train_metrics": {
+          "days": 252,
+          "total_return": 0.28160225596004507,
+          "annualized_return": 0.28160225596004507,
+          "annualized_volatility": 0.1714749896077974,
+          "sharpe": 1.5333010662296722,
+          "max_drawdown": -0.08867592637203192,
+          "hit_rate": 0.5422222222222223,
+          "turnover": 1.0
+        },
+        "test_metrics": {
+          "days": 63,
+          "total_return": -0.25701215768128816,
+          "annualized_return": -0.6952618480910078,
+          "annualized_volatility": 0.4282138643619305,
+          "sharpe": -2.5499507482204704,
+          "max_drawdown": -0.25113051349920723,
+          "hit_rate": 0.4126984126984127,
+          "turnover": 4.0
+        }
+      },
+      {
+        "fold": 3,
+        "train_from": "2023-10-10",
+        "train_to": "2024-10-18",
+        "test_from": "2024-10-21",
+        "test_to": "2025-01-23",
+        "selected": {
+          "fast_window": 10,
+          "slow_window": 100,
+          "selection_metric": "sharpe"
+        },
+        "train_metrics": {
+          "days": 252,
+          "total_return": 0.11796187238933231,
+          "annualized_return": 0.11796187238933231,
+          "annualized_volatility": 0.26840810606416127,
+          "sharpe": 0.5483166228950968,
+          "max_drawdown": -0.23202074705311682,
+          "hit_rate": 0.524,
+          "turnover": 6.0
+        },
+        "test_metrics": {
+          "days": 63,
+          "total_return": 0.02255894849747353,
+          "annualized_return": 0.09333541147041235,
+          "annualized_volatility": 0.16416469497514385,
+          "sharpe": 0.6256784549593686,
+          "max_drawdown": -0.045736895293361,
+          "hit_rate": 0.5161290322580645,
+          "turnover": 0.0
+        }
+      },
+      {
+        "fold": 4,
+        "train_from": "2024-01-15",
+        "train_to": "2025-01-23",
+        "test_from": "2025-01-24",
+        "test_to": "2025-04-25",
+        "selected": {
+          "fast_window": 10,
+          "slow_window": 100,
+          "selection_metric": "sharpe"
+        },
+        "train_metrics": {
+          "days": 252,
+          "total_return": 0.11034097887294014,
+          "annualized_return": 0.11034097887294014,
+          "annualized_volatility": 0.2638659078578532,
+          "sharpe": 0.5272215069161765,
+          "max_drawdown": -0.23202074705311626,
+          "hit_rate": 0.5258964143426295,
+          "turnover": 4.0
+        },
+        "test_metrics": {
+          "days": 63,
+          "total_return": -0.012434258150790911,
+          "annualized_return": -0.048817033925303455,
+          "annualized_volatility": 0.3566720152564772,
+          "sharpe": 0.03942952672427143,
+          "max_drawdown": -0.1494252526453873,
+          "hit_rate": 0.47619047619047616,
+          "turnover": 2.0
+        }
+      },
+      {
+        "fold": 5,
+        "train_from": "2024-04-16",
+        "train_to": "2025-04-25",
+        "test_from": "2025-04-28",
+        "test_to": "2025-07-29",
+        "selected": {
+          "fast_window": 10,
+          "slow_window": 100,
+          "selection_metric": "sharpe"
+        },
+        "train_metrics": {
+          "days": 252,
+          "total_return": -0.011119220364855797,
+          "annualized_return": -0.011119220364855797,
+          "annualized_volatility": 0.3055121766528013,
+          "sharpe": 0.11534025493152533,
+          "max_drawdown": -0.23202074705311604,
+          "hit_rate": 0.5059760956175299,
+          "turnover": 6.0
+        },
+        "test_metrics": {
+          "days": 63,
+          "total_return": 0.02247830987001742,
+          "annualized_return": 0.09299057212942308,
+          "annualized_volatility": 0.1509452906805062,
+          "sharpe": 0.6641666463776286,
+          "max_drawdown": -0.0693419392113872,
+          "hit_rate": 0.4603174603174603,
+          "turnover": 2.0
+        }
+      },
+      {
+        "fold": 6,
+        "train_from": "2024-07-18",
+        "train_to": "2025-07-29",
+        "test_from": "2025-07-30",
+        "test_to": "2025-10-30",
+        "selected": {
+          "fast_window": 10,
+          "slow_window": 60,
+          "selection_metric": "sharpe"
+        },
+        "train_metrics": {
+          "days": 252,
+          "total_return": -0.0003630176146276476,
+          "annualized_return": -0.0003630176146276476,
+          "annualized_volatility": 0.3020248557363764,
+          "sharpe": 0.14886092683205732,
+          "max_drawdown": -0.23202074705311615,
+          "hit_rate": 0.47410358565737054,
+          "turnover": 8.0
+        },
+        "test_metrics": {
+          "days": 63,
+          "total_return": 0.26773473449625884,
+          "annualized_return": 1.5829354844621921,
+          "annualized_volatility": 0.21520616524807856,
+          "sharpe": 4.524377288580986,
+          "max_drawdown": -0.04118852951429042,
+          "hit_rate": 0.5873015873015873,
+          "turnover": 0.0
+        }
+      },
+      {
+        "fold": 7,
+        "train_from": "2024-10-21",
+        "train_to": "2025-10-30",
+        "test_from": "2025-10-31",
+        "test_to": "2026-02-04",
+        "selected": {
+          "fast_window": 20,
+          "slow_window": 60,
+          "selection_metric": "sharpe"
+        },
+        "train_metrics": {
+          "days": 252,
+          "total_return": 0.37403676795248253,
+          "annualized_return": 0.37403676795248253,
+          "annualized_volatility": 0.23722138345701718,
+          "sharpe": 1.4592096064153737,
+          "max_drawdown": -0.20385404087209424,
+          "hit_rate": 0.5179282868525896,
+          "turnover": 4.0
+        },
+        "test_metrics": {
+          "days": 63,
+          "total_return": 0.05904422471975357,
+          "annualized_return": 0.25792974018880366,
+          "annualized_volatility": 0.2252941046605038,
+          "sharpe": 1.1313240980696604,
+          "max_drawdown": -0.07566220117483091,
+          "hit_rate": 0.5238095238095238,
+          "turnover": 0.0
+        }
+      },
+      {
+        "fold": 8,
+        "train_from": "2025-01-24",
+        "train_to": "2026-02-04",
+        "test_from": "2026-02-05",
+        "test_to": "2026-05-13",
+        "selected": {
+          "fast_window": 20,
+          "slow_window": 60,
+          "selection_metric": "sharpe"
+        },
+        "train_metrics": {
+          "days": 252,
+          "total_return": 0.42306290096122323,
+          "annualized_return": 0.42306290096122323,
+          "annualized_volatility": 0.24933824483625017,
+          "sharpe": 1.5408679326393524,
+          "max_drawdown": -0.20385404087209424,
+          "hit_rate": 0.5198412698412699,
+          "turnover": 4.0
+        },
+        "test_metrics": {
+          "days": 63,
+          "total_return": -0.09860093088839883,
+          "annualized_return": -0.3398107916713494,
+          "annualized_volatility": 0.34134072139639343,
+          "sharpe": -1.0438136766831294,
+          "max_drawdown": -0.23482029698067852,
+          "hit_rate": 0.4603174603174603,
+          "turnover": 4.0
+        }
+      },
+      {
+        "fold": 9,
+        "train_from": "2025-04-28",
+        "train_to": "2026-05-13",
+        "test_from": "2026-05-14",
+        "test_to": "2026-08-12",
+        "selected": {
+          "fast_window": 10,
+          "slow_window": 100,
+          "selection_metric": "sharpe"
+        },
+        "train_metrics": {
+          "days": 252,
+          "total_return": 0.600408980401161,
+          "annualized_return": 0.600408980401161,
+          "annualized_volatility": 0.2434414756485699,
+          "sharpe": 2.0545386455390187,
+          "max_drawdown": -0.13295611210273572,
+          "hit_rate": 0.5277777777777778,
+          "turnover": 2.0
+        },
+        "test_metrics": {
+          "days": 63,
+          "total_return": 0.06662936205397041,
+          "annualized_return": 0.294357185171779,
+          "annualized_volatility": 0.35364412679722357,
+          "sharpe": 0.9069229863824126,
+          "max_drawdown": -0.1530333055505354,
+          "hit_rate": 0.5555555555555556,
+          "turnover": 0.0
+        }
+      }
+    ],
+    "oos_metrics": {
+      "days": 630,
+      "total_return": -0.023734231073762158,
+      "annualized_return": -0.009562159175197982,
+      "annualized_volatility": 0.2779946410296095,
+      "sharpe": 0.10543270474185731,
+      "max_drawdown": -0.40394144075090865,
+      "hit_rate": 0.5023847376788553,
+      "turnover": 20.0
+    },
+    "oos_benchmark": {
+      "days": 630,
+      "total_return": 0.950227917068958,
+      "annualized_return": 0.3062735934217524,
+      "annualized_volatility": 0.2773049309450505,
+      "sharpe": 1.1032361021544468,
+      "max_drawdown": -0.2604228251071198,
+      "hit_rate": 0.5405405405405406,
+      "turnover": 0.0
+    }
+  },
+  "generated_at_utc": "2026-08-30T14:23:47.272568+00:00",
+  "validation": {
+    "mechanical_status": "FAIL",
+    "checks": {
+      "min_oos_sharpe": true,
+      "min_oos_total_return": false,
+      "min_oos_days": true,
+      "positive_after_cost": false
+    },
+    "promotion_status": "CANDIDATE_ONLY",
+    "note": "PASS is not equivalent to VALIDATED_JNU_MODULE. Independent review and additional robustness gates are still required."
+  }
+}
