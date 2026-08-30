@@ -166,3 +166,15 @@ No currently tested module is VALIDATED_JNU_MODULE.
   2. RVOL/liquidity/session features should therefore remain execution/state variables unless separately validated for direction.
   3. Do not translate a BOJ-policy headline into an automatic long/short vote.
   4. The historical BOJ ETF-purchase mechanism is not treated as a current standalone alpha family.
+
+
+## BOJ ETF-purchase anticipation / lunch-session evidence
+
+### 2025 study — market anticipation and Nikkei futures lunch trading
+- Paper: *Market anticipation and intraday trading: Evidence from BOJ ETF purchases*
+- Evidence reported in the published abstract: on anticipated BOJ ETF intervention days, Nikkei 225 futures trading volume rises during the Japanese cash-market lunch break even when price movement is small.
+- Research implication:
+  1. This is a potential **event/liquidity-state** hypothesis, not a generic directional alpha.
+  2. The lunch-break futures state is structurally interesting because cash equities are closed while futures continue trading.
+  3. Do not activate while another formal family is active.
+  4. Before any test, verify whether the relevant BOJ purchase/anticipation data can be obtained from an official free source and preregister the event definition without using future information.
