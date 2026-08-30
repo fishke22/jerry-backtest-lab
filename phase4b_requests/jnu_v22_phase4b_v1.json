@@ -31,7 +31,7 @@
     }
   },
   "control_plane_retrigger": {
-    "nonce": 3,
-    "reason": "PR synchronize after removing blocking concurrency; research parameters unchanged."
+    "nonce": 4,
+    "reason": "Re-run identical preregistered Phase4B after execution-only parallel fetch optimization; research parameters unchanged."
   }
 }
