@@ -22,11 +22,11 @@
   "active": {
     "rank": 1,
     "candidate": "PHASE4B_GDELT_NEWS_STATE",
-    "run_id": 33330366995,
-    "branch": "research/phase4b-adaptive-v1",
-    "status": "RUNNING",
+    "run_id": 33331409697,
+    "branch": "research/phase4b-ratelimited-cache-v1",
+    "status": "RUNNING_FINAL_CONSERVATIVE_ACQUISITION",
     "role": "Volatility/event/confidence state",
-    "note": "USDJPY subtest is already resolved FAIL and is no longer active."
+    "note": "USDJPY subtest is resolved FAIL. News family uses single-connection paced GDELT retrieval with cumulative cache; same preregistered research specification."
   },
   "queue": [
     {
