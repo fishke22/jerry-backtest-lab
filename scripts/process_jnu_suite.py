@@ -8,6 +8,7 @@ import math
 import sys
 import traceback
 import urllib.request
+import time
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -25,7 +26,10 @@ NIKKEI_FUTURES_CSV = (
     "https://indexes.nikkei.co.jp/nkave/historical/"
     "nikkei_225_futures_index_series_daily_en.csv"
 )
-FRED_CSV = "https://fred.stlouisfed.org/graph/fredgraph.csv?id={series_id}"
+FRED_CSV = (
+    "https://fred.stlouisfed.org/graph/fredgraph.csv"
+    "?id={series_id}&cosd={start}&coed={end}"
+)
 
 
 def sha256(raw: bytes) -> str:
@@ -38,11 +42,25 @@ def fetch_cached(url: str, cache_name: str, force_refresh: bool = False) -> tupl
     if path.exists() and not force_refresh:
         return path.read_bytes(), True
 
-    req = urllib.request.Request(url, headers={"User-Agent": "JerryBacktestLab/0.2"})
-    with urllib.request.urlopen(req, timeout=45) as response:
-        raw = response.read()
-    path.write_bytes(raw)
-    return raw, False
+    last_error: Exception | None = None
+    for attempt in range(3):
+        try:
+            req = urllib.request.Request(
+                url,
+                headers={
+                    "User-Agent": "Mozilla/5.0 JerryBacktestLab/0.2",
+                    "Accept": "text/csv,*/*;q=0.8",
+                },
+            )
+            with urllib.request.urlopen(req, timeout=120) as response:
+                raw = response.read()
+            path.write_bytes(raw)
+            return raw, False
+        except Exception as exc:
+            last_error = exc
+            if attempt < 2:
+                time.sleep(2 ** attempt)
+    raise RuntimeError(f"Failed to fetch {cache_name} after 3 attempts: {last_error}")
 
 
 def parse_nikkei(raw: bytes) -> pd.Series:
@@ -75,8 +93,12 @@ def parse_fred(raw: bytes, series_id: str) -> pd.Series:
 def load_data(request: dict) -> tuple[pd.Series, dict[str, pd.Series], dict]:
     force = bool(request.get("force_refresh", False))
     nk_raw, nk_hit = fetch_cached(NIKKEI_FUTURES_CSV, "nikkei_futures_daily.csv", force)
-    ndx_url = FRED_CSV.format(series_id="NASDAQ100")
-    fx_url = FRED_CSV.format(series_id="DEXJPUS")
+    date_from = pd.Timestamp(request.get("date_from", "2000-01-01"))
+    date_to = pd.Timestamp(request.get("date_to", datetime.now(timezone.utc).date()))
+    fred_start = (date_from - pd.Timedelta(days=450)).date().isoformat()
+    fred_end = date_to.date().isoformat()
+    ndx_url = FRED_CSV.format(series_id="NASDAQ100", start=fred_start, end=fred_end)
+    fx_url = FRED_CSV.format(series_id="DEXJPUS", start=fred_start, end=fred_end)
     ndx_raw, ndx_hit = fetch_cached(ndx_url, "fred_nasdaq100.csv", force)
     fx_raw, fx_hit = fetch_cached(fx_url, "fred_dexjpus.csv", force)
 
