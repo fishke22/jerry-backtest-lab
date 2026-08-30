@@ -1,0 +1,106 @@
+{
+  "request_id": "jnu_intraday_volatility_proxy_v1_di1",
+  "candidate_id": "INTRADAY_VOLATILITY_METHOD_PROXY",
+  "status": "complete",
+  "promotion_status": "METHOD_PROXY_ONLY",
+  "preregistration": "config/jnu_intraday_volatility_proxy_prereg_v1.json",
+  "source_manifest": "cloud_data/manifests/jnu_intraday_volatility_proxy_v1_di1_rv_panel.json",
+  "derived_dataset": "cloud_data/derived/jnu_intraday_volatility_proxy_v1_di1_rv_panel.csv.gz",
+  "derived_dataset_sha256": "ef53c54bc284b3459b352db2f376cf78629f9aeaa34e8e37047b46140addf8f7",
+  "panel_days": 2050,
+  "evaluation": {
+    "oos_days": 1524,
+    "oos_from": "2013-01-22",
+    "oos_to": "2018-12-31",
+    "losses": {
+      "HAR_RV": {
+        "qlike": -8.982717287933147,
+        "mse": 1.62658597893337e-08
+      },
+      "HAR_LEVERAGE": {
+        "qlike": -8.988819410241181,
+        "mse": 1.6231300205388276e-08
+      },
+      "HAR_RSV": {
+        "qlike": -8.983920304779344,
+        "mse": 1.6232881440204736e-08
+      }
+    },
+    "comparisons": {
+      "HAR_LEVERAGE": {
+        "qlike_improvement": 0.006102122308035756,
+        "mse_improvement": 3.4559583945420245e-11,
+        "qlike_bootstrap": {
+          "n": 1524,
+          "mean": 0.006102122308035756,
+          "ci95": [
+            -0.00388729274042053,
+            0.01754484788121773
+          ],
+          "prob_positive": 0.8705
+        },
+        "mse_bootstrap": {
+          "n": 1524,
+          "mean": 3.4559583945420245e-11,
+          "ci95": [
+            -2.146137133638767e-10,
+            2.354313099126501e-10
+          ],
+          "prob_positive": 0.6575
+        },
+        "subperiods": {
+          "2011_2014": {
+            "n": 498,
+            "qlike_improvement": 0.001900094568059267,
+            "mse_improvement": 5.869090576234195e-11
+          },
+          "2015_2018": {
+            "n": 1026,
+            "qlike_improvement": 0.008141703023930778,
+            "mse_improvement": 2.2846720139546e-11
+          }
+        },
+        "pass_method_proxy": false
+      },
+      "HAR_RSV": {
+        "qlike_improvement": 0.0012030168461981937,
+        "mse_improvement": 3.297834912896352e-11,
+        "qlike_bootstrap": {
+          "n": 1524,
+          "mean": 0.0012030168461981937,
+          "ci95": [
+            -0.0054650636349525905,
+            0.0070729243991635585
+          ],
+          "prob_positive": 0.6835
+        },
+        "mse_bootstrap": {
+          "n": 1524,
+          "mean": 3.297834912896352e-11,
+          "ci95": [
+            -3.6021327108824876e-12,
+            7.689615839737653e-11
+          ],
+          "prob_positive": 0.9585
+        },
+        "subperiods": {
+          "2011_2014": {
+            "n": 498,
+            "qlike_improvement": -0.010803312369980193,
+            "mse_improvement": 5.844817242401494e-12
+          },
+          "2015_2018": {
+            "n": 1026,
+            "qlike_improvement": 0.007030650325395889,
+            "mse_improvement": 4.6148426009575494e-11
+          }
+        },
+        "pass_method_proxy": true
+      }
+    },
+    "best_by_qlike": "HAR_LEVERAGE",
+    "best_by_mse": "HAR_LEVERAGE",
+    "any_method_proxy_pass": true
+  },
+  "generated_at_utc": "2026-08-30T16:46:29.359018+00:00"
+}
