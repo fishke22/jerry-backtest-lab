@@ -31,7 +31,7 @@
     }
   },
   "control_plane_retrigger": {
-    "nonce": 1,
-    "reason": "Re-trigger GitHub Actions after adding fail-closed diagnostics; research parameters unchanged."
+    "nonce": 5,
+    "reason": "Clean observable run after execution-only parallel fetch and timeout stabilization; research specification unchanged."
   }
 }
