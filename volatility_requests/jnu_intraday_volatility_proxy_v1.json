@@ -1,0 +1,31 @@
+{
+  "request_id": "jnu_intraday_volatility_proxy_v1",
+  "candidate_id": "INTRADAY_VOLATILITY_METHOD_PROXY",
+  "preregistration": "config/jnu_intraday_volatility_proxy_prereg_v1.json",
+  "years": [
+    2011,
+    2012,
+    2013,
+    2014,
+    2015,
+    2016,
+    2017,
+    2018
+  ],
+  "force_refresh": false,
+  "minimum_training_days": 504,
+  "data_quality": {
+    "expected_5m_returns_per_full_day": 58,
+    "min_5m_returns_per_day": 46,
+    "minimum_session_parts": 2
+  },
+  "bootstrap": {
+    "block_days": 5,
+    "samples": 2000,
+    "seed": 42
+  },
+  "pass_rules": {
+    "min_bootstrap_prob_positive": 0.95
+  },
+  "formal_promotion": false
+}
