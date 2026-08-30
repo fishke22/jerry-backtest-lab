@@ -121,6 +121,48 @@
       "provenance": "Official CME",
       "jnu_role": "US-session Nikkei price-discovery venue",
       "status": "AUTHORITATIVE_SOURCE_NOT_YET_FULLY_INGESTED"
+    },
+    {
+      "id": "ALPACA_IEX_JAPAN_PROXY_ETFS",
+      "provider": "Alpaca connector",
+      "access_route": "Connected ChatGPT plugin/connector; get_stock_bars",
+      "data_type": "US-listed Japan proxy ETFs EWJ and DXJ intraday OHLCV/VWAP",
+      "coverage": "Tested successfully at 5-minute resolution for recent 5 days via IEX feed",
+      "cost_class": "NO_EXTRA_COST_CURRENT_CONNECTED_ACCESS",
+      "storage_class": "CONNECTOR_READ_ONLY_DERIVED_RESULTS_DURABLE",
+      "license_or_terms_status": "Connector data access confirmed; raw redistribution/archive rights not assumed. Store derived research results/provenance unless source terms are separately approved.",
+      "provenance": "Tool name + request parameters + returned timestamps/symbols",
+      "jnu_role": "US-session Japan proxy / overnight information / Dynamic Price Discovery supplementary factor",
+      "status": "ACTIVE_SUPPLEMENTARY",
+      "validation_note": "EWJ is materially more liquid than DXJ in the tested sample; both are proxies, not OSE/SGX futures."
+    },
+    {
+      "id": "ALPHA_VANTAGE_SUPPLEMENTARY",
+      "provider": "Alpha Vantage connector",
+      "access_route": "Connected ChatGPT plugin/connector",
+      "data_type": "USDJPY intraday, US Treasury yields, market news sentiment, symbol search",
+      "coverage": "Interface supports FX intraday 1/5/15/30/60min, daily Treasury yields, historical/live news sentiment",
+      "cost_class": "FREE_LIMITED_CURRENTLY_RATE_LIMITED",
+      "storage_class": "CONNECTOR_READ_ONLY_DERIVED_RESULTS_DURABLE",
+      "license_or_terms_status": "Do not assume durable raw-data archival rights; preserve derived outputs and provenance unless terms are reviewed.",
+      "provenance": "Tool endpoint + query parameters",
+      "jnu_role": "FX/rates/news supplementary research",
+      "status": "AVAILABLE_BUT_RATE_LIMITED",
+      "validation_note": "Direct test on 2026-08-30 hit free rate limit; SYMBOL_SEARCH for 'Nikkei 225' returned no direct match. Not suitable as primary JNU source."
+    },
+    {
+      "id": "WOLFRAM_MARKET_QUERY",
+      "provider": "Wolfram connector",
+      "access_route": "Connected ChatGPT plugin/connector",
+      "data_type": "General computational/current entity queries",
+      "coverage": "General-purpose",
+      "cost_class": "NO_EXTRA_COST_CURRENT_CONNECTED_ACCESS",
+      "storage_class": "DERIVED_ONLY",
+      "license_or_terms_status": "Use only for derived answers/provenance.",
+      "provenance": "Wolfram query",
+      "jnu_role": "Fallback computational checks only",
+      "status": "LOW_PRIORITY_NOT_MARKET_DATA_SOURCE",
+      "validation_note": "Combined current Nikkei 225 + USDJPY query returned no result in direct test."
     }
   ],
   "discovery_priority": [
@@ -129,5 +171,15 @@
     "Existing user-connected cloud MCP services",
     "Free public web proxies for pilot-only work",
     "Local machine only when cloud/plugin routes cannot perform the task"
-  ]
+  ],
+  "last_plugin_discovery": {
+    "date": "2026-08-30",
+    "tested": [
+      "Alpaca get_stock_bars: PASS for EWJ/DXJ 5m",
+      "Alpha Vantage SYMBOL_SEARCH: no direct Nikkei match",
+      "Alpha Vantage FX/Treasury: rate limited during test",
+      "WolframAlpha: no result for combined Nikkei/USDJPY query"
+    ],
+    "rule": "Do not repeat these capability tests in a future session unless source behavior may have changed or the needed endpoint differs."
+  }
 }
