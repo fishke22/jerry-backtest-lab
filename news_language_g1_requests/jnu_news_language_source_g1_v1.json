@@ -1,0 +1,47 @@
+{
+  "request_id": "jnu_news_language_source_g1_v1",
+  "candidate_id": "NEWS_STATE_LANGUAGE_SOURCE_G1",
+  "preregistration": "config/jnu_news_state_language_source_g1_prereg.json",
+  "source_suite_result": "suite_results/jnu_v22_daily_proxy_phase2_v1.json",
+  "date_from": "2023-01-04",
+  "date_to": "2026-08-28",
+  "force_refresh": false,
+  "oos_start_days": 252,
+  "recent_days": 126,
+  "bootstrap": {
+    "block_days": 5,
+    "samples": 2000,
+    "seed": 42
+  },
+  "news": {
+    "half_life_days": 2,
+    "holm_alpha": 0.1,
+    "min_bootstrap_qlike_improvement_probability": 0.95,
+    "categories": {
+      "JAPAN_MACRO_JA": {
+        "query": "(\"Bank of Japan\" OR \"Japan inflation\" OR \"Japanese wages\" OR \"Japan monetary policy\") sourcelang:japanese",
+        "semantic_group": "JAPAN_MACRO",
+        "source_language": "japanese"
+      },
+      "JAPAN_MACRO_EN": {
+        "query": "(\"Bank of Japan\" OR \"Japan inflation\" OR \"Japanese wages\" OR \"Japan monetary policy\") sourcelang:english",
+        "semantic_group": "JAPAN_MACRO",
+        "source_language": "english"
+      },
+      "JAPAN_EQUITY_JA": {
+        "query": "(\"Nikkei 225\" OR \"Japanese stocks\" OR \"Tokyo stock market\") sourcelang:japanese",
+        "semantic_group": "JAPAN_EQUITY",
+        "source_language": "japanese"
+      },
+      "JAPAN_EQUITY_EN": {
+        "query": "(\"Nikkei 225\" OR \"Japanese stocks\" OR \"Tokyo stock market\") sourcelang:english",
+        "semantic_group": "JAPAN_EQUITY",
+        "source_language": "english"
+      }
+    }
+  },
+  "execution": {
+    "acquisition": "quarter chunks; single paced connection; cumulative cache; bounded adaptive split",
+    "research_parameters_frozen": true
+  }
+}
