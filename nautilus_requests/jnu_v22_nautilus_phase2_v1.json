@@ -18,5 +18,5 @@
     "require_all_orders_filled": true,
     "require_source_hash_match": true
   },
-  "retry": 2
+  "retry": 3
 }
