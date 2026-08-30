@@ -1,2 +1,2 @@
 skip jnu_intraday_volatility_proxy_v1: result exists
-completed jnu_intraday_volatility_proxy_v1_di1
+skip jnu_intraday_volatility_proxy_v1_di1: result exists
