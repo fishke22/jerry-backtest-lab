@@ -1,0 +1,41 @@
+{
+  "request_id": "jnu_dpd_cloud_pilot_v1",
+  "candidate_id": "DYNAMIC_PRICE_DISCOVERY",
+  "preregistration": "config/jnu_v22_evidence_first_preregistration.json",
+  "date_from": "2026-06-21",
+  "date_to": "2026-08-28",
+  "force_refresh": false,
+  "intervals": {
+    "1m": {
+      "range": "8d"
+    },
+    "5m": {
+      "range": "60d"
+    }
+  },
+  "max_lag_bars": 3,
+  "train_fraction": 0.7,
+  "states": [
+    "JP_CASH",
+    "US_CASH"
+  ],
+  "source_policy": {
+    "required_execution_plane": "GitHub Actions",
+    "raw_storage": "GitHub Actions cloud cache",
+    "raw_committed": false,
+    "provisional_sources": [
+      "Yahoo Finance public chart endpoint"
+    ],
+    "formal_promotion_requires": [
+      "OSE",
+      "SGX",
+      "same-expiry contract alignment"
+    ]
+  },
+  "interpretation_rules": [
+    "same-bar correlation is not a tradable lead",
+    "do not widen lag windows after seeing results",
+    "do not promote any proxy-only result to VALIDATED",
+    "formal promotion requires venue-specific OSE and SGX intraday data plus cost-aware OOS validation"
+  ]
+}
