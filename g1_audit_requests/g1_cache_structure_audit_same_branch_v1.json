@@ -1,0 +1,6 @@
+{
+  "request_id": "g1_cache_structure_audit_same_branch_v1",
+  "role": "DATA_QA_ONLY_NO_NETWORK_NO_MODEL",
+  "cache_scope": "same research branch as G1",
+  "purpose": "Audit successfully cached GDELT Timeline JSON structure before accepting G1."
+}
