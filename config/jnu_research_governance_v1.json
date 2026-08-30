@@ -55,5 +55,20 @@
       "role": "Demonstrates why the full universe of examined trading rules must be accounted for."
     }
   ],
-  "promotion_rule": "No JNU module or strategy may be called validated merely because a single conventional backtest is significant."
+  "promotion_rule": "No JNU module or strategy may be called validated merely because a single conventional backtest is significant.",
+  "existing_implemented_overfit_stage": {
+    "request": "overfit_requests/jnu_v22_overfit_phase3_v1.json",
+    "result": "overfit_results/jnu_v22_overfit_phase3_v1.json",
+    "report": "overfit_reports/jnu_v22_overfit_phase3_v1.md",
+    "methods": [
+      "CPCV",
+      "purge",
+      "embargo",
+      "PBO",
+      "Deflated Sharpe Ratio",
+      "Holm-Bonferroni"
+    ],
+    "default_reuse_rule": "New strategy-like modules that pass earlier evidence/second-engine gates should use this implemented Stage-3 machinery or a preregistered stricter successor rather than inventing a weaker validation path.",
+    "historical_result": "NO_MODULE_PASSED_OVERFIT_STAGE"
+  }
 }
