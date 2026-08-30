@@ -20,12 +20,12 @@
     ]
   },
   "active": {
-    "rank": null,
-    "candidate": null,
-    "run_id": null,
-    "branch": null,
-    "status": "NONE",
-    "note": "Phase4B broad news resolved DATA_INCONCLUSIVE; USDJPY resolved FAIL."
+    "rank": 1,
+    "candidate": "NEWS_STATE_LANGUAGE_SOURCE_G1",
+    "run_id": 33341760779,
+    "branch": "research/news-language-source-g1",
+    "status": "RUNNING",
+    "note": "Four fixed Japan macro/equity × Japanese/English source-language cells. Daily volatility-state only; no directional test."
   },
   "queue": [
     {
@@ -55,12 +55,13 @@
     },
     {
       "rank": 5,
-      "candidate": "NEWS_LANGUAGE_SESSION_G1",
+      "candidate": "NEWS_STATE_LANGUAGE_SOURCE_G1",
       "evidence": "Japanese/English sentiment and volatility-state literature",
       "target_role": "Language/session-specific event state",
-      "status": "ELIGIBLE_FOR_REVIEW_NOT_TRIGGERED",
+      "status": "RUNNING",
       "prereg_draft": "config/jnu_news_state_language_session_g1_draft.json",
-      "next_action": "Activate only if current broad-news family fails/inconclusive and evidence justifies a genuinely new family."
+      "next_action": "Await fixed G1 result; no parameter changes while active.",
+      "preregistration": "config/jnu_news_state_language_source_g1_prereg.json"
     },
     {
       "rank": 6,
