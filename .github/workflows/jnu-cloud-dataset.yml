@@ -1,0 +1,51 @@
+name: JNU Cloud Dataset Snapshot
+
+on:
+  push:
+    paths:
+      - "dataset_requests/*.json"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: jnu-cloud-dataset
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+      - name: Set cache date
+        shell: bash
+        run: echo "CACHE_DATE=$(date -u +%Y-%m-%d)" >> "$GITHUB_ENV"
+      - name: Restore market-data cache
+        uses: actions/cache@v4
+        with:
+          path: .cache/market-data
+          key: market-data-${{ runner.os }}-${{ env.CACHE_DATE }}
+          restore-keys: |
+            market-data-${{ runner.os }}-
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Build durable derived dataset
+        run: python scripts/build_jnu_cloud_dataset.py
+      - name: Commit dataset snapshot
+        shell: bash
+        run: |
+          git add cloud_data
+          if git diff --cached --quiet; then
+            echo "No new cloud dataset."
+            exit 0
+          fi
+          git config user.name "jerry-backtest-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git commit -m "data: publish durable JNU cloud dataset snapshot"
+          git push
