@@ -1,0 +1,21 @@
+{
+  "request_id": "jnu_v22_nautilus_phase2_v1",
+  "source_suite_result": "suite_results/jnu_v22_daily_proxy_phase2_v1.json",
+  "modules": [
+    "volatility_regime",
+    "cross_market_confirmation"
+  ],
+  "require_first_engine_pass": true,
+  "cost_proxy": {
+    "method": "commission_plus_slippage_as_taker_fee",
+    "commission_bps": 1.5,
+    "slippage_bps": 1.0
+  },
+  "validation": {
+    "min_position_match_ratio": 1.0,
+    "require_fill_count_match": true,
+    "max_fill_price_abs_error": 0.000001,
+    "require_all_orders_filled": true,
+    "require_source_hash_match": true
+  }
+}
