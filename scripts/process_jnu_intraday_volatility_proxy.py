@@ -93,8 +93,13 @@ def parse_year_to_daily_rv(raw: bytes, year: int) -> pd.DataFrame:
     df = df.dropna(subset=["close"]).sort_index()
     df = df[(df.index.year >= year-1) & (df.index.year <= year+1)]
 
+    # Historical TSE cash-session schedule is a data-integrity input, not a model parameter.
+    # Before 2011-11-21 the morning cash session ended at 11:00; from 2011-11-21 it ended at 11:30.
     mins = df.index.hour * 60 + df.index.minute
-    am = (mins >= 9*60) & (mins < 11*60+30)
+    local_dates = pd.DatetimeIndex(df.index.tz_localize(None)).normalize()
+    extension_date = pd.Timestamp("2011-11-21")
+    am_end = np.where(local_dates < extension_date, 11*60, 11*60+30)
+    am = (mins >= 9*60) & (mins < am_end)
     pm = (mins >= 12*60+30) & (mins < 15*60)
     df = df.loc[am | pm, ["close"]].copy()
     if df.empty:
