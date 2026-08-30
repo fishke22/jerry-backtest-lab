@@ -31,7 +31,7 @@
     }
   },
   "control_plane_retrigger": {
-    "nonce": 2,
-    "reason": "PR-triggered observable GitHub Actions run; research parameters unchanged."
+    "nonce": 3,
+    "reason": "PR synchronize after removing blocking concurrency; research parameters unchanged."
   }
 }
