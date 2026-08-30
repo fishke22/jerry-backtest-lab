@@ -8,7 +8,7 @@
   ],
   "require_second_engine_pass": true,
   "cost_bps": 1.5,
-  "slippage_bps": 1.0,
+  "slippage_bps": 1,
   "cpcv": {
     "groups": 8,
     "test_groups": 2,
@@ -22,13 +22,14 @@
   },
   "multiple_testing": {
     "dsr_probability_min": 0.95,
-    "holm_alpha": 0.10
+    "holm_alpha": 0.1
   },
   "validation": {
-    "min_cpcv_positive_path_ratio": 0.60,
-    "min_cpcv_median_sharpe": 0.0,
+    "min_cpcv_positive_path_ratio": 0.6,
+    "min_cpcv_median_sharpe": 0,
     "max_pbo": 0.25,
     "require_dsr_pass": true,
     "require_holm_pass": true
-  }
+  },
+  "retry": 1
 }
