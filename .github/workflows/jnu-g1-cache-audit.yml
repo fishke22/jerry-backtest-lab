@@ -1,0 +1,44 @@
+name: JNU G1 Cache Structure Audit
+
+on:
+  pull_request:
+    paths:
+      - "g1_audit_requests/*.json"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref || github.ref_name }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Restore latest cumulative G1 cache
+        uses: actions/cache/restore@v4
+        with:
+          path: .cache/market-data
+          key: g1-audit-${{ runner.os }}-${{ github.run_id }}
+          restore-keys: |
+            g1-news-${{ runner.os }}-
+      - name: Install minimal audit dependency
+        run: pip install pandas
+      - name: Audit cached GDELT structure
+        run: python scripts/audit_g1_cached_gdelt.py
+      - name: Commit audit
+        shell: bash
+        run: |
+          git add workflow_diagnostics/g1_cache_structure_audit.json
+          if git diff --cached --quiet; then exit 0; fi
+          git config user.name "jerry-backtest-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git commit -m "data: publish G1 cache structure audit"
+          branch="${{ github.head_ref || github.ref_name }}"
+          git pull --rebase origin "$branch"
+          git push origin "HEAD:$branch"
