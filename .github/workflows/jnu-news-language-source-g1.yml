@@ -1,13 +1,14 @@
 name: JNU News Language Source G1
 
 on:
-  push:
-    paths:
-      - "news_language_g1_requests/*.json"
   pull_request:
     paths:
       - "news_language_g1_requests/*.json"
   workflow_dispatch:
+
+concurrency:
+  group: jnu-news-g1-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: true
 
 permissions:
   contents: write
