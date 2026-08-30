@@ -183,7 +183,14 @@ def parse_gdelt_points(obj) -> list[tuple[pd.Timestamp, float]]:
     return points
 
 
-def gdelt_timeline(query: str, mode: str, start: str, end: str, cache_name: str, force: bool) -> pd.Series:
+def _gdelt_timeline_one(
+    query: str,
+    mode: str,
+    start: str,
+    end: str,
+    cache_name: str,
+    force: bool,
+) -> pd.Series:
     params = {
         "query": query,
         "mode": mode,
@@ -192,7 +199,7 @@ def gdelt_timeline(query: str, mode: str, start: str, end: str, cache_name: str,
         "enddatetime": end,
     }
     url = GDELT_DOC + "?" + urllib.parse.urlencode(params)
-    raw = fetch(url, cache_name, force, timeout=180)
+    raw = fetch(url, cache_name, force, timeout=120)
     try:
         obj = json.loads(raw.decode("utf-8-sig", errors="replace"))
     except Exception as exc:
@@ -202,6 +209,54 @@ def gdelt_timeline(query: str, mode: str, start: str, end: str, cache_name: str,
         raise RuntimeError(f"No GDELT timeline points parsed for {cache_name}")
     df = pd.DataFrame(pts, columns=["date", "value"])
     s = df.groupby("date")["value"].mean().sort_index()
+    s.name = mode
+    return s
+
+
+def _gdelt_year_windows(start: str, end: str) -> list[tuple[str, str]]:
+    """Split an exact GDELT interval at Jan-1 boundaries without changing daily semantics.
+
+    DOC STARTDATETIME and ENDDATETIME are exclusive. For subsequent chunks, begin
+    one second before the boundary so an event exactly at 00:00:00 is not lost.
+    Timeline modes >1 week are daily; duplicate boundary-day points are deduplicated
+    after retrieval.
+    """
+    s = pd.to_datetime(start, format="%Y%m%d%H%M%S")
+    e = pd.to_datetime(end, format="%Y%m%d%H%M%S")
+    if not (pd.notna(s) and pd.notna(e) and s < e):
+        raise ValueError(f"Invalid GDELT interval: {start} -> {end}")
+
+    out = []
+    cursor = s
+    first = True
+    while cursor < e:
+        next_year = pd.Timestamp(year=cursor.year + 1, month=1, day=1)
+        stop = min(next_year, e)
+        begin = cursor if first else cursor - pd.Timedelta(seconds=1)
+        out.append((begin.strftime("%Y%m%d%H%M%S"), stop.strftime("%Y%m%d%H%M%S")))
+        cursor = stop
+        first = False
+    return out
+
+
+def gdelt_timeline(query: str, mode: str, start: str, end: str, cache_name: str, force: bool) -> pd.Series:
+    # Execution-only decomposition. GDELT DOC TimelineVol is normalized within each
+    # daily time step and long timelines are daily, so annual chunking preserves the
+    # preregistered feature definition while avoiding multi-year query timeouts.
+    windows = _gdelt_year_windows(start, end)
+    stem = cache_name[:-5] if cache_name.endswith(".json") else cache_name
+    parts = []
+    for i, (chunk_start, chunk_end) in enumerate(windows, start=1):
+        chunk_name = f"{stem}_chunk{i}_{chunk_start[:8]}_{chunk_end[:8]}.json"
+        part = _gdelt_timeline_one(query, mode, chunk_start, chunk_end, chunk_name, force)
+        parts.append(part)
+        print(
+            f"phase4b GDELT chunk ready: {mode} {chunk_start[:8]}->{chunk_end[:8]}",
+            flush=True,
+        )
+    if not parts:
+        raise RuntimeError(f"No GDELT chunks produced for {cache_name}")
+    s = pd.concat(parts).groupby(level=0).mean().sort_index()
     s.name = mode
     return s
 
