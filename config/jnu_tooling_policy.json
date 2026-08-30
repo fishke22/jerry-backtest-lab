@@ -70,5 +70,16 @@
     "allowed": "Already-connected or already-paid user services may be used only if they do not create a new charge and materially help.",
     "forbidden": "Do not enable paid runners, paid data subscriptions, or paid infrastructure without explicit user approval."
   },
-  "persistence_rule": "This file is the authoritative cross-session JNU tooling policy. Future JNU work should consult it before choosing tools."
+  "persistence_rule": "This file is the authoritative cross-session JNU tooling policy. Future JNU work should consult it before choosing tools.",
+  "data_source_discovery": {
+    "rule": "Plugins/skills/connectors are first-class data-source discovery tools, not only analysis tools.",
+    "required_behavior": [
+      "Before using local-machine data discovery, search available plugins/skills/connectors and official web sources for suitable JNU data.",
+      "When a useful source is found, register it in config/jnu_data_source_registry.json with provider, access route, coverage, cost, licensing/storage class, provenance and intended JNU role.",
+      "Future sessions must consult the registry before repeating source discovery.",
+      "Do not silently replace a registered higher-quality source with a weaker proxy.",
+      "Prefer no-extra-cost sources; paid sources require explicit user approval unless already paid/connected and no new charge is incurred."
+    ],
+    "registry": "config/jnu_data_source_registry.json"
+  }
 }
