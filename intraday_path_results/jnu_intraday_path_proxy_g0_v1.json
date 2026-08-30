@@ -1,0 +1,69 @@
+{
+  "request_id": "jnu_intraday_path_proxy_g0_v1",
+  "candidate_id": "INTRADAY_PATH_US_NIKKEI_PROXY_G0",
+  "status": "complete",
+  "promotion_status": "PROXY_METHOD_SCREEN_ONLY",
+  "preregistration": "config/jnu_intraday_path_proxy_g0_prereg.json",
+  "panel_days": 713,
+  "derived_dataset": "cloud_data/derived/jnu_intraday_path_proxy_g0_v1_panel.csv.gz",
+  "derived_sha256": "499324e2e87df8f60530b863bc4dcc9146177bc740d7996df1117776cdcf9a30",
+  "manifest": "cloud_data/manifests/jnu_intraday_path_proxy_g0_v1_panel.json",
+  "evaluation": {
+    "targets": {
+      "first30_ret": {
+        "n": 460,
+        "oos_from": "2015-01-26",
+        "oos_to": "2018-12-31",
+        "mse_base": 8.026285283702404e-06,
+        "mse_full": 8.094803346205585e-06,
+        "mse_improvement": -6.851806250318032e-08,
+        "hit_base": 0.4673913043478261,
+        "hit_full": 0.4608695652173913,
+        "hit_delta_pp": -0.65217391304348,
+        "mean_beta_us": -0.028619521330575062,
+        "median_beta_us": -0.02248011036458183,
+        "fraction_beta_expected_sign": 1.0,
+        "recent_mean_beta_us": -0.028619521330575062,
+        "expected_sign": -1,
+        "mse_improvement_bootstrap": {
+          "n": 460,
+          "mean": -6.851806250318032e-08,
+          "ci95": [
+            -2.2982515843734606e-07,
+            6.014354685556739e-08
+          ],
+          "prob_positive": 0.1385
+        },
+        "pass_proxy_target": false
+      },
+      "last30_ret": {
+        "n": 460,
+        "oos_from": "2015-01-26",
+        "oos_to": "2018-12-31",
+        "mse_base": 7.592914038312542e-06,
+        "mse_full": 7.557111133952424e-06,
+        "mse_improvement": 3.580290436011851e-08,
+        "hit_base": 0.4369565217391304,
+        "hit_full": 0.44782608695652176,
+        "hit_delta_pp": 1.0869565217391353,
+        "mean_beta_us": -0.00044220020695463877,
+        "median_beta_us": -0.002221388035744832,
+        "fraction_beta_expected_sign": 0.41739130434782606,
+        "recent_mean_beta_us": -0.00044220020695463877,
+        "expected_sign": 1,
+        "mse_improvement_bootstrap": {
+          "n": 460,
+          "mean": 3.580290436011851e-08,
+          "ci95": [
+            -7.639547114960544e-08,
+            1.3011516355998892e-07
+          ],
+          "prob_positive": 0.6175
+        },
+        "pass_proxy_target": false
+      }
+    },
+    "family_pass": false
+  },
+  "generated_at_utc": "2026-08-30T16:52:41.778828+00:00"
+}
