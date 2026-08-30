@@ -163,6 +163,58 @@
       "jnu_role": "Fallback computational checks only",
       "status": "LOW_PRIORITY_NOT_MARKET_DATA_SOURCE",
       "validation_note": "Combined current Nikkei 225 + USDJPY query returned no result in direct test."
+    },
+    {
+      "id": "225LABO_OSE_NIKKEI_MINUTE",
+      "provider": "225Labo",
+      "access_route": "Member login; free download after registration",
+      "data_type": "OSE Nikkei 225 Futures / mini / micro minute bars at 1,3,5,10,15,20,30,60 minutes",
+      "coverage": "Large futures minute data from 2001; mini from 2006; micro minute data from 2023-07-24; daily micro from 2023-05-29",
+      "cost_class": "NO_EXTRA_COST_AFTER_FREE_MEMBER_REGISTRATION",
+      "storage_class": "PERSONAL_USE_ONLY_REVIEW_BEFORE_CLOUD_ARCHIVE",
+      "license_or_terms_status": "Download is licensed only to the downloader; third-party provision/sale or similar acts prohibited. Do not redistribute. Private cloud archival/AI processing rights require conservative review before ingestion.",
+      "provenance": "225Labo product pages and terms text",
+      "jnu_role": "Best no-extra-cost candidate for true OSE intraday JNU/mini path research; potential DPD OSE leg",
+      "status": "HIGH_VALUE_CANDIDATE_REQUIRES_USER_MEMBER_ACCESS_AND_STORAGE_REVIEW"
+    },
+    {
+      "id": "JPX_JGATE_ITCH_HISTORICAL",
+      "provider": "JPX Market Innovation & Research",
+      "access_route": "Official Spot Data Service",
+      "data_type": "OSE J-GATE ITCH historical CSV/binary order and trade data",
+      "coverage": "Historical CSV for J-GATE2.0 2016-07-19 to 2021-09-16; newer J-GATE3.0 historical data via binary service",
+      "cost_class": "PAID_NOT_APPROVED",
+      "storage_class": "LICENSED_PRIVATE_ONLY",
+      "license_or_terms_status": "Official price list shows paid spot service; external distribution prohibited.",
+      "provenance": "Official JPX service specification and price list",
+      "jnu_role": "Authoritative high-frequency OSE venue data for institutional-grade DPD",
+      "status": "REJECTED_FOR_NOW_COST_POLICY"
+    },
+    {
+      "id": "FUTURESHARKS_HISTDATA_NIKKEI_INDEX_M1",
+      "provider": "FutureSharks/financial-data (source data attributed to HistData)",
+      "access_route": "Public GitHub repository",
+      "data_type": "Nikkei 225 index proxy minute bars, not OSE futures",
+      "coverage": "JPXJPY minute data 2010-2018 in repository description",
+      "cost_class": "NO_EXTRA_COST",
+      "storage_class": "REFERENCE_OR_CACHE_ONLY_UNTIL_UNDERLYING_DATA_TERMS_VERIFIED",
+      "license_or_terms_status": "Repository declares GPLv3, but underlying market data is attributed to HistData; do not assume the repo license grants redistribution rights over source data.",
+      "provenance": "GitHub repository + underlying provider attribution",
+      "jnu_role": "Historical intraday index-path / volatility robustness only; not DPD venue validation",
+      "status": "PROXY_CANDIDATE_LICENSE_REVIEW_REQUIRED"
+    },
+    {
+      "id": "TY_CHENG_N225_OPEN_GAP_TAIL_RESEARCH",
+      "provider": "TY-Cheng/n225-open-gap-tail",
+      "access_route": "Public GitHub research repository",
+      "data_type": "Research methodology/code, not free raw JNU data",
+      "coverage": "Point-in-time Nikkei 225 Futures open-gap tail-risk pipeline",
+      "cost_class": "CODE_NO_EXTRA_COST_DATA_SOURCES_MIXED_PAID_FREE",
+      "storage_class": "METHODOLOGY_REFERENCE",
+      "license_or_terms_status": "Use repository only as methodology reference; its listed J-Quants Premium and Massive data are not adopted under current no-extra-paid policy.",
+      "provenance": "Public GitHub repository",
+      "jnu_role": "Methodological reference for point-in-time controls, tail-risk targets, US-close/Japan-proxy feature design",
+      "status": "ACTIVE_METHODOLOGY_REFERENCE"
     }
   ],
   "discovery_priority": [
@@ -181,5 +233,18 @@
       "WolframAlpha: no result for combined Nikkei/USDJPY query"
     ],
     "rule": "Do not repeat these capability tests in a future session unless source behavior may have changed or the needed endpoint differs."
-  }
+  },
+  "discovery_log": [
+    {
+      "date": "2026-08-30",
+      "topic": "Free/open OSE/SGX intraday data for Dynamic Price Discovery",
+      "findings": [
+        "225Labo is the strongest no-extra-cost OSE minute-data candidate but requires free member login and personal-use-only terms.",
+        "JPX J-GATE ITCH is authoritative but paid and external distribution is prohibited; rejected under current cost policy.",
+        "No clearly licensed, freely downloadable venue-specific OSE/SGX minute dataset was found through GitHub repository search in this pass.",
+        "Open GitHub Nikkei minute datasets found are index/CFD proxies rather than OSE futures and cannot validate DPD venue leadership."
+      ],
+      "next_action": "Prepare cloud ingestion adapter and wait for an approved personally licensed OSE source; meanwhile continue proxy/state research without promotion."
+    }
+  ]
 }
