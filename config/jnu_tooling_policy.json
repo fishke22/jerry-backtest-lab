@@ -1,0 +1,74 @@
+{
+  "version": "1.0",
+  "updated_at": "2026-08-30",
+  "scope": "All future JNU / Osaka Nikkei 225 Micro research, backtesting, pre-market, intraday, post-market and framework-development tasks.",
+  "principle": "Use the best available no-extra-cost tool/skill/plugin when it materially improves freshness, accuracy or completeness. Do not default to prose-only analysis when a suitable tool is available.",
+  "priorities": [
+    {
+      "priority": 1,
+      "category": "Cloud research and backtesting",
+      "primary": "GitHub private repo fishke22/jerry-backtest-lab",
+      "execution": "GitHub Actions standard hosted runner",
+      "storage": "GitHub Actions .cache/market-data for reusable cloud cache; requests/manifests/source hashes/results/reports durable in the private repo",
+      "rule": "Cloud-first. Do not make D:\\QROS or other local files the authoritative backtest source when the cloud workflow exists.",
+      "note": "GitHub Actions cache is reusable but evictable; durable raw object storage is not yet enabled."
+    },
+    {
+      "priority": 2,
+      "category": "Live/current JNU chart and market-state analysis",
+      "primary": "TradingView Unified MCP / TradingView Nikkei analysis layer",
+      "expected_outputs": [
+        "TRADING view",
+        "MACRO view",
+        "nikkei_context_snapshot when available",
+        "current chart/session indicators"
+      ],
+      "rule": "Use TradingView tooling when live chart/session context is needed. If unavailable, explicitly mark the gap and use user screenshots or other verified sources rather than inventing values."
+    },
+    {
+      "priority": 3,
+      "category": "Current public market and official data",
+      "primary": "Official JPX/OSE, Nikkei Indexes, CME, SGX and other first-party sources via web/tools",
+      "secondary": "Jerry Market Research connector where already configured and no extra paid service is introduced",
+      "rule": "For current contract specs, trading hours, official index/futures daily data and exchange notices, prefer official sources."
+    },
+    {
+      "priority": 4,
+      "category": "Academic/evidence research",
+      "primary": [
+        "Consensus",
+        "Scite",
+        "Elicit or other available academic research plugins/skills",
+        "web search for primary papers"
+      ],
+      "rule": "Before adding a JNU factor/module, search validated academic/empirical evidence first. Prefer direct Nikkei/Japanese-market evidence; then broader market microstructure evidence."
+    },
+    {
+      "priority": 5,
+      "category": "Free provisional intraday proxy data",
+      "primary": "Public web feeds such as Yahoo chart data only when needed for pilot/sanity checks",
+      "storage_class": "CACHE_ONLY unless source-specific durable storage is approved",
+      "rule": "Never promote a proxy-only pilot to VALIDATED_JNU_MODULE. DPD formal validation requires venue-specific OSE/SGX/CME contract identity and approved data provenance."
+    },
+    {
+      "priority": 6,
+      "category": "Local-machine tools",
+      "primary": "Remote Desktop Commander / local QROS inspection",
+      "rule": "Use only for environment inspection, migration, diagnostics, or capabilities unavailable in the cloud. Do not silently substitute local-only data/results for the cloud research record."
+    }
+  ],
+  "framework_rules": [
+    "Use the JNU evidence-first architecture and current validated/conditional/research-only/rejected module statuses.",
+    "Dynamic Price Discovery, volatility/tail risk, news sentiment and other new modules remain research candidates until they pass preregistered OOS gates.",
+    "Do not resurrect rejected fixed cross-market majority-vote logic.",
+    "Do not widen parameters or lag windows after seeing results without registering a new experiment/trial.",
+    "Include costs/slippage and multiple-testing/overfit controls before promotion.",
+    "For news/current-event analysis, use fresh web or news tools; for fast-changing facts, do not rely on memory."
+  ],
+  "cost_policy": {
+    "default": "No extra paid data/service",
+    "allowed": "Already-connected or already-paid user services may be used only if they do not create a new charge and materially help.",
+    "forbidden": "Do not enable paid runners, paid data subscriptions, or paid infrastructure without explicit user approval."
+  },
+  "persistence_rule": "This file is the authoritative cross-session JNU tooling policy. Future JNU work should consult it before choosing tools."
+}
