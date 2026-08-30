@@ -1,0 +1,69 @@
+{
+  "version": "1.0-draft",
+  "candidate_id": "NEWS_STATE_LANGUAGE_SESSION_G1",
+  "status": "DRAFT_NOT_TRIGGERED",
+  "trigger_condition": "Only consider if preregistered Phase4B broad-category GDELT screen fails or is inconclusive. A Phase4B pass blocks opportunistic replacement.",
+  "objective": "Test whether language- and session-specific Japanese-market news improves volatility/state forecasts without turning broad sentiment into an always-on directional alpha.",
+  "evidence": [
+    {
+      "paper": "When news travels: The role of sentiment in CME Nikkei futures returns",
+      "doi": "10.1016/j.ribaf.2025.103223",
+      "implication": "Separate Japanese-language fundamental sentiment from English-language/local sentiment and respect trading-session context."
+    },
+    {
+      "paper": "How does news sentiment affect the states of Japanese stock return volatility?",
+      "doi": "10.1016/j.irfa.2022.102267",
+      "implication": "Macro-economic news occurrence/sentiment is a volatility-state candidate rather than automatically a directional-return signal."
+    },
+    {
+      "paper": "Investment with New Sentiment Analysis in Japanese Stock Market: Expert knowledge can still outperform ChatGPT",
+      "doi": "10.1007/s10690-026-09604-3",
+      "implication": "Market-aware Japanese sentiment lexicons are a separate future family; if ever tested they require strict rolling/cross-fitted construction to avoid return leakage."
+    }
+  ],
+  "source_candidate": {
+    "primary": "GDELT DOC 2.0",
+    "language_filter_operator": "sourcelang:",
+    "languages": [
+      "japanese",
+      "english"
+    ],
+    "raw_storage": "Do not archive article bodies; store only derived daily/session features and provenance."
+  },
+  "generation1_scope": {
+    "semantic_groups": {
+      "JAPAN_MACRO": "BOJ / Japan inflation / wages / policy",
+      "JAPAN_EQUITY": "Nikkei 225 / Japanese stocks / Tokyo stock market"
+    },
+    "languages": [
+      "japanese",
+      "english"
+    ],
+    "family_size": 4,
+    "features": [
+      "TimelineTone",
+      "TimelineVol",
+      "absolute tone",
+      "2-day EWM tone"
+    ],
+    "target_role": "volatility / event-state confidence",
+    "directional_return_test": "PROHIBITED_IN_G1"
+  },
+  "timing": {
+    "daily_proxy": "Strict prior-day as-of alignment only.",
+    "true_jnu_future": "When approved JNU intraday data exists, preregister Japan cash vs OSE night/US-session states before any session-specific test."
+  },
+  "statistics": {
+    "baseline": "Same frozen volatility baseline used by Phase4B unless a new baseline is preregistered before data inspection.",
+    "bootstrap": "5-day block bootstrap, 2000 samples, fixed seed 42 unless independently preregistered otherwise.",
+    "multiple_testing": "Holm correction across the four language x semantic cells.",
+    "recent_gate": "Recent-window QLIKE and MSE must not reverse."
+  },
+  "forbidden": [
+    "Rewrite keywords after seeing a failed cell.",
+    "Merge Japanese and English only when convenient.",
+    "Use return-trained polarity scores on the same observations used for evaluation.",
+    "Promote a volatility-state pass into directional trading without a new preregistration.",
+    "Add more languages, themes, or half-lives after observing results."
+  ]
+}
