@@ -18,13 +18,17 @@
     "require_both_qlike_and_mse_improvement": true
   },
   "us_tail_risk_proxy": {
-    "series": "VIXCLS",
-    "note": "VIX is a proxy, not the nonparametric option-implied tail-risk measure used in Andersen-Todorov-Ubukata.",
+    "series": "CBOE_VIX_DAILY_CLOSE",
+    "note": "Cboe official VIX daily close is a proxy, not the nonparametric option-implied tail-risk measure used in Andersen-Todorov-Ubukata.",
     "require_incremental_qlike_improvement": true
   },
   "usdjpy_state": {
-    "lags_days": [1, 5],
+    "lags_days": [
+      1,
+      5
+    ],
     "regime_split": "expanding_vix_median",
     "minimum_regime_observations": 100
-  }
+  },
+  "retry": 1
 }
