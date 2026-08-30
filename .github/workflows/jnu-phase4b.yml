@@ -41,15 +41,19 @@ jobs:
         run: |
           mkdir -p workflow_diagnostics
           set +e
-          python scripts/process_phase4b_evidence.py 2>&1 | tee workflow_diagnostics/jnu_v22_phase4b_v1.log
+          log="workflow_diagnostics/jnu_v22_phase4b_v1_${{ github.run_id }}.log"
+          diag="workflow_diagnostics/jnu_v22_phase4b_v1_${{ github.run_id }}.json"
+          python scripts/process_phase4b_evidence.py 2>&1 | tee "$log"
           code=${PIPESTATUS[0]}
           echo "exit_code=$code" >> "$GITHUB_OUTPUT"
-          printf '{"workflow":"jnu-phase4b","exit_code":%s,"run_id":"%s","sha":"%s"}\n' "$code" "${{ github.run_id }}" "${{ github.sha }}" > workflow_diagnostics/jnu_v22_phase4b_v1.json
+          printf '{"workflow":"jnu-phase4b","exit_code":%s,"run_id":"%s","sha":"%s"}\n' "$code" "${{ github.run_id }}" "${{ github.sha }}" > "$diag"
           exit 0
       - name: Commit results and diagnostics
         shell: bash
         run: |
-          git add phase4b_results phase4b_reports workflow_diagnostics
+          git add workflow_diagnostics
+          if [ -d phase4b_results ]; then git add phase4b_results; fi
+          if [ -d phase4b_reports ]; then git add phase4b_reports; fi
           if git diff --cached --quiet; then
             echo "No new Phase4B results."
             exit 0
