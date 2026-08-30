@@ -201,3 +201,12 @@ No currently tested module is VALIDATED_JNU_MODULE.
 - DOI: `10.1080/096031096334006`
 - Reports Nikkei intraday basis movements are mostly unit-root-like/non-stationary under the studied setting.
 - JNU consequence: basis may be useful as an execution/relative-pricing state, but **basis magnitude alone is not admitted as directional alpha** without a new, modern, preregistered test.
+
+
+## BOJ monetary-policy release as a volatility-event candidate
+
+### Japanese MPM release / Nikkei VI futures evidence
+- Published intraday evidence documents a rapid response in Nikkei 225 implied volatility and Nikkei 225 VI futures around Japanese monetary-policy releases.
+- JNU implication: BOJ MPM timestamps are a plausible future **event-volatility/risk-state** input, not an automatic directional vote.
+- The existing paper includes weather/mood interactions; those behavioral interactions are **not** adopted into JNU without separate evidence and preregistration.
+- Any future G1/G2 test should use official BOJ release calendars/timestamps and causal pre-event information only.
