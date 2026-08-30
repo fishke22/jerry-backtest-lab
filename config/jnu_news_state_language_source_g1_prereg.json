@@ -1,0 +1,116 @@
+{
+  "version": "1.0",
+  "candidate_id": "NEWS_STATE_LANGUAGE_SOURCE_G1",
+  "status": "PREREGISTERED",
+  "predecessor": {
+    "family": "PHASE4B_GDELT_BROAD_NEWS",
+    "disposition": "DATA_INCONCLUSIVE",
+    "rule": "This is a genuinely new, literature-structured family; it is not a rescue by dropping failed statistical gates."
+  },
+  "objective": "Test whether source-language-specific Japanese fundamental/macro news adds incremental next-day volatility-state information for the Nikkei daily futures proxy.",
+  "evidence": [
+    {
+      "paper": "Lee A. Smales (2026), When news travels: The role of sentiment in CME Nikkei futures returns",
+      "doi": "10.1016/j.ribaf.2025.103223",
+      "direct_market": "CME Nikkei futures",
+      "implication": "Separate Japanese-related fundamental sentiment by source language; Japanese- and English-language information can matter differently across regimes."
+    },
+    {
+      "paper": "Feng, Fu & Shi (2022), How does news sentiment affect the states of Japanese stock return volatility?",
+      "doi": "10.1016/j.irfa.2022.102267",
+      "direct_market": "Japanese equities",
+      "implication": "News occurrence/sentiment, especially macroeconomic news, is a volatility-state candidate."
+    }
+  ],
+  "source": {
+    "provider": "GDELT DOC 2.0",
+    "source_language_operator": "sourcelang:",
+    "interpretation": "sourcelang restricts the original publication language while keyword matching uses GDELT's English machine translations.",
+    "date_from": "2023-01-04",
+    "date_to": "2026-08-28",
+    "acquisition": "Quarter-sized windows from the outset; single connection; paced requests; cumulative Actions cache; bounded adaptive split only on a failing quarter.",
+    "raw_storage": "Actions cache only; durable repository output contains derived features/results/provenance, not article bodies."
+  },
+  "family": {
+    "size": 4,
+    "cells": {
+      "JAPAN_MACRO_JA": {
+        "query": "(\"Bank of Japan\" OR \"Japan inflation\" OR \"Japanese wages\" OR \"Japan monetary policy\") sourcelang:japanese",
+        "semantic_group": "JAPAN_MACRO",
+        "source_language": "japanese"
+      },
+      "JAPAN_MACRO_EN": {
+        "query": "(\"Bank of Japan\" OR \"Japan inflation\" OR \"Japanese wages\" OR \"Japan monetary policy\") sourcelang:english",
+        "semantic_group": "JAPAN_MACRO",
+        "source_language": "english"
+      },
+      "JAPAN_EQUITY_JA": {
+        "query": "(\"Nikkei 225\" OR \"Japanese stocks\" OR \"Tokyo stock market\") sourcelang:japanese",
+        "semantic_group": "JAPAN_EQUITY",
+        "source_language": "japanese"
+      },
+      "JAPAN_EQUITY_EN": {
+        "query": "(\"Nikkei 225\" OR \"Japanese stocks\" OR \"Tokyo stock market\") sourcelang:english",
+        "semantic_group": "JAPAN_EQUITY",
+        "source_language": "english"
+      }
+    },
+    "features": [
+      "TimelineTone",
+      "TimelineVol",
+      "absolute tone",
+      "2-day EWM tone"
+    ],
+    "directional_return_test": "PROHIBITED_G1",
+    "session_test": "DEFERRED_UNTIL_TRUE_JNU_INTRADAY_DATA"
+  },
+  "timing": {
+    "predictor_alignment": "Strict prior-day as-of only; exact same-day match is excluded.",
+    "target": "Next-day squared Nikkei futures-index proxy return.",
+    "note": "G1 is daily language/source conditioning, not an intraday session test."
+  },
+  "baseline": {
+    "predictors": [
+      "lagged log variance 1d",
+      "lagged mean log variance 5d",
+      "lagged mean log variance 22d"
+    ],
+    "model": "Expanding OLS in log-variance space",
+    "oos_start_days": 252
+  },
+  "evaluation": {
+    "metrics": [
+      "QLIKE improvement",
+      "MSE improvement"
+    ],
+    "recent_days": 126,
+    "bootstrap": {
+      "block_days": 5,
+      "samples": 2000,
+      "seed": 42
+    },
+    "qlike_bootstrap_probability_min": 0.95,
+    "multiple_testing": "Holm correction across all 4 cells",
+    "holm_alpha": 0.1,
+    "pass_all": [
+      "full-OOS QLIKE improvement > 0",
+      "full-OOS MSE improvement > 0",
+      "block-bootstrap P(QLIKE improvement > 0) >= 0.95",
+      "recent-window QLIKE improvement >= 0",
+      "recent-window MSE improvement >= 0",
+      "Holm family rejection = true"
+    ]
+  },
+  "forbidden": [
+    "Change keywords after seeing results",
+    "Drop Japanese or English cells because they underperform",
+    "Merge languages only after observing results",
+    "Add US-tech/Fed/FX/geopolitical categories to this G1 family",
+    "Change the 2-day half-life",
+    "Lower bootstrap or Holm thresholds",
+    "Turn a volatility-state pass into directional trading without a new preregistration",
+    "Claim source-language filtering reproduces proprietary TRNA sentiment analytics"
+  ],
+  "promotion_role": "Language-conditioned news/event volatility-state candidate only.",
+  "formal_jnu_promotion": "Requires subsequent confirmation with true JNU/OSE data if used for intraday session decisions."
+}
