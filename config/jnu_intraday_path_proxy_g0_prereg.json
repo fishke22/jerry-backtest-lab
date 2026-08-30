@@ -1,0 +1,75 @@
+{
+  "version": "1.0",
+  "candidate_id": "INTRADAY_PATH_US_NIKKEI_PROXY_G0",
+  "status": "PREREGISTERED_PROXY_ONLY",
+  "objective": "Independent historical methodology screen of the 2026 prior-US-return x Japanese intraday-path hypothesis before true OSE/JNU confirmation.",
+  "evidence_anchor": {
+    "paper": "Yasuhiro Iwanaga (2026), How the prior day's S&P 500 returns influence the intraday returns of Nikkei 225 futures",
+    "doi": "10.1016/j.finr.2026.100108",
+    "expected_first30_sign": "negative",
+    "expected_last30_sign": "positive"
+  },
+  "sources": {
+    "upstream_repo": "FutureSharks/financial-data",
+    "pinned_commit": "7ba1d404aa8b0e1c0f71321acebadcbfb9bcca8d",
+    "japan_proxy": "JPXJPY 1-minute index proxy",
+    "us_proxy": "SPXUSD 1-minute S&P 500 proxy",
+    "years": [
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018
+    ],
+    "raw_policy": "Pinned upstream + Actions cache; private repo stores derived daily path panel/provenance only."
+  },
+  "time_handling": {
+    "native_timestamp": "fixed EST UTC-5 without DST",
+    "japan_conversion": "fixed EST -> Asia/Tokyo",
+    "us_conversion": "fixed EST -> America/New_York",
+    "japan_session_calendar": "config/jnu_session_calendar_versions.json",
+    "us_cash_session": "09:30-16:00 America/New_York",
+    "predictor_availability": "For each Japan open, use the most recent fully completed U.S. cash session strictly before that Japan open."
+  },
+  "fixed_targets": {
+    "FIRST_30M": "Japan cash session 09:00 to 09:30 local, log(last/first)",
+    "LAST_30M": "Final 30 minutes before the historically valid Japan cash close, log(last/first)"
+  },
+  "models": {
+    "baseline": "target_t ~ 1 + target_{t-1}",
+    "challenger": "target_t ~ 1 + target_{t-1} + prior_completed_US_cash_return"
+  },
+  "oos": {
+    "method": "expanding OLS",
+    "minimum_training_days": 252,
+    "metrics": [
+      "MSE improvement",
+      "directional hit-rate delta",
+      "predictor coefficient"
+    ],
+    "block_bootstrap_days": 5,
+    "bootstrap_samples": 2000,
+    "seed": 42,
+    "subperiods": [
+      "2011-2014",
+      "2015-2018"
+    ]
+  },
+  "pass_gate": {
+    "expected_sign_required_for_both_targets": true,
+    "recent_subperiod_sign_must_not_reverse": true,
+    "bootstrap_probability_positive_mse_improvement_min": 0.95,
+    "family_rule": "FIRST_30M and LAST_30M are one preregistered family; no window-length search."
+  },
+  "forbidden": [
+    "Change 30-minute windows after results",
+    "Swap SPX to NQ after results",
+    "Add technical indicators to rescue a failure",
+    "Interpret proxy pass as JNU validation",
+    "Treat same-day U.S. session as available before Japan open"
+  ],
+  "promotion": "PROXY_METHOD_SCREEN_ONLY; true OSE/JNU intraday data required for any framework admission."
+}
