@@ -90,5 +90,11 @@
     ],
     "formal_jnu_validation": "Prohibited. Requires true OSE/JNU intraday data with rules frozen."
   },
-  "no_posthoc_rescue": true
+  "no_posthoc_rescue": true,
+  "data_quality": {
+    "expected_5m_returns_per_full_day": 58,
+    "min_5m_returns_per_day": 46,
+    "minimum_session_parts": 2,
+    "rule": "Fail/drop partial days before model fitting; threshold fixed before the first cloud run."
+  }
 }
