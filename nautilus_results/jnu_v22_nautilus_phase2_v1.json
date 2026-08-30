@@ -1,0 +1,159 @@
+{
+  "request_id": "jnu_v22_nautilus_phase2_v1",
+  "status": "complete",
+  "overall_status": "PASS_SECOND_ENGINE",
+  "source_suite_result": "suite_results/jnu_v22_daily_proxy_phase2_v1.json",
+  "source_hash_match": true,
+  "source_hash_checks": {
+    "nikkei_futures": true,
+    "nasdaq100_fred": true,
+    "usdjpy_fred": true
+  },
+  "market_data_cache_hits": {
+    "nikkei_futures": true,
+    "nasdaq100_fred": true,
+    "usdjpy_fred": true
+  },
+  "engine": {
+    "name": "NautilusTrader",
+    "nautilus_version": "1.231.0",
+    "python_version": "3.12.14",
+    "role": "independent event/order/fill replay, not parameter search"
+  },
+  "cost_proxy": {
+    "method": "commission_plus_slippage_as_taker_fee",
+    "commission_bps": 1.5,
+    "slippage_bps": 1,
+    "effective_taker_fee_rate": 0.00025
+  },
+  "modules": [
+    {
+      "module": "volatility_regime",
+      "status": "PASS_ENGINE_REPLAY",
+      "checks": {
+        "position_match_ratio": true,
+        "fill_count_match": true,
+        "fill_price_error": true,
+        "all_orders_filled": true
+      },
+      "position_audit": {
+        "oos_days": 630,
+        "matches": 630,
+        "match_ratio": 1.0
+      },
+      "execution": {
+        "expected_fill_units_from_target_changes": 76,
+        "actual_fill_events": 76,
+        "order_count": 76,
+        "nonfilled_order_count": 0,
+        "max_fill_price_abs_error": 0.0,
+        "total_reported_commission_jpy": 1001.0,
+        "fee_rate_per_fill_notional": 0.00025
+      },
+      "nautilus_result": {
+        "stats_returns": {
+          "Returns Volatility (252 days)": 5.4094321796665365e-05,
+          "Average (Return)": 1.3701896355058038e-07,
+          "Average Loss (Return)": -4.688485201174414e-06,
+          "Average Win (Return)": 1.688350842096176e-05,
+          "Sharpe Ratio (252 days)": 0.6383068992811511,
+          "Sortino Ratio (252 days)": 1.41031274291027,
+          "Profit Factor": 2.1182695722819993,
+          "Risk Return Ratio": 0.040209555134159025
+        },
+        "stats_pnls": {
+          "JPY": {
+            "PnL (total)": 17827.0,
+            "PnL% (total)": 0.017827000000000003,
+            "Max Winner": 6339.0,
+            "Avg Winner": 1679.15,
+            "Min Winner": 2.0,
+            "Min Loser": -50.0,
+            "Avg Loser": -875.3333333333334,
+            "Max Loser": -4554.0,
+            "Expectancy": 469.1315789473684,
+            "Win Rate": 0.5263157894736842
+          }
+        }
+      },
+      "first_engine_reference": {
+        "oos_metrics": {
+          "days": 630,
+          "total_return": 0.28883375922984134,
+          "annualized_return": 0.10682449354401458,
+          "annualized_volatility": 0.12097138005788527,
+          "sharpe": 0.8990251332032122,
+          "max_drawdown": -0.21481061189202888,
+          "hit_rate": 0.4429223744292237,
+          "turnover": 74.0
+        },
+        "status": "PASS_CANDIDATE"
+      }
+    },
+    {
+      "module": "cross_market_confirmation",
+      "status": "PASS_ENGINE_REPLAY",
+      "checks": {
+        "position_match_ratio": true,
+        "fill_count_match": true,
+        "fill_price_error": true,
+        "all_orders_filled": true
+      },
+      "position_audit": {
+        "oos_days": 630,
+        "matches": 630,
+        "match_ratio": 1.0
+      },
+      "execution": {
+        "expected_fill_units_from_target_changes": 135,
+        "actual_fill_events": 135,
+        "order_count": 135,
+        "nonfilled_order_count": 0,
+        "max_fill_price_abs_error": 0.0,
+        "total_reported_commission_jpy": 1890.0,
+        "fee_rate_per_fill_notional": 0.00025
+      },
+      "nautilus_result": {
+        "stats_returns": {
+          "Returns Volatility (252 days)": 0.00010359353714520221,
+          "Average (Return)": 1.5582993747423805e-07,
+          "Average Loss (Return)": -5.310794487059406e-06,
+          "Average Win (Return)": 2.0665002135652108e-05,
+          "Sharpe Ratio (252 days)": 0.3790694412573853,
+          "Sortino Ratio (252 days)": 0.9331764753340944,
+          "Profit Factor": 1.47764504624668,
+          "Risk Return Ratio": 0.023879130266458305
+        },
+        "stats_pnls": {
+          "JPY": {
+            "PnL (total)": 20039.0,
+            "PnL% (total)": 0.020039,
+            "Max Winner": 17817.0,
+            "Avg Winner": 2058.5666666666666,
+            "Min Winner": 54.0,
+            "Min Loser": -13.0,
+            "Avg Loser": -1126.918918918919,
+            "Max Loser": -4726.0,
+            "Expectancy": 299.4179104477612,
+            "Win Rate": 0.44776119402985076
+          }
+        }
+      },
+      "first_engine_reference": {
+        "oos_metrics": {
+          "days": 630,
+          "total_return": 0.22128337243399554,
+          "annualized_return": 0.08324471217676321,
+          "annualized_volatility": 0.25101580889322544,
+          "sharpe": 0.4434855323672721,
+          "max_drawdown": -0.3674928534013472,
+          "hit_rate": 0.45419103313840153,
+          "turnover": 136.0
+        },
+        "status": "PASS_CANDIDATE"
+      }
+    }
+  ],
+  "promotion_status": "SECOND_ENGINE_CHECK_ONLY",
+  "generated_at_utc": "2026-08-30T14:50:30.531819+00:00"
+}
