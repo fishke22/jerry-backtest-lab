@@ -1,0 +1,49 @@
+name: JNU Intraday Volatility Proxy
+
+on:
+  push:
+    paths:
+      - "volatility_requests/*.json"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: jnu-intraday-volatility-proxy
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+      - name: Restore pinned intraday source cache
+        uses: actions/cache@v4
+        with:
+          path: .cache/market-data
+          key: jpxjpy-proxy-${{ runner.os }}-7ba1d404aa8b
+          restore-keys: |
+            jpxjpy-proxy-${{ runner.os }}-
+            market-data-${{ runner.os }}-
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Run preregistered volatility proxy validation
+        run: python scripts/process_jnu_intraday_volatility_proxy.py
+      - name: Commit derived data and results
+        shell: bash
+        run: |
+          git add volatility_results volatility_reports cloud_data/derived cloud_data/manifests
+          if git diff --cached --quiet; then
+            echo "No new volatility results."
+            exit 0
+          fi
+          git config user.name "jerry-backtest-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git commit -m "research: publish JNU intraday volatility proxy result"
+          git push
