@@ -11,7 +11,7 @@ No module is currently a `VALIDATED_JNU_MODULE`.
 | dynamic_price_discovery | CLOUD PILOT COMPLETE | not eligible yet | proxy-only; venue coverage gate failed | CONDITIONAL_ARCHITECTURE_ONLY / NOT ALPHA |
 | intraday_volatility_HAR_RSV_DI1 | PROXY METHOD PASS | not eligible yet | index proxy only; true JNU confirmation pending | RISK-STATE CONFIRMATION CANDIDATE / NOT DIRECTION ALPHA |
 | intraday_path_US_G0 | PROXY SCREEN FAIL | not eligible | fixed FIRST/LAST 30m family failed OOS gate | PROXY NEGATIVE / TRUE JNU UNRESOLVED |
-| phase4b_USDJPY_1d | FAIL | not eligible | bootstrap 0.7445; sign accuracy worsened | REJECT_CURRENT_SPEC |\n| phase4b_news | RUNNING | not eligible | same preregistered six-category family | PENDING |
+| phase4b_USDJPY_1d | FAIL | not eligible | bootstrap 0.7445; sign accuracy worsened | REJECT_CURRENT_SPEC |\n| phase4b_news | DATA INCONCLUSIVE | not eligible | GDELT acquisition did not complete under bounded conservative protocol | QUARANTINE_CURRENT_SOURCE_PATH |
 | volatility_regime | PASS_CANDIDATE | PASS_ENGINE_REPLAY | FAIL_OVERFIT_GATES | QUARANTINE / independent confirmation only |
 | cross_market_confirmation | PASS_CANDIDATE | PASS_ENGINE_REPLAY | FAIL_OVERFIT_GATES | REJECT_OVERFIT |
 | trend_momentum | FAIL | not eligible | not run | REJECT |
@@ -99,3 +99,23 @@ The existing preregistered USDJPY subtest was executed independently from GDELT 
 Disposition: **REJECT_CURRENT_SPEC**.
 
 Do not promote a universal one-day USDJPY state, and do not rescue it by selecting only the high-VIX subset after observing these results. A future FX hypothesis must be preregistered as a new family using independently justified timing/regime structure or new data.
+
+
+## Phase4B broad GDELT news-state disposition
+
+The six-category preregistered news family did **not** produce a valid statistical result. This is not a model FAIL.
+
+Data-acquisition audit:
+- Multi-year GDELT DOC queries timed out.
+- Annual chunking successfully completed many category/mode/year cells.
+- Adaptive subdivision still encountered service-level connection refusals for some cells.
+- A final conservative run used a single paced connection plus cumulative Actions cache, but reached the 45-minute bounded execution limit before the full panel completed.
+- The final run preserved successfully downloaded cache rather than discarding it.
+
+Disposition: **DATA_INCONCLUSIVE / QUARANTINE_CURRENT_SOURCE_PATH**.
+
+Rules:
+- Do not count this as evidence that news sentiment has no JNU value.
+- Do not lower statistical gates or drop hard-to-fetch categories to manufacture a result.
+- Do not keep retrying the same broad GDELT DOC family indefinitely.
+- Any next news generation must be a new preregistered family with an independently justified structure and a more reliable data-acquisition route.
