@@ -1,0 +1,6 @@
+{
+  "request_id": "jnu_v22_phase4b_usdjpy_checkpoint_v1",
+  "source_request": "phase4b_requests/jnu_v22_phase4b_v1.json",
+  "execution_role": "SAME_PREREG_CHECKPOINT_NOT_NEW_FAMILY",
+  "note": "Isolate the existing USDJPY Phase4B test from GDELT retrieval. No research parameter changes."
+}
