@@ -1,0 +1,65 @@
+name: JNU Intraday Path Proxy G0
+
+on:
+  push:
+    paths:
+      - "intraday_path_requests/*.json"
+  pull_request:
+    paths:
+      - "intraday_path_requests/*.json"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref || github.ref_name }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+      - name: Restore pinned intraday proxy cache
+        uses: actions/cache@v4
+        with:
+          path: .cache/market-data
+          key: intraday-path-proxy-${{ runner.os }}-7ba1d404aa8b
+          restore-keys: |
+            jpxjpy-proxy-${{ runner.os }}-
+            market-data-${{ runner.os }}-
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Run preregistered intraday path proxy
+        id: pathrun
+        shell: bash
+        run: |
+          mkdir -p workflow_diagnostics
+          set +e
+          python scripts/process_jnu_intraday_path_proxy.py 2>&1 | tee workflow_diagnostics/jnu_intraday_path_proxy_g0.log
+          code=${PIPESTATUS[0]}
+          echo "exit_code=$code" >> "$GITHUB_OUTPUT"
+          printf '{"workflow":"jnu-intraday-path-proxy-g0","exit_code":%s,"run_id":"%s","sha":"%s"}\n' "$code" "${{ github.run_id }}" "${{ github.sha }}" > workflow_diagnostics/jnu_intraday_path_proxy_g0.json
+          exit 0
+      - name: Commit results and diagnostics
+        shell: bash
+        run: |
+          git add intraday_path_results intraday_path_reports cloud_data/derived cloud_data/manifests workflow_diagnostics
+          if git diff --cached --quiet; then
+            echo "No new intraday path results."
+            exit 0
+          fi
+          git config user.name "jerry-backtest-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git commit -m "research: publish JNU intraday path proxy G0"
+          branch="${{ github.head_ref || github.ref_name }}"
+          git pull --rebase origin "$branch"
+          git push origin "HEAD:$branch"
+      - name: Fail workflow if processor failed
+        if: steps.pathrun.outputs.exit_code != '0'
+        shell: bash
+        run: exit 1
