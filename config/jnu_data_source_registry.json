@@ -445,6 +445,17 @@
         "No official free LTV bulk historical EOD route was verified in this review.",
         "Do not start an LTV backtest under the no-extra-cost policy."
       ]
+    },
+    {
+      "date": "2026-08-31",
+      "topic": "JPX official one-minute OSE no-extra-cost gate",
+      "findings": [
+        "JPX Data Cloud offers official One-Minute O/H/L/C Price (Derivatives) CSV with trade date, execution date, session ID, minute time, OHLC and volume-style fields.",
+        "Nikkei 225 micro one-minute data are sold by month; a 2025/05 product page lists JPY 143 per month for individual/academic use.",
+        "This violates the current no-extra-cost research policy, so JPX Data Cloud is not authorized for the present workflow.",
+        "Existing personally licensed 225Labo remains the preferred OSE source; raw data stays local and only derived non-reconstructable outputs/provenance may be persisted to cloud."
+      ],
+      "next_action": "Do not purchase JPX data. Use 225Labo local adapter once an exact authorized sample/schema is available."
     }
   ],
   "last_news_plugin_discovery": {
