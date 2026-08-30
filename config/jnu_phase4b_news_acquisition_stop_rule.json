@@ -1,0 +1,47 @@
+{
+  "version": "1.0",
+  "family": "PHASE4B_GDELT_NEWS_STATE",
+  "scope": "Data-acquisition stop rule only; does not alter research hypotheses or statistical gates.",
+  "established_at": "2026-08-31",
+  "acquisition_history": [
+    {
+      "run_id": 33328204279,
+      "stage": "annual_chunk",
+      "outcome": "fetch_failure"
+    },
+    {
+      "run_id": 33330366995,
+      "stage": "adaptive_chunk",
+      "outcome": "connection_refused"
+    },
+    {
+      "run_id": 33331409697,
+      "stage": "paced_single_connection_with_cache",
+      "outcome": "timeout_cancelled_cache_saved"
+    },
+    {
+      "run_id": 33341713229,
+      "stage": "cached_resume_1",
+      "outcome": "RUNNING"
+    }
+  ],
+  "frozen_stop_rule": {
+    "current_run_role": "cached_resume_1",
+    "maximum_additional_cached_resumes_after_current": 1,
+    "final_resume_condition": "Only permitted if current run saves cache and diagnostics show the unresolved data footprint is smaller than before.",
+    "if_current_succeeds": "Evaluate the full six-category family using the original preregistered gates.",
+    "if_current_fails_but_progresses": "Permit one final cached resume with identical research and acquisition specifications.",
+    "if_current_fails_without_progress": "Stop immediately and mark DATA_INCONCLUSIVE.",
+    "if_final_resume_fails": "Mark DATA_INCONCLUSIVE and stop this broad GDELT family.",
+    "prohibited": [
+      "Change category queries",
+      "Drop the troublesome category",
+      "Shorten the research date window",
+      "Lower statistical thresholds",
+      "Change half-life",
+      "Select only categories that happened to download",
+      "Use partial family results as formal evidence"
+    ]
+  },
+  "reason": "Prevent data-provider instability from turning into unbounded researcher degrees of freedom."
+}
