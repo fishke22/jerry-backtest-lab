@@ -34,11 +34,20 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
       - name: Run Phase4B evidence tests
-        run: python scripts/process_phase4b_evidence.py
-      - name: Commit results
+        id: phase4brun
         shell: bash
         run: |
-          git add phase4b_results phase4b_reports
+          mkdir -p workflow_diagnostics
+          set +e
+          python scripts/process_phase4b_evidence.py 2>&1 | tee workflow_diagnostics/jnu_v22_phase4b_v1.log
+          code=${PIPESTATUS[0]}
+          echo "exit_code=$code" >> "$GITHUB_OUTPUT"
+          printf '{"workflow":"jnu-phase4b","exit_code":%s,"run_id":"%s","sha":"%s"}\n' "$code" "${{ github.run_id }}" "${{ github.sha }}" > workflow_diagnostics/jnu_v22_phase4b_v1.json
+          exit 0
+      - name: Commit results and diagnostics
+        shell: bash
+        run: |
+          git add phase4b_results phase4b_reports workflow_diagnostics
           if git diff --cached --quiet; then
             echo "No new Phase4B results."
             exit 0
@@ -47,3 +56,8 @@ jobs:
           git config user.email "actions@users.noreply.github.com"
           git commit -m "research: publish JNU Phase4B evidence results"
           git push
+
+      - name: Fail workflow if processor failed
+        if: steps.phase4brun.outputs.exit_code != '0'
+        shell: bash
+        run: exit 1
