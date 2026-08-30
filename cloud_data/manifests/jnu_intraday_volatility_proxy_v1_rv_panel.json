@@ -1,0 +1,100 @@
+{
+  "dataset_id": "NIKKEI_INDEX_PROXY_INTRADAY_RV_2011_2018_V1",
+  "status": "DURABLE_DERIVED_PROXY_DATASET",
+  "source_identity": {
+    "repo": "FutureSharks/financial-data",
+    "commit": "7ba1d404aa8b0e1c0f71321acebadcbfb9bcca8d",
+    "instrument": "JPXJPY index proxy, not OSE futures",
+    "native_timestamp": "fixed EST UTC-5 without DST"
+  },
+  "sources": {
+    "2011": {
+      "upstream_repo": "FutureSharks/financial-data",
+      "upstream_commit": "7ba1d404aa8b0e1c0f71321acebadcbfb9bcca8d",
+      "upstream_git_blob_sha": "e62e4972f44b407a42ac297aa8beba371e9b32d3",
+      "url": "https://raw.githubusercontent.com/FutureSharks/financial-data/7ba1d404aa8b0e1c0f71321acebadcbfb9bcca8d/pyfinancialdata/data/stocks/histdata/JPXJPY/DAT_ASCII_JPXJPY_M1_2011.csv",
+      "sha256": "6b9768ed5efec84ee2720e7ec100ed6cfa202e3adeb8dd064cbac21ae26cd7a9",
+      "cache_hit": false,
+      "raw_storage": "UPSTREAM_PINNED_GITHUB + ACTIONS_CACHE"
+    },
+    "2012": {
+      "upstream_repo": "FutureSharks/financial-data",
+      "upstream_commit": "7ba1d404aa8b0e1c0f71321acebadcbfb9bcca8d",
+      "upstream_git_blob_sha": "9b50dfb2f8ff8506e0f4f906268e27e67cc0aa12",
+      "url": "https://raw.githubusercontent.com/FutureSharks/financial-data/7ba1d404aa8b0e1c0f71321acebadcbfb9bcca8d/pyfinancialdata/data/stocks/histdata/JPXJPY/DAT_ASCII_JPXJPY_M1_2012.csv",
+      "sha256": "d9f370c501c213ec971ffc60da745cf93a1a5d63bf452fed1e3bbb472fd23b87",
+      "cache_hit": false,
+      "raw_storage": "UPSTREAM_PINNED_GITHUB + ACTIONS_CACHE"
+    },
+    "2013": {
+      "upstream_repo": "FutureSharks/financial-data",
+      "upstream_commit": "7ba1d404aa8b0e1c0f71321acebadcbfb9bcca8d",
+      "upstream_git_blob_sha": "f1c9f34c04a6dca149a8352c9cc593816ad07d56",
+      "url": "https://raw.githubusercontent.com/FutureSharks/financial-data/7ba1d404aa8b0e1c0f71321acebadcbfb9bcca8d/pyfinancialdata/data/stocks/histdata/JPXJPY/DAT_ASCII_JPXJPY_M1_2013.csv",
+      "sha256": "311941769829105d336a07e654aa2aa20663be733f6e8550edd37dfa6e397728",
+      "cache_hit": false,
+      "raw_storage": "UPSTREAM_PINNED_GITHUB + ACTIONS_CACHE"
+    },
+    "2014": {
+      "upstream_repo": "FutureSharks/financial-data",
+      "upstream_commit": "7ba1d404aa8b0e1c0f71321acebadcbfb9bcca8d",
+      "upstream_git_blob_sha": "a0dc8404dada354e28c930b439261d56213d00fe",
+      "url": "https://raw.githubusercontent.com/FutureSharks/financial-data/7ba1d404aa8b0e1c0f71321acebadcbfb9bcca8d/pyfinancialdata/data/stocks/histdata/JPXJPY/DAT_ASCII_JPXJPY_M1_2014.csv",
+      "sha256": "9decd9bca5f16327507e3e84c64ef98d686629e61d286eae7cae7371ecec51cd",
+      "cache_hit": false,
+      "raw_storage": "UPSTREAM_PINNED_GITHUB + ACTIONS_CACHE"
+    },
+    "2015": {
+      "upstream_repo": "FutureSharks/financial-data",
+      "upstream_commit": "7ba1d404aa8b0e1c0f71321acebadcbfb9bcca8d",
+      "upstream_git_blob_sha": "787f22e8f151922a8a8b3e3e15032961a86c00e1",
+      "url": "https://raw.githubusercontent.com/FutureSharks/financial-data/7ba1d404aa8b0e1c0f71321acebadcbfb9bcca8d/pyfinancialdata/data/stocks/histdata/JPXJPY/DAT_ASCII_JPXJPY_M1_2015.csv",
+      "sha256": "1c6b5dc7a05d203b4b3ad77fc5321f3232c4e95fb4dc52756078de6d958a35bb",
+      "cache_hit": false,
+      "raw_storage": "UPSTREAM_PINNED_GITHUB + ACTIONS_CACHE"
+    },
+    "2016": {
+      "upstream_repo": "FutureSharks/financial-data",
+      "upstream_commit": "7ba1d404aa8b0e1c0f71321acebadcbfb9bcca8d",
+      "upstream_git_blob_sha": "264688c4ba87c7cd76d1085324c99783db7aae29",
+      "url": "https://raw.githubusercontent.com/FutureSharks/financial-data/7ba1d404aa8b0e1c0f71321acebadcbfb9bcca8d/pyfinancialdata/data/stocks/histdata/JPXJPY/DAT_ASCII_JPXJPY_M1_2016.csv",
+      "sha256": "1a06f2087ba2b3019e5049427e1bd27e724b4c959f06071f61ea277b4ddd29cd",
+      "cache_hit": false,
+      "raw_storage": "UPSTREAM_PINNED_GITHUB + ACTIONS_CACHE"
+    },
+    "2017": {
+      "upstream_repo": "FutureSharks/financial-data",
+      "upstream_commit": "7ba1d404aa8b0e1c0f71321acebadcbfb9bcca8d",
+      "upstream_git_blob_sha": "dd2c091c3e265e6a796d5e987049c8802d3e20aa",
+      "url": "https://raw.githubusercontent.com/FutureSharks/financial-data/7ba1d404aa8b0e1c0f71321acebadcbfb9bcca8d/pyfinancialdata/data/stocks/histdata/JPXJPY/DAT_ASCII_JPXJPY_M1_2017.csv",
+      "sha256": "895dd65a368fc69a1d33639af41b9ed5b49f8c7aee7ae87bc18d1fc012cf9c38",
+      "cache_hit": false,
+      "raw_storage": "UPSTREAM_PINNED_GITHUB + ACTIONS_CACHE"
+    },
+    "2018": {
+      "upstream_repo": "FutureSharks/financial-data",
+      "upstream_commit": "7ba1d404aa8b0e1c0f71321acebadcbfb9bcca8d",
+      "upstream_git_blob_sha": "0ea58be2dfa7910973fbed52831739edc3c07a60",
+      "url": "https://raw.githubusercontent.com/FutureSharks/financial-data/7ba1d404aa8b0e1c0f71321acebadcbfb9bcca8d/pyfinancialdata/data/stocks/histdata/JPXJPY/DAT_ASCII_JPXJPY_M1_2018.csv",
+      "sha256": "790e97931722b55138e024463093e078813a8422883d159e98c4535221c45e1f",
+      "cache_hit": false,
+      "raw_storage": "UPSTREAM_PINNED_GITHUB + ACTIONS_CACHE"
+    }
+  },
+  "transform": {
+    "timezone": "fixed EST UTC-5 to Asia/Tokyo",
+    "sessions": [
+      "09:00-11:30 JST",
+      "12:30-15:00 JST"
+    ],
+    "sampling": "5-minute last quote inside AM/PM separately",
+    "rv": "sum squared 5-minute log returns",
+    "no_lunch_gap_return": true
+  },
+  "rows": 2050,
+  "path": "cloud_data/derived/jnu_intraday_volatility_proxy_v1_rv_panel.csv.gz",
+  "sha256": "714cdadb01717941672ba4c5d653630b65711585c5c1823ae67d2decd73e1421",
+  "raw_storage_policy": "Raw minute files remain at pinned public upstream plus GitHub Actions cache; private repo stores derived RV panel and provenance.",
+  "formal_validation": "PROHIBITED_WITH_THIS_PROXY",
+  "generated_at_utc": "2026-08-30T16:37:50.978359+00:00"
+}

@@ -8,7 +8,7 @@ No module is currently a `VALIDATED_JNU_MODULE`.
 
 | Module | First engine | Nautilus second engine | Overfit / multiple testing | Research disposition |
 |---|---|---|---|---|
-| dynamic_price_discovery | CLOUD PILOT COMPLETE | not eligible yet | proxy-only; venue coverage gate failed | CONDITIONAL_ARCHITECTURE_ONLY / NOT ALPHA |\n| volatility_regime | PASS_CANDIDATE | PASS_ENGINE_REPLAY | FAIL_OVERFIT_GATES | QUARANTINE / independent confirmation only |
+| intraday_volatility_method_proxy | PROXY OOS FAIL | not eligible | HAR leverage/RSV failed prereg bootstrap gate | REJECT_G1 / risk-state use only |\n| dynamic_price_discovery | CLOUD PILOT COMPLETE | not eligible yet | proxy-only; venue coverage gate failed | CONDITIONAL_ARCHITECTURE_ONLY / NOT ALPHA |\n| volatility_regime | PASS_CANDIDATE | PASS_ENGINE_REPLAY | FAIL_OVERFIT_GATES | QUARANTINE / independent confirmation only |
 | cross_market_confirmation | PASS_CANDIDATE | PASS_ENGINE_REPLAY | FAIL_OVERFIT_GATES | REJECT_OVERFIT |
 | trend_momentum | FAIL | not eligible | not run | REJECT |
 | breakout | FAIL | not eligible | not run | REJECT |
@@ -37,3 +37,15 @@ Its PBO was extremely high and CPCV positive-path consistency was below the requ
 ## Rule
 
 Do not rescue failed modules by widening parameter grids, changing thresholds after seeing results, or selectively dropping bad periods. A new hypothesis must be pre-registered as a new research candidate.
+
+
+## Intraday volatility method proxy disposition
+
+Generation 1 used pinned 2011-2018 Nikkei index minute data, fixed EST-to-JST conversion, Japan cash sessions, 5-minute realized volatility, and frozen HAR 1/5/22 specifications.
+
+- OOS: 1,524 days (2013-01-22 to 2018-12-31).
+- HAR_LEVERAGE was numerically best on both QLIKE and MSE, but bootstrap probabilities were only 0.8785 (QLIKE) and 0.6555 (MSE), below the preregistered 0.95 gate.
+- HAR_RSV also failed; its 2011-2014 QLIKE/MSE improvements were negative.
+- Result: **REJECT_G1**. Do not retune windows, sampling interval, session definition, or asymmetry features on this sample.
+- Framework consequence: volatility remains useful for observed risk state / sizing / stop-distance normalization, but this predictive HAR family is not admitted as JNU alpha.
+- True OSE/JNU confirmation of this exact family is low priority unless independent evidence or independently acquired JNU data justifies a new preregistered generation.

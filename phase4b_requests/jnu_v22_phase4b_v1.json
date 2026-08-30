@@ -31,7 +31,7 @@
     }
   },
   "control_plane_retrigger": {
-    "nonce": 1,
-    "reason": "Re-trigger GitHub Actions after adding fail-closed diagnostics; research parameters unchanged."
+    "nonce": 3,
+    "reason": "PR synchronize after removing blocking concurrency; research parameters unchanged."
   }
 }
