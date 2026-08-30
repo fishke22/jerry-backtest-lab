@@ -1,0 +1,94 @@
+{
+  "version": "1.0",
+  "updated_at": "2026-08-31",
+  "status": "DESIGN_POLICY_NO_ACTIVE_COMBINATION_YET",
+  "objective": "Define how validated JNU modules may eventually be combined without fixed indicator voting or post-hoc weight fitting.",
+  "evidence": [
+    {
+      "reference": "Wang & Nishiyama (2015), Volatility forecast of stock indices by model averaging using high-frequency data",
+      "market": "Includes Nikkei 225",
+      "implication": "Model averaging can improve one-day volatility forecasts; evaluation used SPA-style predictive comparison."
+    },
+    {
+      "reference": "Liu & Maheu (2009), Forecasting realized volatility: a Bayesian model-averaging approach",
+      "implication": "Averaging over volatility specifications can improve forecast density and modestly improve point forecasts under model uncertainty."
+    },
+    {
+      "reference": "Amendola et al. (2020), Model Confidence Set approach to volatility forecast combination",
+      "implication": "Select an accuracy-surviving model set before combining rather than averaging an unrestricted model universe."
+    }
+  ],
+  "hard_rules": [
+    "Never combine a rejected or data-inconclusive family as if it were validated evidence.",
+    "Never assign fixed weights such as NQ 30%, USDJPY 20%, News 20% without a separate preregistered OOS combination test.",
+    "Agreement count is not confidence; correlated inputs cannot be treated as independent votes.",
+    "A risk-state module may change size/stops/no-trade confidence but cannot create directional probability by itself.",
+    "An event/news volatility-state pass cannot be converted into long/short direction without a separate directional family.",
+    "A source-weighting DPD layer may determine which observed market is trusted but is not a directional vote.",
+    "Every combined model is itself a new candidate family and must pass the promotion pipeline."
+  ],
+  "role_separation": {
+    "directional_pool": {
+      "admission": "Only true-JNU-confirmed directional modules that passed applicable overfit gates.",
+      "current_modules": [],
+      "current_state": "NO_VALIDATED_DIRECTIONAL_EDGE"
+    },
+    "volatility_risk_pool": {
+      "admission": "Validated risk/volatility forecasts only.",
+      "current_modules": [],
+      "pending": [
+        "HAR_RSV_TRUE_OSE_CONFIRMATION"
+      ]
+    },
+    "event_state_pool": {
+      "admission": "Validated event/news state modules only.",
+      "current_modules": [],
+      "active_candidate": [
+        "NEWS_STATE_LANGUAGE_SOURCE_G1"
+      ]
+    },
+    "source_weight_pool": {
+      "admission": "Validated dynamic price-discovery/source-reliability modules.",
+      "current_modules": [],
+      "pending": [
+        "TRUE_VENUE_DPD_OSE_SGX_CME"
+      ]
+    },
+    "execution_pool": {
+      "admission": "Execution variables such as VWAP/POC/liquidity/basis after causal definitions are fixed.",
+      "role": "Entry/exit/invalidation/cost quality, not independent alpha by default."
+    }
+  },
+  "future_combination_protocol": {
+    "minimum_candidates": 2,
+    "prerequisite": "Each candidate must already have standalone OOS predictions from the same evaluation timestamps without reusing target outcomes.",
+    "initial_benchmarks": [
+      "Equal weight among eligible validated forecasts",
+      "Best single validated forecast chosen only from training window"
+    ],
+    "preferred_methods_for_review": [
+      "Model Confidence Set then equal-weight survivors",
+      "Predictive-likelihood/Bayesian model averaging",
+      "Dynamic model averaging only if forgetting/weight-update parameters are preregistered"
+    ],
+    "evaluation": [
+      "Out-of-sample proper scoring rule appropriate to target",
+      "Calibration/reliability for probabilities",
+      "Incremental loss versus best single validated module",
+      "Block/bootstrap uncertainty",
+      "SPA/Reality-Check-style protection when many combinations are examined",
+      "Existing CPCV/PBO/DSR/Holm Stage-3 gate for executable strategy translations"
+    ],
+    "forbidden": [
+      "Optimize combination weights on final OOS",
+      "Choose the combination method after seeing test results",
+      "Add failed predictors because ensemble performance looks better",
+      "Use manually assigned confidence percentages"
+    ]
+  },
+  "probability_outputs": {
+    "rule": "P(up)/P(down)/P(range) may be emitted as model probabilities only after calibration is measured on untouched OOS/forward data.",
+    "when_no_directional_module": "Report NO_VALIDATED_DIRECTIONAL_EDGE rather than manufacture a directional probability.",
+    "confidence": "Derived from calibration, predictive loss, data quality and regime validity—not number of indicators agreeing."
+  }
+}
