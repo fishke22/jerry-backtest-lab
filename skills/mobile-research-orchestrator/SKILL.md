@@ -65,3 +65,19 @@ Interpret ordinary Traditional Chinese natural language semantically. Infer the 
 If intent is clear, do not ask the user to restate it using a memorized phrase. Ask a clarifying question only when two materially different workflows or risk levels remain plausible.
 
 Treat this semantic routing rule as a standing interaction contract for mobile use.
+
+
+## Evidence-first research rule
+
+For new JNU/Nikkei factors, modules, sentiment layers, or parameter families:
+
+1. Search credible academic/empirical evidence first.
+2. Separate direct Nikkei evidence from broad-market priors.
+3. Translate evidence into a falsifiable hypothesis and a narrow, pre-registered parameter/data plan.
+4. Test information value before trading value when the factor is primarily a state variable (volatility, tail risk, news, uncertainty, FX regime).
+5. Only after the state/factor adds OOS information may it enter a trading-EV test.
+6. Apply costs, recent OOS, CPCV/purge/embargo, PBO/DSR/multiple-testing, and forward OOS before promotion.
+7. Never widen a parameter grid or alter thresholds after seeing a failure merely to obtain a pass.
+8. Literature support is a prior, not proof of JNU profitability.
+
+For news/sentiment, start as a risk/volatility/confidence state. A direct long/short vote requires separate causal-time-aligned OOS evidence.
