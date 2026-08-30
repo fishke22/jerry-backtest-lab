@@ -12,9 +12,6 @@ on:
 permissions:
   contents: write
 
-concurrency:
-  group: jnu-evidence-phase4b
-  cancel-in-progress: false
 
 jobs:
   validate:
