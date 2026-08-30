@@ -49,3 +49,19 @@ Prefer this hierarchy:
 ## Mobile interaction pattern
 
 The user should be able to say what they want in natural language. Convert it into a versioned request file, trigger the appropriate workflow, inspect failures if any, and return the final result without requiring the user's PC.
+
+
+## Natural-language intent rule
+
+The user is never required to remember command phrases, request schemas, file paths, workflow names, validation jargon, or exact wording.
+
+Interpret ordinary Traditional Chinese natural language semantically. Infer the intended registered workflow from meaning and context. Examples:
+
+- "幫我再測新的日經方法" -> route to the JNU/Nikkei candidate research workflow.
+- "把有通過的再做嚴格驗證" -> route only survivors to the next validation stage.
+- "看看最近新聞對日經有沒有影響" -> route to news/event research when that workflow exists.
+- "重新跑一次，但不要重抓資料" -> use the registered workflow with cloud cache and no forced refresh.
+
+If intent is clear, do not ask the user to restate it using a memorized phrase. Ask a clarifying question only when two materially different workflows or risk levels remain plausible.
+
+Treat this semantic routing rule as a standing interaction contract for mobile use.
