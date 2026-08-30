@@ -31,7 +31,7 @@
     }
   },
   "control_plane_retrigger": {
-    "nonce": 1,
-    "reason": "Re-trigger GitHub Actions after adding fail-closed diagnostics; research parameters unchanged."
+    "nonce": 8,
+    "reason": "Final conservative acquisition run: single-connection paced GDELT plus cumulative cache; research specification unchanged."
   }
 }
