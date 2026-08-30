@@ -1,0 +1,46 @@
+{
+  "version": "1.0",
+  "control_plane": "ChatGPT mobile/web",
+  "execution_plane": "GitHub Actions",
+  "workflows": [
+    {
+      "id": "phase1_backtest_sanity",
+      "status": "active",
+      "request_path": "requests/*.json",
+      "result_path": "results/*.json",
+      "report_path": "reports/*.md",
+      "purpose": "Small daily-proxy sanity/backtest jobs"
+    },
+    {
+      "id": "jnu_v22_daily_proxy_suite",
+      "status": "active",
+      "request_path": "suite_requests/*.json",
+      "result_path": "suite_results/*.json",
+      "report_path": "suite_reports/*.md",
+      "purpose": "JNU V2.2 daily-proxy candidate screening"
+    },
+    {
+      "id": "jnu_nautilus_second_engine",
+      "status": "active",
+      "request_path": "nautilus_requests/*.json",
+      "result_path": "nautilus_results/*.json",
+      "report_path": "nautilus_reports/*.md",
+      "purpose": "Independent Nautilus event/order/fill replay for first-engine passes"
+    },
+    {
+      "id": "news_sentiment_research",
+      "status": "planned",
+      "purpose": "Collect, deduplicate, timestamp, score and map news/events to research factors"
+    },
+    {
+      "id": "taiwan_stock_v28_research",
+      "status": "planned",
+      "purpose": "Versioned Taiwan-stock V28 research and evidence packets"
+    },
+    {
+      "id": "generic_research_workflow",
+      "status": "planned",
+      "purpose": "Template for future non-financial repeatable research workflows"
+    }
+  ]
+}
