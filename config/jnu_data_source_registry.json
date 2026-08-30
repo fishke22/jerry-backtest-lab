@@ -177,13 +177,21 @@
       "jnu_role": "Best no-extra-cost candidate for true OSE intraday JNU/mini path research; potential DPD OSE leg",
       "status": "HIGH_VALUE_CANDIDATE_REQUIRES_USER_MEMBER_ACCESS_AND_STORAGE_REVIEW",
       "timestamp_spec": "Night-session dates are already labeled using OSE convention as the following trading/business day.",
-      "cloud_automation_status": "BLOCKED_PENDING_USER_AUTHORIZATION_AND_CREDENTIAL_HANDLING_DESIGN",
+      "cloud_automation_status": "RAW_CLOUD_INGESTION_NOT_APPROVED; LOCAL_RAW_PROCESSING_PREFERRED",
       "direct_pages": [
         "https://225labo.com/modules/downloads_data/index.php?cid=11",
         "https://225labo.com/modules/downloads_data/index.php?cid=11&lid=175&page=singlefile"
       ],
-      "raw_storage_rule": "Do not put raw files in public/shareable storage. Before private cloud ingestion, confirm that automated private processing/storage remains within personal-use terms.",
-      "credential_policy": "GitHub connector cannot create or read Actions Secrets. Member credentials/cookies must never be stored in repository files, request JSON, logs or artifacts. Cloud ingestion requires a user-authorized secret-manager setup first."
+      "raw_storage_rule": "Safest interpretation of published terms: raw files are for the downloader's personal use and must not be provided to third parties. Do not upload raw minute files, login cookies, or credentials to GitHub/Vercel/ChatGPT storage. Prefer local Windows download and raw processing; upload only non-reconstructive derived research features/results plus hashes/provenance to the private research repo.",
+      "credential_policy": "GitHub connector cannot create or read Actions Secrets. Member credentials/cookies must never be stored in repository files, request JSON, logs or artifacts. Cloud ingestion requires a user-authorized secret-manager setup first.",
+      "safe_processing_architecture": [
+        "User-authorized local Windows login/download",
+        "Verify file hash and parse locally",
+        "Apply session/contract/data-integrity transforms locally",
+        "Produce non-reconstructive derived panels/results",
+        "Upload derived outputs + manifest/hash/provenance to private GitHub",
+        "Delete or retain raw locally according to user's personal-use needs; never redistribute"
+      ]
     },
     {
       "id": "JPX_JGATE_ITCH_HISTORICAL",
@@ -350,6 +358,16 @@
         "Do not proxy order imbalance from OHLC/VWAP/volume bars."
       ],
       "next_action": "Keep true order-imbalance research in the literature layer until an approved venue-level trade/order-side dataset is available."
+    },
+    {
+      "date": "2026-08-31",
+      "topic": "225Labo explicit personal-use terms review",
+      "findings": [
+        "Download approval terms state the data is for the individual user's learning to improve market-trading ability and may not be used for other purposes including commercial use.",
+        "Nikkei mini/micro pages state use is licensed only to the person who downloaded the data and prohibit provision/sale or similar acts to third parties.",
+        "Therefore raw cloud upload/processing through third-party infrastructure is not treated as approved.",
+        "Safest architecture is local raw download/processing and cloud persistence of only non-reconstructive derived features/results with provenance."
+      ]
     }
   ],
   "last_news_plugin_discovery": {
