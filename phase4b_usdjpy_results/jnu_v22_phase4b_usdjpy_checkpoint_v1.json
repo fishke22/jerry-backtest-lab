@@ -1,0 +1,54 @@
+{
+  "request_id": "jnu_v22_phase4b_usdjpy_checkpoint_v1",
+  "status": "complete",
+  "execution_role": "SAME_PREREG_CHECKPOINT_NOT_NEW_FAMILY",
+  "source_request": "phase4b_requests/jnu_v22_phase4b_v1.json",
+  "source_candidate_id": "JNU_V22_PHASE4B_USDJPY_1D",
+  "research_spec_hash_note": "All research parameters are read directly from the existing Phase4B request.",
+  "usdjpy": {
+    "oos_days": 642,
+    "baseline_mse": 0.00031079462716047745,
+    "with_usdjpy_mse": 0.00030789681953649297,
+    "mse_improvement": 2.8978076239843953e-06,
+    "bootstrap": {
+      "mean": 2.8978076239843953e-06,
+      "ci95": [
+        -4.795688318917216e-06,
+        1.1291998467176376e-05
+      ],
+      "prob_positive": 0.7445
+    },
+    "baseline_sign_accuracy": 0.5467289719626168,
+    "with_usdjpy_sign_accuracy": 0.5404984423676013,
+    "regimes": {
+      "high_vix": {
+        "n": 398,
+        "mse_improvement": 6.6262354457665495e-06,
+        "bootstrap": {
+          "mean": 6.6262354457665495e-06,
+          "ci95": [
+            -3.6013189925170086e-06,
+            2.059815580974232e-05
+          ],
+          "prob_positive": 0.885
+        }
+      },
+      "low_vix": {
+        "n": 244,
+        "mse_improvement": -3.183808249250422e-06,
+        "bootstrap": {
+          "mean": -3.183808249250422e-06,
+          "ci95": [
+            -8.788829381941199e-06,
+            2.9327936874646007e-06
+          ],
+          "prob_positive": 0.15
+        }
+      }
+    },
+    "pass_incremental_state": false,
+    "trading_status": "NOT_TESTED"
+  },
+  "promotion_status": "INFORMATION_STATE_SCREEN_ONLY",
+  "generated_at_utc": "2026-08-30T19:24:10.234300+00:00"
+}
