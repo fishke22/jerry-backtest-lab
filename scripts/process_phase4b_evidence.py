@@ -25,13 +25,13 @@ CBOE_VIX = "https://cdn.cboe.com/api/global/us_indices/daily_prices/VIX_History.
 GDELT_DOC = "https://api.gdeltproject.org/api/v2/doc/doc"
 
 
-def fetch(url: str, cache_name: str, force: bool=False, timeout: int=120) -> bytes:
+def fetch(url: str, cache_name: str, force: bool=False, timeout: int=120, attempts: int=4) -> bytes:
     CACHE.mkdir(parents=True, exist_ok=True)
     path = CACHE / cache_name
     if path.exists() and not force:
         return path.read_bytes()
     last = None
-    for attempt in range(4):
+    for attempt in range(attempts):
         try:
             req = urllib.request.Request(
                 url,
@@ -46,7 +46,7 @@ def fetch(url: str, cache_name: str, force: bool=False, timeout: int=120) -> byt
             return raw
         except Exception as exc:
             last = exc
-            if attempt < 3:
+            if attempt < attempts - 1:
                 time.sleep(2 ** attempt)
     raise RuntimeError(f"fetch failed {cache_name}: {last}")
 
@@ -199,7 +199,7 @@ def _gdelt_timeline_one(
         "enddatetime": end,
     }
     url = GDELT_DOC + "?" + urllib.parse.urlencode(params)
-    raw = fetch(url, cache_name, force, timeout=120)
+    raw = fetch(url, cache_name, force, timeout=75, attempts=2)
     try:
         obj = json.loads(raw.decode("utf-8-sig", errors="replace"))
     except Exception as exc:
@@ -211,6 +211,49 @@ def _gdelt_timeline_one(
     s = df.groupby("date")["value"].mean().sort_index()
     s.name = mode
     return s
+
+
+def _gdelt_timeline_adaptive(
+    query: str,
+    mode: str,
+    start: str,
+    end: str,
+    cache_name: str,
+    force: bool,
+    depth: int=0,
+) -> pd.Series:
+    """Fetch one GDELT interval; split only a failing interval, preserving semantics."""
+    try:
+        return _gdelt_timeline_one(query, mode, start, end, cache_name, force)
+    except Exception as exc:
+        s = pd.to_datetime(start, format="%Y%m%d%H%M%S")
+        e = pd.to_datetime(end, format="%Y%m%d%H%M%S")
+        span = e - s
+        # Fail closed rather than fragment indefinitely.
+        if depth >= 4 or span <= pd.Timedelta(days=31):
+            raise
+        mid = s + span / 2
+        # Preserve exclusive-boundary semantics: second half starts one second before midpoint.
+        left_start = s.strftime("%Y%m%d%H%M%S")
+        left_end = mid.strftime("%Y%m%d%H%M%S")
+        right_start = (mid - pd.Timedelta(seconds=1)).strftime("%Y%m%d%H%M%S")
+        right_end = e.strftime("%Y%m%d%H%M%S")
+        stem = cache_name[:-5] if cache_name.endswith(".json") else cache_name
+        print(
+            f"phase4b GDELT adaptive split depth={depth+1}: {mode} "
+            f"{left_start[:8]}->{left_end[:8]} + {right_start[:8]}->{right_end[:8]} "
+            f"after {type(exc).__name__}",
+            flush=True,
+        )
+        left = _gdelt_timeline_adaptive(
+            query, mode, left_start, left_end, f"{stem}_L{depth+1}.json", force, depth+1
+        )
+        right = _gdelt_timeline_adaptive(
+            query, mode, right_start, right_end, f"{stem}_R{depth+1}.json", force, depth+1
+        )
+        out = pd.concat([left, right]).groupby(level=0).mean().sort_index()
+        out.name = mode
+        return out
 
 
 def _gdelt_year_windows(start: str, end: str) -> list[tuple[str, str]]:
@@ -248,7 +291,7 @@ def gdelt_timeline(query: str, mode: str, start: str, end: str, cache_name: str,
     parts = []
     for i, (chunk_start, chunk_end) in enumerate(windows, start=1):
         chunk_name = f"{stem}_chunk{i}_{chunk_start[:8]}_{chunk_end[:8]}.json"
-        part = _gdelt_timeline_one(query, mode, chunk_start, chunk_end, chunk_name, force)
+        part = _gdelt_timeline_adaptive(query, mode, chunk_start, chunk_end, chunk_name, force)
         parts.append(part)
         print(
             f"phase4b GDELT chunk ready: {mode} {chunk_start[:8]}->{chunk_end[:8]}",
