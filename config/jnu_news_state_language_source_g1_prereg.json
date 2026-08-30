@@ -34,7 +34,17 @@
       "max_total_runs": 3,
       "current_run_number_in_family": 1,
       "resume_rule": "A resume may only reuse cumulative cache and fetch missing chunks. Queries, dates, features, statistical models and thresholds may not change.",
-      "terminal_rule": "If the complete four-cell panel cannot be acquired after three bounded runs, classify G1 as DATA_INCONCLUSIVE."
+      "terminal_rule": "If the complete four-cell panel cannot be acquired after three bounded runs, classify G1 as DATA_INCONCLUSIVE.",
+      "logical_attempt_rule": "Runs triggered by both push and pull_request from the identical request commit SHA are one logical acquisition attempt; this control-plane duplication does not create a new hypothesis/trial.",
+      "attempt_1": {
+        "request_sha": "1419591e92c7f3a407167795ef39b0165e41ca36",
+        "execution_runs": [
+          33341758160,
+          33341760779
+        ],
+        "classification": "ONE_LOGICAL_ATTEMPT_CONTROL_PLANE_DUPLICATE",
+        "note": "Future resumes use PR-only triggering and cumulative cache."
+      }
     }
   },
   "family": {
