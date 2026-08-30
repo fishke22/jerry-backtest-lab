@@ -34,11 +34,20 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
       - name: Run preregistered volatility proxy validation
-        run: python scripts/process_jnu_intraday_volatility_proxy.py
-      - name: Commit derived data and results
+        id: volrun
         shell: bash
         run: |
-          git add volatility_results volatility_reports cloud_data/derived cloud_data/manifests
+          mkdir -p workflow_diagnostics
+          set +e
+          python scripts/process_jnu_intraday_volatility_proxy.py 2>&1 | tee workflow_diagnostics/jnu_intraday_volatility_proxy_v1.log
+          code=${PIPESTATUS[0]}
+          echo "exit_code=$code" >> "$GITHUB_OUTPUT"
+          printf '{"workflow":"jnu-intraday-volatility-proxy","exit_code":%s,"run_id":"%s","sha":"%s"}\n' "$code" "${{ github.run_id }}" "${{ github.sha }}" > workflow_diagnostics/jnu_intraday_volatility_proxy_v1.json
+          exit 0
+      - name: Commit derived data, results and diagnostics
+        shell: bash
+        run: |
+          git add volatility_results volatility_reports cloud_data/derived cloud_data/manifests workflow_diagnostics
           if git diff --cached --quiet; then
             echo "No new volatility results."
             exit 0
@@ -47,3 +56,8 @@ jobs:
           git config user.email "actions@users.noreply.github.com"
           git commit -m "research: publish JNU intraday volatility proxy result"
           git push
+
+      - name: Fail workflow if processor failed
+        if: steps.volrun.outputs.exit_code != '0'
+        shell: bash
+        run: exit 1
