@@ -27,5 +27,9 @@
   "pass_rules": {
     "min_bootstrap_prob_positive": 0.95
   },
-  "formal_promotion": false
+  "formal_promotion": false,
+  "control_plane_retrigger": {
+    "nonce": 1,
+    "reason": "Re-trigger GitHub Actions after adding fail-closed diagnostics; research parameters unchanged."
+  }
 }
