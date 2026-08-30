@@ -25,14 +25,14 @@ jobs:
         with:
           python-version: "3.12"
           cache: "pip"
-      - name: Set cache date
-        shell: bash
-        run: echo "CACHE_DATE=$(date -u +%Y-%m-%d)" >> "$GITHUB_ENV"
-      - name: Restore exact market-data cache
-        uses: actions/cache@v4
+      - name: Restore cumulative Phase4B market-data cache
+        id: phase4b-cache-restore
+        uses: actions/cache/restore@v4
         with:
           path: .cache/market-data
-          key: market-data-${{ runner.os }}-${{ env.CACHE_DATE }}
+          key: phase4b-gdelt-${{ runner.os }}-${{ github.run_id }}
+          restore-keys: |
+            phase4b-gdelt-${{ runner.os }}-
       - name: Install dependencies
         run: pip install -r requirements.txt
       - name: Run Phase4B evidence tests
@@ -48,6 +48,12 @@ jobs:
           echo "exit_code=$code" >> "$GITHUB_OUTPUT"
           printf '{"workflow":"jnu-phase4b","exit_code":%s,"run_id":"%s","sha":"%s"}\n' "$code" "${{ github.run_id }}" "${{ github.sha }}" > "$diag"
           exit 0
+      - name: Save cumulative Phase4B market-data cache
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: .cache/market-data
+          key: phase4b-gdelt-${{ runner.os }}-${{ github.run_id }}
       - name: Commit results and diagnostics
         shell: bash
         run: |
