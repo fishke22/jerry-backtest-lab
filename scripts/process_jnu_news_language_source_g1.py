@@ -58,6 +58,9 @@ def gdelt_quarter_timeline(query: str, mode: str, start: str, end: str, key: str
     for i, (a, b) in enumerate(quarter_windows(start, end), start=1):
         cache = f"g1_{key}_{mode.lower()}_q{i}_{a[:8]}_{b[:8]}.json"
         part = _gdelt_timeline_adaptive(query, mode, a, b, cache, force)
+        if i > 1:
+            logical_start_day = (pd.to_datetime(a, format="%Y%m%d%H%M%S") + pd.Timedelta(seconds=1)).normalize()
+            part = part.loc[part.index >= logical_start_day]
         parts.append(part)
         print(f"g1 chunk ready: {key} {mode} {a[:8]}->{b[:8]}", flush=True)
     if not parts:
