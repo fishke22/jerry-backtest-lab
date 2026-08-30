@@ -1,0 +1,209 @@
+{
+  "version": "1.0-draft",
+  "candidate_id": "TRUE_VENUE_DPD_OSE_SGX_CME_G1",
+  "status": "PREREG_DRAFT_DATA_BLOCKED_NOT_TRIGGERED",
+  "objective": "Determine which Nikkei 225 futures venue is leading price discovery at each institutional session state, then use that state only to weight contemporaneous information sources for JNU.",
+  "evidence": [
+    {
+      "reference": "Lee et al. (2015), Price linkage between the US and Japanese futures across different time zones",
+      "doi": "10.1016/j.intfin.2014.12.002",
+      "implication": "Nikkei futures leadership changes with venue/time and can change across eras."
+    },
+    {
+      "reference": "Moriyasu / OSE-SGX Nikkei price-discovery literature",
+      "implication": "Same-underlying offshore/onshore venue leadership must be measured with venue-specific data rather than public symbols."
+    },
+    {
+      "reference": "2023 nonlinear Nikkei spot-futures price discovery study",
+      "doi": "10.3390/jrfm16020117",
+      "implication": "Liquidity/transaction-cost conditions can make leadership nonlinear/state-dependent."
+    }
+  ],
+  "instruments": {
+    "primary_target": {
+      "venue": "OSE",
+      "product": "Nikkei 225 mini",
+      "reason": "Longer history and same underlying as JNU; true JNU Micro is used later for exact-product consistency."
+    },
+    "exact_product_check": {
+      "venue": "OSE",
+      "product": "Nikkei 225 micro Futures",
+      "start": "2023-05-29",
+      "role": "Recent exact-product consistency only"
+    },
+    "comparison_venues": [
+      {
+        "venue": "SGX",
+        "product": "JPY Nikkei 225 Index Futures",
+        "ticker": "NK"
+      },
+      {
+        "venue": "CME",
+        "product": "JPY-denominated Nikkei 225 Futures",
+        "ticker": "NIY"
+      }
+    ],
+    "contract_alignment": {
+      "rule": "Compare the same quarterly expiry across OSE, SGX and CME whenever simultaneously listed.",
+      "preferred_cycle": [
+        "Mar",
+        "Jun",
+        "Sep",
+        "Dec"
+      ],
+      "roll_rule": "Predefine roll by exchange last-trading-day/volume availability before inspecting predictive results.",
+      "serial_months": "Excluded from G1 unless all three venues have an economically equivalent matched expiry."
+    }
+  },
+  "official_session_calendar": {
+    "timezone_policy": "Store raw timestamps in UTC plus venue-local timezone; derive state labels from versioned official exchange calendars. Never hard-code one UTC clock across DST.",
+    "OSE_JST": {
+      "day_open": "08:45",
+      "day_regular_end": "15:40",
+      "day_close_auction": "15:45",
+      "night_open": "17:00",
+      "night_regular_end": "05:55",
+      "night_close_auction": "06:00"
+    },
+    "SGX_SGT": {
+      "T_open": "07:30",
+      "T_regular_end": "14:55",
+      "T_close": "15:00",
+      "T1_open": "15:10",
+      "T1_close": "05:15"
+    },
+    "CME": {
+      "timezone": "America/New_York / official CME calendar",
+      "general_nikkei_globex": "Sunday-Friday approximately 18:00-17:00 ET under current fact-card convention",
+      "rule": "Use official CME holiday/maintenance calendar per observation date; DST conversion is mandatory."
+    }
+  },
+  "states": {
+    "SGX_PRE_OSE_DAY": {
+      "definition": "SGX Nikkei trading while OSE day session has not opened.",
+      "institutional_boundary": "SGX 07:30 SGT -> OSE 08:45 JST",
+      "hypothesis": "SGX may carry same-underlying information into the OSE day open."
+    },
+    "OSE_DAY_OVERLAP": {
+      "definition": "OSE day and SGX T both active.",
+      "institutional_boundary": "OSE 08:45-15:45 JST with SGX overlap",
+      "hypothesis": "Local OSE leadership should strengthen while Japan's home venue is in primary trading hours."
+    },
+    "SGX_BRIDGE_TO_OSE_NIGHT": {
+      "definition": "SGX T/T+1 active while OSE is between day close and 17:00 night open.",
+      "hypothesis": "SGX may temporarily become the only continuously active Asian Nikkei venue."
+    },
+    "OSE_NIGHT_OVERLAP": {
+      "definition": "OSE night plus SGX T+1 and CME Nikkei overlap when calendars permit.",
+      "hypothesis": "Leadership may depend on contemporaneous venue liquidity rather than fixed home-market dominance."
+    },
+    "US_CASH_OVERLAP": {
+      "definition": "US regular cash session while Nikkei futures venues are open.",
+      "hypothesis": "CME/same-underlying and US equity-index information may gain influence; NQ/ES are exogenous confirmation, not part of same-underlying venue leadership score."
+    },
+    "SINGLE_VENUE_OR_HOLIDAY": {
+      "definition": "One venue open while another is holiday/maintenance closed.",
+      "hypothesis": "Use as natural leadership episodes, but do not pool across distinct holiday types without preregistered grouping."
+    }
+  },
+  "sampling": {
+    "base_interval": "5m",
+    "reason": "Pilot 1m had only 2 OOS days and is too fragile; 5m reduces microstructure noise and aligns better across venue timestamps.",
+    "secondary_interval": "1m diagnostic only if sufficient multi-month true-venue history exists",
+    "maximum_lead_lag_bars": 3,
+    "no_posthoc_window_widening": true,
+    "same_bar_rule": "Lag 0 describes contemporaneous linkage, never tradable lead."
+  },
+  "causal_features": {
+    "returns": "Log/percentage return per venue from causal bar closes.",
+    "liquidity": [
+      "bar volume",
+      "zero-trade indicator",
+      "realized spread proxy only if true bid/ask available"
+    ],
+    "allowed_exogenous": [
+      "NQ/ES returns only in separately labeled US-overlap diagnostics"
+    ],
+    "prohibited": [
+      "Using future bar volume to decide the current bar's source weight",
+      "OHLC-imputed order imbalance"
+    ]
+  },
+  "primary_tests": [
+    {
+      "id": "LEAD_LAG_DIRECTION",
+      "target": "OSE next-bar return",
+      "predictors": "Lagged same-expiry SGX/CME Nikkei returns up to frozen ±3-bar diagnostic structure; prediction uses only strictly prior bars.",
+      "baseline": "OSE own-return lags only",
+      "metric": [
+        "MSE",
+        "sign accuracy diagnostic",
+        "incremental predictive loss"
+      ],
+      "interpretation": "Only strictly positive lags are eligible as predictive information."
+    },
+    {
+      "id": "STATE_DEPENDENT_SOURCE_VALUE",
+      "target": "OSE next-bar return or next-bar variance",
+      "predictors": "Predefined venue/state interactions",
+      "baseline": "Same predictors without venue-state interaction",
+      "metric": [
+        "proper OOS loss improvement",
+        "block-bootstrap uncertainty"
+      ],
+      "interpretation": "A pass supports source weighting, not standalone directional alpha."
+    }
+  ],
+  "validation": {
+    "chronological_outer_oos": true,
+    "walk_forward": true,
+    "purging_embargo": "Required whenever prediction horizons overlap training/test boundaries.",
+    "family_correction": "Holm or SPA/Reality-Check-style correction across the frozen venue/state comparisons.",
+    "bootstrap": "Block bootstrap with block length preregistered after inspecting autocorrelation structure on training data only.",
+    "regimes": [
+      "pre/post major exchange-hours changes",
+      "low/high volatility",
+      "Japan holiday vs normal",
+      "US cash overlap vs closed"
+    ],
+    "recent_gate": true,
+    "true_target_confirmation": "After Mini long-history G1, repeat frozen state logic on OSE Micro 2023+ without retuning."
+  },
+  "promotion_gate": {
+    "required": [
+      "Venue-specific OSE + SGX + CME intraday data with matched expiries",
+      "At least one predefined state shows positive incremental OOS value after family correction",
+      "No result depends solely on one year or one venue outage regime",
+      "Leadership sign/state logic remains directionally consistent in recent data",
+      "Exact-product Micro check does not materially contradict Mini result"
+    ],
+    "output_if_pass": "DYNAMIC_SOURCE_WEIGHT_STATE",
+    "output_if_fail": "NO_VALIDATED_DPD_WEIGHT",
+    "not_allowed": "Directional trading promotion from DPD alone"
+  },
+  "current_data_blockers": [
+    "OSE official JPX one-minute history is paid; no purchase authorized.",
+    "225Labo is the preferred already-available personal OSE source but raw files must remain local.",
+    "Free/authorized SGX venue-specific historical intraday series has not yet been verified.",
+    "Free/authorized CME NIY historical intraday series has not yet been verified."
+  ],
+  "cloud_policy": {
+    "raw_exchange_data": "Only store in cloud when license/terms explicitly allow it.",
+    "personally_licensed_225labo": "Raw local-only; cloud may store non-reconstructable derived features, hashes and provenance.",
+    "durable_outputs": [
+      "state labels",
+      "aggregate lead-lag diagnostics",
+      "OOS predictions if legally non-reconstructable",
+      "hashes",
+      "methodology metadata"
+    ]
+  },
+  "forbidden": [
+    "Optimize session boundaries after seeing results",
+    "Mix different expiries to increase sample size",
+    "Treat same-bar correlation as price leadership",
+    "Assign fixed NQ/SGX/OSE weights before OOS confirmation",
+    "Promote Yahoo proxy pilot results",
+    "Purchase data without explicit user authorization"
+  ]
+}
