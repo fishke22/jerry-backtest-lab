@@ -167,7 +167,7 @@
     {
       "id": "225LABO_OSE_NIKKEI_MINUTE",
       "provider": "225Labo",
-      "access_route": "Member login; free download after registration",
+      "access_route": "225Labo member login required; free after registration. Download page confirmed for JNU Micro 2023-07-24 onward.",
       "data_type": "OSE Nikkei 225 Futures / mini / micro minute bars at 1,3,5,10,15,20,30,60 minutes",
       "coverage": "Large futures minute data from 2001; mini from 2006; micro minute data from 2023-07-24; daily micro from 2023-05-29",
       "cost_class": "NO_EXTRA_COST_AFTER_FREE_MEMBER_REGISTRATION",
@@ -175,7 +175,14 @@
       "license_or_terms_status": "Download is licensed only to the downloader; third-party provision/sale or similar acts prohibited. Do not redistribute. Private cloud archival/AI processing rights require conservative review before ingestion.",
       "provenance": "225Labo product pages and terms text",
       "jnu_role": "Best no-extra-cost candidate for true OSE intraday JNU/mini path research; potential DPD OSE leg",
-      "status": "HIGH_VALUE_CANDIDATE_REQUIRES_USER_MEMBER_ACCESS_AND_STORAGE_REVIEW"
+      "status": "HIGH_VALUE_CANDIDATE_REQUIRES_USER_MEMBER_ACCESS_AND_STORAGE_REVIEW",
+      "timestamp_spec": "Night-session dates are already labeled using OSE convention as the following trading/business day.",
+      "cloud_automation_status": "BLOCKED_PENDING_USER_AUTHORIZATION_AND_CREDENTIAL_HANDLING_DESIGN",
+      "direct_pages": [
+        "https://225labo.com/modules/downloads_data/index.php?cid=11",
+        "https://225labo.com/modules/downloads_data/index.php?cid=11&lid=175&page=singlefile"
+      ],
+      "raw_storage_rule": "Do not put raw files in public/shareable storage. Before private cloud ingestion, confirm that automated private processing/storage remains within personal-use terms."
     },
     {
       "id": "JPX_JGATE_ITCH_HISTORICAL",
@@ -295,6 +302,16 @@
         "FutureSharks JPXJPY minute data is pinned to an immutable Git commit for cloud reproducibility.",
         "HistData timestamps are fixed EST UTC-5 without DST; JNU workflow converts deterministically to JST.",
         "First volatility proxy test is preregistered at 5-minute frequency, Japan cash sessions only, HAR windows 1/5/22."
+      ]
+    },
+    {
+      "date": "2026-08-31",
+      "topic": "225Labo cloud automation feasibility",
+      "findings": [
+        "JNU Micro minute data is free for registered members but download requires login.",
+        "Micro minute coverage begins 2023-07-24; 1/3/5/10/15/20/30/60 minute files are offered.",
+        "Night-session dates follow OSE next-trading-day labeling.",
+        "GitHub Actions formal ingestion is blocked until user-authorized account/credential handling and private-storage terms are resolved."
       ]
     }
   ],
