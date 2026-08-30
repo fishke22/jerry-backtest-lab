@@ -179,3 +179,25 @@ No currently tested module is VALIDATED_JNU_MODULE.
   2. The lunch-break futures state is structurally interesting because cash equities are closed while futures continue trading.
   3. Do not activate while another formal family is active.
   4. Before any test, verify whether the relevant BOJ purchase/anticipation data can be obtained from an official free source and preregister the event definition without using future information.
+
+
+## Dynamic venue leadership and basis caveats
+
+### Lee et al. (2015) — price linkage across U.S./Japanese time zones
+- Paper: *Price linkage between the US and Japanese futures across different time zones: An analysis of the minute-by-minute data*
+- DOI: `10.1016/j.intfin.2014.12.002`
+- Uses one-minute OSE/SGX/CME Nikkei futures and U.S. E-mini S&P information.
+- Reported leadership changed over time: U.S. leadership in 2011-2012, Japan leadership in 2013.
+- JNU consequence: price-discovery leadership is a **state variable**, not a fixed structural coefficient.
+
+### 2023 nonlinear Nikkei price-discovery study
+- Paper: *Spot–Futures Price Adjustments in the Nikkei 225: Linear or Smooth Transition? Financial Centre Leadership or Home Bias?*
+- DOI: `10.3390/jrfm16020117`
+- Finds nonlinear spot/futures adjustment and links foreign-market leadership to transaction-cost/liquidity structure.
+- JNU consequence: DPD should condition on venue/session/liquidity and may require nonlinear/state-dependent adjustment; fixed majority-vote weights remain prohibited.
+
+### Lim (1996) — Nikkei spot/futures basis risk
+- Paper: *Portfolio Hedging and Basis Risk*
+- DOI: `10.1080/096031096334006`
+- Reports Nikkei intraday basis movements are mostly unit-root-like/non-stationary under the studied setting.
+- JNU consequence: basis may be useful as an execution/relative-pricing state, but **basis magnitude alone is not admitted as directional alpha** without a new, modern, preregistered test.
