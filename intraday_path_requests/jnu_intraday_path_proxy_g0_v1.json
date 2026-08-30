@@ -1,0 +1,27 @@
+{
+  "request_id": "jnu_intraday_path_proxy_g0_v1",
+  "candidate_id": "INTRADAY_PATH_US_NIKKEI_PROXY_G0",
+  "preregistration": "config/jnu_intraday_path_proxy_g0_prereg.json",
+  "years": [
+    2011,
+    2012,
+    2013,
+    2014,
+    2015,
+    2016,
+    2017,
+    2018
+  ],
+  "force_refresh": false,
+  "minimum_training_days": 252,
+  "bootstrap": {
+    "block_days": 5,
+    "samples": 2000,
+    "seed": 42
+  },
+  "pass_rules": {
+    "min_bootstrap_prob_positive": 0.95
+  },
+  "formal_promotion": false,
+  "note": "Proxy methodology screen only. FIRST/LAST 30m windows and prior-US predictor frozen before results."
+}
