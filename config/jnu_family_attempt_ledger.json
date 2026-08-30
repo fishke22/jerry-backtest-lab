@@ -31,7 +31,15 @@
     {
       "id": "CROSS_MARKET_CONFIRMATION_LEGACY",
       "status": "REJECTED_OVERFIT",
-      "multiplicity": "UNKNOWN_LEGACY_QUARANTINE"
+      "multiplicity": "UNKNOWN_LEGACY_QUARANTINE",
+      "overfit_stage": {
+        "cpcv_positive_path_ratio": 0.464,
+        "cpcv_median_sharpe": 0.087,
+        "pbo": 0.971,
+        "dsr_probability": 0.641,
+        "holm_adjusted_p": 0.2419,
+        "final": "FAIL_OVERFIT_GATES"
+      }
     },
     {
       "id": "DYNAMIC_PRICE_DISCOVERY_PROXY_G0",
@@ -41,7 +49,16 @@
     {
       "id": "DAILY_VOLATILITY_AHAR",
       "status": "REJECTED",
-      "multiplicity": "PREREGISTERED"
+      "multiplicity": "PREREGISTERED",
+      "overfit_stage": {
+        "proxy_family_name": "volatility_regime",
+        "cpcv_positive_path_ratio": 0.821,
+        "cpcv_median_sharpe": 1.161,
+        "pbo": 0.086,
+        "dsr_probability": 0.527,
+        "holm_adjusted_p": 0.156,
+        "final": "FAIL_OVERFIT_GATES"
+      }
     },
     {
       "id": "VIX_TAIL_PROXY",
