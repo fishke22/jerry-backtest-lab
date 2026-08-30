@@ -1,0 +1,62 @@
+g1 chunk ready: JAPAN_MACRO_JA TimelineTone 20230104->20230401
+g1 chunk ready: JAPAN_MACRO_JA TimelineTone 20230331->20230701
+g1 chunk ready: JAPAN_MACRO_JA TimelineTone 20230630->20231001
+phase4b GDELT adaptive split depth=1: TimelineTone 20230930->20231115 + 20231115->20240101 after RuntimeError
+phase4b GDELT adaptive split depth=2: TimelineTone 20230930->20231023 + 20231023->20231115 after RuntimeError
+Traceback (most recent call last):
+  File "/home/runner/work/jerry-backtest-lab/jerry-backtest-lab/scripts/process_phase4b_evidence.py", line 231, in _gdelt_timeline_adaptive
+    return _gdelt_timeline_one(query, mode, start, end, cache_name, force)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/jerry-backtest-lab/jerry-backtest-lab/scripts/process_phase4b_evidence.py", line 206, in _gdelt_timeline_one
+    raw = fetch(url, cache_name, force, timeout=75, attempts=2)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/jerry-backtest-lab/jerry-backtest-lab/scripts/process_phase4b_evidence.py", line 51, in fetch
+    raise RuntimeError(f"fetch failed {cache_name}: {last}")
+RuntimeError: fetch failed g1_JAPAN_MACRO_JA_timelinetone_q4_20230930_20240101.json: <urlopen error _ssl.c:993: The handshake operation timed out>
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/work/jerry-backtest-lab/jerry-backtest-lab/scripts/process_phase4b_evidence.py", line 231, in _gdelt_timeline_adaptive
+    return _gdelt_timeline_one(query, mode, start, end, cache_name, force)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/jerry-backtest-lab/jerry-backtest-lab/scripts/process_phase4b_evidence.py", line 206, in _gdelt_timeline_one
+    raw = fetch(url, cache_name, force, timeout=75, attempts=2)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/jerry-backtest-lab/jerry-backtest-lab/scripts/process_phase4b_evidence.py", line 51, in fetch
+    raise RuntimeError(f"fetch failed {cache_name}: {last}")
+RuntimeError: fetch failed g1_JAPAN_MACRO_JA_timelinetone_q4_20230930_20240101_L1.json: <urlopen error timed out>
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/work/jerry-backtest-lab/jerry-backtest-lab/scripts/process_jnu_news_language_source_g1.py", line 279, in main
+    process(p)
+  File "/home/runner/work/jerry-backtest-lab/jerry-backtest-lab/scripts/process_jnu_news_language_source_g1.py", line 232, in process
+    news,panel = evaluate(close,req)
+                 ^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/jerry-backtest-lab/jerry-backtest-lab/scripts/process_jnu_news_language_source_g1.py", line 114, in evaluate
+    raw_daily, nf = build_cell_features(cell["query"], close.index, req, key)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/jerry-backtest-lab/jerry-backtest-lab/scripts/process_jnu_news_language_source_g1.py", line 74, in build_cell_features
+    tone = gdelt_quarter_timeline(query, "TimelineTone", start, end, key, force)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/jerry-backtest-lab/jerry-backtest-lab/scripts/process_jnu_news_language_source_g1.py", line 60, in gdelt_quarter_timeline
+    part = _gdelt_timeline_adaptive(query, mode, a, b, cache, force)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/jerry-backtest-lab/jerry-backtest-lab/scripts/process_phase4b_evidence.py", line 252, in _gdelt_timeline_adaptive
+    left = _gdelt_timeline_adaptive(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/jerry-backtest-lab/jerry-backtest-lab/scripts/process_phase4b_evidence.py", line 255, in _gdelt_timeline_adaptive
+    right = _gdelt_timeline_adaptive(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/jerry-backtest-lab/jerry-backtest-lab/scripts/process_phase4b_evidence.py", line 231, in _gdelt_timeline_adaptive
+    return _gdelt_timeline_one(query, mode, start, end, cache_name, force)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/jerry-backtest-lab/jerry-backtest-lab/scripts/process_phase4b_evidence.py", line 206, in _gdelt_timeline_one
+    raw = fetch(url, cache_name, force, timeout=75, attempts=2)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/jerry-backtest-lab/jerry-backtest-lab/scripts/process_phase4b_evidence.py", line 51, in fetch
+    raise RuntimeError(f"fetch failed {cache_name}: {last}")
+RuntimeError: fetch failed g1_JAPAN_MACRO_JA_timelinetone_q4_20230930_20240101_L1_R2.json: <urlopen error timed out>
+{"failures": [["jnu_news_language_source_g1_v1.json", "fetch failed g1_JAPAN_MACRO_JA_timelinetone_q4_20230930_20240101_L1_R2.json: <urlopen error timed out>"]]}
