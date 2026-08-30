@@ -1,0 +1,94 @@
+{
+  "version": "1.0",
+  "candidate_id": "INTRADAY_VOLATILITY_METHOD_PROXY",
+  "objective": "Test literature-backed realized-volatility model structure on a historical Nikkei 225 minute proxy before spending effort on formal OSE/JNU intraday validation.",
+  "evidence": [
+    {
+      "paper": "Asai & McAleer (2017) Forecasting the volatility of Nikkei 225 futures",
+      "doi": "10.1002/fut.21847",
+      "implication": "High-frequency information and asymmetry matter; direct long-memory models can be biased."
+    },
+    {
+      "paper": "Maki & Ota (2021) Impacts of asymmetry on forecasting realized volatility in Japanese stock markets",
+      "doi": "10.1016/j.econmod.2021.105533",
+      "implication": "Use 5-minute RV; compare HAR benchmark with leverage and realized-semivariance asymmetry. Do not prioritize asymmetric-jump extensions."
+    }
+  ],
+  "source": {
+    "repository": "FutureSharks/financial-data",
+    "pinned_commit": "7ba1d404aa8b0e1c0f71321acebadcbfb9bcca8d",
+    "instrument": "JPXJPY Nikkei 225 index proxy",
+    "years": [
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018
+    ],
+    "native_frequency": "1 minute",
+    "timestamp_spec": "Fixed EST UTC-5, no DST",
+    "formal_status": "INDEX_PROXY_NOT_OSE_FUTURES"
+  },
+  "transformation": {
+    "timezone_conversion": "EST_fixed_UTC_minus_5 -> Asia/Tokyo",
+    "japan_cash_sessions": [
+      "09:00-11:30 JST",
+      "12:30-15:00 JST"
+    ],
+    "resample": "5-minute last price within AM and PM separately",
+    "no_lunch_gap_return": true,
+    "daily_rv": "sum of squared 5-minute log returns",
+    "daily_rsv_positive": "sum squared positive 5-minute log returns",
+    "daily_rsv_negative": "sum squared negative 5-minute log returns",
+    "leverage_return": "close-to-close daily log return"
+  },
+  "models": [
+    {
+      "id": "HAR_RV",
+      "specification": "logRV_t ~ 1 + logRV_{t-1} + mean(logRV_{t-1:t-5}) + mean(logRV_{t-1:t-22})"
+    },
+    {
+      "id": "HAR_LEVERAGE",
+      "specification": "HAR_RV + negative_daily_return_{t-1} magnitude",
+      "role": "primary literature-backed challenger"
+    },
+    {
+      "id": "HAR_RSV",
+      "specification": "logRV_t ~ 1 + logRSV+_{t-1} + logRSV-_{t-1} + weekly_logRV + monthly_logRV",
+      "role": "secondary asymmetry challenger"
+    }
+  ],
+  "forbidden_first_pass": [
+    "asymmetric jump model",
+    "neural network",
+    "parameter-window search",
+    "post-hoc trading strategy",
+    "changing session hours after results"
+  ],
+  "oos": {
+    "method": "expanding window",
+    "minimum_training_days": 504,
+    "forecast_horizon": "1 trading day",
+    "refit": "every day",
+    "evaluation": [
+      "QLIKE on RV level",
+      "MSE on RV level"
+    ],
+    "subperiod_stability": [
+      "2011-2014",
+      "2015-2018"
+    ]
+  },
+  "promotion_rule": {
+    "method_proxy_pass": [
+      "At least one asymmetric challenger beats HAR_RV on both full-OOS QLIKE and MSE",
+      "Improvement direction is not contradicted in the 2015-2018 subperiod",
+      "Block-bootstrap probability of positive loss improvement >= 0.95 for at least one primary metric"
+    ],
+    "formal_jnu_validation": "Prohibited. Requires true OSE/JNU intraday data with rules frozen."
+  },
+  "no_posthoc_rescue": true
+}
