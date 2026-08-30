@@ -308,6 +308,20 @@
       "status": "HIGH_EVIDENCE_CANDIDATE_ACCESS_PENDING",
       "methodology_stability": "Methodology appendix lists no major changes since 2024 launch as of version 1.2.",
       "formal_limitation": "Do not substitute SKEW/VIX and call it the paper's left-tail measure. LTV itself requires independent JNU OOS validation."
+    },
+    {
+      "id": "NYU_VLAB_LTV_HISTORY",
+      "provider": "NYU Stern V-Lab",
+      "access_route": "V-Lab web/MCP. Public analysis pages confirm LTV coverage from 2006; CSV download requires V-Lab login.",
+      "data_type": "Cboe S&P 500 Left Tail Volatility Index (LTV) time-series/analysis access",
+      "coverage": "V-Lab analyses explicitly use LTV history from 2006-01-03 through current periods.",
+      "cost_class": "PUBLIC_ANALYSIS; CSV_LOGIN_REQUIRED; MCP_AVAILABILITY_PUBLICLY_DOCUMENTED",
+      "storage_class": "NOT_USED_UNTIL_AUTH_ACCESS_AND_DATA_TERMS_CONFIRMED",
+      "license_or_terms_status": "Do not scrape or archive logged-in CSV without reviewing V-Lab/Cboe terms. Public pages support existence/coverage only.",
+      "provenance": "NYU V-Lab analysis/help/MCP documentation + Cboe LTV methodology.",
+      "jnu_role": "Potential long-history access route for academically matched left-tail-risk state; secondary to official Cboe rights/terms.",
+      "status": "HIGH_EVIDENCE_ACCESS_ROUTE_CANDIDATE",
+      "note": "V-Lab MCP documentation is public in 2026; no connected V-Lab tool is currently available in this ChatGPT toolset."
     }
   ],
   "discovery_priority": [
@@ -409,6 +423,17 @@
         "Micro minute history begins in 2023, which is too short to be the sole multi-regime confirmation sample.",
         "Use frozen Nikkei mini long history first, then Micro as exact-product recent consistency/forward confirmation.",
         "Raw 225Labo data remains local-only under the previously recorded personal-use policy."
+      ]
+    },
+    {
+      "date": "2026-08-31",
+      "topic": "NYU V-Lab LTV access route",
+      "findings": [
+        "V-Lab LTV model pages explicitly estimate on history beginning 2006-01-03.",
+        "V-Lab publishes an MCP server/API reference in 2026.",
+        "V-Lab CSV download requires login.",
+        "No V-Lab connector is currently present in the connected ChatGPT tool inventory.",
+        "Do not use logged-in CSV until access and data-use terms are reviewed."
       ]
     }
   ],
