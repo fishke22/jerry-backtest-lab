@@ -19,7 +19,7 @@
   "news": {
     "source": "GDELT_DOC_2",
     "half_life_days": 2,
-    "holm_alpha": 0.10,
+    "holm_alpha": 0.1,
     "min_bootstrap_qlike_improvement_probability": 0.95,
     "categories": {
       "JAPAN_BOJ_MACRO": "(\"Bank of Japan\" OR BOJ OR \"Japan inflation\" OR \"Japanese inflation\")",
@@ -29,5 +29,9 @@
       "JAPAN_EQUITY_NIKKEI": "(\"Nikkei 225\" OR \"Japanese stocks\" OR \"Tokyo stock market\")",
       "GEOPOLITICAL_RISK": "(\"geopolitical risk\" OR sanctions OR tariffs OR \"trade war\")"
     }
+  },
+  "control_plane_retrigger": {
+    "nonce": 1,
+    "reason": "Re-trigger GitHub Actions after adding fail-closed diagnostics; research parameters unchanged."
   }
 }
