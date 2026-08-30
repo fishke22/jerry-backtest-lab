@@ -1,0 +1,147 @@
+{
+  "request_id": "jnu_v22_evidence_states_phase4a_v1",
+  "status": "complete",
+  "volatility_state": {
+    "best_model": "ahar",
+    "oos_days": 642,
+    "losses": {
+      "baseline": {
+        "qlike": -7.212741465584145,
+        "mse": 9.087629373575771e-07
+      },
+      "har": {
+        "qlike": 19352.89902177662,
+        "mse": 2.11445545724312e-06
+      },
+      "ahar": {
+        "qlike": -7.2950455129114085,
+        "mse": 3.1477510426723284e-06
+      }
+    },
+    "recent_losses": {
+      "baseline": {
+        "qlike": -6.530803478231396,
+        "mse": 5.5449262377368e-07
+      },
+      "har": {
+        "qlike": -6.149165650336854,
+        "mse": 6.303773197212558e-07
+      },
+      "ahar": {
+        "qlike": -6.2823738440979895,
+        "mse": 6.043345026613293e-07
+      }
+    },
+    "qlike_improvement_vs_baseline": 0.0823040473272636,
+    "mse_improvement_vs_baseline": -2.238988105314751e-06,
+    "qlike_improvement_bootstrap": {
+      "mean": 0.08230404732726289,
+      "ci95": [
+        -0.047565830106590885,
+        0.23200061177697587
+      ],
+      "prob_positive": 0.88
+    },
+    "mse_improvement_bootstrap": {
+      "mean": -2.238988105314751e-06,
+      "ci95": [
+        -6.983220981309244e-06,
+        1.7510381624509274e-07
+      ],
+      "prob_positive": 0.329
+    },
+    "pass_state": false
+  },
+  "us_tail_risk_proxy": {
+    "proxy": "CBOE_VIX_DAILY_CLOSE",
+    "oos_days": 642,
+    "base_qlike": 19352.89902177662,
+    "vix_qlike": 318556.5658142434,
+    "base_mse": 2.11445545724312e-06,
+    "vix_mse": 2.13662297634378e-06,
+    "qlike_improvement": -299203.66679246665,
+    "mse_improvement": -2.2167519100660392e-08,
+    "qlike_improvement_bootstrap": {
+      "mean": -299203.66679246665,
+      "ci95": [
+        -599722.4412588124,
+        -125556.72600004515
+      ],
+      "prob_positive": 0.0
+    },
+    "pass_state": false,
+    "warning": "VIX is only a free proxy for US option-implied tail risk; a pass does not validate the exact academic tail-risk measure."
+  },
+  "usdjpy_state": {
+    "lags_days": [
+      1,
+      5
+    ],
+    "regime_split": "expanding VIX median using only prior observations",
+    "results": {
+      "1": {
+        "high_vix": {
+          "n": 413,
+          "eligible": true,
+          "corr": 0.10965814891575318,
+          "slope": 0.3363089432608457,
+          "association_bootstrap": {
+            "mean": 1.4236211876996398e-05,
+            "ci95": [
+              1.7857859135806493e-06,
+              3.275220179288071e-05
+            ],
+            "prob_positive": 0.99
+          }
+        },
+        "low_vix": {
+          "n": 480,
+          "eligible": true,
+          "corr": 0.0951747969766699,
+          "slope": 0.17314901971279215,
+          "association_bootstrap": {
+            "mean": 6.812784001864104e-06,
+            "ci95": [
+              -6.153729337027439e-07,
+              1.4639971144364238e-05
+            ],
+            "prob_positive": 0.966
+          }
+        }
+      },
+      "5": {
+        "high_vix": {
+          "n": 413,
+          "eligible": true,
+          "corr": -0.025620656633481873,
+          "slope": -0.03665918153050989,
+          "association_bootstrap": {
+            "mean": -6.481268330292772e-06,
+            "ci95": [
+              -3.8245485381093524e-05,
+              3.126628884912545e-05
+            ],
+            "prob_positive": 0.382
+          }
+        },
+        "low_vix": {
+          "n": 476,
+          "eligible": true,
+          "corr": 0.05824308232111334,
+          "slope": 0.050917954660331756,
+          "association_bootstrap": {
+            "mean": 1.06880390855861e-05,
+            "ci95": [
+              -3.1863547254845923e-06,
+              2.4962460823468556e-05
+            ],
+            "prob_positive": 0.935
+          }
+        }
+      }
+    },
+    "interpretation_rule": "Use as conditional state only if sign/magnitude differ materially by regime and remain stable in forward OOS; never hard-code a universal sign."
+  },
+  "promotion_status": "STATE_INFORMATION_SCREEN_ONLY",
+  "generated_at_utc": "2026-08-30T15:32:55.815337+00:00"
+}
