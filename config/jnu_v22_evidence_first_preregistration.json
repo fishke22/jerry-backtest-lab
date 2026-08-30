@@ -1,0 +1,98 @@
+{
+  "version": "1.0",
+  "track": "JNU_V2.2_EVIDENCE_FIRST_PHASE4",
+  "objective": "Test only literature-backed hypotheses without widening grids after results are seen.",
+  "constraints": {
+    "no_posthoc_parameter_rescue": true,
+    "no_reuse_of_rejected_cross_market_majority_vote": true,
+    "no_reuse_of_failed_simple_momentum_as_alpha_signal": true,
+    "costs_required": true,
+    "forward_oos_required_before_promotion": true
+  },
+  "candidates": [
+    {
+      "id": "VOL_FORECAST_STATE",
+      "evidence": "Asai-McAleer 2017; Andersen-Bollerslev-Cai 2000",
+      "role": "state_and_risk_not_direction",
+      "hypothesis": "Asymmetric/long-memory volatility state improves confidence/risk estimation versus a simple rolling-vol threshold.",
+      "initial_tests": [
+        "forecast_accuracy_QLIKE",
+        "forecast_accuracy_MSE",
+        "regime_stability"
+      ],
+      "trading_gate": "Only after forecast superiority; then test as risk/confidence overlay without re-optimizing directional signal."
+    },
+    {
+      "id": "US_TAIL_RISK_STATE",
+      "evidence": "Andersen-Todorov-Ubukata 2021",
+      "role": "global_risk_state",
+      "hypothesis": "Lagged US option-implied/tail-risk conditions add information about subsequent Japanese equity risk/returns.",
+      "proxy_plan": [
+        "VIX level/change as free proxy only",
+        "seek closer free tail-risk proxy before directional claim"
+      ],
+      "note": "VIX is not identical to the paper's nonparametric tail-risk measure."
+    },
+    {
+      "id": "USDJPY_CONDITIONAL_STATE",
+      "evidence": "Narayan-Devpura-Wang 2020 plus Japanese FX-equity literature",
+      "role": "conditional_macro_state",
+      "hypothesis": "Lagged USDJPY has state-dependent information for Japanese equities; sign and strength are regime-dependent.",
+      "prereg_lags_days": [
+        1,
+        5
+      ],
+      "no_universal_sign_rule": true
+    },
+    {
+      "id": "DYNAMIC_PRICE_DISCOVERY",
+      "evidence": "Covrig-Ding-Low 2004; Kao-Ho-Fung 2015; Qin-Green-Sirichand 2023",
+      "role": "source_weighting_architecture",
+      "hypothesis": "Information-source weights should depend on active trading session and observed leadership, not remain static.",
+      "test_type": "lead_lag_and_information_share_when_intraday_data_available"
+    },
+    {
+      "id": "NEWS_SENTIMENT_STATE",
+      "evidence": "Ishijima et al 2015; Du 2020; Feng-Fu-Shi 2022; Nakayama-Yokouchi 2025; Smales 2026",
+      "role": "news_event_state",
+      "hypothesis": "Category-aware, multilingual, time-decayed news features improve volatility/confidence estimation and may add directional EV in limited regimes.",
+      "first_stage": "collect_and_score; test volatility/state prediction before directional trading",
+      "fields": [
+        "category",
+        "language",
+        "sentiment",
+        "surprise",
+        "novelty",
+        "source_diversity",
+        "intensity",
+        "recency",
+        "session",
+        "regime_interaction"
+      ]
+    },
+    {
+      "id": "CENTRAL_BANK_EVENT_STATE",
+      "evidence": "G7 central-bank realized-volatility and global-Fed-announcement literature",
+      "role": "event_risk_state",
+      "hypothesis": "BOJ/FOMC announcement windows alter volatility and information leadership; treat them as event regimes rather than generic news."
+    },
+    {
+      "id": "POLICY_UNCERTAINTY_BACKGROUND",
+      "evidence": "Chiang 2020",
+      "role": "slow_regime_background",
+      "hypothesis": "Japan/US policy uncertainty affects expected return/volatility asymmetrically at slower horizons.",
+      "not_for": "intraday_entry"
+    }
+  ],
+  "promotion_gate": [
+    "independent_oos_positive",
+    "walk_forward_positive",
+    "cost_robust",
+    "recent_positive_or_state_accuracy_positive",
+    "CPCV_purged_embargo",
+    "PBO_below_threshold",
+    "DSR_or_multiple_testing_pass",
+    "forward_oos",
+    "second_engine_where_applicable"
+  ]
+}
