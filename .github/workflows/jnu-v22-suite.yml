@@ -37,8 +37,6 @@ jobs:
         with:
           path: .cache/market-data
           key: market-data-${{ runner.os }}-${{ env.CACHE_DATE }}
-          restore-keys: |
-            market-data-${{ runner.os }}-
 
       - name: Install dependencies
         run: pip install -r requirements.txt
