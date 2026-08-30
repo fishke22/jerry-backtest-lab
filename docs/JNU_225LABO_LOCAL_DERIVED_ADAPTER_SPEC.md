@@ -109,3 +109,22 @@ Do not implement a concrete parser until one of the following is available local
 2. documented exact file schema sufficient to implement without guessing.
 
 No network login automation is authorized by this specification.
+
+
+## Confirmation hierarchy across OSE contract sizes
+
+Because Nikkei 225 Micro minute history begins only in 2023 while Nikkei 225 mini minute history is available from 2006, true-OSE confirmation should use a two-stage hierarchy rather than over-rely on the short Micro sample.
+
+### Stage A — long-history OSE mini confirmation
+- Preferred long-history source: Nikkei 225 mini minute data from 2006 onward.
+- Purpose: test the frozen HAR-RSV volatility/risk-state specification across multiple volatility, policy, crisis and market-structure regimes.
+- No parameter search is allowed between the proxy DI1 result and the mini confirmation.
+- Historical session/calendar changes must be applied from `config/jnu_session_calendar_versions.json`.
+
+### Stage B — exact-product Micro consistency check
+- Source: Nikkei 225 Micro minute data from its 2023 launch onward.
+- Purpose: verify that the sign/stability and practical risk-state behavior of the frozen HAR-RSV specification is consistent in the exact target product.
+- Because the Micro history is short, Stage B is a consistency/forward confirmation rather than the sole long-history proof.
+
+### Admission rule
+HAR-RSV can enter the JNU risk-state layer only if Stage A passes the frozen confirmation gates and Stage B does not materially contradict the result. A Stage A failure cannot be rescued by a positive short Micro sample. A Stage B contradiction requires quarantine and diagnosis rather than parameter retuning.
