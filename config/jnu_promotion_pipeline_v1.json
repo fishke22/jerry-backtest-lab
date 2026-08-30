@@ -1,0 +1,143 @@
+{
+  "version": "1.0",
+  "updated_at": "2026-08-31",
+  "objective": "Single promotion pipeline for JNU information modules and executable trading strategies.",
+  "stages": [
+    {
+      "stage": 0,
+      "id": "DATA_INTEGRITY_AND_RIGHTS",
+      "applies_to": "ALL",
+      "pass_requires": [
+        "Instrument/contract identity resolved",
+        "Historical session/trading-day mapping correct",
+        "Causal availability/timestamps correct",
+        "Source provenance/hash recorded",
+        "Storage/licensing boundary respected"
+      ],
+      "fail_action": "STOP"
+    },
+    {
+      "stage": 1,
+      "id": "LITERATURE_AND_PREREGISTRATION",
+      "applies_to": "ALL",
+      "pass_requires": [
+        "Evidence matrix role defined",
+        "Immutable family ID",
+        "Hypothesis/target/predictors/timing/sample frozen",
+        "Multiple-testing family and thresholds frozen",
+        "Forbidden post-hoc rescues written"
+      ],
+      "fail_action": "DO_NOT_TEST"
+    },
+    {
+      "stage": 2,
+      "id": "PRIMARY_OOS_INFORMATION_GATE",
+      "applies_to": "ALL",
+      "pass_requires": [
+        "Walk-forward/expanding OOS as preregistered",
+        "Primary loss/information metrics pass",
+        "Bootstrap/dependence-aware uncertainty pass",
+        "Recent/regime gate passes if preregistered",
+        "Family-wise correction passes when applicable"
+      ],
+      "interpretation": "This can promote only to INFORMATION_STATE_CANDIDATE, never directly to validated trading alpha."
+    },
+    {
+      "stage": 3,
+      "id": "TRUE_TARGET_DATA_CONFIRMATION",
+      "applies_to": "PROXY_TESTED_MODULES",
+      "examples": [
+        "HAR-RSV: OSE mini 2006+ then Micro 2023+ consistency",
+        "DPD: true OSE/SGX/CME venue data",
+        "Intraday-path hypotheses: true JNU/OSE minute data"
+      ],
+      "pass_requires": [
+        "Frozen proxy specification reused without rescue",
+        "True target-market data integrity gate passes",
+        "Independent/multi-regime behavior not contradictory"
+      ],
+      "interpretation": "Proxy PASS is insufficient without this stage when target data was not used."
+    },
+    {
+      "stage": 4,
+      "id": "TRADING_RULE_TRANSLATION",
+      "applies_to": "MODULES_PROPOSED_FOR_DIRECTION_OR_POSITION_CHANGES",
+      "pass_requires": [
+        "Exact mapping from information state to positions preregistered",
+        "Entry/exit/invalidation and no-trade states explicit",
+        "Fees/spread/slippage model explicit",
+        "No additional indicator voting introduced opportunistically"
+      ]
+    },
+    {
+      "stage": 5,
+      "id": "INDEPENDENT_EXECUTION_REPLAY",
+      "applies_to": "EXECUTABLE_TRADING_RULES",
+      "engine_reference": "nautilus_results/jnu_v22_nautilus_phase2_v1.json",
+      "pass_means": "Signal/position/order/fill/cost implementation reproduces the published causal rule.",
+      "pass_does_not_mean": "Alpha or profitability validated.",
+      "checks": [
+        "position match",
+        "fill count",
+        "fill price",
+        "order completion",
+        "fee accounting"
+      ]
+    },
+    {
+      "stage": 6,
+      "id": "OVERFIT_AND_MULTIPLE_TESTING",
+      "applies_to": "EXECUTABLE_TRADING_RULES",
+      "implemented_reference": "overfit_requests/jnu_v22_overfit_phase3_v1.json",
+      "methods": [
+        "CPCV with purge/embargo",
+        "PBO",
+        "Deflated Sharpe Ratio",
+        "Holm-Bonferroni"
+      ],
+      "historical_warning": "Both volatility_regime and cross_market_confirmation passed independent replay but failed this stage.",
+      "pass_requires": [
+        "CPCV positive-path ratio gate",
+        "CPCV median Sharpe gate",
+        "PBO <= preregistered maximum",
+        "DSR probability gate",
+        "Holm family gate"
+      ]
+    },
+    {
+      "stage": 7,
+      "id": "EXECUTION_AND_COST_STRESS",
+      "applies_to": "EXECUTABLE_TRADING_RULES",
+      "pass_requires": [
+        "Realistic fees/spread/slippage",
+        "Cost stress remains acceptable",
+        "Liquidity/session constraints respected",
+        "No reliance on unavailable fill prices"
+      ]
+    },
+    {
+      "stage": 8,
+      "id": "FORWARD_OR_HOLDOUT_CONFIRMATION",
+      "applies_to": "FINALISTS",
+      "preferred": "New forward data or genuinely untouched holdout",
+      "pass_requires": [
+        "No re-estimation using holdout outcomes",
+        "Predetermined monitoring/invalidation",
+        "Performance/confidence consistent with prior evidence"
+      ]
+    },
+    {
+      "stage": 9,
+      "id": "VALIDATED_JNU_MODULE",
+      "applies_to": "FINALISTS",
+      "current_count": 0,
+      "rule": "Only after all applicable earlier stages pass may a module influence live JNU decision probabilities as validated evidence."
+    }
+  ],
+  "role_rules": {
+    "risk_state": "May affect size/stops/confidence after its applicable evidence gates; does not imply direction.",
+    "event_state": "May affect confidence/no-trade/volatility expectation; direction requires separate family.",
+    "source_weighting": "May weight contemporaneous market information; cannot be counted as an independent directional vote without alpha validation.",
+    "execution_state": "May improve entry/exit/invalidation; not an independent alpha by default."
+  }
+}
