@@ -6,7 +6,7 @@
   "date_to": "2026-08-28",
   "force_refresh": false,
   "cost_bps": 1.5,
-  "slippage_bps": 1.0,
+  "slippage_bps": 1,
   "walk_forward": {
     "train_days": 252,
     "test_days": 63,
@@ -23,13 +23,14 @@
     "min_regime_days": 40
   },
   "validation": {
-    "min_oos_total_return": 0.0,
-    "min_oos_sharpe": 0.0,
+    "min_oos_total_return": 0,
+    "min_oos_sharpe": 0,
     "min_positive_fold_ratio": 0.5,
     "require_positive_recent": true,
     "require_positive_at_2x_cost": true,
     "min_bootstrap_positive_probability": 0.55,
     "min_positive_regime_ratio": 0.5,
-    "max_drawdown_floor": -0.40
-  }
+    "max_drawdown_floor": -0.4
+  },
+  "retry": 1
 }
