@@ -19,6 +19,7 @@ ROOT = Path(__file__).resolve().parents[1]
 REQUESTS = ROOT / "requests"
 RESULTS = ROOT / "results"
 REPORTS = ROOT / "reports"
+CACHE = ROOT / ".cache" / "market-data"
 
 NIKKEI_FUTURES_CSV = (
     "https://indexes.nikkei.co.jp/nkave/historical/"
@@ -34,12 +35,18 @@ class SourceData:
 
 
 def fetch_nikkei_futures_index() -> SourceData:
-    req = urllib.request.Request(
-        NIKKEI_FUTURES_CSV,
-        headers={"User-Agent": "JerryBacktestLab/0.1"},
-    )
-    with urllib.request.urlopen(req, timeout=30) as response:
-        raw = response.read()
+    CACHE.mkdir(parents=True, exist_ok=True)
+    cache_path = CACHE / "nikkei_futures_daily.csv"
+    if cache_path.exists():
+        raw = cache_path.read_bytes()
+    else:
+        req = urllib.request.Request(
+            NIKKEI_FUTURES_CSV,
+            headers={"User-Agent": "JerryBacktestLab/0.1"},
+        )
+        with urllib.request.urlopen(req, timeout=30) as response:
+            raw = response.read()
+        cache_path.write_bytes(raw)
 
     text = raw.decode("utf-8-sig", errors="replace")
     df = pd.read_csv(io.StringIO(text))
