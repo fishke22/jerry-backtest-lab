@@ -100,11 +100,11 @@ def state_mask(index: pd.DatetimeIndex, state: str) -> np.ndarray:
     if state == "JP_CASH":
         z = index.tz_convert("Asia/Tokyo")
         mins = z.hour * 60 + z.minute
-        return (((mins >= 540) & (mins <= 690)) | ((mins >= 750) & (mins <= 930))).to_numpy()
+        return np.asarray(((mins >= 540) & (mins <= 690)) | ((mins >= 750) & (mins <= 930)))
     if state == "US_CASH":
         z = index.tz_convert("America/New_York")
         mins = z.hour * 60 + z.minute
-        return ((mins >= 570) & (mins <= 960)).to_numpy()
+        return np.asarray((mins >= 570) & (mins <= 960))
     raise ValueError(f"unknown state: {state}")
 
 def aligned_returns(data: dict[str, pd.Series], names: list[str], interval_minutes: int) -> pd.DataFrame:
