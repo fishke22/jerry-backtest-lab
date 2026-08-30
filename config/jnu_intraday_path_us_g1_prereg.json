@@ -1,0 +1,95 @@
+{
+  "version": "1.0",
+  "candidate_id": "INTRADAY_PATH_US_TO_JNU_G1",
+  "status": "DESIGN_FROZEN_AWAITING_TRUE_JNU_INTRADAY_DATA",
+  "objective": "Test whether prior U.S. equity information has session-specific rather than universal directional effects on JNU intraday returns.",
+  "direct_evidence": [
+    {
+      "paper": "Yasuhiro Iwanaga (2026), How the prior day's S&P 500 returns influence the intraday returns of Nikkei 225 futures",
+      "doi": "10.1016/j.finr.2026.100108",
+      "evidence_role": "Direct Nikkei 225 futures evidence",
+      "precommitted_implication": "Separate FIRST_30M and LAST_30M. Do not use a fixed all-session U.S.-equity sign."
+    },
+    {
+      "paper": "Becker, Finnerty & Tucker (1992), The intraday interdependence structure between U.S. and Japanese equity markets",
+      "doi": "10.1111/j.1475-6803.1992.tb00784.x",
+      "evidence_role": "Older supporting evidence",
+      "precommitted_implication": "Prior-U.S. effect is concentrated early in the Japanese session rather than uniform through the day."
+    },
+    {
+      "paper": "Li, Endo & Zuo (2010), Order imbalances explain 90% of returns of Nikkei 225 futures",
+      "doi": "10.1080/00036840902881819",
+      "evidence_role": "Microstructure evidence",
+      "precommitted_implication": "Order imbalance is a future venue-level explanatory candidate, but cannot be proxied from OHLC bars."
+    }
+  ],
+  "required_data": {
+    "primary": "True OSE JNU or Nikkei 225 mini/large minute bars with approved provenance",
+    "external": "Prior completed U.S. cash-session S&P 500 return; ES may be tested only as a separately preregistered proxy",
+    "minimum_frequency": "1 minute",
+    "preferred_source_order": [
+      "225Labo personal-use OSE minute data after access/storage-rights review",
+      "Other approved OSE venue source",
+      "Index proxies may be used for methodology sanity checks only, never formal JNU promotion"
+    ]
+  },
+  "fixed_states": {
+    "FIRST_30M": {
+      "definition": "First 30 elapsed trading minutes of the OSE day session",
+      "parameter_search": false
+    },
+    "MIDDLE": {
+      "definition": "All eligible day-session minutes excluding FIRST_30M and LAST_30M, with lunch/break treatment explicitly separated by exchange schedule",
+      "parameter_search": false
+    },
+    "LAST_30M": {
+      "definition": "Final 30 elapsed trading minutes of the OSE day session",
+      "parameter_search": false
+    }
+  },
+  "primary_hypotheses": [
+    {
+      "id": "H1_PRIOR_US_FIRST30",
+      "predictor": "Prior completed S&P 500 cash-session close-to-close return, continuous",
+      "target": "JNU FIRST_30M return",
+      "expected_sign": "negative",
+      "source": "Iwanaga 2026"
+    },
+    {
+      "id": "H2_PRIOR_US_LAST30",
+      "predictor": "Prior completed S&P 500 cash-session close-to-close return, continuous",
+      "target": "JNU LAST_30M return",
+      "expected_sign": "positive",
+      "source": "Iwanaga 2026"
+    },
+    {
+      "id": "H3_UNIVERSAL_WEIGHT_REJECTION",
+      "predictor": "Same prior U.S. return",
+      "target": "All-session JNU return",
+      "test": "Compare universal-sign model with time-state interaction model",
+      "expected_result": "State interaction should add OOS information if the direct evidence generalizes."
+    }
+  ],
+  "forbidden_generation1": [
+    "Optimize 30-minute window length",
+    "Switch S&P 500 to NQ after seeing results",
+    "Search dozens of intraday subwindows",
+    "Add technical indicators to rescue a failed state interaction",
+    "Use order-imbalance claims without actual trade/order-side data",
+    "Promote an index-proxy result as formal JNU evidence"
+  ],
+  "evaluation": {
+    "method": "Expanding or anchored walk-forward OOS with fixed state definitions",
+    "metrics": [
+      "OOS MSE improvement vs state-only baseline",
+      "OOS sign accuracy delta",
+      "Continuous-predictor coefficient stability",
+      "Block-bootstrap confidence for incremental loss improvement",
+      "Recent-regime stability"
+    ],
+    "trading_gate": "Only after information/prediction gate passes: include JNU fees, spread and slippage; require positive incremental EV.",
+    "multiple_testing": "Treat H1-H3 as one preregistered family; any future altered window or U.S. proxy becomes a new family member."
+  },
+  "role_if_passed": "Session/path conditional layer; not a standalone always-on direction model.",
+  "formal_promotion_requires": "True JNU/OSE minute data and full OOS/cost/overfit gates."
+}
