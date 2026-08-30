@@ -1,0 +1,49 @@
+name: JNU Phase4B USDJPY Checkpoint
+
+on:
+  push:
+    paths:
+      - "phase4b_usdjpy_requests/*.json"
+  pull_request:
+    paths:
+      - "phase4b_usdjpy_requests/*.json"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref || github.ref_name }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+      - name: Restore exact market-data cache
+        uses: actions/cache@v4
+        with:
+          path: .cache/market-data
+          key: phase4b-usdjpy-${{ runner.os }}-${{ hashFiles('phase4b_requests/jnu_v22_phase4b_v1.json') }}
+          restore-keys: |
+            phase4b-${{ runner.os }}-
+            market-data-${{ runner.os }}-
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Run frozen Phase4B USDJPY checkpoint
+        run: python scripts/process_phase4b_usdjpy_checkpoint.py
+      - name: Commit checkpoint
+        shell: bash
+        run: |
+          git add phase4b_usdjpy_results phase4b_usdjpy_reports
+          if git diff --cached --quiet; then exit 0; fi
+          git config user.name "jerry-backtest-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git commit -m "research: publish Phase4B USDJPY checkpoint"
+          branch="${{ github.head_ref || github.ref_name }}"
+          git pull --rebase origin "$branch"
+          git push origin "HEAD:$branch"
