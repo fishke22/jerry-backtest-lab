@@ -456,6 +456,17 @@
         "Existing personally licensed 225Labo remains the preferred OSE source; raw data stays local and only derived non-reconstructable outputs/provenance may be persisted to cloud."
       ],
       "next_action": "Do not purchase JPX data. Use 225Labo local adapter once an exact authorized sample/schema is available."
+    },
+    {
+      "date": "2026-08-31",
+      "topic": "SGX/CME true-venue DPD free-history gate",
+      "findings": [
+        "SGX official Nikkei 225 page provides current pricing/charting and contract/session specifications but no verified free historical intraday bulk/minute route was found.",
+        "CME official historical futures access is routed through DataMine, which is described as purchased/licensed historical data.",
+        "No no-extra-cost official CME NIY historical intraday route was verified.",
+        "Therefore TRUE_VENUE_DPD_OSE_SGX_CME_G1 remains data-blocked and must not be promoted using Yahoo/public-symbol proxies."
+      ],
+      "next_action": "Keep DPD prereg draft frozen. Reopen only when an authorized no-extra-cost SGX/CME intraday source becomes available or user explicitly authorizes a paid data source."
     }
   ],
   "last_news_plugin_discovery": {
