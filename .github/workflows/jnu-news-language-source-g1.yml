@@ -1,0 +1,74 @@
+name: JNU News Language Source G1
+
+on:
+  push:
+    paths:
+      - "news_language_g1_requests/*.json"
+  pull_request:
+    paths:
+      - "news_language_g1_requests/*.json"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref || github.ref_name }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+      - name: Restore cumulative G1 news cache
+        uses: actions/cache/restore@v4
+        with:
+          path: .cache/market-data
+          key: g1-news-${{ runner.os }}-${{ github.run_id }}
+          restore-keys: |
+            g1-news-${{ runner.os }}-
+            phase4b-gdelt-${{ runner.os }}-
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Run preregistered News Language/Source G1
+        id: g1run
+        shell: bash
+        run: |
+          mkdir -p workflow_diagnostics
+          set +e
+          log="workflow_diagnostics/jnu_news_language_source_g1_${{ github.run_id }}.log"
+          diag="workflow_diagnostics/jnu_news_language_source_g1_${{ github.run_id }}.json"
+          python scripts/process_jnu_news_language_source_g1.py 2>&1 | tee "$log"
+          code=${PIPESTATUS[0]}
+          echo "exit_code=$code" >> "$GITHUB_OUTPUT"
+          printf '{"workflow":"jnu-news-language-source-g1","exit_code":%s,"run_id":"%s","sha":"%s"}\n' "$code" "${{ github.run_id }}" "${{ github.sha }}" > "$diag"
+          exit 0
+      - name: Save cumulative G1 news cache
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: .cache/market-data
+          key: g1-news-${{ runner.os }}-${{ github.run_id }}
+      - name: Commit G1 results and diagnostics
+        shell: bash
+        run: |
+          git add workflow_diagnostics
+          if [ -d news_language_g1_results ]; then git add news_language_g1_results; fi
+          if [ -d news_language_g1_reports ]; then git add news_language_g1_reports; fi
+          if [ -d cloud_data/derived ]; then git add cloud_data/derived; fi
+          if [ -d cloud_data/manifests ]; then git add cloud_data/manifests; fi
+          if git diff --cached --quiet; then exit 0; fi
+          git config user.name "jerry-backtest-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git commit -m "research: publish JNU news language-source G1"
+          branch="${{ github.head_ref || github.ref_name }}"
+          git pull --rebase origin "$branch"
+          git push origin "HEAD:$branch"
+      - name: Fail workflow if processor failed
+        if: steps.g1run.outputs.exit_code != '0'
+        shell: bash
+        run: exit 1
