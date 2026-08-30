@@ -161,6 +161,44 @@ def metrics(returns: pd.Series, turnover: pd.Series | None = None) -> dict:
     }
 
 
+def block_bootstrap_summary(
+    returns: pd.Series,
+    block_days: int = 5,
+    samples: int = 1000,
+    seed: int = 42,
+) -> dict:
+    r = returns.dropna().astype(float).to_numpy()
+    n = len(r)
+    if n < 20:
+        return {
+            "block_days": int(block_days),
+            "samples": int(samples),
+            "mean_daily_return_ci_95": [0.0, 0.0],
+            "prob_mean_daily_return_positive": 0.0,
+        }
+
+    block_days = max(1, min(int(block_days), n))
+    samples = max(100, int(samples))
+    rng = np.random.default_rng(int(seed))
+    starts = np.arange(0, n - block_days + 1)
+    means = np.empty(samples, dtype=float)
+
+    for i in range(samples):
+        sampled = []
+        while len(sampled) < n:
+            start = int(rng.choice(starts))
+            sampled.extend(r[start : start + block_days])
+        means[i] = float(np.mean(sampled[:n]))
+
+    low, high = np.quantile(means, [0.025, 0.975])
+    return {
+        "block_days": int(block_days),
+        "samples": int(samples),
+        "mean_daily_return_ci_95": [float(low), float(high)],
+        "prob_mean_daily_return_positive": float(np.mean(means > 0.0)),
+    }
+
+
 def candidate_score(metric_name: str, m: dict) -> float:
     if metric_name == "total_return":
         return float(m["total_return"])
@@ -271,6 +309,63 @@ def walk_forward(close: pd.Series, request: dict) -> dict:
     combined_turn = combined_turn.loc[combined_ret.index]
 
     bench = close.pct_change().fillna(0.0).loc[combined_ret.index]
+    oos_metrics = metrics(combined_ret, combined_turn)
+    benchmark_metrics = metrics(bench)
+
+    recent_days = int(request.get("robustness", {}).get("recent_days", 126))
+    recent_days = max(20, min(recent_days, len(combined_ret)))
+    recent_ret = combined_ret.iloc[-recent_days:]
+    recent_turn = combined_turn.loc[recent_ret.index]
+
+    base_one_way_cost = (cost_bps + slippage_bps) / 10_000.0
+    cost_stress = {}
+    for multiplier in [1.0, 1.5, 2.0]:
+        stressed = combined_ret - combined_turn * base_one_way_cost * (multiplier - 1.0)
+        cost_stress[f"{multiplier:.1f}x"] = metrics(stressed, combined_turn)
+
+    positive_folds = sum(
+        1 for fold in folds if float(fold["test_metrics"]["total_return"]) > 0.0
+    )
+    fold_returns = [float(fold["test_metrics"]["total_return"]) for fold in folds]
+    fold_sharpes = [float(fold["test_metrics"]["sharpe"]) for fold in folds]
+
+    bootstrap_cfg = request.get("robustness", {}).get("bootstrap", {})
+    bootstrap = block_bootstrap_summary(
+        combined_ret,
+        block_days=int(bootstrap_cfg.get("block_days", 5)),
+        samples=int(bootstrap_cfg.get("samples", 1000)),
+        seed=int(bootstrap_cfg.get("seed", 42)),
+    )
+
+    robustness = {
+        "recent": {
+            "days": recent_days,
+            "metrics": metrics(recent_ret, recent_turn),
+        },
+        "fold_stability": {
+            "folds": len(folds),
+            "positive_folds": positive_folds,
+            "positive_fold_ratio": float(positive_folds / len(folds)),
+            "median_fold_return": float(np.median(fold_returns)),
+            "worst_fold_return": float(np.min(fold_returns)),
+            "median_fold_sharpe": float(np.median(fold_sharpes)),
+        },
+        "cost_stress": cost_stress,
+        "benchmark_comparison": {
+            "strategy_total_return": float(oos_metrics["total_return"]),
+            "benchmark_total_return": float(benchmark_metrics["total_return"]),
+            "excess_total_return": float(
+                oos_metrics["total_return"] - benchmark_metrics["total_return"]
+            ),
+            "strategy_sharpe": float(oos_metrics["sharpe"]),
+            "benchmark_sharpe": float(benchmark_metrics["sharpe"]),
+            "sharpe_delta": float(
+                oos_metrics["sharpe"] - benchmark_metrics["sharpe"]
+            ),
+        },
+        "block_bootstrap": bootstrap,
+    }
+
     return {
         "mode": "walk_forward",
         "settings": {
@@ -282,14 +377,16 @@ def walk_forward(close: pd.Series, request: dict) -> dict:
             "selection_metric": selection_metric,
         },
         "folds": folds,
-        "oos_metrics": metrics(combined_ret, combined_turn),
-        "oos_benchmark": metrics(bench),
+        "oos_metrics": oos_metrics,
+        "oos_benchmark": benchmark_metrics,
+        "robustness": robustness,
     }
 
 
 def validation_status(result: dict, request: dict) -> dict:
     rules = request.get("validation", {})
     m = result.get("oos_metrics") or result.get("metrics") or {}
+    robustness = result.get("robustness") or {}
 
     checks = {
         "min_oos_sharpe": float(m.get("sharpe", 0.0))
@@ -301,13 +398,50 @@ def validation_status(result: dict, request: dict) -> dict:
     if bool(rules.get("require_positive_after_cost", True)):
         checks["positive_after_cost"] = float(m.get("total_return", 0.0)) > 0.0
 
+    if robustness:
+        fold_ratio = float(
+            robustness.get("fold_stability", {}).get("positive_fold_ratio", 0.0)
+        )
+        recent_total = float(
+            robustness.get("recent", {}).get("metrics", {}).get("total_return", 0.0)
+        )
+        cost_2x_total = float(
+            robustness.get("cost_stress", {})
+            .get("2.0x", {})
+            .get("total_return", 0.0)
+        )
+        bootstrap_prob = float(
+            robustness.get("block_bootstrap", {})
+            .get("prob_mean_daily_return_positive", 0.0)
+        )
+        excess_total = float(
+            robustness.get("benchmark_comparison", {})
+            .get("excess_total_return", 0.0)
+        )
+
+        checks["min_positive_fold_ratio"] = fold_ratio >= float(
+            rules.get("min_positive_fold_ratio", 0.5)
+        )
+        if bool(rules.get("require_positive_recent", True)):
+            checks["positive_recent"] = recent_total > 0.0
+        if bool(rules.get("require_positive_at_2x_cost", True)):
+            checks["positive_at_2x_cost"] = cost_2x_total > 0.0
+        checks["min_bootstrap_positive_probability"] = bootstrap_prob >= float(
+            rules.get("min_bootstrap_positive_probability", 0.5)
+        )
+        if "min_excess_total_return" in rules:
+            checks["min_excess_total_return"] = excess_total >= float(
+                rules["min_excess_total_return"]
+            )
+
     return {
         "mechanical_status": "PASS" if all(checks.values()) else "FAIL",
         "checks": checks,
         "promotion_status": "CANDIDATE_ONLY",
         "note": (
             "PASS is not equivalent to VALIDATED_JNU_MODULE. "
-            "Independent review and additional robustness gates are still required."
+            "Independent review, regime analysis, leakage checks, and second-engine "
+            "confirmation are still required before promotion."
         ),
     }
 
@@ -333,6 +467,9 @@ def run_request(request: dict) -> dict:
         "engine": {
             "name": "jerry-backtest-lab-phase1",
             "vectorbt_version": getattr(vbt, "__version__", "unknown"),
+            "numpy_version": getattr(np, "__version__", "unknown"),
+            "pandas_version": getattr(pd, "__version__", "unknown"),
+            "python_version": sys.version.split()[0],
         },
         "instrument": {
             "name": "Nikkei 225 Futures Index",
@@ -395,6 +532,25 @@ def report_markdown(result: dict) -> str:
     ]
     for key, passed in val["checks"].items():
         lines.append(f"- {'PASS' if passed else 'FAIL'} — {key}")
+
+    robustness = bt.get("robustness") or {}
+    if robustness:
+        recent = robustness["recent"]["metrics"]
+        stability = robustness["fold_stability"]
+        comparison = robustness["benchmark_comparison"]
+        bootstrap = robustness["block_bootstrap"]
+        cost2 = robustness["cost_stress"]["2.0x"]
+        lines += [
+            "",
+            "## Robustness",
+            "",
+            f"- Recent {robustness['recent']['days']} OOS days return: {recent['total_return']:.2%}",
+            f"- Positive fold ratio: {stability['positive_fold_ratio']:.1%}",
+            f"- Worst fold return: {stability['worst_fold_return']:.2%}",
+            f"- 2× cost total return: {cost2['total_return']:.2%}",
+            f"- Excess total return vs benchmark: {comparison['excess_total_return']:.2%}",
+            f"- Bootstrap P(mean daily return > 0): {bootstrap['prob_mean_daily_return_positive']:.1%}",
+        ]
 
     if bt.get("folds"):
         lines += ["", "## Walk-forward folds", ""]
