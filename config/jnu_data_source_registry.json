@@ -264,6 +264,21 @@
       "jnu_role": "Potential Japanese/Asian news supplementary source",
       "status": "CONNECTOR_ERROR_VALIDATION_FAILURE",
       "validation_note": "Direct Nikkei 225 query on 2026-08-30 failed schema validation in connector response."
+    },
+    {
+      "id": "FUTURESHARKS_HISTDATA_SPX_INDEX_M1",
+      "provider": "FutureSharks/financial-data; underlying data attributed to HistData",
+      "access_route": "Public GitHub repository pinned at commit 7ba1d404aa8b0e1c0f71321acebadcbfb9bcca8d",
+      "data_type": "S&P 500 index proxy 1-minute OHLC, not CME ES futures",
+      "coverage": "2010-2018; JNU Intraday Path G0 uses 2011-2018",
+      "timestamp_spec": "HistData fixed EST UTC-5 without DST. Convert fixed-offset timestamps to America/New_York before selecting 09:30-16:00 cash hours.",
+      "cost_class": "NO_EXTRA_COST",
+      "storage_class": "UPSTREAM_PINNED_RAW + ACTIONS_CACHE + DURABLE_DERIVED_DAILY_RETURN",
+      "license_or_terms_status": "Treat raw redistribution conservatively. Pin upstream commit/blob SHA and persist only derived research panel/provenance in private repo.",
+      "provenance": "Upstream Git commit + per-year blob SHA + downloaded SHA-256",
+      "jnu_role": "Prior-completed-U.S.-cash-session predictor for Intraday Path proxy methodology screening",
+      "status": "ACTIVE_METHOD_PROXY_NOT_ES_FUTURES",
+      "formal_limitation": "Cannot replace CME ES/NQ or validate OSE/JNU trading."
     }
   ],
   "discovery_priority": [
@@ -312,6 +327,15 @@
         "Micro minute coverage begins 2023-07-24; 1/3/5/10/15/20/30/60 minute files are offered.",
         "Night-session dates follow OSE next-trading-day labeling.",
         "GitHub Actions formal ingestion is blocked until user-authorized account/credential handling and private-storage terms are resolved."
+      ]
+    },
+    {
+      "date": "2026-08-31",
+      "topic": "Intraday Path U.S. predictor source",
+      "findings": [
+        "SPXUSD minute files 2011-2018 are available in the same pinned FutureSharks repository.",
+        "Fixed EST timestamps must be converted to America/New_York to restore daylight-saving-aware cash hours.",
+        "Proxy G0 selects the most recent completed U.S. cash session strictly before Japan open to prevent look-ahead."
       ]
     }
   ],
