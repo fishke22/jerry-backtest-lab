@@ -217,6 +217,46 @@
       "provenance": "Public GitHub repository",
       "jnu_role": "Methodological reference for point-in-time controls, tail-risk targets, US-close/Japan-proxy feature design",
       "status": "ACTIVE_METHODOLOGY_REFERENCE"
+    },
+    {
+      "id": "THE_FLY_MARKET_NEWS",
+      "provider": "The Fly Market Intelligence connector",
+      "access_route": "Connected ChatGPT plugin/connector search_news_articles",
+      "data_type": "Timestamped market/news articles, mainly US equities and market stories",
+      "coverage": "Recent/current; keyword/topic/symbol search",
+      "cost_class": "CONNECTED_ACCESS_NO_NEW_CHARGE_OBSERVED",
+      "storage_class": "DERIVED_FEATURES_AND_PROVENANCE_ONLY",
+      "license_or_terms_status": "Restricted-access content; do not archive full article text. Store only derived category/timestamp/sentiment/event features and source identifiers.",
+      "provenance": "Tool query + article id/title/date/source",
+      "jnu_role": "Supplementary US/global event-state source; not primary Japanese-language JNU news source",
+      "status": "ACTIVE_SUPPLEMENTARY"
+    },
+    {
+      "id": "FINANCIAL_DATASETS_NEWS",
+      "provider": "Financial Datasets connector",
+      "access_route": "Connected ChatGPT plugin/connector get_news",
+      "data_type": "Recent market/company news",
+      "coverage": "Broad market/company",
+      "cost_class": "PAID_CREDITS_REQUIRED_CURRENT_BALANCE_ZERO",
+      "storage_class": "NOT_USED",
+      "license_or_terms_status": "Not adopted under no-extra-paid policy.",
+      "provenance": "Tool capability only",
+      "jnu_role": "Potential broad-market news fallback",
+      "status": "REJECTED_FOR_NOW_COST_POLICY"
+    },
+    {
+      "id": "LONGBRIDGE_NEWS_SEARCH",
+      "provider": "Longbridge connector",
+      "access_route": "Connected ChatGPT plugin/connector news_search",
+      "data_type": "Keyword news search",
+      "coverage": "Potential global/market news",
+      "cost_class": "CONNECTED",
+      "storage_class": "NOT_USED_UNTIL_CONNECTOR_FIXED",
+      "license_or_terms_status": "No storage decision until connector returns valid structured response.",
+      "provenance": "Tool endpoint",
+      "jnu_role": "Potential Japanese/Asian news supplementary source",
+      "status": "CONNECTOR_ERROR_VALIDATION_FAILURE",
+      "validation_note": "Direct Nikkei 225 query on 2026-08-30 failed schema validation in connector response."
     }
   ],
   "discovery_priority": [
@@ -257,5 +297,14 @@
         "First volatility proxy test is preregistered at 5-minute frequency, Japan cash sessions only, HAR windows 1/5/22."
       ]
     }
-  ]
+  ],
+  "last_news_plugin_discovery": {
+    "date": "2026-08-30",
+    "tested": [
+      "The Fly search_news_articles: PASS but US-centric",
+      "Financial Datasets get_news: blocked by $0 credit balance",
+      "Longbridge news_search: connector schema validation failure"
+    ],
+    "core_rule": "Use web/official sources plus stable free connectors for JNU news; store only derived event/sentiment features unless article archival rights are explicit."
+  }
 }
