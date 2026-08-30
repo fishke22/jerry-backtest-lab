@@ -1,0 +1,12 @@
+{
+  "request_id": "jnu_core_daily_features_v1_20260828",
+  "dataset_id": "JNU_CORE_DAILY_FEATURES_V1",
+  "date_from": "2006-01-01",
+  "date_to": "2026-08-28",
+  "force_refresh": false,
+  "purpose": "Durable cloud-derived feature panel for repeatable JNU evidence-first backtests",
+  "storage_policy": {
+    "raw": "CACHE_ONLY_UNLESS_SOURCE_ARCHIVE_ALLOWED",
+    "derived": "DURABLE_PRIVATE_GITHUB"
+  }
+}
