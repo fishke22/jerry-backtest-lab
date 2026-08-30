@@ -1,0 +1,153 @@
+{
+  "version": "0.4",
+  "updated_at": "2026-08-31",
+  "status": "CANDIDATE_NOT_VALIDATED",
+  "validated_jnu_modules": 0,
+  "objective": "Evidence-backed JNU decision architecture with strict data integrity, OOS validation and no post-hoc rescue.",
+  "layers": [
+    {
+      "order": 1,
+      "id": "DATA_INTEGRITY_CAUSAL_TIMING",
+      "role": "MANDATORY_GATE",
+      "status": "KEEP",
+      "rules": [
+        "Historical session versions must be date-correct.",
+        "Predictors must be available strictly before target decision time.",
+        "Contract/trading-day/roll identity must be resolved before signal evaluation.",
+        "Licensing/storage boundary is part of data integrity."
+      ]
+    },
+    {
+      "order": 2,
+      "id": "SESSION_MARKET_STATE",
+      "role": "CONTEXT",
+      "status": "KEEP",
+      "rule": "Interpret signals conditionally by OSE/Japan cash/lunch/bridge/night/US/post-US session; no universal all-session weight."
+    },
+    {
+      "order": 3,
+      "id": "DYNAMIC_PRICE_DISCOVERY",
+      "role": "SOURCE_WEIGHTING",
+      "status": "CONDITIONAL_ARCHITECTURE_ONLY",
+      "rule": "Determine which venue/region is informative now; not standalone directional alpha.",
+      "blocked_on": "Approved venue-specific OSE + SGX intraday data."
+    },
+    {
+      "order": 4,
+      "id": "VOLATILITY_RISK_STATE",
+      "role": "RISK_SIZING",
+      "status": "CONFIRMATION_CANDIDATE",
+      "admitted_candidates": [
+        {
+          "id": "HAR_RSV_DI1",
+          "evidence_status": "PROXY_METHOD_PASS_TRUE_JNU_PENDING",
+          "allowed_role": [
+            "risk state",
+            "position sizing",
+            "stop-distance normalization",
+            "confidence adjustment"
+          ],
+          "forbidden_role": "directional alpha without separate preregistration",
+          "frozen_spec": "5-minute RV/RSV; HAR 1/5/22; existing expanding-OOS/block-bootstrap gate",
+          "true_jnu_data_policy": "225Labo raw local-only under personal-use terms; cloud receives non-reconstructive derived panel/results only."
+        }
+      ],
+      "rejected_or_quarantined": [
+        "HAR_LEVERAGE proxy G1",
+        "daily volatility_regime as validated alpha",
+        "generic VIX direct directional vote"
+      ]
+    },
+    {
+      "order": 5,
+      "id": "CONDITIONAL_MACRO",
+      "role": "STATE_CANDIDATE",
+      "status": "PHASE4B_RUNNING",
+      "candidates": [
+        "USDJPY 1-day incremental state"
+      ],
+      "gate": "Must improve frozen OOS MSE with bootstrap P>=0.95 and sign accuracy not worse.",
+      "rule": "Never hard-code yen weakness => Nikkei up."
+    },
+    {
+      "order": 6,
+      "id": "NEWS_EVENT_STATE",
+      "role": "STATE_CANDIDATE",
+      "status": "PHASE4B_RUNNING",
+      "current_family": "Broad GDELT six-category prior-day state screen",
+      "gate": "QLIKE and MSE improve; QLIKE bootstrap P>=0.95; recent QLIKE/MSE nonnegative; Holm family correction passes.",
+      "next_generation_if_needed": "config/jnu_news_state_language_session_g1_draft.json",
+      "next_generation_status": "DRAFT_NOT_TRIGGERED",
+      "rule": "News begins as volatility/event/confidence state; directional use requires a separate preregistered test."
+    },
+    {
+      "order": 7,
+      "id": "INTRADAY_PATH",
+      "role": "DIRECTION_CANDIDATE",
+      "status": "NO_ADMITTED_PROXY",
+      "results": [
+        {
+          "id": "PRIOR_US_FIRST_LAST_30M_G0",
+          "status": "PROXY_SCREEN_NEGATIVE_TRUE_JNU_UNRESOLVED",
+          "first30": "Expected negative beta observed but OOS MSE and hit rate worsened; bootstrap P=0.1385.",
+          "last30": "Expected positive beta not stable; bootstrap P=0.6175.",
+          "guardrail": "Do not tune 30-minute windows, switch SPX to NQ, or add indicators to rescue this sample."
+        }
+      ]
+    },
+    {
+      "order": 8,
+      "id": "MICROSTRUCTURE_EXECUTION",
+      "role": "ENTRY_EXECUTION_CONFIRMATION",
+      "status": "KEEP_NON_ALPHA",
+      "candidates": [
+        "VWAP",
+        "POC",
+        "VAH",
+        "VAL",
+        "RVOL",
+        "basis",
+        "roll spread",
+        "liquidity"
+      ],
+      "order_imbalance_status": "LITERATURE_ONLY_DATA_BLOCKED",
+      "rule": "Do not infer order imbalance from OHLC/VWAP/volume. Use microstructure features for execution/invalidation unless separately validated as directional."
+    },
+    {
+      "order": 9,
+      "id": "DECISION_ENGINE",
+      "role": "OUTPUT",
+      "status": "DESIGN_TARGET",
+      "outputs": [
+        "P(up)",
+        "P(down)",
+        "P(range)",
+        "price_discovery_leader",
+        "volatility_state",
+        "event_state",
+        "preferred_intraday_path",
+        "confidence",
+        "position_size_multiplier",
+        "invalidation"
+      ],
+      "rule": "Only validated or explicitly conditional modules may influence probabilities. Rejected families cannot re-enter without a new preregistration."
+    }
+  ],
+  "rejected_families": [
+    "fixed cross-market majority vote",
+    "cross_market_confirmation overfit family",
+    "trend_momentum previous family",
+    "breakout previous family",
+    "drawdown_repair previous family",
+    "relative_strength_ndx previous family",
+    "SMA baseline as alpha",
+    "Intraday Path US proxy G0"
+  ],
+  "active_research": {
+    "only_active_formal_screen": "Phase4B USDJPY + six-category GDELT news state",
+    "run_id": 33327263924,
+    "branch": "research/phase4b-final-v1",
+    "rule": "Do not change research specification while this run is active."
+  },
+  "next_gate": "Resolve Phase4B. Then update macro/news layers before choosing exactly one new formal information family."
+}
