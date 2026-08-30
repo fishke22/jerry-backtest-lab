@@ -1,0 +1,126 @@
+{
+  "version": "0.3",
+  "status": "CANDIDATE_NOT_VALIDATED",
+  "updated_at": "2026-08-31",
+  "objective": "Maximize evidence-backed JNU decision quality while minimizing overfit, duplicated factors, and fixed cross-market assumptions.",
+  "current_architecture": [
+    {
+      "layer": 1,
+      "id": "DATA_INTEGRITY_CAUSAL_TIMING",
+      "role": "MANDATORY_GATE",
+      "status": "KEEP",
+      "rule": "All timestamps, session labels, contract identity, roll logic and predictor availability must be correct before any signal is evaluated."
+    },
+    {
+      "layer": 2,
+      "id": "SESSION_MARKET_STATE",
+      "role": "CONTEXT",
+      "status": "KEEP",
+      "rule": "Separate OSE pre-cash, Japan cash, lunch, bridge, night, US cash and post-US states. Never interpret identical signals with identical weight across all sessions."
+    },
+    {
+      "layer": 3,
+      "id": "DYNAMIC_PRICE_DISCOVERY",
+      "role": "SOURCE_WEIGHTING",
+      "status": "CONDITIONAL_ARCHITECTURE_ONLY",
+      "rule": "Use to decide which venue/region should be trusted now. Do not use fixed NQ/ES/SGX/OSE weights and do not treat DPD as standalone alpha."
+    },
+    {
+      "layer": 4,
+      "id": "VOLATILITY_RISK_STATE",
+      "role": "RISK_SIZING",
+      "status": "KEEP_RISK_ONLY",
+      "rejected_alpha_families": [
+        "daily AHAR volatility state",
+        "VIX as direct tail-risk alpha proxy",
+        "intraday HAR leverage/RSV Generation 1"
+      ],
+      "rule": "Observed volatility may normalize position size, stop distance and confidence. Predictive HAR family is not admitted as alpha."
+    },
+    {
+      "layer": 5,
+      "id": "CONDITIONAL_MACRO",
+      "role": "STATE_CANDIDATE",
+      "status": "PHASE4B_PENDING",
+      "candidates": [
+        "USDJPY 1d incremental state"
+      ],
+      "rule": "No universal sign such as yen weakness => Nikkei up. Keep only if incremental OOS evidence passes frozen Phase4B gates."
+    },
+    {
+      "layer": 6,
+      "id": "NEWS_EVENT_STATE",
+      "role": "STATE_CANDIDATE",
+      "status": "PHASE4B_PENDING",
+      "candidates": [
+        "JAPAN_BOJ_MACRO",
+        "US_FED_MACRO",
+        "JPY_FX",
+        "US_TECH_SEMICONDUCTOR",
+        "JAPAN_EQUITY_NIKKEI",
+        "GEOPOLITICAL_RISK"
+      ],
+      "rule": "First use is volatility/event/confidence state. Directional news trading is prohibited unless separately preregistered and validated."
+    },
+    {
+      "layer": 7,
+      "id": "INTRADAY_PATH",
+      "role": "DIRECTION_CANDIDATE",
+      "status": "G1_DESIGN_FROZEN_AWAITING_TRUE_JNU_DATA",
+      "candidates": [
+        "prior US return x FIRST_30M",
+        "prior US return x LAST_30M",
+        "state interaction vs universal cross-market weight"
+      ],
+      "rule": "Use fixed 30-minute states from direct 2026 Nikkei-futures evidence; no window optimization in Generation 1."
+    },
+    {
+      "layer": 8,
+      "id": "MICROSTRUCTURE_EXECUTION",
+      "role": "ENTRY_EXECUTION_CONFIRMATION",
+      "status": "KEEP_NON_ALPHA",
+      "candidates": [
+        "VWAP",
+        "POC",
+        "VAH",
+        "VAL",
+        "RVOL",
+        "basis",
+        "roll spread",
+        "liquidity"
+      ],
+      "rule": "Use for entry quality, execution, invalidation and sizing; do not automatically count each item as an independent directional vote."
+    },
+    {
+      "layer": 9,
+      "id": "DECISION_ENGINE",
+      "role": "OUTPUT",
+      "status": "DESIGN_TARGET",
+      "outputs": [
+        "P(up)",
+        "P(down)",
+        "P(range)",
+        "price_discovery_leader",
+        "volatility_state",
+        "event_state",
+        "preferred_intraday_path",
+        "confidence",
+        "position_size_multiplier",
+        "invalidation"
+      ],
+      "rule": "Only validated or explicitly conditional modules may influence probabilities. Rejected modules cannot re-enter without a new preregistered generation."
+    }
+  ],
+  "rejected_or_quarantined": [
+    "fixed cross-market majority vote",
+    "cross_market_confirmation overfit family",
+    "trend_momentum previous family",
+    "breakout previous family",
+    "drawdown_repair previous family",
+    "relative_strength_ndx previous family",
+    "SMA baseline as alpha",
+    "intraday volatility HAR leverage/RSV G1 as alpha"
+  ],
+  "next_gate": "Complete Phase4B USDJPY/news cloud validation, then choose exactly one next information family for testing.",
+  "validated_jnu_modules": 0
+}
