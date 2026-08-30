@@ -29,7 +29,7 @@
   },
   "formal_promotion": false,
   "control_plane_retrigger": {
-    "nonce": 1,
-    "reason": "Re-trigger GitHub Actions after adding fail-closed diagnostics; research parameters unchanged."
+    "nonce": 2,
+    "reason": "PR-triggered observable GitHub Actions run; research parameters unchanged."
   }
 }
