@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import io
+from concurrent.futures import ThreadPoolExecutor, as_completed
 import json
 import math
 import time
@@ -317,8 +318,22 @@ def test_news(close: pd.Series, req: dict) -> dict:
     raw_results = {}
     tail_p = {}
 
+    # Execution-only optimization: fetch independent preregistered categories concurrently.
+    # Queries, dates, features and statistical tests remain unchanged.
+    feature_map = {}
+    workers = min(3, max(1, len(categories)))
+    with ThreadPoolExecutor(max_workers=workers) as pool:
+        futures = {
+            pool.submit(news_features, query, close.index, req, key): key
+            for key, query in categories.items()
+        }
+        for fut in as_completed(futures):
+            key = futures[fut]
+            feature_map[key] = fut.result()
+            print(f"phase4b news data ready: {key}", flush=True)
+
     for key, query in categories.items():
-        nf = news_features(query, close.index, req, key)
+        nf = feature_map[key]
         X1 = pd.concat([X0, nf], axis=1)
         aug_log = expanding_ols_predict(X1, ylog, start)
         aug_var = np.exp(aug_log)
