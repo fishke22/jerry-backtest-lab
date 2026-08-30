@@ -136,3 +136,19 @@ No currently tested module is VALIDATED_JNU_MODULE.
   2. Keep HAR-RSV frozen for true-JNU confirmation; do not expand the parameter grid merely because other asymmetric HAR variants exist.
   3. HAR leverage/jump variants remain separate future families and cannot be added to rescue HAR-RSV if true-JNU confirmation fails.
   4. Volatility remains a risk/sizing state first, not automatic directional alpha.
+
+
+## 2026 direct Nikkei-futures language/source sentiment evidence
+
+### Smales (2026) — When news travels
+- Paper: *When news travels: The role of sentiment in CME Nikkei futures returns*
+- DOI: `10.1016/j.ribaf.2025.103223`
+- Market: CME Nikkei futures (NIY), sample Jan-2003 to Sep-2020.
+- Direct finding: Japanese-underlying "fundamental sentiment" is more important than U.S.-local sentiment overall; Japanese- versus English-language Japanese-stock news matters differently across regimes.
+- The paper also reports sentiment-volatility asymmetry: positive fundamental/local sentiment is associated with lower volatility and negative sentiment with higher volatility.
+- Critical data caveat: the original study uses Thomson Reuters News Analytics (TRNA), and the paper states the news data cannot be shared.
+- JNU consequence:
+  1. Language/source separation is academically justified as a new family after the broad-news screen became data-inconclusive.
+  2. GDELT `sourcelang` is a proxy for publication language, not a replication of TRNA sentiment analytics.
+  3. Any GDELT pass must be described as independent proxy evidence only.
+  4. G1 remains a volatility/event-state test; directional sentiment trading is a separate family.
