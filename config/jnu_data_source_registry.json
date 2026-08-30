@@ -288,6 +288,21 @@
       "jnu_role": "Prior-completed-U.S.-cash-session predictor for Intraday Path proxy methodology screening",
       "status": "ACTIVE_METHOD_PROXY_NOT_ES_FUTURES",
       "formal_limitation": "Cannot replace CME ES/NQ or validate OSE/JNU trading."
+    },
+    {
+      "id": "CBOE_SPX_LEFT_TAIL_VOLATILITY_LTV",
+      "provider": "Cboe Global Indices",
+      "access_route": "Official LTV index/dashboard/methodology; free historical bulk-download route not yet verified.",
+      "data_type": "S&P 500 option-implied Left Tail Volatility Index (LTV)",
+      "coverage": "Base date 2006-01-03; launch 2024-03-14. Back-calculated history is implied by base date, but free downloadable historical series availability remains unverified.",
+      "cost_class": "UNKNOWN_FOR_HISTORICAL_BULK; PUBLIC_METHODOLOGY",
+      "storage_class": "NOT_USED_UNTIL_ACCESS_RIGHTS_AND_HISTORY_ROUTE_VERIFIED",
+      "license_or_terms_status": "Official Cboe index; do not assume bulk historical archival rights until access route/terms are confirmed.",
+      "provenance": "Cboe LTV methodology v1.2 (revised 2026-04-10), official dashboard and index product list.",
+      "jnu_role": "High-priority U.S. option-implied left-tail-risk candidate. Methodology directly cites Andersen-Todorov-Ubukata (2021) Japanese equity predictability research.",
+      "status": "HIGH_EVIDENCE_CANDIDATE_ACCESS_PENDING",
+      "methodology_stability": "Methodology appendix lists no major changes since 2024 launch as of version 1.2.",
+      "formal_limitation": "Do not substitute SKEW/VIX and call it the paper's left-tail measure. LTV itself requires independent JNU OOS validation."
     }
   ],
   "discovery_priority": [
@@ -368,6 +383,18 @@
         "Therefore raw cloud upload/processing through third-party infrastructure is not treated as approved.",
         "Safest architecture is local raw download/processing and cloud persistence of only non-reconstructive derived features/results with provenance."
       ]
+    },
+    {
+      "date": "2026-08-31",
+      "topic": "Cboe LTV tail-risk feasibility",
+      "findings": [
+        "Cboe LTV is explicitly designed by Torben Andersen and Viktor Todorov and its methodology cites the 2021 Japanese-equity tail-risk paper.",
+        "LTV targets risk-neutral volatility from >=10-standard-deviation downside SPX moves over one week using short-expiry deep OTM puts.",
+        "Official methodology gives base date 2006-01-03 and launch date 2024-03-14, suggesting back-calculated history may exist.",
+        "No free official bulk historical-download route has yet been verified; therefore no backtest is authorized.",
+        "SKEW is not treated as an equivalent substitute."
+      ],
+      "next_action": "Verify historical LTV end-of-day access and terms before preregistering any tail-risk proxy test."
     }
   ],
   "last_news_plugin_discovery": {
