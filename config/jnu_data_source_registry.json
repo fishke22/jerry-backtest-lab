@@ -192,16 +192,18 @@
     },
     {
       "id": "FUTURESHARKS_HISTDATA_NIKKEI_INDEX_M1",
-      "provider": "FutureSharks/financial-data (source data attributed to HistData)",
-      "access_route": "Public GitHub repository",
-      "data_type": "Nikkei 225 index proxy minute bars, not OSE futures",
-      "coverage": "JPXJPY minute data 2010-2018 in repository description",
+      "provider": "FutureSharks/financial-data; underlying data attributed to HistData",
+      "access_route": "Public GitHub repository pinned at commit 7ba1d404aa8b0e1c0f71321acebadcbfb9bcca8d",
+      "data_type": "Nikkei 225 index proxy 1-minute OHLC, not OSE futures",
+      "coverage": "2010-2018; JNU volatility proxy workflow uses complete years 2011-2018",
+      "timestamp_spec": "HistData fixed Eastern Standard Time UTC-5; no daylight-saving adjustment. Convert +14h to JST.",
       "cost_class": "NO_EXTRA_COST",
-      "storage_class": "REFERENCE_OR_CACHE_ONLY_UNTIL_UNDERLYING_DATA_TERMS_VERIFIED",
-      "license_or_terms_status": "Repository declares GPLv3, but underlying market data is attributed to HistData; do not assume the repo license grants redistribution rights over source data.",
-      "provenance": "GitHub repository + underlying provider attribution",
-      "jnu_role": "Historical intraday index-path / volatility robustness only; not DPD venue validation",
-      "status": "PROXY_CANDIDATE_LICENSE_REVIEW_REQUIRED"
+      "storage_class": "UPSTREAM_PINNED_RAW + ACTIONS_CACHE + DURABLE_DERIVED_PANEL",
+      "license_or_terms_status": "Public repository declares GPLv3; underlying market data attributed to HistData. A Kaggle mirror is labeled CC0, but raw redistribution rights are treated conservatively. Do not copy raw minute files into the private repo; pin upstream and store derived RV panel/provenance.",
+      "provenance": "Upstream Git commit + per-year Git blob SHA + downloaded SHA-256",
+      "jnu_role": "Methodology-only proxy for 5-minute realized volatility, HAR/leverage/RSV testing",
+      "status": "ACTIVE_METHOD_PROXY_NOT_JNU_VALIDATION",
+      "formal_limitation": "Cannot validate OSE/JNU execution, microstructure, or venue price discovery."
     },
     {
       "id": "TY_CHENG_N225_OPEN_GAP_TAIL_RESEARCH",
@@ -245,6 +247,15 @@
         "Open GitHub Nikkei minute datasets found are index/CFD proxies rather than OSE futures and cannot validate DPD venue leadership."
       ],
       "next_action": "Prepare cloud ingestion adapter and wait for an approved personally licensed OSE source; meanwhile continue proxy/state research without promotion."
+    },
+    {
+      "date": "2026-08-30",
+      "topic": "Nikkei high-frequency volatility proxy",
+      "findings": [
+        "FutureSharks JPXJPY minute data is pinned to an immutable Git commit for cloud reproducibility.",
+        "HistData timestamps are fixed EST UTC-5 without DST; JNU workflow converts deterministically to JST.",
+        "First volatility proxy test is preregistered at 5-minute frequency, Japan cash sessions only, HAR windows 1/5/22."
+      ]
     }
   ]
 }
