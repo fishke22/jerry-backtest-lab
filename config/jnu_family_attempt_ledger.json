@@ -1,0 +1,84 @@
+{
+  "version": "1.0",
+  "updated_at": "2026-08-31",
+  "rule": "Permanent family-level attempt ledger. Never delete failed/inconclusive families to improve apparent research success rate.",
+  "families": [
+    {
+      "id": "SMA_BASELINE",
+      "status": "BASELINE_NOT_ALPHA",
+      "multiplicity": "LEGACY/PROCESS_CHECK"
+    },
+    {
+      "id": "TREND_MOMENTUM_LEGACY",
+      "status": "REJECTED",
+      "multiplicity": "UNKNOWN_LEGACY_QUARANTINE"
+    },
+    {
+      "id": "BREAKOUT_LEGACY",
+      "status": "REJECTED",
+      "multiplicity": "UNKNOWN_LEGACY_QUARANTINE"
+    },
+    {
+      "id": "DRAWDOWN_REPAIR_LEGACY",
+      "status": "REJECTED",
+      "multiplicity": "UNKNOWN_LEGACY_QUARANTINE"
+    },
+    {
+      "id": "RELATIVE_STRENGTH_NDX_LEGACY",
+      "status": "REJECTED",
+      "multiplicity": "UNKNOWN_LEGACY_QUARANTINE"
+    },
+    {
+      "id": "CROSS_MARKET_CONFIRMATION_LEGACY",
+      "status": "REJECTED_OVERFIT",
+      "multiplicity": "UNKNOWN_LEGACY_QUARANTINE"
+    },
+    {
+      "id": "DYNAMIC_PRICE_DISCOVERY_PROXY_G0",
+      "status": "CONDITIONAL_ARCHITECTURE_ONLY_NOT_ALPHA",
+      "multiplicity": "PREREGISTERED_PROXY"
+    },
+    {
+      "id": "DAILY_VOLATILITY_AHAR",
+      "status": "REJECTED",
+      "multiplicity": "PREREGISTERED"
+    },
+    {
+      "id": "VIX_TAIL_PROXY",
+      "status": "REJECTED",
+      "multiplicity": "PREREGISTERED"
+    },
+    {
+      "id": "INTRADAY_VOLATILITY_HAR_G1_ORIGINAL",
+      "status": "AUDIT_RETAINED_DATA_INTEGRITY_ERROR",
+      "multiplicity": "PREREGISTERED"
+    },
+    {
+      "id": "INTRADAY_VOLATILITY_HAR_RSV_DI1",
+      "status": "PROXY_METHOD_PASS_TRUE_OSE_PENDING",
+      "multiplicity": "DATA_INTEGRITY_CORRECTION_ONLY"
+    },
+    {
+      "id": "INTRADAY_PATH_US_NIKKEI_PROXY_G0",
+      "status": "PROXY_SCREEN_NEGATIVE",
+      "multiplicity": "PREREGISTERED"
+    },
+    {
+      "id": "PHASE4B_USDJPY_1D",
+      "status": "REJECT_CURRENT_SPEC",
+      "multiplicity": "PREREGISTERED"
+    },
+    {
+      "id": "PHASE4B_GDELT_BROAD_NEWS",
+      "status": "DATA_INCONCLUSIVE",
+      "multiplicity": "PREREGISTERED_FULL_FAMILY"
+    },
+    {
+      "id": "NEWS_STATE_LANGUAGE_SOURCE_G1",
+      "status": "RUNNING",
+      "multiplicity": "PREREGISTERED_4_CELL_HOLM_FAMILY",
+      "run_id": 33341760779
+    }
+  ],
+  "conservative_rule": "Unknown legacy multiplicity is treated against promotion, not ignored."
+}
