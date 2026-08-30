@@ -1,0 +1,118 @@
+{
+  "request_id": "jnu_core_daily_features_v1_20260828",
+  "dataset_id": "JNU_CORE_DAILY_FEATURES_V1",
+  "status": "DURABLE_DERIVED_CLOUD_DATASET",
+  "date_from": "2006-01-01",
+  "date_to": "2026-08-28",
+  "rows": 894,
+  "columns": [
+    "target_nikkei_fut_ret_1d",
+    "target_nikkei_fut_ret_5d",
+    "nikkei_rv20_lag1",
+    "nikkei_rv60_lag1",
+    "ndx_ret_1d_lag1",
+    "ndx_ret_5d_lag1",
+    "usdjpy_ret_1d_lag1",
+    "usdjpy_ret_5d_lag1",
+    "us2y_change_bp_lag1",
+    "us10y_change_bp_lag1",
+    "us10y_2y_spread_bp_lag1",
+    "wti_ret_1d_lag1",
+    "brent_ret_1d_lag1",
+    "vix_ret_1d_lag1",
+    "vix_level_z60_lag1",
+    "avail__target_nikkei_fut_ret_1d",
+    "avail__target_nikkei_fut_ret_5d",
+    "avail__nikkei_rv20_lag1",
+    "avail__nikkei_rv60_lag1",
+    "avail__ndx_ret_1d_lag1",
+    "avail__ndx_ret_5d_lag1",
+    "avail__usdjpy_ret_1d_lag1",
+    "avail__usdjpy_ret_5d_lag1",
+    "avail__us2y_change_bp_lag1",
+    "avail__us10y_change_bp_lag1",
+    "avail__us10y_2y_spread_bp_lag1",
+    "avail__wti_ret_1d_lag1",
+    "avail__brent_ret_1d_lag1",
+    "avail__vix_ret_1d_lag1",
+    "avail__vix_level_z60_lag1"
+  ],
+  "dataset_sha256": "0ace1a3696f0a0bc077ee8f919f2b40902247d35383a507a7d39627c273a0bd8",
+  "dataset_path": "cloud_data/derived/jnu_core_daily_features_v1_20260828.csv.gz",
+  "sources": {
+    "NIKKEI_FUTURES_INDEX": {
+      "provider": "Nikkei Indexes",
+      "url": "https://indexes.nikkei.co.jp/nkave/historical/nikkei_225_futures_index_series_daily_en.csv",
+      "sha256": "5cc80297eac490bcf76e23d3e355a03c5fcff5e4b3fa7c4f48c61f4c50021422",
+      "cache_hit": true,
+      "raw_storage": "CACHE_ONLY",
+      "durable_output": "derived returns/features only"
+    },
+    "NASDAQ100": {
+      "provider": "FRED",
+      "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=NASDAQ100&cosd=2006-01-01&coed=2026-08-28",
+      "sha256": "af9d7041d2e13188c6d36b2b942ce0009cf7cd671b7d1d0d299d82d104ffe88e",
+      "cache_hit": true,
+      "raw_storage": "CACHE_ONLY",
+      "durable_output": "derived features only",
+      "role": "US equity / NQ proxy"
+    },
+    "DEXJPUS": {
+      "provider": "FRED",
+      "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DEXJPUS&cosd=2006-01-01&coed=2026-08-28",
+      "sha256": "38e05dffe47c4b6322adbd37f8759973f81c4e952225451d4dc7b82fd596c75c",
+      "cache_hit": true,
+      "raw_storage": "CACHE_ONLY",
+      "durable_output": "derived features only",
+      "role": "USDJPY conditional state"
+    },
+    "DGS2": {
+      "provider": "FRED",
+      "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DGS2&cosd=2006-01-01&coed=2026-08-28",
+      "sha256": "9de555c95e872a400e47e87c24df05cbbe92a4ce0ecbc0298836cd3c3a0c7d47",
+      "cache_hit": false,
+      "raw_storage": "CACHE_ONLY",
+      "durable_output": "derived features only",
+      "role": "US 2Y yield"
+    },
+    "DGS10": {
+      "provider": "FRED",
+      "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DGS10&cosd=2006-01-01&coed=2026-08-28",
+      "sha256": "d9df930a10e5e26e58c67f27d553808a4d401a6aa250c496760381779a9e741e",
+      "cache_hit": false,
+      "raw_storage": "CACHE_ONLY",
+      "durable_output": "derived features only",
+      "role": "US 10Y yield"
+    },
+    "DCOILWTICO": {
+      "provider": "FRED",
+      "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DCOILWTICO&cosd=2006-01-01&coed=2026-08-28",
+      "sha256": "62288ec0a1c586c87a04fc3c8bb9f757887c1a1b16ed6f74b60e427006c3b15d",
+      "cache_hit": false,
+      "raw_storage": "CACHE_ONLY",
+      "durable_output": "derived features only",
+      "role": "WTI oil"
+    },
+    "DCOILBRENTEU": {
+      "provider": "FRED",
+      "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DCOILBRENTEU&cosd=2006-01-01&coed=2026-08-28",
+      "sha256": "1c1153be5e97e03cb4afc1ef7a7213a25b922b851174d5930aac6d8fbbcfb82f",
+      "cache_hit": false,
+      "raw_storage": "CACHE_ONLY",
+      "durable_output": "derived features only",
+      "role": "Brent oil"
+    },
+    "VIX": {
+      "provider": "Cboe",
+      "url": "https://cdn.cboe.com/api/global/us_indices/daily_prices/VIX_History.csv",
+      "sha256": "64708533b190bf36070e96682388922339bfb10c9df680349b824dc9489e55f9",
+      "cache_hit": false,
+      "raw_storage": "CACHE_ONLY",
+      "durable_output": "derived features only"
+    }
+  },
+  "raw_data_policy": "Raw market downloads remain GitHub Actions cache only unless source-specific archival rights are approved.",
+  "durable_data_policy": "Only derived research features plus provenance are committed to the private GitHub cloud repository.",
+  "causal_timing": "External predictor features are lagged before use; target returns are not used as predictors without explicit lag.",
+  "generated_at_utc": "2026-08-30T16:21:00.396591+00:00"
+}
