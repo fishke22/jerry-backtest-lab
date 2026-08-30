@@ -9,13 +9,14 @@
   "cost_proxy": {
     "method": "commission_plus_slippage_as_taker_fee",
     "commission_bps": 1.5,
-    "slippage_bps": 1.0
+    "slippage_bps": 1
   },
   "validation": {
-    "min_position_match_ratio": 1.0,
+    "min_position_match_ratio": 1,
     "require_fill_count_match": true,
     "max_fill_price_abs_error": 0.000001,
     "require_all_orders_filled": true,
     "require_source_hash_match": true
-  }
+  },
+  "retry": 1
 }
