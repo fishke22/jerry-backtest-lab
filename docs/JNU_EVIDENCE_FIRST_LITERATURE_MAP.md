@@ -173,6 +173,7 @@ No currently tested module is VALIDATED_JNU_MODULE.
 ### 2025 study — market anticipation and Nikkei futures lunch trading
 - Paper: *Market anticipation and intraday trading: Evidence from BOJ ETF purchases*
 - Evidence reported in the published abstract: on anticipated BOJ ETF intervention days, Nikkei 225 futures trading volume rises during the Japanese cash-market lunch break even when price movement is small.
+- Current-framework relevance: historical-only / low current priority because BOJ discontinued new ETF/J-REIT purchases on 2024-03-19; official historical purchase records remain downloadable.
 - Research implication:
   1. This is a potential **event/liquidity-state** hypothesis, not a generic directional alpha.
   2. The lunch-break futures state is structurally interesting because cash equities are closed while futures continue trading.
