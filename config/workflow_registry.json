@@ -47,6 +47,15 @@
       "status": "pre_registered",
       "purpose": "Literature-backed JNU factor/state research with no post-hoc rescue",
       "preregistration": "config/jnu_v22_evidence_first_preregistration.json"
+    },
+    {
+      "id": "jnu_dynamic_price_discovery_pilot",
+      "status": "active",
+      "request_path": "dpd_requests/*.json",
+      "result_path": "dpd_results/*.json",
+      "report_path": "dpd_reports/*.md",
+      "purpose": "Cloud-first preregistered Dynamic Price Discovery pilot; hard-fails promotion without OSE/SGX venue data",
+      "preregistration": "config/jnu_v22_evidence_first_preregistration.json"
     }
   ]
 }
