@@ -199,6 +199,10 @@ def _gdelt_timeline_one(
         "enddatetime": end,
     }
     url = GDELT_DOC + "?" + urllib.parse.urlencode(params)
+    cache_path = CACHE / cache_name
+    if force or not cache_path.exists():
+        # Be deliberately polite to the public GDELT endpoint; avoid burst throttling.
+        time.sleep(1.0)
     raw = fetch(url, cache_name, force, timeout=75, attempts=2)
     try:
         obj = json.loads(raw.decode("utf-8-sig", errors="replace"))
@@ -419,7 +423,7 @@ def test_news(close: pd.Series, req: dict) -> dict:
     # Execution-only optimization: fetch independent preregistered categories concurrently.
     # Queries, dates, features and statistical tests remain unchanged.
     feature_map = {}
-    workers = min(3, max(1, len(categories)))
+    workers = 1
     with ThreadPoolExecutor(max_workers=workers) as pool:
         futures = {
             pool.submit(news_features, query, close.index, req, key): key
