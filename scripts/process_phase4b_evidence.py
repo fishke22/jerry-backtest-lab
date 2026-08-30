@@ -296,6 +296,12 @@ def gdelt_timeline(query: str, mode: str, start: str, end: str, cache_name: str,
     for i, (chunk_start, chunk_end) in enumerate(windows, start=1):
         chunk_name = f"{stem}_chunk{i}_{chunk_start[:8]}_{chunk_end[:8]}.json"
         part = _gdelt_timeline_adaptive(query, mode, chunk_start, chunk_end, chunk_name, force)
+        if i > 1:
+            # STARTDATETIME is strict (>). We query from one second before the logical
+            # boundary to retain events exactly at 00:00:00, then discard any partial
+            # previous-day bucket the Timeline API may emit.
+            logical_start_day = (pd.to_datetime(chunk_start, format="%Y%m%d%H%M%S") + pd.Timedelta(seconds=1)).normalize()
+            part = part.loc[part.index >= logical_start_day]
         parts.append(part)
         print(
             f"phase4b GDELT chunk ready: {mode} {chunk_start[:8]}->{chunk_end[:8]}",
