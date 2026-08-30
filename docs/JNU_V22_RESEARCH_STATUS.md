@@ -11,7 +11,7 @@ No module is currently a `VALIDATED_JNU_MODULE`.
 | dynamic_price_discovery | CLOUD PILOT COMPLETE | not eligible yet | proxy-only; venue coverage gate failed | CONDITIONAL_ARCHITECTURE_ONLY / NOT ALPHA |
 | intraday_volatility_HAR_RSV_DI1 | PROXY METHOD PASS | not eligible yet | index proxy only; true JNU confirmation pending | RISK-STATE CONFIRMATION CANDIDATE / NOT DIRECTION ALPHA |
 | intraday_path_US_G0 | PROXY SCREEN FAIL | not eligible | fixed FIRST/LAST 30m family failed OOS gate | PROXY NEGATIVE / TRUE JNU UNRESOLVED |
-| phase4b_USDJPY_news | RUNNING | not eligible | preregistered; no result yet | PENDING |
+| phase4b_USDJPY_1d | FAIL | not eligible | bootstrap 0.7445; sign accuracy worsened | REJECT_CURRENT_SPEC |\n| phase4b_news | RUNNING | not eligible | same preregistered six-category family | PENDING |
 | volatility_regime | PASS_CANDIDATE | PASS_ENGINE_REPLAY | FAIL_OVERFIT_GATES | QUARANTINE / independent confirmation only |
 | cross_market_confirmation | PASS_CANDIDATE | PASS_ENGINE_REPLAY | FAIL_OVERFIT_GATES | REJECT_OVERFIT |
 | trend_momentum | FAIL | not eligible | not run | REJECT |
@@ -81,3 +81,21 @@ Disposition:
 ## Phase4B execution note
 
 USDJPY and six preregistered GDELT news-state tests have not produced a research result yet. Previous attempts were terminated by the GitHub Actions 15-minute job limit rather than by model/data exceptions. The control-plane timeout has been increased to 45 minutes without changing any research specification.
+
+
+## Phase4B USDJPY 1-day incremental-state disposition
+
+The existing preregistered USDJPY subtest was executed independently from GDELT retrieval as a checkpoint, with all parameters read directly from the original Phase4B request. This is not a new hypothesis family.
+
+- OOS days: 642.
+- Baseline MSE: 0.0003107946272.
+- With USDJPY MSE: 0.0003078968195.
+- Mean MSE improvement: 2.8978e-06.
+- Block-bootstrap P(improvement > 0): **0.7445**, below the frozen 0.95 gate.
+- Sign accuracy: **54.67% -> 54.05%**, violating the preregistered non-worsening condition.
+- High-VIX diagnostic P(improvement > 0): 0.885; below the gate.
+- Low-VIX diagnostic mean improvement was negative.
+
+Disposition: **REJECT_CURRENT_SPEC**.
+
+Do not promote a universal one-day USDJPY state, and do not rescue it by selecting only the high-VIX subset after observing these results. A future FX hypothesis must be preregistered as a new family using independently justified timing/regime structure or new data.
