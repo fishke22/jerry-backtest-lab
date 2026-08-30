@@ -41,6 +41,12 @@
       "id": "generic_research_workflow",
       "status": "planned",
       "purpose": "Template for future non-financial repeatable research workflows"
+    },
+    {
+      "id": "jnu_v22_evidence_first_phase4",
+      "status": "pre_registered",
+      "purpose": "Literature-backed JNU factor/state research with no post-hoc rescue",
+      "preregistration": "config/jnu_v22_evidence_first_preregistration.json"
     }
   ]
 }
