@@ -1,0 +1,59 @@
+{
+  "version": "1.0",
+  "updated_at": "2026-08-31",
+  "objective": "Prevent backtest overfitting, data snooping and selection bias across JNU research families, not merely within one model.",
+  "principles": [
+    "Every attempted research family remains permanently visible in the trial ledger regardless of outcome.",
+    "A failed family cannot be renamed, slightly reparameterized or subset-selected to escape its prior trial history.",
+    "A DATA_INCONCLUSIVE result is not a statistical failure but its source/acquisition path remains part of research history.",
+    "Legacy families with unknown internal search multiplicity are quarantined from promotion until a genuinely new preregistered family is tested on independent data.",
+    "Only one formal information family may be active at a time."
+  ],
+  "gates": {
+    "before_run": [
+      "Write immutable family ID, hypotheses, predictors, target, timing, sample, OOS method, metrics, multiple-testing family and pass thresholds.",
+      "Freeze data source/provenance and causal availability rules.",
+      "Define forbidden post-hoc rescue operations."
+    ],
+    "within_family": [
+      "Use family-wise correction such as Holm when multiple cells/hypotheses are jointly screened.",
+      "Use block/bootstrap procedures appropriate for serial dependence.",
+      "Require recent/regime stability where preregistered.",
+      "No best-subset reporting without preserving the full family result."
+    ],
+    "cross_family": [
+      "Maintain a complete attempted-family ledger.",
+      "Before any final trading-strategy promotion, evaluate selection bias across all eligible strategy variants using a data-snooping-aware procedure such as White Reality Check / Hansen SPA where implementable.",
+      "Use Deflated Sharpe Ratio for any performance-based final strategy selection when Sharpe is used, accounting for multiple trials and non-normal returns.",
+      "If labels/targets overlap in time, use purging/embargo or non-overlapping evaluation rather than ordinary random cross-validation.",
+      "Final confirmation must use independent or genuinely forward data whenever available."
+    ],
+    "trading_promotion": [
+      "Information-state PASS is not equal to trading PASS.",
+      "Trading promotion requires fees, spread, slippage and executable timing.",
+      "Report raw and deflated performance; do not select only the best regime unless that regime was preregistered.",
+      "A final model must retain explicit invalidation and confidence calibration."
+    ]
+  },
+  "literature": [
+    {
+      "method": "Deflated Sharpe Ratio",
+      "reference": "Bailey & Lopez de Prado (2014), The Deflated Sharpe Ratio",
+      "doi": "10.3905/jpm.2014.40.5.094",
+      "role": "Correct performance inflation from multiple trials/selection bias and non-normal returns."
+    },
+    {
+      "method": "White Reality Check",
+      "reference": "White (2000), A Reality Check for Data Snooping",
+      "doi": "10.1111/1468-0262.00152",
+      "role": "Test whether the best model found in a specification search truly beats a benchmark after data snooping."
+    },
+    {
+      "method": "Trading-rule data-snooping bootstrap",
+      "reference": "Sullivan, Timmermann & White (1999), Data-Snooping, Technical Trading Rule Performance, and the Bootstrap",
+      "doi": "10.1111/0022-1082.00163",
+      "role": "Demonstrates why the full universe of examined trading rules must be accounted for."
+    }
+  ],
+  "promotion_rule": "No JNU module or strategy may be called validated merely because a single conventional backtest is significant."
+}
