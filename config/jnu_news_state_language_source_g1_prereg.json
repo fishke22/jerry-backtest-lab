@@ -29,7 +29,13 @@
     "date_from": "2023-01-04",
     "date_to": "2026-08-28",
     "acquisition": "Quarter-sized windows from the outset; single connection; paced requests; cumulative Actions cache; bounded adaptive split only on a failing quarter.",
-    "raw_storage": "Actions cache only; durable repository output contains derived features/results/provenance, not article bodies."
+    "raw_storage": "Actions cache only; durable repository output contains derived features/results/provenance, not article bodies.",
+    "acquisition_budget": {
+      "max_total_runs": 3,
+      "current_run_number_in_family": 1,
+      "resume_rule": "A resume may only reuse cumulative cache and fetch missing chunks. Queries, dates, features, statistical models and thresholds may not change.",
+      "terminal_rule": "If the complete four-cell panel cannot be acquired after three bounded runs, classify G1 as DATA_INCONCLUSIVE."
+    }
   },
   "family": {
     "size": 4,
