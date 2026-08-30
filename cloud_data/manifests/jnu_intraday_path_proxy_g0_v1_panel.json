@@ -1,0 +1,179 @@
+{
+  "dataset_id": "NIKKEI_SPX_INTRADAY_PATH_PROXY_2011_2018_G0",
+  "status": "DURABLE_DERIVED_PROXY_DATASET",
+  "sources": {
+    "JPXJPY_2011": {
+      "symbol": "JPXJPY",
+      "year": 2011,
+      "url": "https://raw.githubusercontent.com/FutureSharks/financial-data/7ba1d404aa8b0e1c0f71321acebadcbfb9bcca8d/pyfinancialdata/data/stocks/histdata/JPXJPY/DAT_ASCII_JPXJPY_M1_2011.csv",
+      "upstream_commit": "7ba1d404aa8b0e1c0f71321acebadcbfb9bcca8d",
+      "git_blob_sha": "e62e4972f44b407a42ac297aa8beba371e9b32d3",
+      "sha256": "6b9768ed5efec84ee2720e7ec100ed6cfa202e3adeb8dd064cbac21ae26cd7a9",
+      "cache_hit": false,
+      "raw_storage": "PINNED_UPSTREAM + ACTIONS_CACHE"
+    },
+    "JPXJPY_2012": {
+      "symbol": "JPXJPY",
+      "year": 2012,
+      "url": "https://raw.githubusercontent.com/FutureSharks/financial-data/7ba1d404aa8b0e1c0f71321acebadcbfb9bcca8d/pyfinancialdata/data/stocks/histdata/JPXJPY/DAT_ASCII_JPXJPY_M1_2012.csv",
+      "upstream_commit": "7ba1d404aa8b0e1c0f71321acebadcbfb9bcca8d",
+      "git_blob_sha": "9b50dfb2f8ff8506e0f4f906268e27e67cc0aa12",
+      "sha256": "d9f370c501c213ec971ffc60da745cf93a1a5d63bf452fed1e3bbb472fd23b87",
+      "cache_hit": false,
+      "raw_storage": "PINNED_UPSTREAM + ACTIONS_CACHE"
+    },
+    "JPXJPY_2013": {
+      "symbol": "JPXJPY",
+      "year": 2013,
+      "url": "https://raw.githubusercontent.com/FutureSharks/financial-data/7ba1d404aa8b0e1c0f71321acebadcbfb9bcca8d/pyfinancialdata/data/stocks/histdata/JPXJPY/DAT_ASCII_JPXJPY_M1_2013.csv",
+      "upstream_commit": "7ba1d404aa8b0e1c0f71321acebadcbfb9bcca8d",
+      "git_blob_sha": "f1c9f34c04a6dca149a8352c9cc593816ad07d56",
+      "sha256": "311941769829105d336a07e654aa2aa20663be733f6e8550edd37dfa6e397728",
+      "cache_hit": false,
+      "raw_storage": "PINNED_UPSTREAM + ACTIONS_CACHE"
+    },
+    "JPXJPY_2014": {
+      "symbol": "JPXJPY",
+      "year": 2014,
+      "url": "https://raw.githubusercontent.com/FutureSharks/financial-data/7ba1d404aa8b0e1c0f71321acebadcbfb9bcca8d/pyfinancialdata/data/stocks/histdata/JPXJPY/DAT_ASCII_JPXJPY_M1_2014.csv",
+      "upstream_commit": "7ba1d404aa8b0e1c0f71321acebadcbfb9bcca8d",
+      "git_blob_sha": "a0dc8404dada354e28c930b439261d56213d00fe",
+      "sha256": "9decd9bca5f16327507e3e84c64ef98d686629e61d286eae7cae7371ecec51cd",
+      "cache_hit": false,
+      "raw_storage": "PINNED_UPSTREAM + ACTIONS_CACHE"
+    },
+    "JPXJPY_2015": {
+      "symbol": "JPXJPY",
+      "year": 2015,
+      "url": "https://raw.githubusercontent.com/FutureSharks/financial-data/7ba1d404aa8b0e1c0f71321acebadcbfb9bcca8d/pyfinancialdata/data/stocks/histdata/JPXJPY/DAT_ASCII_JPXJPY_M1_2015.csv",
+      "upstream_commit": "7ba1d404aa8b0e1c0f71321acebadcbfb9bcca8d",
+      "git_blob_sha": "787f22e8f151922a8a8b3e3e15032961a86c00e1",
+      "sha256": "1c6b5dc7a05d203b4b3ad77fc5321f3232c4e95fb4dc52756078de6d958a35bb",
+      "cache_hit": false,
+      "raw_storage": "PINNED_UPSTREAM + ACTIONS_CACHE"
+    },
+    "JPXJPY_2016": {
+      "symbol": "JPXJPY",
+      "year": 2016,
+      "url": "https://raw.githubusercontent.com/FutureSharks/financial-data/7ba1d404aa8b0e1c0f71321acebadcbfb9bcca8d/pyfinancialdata/data/stocks/histdata/JPXJPY/DAT_ASCII_JPXJPY_M1_2016.csv",
+      "upstream_commit": "7ba1d404aa8b0e1c0f71321acebadcbfb9bcca8d",
+      "git_blob_sha": "264688c4ba87c7cd76d1085324c99783db7aae29",
+      "sha256": "1a06f2087ba2b3019e5049427e1bd27e724b4c959f06071f61ea277b4ddd29cd",
+      "cache_hit": false,
+      "raw_storage": "PINNED_UPSTREAM + ACTIONS_CACHE"
+    },
+    "JPXJPY_2017": {
+      "symbol": "JPXJPY",
+      "year": 2017,
+      "url": "https://raw.githubusercontent.com/FutureSharks/financial-data/7ba1d404aa8b0e1c0f71321acebadcbfb9bcca8d/pyfinancialdata/data/stocks/histdata/JPXJPY/DAT_ASCII_JPXJPY_M1_2017.csv",
+      "upstream_commit": "7ba1d404aa8b0e1c0f71321acebadcbfb9bcca8d",
+      "git_blob_sha": "dd2c091c3e265e6a796d5e987049c8802d3e20aa",
+      "sha256": "895dd65a368fc69a1d33639af41b9ed5b49f8c7aee7ae87bc18d1fc012cf9c38",
+      "cache_hit": false,
+      "raw_storage": "PINNED_UPSTREAM + ACTIONS_CACHE"
+    },
+    "JPXJPY_2018": {
+      "symbol": "JPXJPY",
+      "year": 2018,
+      "url": "https://raw.githubusercontent.com/FutureSharks/financial-data/7ba1d404aa8b0e1c0f71321acebadcbfb9bcca8d/pyfinancialdata/data/stocks/histdata/JPXJPY/DAT_ASCII_JPXJPY_M1_2018.csv",
+      "upstream_commit": "7ba1d404aa8b0e1c0f71321acebadcbfb9bcca8d",
+      "git_blob_sha": "0ea58be2dfa7910973fbed52831739edc3c07a60",
+      "sha256": "790e97931722b55138e024463093e078813a8422883d159e98c4535221c45e1f",
+      "cache_hit": false,
+      "raw_storage": "PINNED_UPSTREAM + ACTIONS_CACHE"
+    },
+    "SPXUSD_2011": {
+      "symbol": "SPXUSD",
+      "year": 2011,
+      "url": "https://raw.githubusercontent.com/FutureSharks/financial-data/7ba1d404aa8b0e1c0f71321acebadcbfb9bcca8d/pyfinancialdata/data/stocks/histdata/SPXUSD/DAT_ASCII_SPXUSD_M1_2011.csv",
+      "upstream_commit": "7ba1d404aa8b0e1c0f71321acebadcbfb9bcca8d",
+      "git_blob_sha": "f06834ef5dba9a3842807ce19375a5abbe429bad",
+      "sha256": "5c93bd8779d19d127a79184a4edd70735ff79a03e9c2970794a0670cb90bc90c",
+      "cache_hit": false,
+      "raw_storage": "PINNED_UPSTREAM + ACTIONS_CACHE"
+    },
+    "SPXUSD_2012": {
+      "symbol": "SPXUSD",
+      "year": 2012,
+      "url": "https://raw.githubusercontent.com/FutureSharks/financial-data/7ba1d404aa8b0e1c0f71321acebadcbfb9bcca8d/pyfinancialdata/data/stocks/histdata/SPXUSD/DAT_ASCII_SPXUSD_M1_2012.csv",
+      "upstream_commit": "7ba1d404aa8b0e1c0f71321acebadcbfb9bcca8d",
+      "git_blob_sha": "5d6c0c1dbe82dc9bff9a651bb3a573ae417bffde",
+      "sha256": "9fa9e760fab82b4fb53e4a88e8eaf2ea258f3ad578b21765b4d6376539624efb",
+      "cache_hit": false,
+      "raw_storage": "PINNED_UPSTREAM + ACTIONS_CACHE"
+    },
+    "SPXUSD_2013": {
+      "symbol": "SPXUSD",
+      "year": 2013,
+      "url": "https://raw.githubusercontent.com/FutureSharks/financial-data/7ba1d404aa8b0e1c0f71321acebadcbfb9bcca8d/pyfinancialdata/data/stocks/histdata/SPXUSD/DAT_ASCII_SPXUSD_M1_2013.csv",
+      "upstream_commit": "7ba1d404aa8b0e1c0f71321acebadcbfb9bcca8d",
+      "git_blob_sha": "063c7e2cfb27d924f78be10424bcadc1aabf5c14",
+      "sha256": "28b162825090927c5c9f47a6571a7b5d8a257dc40363cc9f7aa60a7919c82ff0",
+      "cache_hit": false,
+      "raw_storage": "PINNED_UPSTREAM + ACTIONS_CACHE"
+    },
+    "SPXUSD_2014": {
+      "symbol": "SPXUSD",
+      "year": 2014,
+      "url": "https://raw.githubusercontent.com/FutureSharks/financial-data/7ba1d404aa8b0e1c0f71321acebadcbfb9bcca8d/pyfinancialdata/data/stocks/histdata/SPXUSD/DAT_ASCII_SPXUSD_M1_2014.csv",
+      "upstream_commit": "7ba1d404aa8b0e1c0f71321acebadcbfb9bcca8d",
+      "git_blob_sha": "b1f27b5228eb689423984d1bdccafe47dba47c81",
+      "sha256": "f2fd077d58b2a9b5125456d8f7c8893b0ded3a3dd229792bf9afa231201daa72",
+      "cache_hit": false,
+      "raw_storage": "PINNED_UPSTREAM + ACTIONS_CACHE"
+    },
+    "SPXUSD_2015": {
+      "symbol": "SPXUSD",
+      "year": 2015,
+      "url": "https://raw.githubusercontent.com/FutureSharks/financial-data/7ba1d404aa8b0e1c0f71321acebadcbfb9bcca8d/pyfinancialdata/data/stocks/histdata/SPXUSD/DAT_ASCII_SPXUSD_M1_2015.csv",
+      "upstream_commit": "7ba1d404aa8b0e1c0f71321acebadcbfb9bcca8d",
+      "git_blob_sha": "86c8125a6376fecda56629375bddace6eae9edbe",
+      "sha256": "0f344ee1ecc0e34f707a340a482314159dc1f414950cc083deae8436b55b9493",
+      "cache_hit": false,
+      "raw_storage": "PINNED_UPSTREAM + ACTIONS_CACHE"
+    },
+    "SPXUSD_2016": {
+      "symbol": "SPXUSD",
+      "year": 2016,
+      "url": "https://raw.githubusercontent.com/FutureSharks/financial-data/7ba1d404aa8b0e1c0f71321acebadcbfb9bcca8d/pyfinancialdata/data/stocks/histdata/SPXUSD/DAT_ASCII_SPXUSD_M1_2016.csv",
+      "upstream_commit": "7ba1d404aa8b0e1c0f71321acebadcbfb9bcca8d",
+      "git_blob_sha": "f7eca59f0402a93ac06bf29a4f116ac372659963",
+      "sha256": "8be247ca5008d6a91c6287c52f1b9df133e4b5ebad29141e9de4686a79c327d2",
+      "cache_hit": false,
+      "raw_storage": "PINNED_UPSTREAM + ACTIONS_CACHE"
+    },
+    "SPXUSD_2017": {
+      "symbol": "SPXUSD",
+      "year": 2017,
+      "url": "https://raw.githubusercontent.com/FutureSharks/financial-data/7ba1d404aa8b0e1c0f71321acebadcbfb9bcca8d/pyfinancialdata/data/stocks/histdata/SPXUSD/DAT_ASCII_SPXUSD_M1_2017.csv",
+      "upstream_commit": "7ba1d404aa8b0e1c0f71321acebadcbfb9bcca8d",
+      "git_blob_sha": "0299150334037188749a953d1e7147f2a7153d60",
+      "sha256": "01236a4178eb7802cd32fb569b7bed13670813ffddb69c95f47eee48d6552e3e",
+      "cache_hit": false,
+      "raw_storage": "PINNED_UPSTREAM + ACTIONS_CACHE"
+    },
+    "SPXUSD_2018": {
+      "symbol": "SPXUSD",
+      "year": 2018,
+      "url": "https://raw.githubusercontent.com/FutureSharks/financial-data/7ba1d404aa8b0e1c0f71321acebadcbfb9bcca8d/pyfinancialdata/data/stocks/histdata/SPXUSD/DAT_ASCII_SPXUSD_M1_2018.csv",
+      "upstream_commit": "7ba1d404aa8b0e1c0f71321acebadcbfb9bcca8d",
+      "git_blob_sha": "85d1d96a1fea752bbebfc17b0fa2a23f14f0a911",
+      "sha256": "7f20d258d549893be83c4416a115861eae8d54ae530dcfd1c3a0dd6e5cc11a43",
+      "cache_hit": false,
+      "raw_storage": "PINNED_UPSTREAM + ACTIONS_CACHE"
+    }
+  },
+  "source_commit": "7ba1d404aa8b0e1c0f71321acebadcbfb9bcca8d",
+  "time_integrity": {
+    "raw_timezone": "fixed EST UTC-5 no DST",
+    "japan_timezone": "Asia/Tokyo",
+    "us_timezone": "America/New_York",
+    "japan_calendar": "config/jnu_session_calendar_versions.json",
+    "availability_rule": "most recent fully completed U.S. cash session strictly before Japan open"
+  },
+  "path": "cloud_data/derived/jnu_intraday_path_proxy_g0_v1_panel.csv.gz",
+  "sha256": "499324e2e87df8f60530b863bc4dcc9146177bc740d7996df1117776cdcf9a30",
+  "raw_storage_policy": "Pinned upstream plus Actions cache only; durable private output is derived daily path panel/provenance.",
+  "formal_jnu_validation": "PROHIBITED_WITH_PROXY",
+  "generated_at_utc": "2026-08-30T16:52:41.778371+00:00"
+}
