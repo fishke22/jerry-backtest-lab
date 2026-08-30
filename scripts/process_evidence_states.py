@@ -19,6 +19,7 @@ REPORTS = ROOT / "evidence_reports"
 CACHE = ROOT / ".cache" / "market-data"
 
 FRED = "https://fred.stlouisfed.org/graph/fredgraph.csv?id={series}&cosd={start}&coed={end}"
+CBOE_VIX = "https://cdn.cboe.com/api/global/us_indices/daily_prices/VIX_History.csv"
 
 
 def fetch_cached(url: str, name: str, force: bool) -> bytes:
@@ -56,6 +57,17 @@ def parse_fred(raw: bytes, series: str) -> pd.Series:
     idx = pd.to_datetime(df[date_col], errors="coerce")
     val = pd.to_numeric(df[value_col], errors="coerce")
     s = pd.Series(val.to_numpy(), index=idx, name=series).dropna().sort_index()
+    return s[~s.index.duplicated(keep="last")]
+
+
+def parse_cboe_vix(raw: bytes) -> pd.Series:
+    df = pd.read_csv(io.StringIO(raw.decode("utf-8-sig", errors="replace")))
+    cols = {str(x).strip().upper(): x for x in df.columns}
+    date_col = cols.get("DATE", df.columns[0])
+    close_col = cols.get("CLOSE", df.columns[-1])
+    idx = pd.to_datetime(df[date_col], errors="coerce")
+    val = pd.to_numeric(df[close_col], errors="coerce")
+    s = pd.Series(val.to_numpy(), index=idx, name="VIX").dropna().sort_index()
     return s[~s.index.duplicated(keep="last")]
 
 
@@ -128,7 +140,8 @@ def load(request: dict):
     close=parse_nikkei(nk_raw).loc[request["date_from"]:request["date_to"]]
     start=(pd.Timestamp(request["date_from"])-pd.Timedelta(days=500)).date().isoformat()
     end=pd.Timestamp(request["date_to"]).date().isoformat()
-    vix=parse_fred(fetch_cached(FRED.format(series="VIXCLS",start=start,end=end),"fred_vixcls.csv",bool(request.get("force_refresh"))),"VIXCLS")
+    vix=parse_cboe_vix(fetch_cached(CBOE_VIX,"cboe_vix_history.csv",bool(request.get("force_refresh"))))
+    vix=vix.loc[pd.Timestamp(start):pd.Timestamp(end)]
     fx=parse_fred(fetch_cached(FRED.format(series="DEXJPUS",start=start,end=end),"fred_dexjpus.csv",bool(request.get("force_refresh"))),"DEXJPUS")
     return close,vix,fx
 
@@ -195,7 +208,7 @@ def tail_risk_proxy_test(close: pd.Series, vix: pd.Series, request: dict) -> dic
     m0=mse(df.actual,df.base); m1=mse(df.actual,df.vix)
     boot=request["bootstrap"]
     return {
-      "proxy":"VIXCLS",
+      "proxy":"CBOE_VIX_DAILY_CLOSE",
       "oos_days":len(df),
       "base_qlike":float(q0.mean()),"vix_qlike":float(q1.mean()),
       "base_mse":float(m0.mean()),"vix_mse":float(m1.mean()),
@@ -256,7 +269,7 @@ def report_md(result: dict)->str:
       f"- State gate: **{'PASS' if v['pass_state'] else 'FAIL'}**",
       "",
       "## 2. US tail-risk proxy",
-      f"- Proxy: VIXCLS",
+      f"- Proxy: Cboe VIX daily close",
       f"- OOS days: {t['oos_days']}",
       f"- Incremental QLIKE improvement: {t['qlike_improvement']:.6g}",
       f"- Incremental MSE improvement: {t['mse_improvement']:.6g}",
