@@ -72,6 +72,13 @@ Baseline:
 - 5-day average squared return;
 - 22-day average squared return.
 
+Forecast specification is fixed **before the first news run**:
+- expanding OLS on log(next-day variance + epsilon);
+- baseline predictors are log(lagged variance aggregates + epsilon);
+- each category model adds all four pre-registered news features together;
+- predicted log variance is exponentiated back to variance;
+- no category-specific feature selection.
+
 Each news category is added separately to the same baseline.
 
 ## Gate
