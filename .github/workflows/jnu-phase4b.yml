@@ -57,7 +57,9 @@ jobs:
           git config user.name "jerry-backtest-bot"
           git config user.email "actions@users.noreply.github.com"
           git commit -m "research: publish JNU Phase4B evidence results"
-          git push
+          branch="${{ github.head_ref || github.ref_name }}"
+          git pull --rebase origin "$branch"
+          git push origin "HEAD:$branch"
 
       - name: Fail workflow if processor failed
         if: steps.phase4brun.outputs.exit_code != '0'
