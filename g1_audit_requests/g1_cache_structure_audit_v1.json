@@ -1,0 +1,6 @@
+{
+  "request_id": "g1_cache_structure_audit_v1",
+  "role": "DATA_QA_ONLY_NO_NETWORK_NO_MODEL",
+  "source_cache_prefix": "g1-news-linux-",
+  "purpose": "Verify whether cached GDELT Timeline JSON contains contiguous daily grids, duplicate dates, and boundary artifacts before accepting any G1 result."
+}
