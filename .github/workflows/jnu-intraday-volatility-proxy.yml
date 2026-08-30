@@ -12,9 +12,6 @@ on:
 permissions:
   contents: write
 
-concurrency:
-  group: jnu-intraday-volatility-proxy
-  cancel-in-progress: false
 
 jobs:
   validate:
