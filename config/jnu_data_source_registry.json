@@ -1,0 +1,133 @@
+{
+  "version": "1.0",
+  "scope": "JNU / Nikkei 225 Micro research data sources",
+  "rule": "Authoritative cross-session registry. Consult before new source discovery; append verified sources as they are found.",
+  "fields": {
+    "required": [
+      "id",
+      "provider",
+      "access_route",
+      "data_type",
+      "coverage",
+      "cost_class",
+      "storage_class",
+      "license_or_terms_status",
+      "provenance",
+      "jnu_role",
+      "status"
+    ]
+  },
+  "sources": [
+    {
+      "id": "NIKKEI_OFFICIAL_FUTURES_INDEX_DAILY",
+      "provider": "Nikkei Indexes",
+      "access_route": "Official web download; used by GitHub Actions cloud workflows",
+      "data_type": "Nikkei 225 Futures Index daily series",
+      "coverage": "Daily historical series",
+      "cost_class": "NO_EXTRA_COST",
+      "storage_class": "CACHE_ONLY_RAW_DURABLE_PROVENANCE",
+      "license_or_terms_status": "Official public download; raw archival rights should be reviewed per-source before durable object storage",
+      "provenance": "URL + SHA-256 recorded in GitHub results",
+      "jnu_role": "Long-horizon daily proxy / state research",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "FRED_NASDAQ100",
+      "provider": "Federal Reserve Economic Data (FRED)",
+      "access_route": "FRED CSV via GitHub Actions",
+      "data_type": "NASDAQ100 daily series",
+      "coverage": "Daily",
+      "cost_class": "NO_EXTRA_COST",
+      "storage_class": "CACHE_ONLY_RAW_DURABLE_PROVENANCE",
+      "license_or_terms_status": "Public government economic data; retain provenance",
+      "provenance": "URL + SHA-256",
+      "jnu_role": "Cross-market daily proxy",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "FRED_DEXJPUS",
+      "provider": "Federal Reserve Economic Data (FRED)",
+      "access_route": "FRED CSV via GitHub Actions",
+      "data_type": "USDJPY daily exchange-rate proxy",
+      "coverage": "Daily",
+      "cost_class": "NO_EXTRA_COST",
+      "storage_class": "CACHE_ONLY_RAW_DURABLE_PROVENANCE",
+      "license_or_terms_status": "Public government economic data; retain provenance",
+      "provenance": "URL + SHA-256",
+      "jnu_role": "Conditional FX state",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "CBOE_VIX_OFFICIAL",
+      "provider": "Cboe",
+      "access_route": "Official VIX historical CSV via GitHub Actions",
+      "data_type": "VIX daily close",
+      "coverage": "Daily historical",
+      "cost_class": "NO_EXTRA_COST",
+      "storage_class": "CACHE_ONLY_RAW_DURABLE_PROVENANCE",
+      "license_or_terms_status": "Official public historical file; raw archival rights should be reviewed before permanent object storage",
+      "provenance": "URL + source identity",
+      "jnu_role": "Free tail-risk proxy / volatility state",
+      "status": "ACTIVE_PROXY"
+    },
+    {
+      "id": "YAHOO_CHART_CME_NIKKEI_PROXY",
+      "provider": "Yahoo Finance public chart endpoint",
+      "access_route": "GitHub Actions cloud pilot",
+      "data_type": "NIY=F / NKD=F / ES=F / NQ=F / ^N225 intraday bars",
+      "coverage": "1m recent ~8d; 5m recent ~60d at time of pilot",
+      "cost_class": "NO_EXTRA_COST",
+      "storage_class": "CACHE_ONLY",
+      "license_or_terms_status": "Public-web proxy; not approved for durable raw archival or formal validation",
+      "provenance": "URL + symbol + SHA-256 + timestamp coverage",
+      "jnu_role": "DPD pilot / sanity check only",
+      "status": "PROVISIONAL_NOT_VALIDATION_GRADE"
+    },
+    {
+      "id": "JPX_OSE_OFFICIAL_MARKET_DATA",
+      "provider": "JPX / Osaka Exchange",
+      "access_route": "Official web sources and official data services",
+      "data_type": "Contract specs, trading hours, official derivatives data; historical ITCH service exists",
+      "coverage": "Authoritative OSE venue information; historical tick service availability varies",
+      "cost_class": "MIXED",
+      "storage_class": "SOURCE_DEPENDENT",
+      "license_or_terms_status": "Official; historical ITCH/alternative data may be paid and redistribution/storage restricted",
+      "provenance": "Official JPX/OSE documentation",
+      "jnu_role": "Authoritative OSE/JNU venue identity and future formal DPD data source",
+      "status": "AUTHORITATIVE_SOURCE_NOT_YET_INTRADAY_INGESTED"
+    },
+    {
+      "id": "SGX_NIKKEI_OFFICIAL",
+      "provider": "Singapore Exchange (SGX)",
+      "access_route": "Official SGX sources / data services",
+      "data_type": "SGX Nikkei 225 futures specifications and venue data",
+      "coverage": "Authoritative SGX venue information",
+      "cost_class": "MIXED",
+      "storage_class": "SOURCE_DEPENDENT",
+      "license_or_terms_status": "Official source; historical intraday licensing/storage rights must be checked",
+      "provenance": "Official SGX source",
+      "jnu_role": "Required venue for formal Dynamic Price Discovery validation",
+      "status": "AUTHORITATIVE_SOURCE_NOT_YET_INTRADAY_INGESTED"
+    },
+    {
+      "id": "CME_NIKKEI_OFFICIAL",
+      "provider": "CME Group",
+      "access_route": "Official CME sources / connected market-data tools when available",
+      "data_type": "Nikkei JPY/USD futures and Micro Nikkei",
+      "coverage": "Contract and market information; historical data access route depends on source/tool",
+      "cost_class": "MIXED",
+      "storage_class": "SOURCE_DEPENDENT",
+      "license_or_terms_status": "Official source; historical raw-data terms must be checked",
+      "provenance": "Official CME",
+      "jnu_role": "US-session Nikkei price-discovery venue",
+      "status": "AUTHORITATIVE_SOURCE_NOT_YET_FULLY_INGESTED"
+    }
+  ],
+  "discovery_priority": [
+    "Installed plugins/skills/connectors that can expose market/futures data at no extra cost",
+    "Official exchange/index/public-sector sources",
+    "Existing user-connected cloud MCP services",
+    "Free public web proxies for pilot-only work",
+    "Local machine only when cloud/plugin routes cannot perform the task"
+  ]
+}
