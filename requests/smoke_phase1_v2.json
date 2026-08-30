@@ -1,0 +1,25 @@
+{
+  "request_id": "smoke_phase1_v2",
+  "instrument": "nikkei225_futures_index",
+  "strategy": "sma_cross",
+  "date_from": "2023-01-04",
+  "date_to": "2026-08-28",
+  "allow_short": true,
+  "cost_bps": 1.5,
+  "slippage_bps": 1.0,
+  "walk_forward": {
+    "enabled": true,
+    "train_days": 252,
+    "test_days": 63,
+    "step_days": 63,
+    "fast_windows": [5, 10, 20],
+    "slow_windows": [40, 60, 100, 150],
+    "selection_metric": "sharpe"
+  },
+  "validation": {
+    "min_oos_sharpe": 0.0,
+    "min_oos_total_return": 0.0,
+    "require_positive_after_cost": true,
+    "min_oos_days": 126
+  }
+}
