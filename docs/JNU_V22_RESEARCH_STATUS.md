@@ -1,6 +1,6 @@
 # JNU V2.2 Research Status
 
-Updated: 2026-08-30
+Updated: 2026-08-31
 
 ## Standing interpretation
 
@@ -8,7 +8,11 @@ No module is currently a `VALIDATED_JNU_MODULE`.
 
 | Module | First engine | Nautilus second engine | Overfit / multiple testing | Research disposition |
 |---|---|---|---|---|
-| dynamic_price_discovery | CLOUD PILOT COMPLETE | not eligible yet | proxy-only; venue coverage gate failed | CONDITIONAL_ARCHITECTURE_ONLY / NOT ALPHA |\n| volatility_regime | PASS_CANDIDATE | PASS_ENGINE_REPLAY | FAIL_OVERFIT_GATES | QUARANTINE / independent confirmation only |
+| dynamic_price_discovery | CLOUD PILOT COMPLETE | not eligible yet | proxy-only; venue coverage gate failed | CONDITIONAL_ARCHITECTURE_ONLY / NOT ALPHA |
+| intraday_volatility_HAR_RSV_DI1 | PROXY METHOD PASS | not eligible yet | index proxy only; true JNU confirmation pending | RISK-STATE CONFIRMATION CANDIDATE / NOT DIRECTION ALPHA |
+| intraday_path_US_G0 | PROXY SCREEN FAIL | not eligible | fixed FIRST/LAST 30m family failed OOS gate | PROXY NEGATIVE / TRUE JNU UNRESOLVED |
+| phase4b_USDJPY_news | RUNNING | not eligible | preregistered; no result yet | PENDING |
+| volatility_regime | PASS_CANDIDATE | PASS_ENGINE_REPLAY | FAIL_OVERFIT_GATES | QUARANTINE / independent confirmation only |
 | cross_market_confirmation | PASS_CANDIDATE | PASS_ENGINE_REPLAY | FAIL_OVERFIT_GATES | REJECT_OVERFIT |
 | trend_momentum | FAIL | not eligible | not run | REJECT |
 | breakout | FAIL | not eligible | not run | REJECT |
@@ -37,3 +41,43 @@ Its PBO was extremely high and CPCV positive-path consistency was below the requ
 ## Rule
 
 Do not rescue failed modules by widening parameter grids, changing thresholds after seeing results, or selectively dropping bad periods. A new hypothesis must be pre-registered as a new research candidate.
+
+
+## Intraday volatility HAR-RSV DI1 disposition
+
+A data-integrity correction was required because the TSE morning cash session ended at 11:00 before 2011-11-21. The original proxy result is retained for audit; DI1 changed only the historical session mask and left the 5-minute sampling, HAR 1/5/22 windows, model family, bootstrap settings, and pass thresholds frozen.
+
+DI1 results on the 2011-2018 Nikkei index minute proxy:
+
+- OOS: 1,524 days (2013-01-22 to 2018-12-31).
+- HAR_LEVERAGE remained a fail.
+- HAR_RSV achieved MSE bootstrap P(improvement > 0) = 0.9585 and therefore passed the preregistered proxy-method gate.
+- QLIKE bootstrap support remained weak (0.6835), and the source is not OSE/JNU futures.
+
+Disposition:
+
+- **Do not promote as directional alpha.**
+- Retain HAR-RSV as a frozen **volatility/risk-state confirmation candidate** for true OSE/JNU minute data.
+- If confirmed on true JNU data, its allowed role is risk state, position sizing, stop-distance normalization, and confidence adjustment.
+- Do not retune sampling interval, HAR windows, semivariance definition, or bootstrap gate on the 2011-2018 proxy sample.
+
+## Intraday Path prior-U.S.-return G0 disposition
+
+The 2026 direct Nikkei-futures hypothesis was screened with frozen FIRST_30M and LAST_30M states on pinned JPXJPY/SPXUSD minute proxies, strict prior-completed-U.S.-session availability, and historical timezone/session corrections.
+
+Proxy G0 results:
+
+- Derived aligned panel: 713 days.
+- FIRST_30M coefficient had the expected negative sign, but incremental OOS MSE worsened and hit rate fell; bootstrap P(improvement > 0) = 0.1385.
+- LAST_30M coefficient did not preserve the expected positive sign; bootstrap P(improvement > 0) = 0.6175.
+- Family gate: **FAIL**.
+
+Disposition:
+
+- **Do not admit this proxy family to the JNU framework.**
+- Do not change 30-minute windows, swap SPX for NQ, or add technical indicators to rescue the proxy.
+- Because this is an index-proxy screen with limited aligned coverage, the 2026 true-futures hypothesis is not declared disproven. A future true-JNU confirmation may be run only with the frozen Generation-1 specification.
+
+## Phase4B execution note
+
+USDJPY and six preregistered GDELT news-state tests have not produced a research result yet. Previous attempts were terminated by the GitHub Actions 15-minute job limit rather than by model/data exceptions. The control-plane timeout has been increased to 45 minutes without changing any research specification.
