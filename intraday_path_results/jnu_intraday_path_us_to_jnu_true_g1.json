@@ -1,0 +1,75 @@
+{
+  "candidate_id": "INTRADAY_PATH_US_TO_JNU_TRUE_G1",
+  "status": "REJECT_TRUE_JNU_CURRENT_SPEC",
+  "source_role": "EXACT_PRODUCT_TRUE_JNU_INFORMATION_TEST",
+  "promotion_power": "NONE_AFTER_INFORMATION_GATE_REJECTION",
+  "panel_days_before_alignment": 796,
+  "panel_days_after_causal_spx_alignment": 796,
+  "aligned_from": "2023-07-24",
+  "aligned_to": "2026-08-31",
+  "spx_source": {
+    "dataset": "Kaggle paveljurke/s-and-p-500-gspc-historical-data",
+    "dataset_version": 732,
+    "license_label": "CC0: Public Domain",
+    "zip_sha256": "8f19fafb398ad048776340152bac5e9129f74c6646ea0ec76b1961e6a72ce521",
+    "csv_sha256": "0686d640b1653bab8482905c419b7b799cce578825e9e866eeec7a19169c2f66",
+    "spx_first_return_date": "1928-01-03",
+    "spx_last_return_date": "2026-08-27",
+    "raw_persisted_in_repo": false
+  },
+  "jnu_derived_panel_sha256": "609b23768a3e438533751ce10372b89dd8c2a7feadf38055fd24da169e004bef",
+  "jnu_manifest_sha256": "f79139fdd77b94fedff633487c48df2dceb842a0bd698c750cf1ad372be0e03c",
+  "cells": {
+    "H1_FIRST30": {
+      "status": "CELL_FAIL_TRUE_JNU_CURRENT_SPEC",
+      "expected_beta_sign": "negative",
+      "oos_days": 736,
+      "final_expanding_beta": -0.05443316549822588,
+      "mse_improvement": 1.8019353475704177e-07,
+      "mse_bootstrap_prob_positive": 0.84,
+      "baseline_sign_accuracy": 0.4891304347826087,
+      "model_sign_accuracy": 0.5230978260869565,
+      "one_sided_p": 0.16000000000000003
+    },
+    "H2_LAST30": {
+      "status": "CELL_FAIL_TRUE_JNU_CURRENT_SPEC",
+      "expected_beta_sign": "positive",
+      "oos_days": 736,
+      "final_expanding_beta": 0.021847699385308013,
+      "mse_improvement": -4.685865022384675e-09,
+      "mse_bootstrap_prob_positive": 0.454,
+      "baseline_sign_accuracy": 0.4470108695652174,
+      "model_sign_accuracy": 0.47282608695652173,
+      "one_sided_p": 0.546
+    },
+    "H3_STATE_INTERACTION": {
+      "status": "CELL_FAIL_TRUE_JNU_CURRENT_SPEC",
+      "oos_days": 736,
+      "mse_improvement": -5.065272798632809e-08,
+      "mse_bootstrap_prob_positive": 0.354,
+      "one_sided_p": 0.646,
+      "final_state_betas": {
+        "FIRST30": -0.05443316549822589,
+        "MIDDLE": -0.06354193092694042,
+        "LAST30": 0.021847699385308016
+      }
+    }
+  },
+  "holm": {
+    "pass": false,
+    "method": "Holm",
+    "alpha": 0.1,
+    "first_failed_cell": "H1_FIRST30",
+    "first_p": 0.16000000000000003,
+    "first_threshold": 0.03333333333333333
+  },
+  "next_rule": "Current true-JNU specification is rejected. Do not tune windows, switch predictor class, drop cells, or add indicators to rescue it.",
+  "workflow_evidence": {
+    "run_id": 33391992462,
+    "head_sha": "315562b01433484ba49106b9c15891d9cef0d68a",
+    "artifact_id": 9757824371,
+    "conclusion": "success",
+    "research_spec_changed_after_preregistration": false
+  },
+  "generated_at_utc": "2026-08-31T12:29:45.495418+00:00"
+}
