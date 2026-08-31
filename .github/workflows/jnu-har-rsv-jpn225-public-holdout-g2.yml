@@ -1,0 +1,34 @@
+name: JNU HAR-RSV JPN225 Public Holdout G2
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "volatility_requests/jnu_har_rsv_jpn225_public_holdout_g2.json"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install dependencies
+        run: pip install numpy pandas
+      - name: Run data-integrity selftest
+        run: python scripts/selftest_jnu_data_integrity.py
+      - name: Run frozen public-proxy holdout
+        run: python scripts/process_jnu_har_rsv_jpn225_public_holdout_g2.py
+      - name: Commit derived result only
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add volatility_results/jnu_har_rsv_jpn225_public_holdout_g2.json volatility_reports/jnu_har_rsv_jpn225_public_holdout_g2.md cloud_data/derived/jnu_har_rsv_jpn225_public_holdout_g2_daily_rv.csv.gz cloud_data/manifests/jnu_har_rsv_jpn225_public_holdout_g2.json
+          git diff --cached --quiet || git commit -m "research: record JPN225 HAR-RSV holdout G2 result"
+          git push
