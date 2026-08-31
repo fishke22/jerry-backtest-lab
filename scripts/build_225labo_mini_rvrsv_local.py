@@ -276,6 +276,7 @@ def main():
     # prefer the newest package deterministically.
     candidates: dict[date,list[tuple[int,Path,DailyAcc]]]={}
     sources=[]
+    source_hash_lookup: dict[str,str]={}
     qa1m=[]
     for p in annual_files(args.input_dir):
         m=re.search(r"(20\d{2})",p.name)
@@ -304,9 +305,11 @@ def main():
                 qa1m.append({"file":p.name,"status":"QA_1M_UNAVAILABLE","error":type(exc).__name__})
         for d,acc in d5.items():
             candidates.setdefault(d,[]).append((nominal,p,acc))
+        source_digest=sha256_file(p)
+        source_hash_lookup[p.name]=source_digest
         sources.append({
             "source_id":p.name,
-            "sha256":sha256_file(p),
+            "sha256":source_digest,
             "size_bytes":p.stat().st_size,
             "nominal_year":nominal,
             "meta_5m":meta5,
@@ -351,7 +354,7 @@ def main():
             "n_5m_returns":len(acc.returns),
             "valid_5m_bars":acc.valid_bars,
             "session_coverage_ratio":coverage,
-            "source_file_sha256":sha256_file(p),
+            "source_file_sha256":source_hash_lookup[p.name],
             "transform_version":"225LABO_MINI_RVRSV_V1",
         })
 
