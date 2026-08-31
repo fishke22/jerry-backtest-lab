@@ -1,13 +1,13 @@
 {
-  "version": "1.4",
+  "version": "1.5",
   "as_of": "2026-08-31",
   "framework": "JNU_FINAL_FRAMEWORK_V3",
   "architecture_status": "FROZEN",
-  "research_completion_state": "FRAMEWORK_RESEARCH_TRUE_OSE_MINI_STAGE_A_RUNNING",
+  "research_completion_state": "FRAMEWORK_RESEARCH_STAGE3_INFORMATION_STATE_CANDIDATE_AVAILABLE",
   "validated_jnu_modules": 0,
   "validated_directional_modules": 0,
   "decision_engine_output": "NO_VALIDATED_DIRECTIONAL_EDGE",
-  "meaning": "Architecture remains frozen. Genuine OSE Nikkei 225 Mini intraday annual data 2006-2026 have been acquired locally under personal-use storage controls. Stage A derived 5m RV/RSV and preregistered statistical confirmation are in progress; no validation promotion has occurred.",
+  "meaning": "HAR-RSV has passed preregistered true-OSE Mini Stage A and exact-product JNU Micro Stage B, satisfying Stage 3 true-target confirmation as a volatility/risk information-state candidate. It is not directional alpha and has not completed downstream position/risk-rule validation.",
   "substitute_data_update": {
     "GETDATA_JPN225_PUBLIC_SAMPLE_1M": "2026-02-01 through 2026-07-31 public Japan225 1-minute sample; usable for proxy stress tests only.",
     "HAR_RSV_JPN225_PUBLIC_HOLDOUT_G2": {
@@ -194,5 +194,13 @@
     "measurement_qa": "1min vs 5min separate, not model selection",
     "stage_a_prereg": "config/jnu_har_rsv_true_ose_mini_stage_a_g1_prereg.json",
     "stage_a_status": "DERIVED_BUILD_RUNNING"
+  },
+  "har_rsv_stage3": {
+    "status": "PASS",
+    "role": "VOLATILITY_RISK_STATE_ONLY_NOT_DIRECTIONAL_ALPHA",
+    "mini_stage_a_run": 33388746345,
+    "micro_stage_b_run": 33389857914,
+    "stage9_validated": false,
+    "next": "Deferred 1m-vs-5m measurement QA, then Stage-4 translation only if the module will change position/risk controls."
   }
 }
