@@ -1,0 +1,107 @@
+{
+  "version": "1.0",
+  "candidate_id": "PRIOR_NIGHT_USDJPY_TO_JNU_DAY_G1",
+  "status": "PREREGISTERED_BEFORE_HOLDOUT_OUTCOME_INSPECTION",
+  "frozen_at": "2026-09-01",
+  "role": "DIRECTIONAL_INFORMATION_GATE",
+  "evidence": {
+    "source": "Satoyoshi (2018), Analysis of Price Fluctuations in the Nikkei 225 Futures Market: Night Session and Day Session, OSE/JPX Futures & Options Report",
+    "published_sample": "2016-07-20 through 2018-07-31",
+    "direct_market": "OSE Nikkei 225 futures",
+    "published_result": "Lagged overnight USD/JPY change EX_R(-1) has a significant negative coefficient in the day-session futures-return regression: coefficient -0.264, Newey-West t=-2.637.",
+    "independence": "External FX predictor; not the futures-own overnight return, not prior-SPX path, and not intraday momentum/reversion."
+  },
+  "fx_predictor": {
+    "boJ_series": "FM08'FXERD04",
+    "boJ_definition": "USD/JPY spot rate at 17:00 JST, Tokyo market, yen per USD",
+    "boJ_official_start": "1998-01-05",
+    "fed_series": "DEXJPUS / Federal Reserve H.10",
+    "fed_definition": "Japanese yen per USD noon buying rate in New York City",
+    "alignment": "For OSE trading date D, choose the latest calendar date t strictly before D for which both BOJ 17:00 JST and Federal Reserve noon-NY observations exist on t.",
+    "fx_overnight_return": "log(FED_H10_NOON_NY_t / BOJ_17JST_t)",
+    "signal": "-sign(fx_overnight_return)",
+    "causal": true,
+    "raw_cloud_persistence": false
+  },
+  "target": {
+    "definition": "OSE regular day-session open-to-close log return",
+    "open": "open of first source 1-minute bar at historical OSE day-session open",
+    "close": "close of final source 1-minute bar before historical OSE day-session close",
+    "calendar": "config/jnu_session_calendar_versions.json",
+    "no_night_session_target": true
+  },
+  "stage_a": {
+    "venue": "OSE",
+    "product": "Nikkei 225 Mini Futures",
+    "raw_source": "225Labo local-only 1-minute annual workbooks",
+    "date_from": "2018-08-01",
+    "date_to": "2023-07-21",
+    "rationale": "Strict post-publication-sample holdout ending before exact JNU Micro confirmation period.",
+    "minimum_usable_days": 900
+  },
+  "stage_b": {
+    "venue": "OSE",
+    "product": "Nikkei 225 Micro Futures (JNU)",
+    "raw_source": "225Labo local-only 1-minute annual workbooks",
+    "date_from": "2023-07-24",
+    "date_to": "latest available",
+    "minimum_usable_days": 500,
+    "requires_stage_a_pass": true
+  },
+  "data_quality": {
+    "day_session_minute_label_coverage_minimum": 0.95,
+    "day_open_and_close_required": true,
+    "boJ_and_fed_same_calendar_date_required": true,
+    "no_fx_forward_fill_across_missing_joint_observation": true,
+    "no_imputation": true,
+    "invalid_nonpositive_prices_or_fx": "critical DQ"
+  },
+  "primary_test": {
+    "daily_signal_payoff": "-sign(fx_overnight_return) * OSE_day_session_return",
+    "expected_mean_payoff": "positive",
+    "directional_accuracy": "Among nonzero FX signals and nonzero target returns, fraction signal sign equals target-return sign; expected > 0.5",
+    "bootstrap": {
+      "unit": "trading day",
+      "method": "iid resample days with replacement",
+      "resamples": 5000,
+      "seed": 42,
+      "probability_mean_payoff_positive_threshold": 0.95
+    },
+    "formal_primary_cells": 1,
+    "multiplicity_correction": "None; one frozen primary signal."
+  },
+  "stage_a_pass_rule": [
+    "At least 900 usable post-paper OSE Mini days.",
+    "Mean daily signal payoff > 0.",
+    "Aggregate nonzero-target directional accuracy > 0.5.",
+    "Bootstrap P(mean daily signal payoff > 0) >= 0.95."
+  ],
+  "stage_b_pass_rule": [
+    "Stage A PASS is mandatory; otherwise Stage B statistics are prohibited.",
+    "At least 500 usable exact-JNU Micro days.",
+    "Identical FX definition, alignment, signal and target; no retuning.",
+    "Mean daily signal payoff > 0.",
+    "Aggregate nonzero-target directional accuracy > 0.5.",
+    "Bootstrap P(mean daily signal payoff > 0) >= 0.95."
+  ],
+  "diagnostics_non_promotional": [
+    "OLS slope of OSE day return on FX overnight return; expected negative.",
+    "Calendar-year effect direction.",
+    "Post-2024-11-05 OSE session-extension diagnostic in Stage B.",
+    "Gross signal payoff distribution before trading costs."
+  ],
+  "forbidden": [
+    "Change the FX measurement times after outcomes.",
+    "Use BOJ 9:00, current-day Tokyo FX, NY close, or intraday FX alternatives as rescue.",
+    "Add NY Dow, S&P 500, HAR-RSV, BOJ-event, VIX, volume or technical filters to rescue G1.",
+    "Threshold FX changes by magnitude after outcomes.",
+    "Flip the signal sign after outcomes.",
+    "Use night-session target instead of day-session target as rescue.",
+    "Use exact-JNU Stage B to rescue a failed Mini Stage A.",
+    "Claim tradable alpha before downstream execution/cost/overfit/forward validation."
+  ],
+  "interpretation": {
+    "pass": "If both stages pass, promote only to a directional information candidate. A concrete executable rule must still pass downstream execution/cost/overfit/forward stages.",
+    "fail": "Close current family. Reopen only with substantively new independent evidence, not FX-time/filter/sign/threshold rescue."
+  }
+}
