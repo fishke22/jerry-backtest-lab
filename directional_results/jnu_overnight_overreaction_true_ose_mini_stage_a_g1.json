@@ -1,0 +1,26 @@
+{
+  "candidate_id": "OVERNIGHT_OVERREACTION_TRUE_JNU_G1",
+  "stage": "A_TRUE_OSE_MINI",
+  "status": "TRUE_OSE_MINI_OVERNIGHT_OVERREACTION_STAGE_A_FAIL",
+  "stage_a_pass": false,
+  "role": "DIRECTIONAL_INFORMATION_GATE",
+  "usable_days": 1857,
+  "minimum_usable_days": 1000,
+  "mean_daily_signal_payoff": 0.00017748443807267367,
+  "aggregate_directional_accuracy_nonzero_targets": 0.5451002227171492,
+  "bootstrap_prob_mean_positive": 0.9208,
+  "bootstrap_ci95": [
+    -0.00007605107235775918,
+    0.000425770332960491
+  ],
+  "diagnostic_ols_slope_morning_on_overnight": -0.020528843554912524,
+  "stage_b_status": "PROHIBITED_BY_PREREG_STAGE_A_FAIL",
+  "next_rule": "Close family. No morning-horizon changes, filter additions, night-session-only rescue, sign change, or Micro rescue.",
+  "workflow_evidence": {
+    "run_id": 33400904120,
+    "head_sha": "1228106fc01388022b6ccf80cd19f422d876c2de",
+    "artifact_id": 9761173804,
+    "conclusion": "success"
+  },
+  "generated_at_utc": "2026-08-31T14:08:44.174202+00:00"
+}
