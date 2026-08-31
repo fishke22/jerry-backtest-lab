@@ -61,15 +61,16 @@
     {
       "module": "NEWS_LANGUAGE_SOURCE_STATE",
       "evidence_grade": "A",
-      "data_grade": "B",
+      "data_grade": "C",
       "literature": [
         "Smales 2026 — CME Nikkei futures; Japanese/English sentiment-source effects",
         "Feng, Fu & Shi 2022 — Japanese news sentiment and volatility states"
       ],
-      "internal_result": "G1 currently running; broad GDELT predecessor was data-inconclusive.",
-      "status": "ACTIVE_FORMAL_SCREEN",
-      "admitted_role": "None yet; volatility/event state only if G1 passes",
-      "caveat": "GDELT sourcelang is an independent proxy structure, not TRNA replication."
+      "internal_result": "G1-DI1 terminal DATA_INCONCLUSIVE after three logical acquisition attempts; final four-cell panel incomplete with 311 missing cache windows; statistical evaluation not performed.",
+      "status": "DATA_INCONCLUSIVE_SOURCE_ACQUISITION_CLOSED",
+      "admitted_role": "None",
+      "caveat": "GDELT sourcelang is an independent proxy structure, not TRNA replication.",
+      "reopen_rule": "Do not run a fourth acquisition attempt. Reopen only as a substantively new family with an independently justified, reliable source path and fresh preregistration."
     },
     {
       "module": "PRIOR_US_RETURN_INTRADAY_PATH",
@@ -128,8 +129,8 @@
         "Andersen/Todorov/Ubukata Japanese-equity left-tail predictability",
         "Cboe LTV methodology designed around extreme SPX downside option-implied risk"
       ],
-      "internal_result": "Not tested.",
-      "status": "HIGH_EVIDENCE_DATA_BLOCKED",
+      "internal_result": "Not tested; official historical LTV series requires a paid/proprietary data path under current verification.",
+      "status": "BLOCKED_NO_VERIFIED_FREE_OFFICIAL_HISTORY",
       "admitted_role": "None",
       "next_evidence_needed": "Verified free/authorized historical LTV EOD series",
       "forbidden": "Substitute VIX/SKEW and call it equivalent."
