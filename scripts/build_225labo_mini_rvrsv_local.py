@@ -12,13 +12,12 @@ No strategy optimization or parameter search is performed here.
 """
 from __future__ import annotations
 
-import argparse, csv, hashlib, io, json, math, re, zipfile
+import argparse, csv, hashlib, io, json, math, re, zipfile, statistics
 from dataclasses import dataclass
 from datetime import date, datetime, time
 from pathlib import Path
 from typing import Any, Iterable
 
-import pandas as pd
 
 EXPECTED_HEADER = ["日付","時間","始値","高値","安値","終値","出来高"]
 
@@ -88,7 +87,11 @@ def normalize_date(v: Any) -> date:
     if isinstance(v,(int,float)):
         # xlrd dates should already have been converted; numeric date here is unsupported.
         raise ValueError(f"unexpected numeric date {v}")
-    return pd.to_datetime(v).date()
+    text=str(v).strip().replace("/", "-")
+    try:
+        return datetime.fromisoformat(text).date()
+    except ValueError:
+        return datetime.strptime(text.split()[0], "%Y-%m-%d").date()
 
 def normalize_time(v: Any) -> time:
     if isinstance(v,datetime): return v.time().replace(microsecond=0)
@@ -97,7 +100,11 @@ def normalize_time(v: Any) -> time:
         # Excel fractional day.
         seconds=round(float(v)*86400)%86400
         return time(seconds//3600,(seconds%3600)//60,seconds%60)
-    return pd.to_datetime(str(v)).time().replace(microsecond=0)
+    text=str(v).strip()
+    try:
+        return time.fromisoformat(text).replace(microsecond=0)
+    except ValueError:
+        return datetime.fromisoformat(text).time().replace(microsecond=0)
 
 @dataclass
 class DailyAcc:
@@ -237,6 +244,16 @@ def sumsq(xs:list[float])->float: return float(sum(x*x for x in xs))
 def semipos(xs:list[float])->float: return float(sum(x*x for x in xs if x>=0))
 def semineg(xs:list[float])->float: return float(sum(x*x for x in xs if x<0))
 
+def pearson_corr(xs:list[float], ys:list[float]) -> float|None:
+    if len(xs) != len(ys) or len(xs) < 2:
+        return None
+    mx=sum(xs)/len(xs); my=sum(ys)/len(ys)
+    dx=[x-mx for x in xs]; dy=[y-my for y in ys]
+    den=(sum(x*x for x in dx)*sum(y*y for y in dy))**0.5
+    if den == 0:
+        return None
+    return float(sum(a*b for a,b in zip(dx,dy))/den)
+
 def annual_files(folder:Path)->list[Path]:
     fs=list(folder.glob("N225minif_*.zip")) + list(folder.glob("225mini20*d.xls"))
     fs=sorted(fs,key=lambda p:p.name)
@@ -272,9 +289,10 @@ def main():
                 if d5[d].returns and d1[d].returns:
                     pairs.append((sumsq(d5[d].returns),sumsq(d1[d].returns)))
             if len(pairs)>=2:
-                x=pd.Series([a for a,b in pairs]); y=pd.Series([b for a,b in pairs])
-                corr=float(x.corr(y))
-                ratio_median=float((y/x.replace(0,float("nan"))).median())
+                xs=[a for a,b in pairs]; ys=[b for a,b in pairs]
+                corr=pearson_corr(xs,ys)
+                ratios=[b/a for a,b in pairs if a>0]
+                ratio_median=float(statistics.median(ratios)) if ratios else None
             else:
                 corr=None; ratio_median=None
             qa1m.append({"file":p.name,"common_days":len(pairs),"rv_1m_vs_5m_corr":corr,"rv_1m_to_5m_ratio_median":ratio_median,"meta":meta1})
@@ -333,9 +351,18 @@ def main():
             "transform_version":"225LABO_MINI_RVRSV_V1",
         })
 
-    df=pd.DataFrame(rows).sort_values("trading_date")
+    rows=sorted(rows,key=lambda r:r["trading_date"])
     panel=args.output_dir/"jnu_225labo_mini_daily_rvrsv_v1.csv"
-    df.to_csv(panel,index=False)
+    fieldnames=[
+        "trading_date","rv_5m","rsv_pos_5m","rsv_neg_5m",
+        "day_session_rv","night_session_rv","n_5m_returns",
+        "valid_5m_bars","session_coverage_ratio","source_file_sha256",
+        "transform_version"
+    ]
+    with panel.open("w",encoding="utf-8",newline="") as fh:
+        writer=csv.DictWriter(fh,fieldnames=fieldnames)
+        writer.writeheader()
+        writer.writerows(rows)
     panel_hash=sha256_file(panel)
 
     # Compact gap inventory.
@@ -353,12 +380,12 @@ def main():
             "venue":"OSE","product":"Nikkei 225 Mini Futures","source_series":"225Labo annual central/near contract minute packages",
             "years_present":years_present,"missing_year_packages":missing_years,
         },
-        "date_range":[df["trading_date"].min() if len(df) else None,df["trading_date"].max() if len(df) else None],
+        "date_range":[rows[0]["trading_date"] if rows else None,rows[-1]["trading_date"] if rows else None],
         "missingness_summary":{
-            "selected_trading_days":int(len(df)),
+            "selected_trading_days":len(rows),
             "annual_packages_missing":missing_years,
-            "days_below_95pct_session_coverage":int((df["session_coverage_ratio"]<0.95).sum()) if len(df) else 0,
-            "minimum_session_coverage_ratio":float(df["session_coverage_ratio"].min()) if len(df) else None,
+            "days_below_95pct_session_coverage":sum(1 for r in rows if r["session_coverage_ratio"]<0.95),
+            "minimum_session_coverage_ratio":min((r["session_coverage_ratio"] for r in rows),default=None),
         },
         "duplicate_summary":{"overlap_trading_days_across_annual_packages":overlap_days},
         "derived_feature_definitions":{
@@ -377,7 +404,7 @@ def main():
     mpath.write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
     print(json.dumps({
         "status":"DERIVED_PANEL_BUILT" if not critical else "DERIVED_PANEL_BUILT_WITH_CRITICAL_DQ",
-        "panel":str(panel),"manifest":str(mpath),"rows":len(df),
+        "panel":str(panel),"manifest":str(mpath),"rows":len(rows),
         "date_range":manifest["date_range"],"years_present":years_present,
         "missing_years":missing_years,"critical_issue_count":len(critical),
         "days_below_95pct_coverage":manifest["missingness_summary"]["days_below_95pct_session_coverage"],
