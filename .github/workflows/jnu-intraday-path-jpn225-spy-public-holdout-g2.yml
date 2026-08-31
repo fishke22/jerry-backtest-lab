@@ -1,0 +1,34 @@
+name: JNU Intraday Path JPN225 SPY Public Holdout G2
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "intraday_path_requests/jnu_intraday_path_jpn225_spy_public_holdout_g2.json"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install dependencies
+        run: pip install numpy pandas
+      - name: Run JNU data-integrity selftest
+        run: python scripts/selftest_jnu_data_integrity.py
+      - name: Run frozen JPN225-SPY proxy holdout
+        run: python scripts/process_jnu_intraday_path_jpn225_spy_public_holdout_g2.py
+      - name: Commit derived result only
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add intraday_path_results/jnu_intraday_path_jpn225_spy_public_holdout_g2.json intraday_path_reports/jnu_intraday_path_jpn225_spy_public_holdout_g2.md cloud_data/derived/jnu_intraday_path_jpn225_spy_public_holdout_g2.csv.gz cloud_data/manifests/jnu_intraday_path_jpn225_spy_public_holdout_g2.json
+          git diff --cached --quiet || git commit -m "research: record JPN225-SPY intraday path holdout G2"
+          git push
