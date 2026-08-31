@@ -323,3 +323,19 @@ Framework implication:
 - HAR-RSV remains the only Stage-3 true-JNU information-state candidate, and only for volatility/risk.
 - Validated directional modules remain 0.
 - Decision engine remains `NO_VALIDATED_DIRECTIONAL_EDGE`.
+
+
+## 28. SGX DPD rights blocker and BOJ family unblocked
+A fresh SGX source/rights audit was completed after OSE Mini/Micro minute data became available.
+
+### TRUE_VENUE_DPD_OSE_SGX_CME
+- OSE side: genuine minute history available locally through 225Labo.
+- CME side: public NKD short sample already passed source-alignment feasibility.
+- SGX side: current NK/NS identity and legacy TC/TickData structure are known, but no free third-party matched-expiry SGX Nikkei intraday dataset with explicit quantitative/non-display/retention rights was verified.
+- SGX's 2026 Market Data Policy covers historical data and regulates non-display usage; SGX website terms also restrict copying/storage/derivative works without permission. Public GitHub projects contain downloader/index code, not licensed raw SGX market data. Barchart long-history 1-minute downloads are Premier/paid.
+- Therefore DPD is now `DATA_RIGHTS_BLOCKED_SGX_INTRADAY`. Do not bulk-download legacy SGX archives or pay for Barchart/Tick Data without explicit authorization.
+
+### BOJ_MPM_EVENT_VOLATILITY
+The prior blocker `BLOCKED_ON_INTRADAY_OUTCOME_DATA` is obsolete because genuine OSE Mini 2006-2026 and exact JNU Micro 2023-2026 minute data are now locally available. The family is promoted to event-timestamp construction/pre-prereg status only. No price outcome may be inspected until the official BOJ release-time corpus and statistical design are frozen.
+
+The active formal research slot is now reserved for `BOJ_MPM_TRUE_OSE_EVENT_VOLATILITY_G1`.
