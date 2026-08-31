@@ -1,5 +1,5 @@
 {
-  "version": "1.6",
+  "version": "1.7",
   "updated_at": "2026-08-31",
   "policy": {
     "max_active_formal_families": 1,
@@ -17,7 +17,7 @@
   "queue": [
     {"rank":2,"candidate":"HAR_RSV_TRUE_OSE_CONFIRMATION","evidence":"Direct Japanese/Nikkei futures volatility literature + 2011-2018 proxy-method PASS + 2026 public-proxy holdout consistency","target_role":"Risk state / sizing / stop normalization","status":"BLOCKED_ON_PERSONALLY_LICENSED_LOCAL_OSE_FILE","data_plan":"Nikkei mini 2006+ long-history confirmation, then Micro 2023+ exact-product consistency","next_action":"Resume after exact 225Labo schema/sample is locally available; raw stays local."},
     {"rank":3,"candidate":"CBOE_LTV_LEFT_TAIL_RISK","status":"BLOCKED_NO_VERIFIED_FREE_OFFICIAL_HISTORY","next_action":"Do not substitute VIX/SKEW."},
-    {"rank":4,"candidate":"TRUE_VENUE_DPD_OSE_SGX_CME","status":"PARTIALLY_UNBLOCKED_CME_SHORT_SAMPLE_OSE_SGX_STILL_BLOCKED","new_source":"axb0306/cme-futures-ohlc public NKD tick/1m/5m sample, visible coverage ~2026-03-08 to 2026-04-15, TopstepX/ProjectX-derived","next_action":"Treat CME NKD as short-sample venue feasibility only. Continue searching for approved free matched-expiry OSE and SGX intraday history; no formal promotion until all required venues and adequate coverage exist.","source_note":"research_notes/jnu_new_source_discovery_cme_nkd_sgx_20260831.md"},
+    {"rank":4,"candidate":"TRUE_VENUE_DPD_OSE_SGX_CME","status":"CME_ALIGNMENT_FEASIBLE_OSE_SGX_STILL_BLOCKED","new_source":"axb0306/cme-futures-ohlc public NKD tick/1m/5m sample, visible coverage 2026-03-08 to 2026-04-15, TopstepX/ProjectX-derived","feasibility_result":{"run_id":33359934341,"candidate":"CME_NKD_JPN225_ALIGNMENT_G0","status":"SOURCE_FEASIBILITY_COMPLETE","common_5m_bars":7305,"contemporaneous_corr":0.9221838112308237,"max_abs_corr_lag_5m_units":0,"rolling_corr_median":0.915635577176246,"promotion_power":"NONE"},"next_action":"Keep CME NKD as a viable CME-side input. Continue searching for approved free matched-expiry OSE and SGX intraday history; no formal DPD promotion until all required venues and adequate coverage exist.","source_note":"research_notes/jnu_new_source_discovery_cme_nkd_sgx_20260831.md","guardrail":"Strong alignment with Japan225 proxy does not establish CME leadership, OSE leadership, directional alpha, or true-JNU validation."},
     {"rank":5,"candidate":"INTRADAY_PATH_US_TO_JNU_G1","evidence":"Direct Iwanaga 2026 evidence, but both 2011-2018 proxy G0 and 2026 Japan225/SPY proxy G2 fail OOS proxy confirmation","status":"DESIGN_FROZEN_AWAITING_TRUE_JNU_INTRADAY_DATA","preregistration":"config/jnu_intraday_path_us_g1_prereg.json","next_action":"True OSE/JNU minute data only. Do not open further proxy-rescue variants or change FIRST/LAST 30m/predictor after the two negative proxy screens."},
     {"rank":6,"candidate":"OSE_ORDER_IMBALANCE","status":"BLOCKED_NO_FREE_DIRECTIONAL_ORDER_FLOW_DATA","next_action":"Do not infer from OHLC/volume."},
     {"rank":7,"candidate":"BOJ_MPM_EVENT_VOLATILITY","status":"BLOCKED_ON_ADEQUATE_FREE_INTRADAY_VOLATILITY_HISTORY","next_action":"Do not launch weak small-event daily substitute."}
@@ -26,7 +26,8 @@
     {"candidate":"PHASE4B_GDELT_NEWS_STATE","status":"DATA_INCONCLUSIVE","final_run_id":33331409697},
     {"candidate":"NEWS_STATE_LANGUAGE_SOURCE_G1_DI1","status":"DATA_INCONCLUSIVE","final_run_id":33348607397,"logical_attempts_used":3,"reopen_rule":"No fourth acquisition attempt."},
     {"candidate":"HAR_RSV_JPN225_PUBLIC_HOLDOUT_G2","status":"CURRENT_SAMPLE_PROXY_CONSISTENT","final_run_id":33357752091,"panel_days":130,"oos_days":48,"mse_bootstrap_prob_positive":0.975,"promotion_power":"NONE_TO_TRUE_JNU"},
-    {"candidate":"INTRADAY_PATH_JPN225_SPY_PUBLIC_HOLDOUT_G2","status":"PROXY_PATH_CURRENT_SAMPLE_NOT_CONFIRMED","final_run_id":33358017603,"panel_days":130,"oos_days_per_cell":70,"H1_FIRST30_mse_bootstrap_prob_positive":0.297,"H2_LAST30_mse_bootstrap_prob_positive":0.788,"holm_pass":false,"promotion_power":"NONE_TO_TRUE_JNU"}
+    {"candidate":"INTRADAY_PATH_JPN225_SPY_PUBLIC_HOLDOUT_G2","status":"PROXY_PATH_CURRENT_SAMPLE_NOT_CONFIRMED","final_run_id":33358017603,"panel_days":130,"oos_days_per_cell":70,"H1_FIRST30_mse_bootstrap_prob_positive":0.297,"H2_LAST30_mse_bootstrap_prob_positive":0.788,"holm_pass":false,"promotion_power":"NONE_TO_TRUE_JNU"},
+    {"candidate":"CME_NKD_JPN225_ALIGNMENT_G0","status":"SOURCE_FEASIBILITY_COMPLETE","final_run_id":33359934341,"implementation_revision":"DI1_POSITIONAL_VALUE_ALIGNMENT_FIX_ONLY","common_5m_bars":7305,"contemporaneous_corr":0.9221838112308237,"rolling_corr_median":0.915635577176246,"promotion_power":"NONE"}
   ],
   "screened_not_separate_families": [
     {"candidate":"FUTURES_CASH_BASIS_ALPHA","disposition":"DO_NOT_OPEN_SEPARATE_FAMILY","allowed_use":"DPD/fair-value sanity check, roll diagnostics and execution context only."}
