@@ -1,0 +1,106 @@
+{
+  "audit": "G1 cached GDELT structure only; no network and no model evaluation",
+  "cache_dir": "/home/runner/work/jerry-backtest-lab/jerry-backtest-lab/.cache/market-data",
+  "files_found": 8,
+  "files": [
+    {
+      "file": "g1_JAPAN_MACRO_JA_timelinetone_q1_20230104_20230401_L1.json",
+      "points_total": 44,
+      "dates_unique": 44,
+      "duplicate_date_points": 0,
+      "date_min": "2023-01-04",
+      "date_max": "2023-02-16",
+      "calendar_span_days": 44,
+      "missing_calendar_days": 0,
+      "missing_examples": [],
+      "daily_grid_complete_within_returned_span": true
+    },
+    {
+      "file": "g1_JAPAN_MACRO_JA_timelinetone_q1_20230104_20230401_R1.json",
+      "points_total": 43,
+      "dates_unique": 43,
+      "duplicate_date_points": 0,
+      "date_min": "2023-02-17",
+      "date_max": "2023-04-01",
+      "calendar_span_days": 44,
+      "missing_calendar_days": 1,
+      "missing_examples": [
+        "2023-03-23"
+      ],
+      "daily_grid_complete_within_returned_span": false
+    },
+    {
+      "file": "g1_JAPAN_MACRO_JA_timelinetone_q2_20230331_20230701.json",
+      "points_total": 92,
+      "dates_unique": 92,
+      "duplicate_date_points": 0,
+      "date_min": "2023-04-01",
+      "date_max": "2023-07-01",
+      "calendar_span_days": 92,
+      "missing_calendar_days": 0,
+      "missing_examples": [],
+      "daily_grid_complete_within_returned_span": true
+    },
+    {
+      "file": "g1_JAPAN_MACRO_JA_timelinetone_q3_20230630_20231001.json",
+      "points_total": 93,
+      "dates_unique": 93,
+      "duplicate_date_points": 0,
+      "date_min": "2023-07-01",
+      "date_max": "2023-10-01",
+      "calendar_span_days": 93,
+      "missing_calendar_days": 0,
+      "missing_examples": [],
+      "daily_grid_complete_within_returned_span": true
+    },
+    {
+      "file": "g1_JAPAN_MACRO_JA_timelinetone_q4_20230930_20240101.json",
+      "points_total": 93,
+      "dates_unique": 93,
+      "duplicate_date_points": 0,
+      "date_min": "2023-10-01",
+      "date_max": "2024-01-01",
+      "calendar_span_days": 93,
+      "missing_calendar_days": 0,
+      "missing_examples": [],
+      "daily_grid_complete_within_returned_span": true
+    },
+    {
+      "file": "g1_JAPAN_MACRO_JA_timelinetone_q5_20231231_20240401_L1_L2.json",
+      "points_total": 23,
+      "dates_unique": 23,
+      "duplicate_date_points": 0,
+      "date_min": "2024-01-01",
+      "date_max": "2024-01-23",
+      "calendar_span_days": 23,
+      "missing_calendar_days": 0,
+      "missing_examples": [],
+      "daily_grid_complete_within_returned_span": true
+    },
+    {
+      "file": "g1_JAPAN_MACRO_JA_timelinetone_q5_20231231_20240401_L1_R2.json",
+      "points_total": 23,
+      "dates_unique": 23,
+      "duplicate_date_points": 0,
+      "date_min": "2024-01-24",
+      "date_max": "2024-02-15",
+      "calendar_span_days": 23,
+      "missing_calendar_days": 0,
+      "missing_examples": [],
+      "daily_grid_complete_within_returned_span": true
+    },
+    {
+      "file": "g1_JAPAN_MACRO_JA_timelinetone_q5_20231231_20240401_R1.json",
+      "points_total": 46,
+      "dates_unique": 46,
+      "duplicate_date_points": 0,
+      "date_min": "2024-02-16",
+      "date_max": "2024-04-01",
+      "calendar_span_days": 46,
+      "missing_calendar_days": 0,
+      "missing_examples": [],
+      "daily_grid_complete_within_returned_span": true
+    }
+  ],
+  "interpretation_rule": "This audit only establishes whether successful cached Timeline JSON contains a contiguous daily grid within its returned span. It does not infer missing-day semantics from documentation."
+}
