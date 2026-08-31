@@ -1,0 +1,80 @@
+{
+  "candidate_id": "INTRADAY_PATH_JPN225_SPY_PUBLIC_HOLDOUT_G2",
+  "status": "PROXY_PATH_CURRENT_SAMPLE_NOT_CONFIRMED",
+  "formal_true_jnu_status": "STILL_PENDING_TRUE_OSE",
+  "promotion_power": "NONE_TO_TRUE_JNU",
+  "panel_days": 130,
+  "cells": {
+    "H1_FIRST30": {
+      "status": "CELL_FAIL_CURRENT_PROXY_SPEC",
+      "oos_days": 70,
+      "oos_from": "2026-04-27",
+      "oos_to": "2026-07-31",
+      "expected_beta_sign": "negative",
+      "final_expanding_beta": -0.10815336033029892,
+      "median_expanding_beta": -0.11685232352616201,
+      "coefficient_sign_ok": true,
+      "baseline_mse": 4.566535684014205e-05,
+      "model_mse": 4.620949109682014e-05,
+      "mse_improvement": -5.441342566780908e-07,
+      "mse_bootstrap": {
+        "n": 70,
+        "mean": -5.441342566780908e-07,
+        "prob_positive": 0.297,
+        "ci95": [
+          -3.140954561579205e-06,
+          1.8513732062994778e-06
+        ]
+      },
+      "baseline_sign_accuracy": 0.4857142857142857,
+      "model_sign_accuracy": 0.45714285714285713,
+      "sign_accuracy_not_worse": false,
+      "one_sided_p": 0.7030000000000001
+    },
+    "H2_LAST30": {
+      "status": "CELL_FAIL_CURRENT_PROXY_SPEC",
+      "oos_days": 70,
+      "oos_from": "2026-04-27",
+      "oos_to": "2026-07-31",
+      "expected_beta_sign": "positive",
+      "final_expanding_beta": -0.03765976120071457,
+      "median_expanding_beta": -0.03627434235681106,
+      "coefficient_sign_ok": false,
+      "baseline_mse": 9.385278226090208e-06,
+      "model_mse": 9.231898319670228e-06,
+      "mse_improvement": 1.5337990641998256e-07,
+      "mse_bootstrap": {
+        "n": 70,
+        "mean": 1.5337990641998256e-07,
+        "prob_positive": 0.788,
+        "ci95": [
+          -1.9235014875377285e-07,
+          4.642196901784364e-07
+        ]
+      },
+      "baseline_sign_accuracy": 0.5857142857142857,
+      "model_sign_accuracy": 0.5428571428571428,
+      "sign_accuracy_not_worse": false,
+      "one_sided_p": 0.21199999999999997
+    }
+  },
+  "holm": {
+    "pass": false,
+    "alpha": 0.1,
+    "method": "Holm",
+    "checks": [
+      {
+        "cell": "H2_LAST30",
+        "p": 0.21199999999999997,
+        "threshold": 0.05,
+        "pass": false
+      }
+    ]
+  },
+  "source_sha256": {
+    "jpn225": "f53741c1c6338fcb57907a2d75f67379dd9c85276b8ccdc2cb9bba447e5c5a65",
+    "spy_yahoo_transient": "e5dcf6b6443f21e97e061fb261f3565c815c8565c3667294b9fbd6bd1b0ee619"
+  },
+  "guardrail": "SPY and Japan225 are proxies; this result cannot rescue G0 or validate live JNU direction.",
+  "generated_at_utc": "2026-08-31T04:42:33.618620+00:00"
+}

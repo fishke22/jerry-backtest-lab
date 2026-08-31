@@ -1,0 +1,12 @@
+{
+  "candidate_id": "INTRADAY_PATH_JPN225_SPY_PUBLIC_HOLDOUT_G2",
+  "target_source": "https://raw.githubusercontent.com/getdata-finance/jpn225-1m-ohlcv-index-historical-data/main/JPN225_1m.csv",
+  "predictor_source": "Yahoo Finance chart/SPY daily (transient raw)",
+  "raw_persisted_in_repo": false,
+  "derived_path": "cloud_data/derived/jnu_intraday_path_jpn225_spy_public_holdout_g2.csv.gz",
+  "derived_sha256": "e1de6d94a5514b29052a0b0fc23f1dfde07f27e8113df97f2e2192a9f862cb66",
+  "source_sha256": {
+    "jpn225": "f53741c1c6338fcb57907a2d75f67379dd9c85276b8ccdc2cb9bba447e5c5a65",
+    "spy_yahoo_transient": "e5dcf6b6443f21e97e061fb261f3565c815c8565c3667294b9fbd6bd1b0ee619"
+  }
+}
