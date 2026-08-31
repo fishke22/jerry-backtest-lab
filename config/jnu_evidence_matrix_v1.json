@@ -94,7 +94,19 @@
       "internal_result": "Not tested because no approved free directional trade/order-side history.",
       "status": "LITERATURE_ONLY_DATA_BLOCKED",
       "admitted_role": "None",
-      "forbidden": "Infer order imbalance from OHLC/VWAP/volume."
+      "forbidden": "Infer order imbalance from OHLC/VWAP/volume.",
+      "direct_evidence_detail": {
+        "paper": "Li, Endo, Zuo & Kishimoto (2010), Order imbalances explain 90% of returns of Nikkei 225 futures",
+        "doi": "10.1080/00036840902881819",
+        "reported_result": "Conventional plus limit-order imbalance explain >90% of intraday Nikkei 225 futures returns in the studied OSE sample; spread scaling raises explanatory power in thinner markets.",
+        "interpretation_guardrail": "This is contemporaneous/explanatory microstructure evidence, not proof of causal next-bar tradable prediction.",
+        "required_data": [
+          "true signed trade imbalance",
+          "true limit-order imbalance",
+          "spread/quote information"
+        ],
+        "prohibited_proxy": "Do not manufacture order imbalance from OHLC, VWAP or aggregate volume."
+      }
     },
     {
       "module": "USDJPY_1D_STATE",
