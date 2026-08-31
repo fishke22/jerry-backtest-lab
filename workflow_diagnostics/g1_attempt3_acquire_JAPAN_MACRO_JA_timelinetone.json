@@ -1,0 +1,53 @@
+{
+  "role": "G1_FINAL_ATTEMPT_ACQUISITION_STAGE_ONLY_NO_MODEL",
+  "logical_attempt": 3,
+  "cell": "JAPAN_MACRO_JA",
+  "mode": "TimelineTone",
+  "started_at_utc": "2026-08-31T01:52:50.760375+00:00",
+  "elapsed_seconds": 324.148,
+  "stage_complete": false,
+  "research_parameter_change": false,
+  "rows": [
+    {
+      "quarter": 1,
+      "start": "20230104000000",
+      "end": "20230401000000",
+      "status": "COMPLETE_QUARTER_CACHE"
+    },
+    {
+      "quarter": 2,
+      "start": "20230331235959",
+      "end": "20230701000000",
+      "status": "COMPLETE_QUARTER_CACHE"
+    },
+    {
+      "quarter": 3,
+      "start": "20230630235959",
+      "end": "20231001000000",
+      "status": "COMPLETE_QUARTER_CACHE"
+    },
+    {
+      "quarter": 4,
+      "chunk": 1,
+      "start": "20230930235959",
+      "end": "20231031235959",
+      "status": "ACQUIRED"
+    },
+    {
+      "quarter": 4,
+      "chunk": 2,
+      "start": "20231031235958",
+      "end": "20231201235959",
+      "status": "ACQUIRED"
+    },
+    {
+      "quarter": 4,
+      "chunk": 3,
+      "start": "20231201235958",
+      "end": "20240101000000",
+      "status": "SOURCE_OR_NETWORK_FAILURE",
+      "error_type": "RuntimeError",
+      "error": "fetch failed g1_JAPAN_MACRO_JA_timelinetone_q4_20230930_20240101_D3_20231201_20240101.json: <urlopen error [Errno 104] Connection reset by peer>"
+    }
+  ]
+}
