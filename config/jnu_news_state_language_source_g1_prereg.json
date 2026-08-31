@@ -51,6 +51,19 @@
         "data_integrity_revision": "G1_DI1",
         "cache_policy": "Reuse latest cache from research/news-language-source-g1 and fetch only missing chunks.",
         "research_parameter_change": false
+      },
+      "attempt_3_if_needed": {
+        "classification": "FINAL_DATA_ACQUISITION_ONLY",
+        "trigger_condition": "Logical attempt #2 completes without a full four-cell panel solely because one or more uncached quarter requests time out or fail at the source/network layer.",
+        "execution_change": "For an already cached quarter, reuse its exact cache. For an uncached quarter only, decompose directly to <=31-day windows before any network request; retain single connection, pacing, bounded adaptive split and same-branch cumulative cache.",
+        "research_parameter_change": false,
+        "forbidden": [
+          "Change query text or sourcelang",
+          "Drop a cell",
+          "Change date range, EWM half-life, OOS start, recent window, bootstrap or Holm thresholds",
+          "Run a fourth acquisition attempt"
+        ],
+        "terminal_rule": "If the full DI1 panel still cannot be acquired, classify G1 DATA_INCONCLUSIVE and close the family."
       }
     }
   },
