@@ -1,0 +1,41 @@
+name: JNU CME NKD JPN225 Alignment G0
+
+on:
+  push:
+    paths:
+      - "requests/jnu_cme_nkd_jpn225_alignment_g0.trigger"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref || github.ref_name }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Run frozen CME/JPN225 alignment feasibility
+        run: python scripts/process_jnu_cme_nkd_jpn225_alignment_g0.py
+      - name: Commit aggregate result only
+        shell: bash
+        run: |
+          git add dpd_results/jnu_cme_nkd_jpn225_alignment_g0.json
+          if git diff --cached --quiet; then
+            echo "No new result."
+            exit 0
+          fi
+          git config user.name "jerry-backtest-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git commit -m "research: publish CME NKD alignment feasibility G0"
+          branch="${{ github.head_ref || github.ref_name }}"
+          git pull --rebase origin "$branch"
+          git push origin "HEAD:$branch"
