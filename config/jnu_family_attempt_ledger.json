@@ -1,5 +1,5 @@
 {
-  "version": "1.1",
+  "version": "1.2",
   "updated_at": "2026-08-31",
   "rule": "Permanent family-level attempt ledger. Never delete failed/inconclusive families to improve apparent research success rate.",
   "families": [
@@ -18,7 +18,7 @@
     {"id":"PHASE4B_USDJPY_1D","status":"REJECT_CURRENT_SPEC","multiplicity":"PREREGISTERED"},
     {"id":"PHASE4B_GDELT_BROAD_NEWS","status":"DATA_INCONCLUSIVE","multiplicity":"PREREGISTERED_FULL_FAMILY"},
     {"id":"NEWS_STATE_LANGUAGE_SOURCE_G1","status":"DATA_INCONCLUSIVE","multiplicity":"PREREGISTERED_4_CELL_HOLM_FAMILY","data_integrity_revision":"G1_DI1","logical_attempts_used":3,"terminal_run_id":33348607397,"terminal_reason":"FINAL_ACQUISITION_BUDGET_EXHAUSTED_INCOMPLETE_FOUR_CELL_PANEL","statistical_evaluation_performed":false,"missing_cache_count":311,"directional_trading_status":"PROHIBITED_G1","old_runs":[33341758160,33341760779,33343945135],"old_runs_eligibility":"DATA_AUDIT_ONLY","selftest":"PASS","quality_gate":{"min_common_trading_day_coverage":0.95,"min_common_oos_evaluation_days":500},"note":"G1-DI1 closed after the preregistered third and final acquisition attempt. No fourth acquisition attempt is permitted."},
-    {"id":"HAR_RSV_JPN225_PUBLIC_HOLDOUT_G2","status":"RUNNING_PROXY_HOLDOUT","multiplicity":"PREREGISTERED_SINGLE_PROXY_HOLDOUT","run_id":33357752091,"preregistration":"config/jnu_har_rsv_jpn225_public_holdout_g2_prereg.json","promotion_power":"NONE_TO_TRUE_JNU","note":"Newly discovered later-period public Japan 225 1-minute sample. This can stress-test current-regime proxy consistency only and cannot replace frozen true-OSE Stage A/Stage B confirmation."}
+    {"id":"HAR_RSV_JPN225_PUBLIC_HOLDOUT_G2","status":"CURRENT_SAMPLE_PROXY_CONSISTENT_TRUE_OSE_PENDING","multiplicity":"PREREGISTERED_SINGLE_PROXY_HOLDOUT","run_id":33357752091,"preregistration":"config/jnu_har_rsv_jpn225_public_holdout_g2_prereg.json","panel_days":130,"oos_days":48,"qlike_improvement":0.009772944838529621,"mse_improvement":4.856569361748562e-10,"qlike_bootstrap_prob_positive":0.9415,"mse_bootstrap_prob_positive":0.975,"promotion_power":"NONE_TO_TRUE_JNU","note":"Later-period 2026 public Japan 225 proxy is consistent with HAR-RSV on both losses and clears the preregistered 0.95 bootstrap threshold on MSE. This strengthens proxy evidence only; true-OSE mini Stage A and JNU micro Stage B remain mandatory."}
   ],
   "conservative_rule": "Unknown legacy multiplicity is treated against promotion, not ignored."
 }
