@@ -143,13 +143,13 @@ def source_files(folder:Path,product:str)->dict[int,Path]:
 def collect_event_closes(path:Path,event_dates:set[date])->tuple[dict[date,dict[int,float]],dict[str,Any]]:
     member,raw,suf=workbook_payload(path)
     names=sheet_names(raw,suf)
-    one=[n for n in names if str(n).strip()=="1min"]
-    if not one:
-        one=[n for n in names if str(n).strip().startswith("1min")]
+    one=[n for n in names if str(n).strip().startswith("1min")]
     if not one:
         raise ValueError(f"{path.name}: no 1min sheet")
-    # G1 expects a single canonical 1min sheet. If legacy workbook has multiple
-    # 1min variants, concatenate structurally and dedupe by minute.
+    # Legacy XLS generations split annual 1-minute history across multiple
+    # sheets such as "1min", "1min (2)", "1min(3)", etc. Always concatenate
+    # every 1min-prefixed shard and dedupe by minute. This is a data-integrity
+    # correction only; event windows/model gates are unchanged.
     data={d:{} for d in event_dates}
     duplicate=0
     invalid=0
