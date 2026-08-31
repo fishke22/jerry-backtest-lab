@@ -255,7 +255,7 @@ def pearson_corr(xs:list[float], ys:list[float]) -> float|None:
     return float(sum(a*b for a,b in zip(dx,dy))/den)
 
 def annual_files(folder:Path)->list[Path]:
-    fs=list(folder.glob("N225microf_*.zip")) + list(folder.glob("225mini20*d.xls"))
+    fs=list(folder.glob("N225microf_*.zip"))
     fs=sorted(fs,key=lambda p:p.name)
     if not fs: raise SystemExit("no 225Labo Micro annual minute files found")
     return fs
@@ -375,7 +375,7 @@ def main():
 
     # Compact gap inventory.
     years_present=sorted({s["nominal_year"] for s in sources if s["nominal_year"]>0})
-    missing_years=[y for y in range(2006,datetime.now().year+1) if y not in years_present]
+    missing_years=[y for y in range(2023,datetime.now().year+1) if y not in years_present]
 
     manifest={
         "version":"1.0",
