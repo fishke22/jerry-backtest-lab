@@ -239,3 +239,36 @@ A generic fail-closed Phase-A schema auditor was added at `scripts/inspect_225la
 Two QROS reports dated 2026-07-12 stated that the JPX Daily Report was settlement-only and that no authoritative OSE Micro historical OHLC/volume/OI had been obtained. Those statements were correct for that task's knowledge state but are superseded by later QROS work from August: hundreds of JPX public Daily Report PDFs were downloaded and parser v1.0.2 extracted explicit night/day OHLC, settlement, volume and open interest for Large/Mini/Micro contract rows. The exact Micro common-day corpus now has 364 distinct days and the Mini corpus 1,250 distinct days.
 
 Future sessions must use the later provenance/DQ artifacts rather than treating the 2026-07-12 report as current source availability. This supersession still does not create minute/tick history; the remaining blocker is true OSE 1m/5m intraday history.
+
+
+## 24. 225Labo Mini intraday acquisition complete
+The authorized local Windows session completed the 225Labo Nikkei 225 Mini annual intraday acquisition for every year 2006 through 2026.
+
+Local raw storage boundary:
+`D:\QROS\data\personal_licensed\225labo\mini\raw`
+
+Inventory:
+- 2006-2011: legacy direct XLS annual files (225miniYYYYd.xls).
+- 2012-2026: annual ZIP containers (N225minif_YYYY.zip), containing XLS for early years and XLSX for later years.
+- Every annual generation contains a source-provided `5min` sheet. The later workbooks also expose 1/3/5/10/15/20/30/60min plus daily sheets; older workbooks use equivalent minute sheets with some legacy workbook-layout differences.
+- 2006 has a one-row descriptive preamble before the standard header; parser support was frozen by finding the exact header within the first 12 rows rather than guessing prices.
+- 225Labo date labels were empirically verified as OSE trading-date labels: each date group lists the night session first and the same trading-date day session afterward. No artificial +1 day shift is applied.
+
+Raw 225Labo files remain local-only. They are not uploaded to GitHub/cloud. Future GitHub backtests will use only non-reconstructive daily RV/RSV derived features, source hashes, DQ manifest and results.
+
+The local adapter is `scripts/build_225labo_mini_rvrsv_local.py` and now:
+- supports direct XLS and ZIP-contained XLS/XLSX generations;
+- uses source-provided 5min as the frozen primary measurement;
+- applies `config/jnu_session_calendar_versions.json` historically;
+- never forms returns across session boundaries;
+- supports 1min-vs-5min measurement QA separately so primary 5m build is not delayed;
+- has no pandas/NumPy dependency locally, avoiding the QROS Python ABI mismatch.
+
+True-OSE Stage A was preregistered before outcome inspection in:
+`config/jnu_har_rsv_true_ose_mini_stage_a_g1_prereg.json`.
+
+The cloud runner/workflow are:
+- `scripts/process_jnu_har_rsv_true_ose_mini_stage_a_g1.py`
+- `.github/workflows/jnu-har-rsv-true-ose-mini-stage-a-g1.yml`
+
+Current state at this log point: true-OSE Mini intraday acquisition COMPLETE; derived 5m RV/RSV build RUNNING; no Stage A statistical outcome inspected yet.
