@@ -206,6 +206,7 @@ def main():
     manifest={
       "version":"1.0","candidate_id":pre["candidate_id"],
       "stage":"A_TRUE_OSE_MINI" if args.product=="MINI" else "B_EXACT_JNU_MICRO",
+      "source_license_classification":"225LABO_PERSONAL_USE_LOCAL_RAW_DERIVED_NON_RECONSTRUCTIVE_EXPORT",
       "raw_data_cloud_uploaded":False,"parser_version_commit":args.parser_commit,
       "calendar_session_version":cal.get("version"),
       "product_contract_coverage":{"venue":"OSE","product":"Nikkei 225 Mini Futures" if args.product=="MINI" else "Nikkei 225 Micro Futures (JNU)","date_from":cfg["date_from"],"date_to":cfg["date_to"]},
