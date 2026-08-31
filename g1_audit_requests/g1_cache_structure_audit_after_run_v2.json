@@ -1,0 +1,7 @@
+{
+  "request_id": "g1_cache_structure_audit_after_run_v2",
+  "role": "DATA_QA_ONLY_NO_NETWORK_NO_MODEL",
+  "cache_scope": "base branch research/news-language-source-g1",
+  "after_run": 33341760779,
+  "purpose": "Audit latest cumulative G1 cache after bounded run before DI1 attempt #2."
+}
