@@ -1,5 +1,5 @@
 {
-  "version": "1.3",
+  "version": "1.4",
   "updated_at": "2026-08-31",
   "policy": {
     "max_active_formal_families": 1,
@@ -7,22 +7,15 @@
     "ranking_dimensions": ["Direct Nikkei/Nikkei-futures academic evidence","Independent/true OSE data quality","No-extra-cost data availability","Causal timing and point-in-time integrity","Multiple-testing/overfit risk","Incremental role not duplicated by existing layers"],
     "prohibited": ["Parameter rescue after a failed preregistered family","Testing many indicators in parallel and selecting the prettiest result","Promoting proxy-only evidence as validated JNU alpha","Counting correlated features as independent votes"]
   },
-  "active": {
-    "candidate": "HAR_RSV_JPN225_PUBLIC_HOLDOUT_G2",
-    "run_id": 33357752091,
-    "status": "RUNNING_PROXY_HOLDOUT",
-    "role": "Current-regime proxy stress test for HAR-RSV risk-state candidate",
-    "promotion_power": "NONE_TO_TRUE_JNU",
-    "note": "New free public 2026 Japan 225 1-minute sample discovered after prior 2011-2018 proxy work. Uses preregistered 5-minute RV/RSV and HAR 1/5/22. True-OSE confirmation remains mandatory regardless of result."
-  },
+  "active": null,
   "current_global_blocker": {
     "id": "TRUE_OSE_INTRADAY_DATA_ACCESS",
-    "status": "PARTIALLY_BYPASSED_FOR_PROXY_STRESS_ONLY_TRUE_PROMOTION_STILL_BLOCKED",
+    "status": "PROXY_STRESS_AVAILABLE_TRUE_PROMOTION_STILL_BLOCKED",
     "impact": ["HAR_RSV_TRUE_OSE_CONFIRMATION","INTRADAY_PATH_US_TO_JNU_G1","TRUE_VENUE_DPD_OSE_SGX_CME"],
-    "rule": "Index/CFD proxies may be used for explicitly preregistered methodology or holdout stress tests, but never for true-OSE/JNU promotion."
+    "rule": "Index/CFD proxies may support methodology/current-regime stress tests only; true-OSE/JNU promotion still requires target-market data."
   },
   "queue": [
-    {"rank":2,"candidate":"HAR_RSV_TRUE_OSE_CONFIRMATION","evidence":"Direct Japanese/Nikkei futures volatility literature + DI1 proxy-method pass","target_role":"Risk state / sizing / stop normalization","status":"BLOCKED_ON_PERSONALLY_LICENSED_LOCAL_OSE_FILE","data_plan":"Nikkei mini 2006+ long-history confirmation, then Micro 2023+ exact-product consistency","next_action":"Resume after exact 225Labo schema/sample is locally available; raw stays local."},
+    {"rank":2,"candidate":"HAR_RSV_TRUE_OSE_CONFIRMATION","evidence":"Direct Japanese/Nikkei futures volatility literature + 2011-2018 proxy-method PASS + 2026 public-proxy holdout consistency","target_role":"Risk state / sizing / stop normalization","status":"BLOCKED_ON_PERSONALLY_LICENSED_LOCAL_OSE_FILE","data_plan":"Nikkei mini 2006+ long-history confirmation, then Micro 2023+ exact-product consistency","next_action":"Resume after exact 225Labo schema/sample is locally available; raw stays local."},
     {"rank":3,"candidate":"CBOE_LTV_LEFT_TAIL_RISK","status":"BLOCKED_NO_VERIFIED_FREE_OFFICIAL_HISTORY","next_action":"Do not substitute VIX/SKEW."},
     {"rank":4,"candidate":"TRUE_VENUE_DPD_OSE_SGX_CME","status":"BLOCKED_ON_APPROVED_OSE_AND_SGX_INTRADAY_DATA","next_action":"No formal promotion until venue-specific data exists."},
     {"rank":5,"candidate":"INTRADAY_PATH_US_TO_JNU_G1","status":"DESIGN_FROZEN_AWAITING_TRUE_JNU_INTRADAY_DATA","preregistration":"config/jnu_intraday_path_us_g1_prereg.json","next_action":"No proxy rescue; true OSE/JNU minute data required for formal promotion."},
@@ -31,7 +24,8 @@
   ],
   "resolved": [
     {"candidate":"PHASE4B_GDELT_NEWS_STATE","status":"DATA_INCONCLUSIVE","final_run_id":33331409697},
-    {"candidate":"NEWS_STATE_LANGUAGE_SOURCE_G1_DI1","status":"DATA_INCONCLUSIVE","final_run_id":33348607397,"logical_attempts_used":3,"reopen_rule":"No fourth acquisition attempt."}
+    {"candidate":"NEWS_STATE_LANGUAGE_SOURCE_G1_DI1","status":"DATA_INCONCLUSIVE","final_run_id":33348607397,"logical_attempts_used":3,"reopen_rule":"No fourth acquisition attempt."},
+    {"candidate":"HAR_RSV_JPN225_PUBLIC_HOLDOUT_G2","status":"CURRENT_SAMPLE_PROXY_CONSISTENT","final_run_id":33357752091,"panel_days":130,"oos_days":48,"mse_bootstrap_prob_positive":0.975,"promotion_power":"NONE_TO_TRUE_JNU"}
   ],
   "screened_not_separate_families": [
     {"candidate":"FUTURES_CASH_BASIS_ALPHA","disposition":"DO_NOT_OPEN_SEPARATE_FAMILY","allowed_use":"DPD/fair-value sanity check, roll diagnostics and execution context only."}
