@@ -1,0 +1,8 @@
+{
+  "request_id": "jnu_intraday_path_jpn225_spy_public_holdout_g2",
+  "candidate_id": "INTRADAY_PATH_JPN225_SPY_PUBLIC_HOLDOUT_G2",
+  "preregistration": "config/jnu_intraday_path_jpn225_spy_public_holdout_g2_prereg.json",
+  "run_policy": "single frozen proxy-holdout run",
+  "true_jnu_promotion_prohibited": true,
+  "created_at": "2026-08-31"
+}
