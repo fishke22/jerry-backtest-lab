@@ -41,7 +41,16 @@
     }
   },
   "execution": {
-    "acquisition": "quarter chunks; single paced connection; cumulative cache; bounded adaptive split",
-    "research_parameters_frozen": true
+    "acquisition": "quarter chunks; single paced connection; cumulative same-branch cache; bounded adaptive split",
+    "research_parameters_frozen": true,
+    "data_integrity_revision": "G1_DI1",
+    "logical_attempt": 2,
+    "retrigger_nonce": 2,
+    "reason": "DI1 only: explicit missing-day NaN/common sample/coverage gate; no research parameter changes."
+  },
+  "data_quality_gate": {
+    "min_common_trading_day_coverage": 0.95,
+    "min_common_oos_evaluation_days": 500,
+    "failure_disposition": "DATA_INCONCLUSIVE"
   }
 }
