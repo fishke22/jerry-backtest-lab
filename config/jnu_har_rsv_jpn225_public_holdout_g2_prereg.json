@@ -1,0 +1,56 @@
+{
+  "version": "1.0",
+  "candidate_id": "HAR_RSV_JPN225_PUBLIC_HOLDOUT_G2",
+  "status": "PREREGISTERED_PROXY_HOLDOUT",
+  "objective": "Stress-test the already frozen HAR-RSV proxy specification on a newly discovered, later-period public Japan 225 1-minute sample without changing the true-OSE promotion requirement.",
+  "evidence_parent": "INTRADAY_VOLATILITY_HAR_RSV_DI1",
+  "source": {
+    "repository": "getdata-finance/jpn225-1m-ohlcv-index-historical-data",
+    "file": "JPN225_1m.csv",
+    "instrument": "Japan 225 index/CFD-style proxy, not OSE futures",
+    "published_sample_period": "2026-02-01 through 2026-07-31",
+    "native_frequency": "1 minute",
+    "timestamp": "UTC",
+    "license": "Repository declares MIT for the sample repository; raw sample remains upstream and is not copied into this repo.",
+    "formal_status": "PUBLIC_PROXY_NOT_TRUE_OSE"
+  },
+  "frozen_transformation": {
+    "target_sessions_jst": ["09:00-11:30", "12:30-15:00"],
+    "sampling": "5-minute last price within AM and PM separately",
+    "no_lunch_gap_return": true,
+    "daily_rv": "sum squared 5-minute log returns",
+    "daily_rsv_positive": "sum squared positive 5-minute log returns",
+    "daily_rsv_negative": "sum squared negative 5-minute log returns",
+    "min_5m_returns_per_day": 46,
+    "minimum_session_parts": 2
+  },
+  "models": {
+    "baseline": "HAR_RV: logRV_t ~ 1 + lag1 + lag5mean + lag22mean",
+    "challenger": "HAR_RSV: logRV_t ~ 1 + lagRSV+ + lagRSV- + lag5mean + lag22mean"
+  },
+  "oos": {
+    "method": "expanding window",
+    "minimum_training_days": 60,
+    "forecast_horizon": "1 trading day",
+    "refit": "daily",
+    "metrics": ["QLIKE", "MSE"],
+    "bootstrap": {"block_days": 5, "samples": 2000, "seed": 42}
+  },
+  "interpretation_gate": {
+    "CURRENT_SAMPLE_PROXY_CONSISTENT": [
+      "HAR_RSV beats HAR_RV on both OOS QLIKE and MSE",
+      "block-bootstrap probability of positive improvement >= 0.95 on at least one of QLIKE or MSE"
+    ],
+    "otherwise": "CURRENT_SAMPLE_PROXY_NOT_CONFIRMED"
+  },
+  "promotion_power": "NONE_TO_TRUE_JNU",
+  "formal_true_jnu_rule": "Even a positive G2 result remains proxy evidence only. HAR-RSV still requires the frozen true-OSE mini Stage A and JNU micro Stage B before any validated JNU promotion.",
+  "forbidden": [
+    "Change 5-minute sampling after outcome inspection",
+    "Tune HAR 1/5/22 windows",
+    "Change session windows after outcome inspection",
+    "Add leverage/jump/neural features to rescue a negative G2 result",
+    "Call proxy consistency a true-JNU PASS",
+    "Use this family as directional alpha"
+  ]
+}
