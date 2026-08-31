@@ -1,0 +1,87 @@
+{
+  "version": "1.0",
+  "as_of": "2026-08-31",
+  "purpose": "Persist product/schema identity mappings discovered during true-venue data-access research so future sessions do not repeat the same discovery work.",
+  "ose_jpx": {
+    "one_minute_schema_status": "OFFICIAL_SCHEMA_RESOLVED_ACCESS_STILL_BLOCKED",
+    "official_spec_source": "JPX Data Cloud data_detail_en.pdf",
+    "futures_one_minute_fields": [
+      "Trade_Date",
+      "Execution_Date",
+      "Index_Type",
+      "Security_Code",
+      "Session_ID",
+      "Interval_Time",
+      "Open_Price",
+      "High_Price",
+      "Low_Price",
+      "Close_Price",
+      "Trade_Volume",
+      "VWAP",
+      "Number_of_Trade",
+      "Record_No",
+      "Contract_Month"
+    ],
+    "session_codes": {
+      "999": "day session",
+      "003": "night session"
+    },
+    "security_code_evidence": {
+      "nikkei_225_futures_large": {
+        "suffix_or_index_segment": "18",
+        "examples": ["165030018", "166030018"],
+        "evidence_class": "OFFICIAL_JPX_DAILY_REPORTS_PLUS_PUBLIC_TICK_EXAMPLE"
+      },
+      "nikkei_225_mini": {
+        "suffix_or_index_segment": "19",
+        "example": "166030019",
+        "evidence_class": "OFFICIAL_JPX_LAST_TRADING_DAY_NOTICE"
+      },
+      "nikkei_225_micro": {
+        "jquants_product_category": "NK225MCF",
+        "vendor_identifiers": {
+          "QUICK": "115.n",
+          "Bloomberg": "JAIA <Index>",
+          "LSEG": "JNUcn",
+          "CQG": "F.US.MC225"
+        },
+        "nine_digit_security_code_suffix": "NOT_YET_CONFIRMED_FROM_PUBLIC_PRIMARY_SOURCE",
+        "evidence_class": "OFFICIAL_JPX_VENDOR_CODE_AND_JQUANTS_PRODUCT_LIST"
+      }
+    },
+    "important_guardrail": "Do not infer a micro 9-digit suffix from vendor/J-Quants codes. Resolve from official Appendix 3, a current JPX issue master, or an official daily report before parser hard-coding.",
+    "coverage_start_discrepancy": {
+      "nikkei_225_mini": {
+        "english_datacube_price_list_seen": "2006-09-01",
+        "other_JPX_or_225Labo_evidence_seen": "2006-07-18",
+        "status": "UNRESOLVED_PRODUCT_FILE_OR_PUBLICATION_BOUNDARY_DIFFERENCE",
+        "rule": "Use actual acquired manifest/official product file coverage for Stage A; do not impute missing dates."
+      },
+      "nikkei_225_micro": {
+        "official_opening_date": "2023-05-29",
+        "225Labo_minute_download_start_seen": "2023-07-24",
+        "rule": "Opening date is not equivalent to availability of every minute-data source."
+      }
+    }
+  },
+  "sgx": {
+    "current_official_product_codes": {
+      "NK": "SGX JPY Nikkei 225 Index Futures (outright/strategy)",
+      "NKTI": "SGX JPY Nikkei 225 Trade-At-Index-Close",
+      "NU": "SGX USD Nikkei 225 Index Futures",
+      "NS": "SGX Mini Nikkei 225 Index Futures"
+    },
+    "legacy_archive_family": {
+      "files": ["WEBPXTICK_DT", "TickData_structure.dat", "TC.txt", "TC_structure.dat"],
+      "documented_earliest_dates": ["2002-10-01", "2004-07-23"],
+      "status": "TECHNICALLY_DOCUMENTED_RIGHTS_UNRESOLVED",
+      "historical_code_mapping_status": "CURRENT_NK_NS_CODES_CONFIRMED_BUT_LEGACY_TC_MAPPING_NOT_YET_PROVEN"
+    },
+    "rights_guardrail": "Do not bulk-download, automate, or persist SGX legacy raw market data while current non-display/retention rights remain unresolved. A public downloader proves technical existence, not current permission."
+  },
+  "research_implication": {
+    "HAR_RSV_TRUE_OSE_CONFIRMATION": "Parser/schema preparation is substantially unblocked; the main blocker is legal/observable true-OSE historical data access.",
+    "TRUE_VENUE_DPD_OSE_SGX_CME": "CME side is feasible; SGX current product identity is partially resolved but legacy archive mapping and rights remain blockers; OSE true data access remains a blocker.",
+    "decision_engine": "NO_VALIDATED_DIRECTIONAL_EDGE remains unchanged."
+  }
+}
