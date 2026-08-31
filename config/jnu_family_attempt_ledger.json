@@ -92,7 +92,7 @@
     },
     {
       "id": "NEWS_STATE_LANGUAGE_SOURCE_G1",
-      "status": "DATA_INTEGRITY_REVISION_READY_NOT_TRIGGERED",
+      "status": "RUNNING_DI1_LOGICAL_ATTEMPT_2",
       "multiplicity": "PREREGISTERED_4_CELL_HOLM_FAMILY",
       "run_id": 33341760779,
       "data_integrity_revision": "G1_DI1",
@@ -101,7 +101,13 @@
         33341760779
       ],
       "old_runs_eligibility": "DATA_AUDIT_ONLY",
-      "note": "No statistical result was inspected before DI1 missing-day/common-sample policy was frozen."
+      "note": "No statistical result was inspected before DI1 missing-day/common-sample policy was frozen.",
+      "active_run_id": 33343945135,
+      "selftest": "PASS",
+      "quality_gate": {
+        "min_common_trading_day_coverage": 0.95,
+        "min_common_oos_evaluation_days": 500
+      }
     }
   ],
   "conservative_rule": "Unknown legacy multiplicity is treated against promotion, not ignored."
