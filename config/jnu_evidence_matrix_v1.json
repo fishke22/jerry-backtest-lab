@@ -1,5 +1,5 @@
 {
-  "version": "1.5",
+  "version": "1.6",
   "updated_at": "2026-08-31",
   "scoring": {
     "evidence_grade": {
@@ -80,14 +80,15 @@
     {
       "module": "PRIOR_US_RETURN_INTRADAY_PATH",
       "evidence_grade": "A",
-      "data_grade": "B",
+      "data_grade": "A",
       "literature": [
         "Iwanaga 2026 — prior S&P 500 return vs first/last 30m Nikkei futures returns"
       ],
-      "internal_result": "Two separate proxy screens do not confirm a tradable OOS path. 2011-2018 G0: FIRST30 expected sign matched but OOS loss/hit worsened; LAST30 sign unstable. 2026 Japan225/SPY G2: FIRST30 final beta negative as expected but MSE worsened, bootstrap P=0.297 and sign accuracy worsened; LAST30 beta was negative rather than expected positive, P=0.788, sign accuracy worsened; Holm failed.",
-      "status": "PROXY_NEGATIVE_TRUE_JNU_UNRESOLVED",
+      "internal_result": "Direct literature-shaped coefficient signs appear on exact-product JNU (FIRST30 beta negative, LAST30 beta positive), but the preregistered true-JNU OOS information gate fails: H1 Pboot=0.84, H2 mean MSE improvement negative/Pboot=0.454, H3 state-interaction mean MSE improvement negative/Pboot=0.354, Holm fails.",
+      "status": "REJECT_TRUE_JNU_CURRENT_SPEC",
       "admitted_role": "None",
-      "next_evidence_needed": "Only the already-frozen true-OSE/JNU family is eligible; no additional proxy rescue, window tuning or predictor switching."
+      "next_evidence_needed": "None within this family. Reopen only as substantively new literature-backed family, not parameter rescue.",
+      "true_jnu_result": "intraday_path_results/jnu_intraday_path_us_to_jnu_true_g1.json"
     },
     {
       "module": "ORDER_IMBALANCE",
