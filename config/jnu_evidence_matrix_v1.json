@@ -1,5 +1,5 @@
 {
-  "version": "1.2",
+  "version": "1.3",
   "updated_at": "2026-08-31",
   "scoring": {
     "evidence_grade": {"A":"Direct Nikkei/Nikkei-futures evidence with methods closely matching the proposed module.","B":"Direct Japanese-equity evidence or closely related Nikkei instrument evidence.","C":"Cross-market/general evidence only; requires stronger local confirmation."},
@@ -10,7 +10,8 @@
     {
       "module":"DYNAMIC_PRICE_DISCOVERY","evidence_grade":"A","data_grade":"C",
       "literature":["Lee et al. 2015 — one-minute OSE/SGX/CME leadership changes over time","Moriyasu 2010/2012 — OSE/SGX price discovery","2023 nonlinear Nikkei spot/futures/cross-border price discovery"],
-      "internal_result":"Proxy pilot shows unstable/nonzero lead-lag; no robust directional alpha.","status":"LITERATURE_SUPPORTED_DATA_BLOCKED","admitted_role":"Dynamic venue/session source weighting only","forbidden":"Fixed NQ/ES/SGX/OSE weights or majority vote","next_evidence_needed":"Approved venue-specific OSE+SGX+CME intraday data"
+      "internal_result":"Proxy pilot shows unstable/nonzero lead-lag and no robust directional alpha. A newly discovered true-CME NKD public intraday sample (2026-03-08 to 2026-04-15) passed technical alignment feasibility against the public Japan225 1m proxy after a DI1 positional-index parser correction: 7,305 common 5m bars, contemporaneous return correlation 0.9222, max absolute correlation at lag 0, rolling 288-bar median correlation 0.9156. This validates CME-side source usability only, not venue leadership or alpha.",
+      "status":"CME_SIDE_SOURCE_FEASIBLE_OSE_SGX_DATA_BLOCKED","admitted_role":"Dynamic venue/session source weighting only","forbidden":"Fixed NQ/ES/SGX/OSE weights, majority vote, or treating CME/Japan225 alignment as directional alpha","next_evidence_needed":"Approved matched-expiry OSE+SGX intraday data with adequate coverage; CME short sample may be retained as a supplemental true-venue input","feasibility_result":"dpd_results/jnu_cme_nkd_jpn225_alignment_g0.json"
     },
     {
       "module":"HAR_RSV_VOLATILITY_STATE","evidence_grade":"A","data_grade":"B",
