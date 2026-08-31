@@ -1,0 +1,73 @@
+{
+  "version": "1.0",
+  "candidate_id": "HAR_RSV_TRUE_OSE_MINI_STAGE_A_G1",
+  "parent_family": "INTRADAY_VOLATILITY_HAR_RSV_DI1",
+  "frozen_at": "2026-08-31",
+  "status": "PREREGISTERED_BEFORE_TRUE_OSE_OUTCOME_INSPECTION",
+  "objective": "Run the already-frozen HAR-RSV volatility/risk-state confirmation on genuine OSE Nikkei 225 Mini 5-minute history derived locally from personally licensed 225Labo annual files, without changing the proxy-era model specification or promotion threshold.",
+  "source": {
+    "venue": "OSE",
+    "product": "Nikkei 225 Mini Futures",
+    "source_provider": "225Labo",
+    "raw_frequency": "source-provided 5-minute primary; source-provided 1-minute measurement QA only",
+    "raw_storage": "LOCAL_ONLY_PERSONAL_USE",
+    "cloud_input": "non-reconstructive daily RV/RSV derived panel only",
+    "expected_coverage": "2006-07-18 through latest available 2026 data",
+    "formal_status": "TRUE_OSE_MINI_STAGE_A"
+  },
+  "data_integrity": {
+    "session_calendar": "config/jnu_session_calendar_versions.json",
+    "source_date_semantics": "225Labo date label treated as OSE trading date after direct schema/order verification",
+    "primary_sampling": "source-provided 5min sheet",
+    "no_cross_session_return": true,
+    "minimum_5m_returns_per_day": 46,
+    "raw_manifest_requires_zero_critical_dq": true,
+    "raw_cloud_upload_prohibited": true
+  },
+  "models": {
+    "baseline": "HAR_RV: logRV_t ~ 1 + logRV_{t-1} + mean(logRV_{t-1:t-5}) + mean(logRV_{t-1:t-22})",
+    "challenger": "HAR_RSV: logRV_t ~ 1 + logRSV+_{t-1} + logRSV-_{t-1} + weekly_logRV + monthly_logRV"
+  },
+  "oos": {
+    "method": "expanding window",
+    "minimum_training_days": 504,
+    "forecast_horizon": "1 trading day",
+    "refit": "daily",
+    "metrics": [
+      "QLIKE",
+      "MSE"
+    ],
+    "bootstrap": {
+      "block_days": 5,
+      "samples": 2000,
+      "seed": 42
+    }
+  },
+  "stability_gate": {
+    "rationale": "Use a predeclared post-J-GATE3.0 recent regime rather than selecting a favorable interval after results.",
+    "recent_period_from": "2021-09-21",
+    "requirement": "QLIKE and MSE improvement directions in the recent period must each be non-negative."
+  },
+  "stage_a_pass_rule": [
+    "HAR_RSV full-OOS mean QLIKE loss is lower than HAR_RV",
+    "HAR_RSV full-OOS mean MSE loss is lower than HAR_RV",
+    "Recent-period QLIKE and MSE improvements are each non-negative",
+    "At least one of QLIKE or MSE 5-day block-bootstrap probabilities of positive improvement is >= 0.95",
+    "Derived manifest has zero unresolved critical data-quality issues"
+  ],
+  "interpretation": {
+    "pass": "TRUE_OSE_MINI_STAGE_A_PASS; proceed to exact-product JNU Micro Stage B without retuning.",
+    "fail": "TRUE_OSE_MINI_STAGE_A_FAIL; a short Micro result cannot rescue the family.",
+    "role_if_eventually_admitted": "VOLATILITY_RISK_STATE_ONLY_NOT_DIRECTIONAL_ALPHA"
+  },
+  "forbidden": [
+    "Change 5-minute sampling after outcome inspection",
+    "Tune HAR 1/5/22 horizons",
+    "Change bootstrap block length/sample count/seed after outcome inspection",
+    "Select a favorable subperiod after outcome inspection",
+    "Use 1-minute QA to choose a different primary estimator",
+    "Add leverage/jumps/neural features to rescue a negative Stage A result",
+    "Treat Stage A alone as final JNU validation without Micro Stage B",
+    "Use HAR-RSV as directional alpha"
+  ]
+}
