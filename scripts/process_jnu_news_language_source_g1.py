@@ -150,6 +150,11 @@ def evaluate(close: pd.Series, req: dict) -> tuple[dict,pd.DataFrame]:
     for nf in feature_map.values():
         common_available &= nf.notna().all(axis=1)
 
+    quality_gate = req.get("data_quality_gate", {})
+    min_common_coverage = float(quality_gate.get("min_common_trading_day_coverage", 0.95))
+    min_common_oos_days = int(quality_gate.get("min_common_oos_evaluation_days", 500))
+    common_coverage = float(common_available.mean()) if len(common_available) else 0.0
+
     # Use the same training/evaluation eligibility for baseline and every cell.
     X0_common = X0.where(common_available)
     base_log = expanding_ols_predict(X0_common, ylog, start)
@@ -202,6 +207,11 @@ def evaluate(close: pd.Series, req: dict) -> tuple[dict,pd.DataFrame]:
         }
 
     holm = holm_from_tail_probs(tail_p, float(req["news"]["holm_alpha"]))
+    min_observed_oos = min((row["oos_days"] for row in raw_results.values()), default=0)
+    data_quality_pass = (
+        common_coverage >= min_common_coverage
+        and min_observed_oos >= min_common_oos_days
+    )
     survivors = []
     for key,row in raw_results.items():
         checks = {
@@ -213,7 +223,11 @@ def evaluate(close: pd.Series, req: dict) -> tuple[dict,pd.DataFrame]:
             "holm":bool(holm["reject"][key]),
         }
         row["checks"] = checks
-        row["status"] = "NEWS_LANGUAGE_STATE_CANDIDATE" if all(checks.values()) else "FAIL_G1_CELL"
+        row["status"] = (
+            "NEWS_LANGUAGE_STATE_CANDIDATE"
+            if data_quality_pass and all(checks.values())
+            else ("DATA_INCONCLUSIVE" if not data_quality_pass else "FAIL_G1_CELL")
+        )
         if row["status"] == "NEWS_LANGUAGE_STATE_CANDIDATE":
             survivors.append(key)
 
@@ -225,8 +239,16 @@ def evaluate(close: pd.Series, req: dict) -> tuple[dict,pd.DataFrame]:
         "common_sample":{
             "trading_days_total":int(len(close.index)),
             "common_source_available_days":int(common_available.sum()),
+            "common_coverage":common_coverage,
             "excluded_trading_days":int((~common_available).sum()),
             "excluded_examples":[str(x.date()) for x in common_available.index[~common_available][:10]],
+            "min_observed_oos_days":int(min_observed_oos),
+            "quality_gate":{
+                "min_common_trading_day_coverage":min_common_coverage,
+                "min_common_oos_evaluation_days":min_common_oos_days,
+                "pass":bool(data_quality_pass),
+                "failure_disposition":"DATA_INCONCLUSIVE",
+            },
         },
         "categories":raw_results,
         "multiple_testing":holm,
