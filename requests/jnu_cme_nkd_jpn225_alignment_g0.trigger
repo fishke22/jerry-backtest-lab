@@ -1,0 +1,2 @@
+triggered_at=2026-08-31T13:08:00+08:00
+candidate=CME_NKD_JPN225_ALIGNMENT_G0
