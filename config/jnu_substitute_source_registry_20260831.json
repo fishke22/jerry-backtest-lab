@@ -1,5 +1,5 @@
 {
-  "version": "1.0",
+  "version": "1.1",
   "verified_at": "2026-08-31",
   "purpose": "Supplement the main JNU data-source registry with newly verified substitute sources discovered after the mobile/local-data blocker review.",
   "sources": [
@@ -14,6 +14,50 @@
       "jnu_role": "Current-regime methodology/holdout stress tests for Nikkei/JNU candidates",
       "status": "ACTIVE_PROXY_NOT_TRUE_OSE",
       "formal_limitation": "Cannot establish OSE contract identity, futures microstructure, exact JNU execution or true-venue price discovery."
+    },
+    {
+      "id": "CME_NKD_PUBLIC_SHORT_INTRADAY",
+      "provider": "axb0306/cme-futures-ohlc public GitHub repository",
+      "data_type": "True CME Nikkei 225 futures tick/1m/5m and higher bars",
+      "coverage": "Visible NKD intraday sample approximately 2026-03-08 through 2026-04-15",
+      "cost_class": "NO_EXTRA_COST_PUBLIC_REPOSITORY",
+      "license_or_terms_status": "Source repository is public and identifies TopstepX/ProjectX as upstream. Raw redistribution rights are not assumed; prefer upstream references, hashes and derived results.",
+      "jnu_role": "CME-side venue alignment and DPD feasibility",
+      "status": "ACTIVE_TRUE_CME_SHORT_SAMPLE_NOT_TRUE_OSE",
+      "formal_limitation": "Short sample and wrong venue for OSE/JNU promotion. Cannot prove OSE leadership or JNU execution."
+    },
+    {
+      "id": "BARCHART_SGX_NIKKEI_WEB_HISTORY",
+      "provider": "Barchart",
+      "data_type": "SGX Nikkei 225 futures web history/current delayed intraday display and CSV export for displayed views",
+      "coverage": "Current-session delayed futures data and historical contract pages; free site members have limited CSV downloads",
+      "cost_class": "NO_EXTRA_COST_LIMITED_SITE_MEMBERSHIP",
+      "license_or_terms_status": "Free members are limited to one site download per day. This is not yet an approved automated historical intraday feed; do not scrape or treat as bulk source without terms review.",
+      "jnu_role": "Manual SGX identity/sanity checks and possible small legally reviewed sample acquisition",
+      "status": "LIMITED_FREE_WEB_NOT_APPROVED_BULK_INTRADAY",
+      "formal_limitation": "Does not yet satisfy matched-expiry long-history SGX intraday requirement for formal DPD."
+    },
+    {
+      "id": "MENDELEY_ASIAN_INDEX_FUTURES_DAILY_CC_BY_4",
+      "provider": "Mendeley Data / Ashwin Dudia",
+      "data_type": "Daily historical Asian equity index futures CSV including Japan Nikkei futures",
+      "coverage": "Approximately 10 years of daily data used in 2020 study",
+      "cost_class": "NO_EXTRA_COST_OPEN_DATASET",
+      "license_or_terms_status": "Dataset page states CC BY 4.0.",
+      "jnu_role": "Longer-horizon daily futures proxy/cross-check and trend-method replication only",
+      "status": "OPEN_DAILY_FUTURES_PROXY_NOT_INTRADAY",
+      "formal_limitation": "Daily data cannot replace OSE minute/tick data for HAR-RSV, intraday path, DPD or microstructure validation."
+    },
+    {
+      "id": "MENDELEY_MULTI_MARKET_FUTURES_DAILY_1992_2019",
+      "provider": "Mendeley Data / Christof Schmidhuber",
+      "data_type": "Daily normalized futures returns and trend strengths across 24 markets including Nikkei 225",
+      "coverage": "1992-2019 daily",
+      "cost_class": "NO_EXTRA_COST_RESEARCH_DATASET",
+      "license_or_terms_status": "Public Mendeley dataset; verify exact license on download before durable reuse.",
+      "jnu_role": "Independent long-history daily trend/reversion methodology evidence",
+      "status": "PUBLIC_DAILY_METHOD_DATA_NOT_INTRADAY",
+      "formal_limitation": "Normalized daily data are unsuitable for exact JNU execution, intraday volatility construction or venue price discovery."
     },
     {
       "id": "DUKASCOPY_JPNIDXJPY",
