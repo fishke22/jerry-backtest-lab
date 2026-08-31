@@ -1,5 +1,5 @@
 {
-  "version": "1.7",
+  "version": "1.8",
   "updated_at": "2026-08-31",
   "rule": "Permanent family-level attempt ledger. Never delete failed/inconclusive families to improve apparent research success rate.",
   "families": [
@@ -279,6 +279,20 @@
       "holm_pass": false,
       "stage_b_status": "PROHIBITED_BY_PREREG_STAGE_A_FAIL",
       "reopen_rule": "No sign-flip, H2-only salvage, horizon search, session switch, overlapping 10m windows, or filter rescue."
+    },
+    {
+      "id": "OVERNIGHT_OVERREACTION_TRUE_JNU_G1",
+      "status": "TRUE_OSE_MINI_STAGE_A_FAIL_TERMINAL",
+      "preregistration": "config/jnu_overnight_overreaction_true_jnu_g1_prereg.json",
+      "run_id": 33400904120,
+      "artifact_id": 9761173804,
+      "usable_days": 1857,
+      "mean_daily_signal_payoff": 0.00017748443807267367,
+      "directional_accuracy": 0.5451002227171492,
+      "bootstrap_prob_mean_positive": 0.9208,
+      "diagnostic_slope_morning_on_overnight": -0.020528843554912524,
+      "stage_b_status": "PROHIBITED_BY_PREREG_STAGE_A_FAIL",
+      "reopen_rule": "No morning-horizon, night-session-only, filter, threshold, sign, or Micro rescue."
     }
   ],
   "conservative_rule": "Unknown legacy multiplicity is treated against promotion, not ignored."
