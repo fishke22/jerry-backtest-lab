@@ -1,9 +1,13 @@
 {
-  "version": "0.6",
+  "version": "0.7",
   "updated_at": "2026-08-31",
   "status": "CANDIDATE_NOT_VALIDATED_DATA_BLOCKED",
   "validated_jnu_modules": 0,
+  "validated_directional_modules": 0,
   "objective": "Evidence-backed JNU decision architecture with strict data integrity, OOS validation and no post-hoc rescue.",
+  "frozen_final_architecture": "config/jnu_final_framework_v3_prereg.json",
+  "completion_criteria": "config/jnu_framework_completion_criteria_v1.json",
+  "true_ose_execution_contract": "config/jnu_true_ose_execution_package_v1.json",
   "layers": [
     {
       "order": 1,
@@ -28,9 +32,10 @@
       "order": 3,
       "id": "DYNAMIC_PRICE_DISCOVERY",
       "role": "SOURCE_WEIGHTING",
-      "status": "CONDITIONAL_ARCHITECTURE_ONLY",
+      "status": "CONDITIONAL_ARCHITECTURE_ONLY_DATA_BLOCKED",
+      "candidate": "TRUE_VENUE_DPD_OSE_SGX_CME_G1",
       "rule": "Determine which venue/region is informative now; not standalone directional alpha.",
-      "blocked_on": "Approved venue-specific OSE + SGX intraday data."
+      "blocked_on": "Approved matched-expiry venue-specific OSE + SGX + CME intraday data."
     },
     {
       "order": 4,
@@ -43,7 +48,7 @@
           "evidence_status": "PROXY_METHOD_PASS_TRUE_JNU_PENDING",
           "allowed_role": ["risk state", "position sizing", "stop-distance normalization", "confidence adjustment"],
           "forbidden_role": "directional alpha without separate preregistration",
-          "frozen_spec": "5-minute RV/RSV; HAR 1/5/22; existing expanding-OOS/block-bootstrap gate",
+          "frozen_spec": "5-minute RV/RSV; HAR 1/5/22; Stage A mini long-history then Stage B micro exact-product consistency",
           "true_jnu_data_policy": "225Labo raw local-only under personal-use terms; cloud receives non-reconstructive derived panel/results only."
         }
       ]
@@ -80,8 +85,8 @@
       "role": "RISK_EVENT_CANDIDATE",
       "status": "DATA_BLOCKED",
       "candidate": "BOJ_MPM_EVENT_VOLATILITY",
-      "evidence": "Direct Japanese evidence exists for MPM-release effects on Nikkei 225 VI and VI futures; BOJ also provides official release dates/times.",
-      "data_feasibility": "Public Nikkei Indexes access provides only 3 years of daily and 10 years of monthly index data, insufficient for a robust replication of the cited intraday event effect. No weak small-event daily substitute will be opened.",
+      "evidence": "Direct Japanese evidence exists for MPM-release effects on Nikkei 225 VI and VI futures; BOJ provides official release dates/times.",
+      "data_feasibility": "Current verified free public history is insufficient for a robust intraday replication; no weak small-event daily substitute will be opened.",
       "generation1_role": "Event volatility/risk state only; no directional claim."
     },
     {
@@ -97,9 +102,9 @@
       "order": 10,
       "id": "DECISION_ENGINE",
       "role": "OUTPUT",
-      "status": "DESIGN_TARGET",
+      "status": "DESIGN_FROZEN_VALIDATION_PENDING",
       "outputs": ["P(up)", "P(down)", "P(range)", "price_discovery_leader", "volatility_state", "event_state", "preferred_intraday_path", "confidence", "position_size_multiplier", "invalidation"],
-      "rule": "Only validated or explicitly conditional modules may influence probabilities. Rejected or data-inconclusive families cannot re-enter without a new preregistration."
+      "rule": "Only validated or explicitly conditional modules may influence outputs; risk/event/source-weight/execution roles cannot be silently counted as direction votes; ensemble weights require a separately validated family."
     }
   ],
   "active_research": {
@@ -109,8 +114,9 @@
     "last_disposition": "DATA_INCONCLUSIVE",
     "current_global_blocker": "TRUE_OSE_INTRADAY_DATA_ACCESS",
     "remote_desktop_status": "NO_DEVICE_AVAILABLE_AT_LAST_CHECK",
-    "rule": "Do not start a weaker proxy family merely to keep testing while the evidence-matched data are unavailable."
+    "rule": "Do not start a weaker proxy family merely to keep testing while evidence-matched data are unavailable."
   },
   "decision_engine_current_output": "NO_VALIDATED_DIRECTIONAL_EDGE",
-  "next_gate": "Restore authorized local-device access to the personally licensed OSE data or verify another approved true-OSE intraday source; then execute the already-frozen HAR-RSV true-OSE confirmation first, followed by the frozen US-to-JNU intraday-path family if data requirements are met."
+  "research_completion_possible_without_positive_alpha": true,
+  "next_gate": "When authorized local true-OSE data is observable, perform schema audit and data-quality gate, then execute frozen HAR-RSV Stage A/Stage B and frozen US-to-JNU intraday-path confirmation. Until then, architecture and completion rules are frozen and no weaker proxy family should be opened."
 }
