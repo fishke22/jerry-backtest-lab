@@ -1,25 +1,185 @@
 {
-  "version": "1.3",
+  "version": "1.4",
   "updated_at": "2026-08-31",
   "rule": "Permanent family-level attempt ledger. Never delete failed/inconclusive families to improve apparent research success rate.",
   "families": [
-    {"id":"SMA_BASELINE","status":"BASELINE_NOT_ALPHA","multiplicity":"LEGACY/PROCESS_CHECK"},
-    {"id":"TREND_MOMENTUM_LEGACY","status":"REJECTED","multiplicity":"UNKNOWN_LEGACY_QUARANTINE"},
-    {"id":"BREAKOUT_LEGACY","status":"REJECTED","multiplicity":"UNKNOWN_LEGACY_QUARANTINE"},
-    {"id":"DRAWDOWN_REPAIR_LEGACY","status":"REJECTED","multiplicity":"UNKNOWN_LEGACY_QUARANTINE"},
-    {"id":"RELATIVE_STRENGTH_NDX_LEGACY","status":"REJECTED","multiplicity":"UNKNOWN_LEGACY_QUARANTINE"},
-    {"id":"CROSS_MARKET_CONFIRMATION_LEGACY","status":"REJECTED_OVERFIT","multiplicity":"UNKNOWN_LEGACY_QUARANTINE","overfit_stage":{"cpcv_positive_path_ratio":0.464,"cpcv_median_sharpe":0.087,"pbo":0.971,"dsr_probability":0.641,"holm_adjusted_p":0.2419,"final":"FAIL_OVERFIT_GATES"}},
-    {"id":"DYNAMIC_PRICE_DISCOVERY_PROXY_G0","status":"CONDITIONAL_ARCHITECTURE_ONLY_NOT_ALPHA","multiplicity":"PREREGISTERED_PROXY"},
-    {"id":"DAILY_VOLATILITY_AHAR","status":"REJECTED","multiplicity":"PREREGISTERED","overfit_stage":{"proxy_family_name":"volatility_regime","cpcv_positive_path_ratio":0.821,"cpcv_median_sharpe":1.161,"pbo":0.086,"dsr_probability":0.527,"holm_adjusted_p":0.156,"final":"FAIL_OVERFIT_GATES"}},
-    {"id":"VIX_TAIL_PROXY","status":"REJECTED","multiplicity":"PREREGISTERED"},
-    {"id":"INTRADAY_VOLATILITY_HAR_G1_ORIGINAL","status":"AUDIT_RETAINED_DATA_INTEGRITY_ERROR","multiplicity":"PREREGISTERED"},
-    {"id":"INTRADAY_VOLATILITY_HAR_RSV_DI1","status":"PROXY_METHOD_PASS_TRUE_OSE_PENDING","multiplicity":"DATA_INTEGRITY_CORRECTION_ONLY"},
-    {"id":"INTRADAY_PATH_US_NIKKEI_PROXY_G0","status":"PROXY_SCREEN_NEGATIVE","multiplicity":"PREREGISTERED"},
-    {"id":"PHASE4B_USDJPY_1D","status":"REJECT_CURRENT_SPEC","multiplicity":"PREREGISTERED"},
-    {"id":"PHASE4B_GDELT_BROAD_NEWS","status":"DATA_INCONCLUSIVE","multiplicity":"PREREGISTERED_FULL_FAMILY"},
-    {"id":"NEWS_STATE_LANGUAGE_SOURCE_G1","status":"DATA_INCONCLUSIVE","multiplicity":"PREREGISTERED_4_CELL_HOLM_FAMILY","data_integrity_revision":"G1_DI1","logical_attempts_used":3,"terminal_run_id":33348607397,"terminal_reason":"FINAL_ACQUISITION_BUDGET_EXHAUSTED_INCOMPLETE_FOUR_CELL_PANEL","statistical_evaluation_performed":false,"missing_cache_count":311,"directional_trading_status":"PROHIBITED_G1","old_runs":[33341758160,33341760779,33343945135],"old_runs_eligibility":"DATA_AUDIT_ONLY","selftest":"PASS","quality_gate":{"min_common_trading_day_coverage":0.95,"min_common_oos_evaluation_days":500},"note":"G1-DI1 closed after the preregistered third and final acquisition attempt. No fourth acquisition attempt is permitted."},
-    {"id":"HAR_RSV_JPN225_PUBLIC_HOLDOUT_G2","status":"CURRENT_SAMPLE_PROXY_CONSISTENT_TRUE_OSE_PENDING","multiplicity":"PREREGISTERED_SINGLE_PROXY_HOLDOUT","run_id":33357752091,"preregistration":"config/jnu_har_rsv_jpn225_public_holdout_g2_prereg.json","panel_days":130,"oos_days":48,"qlike_improvement":0.009772944838529621,"mse_improvement":4.856569361748562e-10,"qlike_bootstrap_prob_positive":0.9415,"mse_bootstrap_prob_positive":0.975,"promotion_power":"NONE_TO_TRUE_JNU","note":"Later-period 2026 public Japan 225 proxy is consistent with HAR-RSV on both losses and clears the preregistered 0.95 bootstrap threshold on MSE. This strengthens proxy evidence only; true-OSE mini Stage A and JNU micro Stage B remain mandatory."},
-    {"id":"INTRADAY_PATH_JPN225_SPY_PUBLIC_HOLDOUT_G2","status":"PROXY_PATH_CURRENT_SAMPLE_NOT_CONFIRMED","multiplicity":"PREREGISTERED_2_CELL_HOLM_PROXY_HOLDOUT","run_id":33358017603,"preregistration":"config/jnu_intraday_path_jpn225_spy_public_holdout_g2_prereg.json","panel_days":130,"oos_days_per_cell":70,"promotion_power":"NONE_TO_TRUE_JNU","H1_FIRST30":{"expected_sign":"negative","final_beta":-0.10815336033029892,"mse_improvement":-5.441342566780908e-07,"bootstrap_prob_positive":0.297,"sign_accuracy_not_worse":false,"status":"CELL_FAIL_CURRENT_PROXY_SPEC"},"H2_LAST30":{"expected_sign":"positive","final_beta":-0.03765976120071457,"mse_improvement":1.5337990641998256e-07,"bootstrap_prob_positive":0.788,"sign_accuracy_not_worse":false,"status":"CELL_FAIL_CURRENT_PROXY_SPEC"},"holm_pass":false,"note":"2026 later-period Japan225/SPY proxy holdout does not confirm the literature-shaped first/last-30m path. It reinforces the earlier negative proxy G0; true-OSE family remains unresolved rather than failed."}
+    {
+      "id": "SMA_BASELINE",
+      "status": "BASELINE_NOT_ALPHA",
+      "multiplicity": "LEGACY/PROCESS_CHECK"
+    },
+    {
+      "id": "TREND_MOMENTUM_LEGACY",
+      "status": "REJECTED",
+      "multiplicity": "UNKNOWN_LEGACY_QUARANTINE"
+    },
+    {
+      "id": "BREAKOUT_LEGACY",
+      "status": "REJECTED",
+      "multiplicity": "UNKNOWN_LEGACY_QUARANTINE"
+    },
+    {
+      "id": "DRAWDOWN_REPAIR_LEGACY",
+      "status": "REJECTED",
+      "multiplicity": "UNKNOWN_LEGACY_QUARANTINE"
+    },
+    {
+      "id": "RELATIVE_STRENGTH_NDX_LEGACY",
+      "status": "REJECTED",
+      "multiplicity": "UNKNOWN_LEGACY_QUARANTINE"
+    },
+    {
+      "id": "CROSS_MARKET_CONFIRMATION_LEGACY",
+      "status": "REJECTED_OVERFIT",
+      "multiplicity": "UNKNOWN_LEGACY_QUARANTINE",
+      "overfit_stage": {
+        "cpcv_positive_path_ratio": 0.464,
+        "cpcv_median_sharpe": 0.087,
+        "pbo": 0.971,
+        "dsr_probability": 0.641,
+        "holm_adjusted_p": 0.2419,
+        "final": "FAIL_OVERFIT_GATES"
+      }
+    },
+    {
+      "id": "DYNAMIC_PRICE_DISCOVERY_PROXY_G0",
+      "status": "CONDITIONAL_ARCHITECTURE_ONLY_NOT_ALPHA",
+      "multiplicity": "PREREGISTERED_PROXY"
+    },
+    {
+      "id": "DAILY_VOLATILITY_AHAR",
+      "status": "REJECTED",
+      "multiplicity": "PREREGISTERED",
+      "overfit_stage": {
+        "proxy_family_name": "volatility_regime",
+        "cpcv_positive_path_ratio": 0.821,
+        "cpcv_median_sharpe": 1.161,
+        "pbo": 0.086,
+        "dsr_probability": 0.527,
+        "holm_adjusted_p": 0.156,
+        "final": "FAIL_OVERFIT_GATES"
+      }
+    },
+    {
+      "id": "VIX_TAIL_PROXY",
+      "status": "REJECTED",
+      "multiplicity": "PREREGISTERED"
+    },
+    {
+      "id": "INTRADAY_VOLATILITY_HAR_G1_ORIGINAL",
+      "status": "AUDIT_RETAINED_DATA_INTEGRITY_ERROR",
+      "multiplicity": "PREREGISTERED"
+    },
+    {
+      "id": "INTRADAY_VOLATILITY_HAR_RSV_DI1",
+      "status": "TRUE_JNU_STAGE3_PASS_INFORMATION_STATE_CANDIDATE",
+      "multiplicity": "DATA_INTEGRITY_CORRECTION_ONLY_PLUS_PREREGISTERED_TRUE_TARGET_CONFIRMATION",
+      "true_ose_stage_a": {
+        "candidate_id": "HAR_RSV_TRUE_OSE_MINI_STAGE_A_G1",
+        "status": "TRUE_OSE_MINI_STAGE_A_PASS",
+        "run_id": 33388746345,
+        "oos_days": 4442,
+        "qlike_improvement": 0.0027914101288612917,
+        "mse_improvement": 4.783249414627292e-10,
+        "qlike_bootstrap_prob_positive": 1,
+        "mse_bootstrap_prob_positive": 0.9875
+      },
+      "true_jnu_stage_b": {
+        "candidate_id": "HAR_RSV_JNU_MICRO_STAGE_B_G1",
+        "status": "TRUE_JNU_MICRO_STAGE_B_PASS",
+        "run_id": 33389857914,
+        "oos_days": 270,
+        "qlike_improvement": 0.00007292861808050662,
+        "mse_improvement": 1.1450264024518442e-9,
+        "qlike_bootstrap_prob_positive": 0.522,
+        "mse_bootstrap_prob_positive": 0.9685
+      },
+      "promotion_pipeline_stage": 3,
+      "admitted_role": "VOLATILITY_RISK_STATE_ONLY_NOT_DIRECTIONAL_ALPHA",
+      "stage9_validated": false
+    },
+    {
+      "id": "INTRADAY_PATH_US_NIKKEI_PROXY_G0",
+      "status": "PROXY_SCREEN_NEGATIVE",
+      "multiplicity": "PREREGISTERED"
+    },
+    {
+      "id": "PHASE4B_USDJPY_1D",
+      "status": "REJECT_CURRENT_SPEC",
+      "multiplicity": "PREREGISTERED"
+    },
+    {
+      "id": "PHASE4B_GDELT_BROAD_NEWS",
+      "status": "DATA_INCONCLUSIVE",
+      "multiplicity": "PREREGISTERED_FULL_FAMILY"
+    },
+    {
+      "id": "NEWS_STATE_LANGUAGE_SOURCE_G1",
+      "status": "DATA_INCONCLUSIVE",
+      "multiplicity": "PREREGISTERED_4_CELL_HOLM_FAMILY",
+      "data_integrity_revision": "G1_DI1",
+      "logical_attempts_used": 3,
+      "terminal_run_id": 33348607397,
+      "terminal_reason": "FINAL_ACQUISITION_BUDGET_EXHAUSTED_INCOMPLETE_FOUR_CELL_PANEL",
+      "statistical_evaluation_performed": false,
+      "missing_cache_count": 311,
+      "directional_trading_status": "PROHIBITED_G1",
+      "old_runs": [
+        33341758160,
+        33341760779,
+        33343945135
+      ],
+      "old_runs_eligibility": "DATA_AUDIT_ONLY",
+      "selftest": "PASS",
+      "quality_gate": {
+        "min_common_trading_day_coverage": 0.95,
+        "min_common_oos_evaluation_days": 500
+      },
+      "note": "G1-DI1 closed after the preregistered third and final acquisition attempt. No fourth acquisition attempt is permitted."
+    },
+    {
+      "id": "HAR_RSV_JPN225_PUBLIC_HOLDOUT_G2",
+      "status": "CURRENT_SAMPLE_PROXY_CONSISTENT_TRUE_OSE_PENDING",
+      "multiplicity": "PREREGISTERED_SINGLE_PROXY_HOLDOUT",
+      "run_id": 33357752091,
+      "preregistration": "config/jnu_har_rsv_jpn225_public_holdout_g2_prereg.json",
+      "panel_days": 130,
+      "oos_days": 48,
+      "qlike_improvement": 0.009772944838529621,
+      "mse_improvement": 4.856569361748562e-10,
+      "qlike_bootstrap_prob_positive": 0.9415,
+      "mse_bootstrap_prob_positive": 0.975,
+      "promotion_power": "NONE_TO_TRUE_JNU",
+      "note": "Later-period 2026 public Japan 225 proxy is consistent with HAR-RSV on both losses and clears the preregistered 0.95 bootstrap threshold on MSE. This strengthens proxy evidence only; true-OSE mini Stage A and JNU micro Stage B remain mandatory."
+    },
+    {
+      "id": "INTRADAY_PATH_JPN225_SPY_PUBLIC_HOLDOUT_G2",
+      "status": "PROXY_PATH_CURRENT_SAMPLE_NOT_CONFIRMED",
+      "multiplicity": "PREREGISTERED_2_CELL_HOLM_PROXY_HOLDOUT",
+      "run_id": 33358017603,
+      "preregistration": "config/jnu_intraday_path_jpn225_spy_public_holdout_g2_prereg.json",
+      "panel_days": 130,
+      "oos_days_per_cell": 70,
+      "promotion_power": "NONE_TO_TRUE_JNU",
+      "H1_FIRST30": {
+        "expected_sign": "negative",
+        "final_beta": -0.10815336033029892,
+        "mse_improvement": -5.441342566780908e-7,
+        "bootstrap_prob_positive": 0.297,
+        "sign_accuracy_not_worse": false,
+        "status": "CELL_FAIL_CURRENT_PROXY_SPEC"
+      },
+      "H2_LAST30": {
+        "expected_sign": "positive",
+        "final_beta": -0.03765976120071457,
+        "mse_improvement": 1.5337990641998256e-7,
+        "bootstrap_prob_positive": 0.788,
+        "sign_accuracy_not_worse": false,
+        "status": "CELL_FAIL_CURRENT_PROXY_SPEC"
+      },
+      "holm_pass": false,
+      "note": "2026 later-period Japan225/SPY proxy holdout does not confirm the literature-shaped first/last-30m path. It reinforces the earlier negative proxy G0; true-OSE family remains unresolved rather than failed."
+    }
   ],
   "conservative_rule": "Unknown legacy multiplicity is treated against promotion, not ignored."
 }
