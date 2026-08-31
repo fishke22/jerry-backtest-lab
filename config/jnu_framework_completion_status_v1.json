@@ -1,0 +1,98 @@
+{
+  "version": "1.0",
+  "as_of": "2026-08-31",
+  "framework": "JNU_FINAL_FRAMEWORK_V3",
+  "architecture_status": "FROZEN",
+  "research_completion_state": "FRAMEWORK_RESEARCH_COMPLETE_DATA_BLOCKED",
+  "validated_jnu_modules": 0,
+  "validated_directional_modules": 0,
+  "decision_engine_output": "NO_VALIDATED_DIRECTIONAL_EDGE",
+  "meaning": "The evidence-governed architecture and all currently feasible free/legal research paths are classified. Remaining high-value confirmations require true-OSE or other unavailable/unauthorized data. This is not equivalent to a validated profitable trading framework.",
+  "major_candidates": [
+    {
+      "candidate": "HAR_RSV_TRUE_OSE_CONFIRMATION",
+      "role": "RISK_SIZING",
+      "status": "DATA_BLOCKED",
+      "evidence": "PROXY_METHOD_PASS_TRUE_OSE_PENDING",
+      "blocker": "Authorized local true-OSE mini/micro intraday data not observable in current mobile session.",
+      "next_when_unblocked": "Stage A Nikkei mini long-history frozen confirmation, then Stage B JNU micro exact-product consistency."
+    },
+    {
+      "candidate": "INTRADAY_PATH_US_TO_JNU_G1",
+      "role": "DIRECTION_CANDIDATE",
+      "status": "DATA_BLOCKED",
+      "evidence": "DIRECT_NIKKEI_FUTURES_LITERATURE_PLUS_FROZEN_PREREG",
+      "blocker": "Approved true OSE/JNU minute data unavailable in current session.",
+      "next_when_unblocked": "Run frozen FIRST_30M/LAST_30M true-OSE OOS family without window/predictor rescue."
+    },
+    {
+      "candidate": "TRUE_VENUE_DPD_OSE_SGX_CME_G1",
+      "role": "SOURCE_WEIGHTING",
+      "status": "DATA_BLOCKED",
+      "blocker": "No approved free matched-expiry OSE+SGX+CME venue-specific intraday history.",
+      "guardrail": "Proxy architecture cannot be promoted as true-venue DPD."
+    },
+    {
+      "candidate": "OSE_ORDER_IMBALANCE",
+      "role": "MICROSTRUCTURE_INFORMATION",
+      "status": "LITERATURE_ONLY_DATA_BLOCKED",
+      "blocker": "No approved signed-trade/limit-order/spread history.",
+      "guardrail": "Do not infer order imbalance from OHLC/VWAP/aggregate volume."
+    },
+    {
+      "candidate": "CBOE_LTV_LEFT_TAIL_RISK",
+      "role": "GLOBAL_TAIL_RISK_STATE",
+      "status": "DATA_BLOCKED",
+      "blocker": "No verified free official historical LTV series under current no-extra-cost policy.",
+      "guardrail": "Do not substitute VIX/SKEW and call it LTV."
+    },
+    {
+      "candidate": "BOJ_MPM_EVENT_VOLATILITY",
+      "role": "EVENT_VOLATILITY_RISK_STATE",
+      "status": "DATA_BLOCKED",
+      "blocker": "Verified free public history is insufficient for robust intraday Nikkei 225 VI/VI-futures replication.",
+      "guardrail": "Do not open a weak small-event daily substitute merely to obtain a result."
+    },
+    {
+      "candidate": "NEWS_STATE_LANGUAGE_SOURCE_G1_DI1",
+      "role": "EVENT_STATE",
+      "status": "DATA_INCONCLUSIVE",
+      "terminal_run_id": 33348607397,
+      "logical_attempts_used": 3,
+      "missing_cache_count": 311,
+      "statistical_evaluation_performed": false,
+      "guardrail": "No fourth acquisition attempt."
+    },
+    {
+      "candidate": "PHASE4B_USDJPY_1D",
+      "role": "CONDITIONAL_MACRO",
+      "status": "REJECT_CURRENT_SPEC",
+      "guardrail": "No post-hoc high-VIX rescue."
+    }
+  ],
+  "admitted_architecture_now": [
+    "DATA_INTEGRITY_CAUSAL_TIMING",
+    "SESSION_MARKET_STATE",
+    "MICROSTRUCTURE_EXECUTION_AS_NON_ALPHA_CONTEXT",
+    "DECISION_ENGINE_FAIL_CLOSED_POLICY"
+  ],
+  "conditionally_admitted_after_validation": [
+    "HAR_RSV_DI1 as risk/sizing only if true-OSE confirmation passes",
+    "INTRADAY_PATH_US_TO_JNU_G1 as session/path directional layer only if true-OSE family passes",
+    "TRUE_VENUE_DPD as source weighting only if matched-expiry true-venue family passes"
+  ],
+  "not_admitted": [
+    "Fixed cross-market majority vote",
+    "Arbitrary NQ/USDJPY or other fixed weights",
+    "SMA as alpha",
+    "Legacy trend/breakout/drawdown/relative-strength families",
+    "Current USDJPY 1d specification",
+    "GDELT news families as validated state",
+    "Proxy DPD as true-venue evidence",
+    "OHLC-derived fake order imbalance"
+  ],
+  "completion_criteria": "config/jnu_framework_completion_criteria_v1.json",
+  "architecture_prereg": "config/jnu_final_framework_v3_prereg.json",
+  "true_ose_handoff": "config/jnu_true_ose_execution_package_v1.json",
+  "reopen_trigger": "Authorized true-OSE data becomes observable, a genuinely new independent high-evidence/free-legal data source appears, or a documented implementation/data-integrity defect is found."
+}
