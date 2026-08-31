@@ -38,10 +38,7 @@
       "logical_attempt_rule": "Runs triggered by both push and pull_request from the identical request commit SHA are one logical acquisition attempt; this control-plane duplication does not create a new hypothesis/trial.",
       "attempt_1": {
         "request_sha": "1419591e92c7f3a407167795ef39b0165e41ca36",
-        "execution_runs": [
-          33341758160,
-          33341760779
-        ],
+        "execution_runs": [33341758160, 33341760779],
         "classification": "ONE_LOGICAL_ATTEMPT_CONTROL_PLANE_DUPLICATE",
         "note": "Future resumes use PR-only triggering and cumulative cache."
       },
@@ -51,115 +48,54 @@
         "data_integrity_revision": "G1_DI1",
         "cache_policy": "Reuse latest cache from research/news-language-source-g1 and fetch only missing chunks.",
         "research_parameter_change": false
+      },
+      "attempt_3_if_needed": {
+        "classification": "FINAL_DATA_ACQUISITION_ONLY",
+        "trigger_condition": "Logical attempt #2 completes without a full four-cell panel solely because one or more uncached quarter requests time out or fail at the source/network layer.",
+        "execution_change": "For an already cached quarter, reuse its exact cache. For an uncached quarter only, decompose directly to <=31-day windows before any network request; retain single connection, pacing, bounded adaptive split and same-branch cumulative cache.",
+        "research_parameter_change": false,
+        "forbidden": [
+          "Change query text or sourcelang",
+          "Drop a cell",
+          "Change date range, EWM half-life, OOS start, recent window, bootstrap or Holm thresholds",
+          "Run a fourth acquisition attempt"
+        ],
+        "terminal_rule": "If the full DI1 panel still cannot be acquired, classify G1 DATA_INCONCLUSIVE and close the family."
       }
     }
   },
   "family": {
     "size": 4,
     "cells": {
-      "JAPAN_MACRO_JA": {
-        "query": "(\"Bank of Japan\" OR \"Japan inflation\" OR \"Japanese wages\" OR \"Japan monetary policy\") sourcelang:japanese",
-        "semantic_group": "JAPAN_MACRO",
-        "source_language": "japanese"
-      },
-      "JAPAN_MACRO_EN": {
-        "query": "(\"Bank of Japan\" OR \"Japan inflation\" OR \"Japanese wages\" OR \"Japan monetary policy\") sourcelang:english",
-        "semantic_group": "JAPAN_MACRO",
-        "source_language": "english"
-      },
-      "JAPAN_EQUITY_JA": {
-        "query": "(\"Nikkei 225\" OR \"Japanese stocks\" OR \"Tokyo stock market\") sourcelang:japanese",
-        "semantic_group": "JAPAN_EQUITY",
-        "source_language": "japanese"
-      },
-      "JAPAN_EQUITY_EN": {
-        "query": "(\"Nikkei 225\" OR \"Japanese stocks\" OR \"Tokyo stock market\") sourcelang:english",
-        "semantic_group": "JAPAN_EQUITY",
-        "source_language": "english"
-      }
+      "JAPAN_MACRO_JA": {"query": "(\"Bank of Japan\" OR \"Japan inflation\" OR \"Japanese wages\" OR \"Japan monetary policy\") sourcelang:japanese", "semantic_group": "JAPAN_MACRO", "source_language": "japanese"},
+      "JAPAN_MACRO_EN": {"query": "(\"Bank of Japan\" OR \"Japan inflation\" OR \"Japanese wages\" OR \"Japan monetary policy\") sourcelang:english", "semantic_group": "JAPAN_MACRO", "source_language": "english"},
+      "JAPAN_EQUITY_JA": {"query": "(\"Nikkei 225\" OR \"Japanese stocks\" OR \"Tokyo stock market\") sourcelang:japanese", "semantic_group": "JAPAN_EQUITY", "source_language": "japanese"},
+      "JAPAN_EQUITY_EN": {"query": "(\"Nikkei 225\" OR \"Japanese stocks\" OR \"Tokyo stock market\") sourcelang:english", "semantic_group": "JAPAN_EQUITY", "source_language": "english"}
     },
-    "features": [
-      "TimelineTone",
-      "TimelineVol",
-      "absolute tone",
-      "2-day EWM tone"
-    ],
+    "features": ["TimelineTone", "TimelineVol", "absolute tone", "2-day EWM tone"],
     "directional_return_test": "PROHIBITED_G1",
     "session_test": "DEFERRED_UNTIL_TRUE_JNU_INTRADAY_DATA"
   },
-  "timing": {
-    "predictor_alignment": "Strict prior-day as-of only; exact same-day match is excluded.",
-    "target": "Next-day squared Nikkei futures-index proxy return.",
-    "note": "G1 is daily language/source conditioning, not an intraday session test."
-  },
-  "baseline": {
-    "predictors": [
-      "lagged log variance 1d",
-      "lagged mean log variance 5d",
-      "lagged mean log variance 22d"
-    ],
-    "model": "Expanding OLS in log-variance space",
-    "oos_start_days": 252
-  },
+  "timing": {"predictor_alignment": "Strict prior-day as-of only; exact same-day match is excluded.", "target": "Next-day squared Nikkei futures-index proxy return.", "note": "G1 is daily language/source conditioning, not an intraday session test."},
+  "baseline": {"predictors": ["lagged log variance 1d", "lagged mean log variance 5d", "lagged mean log variance 22d"], "model": "Expanding OLS in log-variance space", "oos_start_days": 252},
   "evaluation": {
-    "metrics": [
-      "QLIKE improvement",
-      "MSE improvement"
-    ],
+    "metrics": ["QLIKE improvement", "MSE improvement"],
     "recent_days": 126,
-    "bootstrap": {
-      "block_days": 5,
-      "samples": 2000,
-      "seed": 42
-    },
+    "bootstrap": {"block_days": 5, "samples": 2000, "seed": 42},
     "qlike_bootstrap_probability_min": 0.95,
     "multiple_testing": "Holm correction across all 4 cells",
     "holm_alpha": 0.1,
-    "pass_all": [
-      "full-OOS QLIKE improvement > 0",
-      "full-OOS MSE improvement > 0",
-      "block-bootstrap P(QLIKE improvement > 0) >= 0.95",
-      "recent-window QLIKE improvement >= 0",
-      "recent-window MSE improvement >= 0",
-      "Holm family rejection = true"
-    ]
+    "pass_all": ["full-OOS QLIKE improvement > 0", "full-OOS MSE improvement > 0", "block-bootstrap P(QLIKE improvement > 0) >= 0.95", "recent-window QLIKE improvement >= 0", "recent-window MSE improvement >= 0", "Holm family rejection = true"]
   },
-  "forbidden": [
-    "Change keywords after seeing results",
-    "Drop Japanese or English cells because they underperform",
-    "Merge languages only after observing results",
-    "Add US-tech/Fed/FX/geopolitical categories to this G1 family",
-    "Change the 2-day half-life",
-    "Lower bootstrap or Holm thresholds",
-    "Turn a volatility-state pass into directional trading without a new preregistration",
-    "Claim source-language filtering reproduces proprietary TRNA sentiment analytics"
-  ],
+  "forbidden": ["Change keywords after seeing results", "Drop Japanese or English cells because they underperform", "Merge languages only after observing results", "Add US-tech/Fed/FX/geopolitical categories to this G1 family", "Change the 2-day half-life", "Lower bootstrap or Holm thresholds", "Turn a volatility-state pass into directional trading without a new preregistration", "Claim source-language filtering reproduces proprietary TRNA sentiment analytics"],
   "promotion_role": "Language-conditioned news/event volatility-state candidate only.",
   "formal_jnu_promotion": "Requires subsequent confirmation with true JNU/OSE data if used for intraday session decisions.",
   "data_integrity_revision": {
     "id": "G1_DI1",
     "frozen_before_statistical_result": true,
     "trigger": "Cache audit found at least one omitted calendar date (2023-03-23) in a successful GDELT TimelineTone chunk; external narrow-query verification was unavailable.",
-    "rule": [
-      "Reindex every source cell to an explicit calendar-day grid.",
-      "Any date omitted by GDELT is NaN, not zero and not forward-filled.",
-      "Derived abs_tone and tone_ewm are also unavailable on a missing source date.",
-      "All four cells and the baseline use one common causal availability mask for training and OOS comparison.",
-      "This revision changes no keyword query, source language, target, date range, half-life, OOS start, recent window, bootstrap, Holm alpha or pass threshold."
-    ],
-    "old_runs": {
-      "eligibility": "DATA_AUDIT_ONLY_NOT_STATISTICAL_EVIDENCE",
-      "run_ids": [
-        33341758160,
-        33341760779
-      ]
-    },
-    "quality_gate": {
-      "min_common_trading_day_coverage": 0.95,
-      "min_common_oos_evaluation_days": 500,
-      "failure_disposition": "DATA_INCONCLUSIVE",
-      "rationale": "A four-cell comparison is not interpretable if source omissions materially change the evaluation population; coverage is a data-quality gate, not a performance threshold.",
-      "no_rescue": "Do not drop a low-coverage cell after inspection to raise common coverage."
-    }
+    "rule": ["Reindex every source cell to an explicit calendar-day grid.", "Any date omitted by GDELT is NaN, not zero and not forward-filled.", "Derived abs_tone and tone_ewm are also unavailable on a missing source date.", "All four cells and the baseline use one common causal availability mask for training and OOS comparison.", "This revision changes no keyword query, source language, target, date range, half-life, OOS start, recent window, bootstrap, Holm alpha or pass threshold."],
+    "old_runs": {"eligibility": "DATA_AUDIT_ONLY_NOT_STATISTICAL_EVIDENCE", "run_ids": [33341758160, 33341760779]},
+    "quality_gate": {"min_common_trading_day_coverage": 0.95, "min_common_oos_evaluation_days": 500, "failure_disposition": "DATA_INCONCLUSIVE", "rationale": "A four-cell comparison is not interpretable if source omissions materially change the evaluation population; coverage is a data-quality gate, not a performance threshold.", "no_rescue": "Do not drop a low-coverage cell after inspection to raise common coverage."}
   }
 }
