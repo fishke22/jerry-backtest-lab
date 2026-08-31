@@ -1,5 +1,5 @@
 {
-  "version": "2.0",
+  "version": "2.1",
   "updated_at": "2026-08-31",
   "policy": {
     "max_active_formal_families": 1,
@@ -21,14 +21,12 @@
   },
   "active": null,
   "current_global_blocker": {
-    "id": "TRUE_OSE_INTRADAY_1M_5M_DATA_ACCESS",
-    "status": "TRUE_OSE_DAILY_SESSION_LOCALLY_AVAILABLE_INTRADAY_NOT_FOUND",
+    "id": "TRUE_OSE_MINI_INTRADAY_DATA_ACQUIRED_STAGE_A_DERIVATION",
+    "status": "DATA_ACQUIRED_2006_2026_DERIVED_BUILD_RUNNING",
     "impact": [
-      "HAR_RSV_TRUE_OSE_CONFIRMATION",
-      "INTRADAY_PATH_US_TO_JNU_G1",
-      "TRUE_VENUE_DPD_OSE_SGX_CME"
+      "HAR_RSV_TRUE_OSE_CONFIRMATION"
     ],
-    "rule": "Exact OSE Micro/Mini daily and session history is now locally verified, but frozen intraday families still require genuine minute/tick data. Never expand daily/session OHLC into synthetic 1m/5m bars."
+    "rule": "Do not call Stage A PASS/FAIL until the preregistered derived-data Gate 0 and HAR-RSV OOS/bootstrap run complete. Raw 225Labo remains local-only."
   },
   "queue": [
     {
@@ -36,9 +34,9 @@
       "candidate": "HAR_RSV_TRUE_OSE_CONFIRMATION",
       "evidence": "Direct Japanese/Nikkei futures volatility literature + 2011-2018 proxy-method PASS + 2026 public-proxy holdout consistency",
       "target_role": "Risk state / sizing / stop normalization",
-      "status": "TRUE_OSE_DAILY_SESSION_AVAILABLE_5M_INTRADAY_STILL_BLOCKED",
-      "data_plan": "Reuse QROS true-OSE contract/session DQ and parser infrastructure. Acquire genuine Mini 1m/5m history locally (preferred: 225Labo personal-use local-only), then construct frozen 5-minute RV/RSV. Stage B Micro exact-product intraday confirmation only if Stage A passes.",
-      "next_action": "Locate/acquire 225Labo Mini minute files locally; raw stays local. Do not use the QROS 1,250-day Mini day-session dataset as a substitute for 5-minute RV/RSV.",
+      "status": "TRUE_OSE_MINI_2006_2026_ACQUIRED_STAGE_A_RUNNING",
+      "data_plan": "225Labo Mini annual minute files 2006-2026 are locally complete. Build frozen 5m daily RV/RSV locally, upload only non-reconstructive derived panel + hashes/manifest to GitHub, then run preregistered Stage A. Stage B Micro only if Stage A passes.",
+      "next_action": "Complete local 5m Gate 0/derived build, persist derived panel to GitHub, execute config/jnu_har_rsv_true_ose_mini_stage_a_g1_prereg.json.",
       "local_existing_evidence": {
         "mini_distinct_day_session_days": 1250,
         "micro_distinct_day_session_days": 364,
