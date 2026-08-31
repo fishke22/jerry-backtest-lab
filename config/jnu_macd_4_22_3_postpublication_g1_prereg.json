@@ -1,0 +1,106 @@
+{
+  "version": "1.0",
+  "candidate_id": "MACD_4_22_3_POSTPUBLICATION_TRUE_JNU_G1",
+  "status": "PREREGISTERED_BEFORE_POSTPUBLICATION_OUTCOME_INSPECTION",
+  "frozen_at": "2026-09-01",
+  "role": "DIRECTIONAL_TRADING_RULE_INFORMATION_GATE",
+  "evidence": {
+    "primary_source": "Kang (2021), Improving MACD Technical Analysis by Optimizing Parameters and Modifying Trading Rules: Evidence from the Japanese Nikkei 225 Futures Market, JRFM 14(1):37",
+    "doi": "10.3390/jrfm14010037",
+    "direct_market": "Japanese Nikkei 225 futures; JPX Data Cloud near-maturity daily closing series",
+    "published_sample": "2011-01-04 through 2019-12-30",
+    "fixed_rule": "Basic MACD signal-line crossover with MACD(4,22,3)",
+    "selection_bias_warning": "The paper selected 4,22,3 after evaluating 19,456 MACD models. This is not ignored; the rule is admissible only as an externally fixed hypothesis for a strictly post-publication replication, and no parameter/rule search is allowed in this repo.",
+    "secondary_source": "Kang (2022), Finding Optimal Parameter Values for the MACD Indicator, IJFR 13(3)",
+    "secondary_sample": "2011-2021 with 2020-2021 out-of-sample evaluation of optimized parameter groups",
+    "postpublication_holdout_start": "2022-08-01"
+  },
+  "signal": {
+    "price_series": "OSE regular day-session closing price of the central/near contract series represented by 225Labo annual center-contract files",
+    "ema_initialization": "Use all available prior daily closes before the evaluation start as warm-up only; no pre-start payoff enters evaluation.",
+    "macd_fast": 4,
+    "macd_slow": 22,
+    "macd_signal": 3,
+    "histogram": "EMA4(close) - EMA22(close) - EMA3(MACD)",
+    "signal_line_crossover": "Long-side signal when histogram > 0; short-side signal when histogram < 0.",
+    "execution_lag": "A signal observed at close t can change the implemented position only at close t+1, matching the paper's causal simulation convention.",
+    "position_rule": "Maintain the last implemented long/short position until an opposite signal is implemented at a later close. Ignore repeated same-side signals.",
+    "zero_histogram": "No new signal; retain current implemented position."
+  },
+  "stage_a": {
+    "venue": "OSE",
+    "product": "Nikkei 225 Mini Futures",
+    "raw_source": "225Labo local-only 1-minute annual workbooks",
+    "evaluation_from": "2022-08-01",
+    "evaluation_to": "2023-07-21",
+    "minimum_evaluation_days": 200,
+    "purpose": "Short post-publication/pre-Micro bridge confirmation only."
+  },
+  "stage_b": {
+    "venue": "OSE",
+    "product": "Nikkei 225 Micro Futures (JNU)",
+    "raw_source": "225Labo local-only 1-minute annual workbooks",
+    "evaluation_from": "2023-07-24",
+    "evaluation_to": "latest available",
+    "minimum_evaluation_days": 500,
+    "requires_stage_a_pass": true,
+    "purpose": "Primary exact-product confirmation."
+  },
+  "data_quality": {
+    "day_session_minute_label_coverage_minimum": 0.95,
+    "day_close_required": true,
+    "no_imputation": true,
+    "invalid_nonpositive_close": "critical DQ",
+    "raw_cloud_upload": false,
+    "cloud_output": "Per-day non-reconstructive MACD state/implemented-position/strategy-return sufficient statistics only."
+  },
+  "primary_test": {
+    "daily_underlying_return": "log(close_t / close_{t-1})",
+    "daily_strategy_return": "implemented_position_from_prior_close * daily_underlying_return",
+    "benchmark": "zero-return/no-position information baseline; buy-and-hold reported diagnostic only",
+    "expected_mean_strategy_return": "positive",
+    "directional_accuracy": "Among nonzero implemented positions and nonzero daily returns, fraction position sign equals daily-return sign; expected > 0.5",
+    "bootstrap": {
+      "unit": "trading day",
+      "method": "moving-block bootstrap to preserve serial dependence",
+      "block_days": 5,
+      "resamples": 5000,
+      "seed": 42,
+      "probability_mean_strategy_return_positive_threshold": 0.95
+    },
+    "formal_primary_cells": 1
+  },
+  "stage_a_pass_rule": [
+    "At least 200 evaluation days after 2022-07-31 and before Micro launch.",
+    "Mean gross daily strategy return > 0.",
+    "Directional accuracy > 0.5.",
+    "5-day moving-block bootstrap P(mean gross daily strategy return > 0) >= 0.95."
+  ],
+  "stage_b_pass_rule": [
+    "Stage A PASS mandatory; otherwise Stage B statistical evaluation prohibited.",
+    "At least 500 exact-JNU evaluation days.",
+    "Same 4,22,3 rule, EMA convention, execution lag and position handling; no retuning.",
+    "Mean gross daily strategy return > 0.",
+    "Directional accuracy > 0.5.",
+    "5-day moving-block bootstrap P(mean gross daily strategy return > 0) >= 0.95."
+  ],
+  "mandatory_downstream_if_stage_b_passes": [
+    "Explicit OSE/JNU transaction fees and bid-ask/slippage stress.",
+    "Turnover and trade-count analysis.",
+    "CPCV/PBO/Deflated-Sharpe/multiple-testing treatment that includes the literature's original massive parameter-selection history as adverse prior evidence.",
+    "Forward/holdout confirmation before Stage 9."
+  ],
+  "forbidden": [
+    "Test any MACD parameter tuple other than 4,22,3 in G1.",
+    "Test the paper's 1-day holding, 30%-10day histogram or first-peak/bottom modifications as rescue variants.",
+    "Use the 2022 optimal parameter ranges to search for the best current tuple.",
+    "Change EMA initialization or execution lag after outcomes.",
+    "Add RSI, volume, HAR-RSV, BOJ-event, FX or other filters to rescue G1.",
+    "Ignore transaction costs if Stage B passes gross-return gates.",
+    "Use exact-JNU Stage B to rescue a failed Stage A."
+  ],
+  "interpretation": {
+    "pass": "Both stages passing creates only a directional trading-rule information candidate; costs/overfit/forward gates remain mandatory.",
+    "fail": "Close G1. Do not search MACD parameter/rule variants in this research lineage."
+  }
+}
