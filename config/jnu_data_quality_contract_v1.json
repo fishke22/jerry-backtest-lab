@@ -1,0 +1,122 @@
+{
+  "version": "1.0",
+  "updated_at": "2026-08-31",
+  "purpose": "Minimum data-quality contract before any source can enter a formal JNU research family.",
+  "required_checks": [
+    {
+      "check": "IDENTITY_AND_GRAIN",
+      "requirements": [
+        "Venue/product/contract identity explicit",
+        "Bar/event grain explicit",
+        "Front/expiry/continuous-contract construction explicit",
+        "No mixed grains in one analytical table"
+      ],
+      "severity_if_failed": "CRITICAL"
+    },
+    {
+      "check": "TIMESTAMP_AND_SESSION",
+      "requirements": [
+        "Source timezone known",
+        "Execution/trade date distinguished from exchange trading date where relevant",
+        "Historical session/calendar versions applied",
+        "DST handled for non-Japan venues",
+        "No future timestamp relative to decision time"
+      ],
+      "severity_if_failed": "CRITICAL"
+    },
+    {
+      "check": "COMPLETENESS",
+      "requirements": [
+        "Expected date/bar grid defined",
+        "Missing dates/bars measured",
+        "Missing-source semantics documented (zero vs missing vs holiday)",
+        "No silent forward fill across unknown source gaps"
+      ],
+      "severity_if_failed": "HIGH"
+    },
+    {
+      "check": "UNIQUENESS",
+      "requirements": [
+        "Primary/composite key defined",
+        "Duplicate timestamp/contract rows measured",
+        "Boundary chunk duplicates removed deterministically"
+      ],
+      "severity_if_failed": "HIGH"
+    },
+    {
+      "check": "VALIDITY",
+      "requirements": [
+        "OHLC consistency checked (low<=open/close<=high)",
+        "Volume nonnegative",
+        "Price/tick-size plausibility checked",
+        "Allowed session IDs/contracts checked"
+      ],
+      "severity_if_failed": "HIGH"
+    },
+    {
+      "check": "FRESHNESS_AND_VERSIONING",
+      "requirements": [
+        "As-of date recorded",
+        "Latest expected partition/date known",
+        "Backfills/revisions detectable by source hash",
+        "Stale source cannot silently satisfy current-analysis request"
+      ],
+      "severity_if_failed": "HIGH"
+    },
+    {
+      "check": "CROSS_SOURCE_ALIGNMENT",
+      "requirements": [
+        "Matched expiry where same-underlying venues are compared",
+        "Return intervals aligned in UTC after local calendar mapping",
+        "No same-bar future information leakage",
+        "Join coverage and dropped-row rate reported"
+      ],
+      "severity_if_failed": "CRITICAL"
+    },
+    {
+      "check": "RIGHTS_AND_STORAGE",
+      "requirements": [
+        "Terms/license classification recorded",
+        "Raw-vs-derived cloud storage permission explicit",
+        "Paid source requires explicit user authorization",
+        "Personally licensed raw data is not uploaded when terms prohibit it"
+      ],
+      "severity_if_failed": "CRITICAL"
+    }
+  ],
+  "automated_tests": {
+    "required_when_applicable": [
+      "date/bar grid completeness",
+      "duplicate composite key",
+      "timestamp monotonicity",
+      "OHLC domain validity",
+      "volume nonnegative",
+      "source hash/provenance",
+      "session-calendar membership",
+      "cross-source matched-expiry coverage"
+    ],
+    "rule": "A formal family may not report statistical PASS when any CRITICAL data-quality check is unresolved."
+  },
+  "current_known_examples": [
+    {
+      "source": "GDELT DOC Timeline",
+      "issue": "At least one calendar date omitted in cached TimelineTone chunk.",
+      "remediation": "G1_DI1 explicit calendar grid; missing remains NaN; no forward fill; common family sample."
+    },
+    {
+      "source": "JPX official 1-minute derivatives",
+      "issue": "Quality high but paid under current access route.",
+      "remediation": "Blocked by no-extra-cost policy."
+    },
+    {
+      "source": "225Labo",
+      "issue": "Personally licensed raw data; exact public schema not verified.",
+      "remediation": "Raw local-only, parser requires authorized exact sample/schema."
+    },
+    {
+      "source": "Yahoo DPD proxies",
+      "issue": "Venue/contract identity insufficient for formal price-discovery promotion.",
+      "remediation": "Pilot only; never VALIDATED_JNU_MODULE."
+    }
+  ]
+}
