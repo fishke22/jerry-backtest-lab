@@ -1,0 +1,26 @@
+name: JNU HAR-RSV Exact Micro Stage B One Shot
+
+on:
+  push:
+    paths:
+      - cloud_data/triggers/jnu_har_rsv_jnu_micro_stage_b_g1.trigger
+
+jobs:
+  stage-b:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m pip install --upgrade pip numpy pandas
+      - run: python scripts/process_jnu_har_rsv_jnu_micro_stage_b_g1.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: jnu-har-rsv-jnu-micro-stage-b-one-shot
+          path: |
+            volatility_results/jnu_har_rsv_jnu_micro_stage_b_g1.json
+            volatility_reports/jnu_har_rsv_jnu_micro_stage_b_g1.md
+          if-no-files-found: ignore
