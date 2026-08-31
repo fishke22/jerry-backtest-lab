@@ -1,5 +1,5 @@
 {
-  "version": "1.1",
+  "version": "1.2",
   "verified_at": "2026-08-31",
   "purpose": "Supplement the main JNU data-source registry with newly verified substitute sources discovered after the mobile/local-data blocker review.",
   "sources": [
@@ -25,6 +25,40 @@
       "jnu_role": "CME-side venue alignment and DPD feasibility",
       "status": "ACTIVE_TRUE_CME_SHORT_SAMPLE_NOT_TRUE_OSE",
       "formal_limitation": "Short sample and wrong venue for OSE/JNU promotion. Cannot prove OSE leadership or JNU execution."
+    },
+    {
+      "id": "JPX_OSE_HISTORICAL_FREE_TRIAL_APPLICATION",
+      "provider": "Japan Exchange Group / JPX Market Innovation & Research",
+      "data_type": "Official OSE historical tick data offered as a possible free trial for trading-methodology examination",
+      "coverage": "JPX states that historical OSE tick data may be provided to parties considering new participation in OSE if certain conditions are met; exact product/date coverage depends on approval.",
+      "cost_class": "POTENTIALLY_NO_EXTRA_COST_BY_APPLICATION",
+      "license_or_terms_status": "Official application/contact path. Approval and permitted research/storage use must be confirmed before acquisition or cloud processing.",
+      "jnu_role": "Potentially ideal true-OSE source for HAR-RSV Stage A and possibly frozen true-OSE intraday tests if Nikkei 225 mini/large coverage is approved.",
+      "status": "HIGHEST_PRIORITY_FREE_TRUE_OSE_APPLICATION_PATH",
+      "formal_limitation": "Not an immediately downloadable public dataset; eligibility, coverage, retention and processing rights are unresolved until JPX approval."
+    },
+    {
+      "id": "JPX_DATACUBE_OSE_PAID_REFERENCE",
+      "provider": "JPX Data Cloud / J-Quants DataCube",
+      "data_type": "Official OSE tick and one-minute OHLC historical derivatives data",
+      "coverage": "Price list indicates Nikkei 225 mini available from 2006-09-01 and Nikkei 225 micro from 2023-05-29; official monthly one-minute and tick products exist.",
+      "cost_class": "PAID_NOT_ADOPTED",
+      "license_or_terms_status": "Official paid source. Retained only as identity/coverage reference under the current no-paid policy.",
+      "jnu_role": "Reference proving exact official true-OSE data coverage and granularity exist.",
+      "status": "NOT_ADOPTED_UNDER_NO_PAID_POLICY",
+      "formal_limitation": "Do not purchase without explicit user authorization."
+    },
+    {
+      "id": "SGX_WEBPXTICK_HISTORICAL_ENDPOINT_LEGACY",
+      "provider": "Singapore Exchange / legacy public derivatives download path",
+      "repository_reference": "nicapos/SGX-data-project",
+      "data_type": "Historical SGX derivatives daily tick archives (WEBPXTICK_DT) plus structure and trade-code files",
+      "coverage": "Open-source downloader documents date-indexed downloads and historically allowed ranges reaching back to 2004-07-23; exact current endpoint availability and Nikkei contract coverage still require direct verification.",
+      "cost_class": "LEGACY_PUBLIC_ENDPOINT_RIGHTS_UNRESOLVED",
+      "license_or_terms_status": "Current SGX Market Data Policy governs market-data use and non-display usage. Do not bulk-download or automate this legacy path until current rights for historical website files and research use are confirmed.",
+      "jnu_role": "Potential SGX venue source for DPD if current official access and research rights can be verified.",
+      "status": "HIGH_VALUE_LEAD_NOT_YET_APPROVED_FOR_AUTOMATION",
+      "formal_limitation": "A GitHub scraper is evidence that an endpoint existed, not evidence that unrestricted automated acquisition is currently permitted."
     },
     {
       "id": "BARCHART_SGX_NIKKEI_WEB_HISTORY",
