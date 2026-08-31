@@ -1,5 +1,5 @@
 {
-  "version": "3.2",
+  "version": "3.1",
   "updated_at": "2026-09-01",
   "policy": {
     "max_active_formal_families": 1,
@@ -19,19 +19,24 @@
       "Counting correlated features as independent votes"
     ]
   },
-  "active": null,
+  "active": {
+    "candidate": "MACD_4223_POST_PUBLICATION_TRUE_JNU_G1",
+    "preregistration": "config/jnu_macd_4223_post_publication_true_jnu_g1_prereg.json",
+    "status": "STAGE_A_TRUE_OSE_MINI_BLOCKED_LOCAL_DEVICE_OFFLINE",
+    "rule": "Do not substitute proxy data. Resume local Mini build when authorized device reconnects; cloud statistical runner can be prepared in advance."
+  },
   "current_global_blocker": null,
   "queue": [
     {
-      "rank": 99,
-      "candidate": "PRIOR_NIGHT_USDJPY_TO_JNU_DAY_G1",
-      "status": "TRUE_OSE_MINI_STAGE_A_FAIL_TERMINAL",
-      "evidence": "Satoyoshi 2018 direct OSE Nikkei 225 futures evidence: lagged prior-night USD/JPY change has significant negative coefficient for following day-session futures return.",
+      "rank": 1,
+      "candidate": "MACD_4223_POST_PUBLICATION_TRUE_JNU_G1",
+      "status": "PREREGISTERED_LOCAL_BUILD_BLOCKED_DEVICE_OFFLINE",
+      "evidence": "Direct Nikkei 225 futures evidence from Kang 2021; fixed external MACD(4,22,3), with 2022 follow-up used only to define post-publication holdout boundary.",
       "target_role": "Directional information gate",
-      "next_action": "None. Exact-JNU Stage B prohibited; no FX-time/filter/sign/threshold/night-target rescue."
+      "next_action": "When local device reconnects, build 2022-08-01 to 2023-07-21 true-OSE Mini holdout, Gate 0, then run Stage A."
     },
     {
-      "rank": 3,
+      "rank": 4,
       "candidate": "HAR_RSV_TRUE_OSE_CONFIRMATION",
       "evidence": "Direct Japanese/Nikkei futures volatility literature + proxy-method evidence + true-OSE/JNU confirmation",
       "target_role": "Risk state / sizing / stop normalization",
@@ -39,35 +44,43 @@
       "next_action": "Downstream Stage-4 risk-state translation deferred until a concrete position/risk-control use is proposed; do not reopen Stage-3 statistics."
     },
     {
-      "rank": 4,
+      "rank": 5,
       "candidate": "BOJ_MPM_EVENT_VOLATILITY",
       "status": "STAGE3_PASS_EVENT_RISK_INFORMATION_STATE_CANDIDATE",
       "next_action": "Stage-3 research closed. Only open downstream risk-rule translation if it will actually change entry/size/stop/confidence."
     },
     {
-      "rank": 5,
+      "rank": 6,
       "candidate": "TRUE_VENUE_DPD_OSE_SGX_CME",
       "status": "DATA_RIGHTS_BLOCKED_SGX_INTRADAY",
       "next_action": "Pause formal DPD. Reopen only with a free/authorized matched-expiry SGX Nikkei intraday source with quantitative/non-display and retention rights."
     },
     {
-      "rank": 5,
+      "rank": 6,
       "candidate": "CBOE_LTV_LEFT_TAIL_RISK",
       "status": "BLOCKED_NO_VERIFIED_FREE_OFFICIAL_HISTORY",
       "next_action": "Do not substitute VIX/SKEW."
     },
     {
-      "rank": 8,
+      "rank": 9,
       "candidate": "OSE_ORDER_IMBALANCE",
       "status": "BLOCKED_NO_FREE_DIRECTIONAL_ORDER_FLOW_DATA",
       "next_action": "Do not infer from OHLC/volume."
     },
     {
-      "rank": 92,
+      "rank": 93,
       "candidate": "JPX_OSE_HISTORICAL_FREE_ACCESS_RESOLUTION",
       "target_role": "Data acquisition gate, not an alpha family",
       "status": "ALTERNATE_SOURCE_ONLY_NOT_CURRENT_BLOCKER",
       "next_action": "No active work required while 225Labo true-OSE data remain available locally."
+    },
+    {
+      "rank": 99,
+      "candidate": "PRIOR_NIGHT_USDJPY_TO_JNU_DAY_G1",
+      "status": "TRUE_OSE_MINI_STAGE_A_FAIL_TERMINAL",
+      "evidence": "Satoyoshi 2018 direct OSE Nikkei 225 futures evidence: lagged prior-night USD/JPY change has significant negative coefficient for following day-session futures return.",
+      "target_role": "Directional information gate",
+      "next_action": "None. Exact-JNU Stage B prohibited; no FX-time/filter/sign/threshold/night-target rescue."
     },
     {
       "rank": 99,
