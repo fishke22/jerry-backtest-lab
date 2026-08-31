@@ -1,10 +1,10 @@
 {
-  "version": "1.0",
+  "version": "1.1",
   "as_of": "2026-08-31",
   "purpose": "Persist product/schema identity mappings discovered during true-venue data-access research so future sessions do not repeat the same discovery work.",
   "ose_jpx": {
-    "one_minute_schema_status": "OFFICIAL_SCHEMA_RESOLVED_ACCESS_STILL_BLOCKED",
-    "official_spec_source": "JPX Data Cloud data_detail_en.pdf",
+    "one_minute_schema_status": "OFFICIAL_SCHEMA_AND_TARGET_INDEX_CODE_RESOLVED_ACCESS_STILL_BLOCKED",
+    "official_spec_source": "JPX Data Cloud data_detail.pdf / data_detail_en.pdf",
     "futures_one_minute_fields": [
       "Trade_Date",
       "Execution_Date",
@@ -28,16 +28,17 @@
     },
     "security_code_evidence": {
       "nikkei_225_futures_large": {
-        "suffix_or_index_segment": "18",
+        "target_index_code_last_two_digits": "18",
         "examples": ["165030018", "166030018"],
-        "evidence_class": "OFFICIAL_JPX_DAILY_REPORTS_PLUS_PUBLIC_TICK_EXAMPLE"
+        "evidence_class": "OFFICIAL_JPX"
       },
       "nikkei_225_mini": {
-        "suffix_or_index_segment": "19",
+        "target_index_code_last_two_digits": "19",
         "example": "166030019",
-        "evidence_class": "OFFICIAL_JPX_LAST_TRADING_DAY_NOTICE"
+        "evidence_class": "OFFICIAL_JPX"
       },
       "nikkei_225_micro": {
+        "target_index_code_last_two_digits": "23",
         "jquants_product_category": "NK225MCF",
         "vendor_identifiers": {
           "QUICK": "115.n",
@@ -45,11 +46,10 @@
           "LSEG": "JNUcn",
           "CQG": "F.US.MC225"
         },
-        "nine_digit_security_code_suffix": "NOT_YET_CONFIRMED_FROM_PUBLIC_PRIMARY_SOURCE",
-        "evidence_class": "OFFICIAL_JPX_VENDOR_CODE_AND_JQUANTS_PRODUCT_LIST"
+        "evidence_class": "OFFICIAL_JPX_DATACUBE_APPENDIX_3_PLUS_VENDOR_CODE_LIST"
       }
     },
-    "important_guardrail": "Do not infer a micro 9-digit suffix from vendor/J-Quants codes. Resolve from official Appendix 3, a current JPX issue master, or an official daily report before parser hard-coding.",
+    "nine_digit_rule_note": "The 8th-9th digits are the target index/product classification. For Nikkei 225 Micro Futures the official target-index classification is 23. The first seven digits remain contract-specific under the futures identification-code rules and must be generated/read from the actual contract master rather than guessed from a vendor ticker.",
     "coverage_start_discrepancy": {
       "nikkei_225_mini": {
         "english_datacube_price_list_seen": "2006-09-01",
@@ -75,13 +75,45 @@
       "files": ["WEBPXTICK_DT", "TickData_structure.dat", "TC.txt", "TC_structure.dat"],
       "documented_earliest_dates": ["2002-10-01", "2004-07-23"],
       "status": "TECHNICALLY_DOCUMENTED_RIGHTS_UNRESOLVED",
-      "historical_code_mapping_status": "CURRENT_NK_NS_CODES_CONFIRMED_BUT_LEGACY_TC_MAPPING_NOT_YET_PROVEN"
+      "metadata_endpoint_verified": {
+        "reference_id": 5388,
+        "trade_date": "2023-03-31",
+        "TC_structure_dat": {
+          "reachable": true,
+          "record_delimiter": "comma",
+          "fields": ["Commodity", "Contract Type", "Delivery Month", "Delivery Year", "Strike Price", "Business Date", "Match time", "Price Indicator", "Price", "Message Code", "Amend Code", "Volume"],
+          "commodity_field_size": 3
+        },
+        "TickData_structure_dat": {
+          "reachable": true,
+          "record_delimiter": "tab",
+          "fields": ["Commodity Code", "Contract Type", "Month Code", "Delivery Year", "Strike Price", "Trade Date", "Log time", "Price Indicator", "Price", "Message Code", "Amend Code", "Volume"],
+          "commodity_code_field_size": 5,
+          "message_codes": {"B": "Bid", "A": "Ask", "T": "Traded"}
+        },
+        "TC_txt_single_sample": {
+          "retrieved_transiently": true,
+          "filename": "TC_20230331.txt",
+          "size_bytes": 267,
+          "observed_commodity": "CWF",
+          "contains_NK_or_NS": false,
+          "raw_persisted": false,
+          "interpretation": "Confirms TC field layout and endpoint behavior only; does not establish Nikkei legacy code mapping."
+        }
+      },
+      "historical_code_mapping_status": "CURRENT_NK_NS_CODES_CONFIRMED_BUT_LEGACY_WEBPXTICK_MAPPING_NOT_YET_PROVEN"
     },
-    "rights_guardrail": "Do not bulk-download, automate, or persist SGX legacy raw market data while current non-display/retention rights remain unresolved. A public downloader proves technical existence, not current permission."
+    "rights_guardrail": "Do not bulk-download, automate, or persist SGX legacy raw market data while current non-display/retention rights remain unresolved. Metadata-only structure files may be inspected for parser preparation; raw historical tick archives remain blocked pending rights clarification."
+  },
+  "local_device": {
+    "device_name": "KO-HONG-HSUAN",
+    "status_at_round": "ONLINE",
+    "search_result": "No obvious 225/Nikkei/JNU/mini/micro-named files found under the user's Downloads directory or filename search across the user profile in this round.",
+    "implication": "Do not assume 225Labo raw files are already downloaded. Continue cloud/public-source work unless a locally licensed file is explicitly located."
   },
   "research_implication": {
-    "HAR_RSV_TRUE_OSE_CONFIRMATION": "Parser/schema preparation is substantially unblocked; the main blocker is legal/observable true-OSE historical data access.",
-    "TRUE_VENUE_DPD_OSE_SGX_CME": "CME side is feasible; SGX current product identity is partially resolved but legacy archive mapping and rights remain blockers; OSE true data access remains a blocker.",
+    "HAR_RSV_TRUE_OSE_CONFIRMATION": "Parser/schema and Nikkei 225 Micro product-classification preparation are now substantially resolved; the main blocker is legally usable true-OSE historical data access.",
+    "TRUE_VENUE_DPD_OSE_SGX_CME": "CME side is feasible; SGX structure metadata is resolved and current NK/NS product identity is known, but historical WEBPXTICK code mapping and rights remain blockers; OSE true data access remains a blocker.",
     "decision_engine": "NO_VALIDATED_DIRECTIONAL_EDGE remains unchanged."
   }
 }
