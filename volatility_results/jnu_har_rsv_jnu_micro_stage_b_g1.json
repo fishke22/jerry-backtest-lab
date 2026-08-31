@@ -1,0 +1,47 @@
+{
+  "candidate_id": "HAR_RSV_JNU_MICRO_STAGE_B_G1",
+  "status": "TRUE_JNU_MICRO_STAGE_B_PASS",
+  "stage_b_pass": true,
+  "stage_a_prerequisite": "TRUE_OSE_MINI_STAGE_A_PASS",
+  "promotion_pipeline_stage": 3,
+  "promotion_state_if_pass": "INFORMATION_STATE_CANDIDATE",
+  "role": "VOLATILITY_RISK_STATE_ONLY_NOT_DIRECTIONAL_ALPHA",
+  "source": "exact-product OSE Nikkei 225 Micro (JNU) daily RV/RSV derived locally from 225Labo 5-minute data",
+  "raw_data_cloud_uploaded": false,
+  "derived_panel_sha256": "adbd6307d8e2327d9c851f2d17f7d21957609b6f68bf323867a54e7b1b150bcd",
+  "manifest_sha256": "350a66bb964b05e18811aac2c83430919b34c4861956cdf3fd09acba004d6fef",
+  "panel_days_before_min_returns_gate": 796,
+  "panel_days_after_gate": 796,
+  "oos_days": 270,
+  "oos_from": "2025-08-13",
+  "oos_to": "2026-08-31",
+  "losses": {
+    "HAR_RV": {"qlike": -7.48157225266744, "mse": 4.28302894606003e-08},
+    "HAR_RSV": {"qlike": -7.481645181285519, "mse": 4.168526305814845e-08}
+  },
+  "improvement": {
+    "qlike": 7.292861808050662e-05,
+    "mse": 1.1450264024518442e-09,
+    "qlike_bootstrap": {
+      "n": 270,
+      "mean": 7.292861808050662e-05,
+      "prob_positive": 0.522,
+      "ci95": [-0.002948407812922118, 0.0032316141059677084]
+    },
+    "mse_bootstrap": {
+      "n": 270,
+      "mean": 1.1450264024518442e-09,
+      "prob_positive": 0.9685,
+      "ci95": [-2.0677595560040202e-11, 3.213847016091524e-09]
+    }
+  },
+  "next_rule": "Stage 3 true-target confirmation passes. HAR-RSV may advance only as an information/risk-state candidate; any position-sizing/stop/confidence rule must enter applicable later promotion stages.",
+  "measurement_qa_1m_deferred": true,
+  "generated_at_utc": "2026-08-31T12:03:48.784205+00:00",
+  "workflow_evidence": {
+    "valid_run_id": 33389857914,
+    "valid_run_head_sha": "477a48758d6b4fcde87a03655c48ef9cde3a8263",
+    "artifact_id": 9757018854,
+    "research_spec_changed_after_preregistration": false
+  }
+}
