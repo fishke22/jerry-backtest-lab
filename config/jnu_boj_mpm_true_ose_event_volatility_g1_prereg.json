@@ -1,0 +1,101 @@
+{
+  "version": "1.0",
+  "candidate_id": "BOJ_MPM_TRUE_OSE_EVENT_VOLATILITY_G1",
+  "status": "PREREGISTERED_BEFORE_EVENT_PRICE_OUTCOME_INSPECTION",
+  "frozen_at": "2026-08-31",
+  "evidence_basis": [
+    {
+      "source": "Nakamura, Sudo & Sugisaki (2021), BOJ IMES Discussion Paper 2021-E-2",
+      "implication": "A 30-minute monetary-policy announcement window in Japan is literature-grounded; the paper uses 10 minutes before through 20 minutes after the MPM announcement."
+    },
+    {
+      "source": "Finta (2021), Pacific-Basin Finance Journal 67, 101562",
+      "implication": "BOJ MPM releases have minute-scale effects on Nikkei 225 implied volatility and VI futures; 5-10 minute effects motivate minute data but are not separately optimized in G1."
+    }
+  ],
+  "role": "EVENT_RISK_STATE_ONLY_NOT_DIRECTIONAL_ALPHA",
+  "event_data": {
+    "corpus": "event_data/boj/boj_mpm_release_times_post_mini_launch_v1.json",
+    "eligibility_manifest": "event_data/boj/boj_mpm_eligible_event_windows_v1.json",
+    "official_source": "Bank of Japan policy-decision releases",
+    "timezone": "Asia/Tokyo",
+    "exact_release_times_complete_after_mini_launch": true,
+    "eligibility_rule": "Both baseline [-40,-10) and event [-10,+20) windows must fall fully inside the same historical OSE continuous day-session segment.",
+    "eligible_total": 192,
+    "stage_a_timing_eligible": 170,
+    "stage_b_timing_eligible": 22,
+    "price_outcome_used_to_define_eligibility": false
+  },
+  "measurement": {
+    "source_bar_frequency": "225Labo source-provided 1 minute",
+    "bar_label_semantics": "Minute-start grid, verified by source labels spanning official open through close-1 minute on Mini and Micro samples.",
+    "return_definition": "For minute-start label t, r_t = log(C_t / C_{t-1}) using contiguous source 1-minute closes within the same OSE session.",
+    "baseline_window": {
+      "label_interval": "[release-40m, release-10m)",
+      "returns": 30,
+      "description": "Immediate non-overlapping 30-minute pre-event control."
+    },
+    "primary_event_window": {
+      "label_interval": "[release-10m, release+20m)",
+      "returns": 30,
+      "literature_anchor": "BOJ high-frequency identification 30-minute window"
+    },
+    "primary_effect": "log((RV_event + 1e-18) / (RV_baseline + 1e-18))",
+    "rv_definition": "Sum of squared 1-minute log returns.",
+    "primary_direction": "positive",
+    "raw_cloud_upload": false,
+    "cloud_output": "Per-event non-reconstructive aggregate RV/effect features + hashes/manifest only."
+  },
+  "stage_a": {
+    "venue": "OSE",
+    "product": "Nikkei 225 Mini Futures",
+    "raw_source": "225Labo Mini annual minute files, local-only",
+    "date_rule": "Eligible events with date < 2023-07-24",
+    "timing_eligible_events": 170,
+    "minimum_usable_events": 100,
+    "test": {
+      "mean_primary_effect_must_be_positive": true,
+      "median_primary_effect_must_be_positive": true,
+      "bootstrap": {
+        "unit": "event",
+        "resamples": 5000,
+        "seed": 42,
+        "probability_mean_effect_positive_threshold": 0.95
+      }
+    },
+    "pass_rule": "Minimum usable event count met, mean effect > 0, median effect > 0, and event bootstrap P(mean effect > 0) >= 0.95.",
+    "fail_rule": "If Stage A fails, Stage B is prohibited and Micro cannot rescue the family."
+  },
+  "stage_b": {
+    "venue": "OSE",
+    "product": "Nikkei 225 Micro Futures (JNU)",
+    "raw_source": "225Labo Micro annual minute files, local-only",
+    "date_rule": "Eligible events with date >= 2023-07-24",
+    "timing_eligible_events": 22,
+    "minimum_usable_events": 20,
+    "test": "Identical transform and gate as Stage A; no retuning.",
+    "pass_rule": "Minimum usable event count met, mean effect > 0, median effect > 0, and event bootstrap P(mean effect > 0) >= 0.95.",
+    "interpretation_if_pass": "Stage 3 true-target event/risk information-state candidate only; any size reduction, entry blackout, stop widening, or confidence rule requires separate downstream translation and validation."
+  },
+  "diagnostics_non_promotional": [
+    "5-minute aggregation consistency may be reported as measurement QA only.",
+    "Year-by-year effect direction may be reported for stability context only.",
+    "Absolute event return may be reported descriptively but has no G1 promotion power."
+  ],
+  "multiplicity": {
+    "formal_primary_cells": 1,
+    "correction": "None needed for one primary outcome/window; diagnostics cannot rescue or promote."
+  },
+  "forbidden": [
+    "Change the [-10,+20) primary event window after outcome inspection.",
+    "Try 5m/10m/20m/60m windows and select the best.",
+    "Split events by weather in G1.",
+    "Split by hike/cut/easing/tightening after outcomes.",
+    "Classify policy surprise after outcomes and rescue a failed aggregate family.",
+    "Use directional returns as G1 alpha.",
+    "Change 1-minute primary measurement because 5-minute QA looks better.",
+    "Allow Micro Stage B to rescue a failed Mini Stage A."
+  ],
+  "next_if_pass": "Only after Stage A and Stage B PASS may BOJ MPM be admitted as an event/risk information-state candidate. Position/risk-control rules are new families/stages.",
+  "next_if_fail": "Close current family. Reopen only with substantively new literature/evidence, not parameter rescue."
+}
