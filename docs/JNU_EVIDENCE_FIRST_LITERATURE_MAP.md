@@ -210,3 +210,12 @@ No currently tested module is VALIDATED_JNU_MODULE.
 - JNU implication: BOJ MPM timestamps are a plausible future **event-volatility/risk-state** input, not an automatic directional vote.
 - The existing paper includes weather/mood interactions; those behavioral interactions are **not** adopted into JNU without separate evidence and preregistration.
 - Any future G1/G2 test should use official BOJ release calendars/timestamps and causal pre-event information only.
+
+
+## Realized-volatility measurement noise in Nikkei futures
+
+### Kunitomo & Sato — SIML realized volatility with micro-market noise
+- The SIML realized-volatility/covariance work explicitly applies its noise-robust framework to Nikkei-225 Futures.
+- JNU consequence: true-OSE HAR-RSV confirmation must treat high-frequency RV/RSV construction as a measurement problem, not assume every 1-minute squared return is efficient-price variation.
+- Primary confirmation should keep a sampling interval frozen before predictive results are inspected; 5-minute construction is the conservative default because it reduces microstructure contamination while retaining intraday information.
+- A 1m-vs-5m or SIML/realized-kernel comparison is **measurement QA**, not another alpha family and must not be used to pick whichever interval gives the best forecast.
