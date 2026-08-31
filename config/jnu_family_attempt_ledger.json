@@ -1,5 +1,5 @@
 {
-  "version": "1.5",
+  "version": "1.6",
   "updated_at": "2026-08-31",
   "rule": "Permanent family-level attempt ledger. Never delete failed/inconclusive families to improve apparent research success rate.",
   "families": [
@@ -214,6 +214,48 @@
       "artifact_id": 9757824371,
       "promotion_power": "NONE",
       "reopen_rule": "Do not tune windows, change predictor class, drop H2/H3, or add indicators/regimes to rescue this family."
+    },
+    {
+      "id": "BOJ_MPM_TRUE_OSE_EVENT_VOLATILITY_G1",
+      "status": "TRUE_JNU_STAGE3_PASS_EVENT_RISK_INFORMATION_STATE_CANDIDATE",
+      "multiplicity": "ONE_PRIMARY_EVENT_WINDOW_PREREGISTERED_BEFORE_OUTCOME",
+      "preregistration": "config/jnu_boj_mpm_true_ose_event_volatility_g1_prereg.json",
+      "event_corpus": "event_data/boj/boj_mpm_release_times_post_mini_launch_v1.json",
+      "eligibility_manifest": "event_data/boj/boj_mpm_eligible_event_windows_v1.json",
+      "data_integrity_revisions": [
+        {
+          "id": "DI1",
+          "commit": "7c968b8deae5c452225f71f8392c0809c64a2b48",
+          "reason": "Merge all legacy 1min-prefixed workbook shards; no research-spec change."
+        },
+        {
+          "id": "DI2",
+          "commit": "909391dee8cf4e6fd3cd09046bdf11453049af7f",
+          "reason": "Manifest-schema completion only; no research-spec change."
+        }
+      ],
+      "true_ose_stage_a": {
+        "status": "TRUE_OSE_MINI_BOJ_EVENT_VOL_STAGE_A_PASS",
+        "run_id": 33396821958,
+        "artifact_id": 9759636087,
+        "usable_events": 170,
+        "mean_log_event_to_baseline_rv_ratio": 0.4450516453986761,
+        "median_log_event_to_baseline_rv_ratio": 0.2951189323620672,
+        "bootstrap_prob_mean_positive": 0.981
+      },
+      "true_jnu_stage_b": {
+        "status": "TRUE_JNU_MICRO_BOJ_EVENT_VOL_STAGE_B_PASS",
+        "run_id": 33397255940,
+        "artifact_id": 9759799976,
+        "usable_events": 22,
+        "mean_log_event_to_baseline_rv_ratio": 1.6034692468630831,
+        "median_log_event_to_baseline_rv_ratio": 1.7268933093975936,
+        "bootstrap_prob_mean_positive": 1
+      },
+      "promotion_pipeline_stage": 3,
+      "admitted_role": "EVENT_RISK_STATE_ONLY_NOT_DIRECTIONAL_ALPHA",
+      "stage9_validated": false,
+      "next_rule": "Any entry blackout, size reduction, stop widening, or confidence rule is a new downstream translation and must be preregistered/validated."
     }
   ],
   "conservative_rule": "Unknown legacy multiplicity is treated against promotion, not ignored."
