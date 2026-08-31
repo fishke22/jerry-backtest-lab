@@ -1,5 +1,5 @@
 {
-  "version": "1.0",
+  "version": "1.1",
   "candidate_id": "INTRADAY_MOMENTUM_REVERSION_TRUE_JNU_G1",
   "status": "PREREGISTERED_BEFORE_TRUE_OSE_OUTCOME_INSPECTION",
   "frozen_at": "2026-08-31",
@@ -114,5 +114,20 @@
     "Add RSI/MACD/volume filters/regimes to rescue G1.",
     "Claim tradable alpha before transaction-cost/microstructure validation.",
     "Use exact-JNU Stage B to rescue failed Mini Stage A."
-  ]
+  ],
+  "pre_outcome_amendment": {
+    "amended_at": "2026-08-31",
+    "reason": "Freeze per-day minute-data completeness handling before any Stage-A H1/H2 outcome inspection.",
+    "outcome_inspected_before_amendment": false,
+    "research_hypotheses_changed": false
+  },
+  "data_quality": {
+    "day_session_minute_label_coverage_minimum": 0.95,
+    "rule": "A trading day is usable only if observed source 1-minute labels cover at least 95% of the historically scheduled OSE day-session minute labels across all continuous day_session_segments.",
+    "half_day_or_partial_day": "Exclude automatically if the 95% coverage gate is not met; do not impute missing minute bars.",
+    "annual_source_package_missing": "Critical DQ; block stage execution.",
+    "invalid_nonpositive_close": "Critical DQ if encountered on a selected date.",
+    "duplicate_minute_labels": "Deterministically keep first valid observation within concatenated legacy 1min shards and report duplicate count.",
+    "zero_returns": "Not a DQ error; handled by frozen signal abstention/accuracy rules."
+  }
 }
