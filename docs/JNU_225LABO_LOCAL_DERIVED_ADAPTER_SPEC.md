@@ -128,3 +128,15 @@ Because Nikkei 225 Micro minute history begins only in 2023 while Nikkei 225 min
 
 ### Admission rule
 HAR-RSV can enter the JNU risk-state layer only if Stage A passes the frozen confirmation gates and Stage B does not materially contradict the result. A Stage A failure cannot be rescued by a positive short Micro sample. A Stage B contradiction requires quarantine and diagnosis rather than parameter retuning.
+
+
+## Historical-session parser contract
+
+Any future 225Labo Mini/Micro parser MUST load `config/jnu_session_calendar_versions.json` and use the normalized `day_session_segments` / `night_session_segments` fields.
+
+- Nikkei 225 mini history begins 2006-07-18.
+- Before 2011-02-14, OSE index futures had separate day segments 09:00-11:00 and 12:30-15:10; 11:00-12:30 is not an active futures interval.
+- Evening/night trading began only on 2007-09-18 and was subsequently extended in dated versions.
+- The parser must fail closed if an observation date is not covered by an explicit session version.
+- Session/version correction is data integrity, never a tunable feature.
+- RV/RSV aggregation may include day and night components only according to the trading-day convention valid on that date; do not apply current 2026 hours backward.
