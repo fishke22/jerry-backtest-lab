@@ -291,7 +291,26 @@ def main()->None:
         "usable_event_count":len(rows),
         "unusable_event_count":len(unusable),
         "unusable_events":unusable,
+        "calendar_session_version":"1.2",
+        "product_contract_coverage":{
+            "venue":"OSE",
+            "product":"Nikkei 225 Mini Futures" if args.product=="MINI" else "Nikkei 225 Micro Futures (JNU)",
+            "stage":stage
+        },
         "date_range":[rows[0]["event_date"] if rows else None,rows[-1]["event_date"] if rows else None],
+        "missingness_summary":{
+            "timing_eligible_event_count":len(selected),
+            "usable_event_count":len(rows),
+            "unusable_event_count":len(unusable)
+        },
+        "duplicate_summary":{
+            "duplicate_minute_rows":sum(int(s["meta_1m"]["duplicate_minute_rows"]) for s in sources)
+        },
+        "derived_feature_definitions":{
+            "baseline_rv_1m":"sum squared 1m log returns in [-40m,-10m)",
+            "event_rv_1m":"sum squared 1m log returns in [-10m,+20m)",
+            "log_event_to_baseline_rv_ratio":"log((event_rv_1m+1e-18)/(baseline_rv_1m+1e-18))"
+        },
         "measurement":{
             "frequency":"source-provided 1min",
             "baseline_window":"[-40,-10)",
