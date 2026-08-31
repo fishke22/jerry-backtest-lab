@@ -21,12 +21,12 @@
     }
   },
   "execution": {
-    "acquisition": "final bounded acquisition only: reuse exact cached quarter; uncached quarter decomposed directly to <=31-day windows; single paced connection; cumulative same-branch cache",
+    "acquisition": "final logical attempt 3 only: eight serial cell/mode acquisition stages within one workflow run; reuse cumulative same-branch cache; uncached quarter decomposed directly to <=31-day windows; single paced connection; each stage exits cleanly before job timeout; final evaluation is cache-only",
     "research_parameters_frozen": true,
     "data_integrity_revision": "G1_DI1",
     "logical_attempt": 3,
-    "retrigger_nonce": 3,
-    "reason": "Final acquisition-only attempt after logical attempt 2 hit workflow timeout before complete four-cell panel; no research/statistical parameter changes."
+    "retrigger_nonce": 4,
+    "reason": "Control-plane trigger nonce for the already-frozen final logical attempt 3; workflow staging changes acquisition mechanics only and do not create an additional research trial."
   },
   "data_quality_gate": {
     "min_common_trading_day_coverage": 0.95,
