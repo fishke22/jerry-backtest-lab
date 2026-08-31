@@ -1,0 +1,55 @@
+{
+  "candidate_id": "CME_NKD_JPN225_ALIGNMENT_G0",
+  "status": "SOURCE_FEASIBILITY_COMPLETE",
+  "promotion_power": "NONE",
+  "implementation_revision": "DI1_POSITIONAL_VALUE_ALIGNMENT_FIX_ONLY",
+  "source": {
+    "cme_nkd": {
+      "url": "https://raw.githubusercontent.com/axb0306/cme-futures-ohlc/main/NKD/NKD_1min_20260308_20260415.csv",
+      "sha256": "a9aef005d1f00bce8b7af299c18989e549197b4ba1aeabe75497216ca67fd73c",
+      "first_timestamp": "2026-03-08T22:00:00+00:00",
+      "last_timestamp": "2026-04-15T23:29:00+00:00",
+      "rows": 25036
+    },
+    "jpn225": {
+      "url": "https://raw.githubusercontent.com/getdata-finance/jpn225-1m-ohlcv-index-historical-data/main/JPN225_1m.csv",
+      "sha256": "f53741c1c6338fcb57907a2d75f67379dd9c85276b8ccdc2cb9bba447e5c5a65",
+      "first_timestamp": "2026-02-01T23:00:00+00:00",
+      "last_timestamp": "2026-07-31T20:44:00+00:00",
+      "rows": 177893
+    }
+  },
+  "diagnostics": {
+    "cme_duplicates_after_normalization": 0,
+    "jpn_duplicates_after_normalization": 0,
+    "common_5m_bars": 7305,
+    "common_from": "2026-03-08T22:05:00+00:00",
+    "common_to": "2026-04-15T23:25:00+00:00"
+  },
+  "return_association": {
+    "contemporaneous_corr": 0.9221838112308237,
+    "lag_grid_corr": {
+      "-6": -0.011150952229711212,
+      "-5": 0.043350926520600255,
+      "-4": -0.006449424023404451,
+      "-3": -0.024916306069080164,
+      "-2": -0.03562298627061254,
+      "-1": 0.06943892903122165,
+      "0": 0.9221838112308237,
+      "1": -0.006592126139980292,
+      "2": -0.018802694803601326,
+      "3": -0.023816477157190392,
+      "4": 0.009476148688855601,
+      "5": 0.02325484252232335,
+      "6": -0.015000902471261264
+    },
+    "max_abs_corr_lag_5m_units": 0,
+    "max_abs_corr": 0.9221838112308237,
+    "rolling_corr_window_bars": 288,
+    "rolling_corr_n": 7018,
+    "rolling_corr_median": 0.915635577176246,
+    "rolling_corr_q25": 0.8927413412016056,
+    "rolling_corr_q75": 0.9395016306658487
+  },
+  "interpretation": "Technical source-alignment feasibility only. CME NKD is a true CME venue series, but JPN225 is not OSE; no OSE leadership or directional-alpha inference is permitted."
+}
