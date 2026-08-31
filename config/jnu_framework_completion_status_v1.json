@@ -1,13 +1,13 @@
 {
-  "version": "1.3",
+  "version": "1.4",
   "as_of": "2026-08-31",
   "framework": "JNU_FINAL_FRAMEWORK_V3",
   "architecture_status": "FROZEN",
-  "research_completion_state": "FRAMEWORK_RESEARCH_COMPLETE_INTRADAY_DATA_BLOCKED",
+  "research_completion_state": "FRAMEWORK_RESEARCH_TRUE_OSE_MINI_STAGE_A_RUNNING",
   "validated_jnu_modules": 0,
   "validated_directional_modules": 0,
   "decision_engine_output": "NO_VALIDATED_DIRECTIONAL_EDGE",
-  "meaning": "Architecture remains frozen. Local QROS inspection now verifies substantial exact true-OSE daily/session history (Mini 1,250 distinct days; Micro 364 distinct days) with JPX/NDL provenance, but the frozen high-value families still require genuine 1m/5m/tick history. No module is promoted by this discovery.",
+  "meaning": "Architecture remains frozen. Genuine OSE Nikkei 225 Mini intraday annual data 2006-2026 have been acquired locally under personal-use storage controls. Stage A derived 5m RV/RSV and preregistered statistical confirmation are in progress; no validation promotion has occurred.",
   "substitute_data_update": {
     "GETDATA_JPN225_PUBLIC_SAMPLE_1M": "2026-02-01 through 2026-07-31 public Japan225 1-minute sample; usable for proxy stress tests only.",
     "HAR_RSV_JPN225_PUBLIC_HOLDOUT_G2": {
@@ -185,5 +185,14 @@
     "intraday_status": "NOT_FOUND_IN_EXISTING_QROS_DATA_OR_REALTIME_CAPTURE",
     "scientific_boundary": "Daily/session exact-product evidence cannot satisfy 5-minute RV/RSV, FIRST/LAST30, DPD lead-lag or order-imbalance gates.",
     "next_action": "Acquire genuine Mini 1m/5m locally, preferred 225Labo under personal-use local-only boundary; reuse QROS ingestion/DQ/provenance."
+  },
+  "local_225labo_update": {
+    "mini_intraday_raw_years": "2006-2026 complete",
+    "raw_storage": "LOCAL_ONLY at D:\\\\QROS\\\\data\\\\personal_licensed\\\\225labo\\\\mini\\\\raw",
+    "cloud_policy": "Only non-reconstructive daily RV/RSV, hashes, DQ manifest, results and code",
+    "primary_measurement": "source-provided 5min",
+    "measurement_qa": "1min vs 5min separate, not model selection",
+    "stage_a_prereg": "config/jnu_har_rsv_true_ose_mini_stage_a_g1_prereg.json",
+    "stage_a_status": "DERIVED_BUILD_RUNNING"
   }
 }
