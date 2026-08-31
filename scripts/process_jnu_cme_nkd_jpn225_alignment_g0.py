@@ -41,7 +41,11 @@ def parse(raw: bytes) -> pd.DataFrame:
     if not dt or not close:
         raise RuntimeError(f"required columns missing: {list(d.columns)}")
     idx = pd.to_datetime(d[dt], utc=True, errors="coerce")
-    x = pd.DataFrame({"close": pd.to_numeric(d[close], errors="coerce")}, index=idx)
+    close_values = pd.to_numeric(d[close], errors="coerce").to_numpy()
+    # Important: construct positionally. Passing the original Series alongside a
+    # DatetimeIndex makes pandas align RangeIndex labels to timestamps, producing
+    # all-NaN close values and a false zero-overlap failure.
+    x = pd.DataFrame({"close": close_values}, index=pd.DatetimeIndex(idx))
     x = x[~x.index.isna()].dropna().sort_index()
     x = x[~x.index.duplicated(keep="last")]
     return x
@@ -66,7 +70,12 @@ def main() -> None:
     r = {k: ret5(v) for k, v in dfs.items()}
     common = r["cme_nkd"].index.intersection(r["jpn225"].index)
     if len(common) < MIN_COMMON:
-        raise RuntimeError(f"insufficient common bars: {len(common)} < {MIN_COMMON}")
+        raise RuntimeError(
+            "insufficient common bars: "
+            f"{len(common)} < {MIN_COMMON}; "
+            f"cme={dfs['cme_nkd'].index.min()}..{dfs['cme_nkd'].index.max()} "
+            f"jpn={dfs['jpn225'].index.min()}..{dfs['jpn225'].index.max()}"
+        )
 
     cme = r["cme_nkd"].reindex(common)
     jpn = r["jpn225"].reindex(common)
@@ -85,6 +94,7 @@ def main() -> None:
         "candidate_id": "CME_NKD_JPN225_ALIGNMENT_G0",
         "status": "SOURCE_FEASIBILITY_COMPLETE",
         "promotion_power": "NONE",
+        "implementation_revision": "DI1_POSITIONAL_VALUE_ALIGNMENT_FIX_ONLY",
         "source": {
             k: {
                 "url": SOURCES[k],
