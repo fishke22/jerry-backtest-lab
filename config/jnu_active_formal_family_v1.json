@@ -1,0 +1,16 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-01",
+  "candidate": "MACD_4_22_3_POSTPUBLICATION_TRUE_JNU_G1",
+  "preregistration": "config/jnu_macd_4_22_3_postpublication_g1_prereg.json",
+  "status": "STAGE_A_LOCAL_DATA_BUILD_BLOCKED_ONLY_BY_REMOTE_DEVICE_OFFLINE",
+  "single_active_family_rule": true,
+  "research_spec_frozen": true,
+  "next_action": "When the authorized Windows device is online, build 2022-08-01 through 2023-07-21 Mini sufficient statistics, run Gate 0, persist derived panel, then execute the existing Stage A workflow. Do not open another formal directional family while this candidate is unresolved.",
+  "prohibited": [
+    "Any MACD tuple other than 4,22,3",
+    "Any modified MACD rescue rule",
+    "Any parameter search",
+    "Any second formal directional family before this one resolves"
+  ]
+}
