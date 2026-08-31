@@ -1,0 +1,141 @@
+{
+  "version": "1.0",
+  "candidate_id": "INTRADAY_PATH_US_TO_JNU_TRUE_G1",
+  "source_license_classification": "225LABO_PERSONAL_USE_LOCAL_RAW_DERIVED_NON_RECONSTRUCTIVE_EXPORT",
+  "raw_data_cloud_uploaded": false,
+  "parser_version_commit": "d080d4ad9b5ae168d4708d90c354f1b3b5cc5724",
+  "calendar_session_version": "1.2",
+  "source_hashes": [
+    {
+      "source_id": "N225microf_2023.zip",
+      "sha256": "d5622e9bd2c263141135471c91b29745d2afa224336343daae58238e478aed43"
+    },
+    {
+      "source_id": "N225microf_2024.zip",
+      "sha256": "913df08ebebe029ca3cf1d942a62bf228ce90c87cfaf823562c8f6edb7abe514"
+    },
+    {
+      "source_id": "N225microf_2025.zip",
+      "sha256": "28cd5a0985fdc7afdcdcf37cc34c4c70ebf792a3dca0af0906eed6573be77326"
+    },
+    {
+      "source_id": "N225microf_2026.zip",
+      "sha256": "e6149c02097814f885a1414cb405ff687b2c4be0aeaef561d9a20b7881c58378"
+    }
+  ],
+  "product_contract_coverage": {
+    "venue": "OSE",
+    "product": "Nikkei 225 Micro Futures (JNU)",
+    "years_present": [
+      2023,
+      2024,
+      2025,
+      2026
+    ]
+  },
+  "date_range": [
+    "2023-07-24",
+    "2026-08-31"
+  ],
+  "missingness_summary": {
+    "selected_trading_days": 796,
+    "incomplete_window_days_count": 0,
+    "minimum_first30_bars": 30,
+    "minimum_last30_bars": 30,
+    "minimum_middle_coverage_ratio": 1.0
+  },
+  "window_definitions": {
+    "FIRST_30M": "historical OSE day open inclusive to open+30 exclusive",
+    "LAST_30M": "historical OSE day close-30 inclusive to close exclusive",
+    "MIDDLE": "active day-session minutes excluding FIRST30 and LAST30",
+    "return": "log(last close / first close) within each state",
+    "min_first_bars": 25,
+    "min_last_bars": 25,
+    "middle_coverage_fraction": 0.8
+  },
+  "selected_trading_days": 796,
+  "incomplete_window_days_count": 0,
+  "incomplete_window_days": [],
+  "duplicate_summary": {
+    "overlap_trading_days_across_annual_packages": 5,
+    "source_duplicate_rows": 0
+  },
+  "critical_data_quality_issues": [],
+  "derived_output_hash": "609b23768a3e438533751ce10372b89dd8c2a7feadf38055fd24da169e004bef",
+  "derived_feature_definitions": {
+    "first30_return": "fixed first 30 elapsed active day-session minutes",
+    "middle_return": "active day-session minutes between fixed first/last windows",
+    "last30_return": "fixed final 30 elapsed active day-session minutes",
+    "day_session_return": "full eligible day-session return excluding close-boundary auction timestamp"
+  },
+  "sources": [
+    {
+      "source_id": "N225microf_2023.zip",
+      "sha256": "d5622e9bd2c263141135471c91b29745d2afa224336343daae58238e478aed43",
+      "size_bytes": 9897678,
+      "nominal_year": 2023,
+      "meta_1m": {
+        "source_id": "N225microf_2023.zip",
+        "workbook_member": "N225microf_2023.xlsx",
+        "row_count_1m": 137839,
+        "distinct_trading_dates": 115,
+        "date_min": "2023-07-24",
+        "date_max": "2023-12-29",
+        "duplicate_rows": 0,
+        "invalid_rows": 0,
+        "out_of_day_session_rows": 93265
+      }
+    },
+    {
+      "source_id": "N225microf_2024.zip",
+      "sha256": "913df08ebebe029ca3cf1d942a62bf228ce90c87cfaf823562c8f6edb7abe514",
+      "size_bytes": 22711799,
+      "nominal_year": 2024,
+      "meta_1m": {
+        "source_id": "N225microf_2024.zip",
+        "workbook_member": "N225microf_2024.xlsx",
+        "row_count_1m": 307321,
+        "distinct_trading_dates": 256,
+        "date_min": "2024-01-03",
+        "date_max": "2024-12-30",
+        "duplicate_rows": 0,
+        "invalid_rows": 0,
+        "out_of_day_session_rows": 206416
+      }
+    },
+    {
+      "source_id": "N225microf_2025.zip",
+      "sha256": "28cd5a0985fdc7afdcdcf37cc34c4c70ebf792a3dca0af0906eed6573be77326",
+      "size_bytes": 23065744,
+      "nominal_year": 2025,
+      "meta_1m": {
+        "source_id": "N225microf_2025.zip",
+        "workbook_member": "N225microf_2025.xlsx",
+        "row_count_1m": 309695,
+        "distinct_trading_dates": 258,
+        "date_min": "2024-12-30",
+        "date_max": "2025-12-30",
+        "duplicate_rows": 0,
+        "invalid_rows": 0,
+        "out_of_day_session_rows": 201498
+      }
+    },
+    {
+      "source_id": "N225microf_2026.zip",
+      "sha256": "e6149c02097814f885a1414cb405ff687b2c4be0aeaef561d9a20b7881c58378",
+      "size_bytes": 16048670,
+      "nominal_year": 2026,
+      "meta_1m": {
+        "source_id": "N225microf_2026.zip",
+        "workbook_member": "N225microf_2026.xlsx",
+        "row_count_1m": 206744,
+        "distinct_trading_dates": 172,
+        "date_min": "2025-12-30",
+        "date_max": "2026-08-31",
+        "duplicate_rows": 0,
+        "invalid_rows": 0,
+        "out_of_day_session_rows": 134332
+      }
+    }
+  ]
+}
