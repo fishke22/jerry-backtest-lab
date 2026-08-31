@@ -35,6 +35,8 @@ jobs:
             phase4b-gdelt-${{ runner.os }}-
       - name: Install dependencies
         run: pip install -r requirements.txt
+      - name: Run JNU data-integrity selftest
+        run: python scripts/selftest_jnu_data_integrity.py
       - name: Run preregistered News Language/Source G1
         id: g1run
         shell: bash
