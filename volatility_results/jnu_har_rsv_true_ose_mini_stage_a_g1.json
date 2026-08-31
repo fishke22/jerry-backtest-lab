@@ -1,0 +1,61 @@
+{
+  "candidate_id": "HAR_RSV_TRUE_OSE_MINI_STAGE_A_G1",
+  "status": "TRUE_OSE_MINI_STAGE_A_PASS",
+  "stage_a_pass": true,
+  "role": "VOLATILITY_RISK_STATE_ONLY_NOT_DIRECTIONAL_ALPHA",
+  "source": "true OSE Nikkei 225 Mini daily RV/RSV derived locally from 225Labo 5-minute data",
+  "raw_data_cloud_uploaded": false,
+  "derived_panel_sha256": "36b1787b5bcbab7d167f9237d39bff60b7f946fbf60dbb675d23b97c959f30a0",
+  "manifest_sha256": "7d9de793e44d6d99a953799e5467ec7db45a18d0b886ab50b891222926b56d0a",
+  "panel_days_before_min_returns_gate": 4972,
+  "panel_days_after_gate": 4968,
+  "oos_days": 4442,
+  "oos_from": "2008-09-08",
+  "oos_to": "2026-08-31",
+  "losses": {
+    "HAR_RV": {
+      "qlike": -8.034691484511239,
+      "mse": 5.7256777212146396e-08
+    },
+    "HAR_RSV": {
+      "qlike": -8.037482894640101,
+      "mse": 5.677845227068366e-08
+    }
+  },
+  "improvement": {
+    "qlike": 0.0027914101288612917,
+    "mse": 4.783249414627292e-10,
+    "qlike_bootstrap": {
+      "n": 4442,
+      "mean": 0.0027914101288612917,
+      "prob_positive": 1.0,
+      "ci95": [
+        0.0015312796718069297,
+        0.004202393727286621
+      ]
+    },
+    "mse_bootstrap": {
+      "n": 4442,
+      "mean": 4.783249414627292e-10,
+      "prob_positive": 0.9875,
+      "ci95": [
+        6.432736440521689e-11,
+        9.207993975502244e-10
+      ]
+    },
+    "recent_period_from": "2021-09-21",
+    "recent_qlike_improvement": 0.0021879150479634213,
+    "recent_mse_improvement": 5.553480680840674e-10
+  },
+  "next_rule": "Proceed to frozen JNU Micro Stage B without retuning.",
+  "measurement_qa_1m_deferred": true,
+  "generated_at_utc": "2026-08-31T11:50:24.317165+00:00",
+  "workflow_evidence": {
+    "valid_run_id": 33388746345,
+    "valid_run_head_sha": "c05ba3bb3ca8f5977cce2666eaf6417cfdd04ea8",
+    "valid_run_conclusion": "success",
+    "ineligible_engineering_run_id": 33388428249,
+    "ineligible_engineering_reason": "GIT_TEXT_EOL_NORMALIZATION_CHANGED_CLOUD_BLOB_BYTES_AND_TRIGGERED_FAIL_CLOSED_HASH_MISMATCH_BEFORE_STATISTICAL_EVALUATION",
+    "research_spec_changed_between_runs": false
+  }
+}
