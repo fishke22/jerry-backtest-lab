@@ -1,0 +1,32 @@
+{
+  "candidate_id": "PRIOR_NIGHT_USDJPY_TO_JNU_DAY_G1",
+  "stage": "A_TRUE_OSE_MINI",
+  "status": "TRUE_OSE_MINI_PRIOR_NIGHT_USDJPY_STAGE_A_FAIL",
+  "stage_a_pass": false,
+  "role": "DIRECTIONAL_INFORMATION_GATE",
+  "usable_days": 1223,
+  "minimum_usable_days": 900,
+  "mean_daily_signal_payoff": -0.0004335029718195796,
+  "aggregate_directional_accuracy_nonzero_targets": 0.4739057239057239,
+  "correct_nonzero_targets": 563,
+  "accuracy_denominator": 1188,
+  "bootstrap": {
+    "samples": 5000,
+    "seed": 42,
+    "prob_mean_positive": 0.0304,
+    "one_sided_p": 0.9696,
+    "ci95": [-0.0008662919618224796, 0.0000230129311746264]
+  },
+  "diagnostic_ols_slope_day_return_on_fx_overnight": 0.03685914294781518,
+  "derived_panel_sha256": "046fbe657d18bb84e3eaee32034d28ed60c324e4569df26ab91b8bc16af5e266",
+  "manifest_sha256": "d68200a0dcbb87153bff80d10ae2c7c611a5016394e905d1e844d82312f97427",
+  "stage_b_status": "PROHIBITED_BY_PREREG_STAGE_A_FAIL",
+  "next_rule": "Close family; no FX-time/filter/sign/threshold/night-target or Micro rescue.",
+  "workflow_evidence": {
+    "run_id": 33447920715,
+    "head_sha": "12bc5be7a4821c44f8329cec284c72ae1a83e006",
+    "artifact_id": 9778689265,
+    "conclusion": "success"
+  },
+  "generated_at_utc": "2026-08-31T22:48:44.529161+00:00"
+}
