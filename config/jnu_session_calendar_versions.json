@@ -1,5 +1,5 @@
 {
-  "version": "1.1",
+  "version": "1.2",
   "timezone": "Asia/Tokyo",
   "purpose": "Authoritative historical session-version map for JNU/Nikkei research. Backtests must select the schedule valid on each observation date.",
   "ose_nikkei_index_futures": [
@@ -17,7 +17,18 @@
         ]
       ],
       "night_session": null,
-      "evidence": "JPX Working Paper No.14 Table 1; Nikkei 225 mini launched 2006-07-18"
+      "evidence": "JPX Working Paper No.14 Table 1; Nikkei 225 mini launched 2006-07-18",
+      "day_session_segments": [
+        [
+          "09:00",
+          "11:00"
+        ],
+        [
+          "12:30",
+          "15:10"
+        ]
+      ],
+      "night_session_segments": []
     },
     {
       "valid_from": "2007-09-18",
@@ -36,7 +47,23 @@
         "16:30",
         "19:00"
       ],
-      "evidence": "JPX Working Paper No.14 Table 1; OSE evening session launch"
+      "evidence": "JPX Working Paper No.14 Table 1; OSE evening session launch",
+      "day_session_segments": [
+        [
+          "09:00",
+          "11:00"
+        ],
+        [
+          "12:30",
+          "15:10"
+        ]
+      ],
+      "night_session_segments": [
+        [
+          "16:30",
+          "19:00"
+        ]
+      ]
     },
     {
       "valid_from": "2008-10-14",
@@ -55,7 +82,23 @@
         "16:30",
         "20:00"
       ],
-      "evidence": "JPX Working Paper No.14 Table 1"
+      "evidence": "JPX Working Paper No.14 Table 1",
+      "day_session_segments": [
+        [
+          "09:00",
+          "11:00"
+        ],
+        [
+          "12:30",
+          "15:10"
+        ]
+      ],
+      "night_session_segments": [
+        [
+          "16:30",
+          "20:00"
+        ]
+      ]
     },
     {
       "valid_from": "2010-07-20",
@@ -74,7 +117,23 @@
         "16:30",
         "23:30"
       ],
-      "evidence": "JPX Working Paper No.14 Table 1"
+      "evidence": "JPX Working Paper No.14 Table 1",
+      "day_session_segments": [
+        [
+          "09:00",
+          "11:00"
+        ],
+        [
+          "12:30",
+          "15:10"
+        ]
+      ],
+      "night_session_segments": [
+        [
+          "16:30",
+          "23:30"
+        ]
+      ]
     },
     {
       "valid_from": "2011-02-14",
@@ -87,7 +146,19 @@
         "16:30",
         "23:30"
       ],
-      "evidence": "JPX Working Paper No.14 Table 1"
+      "evidence": "JPX Working Paper No.14 Table 1",
+      "day_session_segments": [
+        [
+          "09:00",
+          "15:15"
+        ]
+      ],
+      "night_session_segments": [
+        [
+          "16:30",
+          "23:30"
+        ]
+      ]
     },
     {
       "valid_from": "2011-07-19",
@@ -100,7 +171,19 @@
         "16:30",
         "03:00+1"
       ],
-      "evidence": "JPX Working Paper No.14 Table 1; OSE history"
+      "evidence": "JPX Working Paper No.14 Table 1; OSE history",
+      "day_session_segments": [
+        [
+          "09:00",
+          "15:15"
+        ]
+      ],
+      "night_session_segments": [
+        [
+          "16:30",
+          "03:00+1"
+        ]
+      ]
     },
     {
       "valid_from": "2016-07-19",
@@ -113,7 +196,19 @@
         "16:30",
         "05:30+1"
       ],
-      "evidence": "JPX New J-GATE / First Anniversary official release"
+      "evidence": "JPX New J-GATE / First Anniversary official release",
+      "day_session_segments": [
+        [
+          "08:45",
+          "15:15"
+        ]
+      ],
+      "night_session_segments": [
+        [
+          "16:30",
+          "05:30+1"
+        ]
+      ]
     },
     {
       "valid_from": "2021-09-21",
@@ -126,7 +221,19 @@
         "16:30",
         "06:00+1"
       ],
-      "evidence": "JPX J-GATE3.0 official release: night session extended from 05:30 to 06:00; no day-close change announced until 2024-11-05"
+      "evidence": "JPX J-GATE3.0 official release: night session extended from 05:30 to 06:00; no day-close change announced until 2024-11-05",
+      "day_session_segments": [
+        [
+          "08:45",
+          "15:15"
+        ]
+      ],
+      "night_session_segments": [
+        [
+          "16:30",
+          "06:00+1"
+        ]
+      ]
     },
     {
       "valid_from": "2024-11-05",
@@ -153,7 +260,19 @@
           "06:00+1"
         ]
       },
-      "evidence": "JPX current derivatives trading hours and 2024-11-05 extension"
+      "evidence": "JPX current derivatives trading hours and 2024-11-05 extension",
+      "day_session_segments": [
+        [
+          "08:45",
+          "15:45"
+        ]
+      ],
+      "night_session_segments": [
+        [
+          "17:00",
+          "06:00+1"
+        ]
+      ]
     }
   ],
   "tse_cash_equities": [
@@ -211,5 +330,6 @@
     "Session-version correction is a data-integrity change, not a tunable model parameter.",
     "Any historical high-frequency result produced with the wrong session version must be retained for audit and rerun as a labeled DI correction.",
     "Pre-2011 OSE derivatives had a midday recess; do not aggregate 11:00-12:30 JST as an active futures session."
-  ]
+  ],
+  "schema_note": "New high-frequency consumers MUST use day_session_segments/night_session_segments. Legacy day_session/night_session are retained for audit/backward compatibility and are not a uniform schema before 2011."
 }
