@@ -1,0 +1,25 @@
+name: JNU BOJ MPM Exact Micro Stage B One Shot
+
+on:
+  push:
+    paths:
+      - cloud_data/triggers/jnu_boj_mpm_exact_micro_stage_b_g1.trigger
+
+jobs:
+  stage-b:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python scripts/process_jnu_boj_mpm_exact_jnu_micro_stage_b_g1.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: jnu-boj-mpm-exact-micro-stage-b-one-shot
+          path: |
+            event_volatility_results/jnu_boj_mpm_exact_jnu_micro_stage_b_g1.json
+            event_volatility_reports/jnu_boj_mpm_exact_jnu_micro_stage_b_g1.md
+          if-no-files-found: ignore
