@@ -298,6 +298,7 @@ def main()->None:
     files=source_files(args.input_dir,args.product)
     candidates:dict[date,list[tuple[int,Path,DayBars]]]={}
     sources=[]
+    source_hash_lookup={}
     critical=[]
     for year,p in sorted(files.items()):
         # Skip annual packages wholly outside fixed stage date range where possible.
@@ -305,6 +306,7 @@ def main()->None:
             continue
         days,meta=parse_source_days(p,start,end)
         digest=sha256_file(p)
+        source_hash_lookup[p.name]=digest
         sources.append({
             "source_id":p.name,
             "nominal_year":year,
@@ -339,7 +341,7 @@ def main()->None:
                 "h2_pairs":st["h2_pairs"]
             })
             continue
-        st["source_file_sha256"]=sha256_file(p)
+        st["source_file_sha256"]=source_hash_lookup[p.name]
         st["transform_version"]=TRANSFORM_VERSION
         rows.append(st)
 
