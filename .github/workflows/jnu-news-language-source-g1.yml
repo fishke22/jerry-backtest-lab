@@ -1,12 +1,15 @@
 name: JNU News Language Source G1
 
 on:
-  pull_request:
-    types: [opened, reopened, synchronize]
+  push:
+    branches:
+      - research/news-language-source-g1
+    paths:
+      - "news_language_g1_requests/jnu_news_language_source_g1_v1.json"
   workflow_dispatch:
 
 concurrency:
-  group: jnu-news-g1-${{ github.head_ref || github.ref_name }}
+  group: jnu-news-g1-${{ github.ref_name }}
   cancel-in-progress: true
 
 permissions:
@@ -14,7 +17,6 @@ permissions:
 
 jobs:
   acquire_attempt3:
-    if: ${{ github.event_name == 'workflow_dispatch' || github.event.pull_request.head.ref == 'research/news-language-source-g1' }}
     runs-on: ubuntu-latest
     timeout-minutes: 43
     strategy:
@@ -33,7 +35,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: ${{ github.head_ref || github.ref_name }}
+          ref: research/news-language-source-g1
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
@@ -73,9 +75,8 @@ jobs:
           git config user.name "jerry-backtest-bot"
           git config user.email "actions@users.noreply.github.com"
           git commit -m "data: checkpoint G1 attempt3 ${{ matrix.stage.cell }} ${{ matrix.stage.mode }}"
-          branch="${{ github.head_ref || github.ref_name }}"
-          git pull --rebase origin "$branch"
-          git push origin "HEAD:$branch"
+          git pull --rebase origin research/news-language-source-g1
+          git push origin HEAD:research/news-language-source-g1
 
   finalize_attempt3:
     needs: acquire_attempt3
@@ -85,7 +86,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: ${{ github.head_ref || github.ref_name }}
+          ref: research/news-language-source-g1
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
@@ -116,6 +117,5 @@ jobs:
           git config user.name "jerry-backtest-bot"
           git config user.email "actions@users.noreply.github.com"
           git commit -m "research: publish terminal G1-DI1 attempt3 result"
-          branch="${{ github.head_ref || github.ref_name }}"
-          git pull --rebase origin "$branch"
-          git push origin "HEAD:$branch"
+          git pull --rebase origin research/news-language-source-g1
+          git push origin HEAD:research/news-language-source-g1
