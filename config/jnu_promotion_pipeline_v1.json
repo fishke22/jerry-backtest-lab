@@ -14,7 +14,10 @@
         "Source provenance/hash recorded",
         "Storage/licensing boundary respected"
       ],
-      "fail_action": "STOP"
+      "fail_action": "STOP",
+      "quality_contract": "config/jnu_data_quality_contract_v1.json",
+      "selftest": "scripts/selftest_jnu_data_integrity.py",
+      "hard_rule": "Any unresolved CRITICAL data-quality issue blocks statistical promotion regardless of model metrics."
     },
     {
       "stage": 1,
