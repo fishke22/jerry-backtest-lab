@@ -1,0 +1,46 @@
+{
+  "candidate_id": "HAR_RSV_JPN225_PUBLIC_HOLDOUT_G2",
+  "status": "CURRENT_SAMPLE_PROXY_CONSISTENT",
+  "formal_true_jnu_status": "STILL_PENDING_TRUE_OSE",
+  "promotion_power": "NONE_TO_TRUE_JNU",
+  "source_url": "https://raw.githubusercontent.com/getdata-finance/jpn225-1m-ohlcv-index-historical-data/main/JPN225_1m.csv",
+  "source_sha256": "f53741c1c6338fcb57907a2d75f67379dd9c85276b8ccdc2cb9bba447e5c5a65",
+  "panel_days": 130,
+  "oos_days": 48,
+  "oos_from": "2026-05-27",
+  "oos_to": "2026-07-31",
+  "losses": {
+    "HAR_RV": {
+      "qlike": -7.640852248786995,
+      "mse": 8.212523606618634e-09
+    },
+    "HAR_RSV": {
+      "qlike": -7.650625193625525,
+      "mse": 7.726866670443777e-09
+    }
+  },
+  "improvement": {
+    "qlike": 0.009772944838529621,
+    "mse": 4.856569361748562e-10,
+    "qlike_bootstrap": {
+      "n": 48,
+      "mean": 0.009772944838529621,
+      "prob_positive": 0.9415,
+      "ci95": [
+        -0.0019055388139950877,
+        0.0173888019714955
+      ]
+    },
+    "mse_bootstrap": {
+      "n": 48,
+      "mean": 4.856569361748562e-10,
+      "prob_positive": 0.975,
+      "ci95": [
+        1.5964031480911286e-12,
+        8.088783504023558e-10
+      ]
+    }
+  },
+  "guardrail": "Proxy consistency is not true-JNU PASS and has no directional-alpha role.",
+  "generated_at_utc": "2026-08-31T04:38:02.340366+00:00"
+}

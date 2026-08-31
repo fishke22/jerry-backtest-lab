@@ -1,0 +1,9 @@
+{
+  "candidate_id": "HAR_RSV_JPN225_PUBLIC_HOLDOUT_G2",
+  "source_url": "https://raw.githubusercontent.com/getdata-finance/jpn225-1m-ohlcv-index-historical-data/main/JPN225_1m.csv",
+  "source_sha256": "f53741c1c6338fcb57907a2d75f67379dd9c85276b8ccdc2cb9bba447e5c5a65",
+  "raw_persisted_in_repo": false,
+  "derived_path": "cloud_data/derived/jnu_har_rsv_jpn225_public_holdout_g2_daily_rv.csv.gz",
+  "derived_sha256": "1b52a86b3801f9663b61c14f7f05e99f8ead51a585f054b38facea8ace47d4fa",
+  "license_note": "Repository declares MIT for the sample repository; raw sample remains upstream and is not copied into this repo."
+}
