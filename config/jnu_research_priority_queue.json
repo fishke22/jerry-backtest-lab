@@ -1,5 +1,5 @@
 {
-  "version": "2.4",
+  "version": "2.5",
   "updated_at": "2026-08-31",
   "policy": {
     "max_active_formal_families": 1,
@@ -19,34 +19,18 @@
       "Counting correlated features as independent votes"
     ]
   },
-  "active": null,
+  "active": {
+    "candidate": "BOJ_MPM_TRUE_OSE_EVENT_VOLATILITY_G1",
+    "status": "EVENT_TIMESTAMP_CORPUS_BUILD_PRE_PREREG_NO_OUTCOME_INSPECTION",
+    "rule": "Only official BOJ event timestamps may be assembled before preregistration. Do not inspect JNU/OSE event-window price outcomes until timestamp corpus and statistical design are frozen."
+  },
   "current_global_blocker": null,
   "queue": [
     {
       "rank": 1,
-      "candidate": "TRUE_VENUE_DPD_OSE_SGX_CME",
-      "status": "CME_ALIGNMENT_FEASIBLE_SGX_CURRENT_CODES_MAPPED_LEGACY_MAPPING_AND_OSE_ACCESS_STILL_BLOCKED",
-      "new_source": "axb0306/cme-futures-ohlc public NKD tick/1m/5m sample, visible coverage 2026-03-08 to 2026-04-15, TopstepX/ProjectX-derived",
-      "feasibility_result": {
-        "run_id": 33359934341,
-        "candidate": "CME_NKD_JPN225_ALIGNMENT_G0",
-        "status": "SOURCE_FEASIBILITY_COMPLETE",
-        "common_5m_bars": 7305,
-        "contemporaneous_corr": 0.9221838112308237,
-        "max_abs_corr_lag_5m_units": 0,
-        "rolling_corr_median": 0.915635577176246,
-        "promotion_power": "NONE"
-      },
-      "sgx_identity_progress": {
-        "NK": "SGX JPY Nikkei 225 Index Futures",
-        "NKTI": "Trade-At-Index-Close variant",
-        "NU": "SGX USD Nikkei 225 Index Futures",
-        "NS": "SGX Mini Nikkei 225 Index Futures",
-        "legacy_archive_mapping": "NOT_YET_PROVEN"
-      },
-      "next_action": "Find a metadata-only TC/TC_structure example or other official historical reference that proves how legacy archive contract identifiers map to current NK/NS codes. Do not bulk-download tick archives while rights remain unresolved. Formal DPD still requires matched-expiry OSE+SGX+CME with adequate coverage.",
-      "source_note": "config/jnu_source_identity_mapping_20260831.json",
-      "guardrail": "Current SGX product codes do not prove historical archive codes. Strong CME alignment does not establish venue leadership or directional alpha."
+      "candidate": "BOJ_MPM_EVENT_VOLATILITY",
+      "status": "DATA_UNBLOCKED_TRUE_OSE_EVENT_TIMESTAMP_BUILD",
+      "next_action": "Complete official BOJ exact release-time corpus before outcome inspection; then preregister a true-OSE Mini event-volatility Stage A and exact JNU Micro Stage B. Do not stratify by weather, hike/cut, or surprise in G1."
     },
     {
       "rank": 2,
@@ -71,6 +55,32 @@
     },
     {
       "rank": 3,
+      "candidate": "TRUE_VENUE_DPD_OSE_SGX_CME",
+      "status": "DATA_RIGHTS_BLOCKED_SGX_INTRADAY",
+      "new_source": "axb0306/cme-futures-ohlc public NKD tick/1m/5m sample, visible coverage 2026-03-08 to 2026-04-15, TopstepX/ProjectX-derived",
+      "feasibility_result": {
+        "run_id": 33359934341,
+        "candidate": "CME_NKD_JPN225_ALIGNMENT_G0",
+        "status": "SOURCE_FEASIBILITY_COMPLETE",
+        "common_5m_bars": 7305,
+        "contemporaneous_corr": 0.9221838112308237,
+        "max_abs_corr_lag_5m_units": 0,
+        "rolling_corr_median": 0.915635577176246,
+        "promotion_power": "NONE"
+      },
+      "sgx_identity_progress": {
+        "NK": "SGX JPY Nikkei 225 Index Futures",
+        "NKTI": "Trade-At-Index-Close variant",
+        "NU": "SGX USD Nikkei 225 Index Futures",
+        "NS": "SGX Mini Nikkei 225 Index Futures",
+        "legacy_archive_mapping": "NOT_YET_PROVEN"
+      },
+      "next_action": "Pause formal DPD. Reopen only when a free/authorized matched-expiry SGX Nikkei intraday source with quantitative/non-display and retention rights is verified. Do not bulk-download SGX legacy website archives or use paid Barchart/Tick Data without explicit authorization.",
+      "source_note": "config/jnu_source_identity_mapping_20260831.json",
+      "guardrail": "OSE and CME sides are available, but no rights-clean SGX matched-expiry intraday source is currently verified. Downloader code or public endpoints do not establish data-use rights."
+    },
+    {
+      "rank": 3,
       "candidate": "CBOE_LTV_LEFT_TAIL_RISK",
       "status": "BLOCKED_NO_VERIFIED_FREE_OFFICIAL_HISTORY",
       "next_action": "Do not substitute VIX/SKEW."
@@ -80,12 +90,6 @@
       "candidate": "OSE_ORDER_IMBALANCE",
       "status": "BLOCKED_NO_FREE_DIRECTIONAL_ORDER_FLOW_DATA",
       "next_action": "Do not infer from OHLC/volume."
-    },
-    {
-      "rank": 7,
-      "candidate": "BOJ_MPM_EVENT_VOLATILITY",
-      "status": "BLOCKED_ON_ADEQUATE_FREE_INTRADAY_VOLATILITY_HISTORY",
-      "next_action": "Do not launch weak small-event daily substitute."
     },
     {
       "rank": 90,
