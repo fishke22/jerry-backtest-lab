@@ -1,0 +1,50 @@
+{
+  "version": "1.0",
+  "candidate_id": "CME_NKD_JPN225_ALIGNMENT_G0",
+  "frozen_at": "2026-08-31",
+  "role": "DPD_SOURCE_FEASIBILITY_ONLY",
+  "objective": "Determine whether the newly verified public CME NKD intraday sample is technically usable in the future Dynamic Price Discovery pipeline by checking timestamp alignment, overlap, contemporaneous return association, and fixed lead-lag structure against an independent Japan225 1-minute proxy.",
+  "sources": {
+    "cme_nkd": {
+      "repository": "axb0306/cme-futures-ohlc",
+      "path": "NKD/NKD_1min_20260308_20260415.csv",
+      "venue": "CME",
+      "instrument": "NKD Nikkei 225 futures",
+      "timestamp": "UTC per upstream README",
+      "formal_status": "TRUE_CME_VENUE_SHORT_SAMPLE"
+    },
+    "jpn225_proxy": {
+      "repository": "getdata-finance/jpn225-1m-ohlcv-index-historical-data",
+      "path": "JPN225_1m.csv",
+      "instrument": "Japan225 index/CFD-style proxy",
+      "timestamp": "UTC",
+      "formal_status": "INDEX_PROXY_NOT_OSE"
+    }
+  },
+  "transform": {
+    "sampling": "5-minute last close resampled on UTC clock from each source independently",
+    "return": "log close-to-close 5-minute return",
+    "common_mask": "exact common 5-minute timestamps after resampling",
+    "lag_grid_5m": [-6,-5,-4,-3,-2,-1,0,1,2,3,4,5,6],
+    "lag_interpretation": "corr(CME_t, JPN225_{t+lag}); positive lag means CME return is compared with a later JPN225 return",
+    "rolling_window": 288,
+    "minimum_common_bars": 1000
+  },
+  "outputs": [
+    "source hashes and observed coverage",
+    "common 5-minute bar count",
+    "contemporaneous return correlation",
+    "fixed-grid cross-correlation by lag",
+    "lag with maximum absolute correlation",
+    "rolling contemporaneous-correlation median and interquartile range",
+    "missingness and duplicate diagnostics"
+  ],
+  "promotion_rule": "NONE. This family cannot validate directional alpha, true OSE/JNU, or formal DPD. It only determines whether the CME source is technically coherent enough to keep as a future matched-venue input.",
+  "interpretation_guardrails": [
+    "No p-value mining or lag-grid expansion after results.",
+    "No inference that CME leads OSE because the comparison series is a Japan225 proxy, not OSE.",
+    "No directional trading rule may be created from this family.",
+    "No raw source file is copied into jerry-backtest-lab; only hashes, diagnostics and aggregate results are durable.",
+    "Short sample cannot establish stable price discovery."
+  ]
+}
