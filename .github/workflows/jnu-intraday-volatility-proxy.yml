@@ -1,17 +1,12 @@
 name: JNU Intraday Volatility Proxy
 
+# Historical proxy-method family is resolved. Keep manual audit replay only;
+# new volatility families own their own exact trigger paths.
 on:
-  push:
-    paths:
-      - "volatility_requests/*.json"
-  pull_request:
-    paths:
-      - "volatility_requests/*.json"
   workflow_dispatch:
 
 permissions:
   contents: write
-
 
 jobs:
   validate:
@@ -60,7 +55,6 @@ jobs:
           branch="${{ github.head_ref || github.ref_name }}"
           git pull --rebase origin "$branch"
           git push origin "HEAD:$branch"
-
       - name: Fail workflow if processor failed
         if: steps.volrun.outputs.exit_code != '0'
         shell: bash
