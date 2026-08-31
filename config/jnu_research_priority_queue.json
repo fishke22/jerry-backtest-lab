@@ -1,5 +1,5 @@
 {
-  "version": "2.1",
+  "version": "2.2",
   "updated_at": "2026-08-31",
   "policy": {
     "max_active_formal_families": 1,
@@ -20,23 +20,16 @@
     ]
   },
   "active": null,
-  "current_global_blocker": {
-    "id": "TRUE_OSE_MINI_INTRADAY_DATA_ACQUIRED_STAGE_A_DERIVATION",
-    "status": "DATA_ACQUIRED_2006_2026_DERIVED_BUILD_RUNNING",
-    "impact": [
-      "HAR_RSV_TRUE_OSE_CONFIRMATION"
-    ],
-    "rule": "Do not call Stage A PASS/FAIL until the preregistered derived-data Gate 0 and HAR-RSV OOS/bootstrap run complete. Raw 225Labo remains local-only."
-  },
+  "current_global_blocker": null,
   "queue": [
     {
       "rank": 1,
       "candidate": "HAR_RSV_TRUE_OSE_CONFIRMATION",
       "evidence": "Direct Japanese/Nikkei futures volatility literature + 2011-2018 proxy-method PASS + 2026 public-proxy holdout consistency",
       "target_role": "Risk state / sizing / stop normalization",
-      "status": "TRUE_OSE_MINI_2006_2026_ACQUIRED_STAGE_A_RUNNING",
-      "data_plan": "225Labo Mini annual minute files 2006-2026 are locally complete. Build frozen 5m daily RV/RSV locally, upload only non-reconstructive derived panel + hashes/manifest to GitHub, then run preregistered Stage A. Stage B Micro only if Stage A passes.",
-      "next_action": "Complete local 5m Gate 0/derived build, persist derived panel to GitHub, execute config/jnu_har_rsv_true_ose_mini_stage_a_g1_prereg.json.",
+      "status": "STAGE3_TRUE_TARGET_CONFIRMATION_PASS_INFORMATION_STATE_CANDIDATE",
+      "data_plan": "True-OSE Mini Stage A and exact-product JNU Micro Stage B are complete and passed without retuning. Raw 225Labo remains local-only; derived panels/results are in GitHub.",
+      "next_action": "Run deferred 1m-vs-5m measurement QA. Then, only if HAR-RSV is intended to alter sizing/stops/confidence, preregister a concrete Stage-4 risk-state translation before any PnL testing.",
       "local_existing_evidence": {
         "mini_distinct_day_session_days": 1250,
         "micro_distinct_day_session_days": 364,
