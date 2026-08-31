@@ -301,3 +301,25 @@ Scientific interpretation:
 
 ## 26. Repository visibility and public-data boundary
 `fishke22/jerry-backtest-lab` was changed from PRIVATE to PUBLIC on 2026-08-31 after a pre-publication current-tree and Git-history scan found no tracked credentials/private keys/common token patterns and no 225Labo raw XLS/XLSX/ZIP files. Only non-reconstructive daily derived RV/RSV panels, hashes, manifests, code and research results are public. Personally licensed 225Labo raw minute files remain local-only under `D:\QROS\data\personal_licensed\225labo\...`.
+
+
+## 27. True-JNU prior-SPX intraday path terminal result
+The single frozen true-JNU family `INTRADAY_PATH_US_TO_JNU_TRUE_G1` was executed after exact-product JNU minute data became available.
+
+Data:
+- JNU Micro daily path features derived locally from 225Labo 1-minute bars; 796 causal-aligned days.
+- Predictor: exact S&P 500 index (^GSPC) close-to-close return from pinned Kaggle dataset version 732, raw not persisted in the repo.
+- Valid run: 33391992462; artifact 9757824371.
+
+Terminal result: `REJECT_TRUE_JNU_CURRENT_SPEC`.
+- H1 FIRST30 beta sign matched negative literature direction, but Pboot(MSE improvement>0)=0.84 < 0.95.
+- H2 LAST30 final beta was positive as expected, but mean MSE improvement was negative and Pboot=0.454.
+- H3 state interaction also worsened mean MSE; Pboot=0.354.
+- Holm family pass=false.
+
+Interpretation: coefficient signs resembling the paper are insufficient; exact-product JNU predictive information did not clear the preregistered OOS family gate. This family is closed. Do not tune 30-minute windows, switch to ES/NQ/SPY/QQQ, drop cells, or add indicators/regimes to rescue it.
+
+Framework implication:
+- HAR-RSV remains the only Stage-3 true-JNU information-state candidate, and only for volatility/risk.
+- Validated directional modules remain 0.
+- Decision engine remains `NO_VALIDATED_DIRECTIONAL_EDGE`.
