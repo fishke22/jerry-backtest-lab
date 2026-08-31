@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "candidate_id": "NEWS_STATE_LANGUAGE_SOURCE_G1",
-  "status": "PREREGISTERED",
+  "status": "PREREGISTERED_DI1_READY_NOT_TRIGGERED",
   "predecessor": {
     "family": "PHASE4B_GDELT_BROAD_NEWS",
     "disposition": "DATA_INCONCLUSIVE",
@@ -128,5 +128,24 @@
     "Claim source-language filtering reproduces proprietary TRNA sentiment analytics"
   ],
   "promotion_role": "Language-conditioned news/event volatility-state candidate only.",
-  "formal_jnu_promotion": "Requires subsequent confirmation with true JNU/OSE data if used for intraday session decisions."
+  "formal_jnu_promotion": "Requires subsequent confirmation with true JNU/OSE data if used for intraday session decisions.",
+  "data_integrity_revision": {
+    "id": "G1_DI1",
+    "frozen_before_statistical_result": true,
+    "trigger": "Cache audit found at least one omitted calendar date (2023-03-23) in a successful GDELT TimelineTone chunk; external narrow-query verification was unavailable.",
+    "rule": [
+      "Reindex every source cell to an explicit calendar-day grid.",
+      "Any date omitted by GDELT is NaN, not zero and not forward-filled.",
+      "Derived abs_tone and tone_ewm are also unavailable on a missing source date.",
+      "All four cells and the baseline use one common causal availability mask for training and OOS comparison.",
+      "This revision changes no keyword query, source language, target, date range, half-life, OOS start, recent window, bootstrap, Holm alpha or pass threshold."
+    ],
+    "old_runs": {
+      "eligibility": "DATA_AUDIT_ONLY_NOT_STATISTICAL_EVIDENCE",
+      "run_ids": [
+        33341758160,
+        33341760779
+      ]
+    }
+  }
 }
