@@ -1,38 +1,66 @@
 {
-  "version": "1.9",
+  "version": "2.0",
   "updated_at": "2026-08-31",
   "policy": {
     "max_active_formal_families": 1,
     "rule": "Do not start the next formal information family until the active family is resolved PASS/FAIL/INCONCLUSIVE and its disposition is persisted.",
-    "ranking_dimensions": ["Direct Nikkei/Nikkei-futures academic evidence","Independent/true OSE data quality","No-extra-cost data availability","Causal timing and point-in-time integrity","Multiple-testing/overfit risk","Incremental role not duplicated by existing layers"],
-    "prohibited": ["Parameter rescue after a failed preregistered family","Testing many indicators in parallel and selecting the prettiest result","Promoting proxy-only evidence as validated JNU alpha","Counting correlated features as independent votes"]
+    "ranking_dimensions": [
+      "Direct Nikkei/Nikkei-futures academic evidence",
+      "Independent/true OSE data quality",
+      "No-extra-cost data availability",
+      "Causal timing and point-in-time integrity",
+      "Multiple-testing/overfit risk",
+      "Incremental role not duplicated by existing layers"
+    ],
+    "prohibited": [
+      "Parameter rescue after a failed preregistered family",
+      "Testing many indicators in parallel and selecting the prettiest result",
+      "Promoting proxy-only evidence as validated JNU alpha",
+      "Counting correlated features as independent votes"
+    ]
   },
   "active": null,
   "current_global_blocker": {
-    "id": "TRUE_OSE_INTRADAY_DATA_ACCESS",
-    "status": "OFFICIAL_SCHEMA_AND_APPLICATION_PATH_IDENTIFIED_TRUE_OSE_DATA_NOT_YET_ACQUIRED",
-    "impact": ["HAR_RSV_TRUE_OSE_CONFIRMATION","INTRADAY_PATH_US_TO_JNU_G1","TRUE_VENUE_DPD_OSE_SGX_CME"],
-    "rule": "Parser/schema discovery is no longer the primary OSE blocker. True-OSE/JNU promotion still requires legally usable target-market history. An official application path or public schema is not equivalent to acquired/approved data access."
+    "id": "TRUE_OSE_INTRADAY_1M_5M_DATA_ACCESS",
+    "status": "TRUE_OSE_DAILY_SESSION_LOCALLY_AVAILABLE_INTRADAY_NOT_FOUND",
+    "impact": [
+      "HAR_RSV_TRUE_OSE_CONFIRMATION",
+      "INTRADAY_PATH_US_TO_JNU_G1",
+      "TRUE_VENUE_DPD_OSE_SGX_CME"
+    ],
+    "rule": "Exact OSE Micro/Mini daily and session history is now locally verified, but frozen intraday families still require genuine minute/tick data. Never expand daily/session OHLC into synthetic 1m/5m bars."
   },
   "queue": [
     {
       "rank": 1,
-      "candidate": "JPX_OSE_HISTORICAL_FREE_ACCESS_RESOLUTION",
-      "target_role": "Data acquisition gate, not an alpha family",
-      "status": "OFFICIAL_APPLICATION_PATH_ELIGIBILITY_AND_RIGHTS_UNRESOLVED_SCHEMA_RESOLVED",
-      "evidence": "JPX states historical OSE tick data may be provided for trading-methodology examination under certain conditions. Official public Data Cloud documentation now resolves the one-minute futures schema, including trading/execution date, index type, 9-digit security code, session, minute time, OHLC, volume, VWAP, number of trades and contract month. Published free-trial procedure still describes a company applicant.",
-      "identity_progress": "Official JPX evidence confirms Nikkei 225 large 9-digit examples ending 018 and Nikkei 225 mini example 166030019. Nikkei 225 micro is officially identified as NK225MCF and by vendor codes QUICK 115.n / Bloomberg JAIA / LSEG JNUcn / CQG F.US.MC225, but its 9-digit local-security-code suffix is not yet confirmed from a public primary-source issue example.",
-      "next_action": "Resolve individual eligibility/rights and obtain an official micro 9-digit issue-code example or issue master. Do not guess the micro suffix. If JPX access is unsuitable, fall back to personally licensed 225Labo local-only true-OSE path.",
-      "fallback_if_not_eligible": "Use 225Labo locally for Nikkei mini HAR-RSV Stage A, then Micro Stage B only if Stage A passes."
-    },
-    {
-      "rank": 2,
       "candidate": "HAR_RSV_TRUE_OSE_CONFIRMATION",
       "evidence": "Direct Japanese/Nikkei futures volatility literature + 2011-2018 proxy-method PASS + 2026 public-proxy holdout consistency",
       "target_role": "Risk state / sizing / stop normalization",
-      "status": "BLOCKED_PENDING_TRUE_OSE_ACCESS_ONLY_PARSER_PREPARED",
-      "data_plan": "Preferred route: approved JPX/OSE historical trial if eligible. Fallback: personally licensed 225Labo local-only Nikkei mini long-history confirmation, then Micro exact-product consistency.",
-      "next_action": "Once true OSE data is observable, run Gate 0 then the frozen 5-minute RV/RSV Stage A without retuning. Raw licensed data remains local unless explicit source terms permit otherwise."
+      "status": "TRUE_OSE_DAILY_SESSION_AVAILABLE_5M_INTRADAY_STILL_BLOCKED",
+      "data_plan": "Reuse QROS true-OSE contract/session DQ and parser infrastructure. Acquire genuine Mini 1m/5m history locally (preferred: 225Labo personal-use local-only), then construct frozen 5-minute RV/RSV. Stage B Micro exact-product intraday confirmation only if Stage A passes.",
+      "next_action": "Locate/acquire 225Labo Mini minute files locally; raw stays local. Do not use the QROS 1,250-day Mini day-session dataset as a substitute for 5-minute RV/RSV.",
+      "local_existing_evidence": {
+        "mini_distinct_day_session_days": 1250,
+        "micro_distinct_day_session_days": 364,
+        "mini_range": [
+          "2015-12-01",
+          "2026-07-30"
+        ],
+        "micro_range": [
+          "2025-02-03",
+          "2026-07-30"
+        ]
+      }
+    },
+    {
+      "rank": 2,
+      "candidate": "JPX_OSE_HISTORICAL_FREE_ACCESS_RESOLUTION",
+      "target_role": "Data acquisition gate, not an alpha family",
+      "status": "ALTERNATE_INTRADAY_ACCESS_PATH_INDIVIDUAL_ELIGIBILITY_UNRESOLVED",
+      "evidence": "JPX states historical OSE tick data may be provided for trading-methodology examination under certain conditions. Official public Data Cloud documentation now resolves the one-minute futures schema, including trading/execution date, index type, 9-digit security code, session, minute time, OHLC, volume, VWAP, number of trades and contract month. Published free-trial procedure still describes a company applicant.",
+      "identity_progress": "Official JPX evidence confirms Nikkei 225 large 9-digit examples ending 018 and Nikkei 225 mini example 166030019. Nikkei 225 micro is officially identified as NK225MCF and by vendor codes QUICK 115.n / Bloomberg JAIA / LSEG JNUcn / CQG F.US.MC225, but its 9-digit local-security-code suffix is not yet confirmed from a public primary-source issue example.",
+      "next_action": "Keep JPX historical-trial eligibility as alternate path. Local 225Labo minute acquisition is now preferred because the authorized Windows device is online and QROS already provides downstream ingestion/DQ infrastructure.",
+      "fallback_if_not_eligible": "Use 225Labo locally for Nikkei mini HAR-RSV Stage A, then Micro Stage B only if Stage A passes."
     },
     {
       "rank": 3,
@@ -88,13 +116,54 @@
     }
   ],
   "resolved": [
-    {"candidate":"PHASE4B_GDELT_NEWS_STATE","status":"DATA_INCONCLUSIVE","final_run_id":33331409697},
-    {"candidate":"NEWS_STATE_LANGUAGE_SOURCE_G1_DI1","status":"DATA_INCONCLUSIVE","final_run_id":33348607397,"logical_attempts_used":3,"reopen_rule":"No fourth acquisition attempt."},
-    {"candidate":"HAR_RSV_JPN225_PUBLIC_HOLDOUT_G2","status":"CURRENT_SAMPLE_PROXY_CONSISTENT","final_run_id":33357752091,"panel_days":130,"oos_days":48,"mse_bootstrap_prob_positive":0.975,"promotion_power":"NONE_TO_TRUE_JNU"},
-    {"candidate":"INTRADAY_PATH_JPN225_SPY_PUBLIC_HOLDOUT_G2","status":"PROXY_PATH_CURRENT_SAMPLE_NOT_CONFIRMED","final_run_id":33358017603,"panel_days":130,"oos_days_per_cell":70,"H1_FIRST30_mse_bootstrap_prob_positive":0.297,"H2_LAST30_mse_bootstrap_prob_positive":0.788,"holm_pass":false,"promotion_power":"NONE_TO_TRUE_JNU"},
-    {"candidate":"CME_NKD_JPN225_ALIGNMENT_G0","status":"SOURCE_FEASIBILITY_COMPLETE","final_run_id":33359934341,"implementation_revision":"DI1_POSITIONAL_VALUE_ALIGNMENT_FIX_ONLY","common_5m_bars":7305,"contemporaneous_corr":0.9221838112308237,"rolling_corr_median":0.915635577176246,"promotion_power":"NONE"}
+    {
+      "candidate": "PHASE4B_GDELT_NEWS_STATE",
+      "status": "DATA_INCONCLUSIVE",
+      "final_run_id": 33331409697
+    },
+    {
+      "candidate": "NEWS_STATE_LANGUAGE_SOURCE_G1_DI1",
+      "status": "DATA_INCONCLUSIVE",
+      "final_run_id": 33348607397,
+      "logical_attempts_used": 3,
+      "reopen_rule": "No fourth acquisition attempt."
+    },
+    {
+      "candidate": "HAR_RSV_JPN225_PUBLIC_HOLDOUT_G2",
+      "status": "CURRENT_SAMPLE_PROXY_CONSISTENT",
+      "final_run_id": 33357752091,
+      "panel_days": 130,
+      "oos_days": 48,
+      "mse_bootstrap_prob_positive": 0.975,
+      "promotion_power": "NONE_TO_TRUE_JNU"
+    },
+    {
+      "candidate": "INTRADAY_PATH_JPN225_SPY_PUBLIC_HOLDOUT_G2",
+      "status": "PROXY_PATH_CURRENT_SAMPLE_NOT_CONFIRMED",
+      "final_run_id": 33358017603,
+      "panel_days": 130,
+      "oos_days_per_cell": 70,
+      "H1_FIRST30_mse_bootstrap_prob_positive": 0.297,
+      "H2_LAST30_mse_bootstrap_prob_positive": 0.788,
+      "holm_pass": false,
+      "promotion_power": "NONE_TO_TRUE_JNU"
+    },
+    {
+      "candidate": "CME_NKD_JPN225_ALIGNMENT_G0",
+      "status": "SOURCE_FEASIBILITY_COMPLETE",
+      "final_run_id": 33359934341,
+      "implementation_revision": "DI1_POSITIONAL_VALUE_ALIGNMENT_FIX_ONLY",
+      "common_5m_bars": 7305,
+      "contemporaneous_corr": 0.9221838112308237,
+      "rolling_corr_median": 0.915635577176246,
+      "promotion_power": "NONE"
+    }
   ],
   "screened_not_separate_families": [
-    {"candidate":"FUTURES_CASH_BASIS_ALPHA","disposition":"DO_NOT_OPEN_SEPARATE_FAMILY","allowed_use":"DPD/fair-value sanity check, roll diagnostics and execution context only."}
+    {
+      "candidate": "FUTURES_CASH_BASIS_ALPHA",
+      "disposition": "DO_NOT_OPEN_SEPARATE_FAMILY",
+      "allowed_use": "DPD/fair-value sanity check, roll diagnostics and execution context only."
+    }
   ]
 }
