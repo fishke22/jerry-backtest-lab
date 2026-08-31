@@ -1,5 +1,5 @@
 {
-  "version": "1.7",
+  "version": "1.8",
   "updated_at": "2026-08-31",
   "policy": {
     "max_active_formal_families": 1,
@@ -10,17 +10,75 @@
   "active": null,
   "current_global_blocker": {
     "id": "TRUE_OSE_INTRADAY_DATA_ACCESS",
-    "status": "PROXY_STRESS_AVAILABLE_TRUE_PROMOTION_STILL_BLOCKED",
+    "status": "OFFICIAL_APPLICATION_PATH_IDENTIFIED_TRUE_OSE_DATA_NOT_YET_ACQUIRED",
     "impact": ["HAR_RSV_TRUE_OSE_CONFIRMATION","INTRADAY_PATH_US_TO_JNU_G1","TRUE_VENUE_DPD_OSE_SGX_CME"],
-    "rule": "Index/CFD proxies may support methodology/current-regime stress tests only; true-OSE/JNU promotion still requires target-market data."
+    "rule": "Index/CFD proxies may support methodology/current-regime stress tests only; true-OSE/JNU promotion still requires target-market data. An official application path is not equivalent to acquired/approved data access."
   },
   "queue": [
-    {"rank":2,"candidate":"HAR_RSV_TRUE_OSE_CONFIRMATION","evidence":"Direct Japanese/Nikkei futures volatility literature + 2011-2018 proxy-method PASS + 2026 public-proxy holdout consistency","target_role":"Risk state / sizing / stop normalization","status":"BLOCKED_ON_PERSONALLY_LICENSED_LOCAL_OSE_FILE","data_plan":"Nikkei mini 2006+ long-history confirmation, then Micro 2023+ exact-product consistency","next_action":"Resume after exact 225Labo schema/sample is locally available; raw stays local."},
-    {"rank":3,"candidate":"CBOE_LTV_LEFT_TAIL_RISK","status":"BLOCKED_NO_VERIFIED_FREE_OFFICIAL_HISTORY","next_action":"Do not substitute VIX/SKEW."},
-    {"rank":4,"candidate":"TRUE_VENUE_DPD_OSE_SGX_CME","status":"CME_ALIGNMENT_FEASIBLE_OSE_SGX_STILL_BLOCKED","new_source":"axb0306/cme-futures-ohlc public NKD tick/1m/5m sample, visible coverage 2026-03-08 to 2026-04-15, TopstepX/ProjectX-derived","feasibility_result":{"run_id":33359934341,"candidate":"CME_NKD_JPN225_ALIGNMENT_G0","status":"SOURCE_FEASIBILITY_COMPLETE","common_5m_bars":7305,"contemporaneous_corr":0.9221838112308237,"max_abs_corr_lag_5m_units":0,"rolling_corr_median":0.915635577176246,"promotion_power":"NONE"},"next_action":"Keep CME NKD as a viable CME-side input. Continue searching for approved free matched-expiry OSE and SGX intraday history; no formal DPD promotion until all required venues and adequate coverage exist.","source_note":"research_notes/jnu_new_source_discovery_cme_nkd_sgx_20260831.md","guardrail":"Strong alignment with Japan225 proxy does not establish CME leadership, OSE leadership, directional alpha, or true-JNU validation."},
-    {"rank":5,"candidate":"INTRADAY_PATH_US_TO_JNU_G1","evidence":"Direct Iwanaga 2026 evidence, but both 2011-2018 proxy G0 and 2026 Japan225/SPY proxy G2 fail OOS proxy confirmation","status":"DESIGN_FROZEN_AWAITING_TRUE_JNU_INTRADAY_DATA","preregistration":"config/jnu_intraday_path_us_g1_prereg.json","next_action":"True OSE/JNU minute data only. Do not open further proxy-rescue variants or change FIRST/LAST 30m/predictor after the two negative proxy screens."},
-    {"rank":6,"candidate":"OSE_ORDER_IMBALANCE","status":"BLOCKED_NO_FREE_DIRECTIONAL_ORDER_FLOW_DATA","next_action":"Do not infer from OHLC/volume."},
-    {"rank":7,"candidate":"BOJ_MPM_EVENT_VOLATILITY","status":"BLOCKED_ON_ADEQUATE_FREE_INTRADAY_VOLATILITY_HISTORY","next_action":"Do not launch weak small-event daily substitute."}
+    {
+      "rank": 1,
+      "candidate": "JPX_OSE_HISTORICAL_FREE_ACCESS_RESOLUTION",
+      "target_role": "Data acquisition gate, not an alpha family",
+      "status": "OFFICIAL_APPLICATION_PATH_ELIGIBILITY_AND_RIGHTS_UNRESOLVED",
+      "evidence": "JPX states historical OSE tick data may be provided for trading-methodology examination under certain conditions; general OSE free-trial material describes a one-month internal-use trial, while the published operational process describes a company applicant.",
+      "next_action": "Prepare an eligibility/rights inquiry for JPX Client Services covering individual eligibility, Nikkei 225 mini/micro availability, tick/1-minute history, local/internal research use, retention, and storage of only non-reconstructable derived outputs. Do not submit using guessed identity or company details.",
+      "fallback_if_not_eligible": "Return to personally licensed 225Labo local-only true-OSE path for HAR-RSV Stage A."
+    },
+    {
+      "rank": 2,
+      "candidate": "HAR_RSV_TRUE_OSE_CONFIRMATION",
+      "evidence": "Direct Japanese/Nikkei futures volatility literature + 2011-2018 proxy-method PASS + 2026 public-proxy holdout consistency",
+      "target_role": "Risk state / sizing / stop normalization",
+      "status": "BLOCKED_PENDING_TRUE_OSE_ACCESS_RESOLUTION",
+      "data_plan": "Preferred no-extra-cost route: approved JPX/OSE historical trial if eligible. Fallback: personally licensed 225Labo local-only Nikkei mini long-history confirmation, then Micro 2023+ exact-product consistency.",
+      "next_action": "Resolve JPX eligibility first; if unavailable or unsuitable, resume exact 225Labo schema/sample inspection locally. Raw licensed OSE data must remain local unless source terms explicitly permit otherwise."
+    },
+    {
+      "rank": 3,
+      "candidate": "CBOE_LTV_LEFT_TAIL_RISK",
+      "status": "BLOCKED_NO_VERIFIED_FREE_OFFICIAL_HISTORY",
+      "next_action": "Do not substitute VIX/SKEW."
+    },
+    {
+      "rank": 4,
+      "candidate": "TRUE_VENUE_DPD_OSE_SGX_CME",
+      "status": "CME_ALIGNMENT_FEASIBLE_OSE_SGX_STILL_BLOCKED",
+      "new_source": "axb0306/cme-futures-ohlc public NKD tick/1m/5m sample, visible coverage 2026-03-08 to 2026-04-15, TopstepX/ProjectX-derived",
+      "feasibility_result": {
+        "run_id": 33359934341,
+        "candidate": "CME_NKD_JPN225_ALIGNMENT_G0",
+        "status": "SOURCE_FEASIBILITY_COMPLETE",
+        "common_5m_bars": 7305,
+        "contemporaneous_corr": 0.9221838112308237,
+        "max_abs_corr_lag_5m_units": 0,
+        "rolling_corr_median": 0.915635577176246,
+        "promotion_power": "NONE"
+      },
+      "sgx_lead": "Legacy SGX WEBPXTICK derivatives archive endpoint is technically documented by multiple public downloader projects, but current automation/retention/non-display research rights are unresolved.",
+      "next_action": "Keep CME NKD as a viable CME-side input. Resolve SGX historical archive rights and Nikkei contract identity before any acquisition. Continue searching for approved free matched-expiry OSE and SGX intraday history; no formal DPD promotion until all required venues and adequate coverage exist.",
+      "source_note": "research_notes/jnu_new_source_discovery_cme_nkd_sgx_20260831.md",
+      "guardrail": "Strong alignment with Japan225 proxy does not establish CME leadership, OSE leadership, directional alpha, or true-JNU validation. Do not bulk-download SGX legacy archives under unresolved rights."
+    },
+    {
+      "rank": 5,
+      "candidate": "INTRADAY_PATH_US_TO_JNU_G1",
+      "evidence": "Direct Iwanaga 2026 evidence, but both 2011-2018 proxy G0 and 2026 Japan225/SPY proxy G2 fail OOS proxy confirmation",
+      "status": "DESIGN_FROZEN_AWAITING_TRUE_JNU_INTRADAY_DATA",
+      "preregistration": "config/jnu_intraday_path_us_g1_prereg.json",
+      "next_action": "True OSE/JNU minute data only. Do not open further proxy-rescue variants or change FIRST/LAST 30m/predictor after the two negative proxy screens."
+    },
+    {
+      "rank": 6,
+      "candidate": "OSE_ORDER_IMBALANCE",
+      "status": "BLOCKED_NO_FREE_DIRECTIONAL_ORDER_FLOW_DATA",
+      "next_action": "Do not infer from OHLC/volume."
+    },
+    {
+      "rank": 7,
+      "candidate": "BOJ_MPM_EVENT_VOLATILITY",
+      "status": "BLOCKED_ON_ADEQUATE_FREE_INTRADAY_VOLATILITY_HISTORY",
+      "next_action": "Do not launch weak small-event daily substitute."
+    }
   ],
   "resolved": [
     {"candidate":"PHASE4B_GDELT_NEWS_STATE","status":"DATA_INCONCLUSIVE","final_run_id":33331409697},
