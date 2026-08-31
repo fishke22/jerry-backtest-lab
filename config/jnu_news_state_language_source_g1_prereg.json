@@ -32,7 +32,7 @@
     "raw_storage": "Actions cache only; durable repository output contains derived features/results/provenance, not article bodies.",
     "acquisition_budget": {
       "max_total_runs": 3,
-      "current_run_number_in_family": 1,
+      "current_run_number_in_family": 2,
       "resume_rule": "A resume may only reuse cumulative cache and fetch missing chunks. Queries, dates, features, statistical models and thresholds may not change.",
       "terminal_rule": "If the complete four-cell panel cannot be acquired after three bounded runs, classify G1 as DATA_INCONCLUSIVE.",
       "logical_attempt_rule": "Runs triggered by both push and pull_request from the identical request commit SHA are one logical acquisition attempt; this control-plane duplication does not create a new hypothesis/trial.",
@@ -44,6 +44,13 @@
         ],
         "classification": "ONE_LOGICAL_ATTEMPT_CONTROL_PLANE_DUPLICATE",
         "note": "Future resumes use PR-only triggering and cumulative cache."
+      },
+      "attempt_2": {
+        "classification": "G1_DI1_LOGICAL_ATTEMPT_2",
+        "status": "READY_TO_TRIGGER",
+        "data_integrity_revision": "G1_DI1",
+        "cache_policy": "Reuse latest cache from research/news-language-source-g1 and fetch only missing chunks.",
+        "research_parameter_change": false
       }
     }
   },
