@@ -3,8 +3,6 @@ name: JNU News Language Source G1
 on:
   pull_request:
     types: [opened, reopened, synchronize]
-    paths:
-      - "news_language_g1_requests/jnu_news_language_source_g1_v1.json"
   workflow_dispatch:
 
 concurrency:
