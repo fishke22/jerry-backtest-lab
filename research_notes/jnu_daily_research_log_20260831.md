@@ -391,3 +391,25 @@ The preregistered `INTRADAY_MOMENTUM_REVERSION_TRUE_JNU_G1` family completed its
 
 Interpretation:
 The literature-shaped two-cell family is terminally rejected. The strong 10-minute reversal result cannot be isolated after inspection, and the failed 1-minute momentum sign cannot be flipped into a new signal as a rescue. Any future related family requires substantively independent evidence and a new preregistration before outcomes.
+
+
+## 31. Overnight-overreaction Stage A terminal result
+The independent post-literature-sample true-OSE Mini test of `OVERNIGHT_OVERREACTION_TRUE_JNU_G1` completed on 1,857 usable days (2016-01-04 through 2023-07-21).
+
+- Valid run: 33400904120; artifact 9761173804.
+- Status: `TRUE_OSE_MINI_OVERNIGHT_OVERREACTION_STAGE_A_FAIL`.
+- Mean signal payoff: +0.00017748443807267367.
+- Directional accuracy: 54.5100%.
+- Diagnostic morning~overnight slope: -0.020528843554912524.
+- Bootstrap P(mean payoff > 0): 0.9208, below frozen 0.95 threshold.
+- 95% bootstrap CI crosses zero.
+
+The result is directionally consistent with Miwa (2019) but does not clear the preregistered confidence gate. Exact-JNU Micro Stage B is prohibited. No morning-horizon, night-session-only, filter, sign, threshold, or Micro rescue is permitted.
+
+## 32. Directional research checkpoint
+Three recent literature-grounded directional families have now failed their preregistered true-target gates:
+1. prior-SPX FIRST/LAST30 path — terminal true-JNU fail;
+2. 1m momentum / 10m reversal family — Mini Stage A fail despite strong 10m reversal cell;
+3. overnight-overreaction — Mini Stage A near-pass but confidence below threshold.
+
+To control family selection bias, do not immediately open closely related directional variants. New directional work requires substantively independent direct Nikkei/OSE evidence. Until then, the two strongest verified components remain HAR-RSV volatility state and BOJ MPM event-volatility state, both Stage-3 risk/information candidates only.
