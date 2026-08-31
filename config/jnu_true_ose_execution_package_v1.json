@@ -1,0 +1,143 @@
+{
+  "version": "1.0",
+  "frozen_at": "2026-08-31",
+  "status": "READY_FOR_LOCAL_DATA_HANDOFF",
+  "purpose": "Define the exact fail-closed handoff from personally licensed/local true-OSE raw data into reproducible derived research without assuming the unseen 225Labo schema.",
+  "raw_data_policy": {
+    "location": "LOCAL_ONLY",
+    "cloud_upload": false,
+    "github_upload": false,
+    "reason": "Personally licensed raw data must remain local unless explicit rights allow otherwise.",
+    "allowed_cloud_outputs": [
+      "source file hashes",
+      "schema/provenance manifest",
+      "quality summary",
+      "non-reconstructive daily RV/RSV derived panel",
+      "non-reconstructive aggregate/session research features",
+      "OOS predictions/results",
+      "reports"
+    ]
+  },
+  "handoff_phases": [
+    {
+      "id": "A_LOCAL_SCHEMA_AUDIT",
+      "requires": [
+        "Exact raw filenames and sample rows available locally",
+        "Column meanings verified from source documentation or observed sample",
+        "Timezone and timestamp convention verified",
+        "Product/venue/contract/expiry identity verified",
+        "Trading-day and session convention verified"
+      ],
+      "output": "schema_manifest.json plus source hashes only",
+      "fail_closed": true
+    },
+    {
+      "id": "B_LOCAL_NORMALIZATION",
+      "requires": [
+        "Raw parser written only after phase A",
+        "No silent timezone inference",
+        "No silent continuous-contract construction",
+        "No forward fill of unknown missing bars",
+        "Duplicate and boundary handling deterministic"
+      ],
+      "normalized_internal_schema": [
+        "timestamp_utc",
+        "timestamp_jst",
+        "trading_date",
+        "session_id",
+        "venue",
+        "product",
+        "contract",
+        "expiry",
+        "open",
+        "high",
+        "low",
+        "close",
+        "volume"
+      ],
+      "output": "local normalized minute bars; raw-equivalent data remains local",
+      "fail_closed": true
+    },
+    {
+      "id": "C_DATA_QUALITY_GATE",
+      "contract": "config/jnu_data_quality_contract_v1.json",
+      "required_checks": [
+        "identity_and_grain",
+        "timestamp_and_session",
+        "completeness",
+        "uniqueness",
+        "OHLC/volume validity",
+        "freshness/versioning",
+        "rights_and_storage"
+      ],
+      "output": "quality report and hashes",
+      "fail_closed": true
+    },
+    {
+      "id": "D_HAR_RSV_STAGE_A_MINI",
+      "candidate": "INTRADAY_VOLATILITY_HAR_RSV_DI1",
+      "target": "Nikkei 225 mini long-history confirmation, preferred 2006+ when available",
+      "frozen_measurement": {
+        "primary_bar_interval": "5m",
+        "rv": "sum of squared 5m log returns by frozen trading-day definition",
+        "rsv_plus": "sum squared positive 5m log returns",
+        "rsv_minus": "sum squared negative 5m log returns",
+        "har_horizons_days": [1, 5, 22]
+      },
+      "measurement_qa_not_model_selection": [
+        "1m vs 5m stability",
+        "noise-robust estimator comparison where feasible"
+      ],
+      "rule": "Stage A FAIL cannot be rescued by a short micro sample."
+    },
+    {
+      "id": "E_HAR_RSV_STAGE_B_MICRO",
+      "candidate": "INTRADAY_VOLATILITY_HAR_RSV_DI1",
+      "target": "JNU micro exact-product consistency from 2023+ when available",
+      "rule": "Confirm consistency of the frozen Stage-A specification; do not retune horizons or sampling based on micro outcomes."
+    },
+    {
+      "id": "F_US_TO_JNU_INTRADAY_PATH",
+      "candidate": "INTRADAY_PATH_US_TO_JNU_G1",
+      "preregistration": "config/jnu_intraday_path_us_g1_prereg.json",
+      "requires": [
+        "True OSE/JNU minute bars",
+        "Prior completed S&P 500 cash-session return with causal alignment"
+      ],
+      "frozen_windows": ["FIRST_30M", "LAST_30M"],
+      "forbidden": ["window optimization", "post-result NQ substitution", "indicator rescue", "proxy promotion"]
+    },
+    {
+      "id": "G_TRADING_AND_OVERFIT",
+      "pipeline": "config/jnu_promotion_pipeline_v1.json",
+      "applies_only_if": "An information module passes its prior applicable gates and is proposed to change direction/position.",
+      "required": [
+        "explicit position mapping",
+        "independent execution replay",
+        "CPCV with purge/embargo",
+        "PBO",
+        "Deflated Sharpe Ratio",
+        "Holm family correction",
+        "fees/spread/slippage stress",
+        "forward or untouched holdout confirmation"
+      ]
+    }
+  ],
+  "derived_output_contract": {
+    "must_not_be_raw_reconstructive": true,
+    "minimum_manifest_fields": [
+      "source_hashes",
+      "source_license_classification",
+      "parser_version_commit",
+      "calendar/session_version",
+      "product_contract_coverage",
+      "date_range",
+      "missingness_summary",
+      "duplicate_summary",
+      "derived_feature_definitions",
+      "derived_output_hash"
+    ]
+  },
+  "implementation_guardrail": "Do not implement a 225Labo-specific raw parser until an authorized exact local schema/sample is observable. Generic interface/validators may be prepared in advance.",
+  "research_outcome_guardrail": "No local data processing may modify already-frozen model hypotheses or pass thresholds after outcomes are observed."
+}
