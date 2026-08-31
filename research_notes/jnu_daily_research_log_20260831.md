@@ -339,3 +339,41 @@ A fresh SGX source/rights audit was completed after OSE Mini/Micro minute data b
 The prior blocker `BLOCKED_ON_INTRADAY_OUTCOME_DATA` is obsolete because genuine OSE Mini 2006-2026 and exact JNU Micro 2023-2026 minute data are now locally available. The family is promoted to event-timestamp construction/pre-prereg status only. No price outcome may be inspected until the official BOJ release-time corpus and statistical design are frozen.
 
 The active formal research slot is now reserved for `BOJ_MPM_TRUE_OSE_EVENT_VOLATILITY_G1`.
+
+
+## 29. BOJ MPM true-target Stage 3 completed
+The preregistered `BOJ_MPM_TRUE_OSE_EVENT_VOLATILITY_G1` family completed both true-target stages without window/threshold retuning.
+
+Event-side provenance:
+- 226/226 post-Mini-launch BOJ policy releases have exact official JST release times.
+- Fixed eligibility based only on release time and historical OSE continuous-session geometry produced 192 eligible events: 170 Mini Stage A, 22 exact-JNU Micro Stage B.
+- Primary windows were frozen before price-outcome inspection: baseline [-40,-10) and event [-10,+20).
+
+Data-integrity revisions before statistical outcome inspection:
+- DI1 `7c968b8...`: old XLS files split 1-minute history across multiple `1min*` sheets; concatenating all shards restored Stage A from an erroneous 104/170 usable events to 170/170.
+- DI2 `909391d...`: manifest-schema completion only.
+- Neither revision changed event eligibility, windows, bootstrap, thresholds, or hypothesis.
+
+### Stage A — true OSE Nikkei 225 Mini
+- Run: 33396821958
+- Status: `TRUE_OSE_MINI_BOJ_EVENT_VOL_STAGE_A_PASS`
+- 170 usable events
+- Mean log(EventRV/BaselineRV): +0.4450516453986761
+- Median: +0.2951189323620672
+- Bootstrap P(mean>0): 0.981
+- 95% CI: [0.029547011546631502, 0.7571929210770287]
+
+### Stage B — exact OSE Nikkei 225 Micro (JNU)
+- Run: 33397255940
+- Status: `TRUE_JNU_MICRO_BOJ_EVENT_VOL_STAGE_B_PASS`
+- 22 usable events
+- Mean log(EventRV/BaselineRV): +1.6034692468630831
+- Median: +1.7268933093975936
+- Bootstrap P(mean>0): 1.000
+- 95% CI: [1.0789356833387151, 2.126909061305105]
+
+Scientific interpretation:
+- BOJ MPM event-volatility passes promotion-pipeline Stage 3 as an `EVENT_RISK_INFORMATION_STATE_CANDIDATE`.
+- It is not directional alpha and not a live entry/size/stop rule.
+- Any entry blackout, size reduction, stop widening, or confidence adjustment is a new downstream translation requiring preregistration and validation.
+- Framework now has two Stage-3 risk/information candidates: HAR-RSV and BOJ MPM event volatility. Validated directional modules remain 0; decision output remains `NO_VALIDATED_DIRECTIONAL_EDGE`.
