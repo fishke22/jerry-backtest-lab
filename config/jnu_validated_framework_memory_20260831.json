@@ -1,0 +1,110 @@
+{
+  "version": "1.0",
+  "as_of": "2026-08-31",
+  "purpose": "Durable cross-session memory snapshot for JNU analysis and research. Future JNU sessions should read this before proposing/retesting modules.",
+  "framework_state": {
+    "validated_jnu_stage9_modules": 0,
+    "validated_directional_modules": 0,
+    "decision_engine_output": "NO_VALIDATED_DIRECTIONAL_EDGE",
+    "current_research_state": "TWO_STAGE3_RISK_INFORMATION_CANDIDATES_DIRECTIONAL_EDGE_NONE"
+  },
+  "admitted_stage3_information_candidates": [
+    {
+      "id": "HAR_RSV_VOLATILITY_STATE",
+      "role": "VOLATILITY_RISK_STATE_ONLY_NOT_DIRECTIONAL_ALPHA",
+      "status": "TRUE_JNU_STAGE3_PASS_INFORMATION_STATE_CANDIDATE",
+      "evidence": {
+        "mini_stage_a": "TRUE_OSE_MINI_STAGE_A_PASS",
+        "micro_stage_b": "TRUE_JNU_MICRO_STAGE_B_PASS"
+      },
+      "allowed_use": [
+        "volatility/risk regime assessment",
+        "candidate input for separately validated sizing/stop-distance/confidence rules"
+      ],
+      "prohibited_use": [
+        "directional long/short vote",
+        "claiming Stage-9 validation",
+        "changing positions without downstream preregistered validation"
+      ]
+    },
+    {
+      "id": "BOJ_MPM_TRUE_OSE_EVENT_VOLATILITY_G1",
+      "role": "EVENT_RISK_STATE_ONLY_NOT_DIRECTIONAL_ALPHA",
+      "status": "TRUE_JNU_STAGE3_PASS_EVENT_RISK_INFORMATION_STATE_CANDIDATE",
+      "evidence": {
+        "mini_stage_a": {
+          "status": "PASS",
+          "usable_events": 170,
+          "bootstrap_prob_mean_positive": 0.981
+        },
+        "micro_stage_b": {
+          "status": "PASS",
+          "usable_events": 22,
+          "bootstrap_prob_mean_positive": 1
+        }
+      },
+      "allowed_use": [
+        "BOJ MPM event-risk warning",
+        "candidate input for separately validated entry-blackout/size/stop/confidence rules"
+      ],
+      "prohibited_use": [
+        "directional long/short vote",
+        "claiming Stage-9 validation",
+        "post-hoc event-window retuning"
+      ]
+    }
+  ],
+  "terminal_directional_families": [
+    {
+      "id": "INTRADAY_PATH_US_TO_JNU_TRUE_G1",
+      "status": "REJECT_TRUE_JNU_CURRENT_SPEC",
+      "reopen_rule": "No window/predictor/cell/indicator rescue."
+    },
+    {
+      "id": "INTRADAY_MOMENTUM_REVERSION_TRUE_JNU_G1",
+      "status": "TRUE_OSE_MINI_STAGE_A_FAIL_TERMINAL",
+      "key_result": "H1 1m momentum failed decisively; H2 10m reversal passed only inside failed two-cell family and cannot be salvaged post hoc.",
+      "stage_b": "PROHIBITED",
+      "reopen_rule": "No H2-only salvage, H1 sign flip, horizon search, session switch, overlapping-window or indicator rescue."
+    },
+    {
+      "id": "OVERNIGHT_OVERREACTION_TRUE_JNU_G1",
+      "status": "TRUE_OSE_MINI_STAGE_A_FAIL_TERMINAL",
+      "key_result": "Directionally consistent near-pass but bootstrap P=0.9208 < preregistered 0.95.",
+      "stage_b": "PROHIBITED",
+      "reopen_rule": "No threshold weakening, morning-horizon change, night-session-only, filter, sign, or Micro rescue."
+    }
+  ],
+  "blocked_or_deferred": [
+    {
+      "id": "TRUE_VENUE_DPD_OSE_SGX_CME",
+      "status": "DATA_RIGHTS_BLOCKED_SGX_INTRADAY",
+      "note": "OSE/CME available; no free rights-clean matched-expiry SGX intraday source verified."
+    },
+    {
+      "id": "OSE_ORDER_IMBALANCE",
+      "status": "BLOCKED_NO_FREE_DIRECTIONAL_ORDER_FLOW_DATA",
+      "note": "OHLCV cannot substitute for signed trades/order-book imbalance."
+    },
+    {
+      "id": "CBOE_LTV_LEFT_TAIL_RISK",
+      "status": "BLOCKED_NO_VERIFIED_FREE_OFFICIAL_HISTORY"
+    }
+  ],
+  "durable_rules": [
+    "Use evidence-first, strict OOS, walk-forward/leakage-safe methods.",
+    "Do not count proxy PASS as true-JNU PASS.",
+    "Do not count execution replay as alpha.",
+    "Do not weaken preregistered thresholds or rescue failed families post hoc.",
+    "Any combination of independently validated modules is a new family requiring validation.",
+    "Until a directional module passes true-target and downstream stages, live JNU directional probability must be labeled unvalidated/research estimate.",
+    "225Labo raw remains local-only; only non-reconstructive derived panels/hashes/manifests/results may be public-cloud persisted."
+  ],
+  "cloud_data_catalog": "config/jnu_cloud_data_catalog_v1.json",
+  "governance": [
+    "config/jnu_family_attempt_ledger.json",
+    "config/jnu_evidence_matrix_v1.json",
+    "config/jnu_research_priority_queue.json",
+    "config/jnu_framework_completion_status_v1.json"
+  ]
+}
