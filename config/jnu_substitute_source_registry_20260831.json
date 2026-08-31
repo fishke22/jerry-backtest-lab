@@ -1,5 +1,5 @@
 {
-  "version": "1.6",
+  "version": "1.7",
   "verified_at": "2026-08-31",
   "purpose": "Supplement the main JNU data-source registry with newly verified substitute sources discovered after the mobile/local-data blocker review.",
   "sources": [
@@ -180,6 +180,20 @@
       "jnu_role": "Frozen HAR-RSV true-OSE Stage A; possible frozen true-OSE intraday path after eligible prior gates",
       "status": "ACTIVE_TRUE_OSE_MINI_INTRADAY_LOCAL_RAW_CLOUD_DERIVED_ONLY",
       "formal_limitation": "Raw minute bars must not be uploaded to GitHub/cloud."
+    },
+    {
+      "id": "KAGGLE_GSPC_CC0_V732_PINNED",
+      "provider": "Kaggle / paveljurke",
+      "data_type": "S&P 500 (^GSPC) historical daily OHLCV",
+      "coverage": "1927-12-30 through 2026-08-27 in pinned version 732",
+      "cost_class": "FREE_PUBLIC_DATASET",
+      "license_or_terms_status": "Kaggle dataset metadata labels version 732 as CC0: Public Domain. Raw source is fetched at runtime and not persisted in the repository.",
+      "jnu_role": "Exact prior completed S&P 500 cash-session return predictor for the frozen true-JNU intraday-path family",
+      "status": "PINNED_RUNTIME_SOURCE_USED_IN_TERMINAL_REJECTED_FAMILY",
+      "source_hashes": {
+        "zip_sha256": "8f19fafb398ad048776340152bac5e9129f74c6646ea0ec76b1961e6a72ce521",
+        "csv_sha256": "0686d640b1653bab8482905c419b7b799cce578825e9e866eeec7a19169c2f66"
+      }
     }
   ],
   "substitution_rule": "A substitute may unblock methodology/current-regime stress testing, but it inherits a proxy label. It cannot satisfy a frozen true-OSE/JNU promotion gate unless the preregistration explicitly permits that source class before outcome inspection."
