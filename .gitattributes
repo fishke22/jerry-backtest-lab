@@ -1,2 +1,3 @@
 cloud_data/derived/jnu_225labo_mini_daily_rvrsv_v1.csv -text
 cloud_data/derived/jnu_boj_mpm_mini_event_volatility_g1.csv -text
+cloud_data/derived/jnu_boj_mpm_micro_event_volatility_g1.csv -text

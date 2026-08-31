@@ -1,0 +1,127 @@
+{
+  "version": "1.0",
+  "candidate_id": "BOJ_MPM_TRUE_OSE_EVENT_VOLATILITY_G1",
+  "stage": "B_EXACT_JNU_MICRO",
+  "product": "OSE Nikkei 225 Micro Futures (JNU)",
+  "source_license_classification": "225LABO_PERSONAL_USE_LOCAL_RAW_DERIVED_NON_RECONSTRUCTIVE_EXPORT",
+  "raw_data_cloud_uploaded": false,
+  "parser_version_commit": "909391dee8cf4e6fd3cd09046bdf11453049af7f",
+  "event_manifest_sha256": "fcfd9b81c61ed7cb575ad43b67d8c7348c9979ffe164525953766a8bc975c60a",
+  "timing_eligible_event_count": 22,
+  "usable_event_count": 22,
+  "unusable_event_count": 0,
+  "unusable_events": [],
+  "calendar_session_version": "1.2",
+  "product_contract_coverage": {
+    "venue": "OSE",
+    "product": "Nikkei 225 Micro Futures (JNU)",
+    "stage": "B_EXACT_JNU_MICRO"
+  },
+  "date_range": [
+    "2023-07-28",
+    "2026-07-31"
+  ],
+  "missingness_summary": {
+    "timing_eligible_event_count": 22,
+    "usable_event_count": 22,
+    "unusable_event_count": 0
+  },
+  "duplicate_summary": {
+    "duplicate_minute_rows": 0
+  },
+  "derived_feature_definitions": {
+    "baseline_rv_1m": "sum squared 1m log returns in [-40m,-10m)",
+    "event_rv_1m": "sum squared 1m log returns in [-10m,+20m)",
+    "log_event_to_baseline_rv_ratio": "log((event_rv_1m+1e-18)/(baseline_rv_1m+1e-18))"
+  },
+  "measurement": {
+    "frequency": "source-provided 1min",
+    "baseline_window": "[-40,-10)",
+    "event_window": "[-10,+20)",
+    "return_count_each": 30,
+    "effect": "log((event RV + 1e-18)/(baseline RV + 1e-18))"
+  },
+  "source_hashes": [
+    {
+      "source_id": "N225microf_2023.zip",
+      "sha256": "d5622e9bd2c263141135471c91b29745d2afa224336343daae58238e478aed43"
+    },
+    {
+      "source_id": "N225microf_2024.zip",
+      "sha256": "913df08ebebe029ca3cf1d942a62bf228ce90c87cfaf823562c8f6edb7abe514"
+    },
+    {
+      "source_id": "N225microf_2025.zip",
+      "sha256": "28cd5a0985fdc7afdcdcf37cc34c4c70ebf792a3dca0af0906eed6573be77326"
+    },
+    {
+      "source_id": "N225microf_2026.zip",
+      "sha256": "e6149c02097814f885a1414cb405ff687b2c4be0aeaef561d9a20b7881c58378"
+    }
+  ],
+  "sources": [
+    {
+      "source_id": "N225microf_2023.zip",
+      "nominal_year": 2023,
+      "sha256": "d5622e9bd2c263141135471c91b29745d2afa224336343daae58238e478aed43",
+      "size_bytes": 9897678,
+      "meta_1m": {
+        "workbook_member": "N225microf_2023.xlsx",
+        "sheets": [
+          "1min"
+        ],
+        "relevant_rows": 4808,
+        "duplicate_minute_rows": 0,
+        "invalid_close_rows": 0
+      }
+    },
+    {
+      "source_id": "N225microf_2024.zip",
+      "nominal_year": 2024,
+      "sha256": "913df08ebebe029ca3cf1d942a62bf228ce90c87cfaf823562c8f6edb7abe514",
+      "size_bytes": 22711799,
+      "meta_1m": {
+        "workbook_member": "N225microf_2024.xlsx",
+        "sheets": [
+          "1min"
+        ],
+        "relevant_rows": 8414,
+        "duplicate_minute_rows": 0,
+        "invalid_close_rows": 0
+      }
+    },
+    {
+      "source_id": "N225microf_2025.zip",
+      "nominal_year": 2025,
+      "sha256": "28cd5a0985fdc7afdcdcf37cc34c4c70ebf792a3dca0af0906eed6573be77326",
+      "size_bytes": 23065744,
+      "meta_1m": {
+        "workbook_member": "N225microf_2025.xlsx",
+        "sheets": [
+          "1min"
+        ],
+        "relevant_rows": 8414,
+        "duplicate_minute_rows": 0,
+        "invalid_close_rows": 0
+      }
+    },
+    {
+      "source_id": "N225microf_2026.zip",
+      "nominal_year": 2026,
+      "sha256": "e6149c02097814f885a1414cb405ff687b2c4be0aeaef561d9a20b7881c58378",
+      "size_bytes": 16048670,
+      "meta_1m": {
+        "workbook_member": "N225microf_2026.xlsx",
+        "sheets": [
+          "1min"
+        ],
+        "relevant_rows": 4808,
+        "duplicate_minute_rows": 0,
+        "invalid_close_rows": 0
+      }
+    }
+  ],
+  "critical_data_quality_issues": [],
+  "derived_output_hash": "43fd2ec741e30e8c4596a58d0f8366c54c84582eb4e288ad81963ef4769148aa",
+  "market_outcome_interpretation_performed": false
+}
