@@ -44,12 +44,19 @@
       "data_grade": "B",
       "literature": [
         "Asai & McAleer 2017 — Nikkei 225 futures volatility forecasting",
-        "Maki & Ota 2020/2021 — Japanese futures/spot realized-semivariance asymmetry"
+        "Maki & Ota 2020/2021 — Japanese futures/spot realized-semivariance asymmetry",
+        "Kunitomo & Sato — SIML realized volatility/covariance with micro-market noise, applied to Nikkei-225 Futures"
       ],
       "internal_result": "DI1 proxy-method PASS; MSE bootstrap P=0.9585, QLIKE support weaker.",
       "status": "TRUE_JNU_CONFIRMATION_PENDING",
       "admitted_role": "Risk state / sizing / stop-distance / confidence only",
-      "next_evidence_needed": "225Labo Mini 2006+ frozen confirmation, then Micro 2023+ exact-product consistency"
+      "next_evidence_needed": "225Labo Mini 2006+ frozen confirmation, then Micro 2023+ exact-product consistency",
+      "measurement_guardrail": {
+        "issue": "High-frequency realized volatility can be biased by microstructure noise.",
+        "frozen_confirmation_default": "Use 5-minute returns as primary HAR-RSV construction unless the true-OSE preregistration independently justifies another sampling interval before outcome inspection.",
+        "diagnostic": "Compare 1m vs 5m RV/RSV stability and, where feasible, a noise-robust realized-volatility estimator as measurement QA only.",
+        "rule": "Do not choose the sampling interval after seeing predictive performance."
+      }
     },
     {
       "module": "NEWS_LANGUAGE_SOURCE_STATE",
