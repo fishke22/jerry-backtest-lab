@@ -1,5 +1,5 @@
 {
-  "version": "1.4",
+  "version": "1.5",
   "verified_at": "2026-08-31",
   "purpose": "Supplement the main JNU data-source registry with newly verified substitute sources discovered after the mobile/local-data blocker review.",
   "sources": [
@@ -136,6 +136,39 @@
       "license_or_terms_status": "Do not durably archive raw Yahoo response. Fetch transiently for an explicitly proxy-only research family and persist only derived predictor returns/provenance.",
       "jnu_role": "Proxy-of-predictor for current-regime intraday-path stress test",
       "status": "PROVISIONAL_PROXY_NOT_S_AND_P_INDEX"
+    },
+    {
+      "id": "QROS_JPX_TRUE_OSE_MICRO_DAILY_SESSION_364D",
+      "provider": "JPX public Daily Reports, locally acquired/normalized in QROS",
+      "data_type": "Exact OSE Nikkei 225 Micro Futures contract-level day/night/session OHLC, settlement, volume and OI; continuous daily series also built",
+      "coverage": "364 distinct trading days, 2025-02-03 through 2026-07-30; 1,455 Micro contract rows in common day-session corpus; existing continuous build uses 19 contracts and 18 rolls",
+      "cost_class": "NO_EXTRA_COST_ALREADY_LOCAL_OFFICIAL_PUBLIC_REPORTS",
+      "license_or_terms_status": "Official JPX public reports already locally archived with hashes/provenance. Keep raw/local provenance under existing JPX/QROS rights controls; do not assume broader redistribution rights.",
+      "jnu_role": "Exact-product daily/session identity, roll, contract and regime cross-check; possible daily-grain families only if preregistered before outcome inspection",
+      "status": "ACTIVE_TRUE_OSE_EXACT_PRODUCT_DAILY_SESSION_NOT_INTRADAY",
+      "formal_limitation": "Cannot satisfy HAR-RSV 5-minute RV/RSV, FIRST/LAST30, DPD lead-lag, order imbalance, or intraday execution gates."
+    },
+    {
+      "id": "QROS_NDL_JPX_TRUE_OSE_MINI_COMMON_DAY_SESSION_1250D",
+      "provider": "NDL archived OSE Daily Reports plus JPX public Daily Reports, parsed locally in QROS",
+      "data_type": "Exact OSE Nikkei 225 Mini Futures common day-session contract OHLC/settlement/OI with all-session volume scope",
+      "coverage": "1,250 distinct Mini trading days, 2015-12-01 through 2026-07-30; 14,999 Mini contract rows",
+      "cost_class": "NO_EXTRA_COST_ALREADY_LOCAL_ARCHIVE_RESEARCH",
+      "license_or_terms_status": "NDL metadata/content and JPX report rights remain source-specific. Existing QROS acquisition is governed fail-closed; do not bulk redistribute raw files.",
+      "jnu_role": "Long-history true-OSE Mini daily/session DQ, cross-era and contract/roll evidence",
+      "status": "ACTIVE_TRUE_OSE_MINI_LONG_HISTORY_DAY_SESSION_NOT_INTRADAY",
+      "formal_limitation": "Day/session bars cannot be converted into 5-minute realized variance/semivariance or intraday path evidence."
+    },
+    {
+      "id": "QROS_NDL_OSE_ITEM_INDEX_1414_METADATA",
+      "provider": "NDL Search/WARP metadata inventory already created in QROS",
+      "data_type": "OSE/JPX Daily Report metadata manifest with persistent PIDs and access-state workflow",
+      "coverage": "1,414 items, 2014-03-24 through 2019-12-30",
+      "cost_class": "NO_EXTRA_COST_METADATA",
+      "license_or_terms_status": "Metadata use and content rights are separate; existing QROS process is low-frequency/fail-closed and does not treat metadata availability as PDF bulk-download permission.",
+      "jnu_role": "Archive discovery/provenance; prevents repeated source discovery",
+      "status": "ACTIVE_METADATA_INDEX_NOT_MARKET_DATA",
+      "formal_limitation": "Metadata alone is not price data and has no alpha/promotion power."
     }
   ],
   "substitution_rule": "A substitute may unblock methodology/current-regime stress testing, but it inherits a proxy label. It cannot satisfy a frozen true-OSE/JNU promotion gate unless the preregistration explicitly permits that source class before outcome inspection."
