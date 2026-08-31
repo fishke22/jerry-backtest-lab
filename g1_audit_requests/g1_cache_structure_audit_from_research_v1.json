@@ -1,0 +1,9 @@
+{
+  "request_id": "g1_cache_structure_audit_from_research_v1",
+  "role": "DATA_QA_ONLY_NO_NETWORK_NO_MODEL",
+  "cache_scope": "base branch research/news-language-source-g1",
+  "purpose": "Audit cached GDELT Timeline JSON daily-grid structure and boundary artifacts.",
+  "recheck_nonce": 2,
+  "after_run": 33341760779,
+  "note": "Re-audit latest base-branch cache after the 45-minute G1 run saved its cache."
+}
