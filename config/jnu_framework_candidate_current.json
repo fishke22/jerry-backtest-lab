@@ -1,5 +1,5 @@
 {
-  "version": "0.4",
+  "version": "0.5",
   "updated_at": "2026-08-31",
   "status": "CANDIDATE_NOT_VALIDATED",
   "validated_jnu_modules": 0,
@@ -41,22 +41,13 @@
         {
           "id": "HAR_RSV_DI1",
           "evidence_status": "PROXY_METHOD_PASS_TRUE_JNU_PENDING",
-          "allowed_role": [
-            "risk state",
-            "position sizing",
-            "stop-distance normalization",
-            "confidence adjustment"
-          ],
+          "allowed_role": ["risk state", "position sizing", "stop-distance normalization", "confidence adjustment"],
           "forbidden_role": "directional alpha without separate preregistration",
           "frozen_spec": "5-minute RV/RSV; HAR 1/5/22; existing expanding-OOS/block-bootstrap gate",
           "true_jnu_data_policy": "225Labo raw local-only under personal-use terms; cloud receives non-reconstructive derived panel/results only."
         }
       ],
-      "rejected_or_quarantined": [
-        "HAR_LEVERAGE proxy G1",
-        "daily volatility_regime as validated alpha",
-        "generic VIX direct directional vote"
-      ]
+      "rejected_or_quarantined": ["HAR_LEVERAGE proxy G1", "daily volatility_regime as validated alpha", "generic VIX direct directional vote"]
     },
     {
       "order": 5,
@@ -85,22 +76,28 @@
       "order": 6,
       "id": "NEWS_EVENT_STATE",
       "role": "STATE_CANDIDATE",
-      "status": "PHASE4B_CACHED_RESUME_RUNNING",
-      "current_family": "Broad GDELT six-category prior-day state screen",
-      "gate": "QLIKE and MSE improve; QLIKE bootstrap P>=0.95; recent QLIKE/MSE nonnegative; Holm family correction passes.",
-      "next_generation_if_needed": "config/jnu_news_state_language_session_g1_draft.json",
-      "next_generation_status": "ELIGIBLE_FOR_REVIEW_NOT_TRIGGERED",
+      "status": "NO_ADMITTED_CURRENT_SPEC",
       "rule": "News begins as volatility/event/confidence state; directional use requires a separate preregistered test.",
       "results": [
         {
           "id": "PHASE4B_GDELT_BROAD_NEWS",
           "status": "DATA_INCONCLUSIVE",
-          "reason": "Full preregistered panel could not be acquired under bounded multi-year, annual-chunk, adaptive-split, and final paced single-connection protocols.",
+          "reason": "Full preregistered panel could not be acquired under bounded conservative acquisition protocols.",
           "statistical_result_available": false,
           "guardrail": "Do not interpret as model FAIL; do not lower gates or drop categories post hoc."
+        },
+        {
+          "id": "NEWS_STATE_LANGUAGE_SOURCE_G1_DI1",
+          "status": "DATA_INCONCLUSIVE",
+          "terminal_run_id": 33348607397,
+          "logical_attempts_used": 3,
+          "missing_cache_count": 311,
+          "statistical_result_available": false,
+          "reason": "Final preregistered acquisition budget exhausted before a complete four-cell panel was available.",
+          "guardrail": "No fourth acquisition attempt and no significance interpretation."
         }
       ],
-      "acquisition_status": "GDELT provider instability handled by paced single-connection cumulative cache; formal evidence requires complete six-category family."
+      "next_generation_status": "CLOSED_UNLESS_SUBSTANTIVELY_NEW_RELIABLE_SOURCE_FAMILY"
     },
     {
       "order": 7,
@@ -115,44 +112,36 @@
           "last30": "Expected positive beta not stable; bootstrap P=0.6175.",
           "guardrail": "Do not tune 30-minute windows, switch SPX to NQ, or add indicators to rescue this sample."
         }
-      ]
+      ],
+      "frozen_true_ose_family": "config/jnu_intraday_path_us_g1_prereg.json",
+      "blocked_on": "Approved true OSE/JNU minute data."
     },
     {
       "order": 8,
+      "id": "EVENT_VOLATILITY_STATE",
+      "role": "RISK_EVENT_CANDIDATE",
+      "status": "READY_FOR_PREREGISTRATION_REVIEW",
+      "candidate": "BOJ_MPM_EVENT_VOLATILITY",
+      "evidence": "Japanese monetary-policy release studies report intraday Nikkei 225 VI / VI futures responses.",
+      "data_feasibility": "Official BOJ MPM dates and release archive are publicly available; market-series feasibility still must be frozen before testing.",
+      "generation1_role": "Event volatility/risk state only; no directional claim."
+    },
+    {
+      "order": 9,
       "id": "MICROSTRUCTURE_EXECUTION",
       "role": "ENTRY_EXECUTION_CONFIRMATION",
       "status": "KEEP_NON_ALPHA",
-      "candidates": [
-        "VWAP",
-        "POC",
-        "VAH",
-        "VAL",
-        "RVOL",
-        "basis",
-        "roll spread",
-        "liquidity"
-      ],
+      "candidates": ["VWAP", "POC", "VAH", "VAL", "RVOL", "basis", "roll spread", "liquidity"],
       "order_imbalance_status": "LITERATURE_ONLY_DATA_BLOCKED",
       "rule": "Do not infer order imbalance from OHLC/VWAP/volume. Use microstructure features for execution/invalidation unless separately validated as directional."
     },
     {
-      "order": 9,
+      "order": 10,
       "id": "DECISION_ENGINE",
       "role": "OUTPUT",
       "status": "DESIGN_TARGET",
-      "outputs": [
-        "P(up)",
-        "P(down)",
-        "P(range)",
-        "price_discovery_leader",
-        "volatility_state",
-        "event_state",
-        "preferred_intraday_path",
-        "confidence",
-        "position_size_multiplier",
-        "invalidation"
-      ],
-      "rule": "Only validated or explicitly conditional modules may influence probabilities. Rejected families cannot re-enter without a new preregistration."
+      "outputs": ["P(up)", "P(down)", "P(range)", "price_discovery_leader", "volatility_state", "event_state", "preferred_intraday_path", "confidence", "position_size_multiplier", "invalidation"],
+      "rule": "Only validated or explicitly conditional modules may influence probabilities. Rejected or data-inconclusive families cannot re-enter without a new preregistration."
     }
   ],
   "rejected_families": [
@@ -166,12 +155,13 @@
     "Intraday Path US proxy G0"
   ],
   "active_research": {
-    "only_active_formal_screen": "NEWS_STATE_LANGUAGE_SOURCE_G1_DI1",
-    "run_id": 33343945135,
-    "branch": "research/news-language-source-g1",
-    "logical_attempt": 2,
-    "data_integrity_revision": "G1_DI1",
-    "rule": "No other formal market family may start until this run resolves or hits its bounded acquisition limit."
+    "only_active_formal_screen": null,
+    "last_resolved_family": "NEWS_STATE_LANGUAGE_SOURCE_G1_DI1",
+    "last_terminal_run_id": 33348607397,
+    "last_disposition": "DATA_INCONCLUSIVE",
+    "next_feasible_review": "BOJ_MPM_EVENT_VOLATILITY",
+    "rule": "At most one formal family may be active. Literature/source feasibility review may precede preregistration and does not count as an outcome test."
   },
-  "next_gate": "Resolve G1-DI1 with data-quality gate first, then statistical gates. A data-quality failure is DATA_INCONCLUSIVE, not model FAIL."
+  "decision_engine_current_output": "NO_VALIDATED_DIRECTIONAL_EDGE",
+  "next_gate": "Complete BOJ MPM event-volatility evidence/data feasibility review and freeze a preregistration before any outcome inspection, unless true OSE minute data becomes available first for the higher-ranked frozen families."
 }
