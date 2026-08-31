@@ -1,5 +1,5 @@
 {
-  "version": "1.4",
+  "version": "1.5",
   "updated_at": "2026-08-31",
   "rule": "Permanent family-level attempt ledger. Never delete failed/inconclusive families to improve apparent research success rate.",
   "families": [
@@ -101,7 +101,32 @@
     {
       "id": "INTRADAY_PATH_US_NIKKEI_PROXY_G0",
       "status": "PROXY_SCREEN_NEGATIVE",
-      "multiplicity": "PREREGISTERED"
+      "multiplicity": "PREREGISTERED",
+      "true_jnu_terminal": {
+        "candidate_id": "INTRADAY_PATH_US_TO_JNU_TRUE_G1",
+        "status": "REJECT_TRUE_JNU_CURRENT_SPEC",
+        "run_id": 33391992462,
+        "oos_days": 736,
+        "H1": {
+          "beta": -0.05443316549822588,
+          "mse_improvement": 1.8019353475704177e-7,
+          "bootstrap_prob_positive": 0.84,
+          "status": "FAIL"
+        },
+        "H2": {
+          "beta": 0.021847699385308013,
+          "mse_improvement": -4.685865022384675e-9,
+          "bootstrap_prob_positive": 0.454,
+          "status": "FAIL"
+        },
+        "H3": {
+          "mse_improvement": -5.065272798632809e-8,
+          "bootstrap_prob_positive": 0.354,
+          "status": "FAIL"
+        },
+        "holm_pass": false,
+        "reopen_rule": "NO_RESCUE_CURRENT_FAMILY"
+      }
     },
     {
       "id": "PHASE4B_USDJPY_1D",
@@ -179,6 +204,16 @@
       },
       "holm_pass": false,
       "note": "2026 later-period Japan225/SPY proxy holdout does not confirm the literature-shaped first/last-30m path. It reinforces the earlier negative proxy G0; true-OSE family remains unresolved rather than failed."
+    },
+    {
+      "id": "INTRADAY_PATH_US_TO_JNU_TRUE_G1",
+      "status": "REJECT_TRUE_JNU_CURRENT_SPEC",
+      "multiplicity": "PREREGISTERED_3_CELL_HOLM_TRUE_JNU_FAMILY",
+      "run_id": 33391992462,
+      "preregistration": "config/jnu_intraday_path_us_to_jnu_true_g1_prereg.json",
+      "artifact_id": 9757824371,
+      "promotion_power": "NONE",
+      "reopen_rule": "Do not tune windows, change predictor class, drop H2/H3, or add indicators/regimes to rescue this family."
     }
   ],
   "conservative_rule": "Unknown legacy multiplicity is treated against promotion, not ignored."
