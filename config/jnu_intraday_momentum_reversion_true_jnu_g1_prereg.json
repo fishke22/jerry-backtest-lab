@@ -1,0 +1,118 @@
+{
+  "version": "1.0",
+  "candidate_id": "INTRADAY_MOMENTUM_REVERSION_TRUE_JNU_G1",
+  "status": "PREREGISTERED_BEFORE_TRUE_OSE_OUTCOME_INSPECTION",
+  "frozen_at": "2026-08-31",
+  "role": "DIRECTIONAL_INFORMATION_GATE",
+  "evidence": [
+    {
+      "citation": "Peng & Wang (2008), The Momentum and Mean Reversion of Nikkei Index Futures: A Markov Chain Analysis",
+      "doi": "10.1142/9789812791696_0012",
+      "direct_claim": "Significant 1-minute return momentum and significant 10-minute return mean reversion in Nikkei index futures; switching robust to intraday seasonality."
+    }
+  ],
+  "data": {
+    "stage_a": {
+      "venue": "OSE",
+      "product": "Nikkei 225 Mini Futures",
+      "raw_source": "225Labo local-only 1-minute annual workbooks",
+      "date_from": "2006-07-18",
+      "date_to": "2023-07-21",
+      "non_overlap_rationale": "End before exact JNU Micro launch."
+    },
+    "stage_b": {
+      "venue": "OSE",
+      "product": "Nikkei 225 Micro Futures (JNU)",
+      "raw_source": "225Labo local-only 1-minute annual workbooks",
+      "date_from": "2023-07-24",
+      "date_to": "latest available",
+      "exact_product": true
+    },
+    "cloud_output": "Per-day non-reconstructive sufficient statistics only; no raw minute bars or interval return series."
+  },
+  "session_rules": {
+    "calendar": "config/jnu_session_calendar_versions.json",
+    "scope": "DAY SESSION ONLY",
+    "continuity": "Each historical day_session_segment is an independent sequence. Never cross lunch break/session boundary.",
+    "bar_label_semantics": "Source minute-start grid already verified against official OSE opens/closes.",
+    "primary_return": "log close-to-close 1-minute return; first bar in each continuous session segment has no return."
+  },
+  "cells": [
+    {
+      "id": "H1_1M_MOMENTUM",
+      "horizon": "1 minute",
+      "construction": "Adjacent 1-minute close-to-close returns within each continuous OSE day-session segment.",
+      "signal": "sign(previous 1m return)",
+      "expected": "momentum",
+      "primary_daily_effect": "Mean over eligible pairs of sign(r_prev) * r_next; predecessor zero => abstain.",
+      "accuracy": "Among pairs with nonzero predecessor and nonzero target, fraction signal sign equals target sign.",
+      "expected_effect_sign": "positive",
+      "expected_accuracy_relation": "> 0.5"
+    },
+    {
+      "id": "H2_10M_REVERSION",
+      "horizon": "10 minutes",
+      "construction": "Non-overlapping 10-minute returns formed by summing ten consecutive 1-minute returns, aligned to each continuous historical OSE day-session segment; adjacent 10m blocks only.",
+      "signal": "-sign(previous 10m return)",
+      "expected": "mean reversion",
+      "primary_daily_effect": "Mean over eligible block pairs of -sign(R10_prev) * R10_next; predecessor zero => abstain.",
+      "accuracy": "Among pairs with nonzero predecessor and nonzero target, fraction reversal signal sign equals target sign.",
+      "expected_effect_sign": "positive",
+      "expected_accuracy_relation": "> 0.5"
+    }
+  ],
+  "inference": {
+    "unit": "trading day",
+    "daily_weighting": "Equal-weight days; each day contributes its daily mean signal payoff.",
+    "bootstrap": {
+      "method": "iid resample trading days with replacement",
+      "resamples": 5000,
+      "seed": 42
+    },
+    "family_correction": {
+      "method": "Holm",
+      "alpha": 0.1,
+      "cells": [
+        "H1_1M_MOMENTUM",
+        "H2_10M_REVERSION"
+      ],
+      "one_sided_p_definition": "1 - bootstrap P(mean daily signal payoff > 0)"
+    }
+  },
+  "stage_a_pass_rule": [
+    "Minimum 1000 usable Mini trading days in each cell.",
+    "Both H1 and H2 mean daily signal payoffs > 0.",
+    "Both H1 and H2 aggregate nonzero-target directional accuracies > 0.5.",
+    "Both H1 and H2 bootstrap P(mean daily signal payoff > 0) >= 0.95.",
+    "H1/H2 one-sided bootstrap p-values pass Holm alpha=0.10."
+  ],
+  "stage_b_pass_rule": [
+    "Stage A must PASS; otherwise Stage B statistical evaluation is prohibited.",
+    "Minimum 500 usable exact-JNU trading days in each cell.",
+    "Identical H1/H2 constructions, zero handling, bootstrap, and Holm correction; no retuning.",
+    "Both H1 and H2 mean daily signal payoffs > 0.",
+    "Both H1 and H2 aggregate nonzero-target directional accuracies > 0.5.",
+    "Both H1 and H2 bootstrap P(mean daily signal payoff > 0) >= 0.95.",
+    "H1/H2 one-sided bootstrap p-values pass Holm alpha=0.10."
+  ],
+  "diagnostics_non_promotional": [
+    "Zero-return share by product/year.",
+    "Day-session quartile effects.",
+    "Post-2016-07-19 J-GATE regime effect direction.",
+    "Gross payoff distribution before transaction costs."
+  ],
+  "interpretation": {
+    "pass": "If both stages pass, promote only to a directional information candidate. A concrete executable rule must still pass downstream execution/cost/overfit/forward stages.",
+    "fail": "Close current family. Do not change horizons, use overlapping 10m windows, drop the failed cell, or add filters to rescue."
+  },
+  "forbidden": [
+    "Search 2m/3m/5m/15m/20m horizons after seeing outcomes.",
+    "Keep only 1m momentum or only 10m reversal after the other cell fails.",
+    "Switch to night-session data as a rescue.",
+    "Cross lunch/session boundaries.",
+    "Treat zero returns as automatic correct predictions.",
+    "Add RSI/MACD/volume filters/regimes to rescue G1.",
+    "Claim tradable alpha before transaction-cost/microstructure validation.",
+    "Use exact-JNU Stage B to rescue failed Mini Stage A."
+  ]
+}
