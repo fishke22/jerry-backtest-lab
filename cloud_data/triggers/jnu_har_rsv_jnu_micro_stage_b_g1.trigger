@@ -1,3 +1,0 @@
-triggered_at=2026-08-31T19:58:00+08:00
-reason=execute_preregistered_exact_product_micro_stage_b
-research_spec_changed=false
