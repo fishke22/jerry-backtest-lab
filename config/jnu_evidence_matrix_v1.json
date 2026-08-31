@@ -1,5 +1,5 @@
 {
-  "version": "1.7",
+  "version": "1.8",
   "updated_at": "2026-08-31",
   "scoring": {
     "evidence_grade": {
@@ -186,6 +186,16 @@
       "status": "HISTORICAL_ONLY_LOW_CURRENT_PRIORITY",
       "admitted_role": "None",
       "reason": "BOJ discontinued new ETF/J-REIT purchases on 2024-03-19."
+    },
+    {
+      "module": "INTRADAY_MOMENTUM_REVERSION",
+      "evidence_grade": "B",
+      "data_grade": "A",
+      "external_evidence": "Peng & Wang 2008 directly reports Nikkei futures 1m momentum and 10m mean reversion.",
+      "internal_result": "True-OSE Mini Stage A fails overall on 4,170 days. H1 1m momentum is decisively opposite sign (payoff<0, accuracy 40.81%, bootstrap P=0). H2 10m reversion passes strongly, but cannot be isolated post hoc because both cells were preregistered as one family.",
+      "status": "REJECT_TRUE_OSE_CURRENT_SPEC_STAGE_B_PROHIBITED",
+      "admitted_role": "None",
+      "next_evidence_needed": "None within this family. Reopen only with substantively independent literature/evidence, not by salvaging H2 or flipping H1."
     }
   ],
   "selection_rule": "Prefer high evidence + executable data + non-duplicative role. Proxy consistency can strengthen evidence but cannot satisfy a true-target promotion gate.",
