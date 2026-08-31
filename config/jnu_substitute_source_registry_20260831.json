@@ -1,0 +1,61 @@
+{
+  "version": "1.0",
+  "verified_at": "2026-08-31",
+  "purpose": "Supplement the main JNU data-source registry with newly verified substitute sources discovered after the mobile/local-data blocker review.",
+  "sources": [
+    {
+      "id": "GETDATA_JPN225_PUBLIC_SAMPLE_1M",
+      "provider": "GetData / public GitHub repository",
+      "repository": "getdata-finance/jpn225-1m-ohlcv-index-historical-data",
+      "data_type": "Japan 225 1-minute OHLCV/tick-volume proxy",
+      "coverage": "Public sample 2026-02-01 through 2026-07-31; 177,893 rows according to upstream README",
+      "cost_class": "NO_EXTRA_COST_SAMPLE",
+      "license_or_terms_status": "Repository LICENSE is MIT. Treat the public sample as proxy market data; keep raw upstream and persist only derived research panels/results in jerry-backtest-lab.",
+      "jnu_role": "Current-regime methodology/holdout stress tests for Nikkei/JNU candidates",
+      "status": "ACTIVE_PROXY_NOT_TRUE_OSE",
+      "formal_limitation": "Cannot establish OSE contract identity, futures microstructure, exact JNU execution or true-venue price discovery."
+    },
+    {
+      "id": "DUKASCOPY_JPNIDXJPY",
+      "provider": "Dukascopy",
+      "data_type": "Japan 225 index/CFD historical bars/ticks",
+      "coverage": "Historical bar infrastructure exists; public references indicate long intraday history.",
+      "cost_class": "PUBLIC_ACCESS_BUT_AUTOMATION_RESTRICTED",
+      "license_or_terms_status": "Dukascopy Terms of Use prohibit scraper/robot/data-mining/automated acquisition of website data without prior express written consent.",
+      "jnu_role": "Potential proxy only after explicit permission/approved access route",
+      "status": "LEGAL_REVIEW_REQUIRED_NOT_AUTOMATED",
+      "formal_limitation": "Do not automate download in GitHub Actions under current terms review."
+    },
+    {
+      "id": "INVESTING_OSE_NIKKEI_MINI_DAILY",
+      "provider": "Investing.com",
+      "data_type": "OSE Nikkei 225 Mini futures daily OHLC/history display",
+      "coverage": "Daily historical table; not minute data",
+      "cost_class": "NO_EXTRA_COST_WEB_DISPLAY",
+      "license_or_terms_status": "Use for manual/public-web cross-check only unless automated access/storage terms are separately approved.",
+      "jnu_role": "Daily OSE-mini sanity/cross-source check",
+      "status": "DAILY_SANITY_ONLY_NOT_INTRADAY_VALIDATION",
+      "formal_limitation": "Cannot replace minute data for HAR-RSV true-OSE confirmation or FIRST/LAST-30m path tests."
+    },
+    {
+      "id": "FRED_SP500",
+      "provider": "FRED / S&P Dow Jones Indices",
+      "data_type": "S&P 500 daily index",
+      "cost_class": "NO_FEE_BUT_THIRD_PARTY_COPYRIGHT_RESTRICTED",
+      "license_or_terms_status": "FRED marks SP500 copyrighted/pre-approval-required. FRED terms also prohibit AI-related use and storing/caching API content in the cited current terms. Do not use it in the cloud research pipeline without separate permission.",
+      "jnu_role": "Exact literature predictor conceptually, but not adopted for automated cloud holdout under current rights policy",
+      "status": "RIGHTS_BLOCKED_FOR_CURRENT_PIPELINE"
+    },
+    {
+      "id": "YAHOO_SPY_DAILY_PROXY",
+      "provider": "Yahoo Finance public chart endpoint",
+      "data_type": "SPY daily bars used only as an S&P 500 cash-market proxy",
+      "coverage": "Recent and historical daily bars",
+      "cost_class": "NO_EXTRA_COST_PUBLIC_WEB_PROXY",
+      "license_or_terms_status": "Do not durably archive raw Yahoo response. Fetch transiently for an explicitly proxy-only research family and persist only derived predictor returns/provenance.",
+      "jnu_role": "Proxy-of-predictor for current-regime intraday-path stress test",
+      "status": "PROVISIONAL_PROXY_NOT_S_AND_P_INDEX"
+    }
+  ],
+  "substitution_rule": "A substitute may unblock methodology/current-regime stress testing, but it inherits a proxy label. It cannot satisfy a frozen true-OSE/JNU promotion gate unless the preregistration explicitly permits that source class before outcome inspection."
+}
