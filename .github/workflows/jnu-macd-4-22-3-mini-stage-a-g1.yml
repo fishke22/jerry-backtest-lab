@@ -1,0 +1,21 @@
+name: JNU Fixed MACD 4-22-3 Mini Stage A
+
+on:
+  workflow_dispatch:
+
+jobs:
+  stage-a:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python scripts/process_jnu_macd_4_22_3_mini_stage_a_g1.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: jnu-macd-4-22-3-mini-stage-a
+          path: |
+            directional_results/jnu_macd_4_22_3_true_ose_mini_stage_a_g1.json
+            directional_reports/jnu_macd_4_22_3_true_ose_mini_stage_a_g1.md
