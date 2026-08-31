@@ -1,5 +1,5 @@
 {
-  "version": "2.2",
+  "version": "2.3",
   "updated_at": "2026-08-31",
   "policy": {
     "max_active_formal_families": 1,
@@ -19,17 +19,30 @@
       "Counting correlated features as independent votes"
     ]
   },
-  "active": null,
+  "active": {
+    "candidate": "INTRADAY_PATH_US_TO_JNU_TRUE_G1",
+    "preregistration": "config/jnu_intraday_path_us_to_jnu_true_g1_prereg.json",
+    "status": "TRUE_JNU_DERIVED_PATH_BUILD_PENDING",
+    "rule": "Single active formal family. No proxy substitutions, window changes, indicator rescue, or parallel formal information families."
+  },
   "current_global_blocker": null,
   "queue": [
     {
       "rank": 1,
+      "candidate": "INTRADAY_PATH_US_TO_JNU_G1",
+      "evidence": "Direct Iwanaga 2026 evidence, but both 2011-2018 proxy G0 and 2026 Japan225/SPY proxy G2 fail OOS proxy confirmation",
+      "status": "TRUE_JNU_DATA_ACQUIRED_EXECUTION_PREREGISTERED",
+      "preregistration": "config/jnu_intraday_path_us_to_jnu_true_g1_prereg.json",
+      "next_action": "Build local exact-JNU FIRST30/MIDDLE/LAST30 derived panel, persist non-reconstructive panel + manifest, then execute the preregistered H1-H3 family using pinned Kaggle ^GSPC version 732."
+    },
+    {
+      "rank": 2,
       "candidate": "HAR_RSV_TRUE_OSE_CONFIRMATION",
       "evidence": "Direct Japanese/Nikkei futures volatility literature + 2011-2018 proxy-method PASS + 2026 public-proxy holdout consistency",
       "target_role": "Risk state / sizing / stop normalization",
-      "status": "STAGE3_TRUE_TARGET_CONFIRMATION_PASS_INFORMATION_STATE_CANDIDATE",
+      "status": "STAGE3_PASS_INFORMATION_STATE_CANDIDATE_MEASUREMENT_QA_COMPLETE",
       "data_plan": "True-OSE Mini Stage A and exact-product JNU Micro Stage B are complete and passed without retuning. Raw 225Labo remains local-only; derived panels/results are in GitHub.",
-      "next_action": "Run deferred 1m-vs-5m measurement QA. Then, only if HAR-RSV is intended to alter sizing/stops/confidence, preregister a concrete Stage-4 risk-state translation before any PnL testing.",
+      "next_action": "Downstream Stage-4 risk-state translation is deferred until a concrete position/risk-control use is proposed; do not reopen Stage-3 statistics.",
       "local_existing_evidence": {
         "mini_distinct_day_session_days": 1250,
         "micro_distinct_day_session_days": 364,
@@ -84,14 +97,6 @@
       "next_action": "Find a metadata-only TC/TC_structure example or other official historical reference that proves how legacy archive contract identifiers map to current NK/NS codes. Do not bulk-download tick archives while rights remain unresolved. Formal DPD still requires matched-expiry OSE+SGX+CME with adequate coverage.",
       "source_note": "config/jnu_source_identity_mapping_20260831.json",
       "guardrail": "Current SGX product codes do not prove historical archive codes. Strong CME alignment does not establish venue leadership or directional alpha."
-    },
-    {
-      "rank": 5,
-      "candidate": "INTRADAY_PATH_US_TO_JNU_G1",
-      "evidence": "Direct Iwanaga 2026 evidence, but both 2011-2018 proxy G0 and 2026 Japan225/SPY proxy G2 fail OOS proxy confirmation",
-      "status": "DESIGN_FROZEN_AWAITING_TRUE_JNU_INTRADAY_DATA",
-      "preregistration": "config/jnu_intraday_path_us_g1_prereg.json",
-      "next_action": "True OSE/JNU minute data only. Do not open further proxy-rescue variants or change FIRST/LAST 30m/predictor after the two negative proxy screens."
     },
     {
       "rank": 6,
