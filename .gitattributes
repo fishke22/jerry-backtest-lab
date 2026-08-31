@@ -3,3 +3,4 @@ cloud_data/derived/jnu_boj_mpm_mini_event_volatility_g1.csv -text
 cloud_data/derived/jnu_boj_mpm_micro_event_volatility_g1.csv -text
 cloud_data/derived/jnu_momrev_mini_stage_a_g1.csv -text
 cloud_data/derived/jnu_overnight_overreaction_mini_stage_a_g1.csv -text
+cloud_data/derived/jnu_prior_night_usdjpy_mini_stage_a_g1.csv -text
