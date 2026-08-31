@@ -1,0 +1,8 @@
+{
+  "request_id": "jnu_har_rsv_jpn225_public_holdout_g2",
+  "candidate_id": "HAR_RSV_JPN225_PUBLIC_HOLDOUT_G2",
+  "preregistration": "config/jnu_har_rsv_jpn225_public_holdout_g2_prereg.json",
+  "run_policy": "single frozen proxy-holdout run",
+  "true_jnu_promotion_prohibited": true,
+  "created_at": "2026-08-31"
+}
