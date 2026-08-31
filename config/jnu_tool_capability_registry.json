@@ -1,0 +1,31 @@
+{
+  "version": "1.0",
+  "updated_at": "2026-08-31",
+  "tools": [
+    {
+      "id": "ELICIT_MCP",
+      "role": "Academic literature search",
+      "cost_policy": "NO_EXTRA_COST",
+      "current_status": "BLOCKED_PLAN_REQUIRES_API_ACCESS",
+      "observed_on": "2026-08-31",
+      "rule": "Do not upgrade/pay automatically. Use free web/publisher/DOI routes instead unless user explicitly authorizes cost."
+    },
+    {
+      "id": "CONSENSUS_MCP",
+      "role": "Academic literature search",
+      "cost_policy": "FREE_QUOTA_ONLY",
+      "current_status": "MONTHLY_FREE_SEARCH_QUOTA_EXHAUSTED",
+      "observed_on": "2026-08-31",
+      "reset_note": "Tool reported quota resets on September 1.",
+      "rule": "Do not upgrade automatically; retry only after free quota reset."
+    },
+    {
+      "id": "GITHUB_ACTIONS",
+      "role": "Primary cloud execution/backtest/cache/result persistence",
+      "cost_policy": "Existing included allowance / no extra paid service requested",
+      "current_status": "ACTIVE_PRIMARY",
+      "caveat": "Actions cache is branch-scoped and is not a universal durable database.",
+      "rule": "Durable research outputs/manifests belong in repository; use cache for resumable public-data acquisition only."
+    }
+  ]
+}
