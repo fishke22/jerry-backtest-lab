@@ -1,0 +1,21 @@
+{
+  "role": "G1_FINAL_ATTEMPT_ACQUISITION_STAGE_ONLY_NO_MODEL",
+  "logical_attempt": 3,
+  "cell": "JAPAN_MACRO_JA",
+  "mode": "TimelineVol",
+  "started_at_utc": "2026-08-31T01:56:20.324461+00:00",
+  "elapsed_seconds": 152.241,
+  "stage_complete": false,
+  "research_parameter_change": false,
+  "rows": [
+    {
+      "quarter": 1,
+      "chunk": 1,
+      "start": "20230104000000",
+      "end": "20230204000000",
+      "status": "SOURCE_OR_NETWORK_FAILURE",
+      "error_type": "RuntimeError",
+      "error": "fetch failed g1_JAPAN_MACRO_JA_timelinevol_q1_20230104_20230401_D1_20230104_20230204.json: <urlopen error timed out>"
+    }
+  ]
+}
