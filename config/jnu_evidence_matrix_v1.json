@@ -1,5 +1,5 @@
 {
-  "version": "1.6",
+  "version": "1.7",
   "updated_at": "2026-08-31",
   "scoring": {
     "evidence_grade": {
@@ -143,19 +143,25 @@
     },
     {
       "module": "BOJ_MPM_EVENT_VOLATILITY",
-      "evidence_grade": "B",
-      "data_grade": "C",
+      "evidence_grade": "A",
+      "data_grade": "A",
       "literature": [
+        "Nakamura, Sudo & Sugisaki 2021 — BOJ high-frequency identification uses a 30-minute MPM announcement window (10m before through 20m after).",
         "Finta 2021 — MPM-release intraday response in Nikkei 225 VI / Nikkei 225 VI futures; DOI 10.1016/j.pacfin.2021.101562"
       ],
-      "internal_result": "Not tested; data-feasibility review only.",
-      "status": "BLOCKED_ON_ADEQUATE_FREE_INTRADAY_VOLATILITY_HISTORY",
-      "admitted_role": "None",
+      "internal_result": "Preregistered true-OSE Mini Stage A PASS on 170 events: mean log(EventRV/BaselineRV)=+0.4451, median=+0.2951, bootstrap P(mean>0)=0.981. Exact-product JNU Micro Stage B PASS on 22 events: mean=+1.6035, median=+1.7269, bootstrap P=1.000.",
+      "status": "TRUE_JNU_STAGE3_PASS_EVENT_RISK_INFORMATION_STATE_CANDIDATE",
+      "admitted_role": "Event/risk information state only; not directional alpha. May inform a separately validated entry-blackout/size/stop/confidence rule.",
       "proposed_role": "Event-volatility/risk state, not direction",
       "event_source": "Official BOJ MPM archive provides exact release dates/times.",
-      "data_blocker": "Public Nikkei Indexes history is daily/monthly, not the minute-scale Nikkei 225 VI/VI-futures series required for faithful confirmation.",
+      "data_blocker": null,
       "guardrail": "Do not substitute daily VI, VIX/SKEW, or market-response-inferred timestamps.",
-      "feasibility_note": "research_notes/jnu_boj_mpm_event_volatility_feasibility_20260831.md"
+      "feasibility_note": "research_notes/jnu_boj_mpm_event_volatility_feasibility_20260831.md",
+      "next_evidence_needed": "If operational use is desired, preregister a concrete downstream risk-rule translation. Do not reopen the Stage-3 event-window statistics.",
+      "true_target_results": {
+        "mini_stage_a": "event_volatility_results/jnu_boj_mpm_true_ose_mini_stage_a_g1.json",
+        "micro_stage_b": "event_volatility_results/jnu_boj_mpm_exact_jnu_micro_stage_b_g1.json"
+      }
     },
     {
       "module": "SPOT_FUTURES_BASIS",
