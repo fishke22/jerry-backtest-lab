@@ -1,6 +1,6 @@
 {
-  "version": "1.8",
-  "updated_at": "2026-08-31",
+  "version": "1.9",
+  "updated_at": "2026-09-01",
   "rule": "Permanent family-level attempt ledger. Never delete failed/inconclusive families to improve apparent research success rate.",
   "families": [
     {
@@ -89,8 +89,8 @@
         "status": "TRUE_JNU_MICRO_STAGE_B_PASS",
         "run_id": 33389857914,
         "oos_days": 270,
-        "qlike_improvement": 0.00007292861808050662,
-        "mse_improvement": 1.1450264024518442e-9,
+        "qlike_improvement": 7.292861808050662e-05,
+        "mse_improvement": 1.1450264024518442e-09,
         "qlike_bootstrap_prob_positive": 0.522,
         "mse_bootstrap_prob_positive": 0.9685
       },
@@ -109,18 +109,18 @@
         "oos_days": 736,
         "H1": {
           "beta": -0.05443316549822588,
-          "mse_improvement": 1.8019353475704177e-7,
+          "mse_improvement": 1.8019353475704177e-07,
           "bootstrap_prob_positive": 0.84,
           "status": "FAIL"
         },
         "H2": {
           "beta": 0.021847699385308013,
-          "mse_improvement": -4.685865022384675e-9,
+          "mse_improvement": -4.685865022384675e-09,
           "bootstrap_prob_positive": 0.454,
           "status": "FAIL"
         },
         "H3": {
-          "mse_improvement": -5.065272798632809e-8,
+          "mse_improvement": -5.065272798632809e-08,
           "bootstrap_prob_positive": 0.354,
           "status": "FAIL"
         },
@@ -189,7 +189,7 @@
       "H1_FIRST30": {
         "expected_sign": "negative",
         "final_beta": -0.10815336033029892,
-        "mse_improvement": -5.441342566780908e-7,
+        "mse_improvement": -5.441342566780908e-07,
         "bootstrap_prob_positive": 0.297,
         "sign_accuracy_not_worse": false,
         "status": "CELL_FAIL_CURRENT_PROXY_SPEC"
@@ -197,7 +197,7 @@
       "H2_LAST30": {
         "expected_sign": "positive",
         "final_beta": -0.03765976120071457,
-        "mse_improvement": 1.5337990641998256e-7,
+        "mse_improvement": 1.5337990641998256e-07,
         "bootstrap_prob_positive": 0.788,
         "sign_accuracy_not_worse": false,
         "status": "CELL_FAIL_CURRENT_PROXY_SPEC"
@@ -266,13 +266,13 @@
       "panel_days": 4170,
       "H1_1M_MOMENTUM": {
         "status": "FAIL",
-        "mean_daily_signal_payoff": -0.00005914279386709916,
+        "mean_daily_signal_payoff": -5.914279386709916e-05,
         "directional_accuracy": 0.4081390742120026,
         "bootstrap_prob_mean_positive": 0
       },
       "H2_10M_REVERSION": {
         "status": "PASS_WITHIN_FAILED_FAMILY_ONLY",
-        "mean_daily_signal_payoff": 0.00003836712557711084,
+        "mean_daily_signal_payoff": 3.836712557711084e-05,
         "directional_accuracy": 0.522454101654589,
         "bootstrap_prob_mean_positive": 1
       },
@@ -293,6 +293,20 @@
       "diagnostic_slope_morning_on_overnight": -0.020528843554912524,
       "stage_b_status": "PROHIBITED_BY_PREREG_STAGE_A_FAIL",
       "reopen_rule": "No morning-horizon, night-session-only, filter, threshold, sign, or Micro rescue."
+    },
+    {
+      "id": "PRIOR_NIGHT_USDJPY_TO_JNU_DAY_G1",
+      "status": "TRUE_OSE_MINI_STAGE_A_FAIL_TERMINAL",
+      "preregistration": "config/jnu_prior_night_usdjpy_to_jnu_day_g1_prereg.json",
+      "run_id": 33447920715,
+      "artifact_id": 9778689265,
+      "usable_days": 1223,
+      "mean_daily_signal_payoff": -0.0004335029718195796,
+      "directional_accuracy": 0.4739057239057239,
+      "bootstrap_prob_mean_positive": 0.0304,
+      "diagnostic_slope_day_on_fx": 0.03685914294781518,
+      "stage_b_status": "PROHIBITED_BY_PREREG_STAGE_A_FAIL",
+      "reopen_rule": "No FX-time/filter/sign/threshold/night-target or Micro rescue."
     }
   ],
   "conservative_rule": "Unknown legacy multiplicity is treated against promotion, not ignored."

@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "as_of": "2026-08-31",
+  "as_of": "2026-09-01",
   "purpose": "Durable cross-session memory snapshot for JNU analysis and research. Future JNU sessions should read this before proposing/retesting modules.",
   "framework_state": {
     "validated_jnu_stage9_modules": 0,
@@ -73,6 +73,13 @@
       "key_result": "Directionally consistent near-pass but bootstrap P=0.9208 < preregistered 0.95.",
       "stage_b": "PROHIBITED",
       "reopen_rule": "No threshold weakening, morning-horizon change, night-session-only, filter, sign, or Micro rescue."
+    },
+    {
+      "id": "PRIOR_NIGHT_USDJPY_TO_JNU_DAY_G1",
+      "status": "TRUE_OSE_MINI_STAGE_A_FAIL_TERMINAL",
+      "key_result": "Post-paper 2018-2023 Mini holdout reverses published FX relation: payoff negative, accuracy 47.39%, bootstrap P=0.0304, slope positive.",
+      "stage_b": "PROHIBITED",
+      "reopen_rule": "No FX-time/filter/sign/threshold/night-target or Micro rescue."
     }
   ],
   "blocked_or_deferred": [

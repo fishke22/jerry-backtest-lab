@@ -1,6 +1,6 @@
 {
-  "version": "1.9",
-  "as_of": "2026-08-31",
+  "version": "2.0",
+  "as_of": "2026-09-01",
   "framework": "JNU_FINAL_FRAMEWORK_V3",
   "architecture_status": "FROZEN",
   "research_completion_state": "FRAMEWORK_RESEARCH_TWO_STAGE3_RISK_INFORMATION_CANDIDATES_DIRECTIONAL_EDGE_NONE",
@@ -226,5 +226,10 @@
     "run_id": 33400904120,
     "stage_b_prohibited": true,
     "note": "Near-pass direction/accuracy but bootstrap confidence below preregistered threshold."
+  },
+  "prior_night_usdjpy_true_ose": {
+    "status": "STAGE_A_FAIL",
+    "run_id": 33447920715,
+    "stage_b_prohibited": true
   }
 }

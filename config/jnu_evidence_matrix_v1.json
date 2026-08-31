@@ -1,6 +1,6 @@
 {
-  "version": "1.9",
-  "updated_at": "2026-08-31",
+  "version": "2.0",
+  "updated_at": "2026-09-01",
   "scoring": {
     "evidence_grade": {
       "A": "Direct Nikkei/Nikkei-futures evidence with methods closely matching the proposed module.",
@@ -206,6 +206,16 @@
       "status": "REJECT_TRUE_OSE_CURRENT_SPEC_STAGE_B_PROHIBITED",
       "admitted_role": "None",
       "next_evidence_needed": "None within current family. Reopen only with substantively new independent evidence."
+    },
+    {
+      "module": "PRIOR_NIGHT_USDJPY_DIRECTION",
+      "evidence_grade": "B",
+      "data_grade": "A",
+      "external_evidence": "Satoyoshi 2018 OSE report: prior-night USD/JPY change significantly negatively related to following Nikkei 225 futures day return.",
+      "internal_result": "Strict post-paper true-OSE Mini holdout fails on 1,223 days: payoff negative, accuracy 47.39%, bootstrap P=0.0304, diagnostic slope flips positive.",
+      "status": "REJECT_TRUE_OSE_CURRENT_SPEC_STAGE_B_PROHIBITED",
+      "admitted_role": "None",
+      "next_evidence_needed": "None within current family; no sign/time/filter/threshold rescue."
     }
   ],
   "selection_rule": "Prefer high evidence + executable data + non-duplicative role. Proxy consistency can strengthen evidence but cannot satisfy a true-target promotion gate.",

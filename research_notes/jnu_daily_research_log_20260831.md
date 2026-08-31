@@ -413,3 +413,17 @@ Three recent literature-grounded directional families have now failed their prer
 3. overnight-overreaction — Mini Stage A near-pass but confidence below threshold.
 
 To control family selection bias, do not immediately open closely related directional variants. New directional work requires substantively independent direct Nikkei/OSE evidence. Until then, the two strongest verified components remain HAR-RSV volatility state and BOJ MPM event-volatility state, both Stage-3 risk/information candidates only.
+
+
+## 33. Prior-night USDJPY directional Stage A terminal result
+The independent post-paper true-OSE Mini test of `PRIOR_NIGHT_USDJPY_TO_JNU_DAY_G1` completed on 1,223 usable days (2018-08-01 through 2023-07-21).
+
+- Valid run: 33447920715; artifact 9778689265.
+- Status: `TRUE_OSE_MINI_PRIOR_NIGHT_USDJPY_STAGE_A_FAIL`.
+- Mean signal payoff: -0.0004335029718195796.
+- Directional accuracy: 47.3906%.
+- Bootstrap P(mean payoff > 0): 0.0304.
+- Diagnostic slope day return on prior-night FX change: +0.03685914294781518, opposite the published negative relationship.
+- Exact-JNU Micro Stage B is prohibited.
+
+The family is closed. Do not change FX measurement times, flip the sign, alter the target session, weaken the threshold, or add filters to rescue it.

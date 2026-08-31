@@ -1,5 +1,5 @@
 {
-  "version": "3.1",
+  "version": "3.2",
   "updated_at": "2026-09-01",
   "policy": {
     "max_active_formal_families": 1,
@@ -19,21 +19,16 @@
       "Counting correlated features as independent votes"
     ]
   },
-  "active": {
-    "candidate": "PRIOR_NIGHT_USDJPY_TO_JNU_DAY_G1",
-    "preregistration": "config/jnu_prior_night_usdjpy_to_jnu_day_g1_prereg.json",
-    "status": "STAGE_A_POST_PAPER_TRUE_OSE_MINI_DATA_BUILD_PENDING",
-    "rule": "Single active formal family. Keep BOJ-17JST/Fed-noon FX definition, negative signal sign, OSE day target and thresholds frozen. No FX-time/filter/threshold/sign rescue."
-  },
+  "active": null,
   "current_global_blocker": null,
   "queue": [
     {
-      "rank": 1,
+      "rank": 99,
       "candidate": "PRIOR_NIGHT_USDJPY_TO_JNU_DAY_G1",
-      "status": "PREREGISTERED_STAGE_A_PENDING",
+      "status": "TRUE_OSE_MINI_STAGE_A_FAIL_TERMINAL",
       "evidence": "Satoyoshi 2018 direct OSE Nikkei 225 futures evidence: lagged prior-night USD/JPY change has significant negative coefficient for following day-session futures return.",
       "target_role": "Directional information gate",
-      "next_action": "Build 2018-08-01 to 2023-07-21 post-paper OSE Mini sufficient statistics using official BOJ/Fed FX inputs; Gate 0; execute Stage A."
+      "next_action": "None. Exact-JNU Stage B prohibited; no FX-time/filter/sign/threshold/night-target rescue."
     },
     {
       "rank": 3,
@@ -94,23 +89,93 @@
     }
   ],
   "resolved": [
-    {"candidate":"PHASE4B_GDELT_NEWS_STATE","status":"DATA_INCONCLUSIVE","final_run_id":33331409697},
-    {"candidate":"NEWS_STATE_LANGUAGE_SOURCE_G1_DI1","status":"DATA_INCONCLUSIVE","final_run_id":33348607397,"logical_attempts_used":3,"reopen_rule":"No fourth acquisition attempt."},
-    {"candidate":"HAR_RSV_JPN225_PUBLIC_HOLDOUT_G2","status":"CURRENT_SAMPLE_PROXY_CONSISTENT","final_run_id":33357752091,"promotion_power":"NONE_TO_TRUE_JNU"},
-    {"candidate":"INTRADAY_PATH_JPN225_SPY_PUBLIC_HOLDOUT_G2","status":"PROXY_PATH_CURRENT_SAMPLE_NOT_CONFIRMED","final_run_id":33358017603,"holm_pass":false,"promotion_power":"NONE_TO_TRUE_JNU"},
-    {"candidate":"CME_NKD_JPN225_ALIGNMENT_G0","status":"SOURCE_FEASIBILITY_COMPLETE","final_run_id":33359934341,"promotion_power":"NONE"},
-    {"candidate":"INTRADAY_PATH_US_TO_JNU_TRUE_G1","status":"REJECT_TRUE_JNU_CURRENT_SPEC","final_run_id":33391992462,"holm_pass":false,"reopen_rule":"No window/predictor/cell/indicator rescue."},
-    {"candidate":"BOJ_MPM_TRUE_OSE_EVENT_VOLATILITY_G1","status":"TRUE_JNU_STAGE3_PASS_EVENT_RISK_INFORMATION_STATE_CANDIDATE","stage_a_run_id":33396821958,"stage_b_run_id":33397255940,"role":"EVENT_RISK_STATE_ONLY_NOT_DIRECTIONAL_ALPHA"},
-    {"candidate":"INTRADAY_MOMENTUM_REVERSION_TRUE_JNU_G1","status":"TRUE_OSE_MINI_STAGE_A_FAIL_TERMINAL","run_id":33399653907,"H1_bootstrap_prob_positive":0,"H2_bootstrap_prob_positive":1,"holm_pass":false,"stage_b":"PROHIBITED"},
-    {"candidate":"OVERNIGHT_OVERREACTION_TRUE_JNU_G1","status":"TRUE_OSE_MINI_STAGE_A_FAIL_TERMINAL","run_id":33400904120,"accuracy":0.5451002227171492,"bootstrap_prob_mean_positive":0.9208,"stage_b":"PROHIBITED"}
+    {
+      "candidate": "PHASE4B_GDELT_NEWS_STATE",
+      "status": "DATA_INCONCLUSIVE",
+      "final_run_id": 33331409697
+    },
+    {
+      "candidate": "NEWS_STATE_LANGUAGE_SOURCE_G1_DI1",
+      "status": "DATA_INCONCLUSIVE",
+      "final_run_id": 33348607397,
+      "logical_attempts_used": 3,
+      "reopen_rule": "No fourth acquisition attempt."
+    },
+    {
+      "candidate": "HAR_RSV_JPN225_PUBLIC_HOLDOUT_G2",
+      "status": "CURRENT_SAMPLE_PROXY_CONSISTENT",
+      "final_run_id": 33357752091,
+      "promotion_power": "NONE_TO_TRUE_JNU"
+    },
+    {
+      "candidate": "INTRADAY_PATH_JPN225_SPY_PUBLIC_HOLDOUT_G2",
+      "status": "PROXY_PATH_CURRENT_SAMPLE_NOT_CONFIRMED",
+      "final_run_id": 33358017603,
+      "holm_pass": false,
+      "promotion_power": "NONE_TO_TRUE_JNU"
+    },
+    {
+      "candidate": "CME_NKD_JPN225_ALIGNMENT_G0",
+      "status": "SOURCE_FEASIBILITY_COMPLETE",
+      "final_run_id": 33359934341,
+      "promotion_power": "NONE"
+    },
+    {
+      "candidate": "INTRADAY_PATH_US_TO_JNU_TRUE_G1",
+      "status": "REJECT_TRUE_JNU_CURRENT_SPEC",
+      "final_run_id": 33391992462,
+      "holm_pass": false,
+      "reopen_rule": "No window/predictor/cell/indicator rescue."
+    },
+    {
+      "candidate": "BOJ_MPM_TRUE_OSE_EVENT_VOLATILITY_G1",
+      "status": "TRUE_JNU_STAGE3_PASS_EVENT_RISK_INFORMATION_STATE_CANDIDATE",
+      "stage_a_run_id": 33396821958,
+      "stage_b_run_id": 33397255940,
+      "role": "EVENT_RISK_STATE_ONLY_NOT_DIRECTIONAL_ALPHA"
+    },
+    {
+      "candidate": "INTRADAY_MOMENTUM_REVERSION_TRUE_JNU_G1",
+      "status": "TRUE_OSE_MINI_STAGE_A_FAIL_TERMINAL",
+      "run_id": 33399653907,
+      "H1_bootstrap_prob_positive": 0,
+      "H2_bootstrap_prob_positive": 1,
+      "holm_pass": false,
+      "stage_b": "PROHIBITED"
+    },
+    {
+      "candidate": "OVERNIGHT_OVERREACTION_TRUE_JNU_G1",
+      "status": "TRUE_OSE_MINI_STAGE_A_FAIL_TERMINAL",
+      "run_id": 33400904120,
+      "accuracy": 0.5451002227171492,
+      "bootstrap_prob_mean_positive": 0.9208,
+      "stage_b": "PROHIBITED"
+    },
+    {
+      "candidate": "PRIOR_NIGHT_USDJPY_TO_JNU_DAY_G1",
+      "status": "TRUE_OSE_MINI_STAGE_A_FAIL_TERMINAL",
+      "run_id": 33447920715,
+      "accuracy": 0.4739057239057239,
+      "bootstrap_prob_mean_positive": 0.0304,
+      "stage_b": "PROHIBITED"
+    }
   ],
   "screened_not_separate_families": [
-    {"candidate":"FUTURES_CASH_BASIS_ALPHA","disposition":"DO_NOT_OPEN_SEPARATE_FAMILY","allowed_use":"DPD/fair-value sanity check, roll diagnostics and execution context only."}
+    {
+      "candidate": "FUTURES_CASH_BASIS_ALPHA",
+      "disposition": "DO_NOT_OPEN_SEPARATE_FAMILY",
+      "allowed_use": "DPD/fair-value sanity check, roll diagnostics and execution context only."
+    }
   ],
   "directional_research_checkpoint": {
-    "status": "INDEPENDENT_EVIDENCE_FOUND_ACTIVE_FAMILY_OPENED",
-    "prior_reason": "Three recent literature-grounded directional families failed true-target gates, so related variants remain prohibited.",
-    "new_independent_family": "PRIOR_NIGHT_USDJPY_TO_JNU_DAY_G1",
-    "why_independent": "External FX predictor and strict post-paper holdout; not a futures-own overnight, prior-SPX, or intraday momentum/reversion variant."
+    "status": "PAUSE_NEW_DIRECTIONAL_FAMILY_UNTIL_NEW_INDEPENDENT_EVIDENCE",
+    "reason": "Four recent independent/literature-grounded directional families failed strict true-target gates. Do not open close variants or weaken gates.",
+    "recent_terminal_families": [
+      "INTRADAY_PATH_US_TO_JNU_TRUE_G1",
+      "INTRADAY_MOMENTUM_REVERSION_TRUE_JNU_G1",
+      "OVERNIGHT_OVERREACTION_TRUE_JNU_G1",
+      "PRIOR_NIGHT_USDJPY_TO_JNU_DAY_G1"
+    ],
+    "allowed_next": "Only substantively independent direct Nikkei/OSE evidence with pre-outcome specification, or downstream validation of passed risk-information modules."
   }
 }
