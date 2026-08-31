@@ -1,0 +1,46 @@
+{
+  "candidate_id": "BOJ_MPM_TRUE_OSE_EVENT_VOLATILITY_G1",
+  "stage": "A_TRUE_OSE_MINI",
+  "status": "TRUE_OSE_MINI_BOJ_EVENT_VOL_STAGE_A_PASS",
+  "stage_a_pass": true,
+  "role": "EVENT_RISK_STATE_ONLY_NOT_DIRECTIONAL_ALPHA",
+  "usable_events": 170,
+  "minimum_usable_events": 100,
+  "mean_log_event_to_baseline_rv_ratio": 0.4450516453986761,
+  "median_log_event_to_baseline_rv_ratio": 0.2951189323620672,
+  "bootstrap": {
+    "samples": 5000,
+    "seed": 42,
+    "prob_mean_positive": 0.981,
+    "ci95": [
+      0.029547011546631502,
+      0.7571929210770287
+    ]
+  },
+  "derived_panel_sha256": "ea59fbcd3ae99afe2e26adc913047415b43859f69af7d9db482cd080287ea03b",
+  "manifest_sha256": "a91d0fd034e6ff56581de283329d3cb0c9f78f59b0499b6eae7822290b6e84b8",
+  "next_rule": "Proceed to exact JNU Micro Stage B with identical transform/gate and no retuning.",
+  "workflow_evidence": {
+    "run_id": 33396821958,
+    "head_sha": "f125d36a078ab509c9ab1af327fb3e640a7547df",
+    "artifact_id": 9759636087,
+    "conclusion": "success"
+  },
+  "data_integrity_revisions": [
+    {
+      "revision": "DI1",
+      "commit": "7c968b8deae5c452225f71f8392c0809c64a2b48",
+      "reason": "Legacy XLS annual 1-minute history is split across multiple 1min-prefixed sheets. Parser now concatenates all shards and deduplicates by minute.",
+      "research_spec_changed": false,
+      "statistical_outcome_inspected_before_fix": false
+    },
+    {
+      "revision": "DI2",
+      "commit": "909391dee8cf4e6fd3cd09046bdf11453049af7f",
+      "reason": "Manifest-only schema completion for generic fail-closed validator.",
+      "research_spec_changed": false,
+      "statistical_outcome_inspected_before_fix": false
+    }
+  ],
+  "generated_at_utc": "2026-08-31T13:24:48.360732+00:00"
+}
