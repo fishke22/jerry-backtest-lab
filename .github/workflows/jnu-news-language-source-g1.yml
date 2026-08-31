@@ -2,8 +2,9 @@ name: JNU News Language Source G1
 
 on:
   pull_request:
+    types: [opened, reopened, synchronize]
     paths:
-      - "news_language_g1_requests/*.json"
+      - "news_language_g1_requests/jnu_news_language_source_g1_v1.json"
   workflow_dispatch:
 
 concurrency:
@@ -14,9 +15,23 @@ permissions:
   contents: write
 
 jobs:
-  validate:
+  acquire_attempt3:
+    if: ${{ github.event_name == 'workflow_dispatch' || github.event.pull_request.head.ref == 'research/news-language-source-g1' }}
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 43
+    strategy:
+      max-parallel: 1
+      fail-fast: false
+      matrix:
+        stage:
+          - { cell: JAPAN_MACRO_JA, mode: TimelineTone }
+          - { cell: JAPAN_MACRO_JA, mode: TimelineVol }
+          - { cell: JAPAN_MACRO_EN, mode: TimelineTone }
+          - { cell: JAPAN_MACRO_EN, mode: TimelineVol }
+          - { cell: JAPAN_EQUITY_JA, mode: TimelineTone }
+          - { cell: JAPAN_EQUITY_JA, mode: TimelineVol }
+          - { cell: JAPAN_EQUITY_EN, mode: TimelineTone }
+          - { cell: JAPAN_EQUITY_EN, mode: TimelineVol }
     steps:
       - uses: actions/checkout@v4
         with:
@@ -29,45 +44,69 @@ jobs:
         uses: actions/cache/restore@v4
         with:
           path: .cache/market-data
-          key: g1-news-${{ runner.os }}-${{ github.run_id }}
+          key: g1-news-${{ runner.os }}-${{ github.run_id }}-${{ strategy.job-index }}
           restore-keys: |
+            g1-news-${{ runner.os }}-${{ github.run_id }}-
             g1-news-${{ runner.os }}-
             phase4b-gdelt-${{ runner.os }}-
       - name: Install dependencies
         run: pip install -r requirements.txt
       - name: Run JNU data-integrity selftest
         run: python scripts/selftest_jnu_data_integrity.py
-      - name: Run preregistered News Language/Source G1
-        id: g1run
-        shell: bash
-        run: |
-          mkdir -p workflow_diagnostics
-          set +e
-          log="workflow_diagnostics/jnu_news_language_source_g1_${{ github.run_id }}.log"
-          diag="workflow_diagnostics/jnu_news_language_source_g1_${{ github.run_id }}.json"
-          logical_attempt=$(python - <<'PY'
-          import json
-          from pathlib import Path
-          p=Path('news_language_g1_requests/jnu_news_language_source_g1_v1.json')
-          print(json.loads(p.read_text())['execution'].get('logical_attempt', 2))
-          PY
-          )
-          if [ "$logical_attempt" -ge 3 ]; then
-            python scripts/process_jnu_news_language_source_g1_final.py 2>&1 | tee "$log"
-          else
-            python scripts/process_jnu_news_language_source_g1.py 2>&1 | tee "$log"
-          fi
-          code=${PIPESTATUS[0]}
-          echo "exit_code=$code" >> "$GITHUB_OUTPUT"
-          printf '{"workflow":"jnu-news-language-source-g1","exit_code":%s,"run_id":"%s","sha":"%s","logical_attempt":%s}\n' "$code" "${{ github.run_id }}" "${{ github.sha }}" "$logical_attempt" > "$diag"
-          exit 0
+      - name: Acquire one frozen G1 cell/mode stage
+        env:
+          G1_CELL: ${{ matrix.stage.cell }}
+          G1_MODE: ${{ matrix.stage.mode }}
+          G1_STAGE_BUDGET_SECONDS: "2400"
+          G1_STAGE_RESERVE_SECONDS: "150"
+        run: python scripts/acquire_jnu_news_language_source_g1_stage.py
       - name: Save cumulative G1 news cache
         if: always()
         uses: actions/cache/save@v4
         with:
           path: .cache/market-data
-          key: g1-news-${{ runner.os }}-${{ github.run_id }}
-      - name: Commit G1 results and diagnostics
+          key: g1-news-${{ runner.os }}-${{ github.run_id }}-${{ strategy.job-index }}
+      - name: Commit acquisition diagnostic
+        if: always()
+        shell: bash
+        run: |
+          git add workflow_diagnostics
+          if git diff --cached --quiet; then exit 0; fi
+          git config user.name "jerry-backtest-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git commit -m "data: checkpoint G1 attempt3 ${{ matrix.stage.cell }} ${{ matrix.stage.mode }}"
+          branch="${{ github.head_ref || github.ref_name }}"
+          git pull --rebase origin "$branch"
+          git push origin "HEAD:$branch"
+
+  finalize_attempt3:
+    needs: acquire_attempt3
+    if: always()
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref || github.ref_name }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+      - name: Restore final cumulative G1 cache
+        uses: actions/cache/restore@v4
+        with:
+          path: .cache/market-data
+          key: g1-news-final-${{ runner.os }}-${{ github.run_id }}
+          restore-keys: |
+            g1-news-${{ runner.os }}-${{ github.run_id }}-
+            g1-news-${{ runner.os }}-
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Run JNU data-integrity selftest
+        run: python scripts/selftest_jnu_data_integrity.py
+      - name: Offline completeness gate and frozen evaluation
+        run: python scripts/finalize_jnu_news_language_source_g1_attempt3.py
+      - name: Commit terminal result and diagnostics
         shell: bash
         run: |
           git add workflow_diagnostics
@@ -78,11 +117,7 @@ jobs:
           if git diff --cached --quiet; then exit 0; fi
           git config user.name "jerry-backtest-bot"
           git config user.email "actions@users.noreply.github.com"
-          git commit -m "research: publish JNU news language-source G1"
+          git commit -m "research: publish terminal G1-DI1 attempt3 result"
           branch="${{ github.head_ref || github.ref_name }}"
           git pull --rebase origin "$branch"
           git push origin "HEAD:$branch"
-      - name: Fail workflow if processor failed
-        if: steps.g1run.outputs.exit_code != '0'
-        shell: bash
-        run: exit 1
