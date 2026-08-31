@@ -1,5 +1,5 @@
 {
-  "version": "2.6",
+  "version": "2.7",
   "updated_at": "2026-08-31",
   "policy": {
     "max_active_formal_families": 1,
@@ -19,11 +19,24 @@
       "Counting correlated features as independent votes"
     ]
   },
-  "active": null,
+  "active": {
+    "candidate": "INTRADAY_MOMENTUM_REVERSION_TRUE_JNU_G1",
+    "preregistration": "config/jnu_intraday_momentum_reversion_true_jnu_g1_prereg.json",
+    "status": "STAGE_A_TRUE_OSE_MINI_DERIVED_BUILD_PENDING",
+    "rule": "Single active formal family. Horizons fixed at 1m momentum and non-overlapping 10m reversion. No horizon/filter/session rescue."
+  },
   "current_global_blocker": null,
   "queue": [
     {
       "rank": 1,
+      "candidate": "INTRADAY_MOMENTUM_REVERSION_TRUE_JNU_G1",
+      "status": "PREREGISTERED_STAGE_A_PENDING",
+      "evidence": "Peng & Wang 2008 direct Nikkei-futures evidence: 1m momentum, 10m mean reversion, robust to intraday seasonality.",
+      "target_role": "Directional information gate",
+      "next_action": "Build local-only pre-Micro OSE Mini daily sufficient statistics for H1/H2; validate manifest; execute preregistered Stage A."
+    },
+    {
+      "rank": 2,
       "candidate": "HAR_RSV_TRUE_OSE_CONFIRMATION",
       "evidence": "Direct Japanese/Nikkei futures volatility literature + 2011-2018 proxy-method PASS + 2026 public-proxy holdout consistency",
       "target_role": "Risk state / sizing / stop normalization",
@@ -44,13 +57,13 @@
       }
     },
     {
-      "rank": 2,
+      "rank": 3,
       "candidate": "BOJ_MPM_EVENT_VOLATILITY",
       "status": "STAGE3_PASS_EVENT_RISK_INFORMATION_STATE_CANDIDATE",
       "next_action": "Stage-3 research closed. Only open a Stage-4+ downstream risk-rule translation if the framework will actually change entry/size/stop/confidence around BOJ MPM events."
     },
     {
-      "rank": 3,
+      "rank": 4,
       "candidate": "TRUE_VENUE_DPD_OSE_SGX_CME",
       "status": "DATA_RIGHTS_BLOCKED_SGX_INTRADAY",
       "new_source": "axb0306/cme-futures-ohlc public NKD tick/1m/5m sample, visible coverage 2026-03-08 to 2026-04-15, TopstepX/ProjectX-derived",
@@ -76,19 +89,19 @@
       "guardrail": "OSE and CME sides are available, but no rights-clean SGX matched-expiry intraday source is currently verified. Downloader code or public endpoints do not establish data-use rights."
     },
     {
-      "rank": 3,
+      "rank": 4,
       "candidate": "CBOE_LTV_LEFT_TAIL_RISK",
       "status": "BLOCKED_NO_VERIFIED_FREE_OFFICIAL_HISTORY",
       "next_action": "Do not substitute VIX/SKEW."
     },
     {
-      "rank": 6,
+      "rank": 7,
       "candidate": "OSE_ORDER_IMBALANCE",
       "status": "BLOCKED_NO_FREE_DIRECTIONAL_ORDER_FLOW_DATA",
       "next_action": "Do not infer from OHLC/volume."
     },
     {
-      "rank": 90,
+      "rank": 91,
       "candidate": "JPX_OSE_HISTORICAL_FREE_ACCESS_RESOLUTION",
       "target_role": "Data acquisition gate, not an alpha family",
       "status": "ALTERNATE_SOURCE_ONLY_NOT_CURRENT_BLOCKER",
