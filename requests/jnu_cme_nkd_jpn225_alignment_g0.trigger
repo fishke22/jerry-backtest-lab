@@ -1,2 +1,3 @@
-triggered_at=2026-08-31T13:08:00+08:00
+triggered_at=2026-08-31T13:18:00+08:00
 candidate=CME_NKD_JPN225_ALIGNMENT_G0
+implementation_revision=DI1_POSITIONAL_VALUE_ALIGNMENT_FIX_ONLY
