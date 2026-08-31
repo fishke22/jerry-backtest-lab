@@ -1,0 +1,65 @@
+{
+  "version": "1.0",
+  "candidate_id": "INTRADAY_PATH_JPN225_SPY_PUBLIC_HOLDOUT_G2",
+  "status": "PREREGISTERED_PROXY_HOLDOUT",
+  "objective": "Test whether the direct Nikkei-futures first/last-30-minute path pattern remains visible in a later 2026 Japan 225 public proxy sample when SPY is used as an explicit proxy for the prior completed S&P 500 cash-market return.",
+  "direct_evidence": "Iwanaga (2026), How the prior day's S&P 500 returns influence the intraday returns of Nikkei 225 futures, DOI 10.1016/j.finr.2026.100108",
+  "relationship_to_prior_families": {
+    "true_family": "INTRADAY_PATH_US_TO_JNU_G1 remains frozen and requires true OSE/JNU minute data plus the exact preregistered predictor class.",
+    "prior_proxy": "INTRADAY_PATH_US_NIKKEI_PROXY_G0 was negative on 2011-2018 proxy data.",
+    "g2_rule": "This 2026 later-period holdout is a distinct proxy stress family; it cannot erase or rescue G0 and has no true-JNU promotion power."
+  },
+  "data": {
+    "target": {
+      "source": "getdata-finance/jpn225-1m-ohlcv-index-historical-data/JPN225_1m.csv",
+      "instrument": "Japan 225 index/CFD-style proxy, not OSE futures",
+      "period": "2026-02-01 through 2026-07-31",
+      "raw_persistence": "UPSTREAM_ONLY"
+    },
+    "predictor": {
+      "source": "Yahoo Finance public chart endpoint",
+      "instrument": "SPY ETF daily close-to-close return",
+      "role": "Explicit proxy for prior completed S&P 500 cash-market return",
+      "raw_persistence": "NONE; persist derived return/provenance only",
+      "not_equivalent_to": "S&P 500 index"
+    }
+  },
+  "targets": {
+    "FIRST_30M": "Japan-proxy return from first available minute at/after 09:00 JST to 09:30 JST boundary, without tuning",
+    "LAST_30M": "Japan-proxy return from 14:30 JST boundary to final available minute before 15:00 JST, without tuning"
+  },
+  "causal_predictor": "Most recent completed SPY U.S. trading-day close-to-close return strictly before the Japanese target session opens.",
+  "hypotheses": [
+    {"id":"H1_FIRST30","expected_beta_sign":"negative","target":"FIRST_30M"},
+    {"id":"H2_LAST30","expected_beta_sign":"positive","target":"LAST_30M"}
+  ],
+  "oos": {
+    "model": "Expanding OLS: target ~ intercept + prior_SPY_return",
+    "baseline": "Expanding intercept-only mean forecast",
+    "minimum_training_days": 60,
+    "refit": "daily",
+    "primary_loss": "MSE",
+    "secondary": "sign accuracy",
+    "block_bootstrap": {"block_days":5,"samples":2000,"seed":42},
+    "family_correction": {"method":"Holm","alpha":0.10,"family":["H1_FIRST30","H2_LAST30"]}
+  },
+  "cell_pass_requires": [
+    "Expected coefficient sign in the expanding estimates at the end of OOS",
+    "Full-OOS MSE improvement vs expanding intercept-only baseline > 0",
+    "Block-bootstrap probability P(MSE improvement > 0) >= 0.95",
+    "Sign accuracy is not worse than baseline"
+  ],
+  "family_interpretation": {
+    "PROXY_PATH_CURRENT_SAMPLE_CONSISTENT": "Both H1 and H2 meet cell gates and their one-sided bootstrap p-values (1-P) pass Holm alpha 0.10.",
+    "otherwise": "PROXY_PATH_CURRENT_SAMPLE_NOT_CONFIRMED"
+  },
+  "promotion_power": "NONE_TO_TRUE_JNU",
+  "forbidden": [
+    "Optimize 30-minute windows",
+    "Replace SPY with QQQ/NQ after seeing outcomes",
+    "Add technical indicators or regimes to rescue failure",
+    "Delete either H1 or H2 after results",
+    "Call a positive result true-JNU PASS",
+    "Use proxy result as live directional probability without the frozen true-OSE family"
+  ]
+}
