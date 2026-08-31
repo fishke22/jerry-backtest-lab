@@ -1,0 +1,120 @@
+{
+  "version": "1.0",
+  "candidate_id": "INTRADAY_PATH_US_TO_JNU_TRUE_G1",
+  "parent_design": "config/jnu_intraday_path_us_g1_prereg.json",
+  "status": "PREREGISTERED_BEFORE_TRUE_JNU_OUTCOME_INSPECTION",
+  "frozen_at": "2026-08-31",
+  "objective": "Execute the already-frozen Iwanaga-shaped prior-SPX / JNU intraday-path family on exact-product OSE Nikkei 225 Micro minute data without proxy substitution or window rescue.",
+  "data": {
+    "target": {
+      "venue": "OSE",
+      "product": "Nikkei 225 Micro Futures (JNU)",
+      "source": "225Labo personal-use annual center-contract minute files",
+      "frequency": "source-provided 1 minute",
+      "raw_storage": "LOCAL_ONLY",
+      "cloud_output": "daily non-reconstructive FIRST30/MIDDLE/LAST30 returns + hashes/manifest only",
+      "coverage_expected": "2023-07-24 through 2026-08-31"
+    },
+    "predictor": {
+      "instrument": "S&P 500 index (^GSPC)",
+      "definition": "prior completed U.S. cash-session close-to-close log return",
+      "source": "Kaggle paveljurke/s-and-p-500-gspc-historical-data",
+      "dataset_version": 732,
+      "license_label": "CC0: Public Domain",
+      "kaggle_last_updated_utc": "2026-08-31T10:05:49.85Z",
+      "download_url": "https://www.kaggle.com/api/v1/datasets/download/paveljurke/s-and-p-500-gspc-historical-data?datasetVersionNumber=732",
+      "zip_sha256": "8f19fafb398ad048776340152bac5e9129f74c6646ea0ec76b1961e6a72ce521",
+      "csv_member": "sap500.csv",
+      "csv_sha256": "0686d640b1653bab8482905c419b7b799cce578825e9e866eeec7a19169c2f66",
+      "raw_persistence_in_repo": false,
+      "causal_alignment": "For each JNU trading date use the most recent completed S&P 500 trading date strictly earlier than the Japanese trading date; never forward fill an unavailable U.S. return beyond that causal rule."
+    }
+  },
+  "windows": {
+    "session_source": "config/jnu_session_calendar_versions.json",
+    "FIRST_30M": "Day-session 1-minute bars with timestamp >= historical day-session open and < open+30 elapsed minutes.",
+    "LAST_30M": "Day-session 1-minute bars with timestamp >= historical day-session close-30 elapsed minutes and < day-session close.",
+    "MIDDLE": "Eligible day-session 1-minute bars between FIRST_30M and LAST_30M.",
+    "return_definition": "log(last close / first close) within each fixed state window, identical endpoint convention to proxy G2.",
+    "min_first30_bars": 25,
+    "min_last30_bars": 25,
+    "min_middle_coverage_fraction": 0.8,
+    "parameter_search": false
+  },
+  "hypotheses": [
+    {
+      "id": "H1_FIRST30",
+      "expected_beta_sign": "negative",
+      "target": "FIRST_30M",
+      "model": "expanding OLS target ~ intercept + prior_SPX_return",
+      "baseline": "expanding intercept-only mean"
+    },
+    {
+      "id": "H2_LAST30",
+      "expected_beta_sign": "positive",
+      "target": "LAST_30M",
+      "model": "expanding OLS target ~ intercept + prior_SPX_return",
+      "baseline": "expanding intercept-only mean"
+    },
+    {
+      "id": "H3_STATE_INTERACTION",
+      "target": "FIRST30/MIDDLE/LAST30 long-form state returns",
+      "universal_model": "state fixed effects + one universal prior_SPX slope",
+      "interaction_model": "state fixed effects + separate prior_SPX slope by FIRST30/MIDDLE/LAST30",
+      "expected_result": "interaction model lowers OOS MSE versus universal slope"
+    }
+  ],
+  "oos": {
+    "method": "expanding walk-forward by trading day",
+    "minimum_training_days": 60,
+    "refit": "daily",
+    "primary_loss": "MSE",
+    "secondary": "sign accuracy for H1/H2; coefficient stability; post-2024-11-05 regime diagnostics",
+    "block_bootstrap": {
+      "block_days": 5,
+      "samples": 2000,
+      "seed": 42
+    },
+    "family_correction": {
+      "method": "Holm",
+      "alpha": 0.1,
+      "family": [
+        "H1_FIRST30",
+        "H2_LAST30",
+        "H3_STATE_INTERACTION"
+      ]
+    }
+  },
+  "pass_rules": {
+    "H1_H2": [
+      "Final expanding coefficient has preregistered expected sign",
+      "Full-OOS MSE improvement vs intercept-only baseline > 0",
+      "Block-bootstrap P(MSE improvement>0) >= 0.95",
+      "Model sign accuracy is not worse than baseline"
+    ],
+    "H3": [
+      "Full-OOS daily average state MSE improvement of interaction model vs universal-slope model > 0",
+      "Block-bootstrap P(MSE improvement>0) >= 0.95"
+    ],
+    "family": "All H1/H2/H3 cell gates must pass and one-sided bootstrap p-values (1-P) must pass Holm alpha=0.10."
+  },
+  "recent_regime_diagnostic": {
+    "from": "2024-11-05",
+    "rationale": "Known OSE day-session extension, fixed independently of outcomes",
+    "role": "diagnostic only; report coefficient/loss direction, not an extra post-hoc rescue gate"
+  },
+  "interpretation": {
+    "pass": "TRUE_JNU_INTRADAY_PATH_INFORMATION_PASS; only then may a trading-rule translation be preregistered. Not automatic live alpha.",
+    "fail": "REJECT_TRUE_JNU_CURRENT_SPEC; no window tuning, predictor switching or indicator rescue.",
+    "data_inconclusive": "Only if causal aligned sample or required windows are insufficient before statistical evaluation."
+  },
+  "forbidden": [
+    "Change 30-minute window length",
+    "Use SPY, ES, NQ or QQQ as replacement after seeing true-JNU outcomes",
+    "Drop H1, H2 or H3 after results",
+    "Search additional subwindows",
+    "Add technical indicators/regimes to rescue failure",
+    "Infer order imbalance from OHLCV",
+    "Use 225Labo raw outside local personal-use boundary"
+  ]
+}
