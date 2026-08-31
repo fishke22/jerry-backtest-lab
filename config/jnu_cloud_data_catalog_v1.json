@@ -1,0 +1,91 @@
+{
+  "version": "1.0",
+  "as_of": "2026-08-31",
+  "purpose": "Single durable catalog of JNU/OSE research data available for cloud backtests and local-only licensed raw sources.",
+  "cloud_backtest_ready": [
+    {
+      "id": "TRUE_OSE_MINI_DAILY_RVRSV_V1",
+      "path": "cloud_data/derived/jnu_225labo_mini_daily_rvrsv_v1.csv",
+      "manifest": "cloud_data/manifests/jnu_225labo_mini_daily_rvrsv_v1_manifest.json",
+      "coverage": "2006-07-18 through 2026-08-31",
+      "grain": "daily non-reconstructive RV/RSV derived from source-provided OSE Mini 5m",
+      "use": [
+        "HAR-RSV Stage A reproduction",
+        "volatility/risk-state research"
+      ],
+      "raw_cloud": false
+    },
+    {
+      "id": "TRUE_JNU_MICRO_DAILY_RVRSV_V1",
+      "path": "cloud_data/derived/jnu_225labo_micro_daily_rvrsv_v1.csv",
+      "manifest": "cloud_data/manifests/jnu_225labo_micro_daily_rvrsv_v1_manifest.json",
+      "qa_manifest": "cloud_data/manifests/jnu_har_rsv_micro_1m_vs_5m_measurement_qa_v1_manifest.json",
+      "coverage": "2023-07-24 through 2026-08-31",
+      "grain": "daily non-reconstructive RV/RSV derived from exact-product JNU 5m",
+      "use": [
+        "HAR-RSV Stage B reproduction",
+        "JNU volatility/risk-state research"
+      ],
+      "raw_cloud": false
+    },
+    {
+      "id": "TRUE_JNU_MICRO_INTRADAY_PATH_V1",
+      "path": "cloud_data/derived/jnu_225labo_micro_intraday_path_v1.csv",
+      "manifest": "cloud_data/manifests/jnu_225labo_micro_intraday_path_v1_manifest.json",
+      "coverage": "2023-07-24 through 2026-08-31",
+      "grain": "daily non-reconstructive FIRST30/MIDDLE/LAST30 aggregate returns derived from exact-product JNU 1m",
+      "use": [
+        "reproduce terminal prior-SPX intraday-path family",
+        "future preregistered path/state research only"
+      ],
+      "raw_cloud": false
+    }
+  ],
+  "runtime_pinned_external_sources": [
+    {
+      "id": "KAGGLE_GSPC_CC0_V732",
+      "use": "exact prior S&P 500 cash-session return",
+      "dataset": "paveljurke/s-and-p-500-gspc-historical-data",
+      "version": 732,
+      "license_label": "CC0: Public Domain",
+      "raw_repo_persisted": false,
+      "zip_sha256": "8f19fafb398ad048776340152bac5e9129f74c6646ea0ec76b1961e6a72ce521",
+      "csv_sha256": "0686d640b1653bab8482905c419b7b799cce578825e9e866eeec7a19169c2f66"
+    }
+  ],
+  "local_only_personal_license_raw": [
+    {
+      "id": "225LABO_OSE_MINI_MINUTE_RAW",
+      "path": "D:\\\\QROS\\\\data\\\\personal_licensed\\\\225labo\\\\mini\\\\raw",
+      "inventory": "2006-2026 complete",
+      "cloud_upload": "PROHIBITED",
+      "reason": "225Labo personal-use/no-third-party-redistribution boundary"
+    },
+    {
+      "id": "225LABO_JNU_MICRO_MINUTE_RAW",
+      "path": "D:\\\\QROS\\\\data\\\\personal_licensed\\\\225labo\\\\micro\\\\raw",
+      "inventory": "2023-2026 complete",
+      "cloud_upload": "PROHIBITED",
+      "reason": "225Labo personal-use/no-third-party-redistribution boundary"
+    }
+  ],
+  "known_true_venue_other": [
+    {
+      "id": "CME_NKD_PUBLIC_SHORT_INTRADAY",
+      "status": "AVAILABLE_SHORT_SAMPLE",
+      "role": "CME side of DPD feasibility",
+      "source_registry": "config/jnu_substitute_source_registry_20260831.json"
+    },
+    {
+      "id": "SGX_NIKKEI_INTRADAY",
+      "status": "CURRENT_BLOCKER",
+      "need": "matched-expiry SGX Nikkei intraday data plus rights resolution before true-venue DPD"
+    }
+  ],
+  "guardrails": [
+    "Never infer cloud permission from local availability.",
+    "Never commit 225Labo raw XLS/XLSX/ZIP/minute bars.",
+    "Every public derived file must have a manifest/hash and be non-reconstructive.",
+    "Proxy data cannot satisfy a frozen true-venue gate unless preregistration explicitly allowed the proxy class."
+  ]
+}
