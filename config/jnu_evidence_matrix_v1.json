@@ -1,5 +1,5 @@
 {
-  "version": "1.4000000000000001",
+  "version": "1.5",
   "updated_at": "2026-08-31",
   "scoring": {
     "evidence_grade": {
@@ -42,21 +42,25 @@
     {
       "module": "HAR_RSV_VOLATILITY_STATE",
       "evidence_grade": "A",
-      "data_grade": "B",
+      "data_grade": "A",
       "literature": [
         "Asai & McAleer 2017 — Nikkei 225 futures volatility forecasting",
         "Maki & Ota 2020/2021 — Japanese futures/spot realized-semivariance asymmetry",
         "Kunitomo & Sato — SIML realized volatility/covariance with micro-market noise, applied to Nikkei-225 Futures"
       ],
-      "internal_result": "2011-2018 DI1 proxy-method PASS (HAR-RSV MSE bootstrap P=0.9585; QLIKE weaker). Independent later-period 2026 public Japan225 proxy holdout G2 was CURRENT_SAMPLE_PROXY_CONSISTENT: both QLIKE and MSE improved, with MSE bootstrap P=0.975 and QLIKE P=0.9415 over 48 OOS days. Neither result has true-JNU promotion power.",
-      "status": "TRUE_JNU_CONFIRMATION_PENDING",
-      "admitted_role": "Risk state / sizing / stop-distance / confidence only",
-      "next_evidence_needed": "225Labo Mini 2006+ frozen confirmation, then Micro 2023+ exact-product consistency",
+      "internal_result": "Proxy-method evidence was followed by preregistered true-OSE Mini Stage A PASS (4,442 OOS days; QLIKE improvement +0.0027914, Pboot=1.0; MSE improvement +4.783e-10, Pboot=0.9875) and exact-product JNU Micro Stage B PASS (270 OOS days; both QLIKE and MSE mean improvements positive; MSE Pboot=0.9685). Stage 3 true-target confirmation therefore passes.",
+      "status": "TRUE_JNU_STAGE3_PASS_INFORMATION_STATE_CANDIDATE",
+      "admitted_role": "Risk/volatility information state only; may be considered for sizing/stop-distance/confidence only after applicable downstream translation/validation.",
+      "next_evidence_needed": "Complete deferred 1m-vs-5m measurement QA, then preregister any concrete risk-state-to-position mapping before testing. No directional use.",
       "measurement_guardrail": {
         "issue": "High-frequency realized volatility can be biased by microstructure noise.",
         "frozen_confirmation_default": "Use 5-minute returns as primary HAR-RSV construction unless the true-OSE preregistration independently justifies another sampling interval before outcome inspection.",
         "diagnostic": "Compare 1m vs 5m RV/RSV stability and, where feasible, a noise-robust realized-volatility estimator as measurement QA only.",
         "rule": "Do not choose the sampling interval after seeing predictive performance."
+      },
+      "true_target_results": {
+        "mini_stage_a": "volatility_results/jnu_har_rsv_true_ose_mini_stage_a_g1.json",
+        "micro_stage_b": "volatility_results/jnu_har_rsv_jnu_micro_stage_b_g1.json"
       }
     },
     {
