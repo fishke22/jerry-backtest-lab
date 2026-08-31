@@ -1,5 +1,5 @@
 {
-  "version": "2.7",
+  "version": "2.8",
   "updated_at": "2026-08-31",
   "policy": {
     "max_active_formal_families": 1,
@@ -19,21 +19,16 @@
       "Counting correlated features as independent votes"
     ]
   },
-  "active": {
-    "candidate": "INTRADAY_MOMENTUM_REVERSION_TRUE_JNU_G1",
-    "preregistration": "config/jnu_intraday_momentum_reversion_true_jnu_g1_prereg.json",
-    "status": "STAGE_A_TRUE_OSE_MINI_DERIVED_BUILD_PENDING",
-    "rule": "Single active formal family. Horizons fixed at 1m momentum and non-overlapping 10m reversion. No horizon/filter/session rescue."
-  },
+  "active": null,
   "current_global_blocker": null,
   "queue": [
     {
-      "rank": 1,
+      "rank": 99,
       "candidate": "INTRADAY_MOMENTUM_REVERSION_TRUE_JNU_G1",
-      "status": "PREREGISTERED_STAGE_A_PENDING",
+      "status": "TRUE_OSE_MINI_STAGE_A_FAIL_TERMINAL",
       "evidence": "Peng & Wang 2008 direct Nikkei-futures evidence: 1m momentum, 10m mean reversion, robust to intraday seasonality.",
       "target_role": "Directional information gate",
-      "next_action": "Build local-only pre-Micro OSE Mini daily sufficient statistics for H1/H2; validate manifest; execute preregistered Stage A."
+      "next_action": "None. Exact-JNU Stage B prohibited. Preserve failed family; no H2-only or sign-flip rescue."
     },
     {
       "rank": 2,
@@ -180,6 +175,15 @@
       "stage_a_bootstrap_prob_mean_positive": 0.981,
       "stage_b_bootstrap_prob_mean_positive": 1,
       "role": "EVENT_RISK_STATE_ONLY_NOT_DIRECTIONAL_ALPHA"
+    },
+    {
+      "candidate": "INTRADAY_MOMENTUM_REVERSION_TRUE_JNU_G1",
+      "status": "TRUE_OSE_MINI_STAGE_A_FAIL_TERMINAL",
+      "run_id": 33399653907,
+      "H1_bootstrap_prob_positive": 0,
+      "H2_bootstrap_prob_positive": 1,
+      "holm_pass": false,
+      "stage_b": "PROHIBITED"
     }
   ],
   "screened_not_separate_families": [
