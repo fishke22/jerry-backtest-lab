@@ -1,5 +1,5 @@
 {
-  "version": "1.1",
+  "version": "1.2",
   "updated_at": "2026-08-31",
   "policy": {
     "max_active_formal_families": 1,
@@ -20,11 +20,16 @@
     ]
   },
   "active": null,
-  "next_feasible_review": {
-    "candidate": "BOJ_MPM_EVENT_VOLATILITY",
-    "status": "LITERATURE_AND_SOURCE_FEASIBILITY_REVIEW",
-    "reason": "Higher-ranked true-OSE families remain data-blocked; BOJ event timestamps are available from the official BOJ release archive and direct Japanese implied-volatility evidence exists. Review/preregister before any outcome test.",
-    "target_role": "Event-volatility/risk state only; no directional vote unless separately preregistered."
+  "next_feasible_review": null,
+  "current_global_blocker": {
+    "id": "TRUE_OSE_INTRADAY_DATA_ACCESS",
+    "status": "BLOCKED_LOCAL_DEVICE_OFFLINE_OR_APPROVED_FREE_SOURCE_UNVERIFIED",
+    "impact": [
+      "HAR_RSV_TRUE_OSE_CONFIRMATION",
+      "INTRADAY_PATH_US_TO_JNU_G1",
+      "TRUE_VENUE_DPD_OSE_SGX_CME"
+    ],
+    "rule": "Do not replace true OSE/JNU minute data with index proxies for formal promotion."
   },
   "queue": [
     {
@@ -34,7 +39,7 @@
       "target_role": "Risk state / sizing / stop normalization",
       "status": "BLOCKED_ON_PERSONALLY_LICENSED_LOCAL_OSE_FILE",
       "data_plan": "Nikkei mini 2006+ long-history confirmation, then Micro 2023+ exact-product consistency",
-      "next_action": "Implement parser only after exact 225Labo schema/sample is locally available."
+      "next_action": "Resume only after exact 225Labo schema/sample is locally available; raw personal-use data stays local."
     },
     {
       "rank": 3,
@@ -74,9 +79,9 @@
       "candidate": "BOJ_MPM_EVENT_VOLATILITY",
       "evidence": "Japanese monetary-policy release literature with Nikkei 225 VI / VI futures intraday response",
       "target_role": "Event-volatility/risk state",
-      "status": "READY_FOR_PREREGISTRATION_REVIEW",
-      "data_plan": "Official BOJ MPM/release archive for event timing plus approved Japanese volatility/market series; no directional claim in generation 1.",
-      "next_action": "Freeze event definition, timestamp integrity, baseline, OOS/event split, loss metrics and multiplicity before any outcome inspection."
+      "status": "BLOCKED_ON_ADEQUATE_FREE_INTRADAY_VOLATILITY_HISTORY",
+      "data_plan": "Official BOJ MPM/release timestamps are available, but the public Nikkei Indexes site provides only 3 years of daily index data and 10 years of monthly data; that is insufficient to replicate or robustly OOS-test the cited intraday MPM effect.",
+      "next_action": "Do not launch a weak small-event daily substitute. Revisit only with an approved intraday Nikkei VI/VI-futures or equivalent preregistered market series."
     }
   ],
   "resolved": [
