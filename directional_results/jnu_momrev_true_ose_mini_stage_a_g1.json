@@ -1,0 +1,47 @@
+{
+  "candidate_id": "INTRADAY_MOMENTUM_REVERSION_TRUE_JNU_G1",
+  "stage": "A_TRUE_OSE_MINI",
+  "status": "TRUE_OSE_MINI_MOMREV_STAGE_A_FAIL",
+  "stage_a_pass": false,
+  "role": "DIRECTIONAL_INFORMATION_GATE",
+  "panel_days": 4170,
+  "cells": {
+    "H1_1M_MOMENTUM": {
+      "status": "CELL_FAIL_TRUE_OSE_CURRENT_SPEC",
+      "usable_days": 4170,
+      "mean_daily_signal_payoff": -0.00005914279386709916,
+      "aggregate_directional_accuracy_nonzero_targets": 0.4081390742120026,
+      "bootstrap_prob_mean_positive": 0,
+      "bootstrap_ci95": [
+        -0.000060947678093157435,
+        -0.000057322806833182084
+      ]
+    },
+    "H2_10M_REVERSION": {
+      "status": "CELL_PASS",
+      "usable_days": 4170,
+      "mean_daily_signal_payoff": 0.00003836712557711084,
+      "aggregate_directional_accuracy_nonzero_targets": 0.522454101654589,
+      "bootstrap_prob_mean_positive": 1,
+      "bootstrap_ci95": [
+        0.000029543460208124913,
+        0.00004670956319338611
+      ]
+    }
+  },
+  "holm": {
+    "method": "Holm",
+    "alpha": 0.1,
+    "pass": false
+  },
+  "stage_b_status": "PROHIBITED_BY_PREREG_STAGE_A_FAIL",
+  "next_rule": "Close current family. Do not change horizons, flip H1 sign, keep only H2, add filters, or let exact JNU Micro rescue Stage A. Reopen only as a substantively new literature-backed family.",
+  "workflow_evidence": {
+    "run_id": 33399653907,
+    "head_sha": "1dd3f88dd6bdc0bcf2ab10a66fba0faaef0cb46d",
+    "artifact_id": 9760719973,
+    "conclusion": "success"
+  },
+  "derived_panel_sha256": "b1ded7a19bbcb44d2fda36cc73ac1b92cf06796060afce27f7fe4ee9cf73f35e",
+  "generated_at_utc": "2026-08-31T13:55:55.198631+00:00"
+}
