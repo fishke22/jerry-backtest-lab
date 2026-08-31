@@ -1,13 +1,13 @@
 {
-  "version": "1.5",
+  "version": "1.6",
   "as_of": "2026-08-31",
   "framework": "JNU_FINAL_FRAMEWORK_V3",
   "architecture_status": "FROZEN",
-  "research_completion_state": "FRAMEWORK_RESEARCH_STAGE3_INFORMATION_STATE_CANDIDATE_AVAILABLE",
+  "research_completion_state": "FRAMEWORK_RESEARCH_STAGE3_RISK_STATE_CANDIDATE_DIRECTIONAL_EDGE_NONE",
   "validated_jnu_modules": 0,
   "validated_directional_modules": 0,
   "decision_engine_output": "NO_VALIDATED_DIRECTIONAL_EDGE",
-  "meaning": "HAR-RSV has passed preregistered true-OSE Mini Stage A and exact-product JNU Micro Stage B, satisfying Stage 3 true-target confirmation as a volatility/risk information-state candidate. It is not directional alpha and has not completed downstream position/risk-rule validation.",
+  "meaning": "HAR-RSV has a Stage-3 true-JNU risk/information-state confirmation. The frozen prior-SPX intraday directional/path family has been rejected on exact-product JNU. No directional module is validated.",
   "substitute_data_update": {
     "GETDATA_JPN225_PUBLIC_SAMPLE_1M": "2026-02-01 through 2026-07-31 public Japan225 1-minute sample; usable for proxy stress tests only.",
     "HAR_RSV_JPN225_PUBLIC_HOLDOUT_G2": {
@@ -202,5 +202,10 @@
     "micro_stage_b_run": 33389857914,
     "stage9_validated": false,
     "next": "Deferred 1m-vs-5m measurement QA, then Stage-4 translation only if the module will change position/risk controls."
+  },
+  "intraday_path_true_jnu": {
+    "status": "REJECT_TRUE_JNU_CURRENT_SPEC",
+    "run_id": 33391992462,
+    "rescue_prohibited": true
   }
 }
