@@ -1,5 +1,5 @@
 {
-  "version": "2.3",
+  "version": "2.4",
   "updated_at": "2026-08-31",
   "policy": {
     "max_active_formal_families": 1,
@@ -19,61 +19,11 @@
       "Counting correlated features as independent votes"
     ]
   },
-  "active": {
-    "candidate": "INTRADAY_PATH_US_TO_JNU_TRUE_G1",
-    "preregistration": "config/jnu_intraday_path_us_to_jnu_true_g1_prereg.json",
-    "status": "TRUE_JNU_DERIVED_PATH_BUILD_PENDING",
-    "rule": "Single active formal family. No proxy substitutions, window changes, indicator rescue, or parallel formal information families."
-  },
+  "active": null,
   "current_global_blocker": null,
   "queue": [
     {
       "rank": 1,
-      "candidate": "INTRADAY_PATH_US_TO_JNU_G1",
-      "evidence": "Direct Iwanaga 2026 evidence, but both 2011-2018 proxy G0 and 2026 Japan225/SPY proxy G2 fail OOS proxy confirmation",
-      "status": "TRUE_JNU_DATA_ACQUIRED_EXECUTION_PREREGISTERED",
-      "preregistration": "config/jnu_intraday_path_us_to_jnu_true_g1_prereg.json",
-      "next_action": "Build local exact-JNU FIRST30/MIDDLE/LAST30 derived panel, persist non-reconstructive panel + manifest, then execute the preregistered H1-H3 family using pinned Kaggle ^GSPC version 732."
-    },
-    {
-      "rank": 2,
-      "candidate": "HAR_RSV_TRUE_OSE_CONFIRMATION",
-      "evidence": "Direct Japanese/Nikkei futures volatility literature + 2011-2018 proxy-method PASS + 2026 public-proxy holdout consistency",
-      "target_role": "Risk state / sizing / stop normalization",
-      "status": "STAGE3_PASS_INFORMATION_STATE_CANDIDATE_MEASUREMENT_QA_COMPLETE",
-      "data_plan": "True-OSE Mini Stage A and exact-product JNU Micro Stage B are complete and passed without retuning. Raw 225Labo remains local-only; derived panels/results are in GitHub.",
-      "next_action": "Downstream Stage-4 risk-state translation is deferred until a concrete position/risk-control use is proposed; do not reopen Stage-3 statistics.",
-      "local_existing_evidence": {
-        "mini_distinct_day_session_days": 1250,
-        "micro_distinct_day_session_days": 364,
-        "mini_range": [
-          "2015-12-01",
-          "2026-07-30"
-        ],
-        "micro_range": [
-          "2025-02-03",
-          "2026-07-30"
-        ]
-      }
-    },
-    {
-      "rank": 2,
-      "candidate": "JPX_OSE_HISTORICAL_FREE_ACCESS_RESOLUTION",
-      "target_role": "Data acquisition gate, not an alpha family",
-      "status": "ALTERNATE_INTRADAY_ACCESS_PATH_INDIVIDUAL_ELIGIBILITY_UNRESOLVED",
-      "evidence": "JPX states historical OSE tick data may be provided for trading-methodology examination under certain conditions. Official public Data Cloud documentation now resolves the one-minute futures schema, including trading/execution date, index type, 9-digit security code, session, minute time, OHLC, volume, VWAP, number of trades and contract month. Published free-trial procedure still describes a company applicant.",
-      "identity_progress": "Official JPX evidence confirms Nikkei 225 large 9-digit examples ending 018 and Nikkei 225 mini example 166030019. Nikkei 225 micro is officially identified as NK225MCF and by vendor codes QUICK 115.n / Bloomberg JAIA / LSEG JNUcn / CQG F.US.MC225, but its 9-digit local-security-code suffix is not yet confirmed from a public primary-source issue example.",
-      "next_action": "Keep JPX historical-trial eligibility as alternate path. Local 225Labo minute acquisition is now preferred because the authorized Windows device is online and QROS already provides downstream ingestion/DQ infrastructure.",
-      "fallback_if_not_eligible": "Use 225Labo locally for Nikkei mini HAR-RSV Stage A, then Micro Stage B only if Stage A passes."
-    },
-    {
-      "rank": 3,
-      "candidate": "CBOE_LTV_LEFT_TAIL_RISK",
-      "status": "BLOCKED_NO_VERIFIED_FREE_OFFICIAL_HISTORY",
-      "next_action": "Do not substitute VIX/SKEW."
-    },
-    {
-      "rank": 4,
       "candidate": "TRUE_VENUE_DPD_OSE_SGX_CME",
       "status": "CME_ALIGNMENT_FEASIBLE_SGX_CURRENT_CODES_MAPPED_LEGACY_MAPPING_AND_OSE_ACCESS_STILL_BLOCKED",
       "new_source": "axb0306/cme-futures-ohlc public NKD tick/1m/5m sample, visible coverage 2026-03-08 to 2026-04-15, TopstepX/ProjectX-derived",
@@ -99,6 +49,33 @@
       "guardrail": "Current SGX product codes do not prove historical archive codes. Strong CME alignment does not establish venue leadership or directional alpha."
     },
     {
+      "rank": 2,
+      "candidate": "HAR_RSV_TRUE_OSE_CONFIRMATION",
+      "evidence": "Direct Japanese/Nikkei futures volatility literature + 2011-2018 proxy-method PASS + 2026 public-proxy holdout consistency",
+      "target_role": "Risk state / sizing / stop normalization",
+      "status": "STAGE3_PASS_INFORMATION_STATE_CANDIDATE_MEASUREMENT_QA_COMPLETE",
+      "data_plan": "True-OSE Mini Stage A and exact-product JNU Micro Stage B are complete and passed without retuning. Raw 225Labo remains local-only; derived panels/results are in GitHub.",
+      "next_action": "Downstream Stage-4 risk-state translation is deferred until a concrete position/risk-control use is proposed; do not reopen Stage-3 statistics.",
+      "local_existing_evidence": {
+        "mini_distinct_day_session_days": 1250,
+        "micro_distinct_day_session_days": 364,
+        "mini_range": [
+          "2015-12-01",
+          "2026-07-30"
+        ],
+        "micro_range": [
+          "2025-02-03",
+          "2026-07-30"
+        ]
+      }
+    },
+    {
+      "rank": 3,
+      "candidate": "CBOE_LTV_LEFT_TAIL_RISK",
+      "status": "BLOCKED_NO_VERIFIED_FREE_OFFICIAL_HISTORY",
+      "next_action": "Do not substitute VIX/SKEW."
+    },
+    {
       "rank": 6,
       "candidate": "OSE_ORDER_IMBALANCE",
       "status": "BLOCKED_NO_FREE_DIRECTIONAL_ORDER_FLOW_DATA",
@@ -109,6 +86,24 @@
       "candidate": "BOJ_MPM_EVENT_VOLATILITY",
       "status": "BLOCKED_ON_ADEQUATE_FREE_INTRADAY_VOLATILITY_HISTORY",
       "next_action": "Do not launch weak small-event daily substitute."
+    },
+    {
+      "rank": 90,
+      "candidate": "JPX_OSE_HISTORICAL_FREE_ACCESS_RESOLUTION",
+      "target_role": "Data acquisition gate, not an alpha family",
+      "status": "ALTERNATE_SOURCE_ONLY_NOT_CURRENT_BLOCKER",
+      "evidence": "JPX states historical OSE tick data may be provided for trading-methodology examination under certain conditions. Official public Data Cloud documentation now resolves the one-minute futures schema, including trading/execution date, index type, 9-digit security code, session, minute time, OHLC, volume, VWAP, number of trades and contract month. Published free-trial procedure still describes a company applicant.",
+      "identity_progress": "Official JPX evidence confirms Nikkei 225 large 9-digit examples ending 018 and Nikkei 225 mini example 166030019. Nikkei 225 micro is officially identified as NK225MCF and by vendor codes QUICK 115.n / Bloomberg JAIA / LSEG JNUcn / CQG F.US.MC225, but its 9-digit local-security-code suffix is not yet confirmed from a public primary-source issue example.",
+      "next_action": "No active work required while 225Labo true-OSE data remain available locally.",
+      "fallback_if_not_eligible": "Use 225Labo locally for Nikkei mini HAR-RSV Stage A, then Micro Stage B only if Stage A passes."
+    },
+    {
+      "rank": 99,
+      "candidate": "INTRADAY_PATH_US_TO_JNU_G1",
+      "evidence": "Direct Iwanaga 2026 evidence, but both 2011-2018 proxy G0 and 2026 Japan225/SPY proxy G2 fail OOS proxy confirmation",
+      "status": "REJECT_TRUE_JNU_CURRENT_SPEC_TERMINAL",
+      "preregistration": "config/jnu_intraday_path_us_to_jnu_true_g1_prereg.json",
+      "next_action": "None. Preserve result and do not rescue."
     }
   ],
   "resolved": [
@@ -153,6 +148,16 @@
       "contemporaneous_corr": 0.9221838112308237,
       "rolling_corr_median": 0.915635577176246,
       "promotion_power": "NONE"
+    },
+    {
+      "candidate": "INTRADAY_PATH_US_TO_JNU_TRUE_G1",
+      "status": "REJECT_TRUE_JNU_CURRENT_SPEC",
+      "final_run_id": 33391992462,
+      "H1_bootstrap_prob_positive": 0.84,
+      "H2_bootstrap_prob_positive": 0.454,
+      "H3_bootstrap_prob_positive": 0.354,
+      "holm_pass": false,
+      "reopen_rule": "No window/predictor/cell/indicator rescue."
     }
   ],
   "screened_not_separate_families": [
