@@ -204,3 +204,25 @@ A. Resolve the Nikkei 225 micro 9-digit JPX local-security-code example/suffix f
 B. Resolve SGX legacy `TC.txt`/`TC_structure` metadata fields and map current `NK`/`NS` identifiers to historical archive identity without bulk tick download.
 C. Continue JPX individual eligibility/rights resolution. If not suitable, fall back to 225Labo local Stage A as soon as the authorized Windows device is online.
 D. Do not open another proxy directional family merely to keep testing.
+
+
+## 20. QROS local-source inventory after device reconnection
+The authorized Windows device returned online and `D:\QROS` was inspected read-only. A mature `nikkei_multifactor_engine` plus substantial `data\ose_free` corpus already exists. The key correction is that exact true-OSE daily/session data are locally available: Micro has 364 distinct days (2025-02-03 to 2026-07-30), while the common day-session Mini corpus has 1,250 distinct days (2015-12-01 to 2026-07-30). QROS also contains hundreds of official JPX Daily Report PDFs, NDL archive metadata/parsed rows, monthly/annual JPX files, source hashes, receipts and DQ/provenance artifacts.
+
+A direct normalized JPX Daily Report row for 2025-02-03 confirms Micro `trading_code=160030023`, multiplier 10 and tick size 5. This independently cross-checks the JPX target-index suffix/classification `23` discovered from official DataCube specifications.
+
+The prior QROS research already built `jnu_continuous_micro_v1` from exact OSE Micro daily reports: 364 rows, 19 actual contracts, 18 rolls. Its old exploratory backtest PnL is not imported into the current JNU validated lineage; QROS itself marks formal strategy acceptance and positive expectancy as false.
+
+Critically, the common dataset is DAY/SESSION grain, not minute grain. Therefore it cannot satisfy the frozen HAR-RSV 5-minute RV/RSV gate, FIRST/LAST30 path tests, DPD lead-lag, or order-imbalance research. The blocker is narrowed to true-OSE 1m/5m intraday history, not true-OSE history in general.
+
+Existing realtime/Yuanta research artifacts were checked only through non-account manifests/snapshots. No historical JNU capture was found. Static FunctionList evidence confirms JNU quote-code mappings, but no new broker login or market-data request was performed.
+
+Detailed inventory: `research_notes/jnu_qros_local_source_inventory_20260831.md`.
+
+## 21. Revised next action after QROS discovery
+1. Do not repeat JPX/NDL archive discovery already completed in QROS.
+2. Reuse QROS parsers, source receipts, DQ and provenance machinery.
+3. Treat the exact Micro 364-day and Mini 1,250-day corpora as daily/session evidence only.
+4. Search/acquire true OSE Mini 1m/5m locally, with 225Labo the preferred no-extra-cost personal-use path; raw remains local-only.
+5. If local 225Labo minute acquisition is unavailable, continue JPX historical-trial eligibility resolution.
+6. Never synthesize 5-minute RV/RSV from daily/session OHLC.
