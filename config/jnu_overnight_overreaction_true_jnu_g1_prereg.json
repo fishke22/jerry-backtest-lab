@@ -1,0 +1,100 @@
+{
+  "version": "1.0",
+  "candidate_id": "OVERNIGHT_OVERREACTION_TRUE_JNU_G1",
+  "status": "PREREGISTERED_BEFORE_TRUE_OSE_OUTCOME_INSPECTION",
+  "frozen_at": "2026-08-31",
+  "role": "DIRECTIONAL_INFORMATION_GATE",
+  "evidence": [
+    {
+      "citation": "Miwa (2019), Trading hours extension and intraday price behavior",
+      "doi": "10.1016/j.iref.2019.07.007",
+      "direct_market": "OSE Nikkei 225 futures and TOPIX futures",
+      "literature_sample": "2002-01 through 2015-12",
+      "direct_claim": "Negative association between overnight return and subsequent morning intraday return; night-session return is also negatively associated with subsequent intraday return."
+    }
+  ],
+  "data": {
+    "stage_a": {
+      "venue": "OSE",
+      "product": "Nikkei 225 Mini Futures",
+      "raw_source": "225Labo local-only 1-minute OHLCV",
+      "date_from": "2016-01-04",
+      "date_to": "2023-07-21",
+      "rationale": "Post-literature-sample holdout before JNU Micro launch."
+    },
+    "stage_b": {
+      "venue": "OSE",
+      "product": "Nikkei 225 Micro Futures (JNU)",
+      "raw_source": "225Labo local-only 1-minute OHLCV",
+      "date_from": "2023-07-24",
+      "date_to": "latest available",
+      "exact_product": true
+    },
+    "cloud_output": "Per-day non-reconstructive overnight/morning signal sufficient statistics only; no raw minute bars."
+  },
+  "measurement": {
+    "calendar": "config/jnu_session_calendar_versions.json",
+    "prior_regular_close": "Close of the final source 1-minute bar before the previous trading day's historical OSE day-session close.",
+    "current_regular_open": "Open of the first source 1-minute bar at the current trading day's historical OSE day-session open.",
+    "overnight_return": "log(current_regular_open / prior_regular_close)",
+    "morning_window": "First 120 elapsed active day-session minutes beginning at historical OSE day-session open.",
+    "morning_return": "log(close of the 120th active minute bar / current_regular_open)",
+    "signal": "-sign(overnight_return)",
+    "primary_daily_effect": "signal * morning_return",
+    "accuracy": "Among days with nonzero overnight return and nonzero morning return, fraction signal sign equals morning-return sign.",
+    "expected_effect_sign": "positive",
+    "expected_accuracy_relation": "> 0.5"
+  },
+  "data_quality": {
+    "day_session_minute_label_coverage_minimum": 0.95,
+    "current_open_bar_required": true,
+    "prior_close_bar_required": true,
+    "first_120_active_minutes_required": true,
+    "no_imputation": true,
+    "annual_source_missing": "critical DQ",
+    "invalid_nonpositive_ohlc": "critical DQ on selected dates"
+  },
+  "inference": {
+    "unit": "trading day",
+    "bootstrap": {
+      "method": "iid resample trading days with replacement",
+      "resamples": 5000,
+      "seed": 42
+    },
+    "formal_primary_cells": 1,
+    "multiplicity_correction": "None; one frozen primary signal."
+  },
+  "stage_a_pass_rule": [
+    "At least 1000 usable post-2015 Mini trading days.",
+    "Mean daily signal payoff > 0.",
+    "Aggregate nonzero-target directional accuracy > 0.5.",
+    "Bootstrap P(mean daily signal payoff > 0) >= 0.95."
+  ],
+  "stage_b_pass_rule": [
+    "Stage A PASS is mandatory; otherwise Stage B statistical evaluation is prohibited.",
+    "At least 500 usable exact-JNU trading days.",
+    "Identical signal/window/data handling with no retuning.",
+    "Mean daily signal payoff > 0.",
+    "Aggregate nonzero-target directional accuracy > 0.5.",
+    "Bootstrap P(mean daily signal payoff > 0) >= 0.95."
+  ],
+  "diagnostics_non_promotional": [
+    "Regression slope of morning return on overnight return.",
+    "Night-session-only return relation, using the historical night-session boundary.",
+    "Post-2024-11-05 session-extension direction.",
+    "Gross signal payoff before transaction costs."
+  ],
+  "forbidden": [
+    "Change 120-minute morning horizon after outcomes.",
+    "Use full-day/30m/60m morning horizons to rescue failure.",
+    "Flip signal direction after outcomes.",
+    "Add VIX, volume, RSI, MACD, BOJ-event, or volatility-state filters to rescue G1.",
+    "Use night-session-only result to rescue a failed primary overnight signal.",
+    "Use exact-JNU Stage B to rescue a failed Mini Stage A.",
+    "Claim tradable alpha before execution/cost/overfit/forward validation."
+  ],
+  "interpretation": {
+    "pass": "If Stage A and Stage B pass, promote to a directional information candidate only; then run downstream trading-rule/cost/overfit/forward stages.",
+    "fail": "Close current family. Reopen only with substantively new independent evidence, not horizon/filter/sign rescue."
+  }
+}
