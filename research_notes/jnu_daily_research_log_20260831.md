@@ -272,3 +272,32 @@ The cloud runner/workflow are:
 - `.github/workflows/jnu-har-rsv-true-ose-mini-stage-a-g1.yml`
 
 Current state at this log point: true-OSE Mini intraday acquisition COMPLETE; derived 5m RV/RSV build RUNNING; no Stage A statistical outcome inspected yet.
+
+
+## 25. HAR-RSV true-target Stage 3 completed
+The full preregistered true-target sequence completed without retuning.
+
+### Stage A — true OSE Nikkei 225 Mini
+- Status: `TRUE_OSE_MINI_STAGE_A_PASS`
+- Valid run: 33388746345
+- 4,442 OOS days (2008-09-08 → 2026-08-31)
+- QLIKE improvement: +0.0027914101288612917; 5-day block-bootstrap P(improvement>0)=1.0
+- MSE improvement: +4.783249414627292e-10; P=0.9875
+
+### Stage B — exact-product OSE Nikkei 225 Micro (JNU)
+- Status: `TRUE_JNU_MICRO_STAGE_B_PASS`
+- Valid run: 33389857914
+- 270 OOS days (2025-08-13 → 2026-08-31)
+- QLIKE mean improvement: +7.292861808050662e-05; bootstrap P=0.522
+- MSE mean improvement: +1.1450264024518442e-09; bootstrap P=0.9685
+- Frozen Stage-B gate passes because both loss improvements are positive and at least one bootstrap probability is >=0.95.
+
+Scientific interpretation:
+- HAR-RSV now passes promotion-pipeline Stage 3 TRUE_TARGET_DATA_CONFIRMATION.
+- New state: `INFORMATION_STATE_CANDIDATE`.
+- Permitted research role: volatility/risk state only.
+- It is not directional alpha, not a validated trading rule, and not Stage 9 `VALIDATED_JNU_MODULE`.
+- Any use for sizing, stop distance or confidence that changes positions/risk must be separately preregistered and pass the applicable downstream stages.
+
+## 26. Repository visibility and public-data boundary
+`fishke22/jerry-backtest-lab` was changed from PRIVATE to PUBLIC on 2026-08-31 after a pre-publication current-tree and Git-history scan found no tracked credentials/private keys/common token patterns and no 225Labo raw XLS/XLSX/ZIP files. Only non-reconstructive daily derived RV/RSV panels, hashes, manifests, code and research results are public. Personally licensed 225Labo raw minute files remain local-only under `D:\QROS\data\personal_licensed\225labo\...`.
