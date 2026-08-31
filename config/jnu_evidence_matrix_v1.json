@@ -1,5 +1,5 @@
 {
-  "version": "1.8",
+  "version": "1.9",
   "updated_at": "2026-08-31",
   "scoring": {
     "evidence_grade": {
@@ -196,6 +196,16 @@
       "status": "REJECT_TRUE_OSE_CURRENT_SPEC_STAGE_B_PROHIBITED",
       "admitted_role": "None",
       "next_evidence_needed": "None within this family. Reopen only with substantively independent literature/evidence, not by salvaging H2 or flipping H1."
+    },
+    {
+      "module": "OVERNIGHT_OVERREACTION",
+      "evidence_grade": "A",
+      "data_grade": "A",
+      "external_evidence": "Miwa 2019 directly studies OSE Nikkei 225/TOPIX futures and reports a negative association between overnight return and subsequent morning intraday return.",
+      "internal_result": "Independent post-2015 true-OSE Mini holdout on 1,857 days is directionally consistent (mean payoff >0, accuracy 54.51%, regression slope negative) but fails the preregistered confidence gate: bootstrap P(mean>0)=0.9208 < 0.95.",
+      "status": "REJECT_TRUE_OSE_CURRENT_SPEC_STAGE_B_PROHIBITED",
+      "admitted_role": "None",
+      "next_evidence_needed": "None within current family. Reopen only with substantively new independent evidence."
     }
   ],
   "selection_rule": "Prefer high evidence + executable data + non-duplicative role. Proxy consistency can strengthen evidence but cannot satisfy a true-target promotion gate.",
