@@ -8,45 +8,25 @@
   "force_refresh": false,
   "oos_start_days": 252,
   "recent_days": 126,
-  "bootstrap": {
-    "block_days": 5,
-    "samples": 2000,
-    "seed": 42
-  },
+  "bootstrap": {"block_days": 5, "samples": 2000, "seed": 42},
   "news": {
     "half_life_days": 2,
     "holm_alpha": 0.1,
     "min_bootstrap_qlike_improvement_probability": 0.95,
     "categories": {
-      "JAPAN_MACRO_JA": {
-        "query": "(\"Bank of Japan\" OR \"Japan inflation\" OR \"Japanese wages\" OR \"Japan monetary policy\") sourcelang:japanese",
-        "semantic_group": "JAPAN_MACRO",
-        "source_language": "japanese"
-      },
-      "JAPAN_MACRO_EN": {
-        "query": "(\"Bank of Japan\" OR \"Japan inflation\" OR \"Japanese wages\" OR \"Japan monetary policy\") sourcelang:english",
-        "semantic_group": "JAPAN_MACRO",
-        "source_language": "english"
-      },
-      "JAPAN_EQUITY_JA": {
-        "query": "(\"Nikkei 225\" OR \"Japanese stocks\" OR \"Tokyo stock market\") sourcelang:japanese",
-        "semantic_group": "JAPAN_EQUITY",
-        "source_language": "japanese"
-      },
-      "JAPAN_EQUITY_EN": {
-        "query": "(\"Nikkei 225\" OR \"Japanese stocks\" OR \"Tokyo stock market\") sourcelang:english",
-        "semantic_group": "JAPAN_EQUITY",
-        "source_language": "english"
-      }
+      "JAPAN_MACRO_JA": {"query": "(\"Bank of Japan\" OR \"Japan inflation\" OR \"Japanese wages\" OR \"Japan monetary policy\") sourcelang:japanese", "semantic_group": "JAPAN_MACRO", "source_language": "japanese"},
+      "JAPAN_MACRO_EN": {"query": "(\"Bank of Japan\" OR \"Japan inflation\" OR \"Japanese wages\" OR \"Japan monetary policy\") sourcelang:english", "semantic_group": "JAPAN_MACRO", "source_language": "english"},
+      "JAPAN_EQUITY_JA": {"query": "(\"Nikkei 225\" OR \"Japanese stocks\" OR \"Tokyo stock market\") sourcelang:japanese", "semantic_group": "JAPAN_EQUITY", "source_language": "japanese"},
+      "JAPAN_EQUITY_EN": {"query": "(\"Nikkei 225\" OR \"Japanese stocks\" OR \"Tokyo stock market\") sourcelang:english", "semantic_group": "JAPAN_EQUITY", "source_language": "english"}
     }
   },
   "execution": {
-    "acquisition": "quarter chunks; single paced connection; cumulative same-branch cache; bounded adaptive split",
+    "acquisition": "final bounded acquisition only: reuse exact cached quarter; uncached quarter decomposed directly to <=31-day windows; single paced connection; cumulative same-branch cache",
     "research_parameters_frozen": true,
     "data_integrity_revision": "G1_DI1",
-    "logical_attempt": 2,
-    "retrigger_nonce": 2,
-    "reason": "DI1 only: explicit missing-day NaN/common sample/coverage gate; no research parameter changes."
+    "logical_attempt": 3,
+    "retrigger_nonce": 3,
+    "reason": "Final acquisition-only attempt after logical attempt 2 hit workflow timeout before complete four-cell panel; no research/statistical parameter changes."
   },
   "data_quality_gate": {
     "min_common_trading_day_coverage": 0.95,
