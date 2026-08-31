@@ -4,7 +4,7 @@ Date: 2026-08-31
 
 ## Disposition
 
-**BLOCKED_ON_INTRADAY_OUTCOME_DATA**
+**DATA_UNBLOCKED_TRUE_OSE_EVENT_TIMESTAMP_BUILD**
 
 This is a source/data-feasibility disposition only. No outcome test was run, no parameter was fitted, and no directional claim is admitted.
 
@@ -36,3 +36,18 @@ The alternative of measuring BOJ release-time realized volatility directly in JN
 - Finta (2021) DOI: https://doi.org/10.1016/j.pacfin.2021.101562
 - Nikkei 225 VI profile: https://indexes.nikkei.co.jp/en/nkave/index/profile?idx=nk225vi
 - Nikkei index data provision: https://indexes.nikkei.co.jp/nkave/data/index.en.html
+
+
+## 2026-08-31 status update after true-OSE acquisition
+
+The original outcome-data blocker is resolved. The authorized local research corpus now contains:
+- OSE Nikkei 225 Mini minute history for every year 2006-2026.
+- Exact-product OSE Nikkei 225 Micro (JNU) minute history for 2023-2026.
+
+Therefore the next gate is no longer outcome-data availability. It is event-side provenance and preregistration:
+1. build an official BOJ decision-release timestamp corpus,
+2. freeze the event-window realized-volatility design before looking at any event response,
+3. run true-OSE Mini Stage A,
+4. only if Stage A passes, run exact JNU Micro Stage B without retuning.
+
+G1 remains an event/risk-state family only. Weather stratification, hike/cut splits, surprise classification, and directional trading are excluded from G1 to control multiplicity.
