@@ -1,5 +1,5 @@
 {
-  "version": "1.5",
+  "version": "1.6",
   "verified_at": "2026-08-31",
   "purpose": "Supplement the main JNU data-source registry with newly verified substitute sources discovered after the mobile/local-data blocker review.",
   "sources": [
@@ -169,6 +169,17 @@
       "jnu_role": "Archive discovery/provenance; prevents repeated source discovery",
       "status": "ACTIVE_METADATA_INDEX_NOT_MARKET_DATA",
       "formal_limitation": "Metadata alone is not price data and has no alpha/promotion power."
+    },
+    {
+      "id": "225LABO_TRUE_OSE_MINI_INTRADAY_LOCAL",
+      "provider": "225Labo",
+      "data_type": "True OSE Nikkei 225 Mini annual minute bars; source-provided 5min primary plus 1min QA",
+      "coverage": "2006 through 2026 annual files complete locally",
+      "cost_class": "FREE_MEMBER_DOWNLOAD_ALREADY_ACQUIRED",
+      "license_or_terms_status": "Personal-use/member data. Raw files remain local-only; third-party redistribution prohibited. Non-reconstructive derived research outputs/hashes may be persisted under the project's fail-closed boundary.",
+      "jnu_role": "Frozen HAR-RSV true-OSE Stage A; possible frozen true-OSE intraday path after eligible prior gates",
+      "status": "ACTIVE_TRUE_OSE_MINI_INTRADAY_LOCAL_RAW_CLOUD_DERIVED_ONLY",
+      "formal_limitation": "Raw minute bars must not be uploaded to GitHub/cloud."
     }
   ],
   "substitution_rule": "A substitute may unblock methodology/current-regime stress testing, but it inherits a proxy label. It cannot satisfy a frozen true-OSE/JNU promotion gate unless the preregistration explicitly permits that source class before outcome inspection."
