@@ -1,5 +1,5 @@
 {
-  "version": "1.7",
+  "version": "1.8",
   "verified_at": "2026-08-31",
   "purpose": "Supplement the main JNU data-source registry with newly verified substitute sources discovered after the mobile/local-data blocker review.",
   "sources": [
@@ -194,6 +194,17 @@
         "zip_sha256": "8f19fafb398ad048776340152bac5e9129f74c6646ea0ec76b1961e6a72ce521",
         "csv_sha256": "0686d640b1653bab8482905c419b7b799cce578825e9e866eeec7a19169c2f66"
       }
+    },
+    {
+      "id": "SGX_NIKKEI_INTRADAY_RIGHTS_AUDIT_20260831",
+      "provider": "SGX / public third-party source audit",
+      "data_type": "SGX Nikkei futures intraday source-rights feasibility",
+      "coverage": "Current 2026 policy plus legacy/public source search",
+      "cost_class": "NO_FREE_RIGHTS_CLEAN_MATCHED_EXPIRY_SOURCE_VERIFIED",
+      "license_or_terms_status": "SGX policy covers historical/non-display uses; public website/legacy accessibility does not itself authorize derivative quantitative processing or redistribution. Barchart long-history intraday is paid Premier.",
+      "jnu_role": "DPD data-rights gate",
+      "status": "BLOCKED",
+      "formal_limitation": "Do not bulk acquire SGX legacy ticks for JNU DPD until use/retention rights are verified."
     }
   ],
   "substitution_rule": "A substitute may unblock methodology/current-regime stress testing, but it inherits a proxy label. It cannot satisfy a frozen true-OSE/JNU promotion gate unless the preregistration explicitly permits that source class before outcome inspection."
