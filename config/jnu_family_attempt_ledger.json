@@ -92,9 +92,16 @@
     },
     {
       "id": "NEWS_STATE_LANGUAGE_SOURCE_G1",
-      "status": "RUNNING",
+      "status": "DATA_INTEGRITY_REVISION_READY_NOT_TRIGGERED",
       "multiplicity": "PREREGISTERED_4_CELL_HOLM_FAMILY",
-      "run_id": 33341760779
+      "run_id": 33341760779,
+      "data_integrity_revision": "G1_DI1",
+      "old_runs": [
+        33341758160,
+        33341760779
+      ],
+      "old_runs_eligibility": "DATA_AUDIT_ONLY",
+      "note": "No statistical result was inspected before DI1 missing-day/common-sample policy was frozen."
     }
   ],
   "conservative_rule": "Unknown legacy multiplicity is treated against promotion, not ignored."
