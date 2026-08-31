@@ -1,0 +1,50 @@
+{
+  "version": "1.0",
+  "candidate": "HAR_RSV_VOLATILITY_STATE",
+  "qa_type": "EXACT_PRODUCT_JNU_MICRO_1M_VS_5M_MEASUREMENT_QA",
+  "status": "MEASUREMENT_QA_CONSISTENT_5M_PRIMARY_RETAINED",
+  "role": "MEASUREMENT_QA_ONLY_NOT_MODEL_SELECTION_NOT_ALPHA",
+  "source": "225Labo exact-product OSE Nikkei 225 Micro (JNU), local raw only",
+  "raw_data_cloud_uploaded": false,
+  "primary_5m_panel_sha256": "adbd6307d8e2327d9c851f2d17f7d21957609b6f68bf323867a54e7b1b150bcd",
+  "years": [
+    {
+      "year": 2023,
+      "common_days": 115,
+      "rv_1m_vs_5m_corr": 0.9538403922741545,
+      "rv_1m_to_5m_ratio_median": 1.1398616048211656
+    },
+    {
+      "year": 2024,
+      "common_days": 256,
+      "rv_1m_vs_5m_corr": 0.9767438249089898,
+      "rv_1m_to_5m_ratio_median": 1.1144770560911819,
+      "one_min_out_of_session_rows": 30,
+      "five_min_out_of_session_rows": 6
+    },
+    {
+      "year": 2025,
+      "common_days": 258,
+      "rv_1m_vs_5m_corr": 0.9958273477650234,
+      "rv_1m_to_5m_ratio_median": 1.1328191162822
+    },
+    {
+      "year": 2026,
+      "common_days": 172,
+      "rv_1m_vs_5m_corr": 0.9430101510972334,
+      "rv_1m_to_5m_ratio_median": 1.0523569962052974
+    }
+  ],
+  "interpretation": [
+    "All annual 1m-vs-5m daily RV correlations exceed 0.94.",
+    "The 1m RV median is systematically above 5m RV by roughly 5%-14%, consistent with greater microstructure-noise sensitivity at finer sampling.",
+    "The frozen 5m primary measurement is retained; no estimator or sampling interval is changed after outcome inspection.",
+    "2024 out-of-session rows are deterministically excluded by the frozen historical OSE session calendar and do not create critical DQ issues."
+  ],
+  "promotion_effect": "NONE_BY_ITSELF; confirms measurement choice only",
+  "forbidden": [
+    "Switch primary model to 1m because of QA",
+    "Tune sampling interval using predictive outcomes",
+    "Count QA as an independent alpha test"
+  ]
+}
