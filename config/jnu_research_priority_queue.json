@@ -1,5 +1,5 @@
 {
-  "version": "2.5",
+  "version": "2.6",
   "updated_at": "2026-08-31",
   "policy": {
     "max_active_formal_families": 1,
@@ -19,21 +19,11 @@
       "Counting correlated features as independent votes"
     ]
   },
-  "active": {
-    "candidate": "BOJ_MPM_TRUE_OSE_EVENT_VOLATILITY_G1",
-    "status": "EVENT_TIMESTAMP_CORPUS_BUILD_PRE_PREREG_NO_OUTCOME_INSPECTION",
-    "rule": "Only official BOJ event timestamps may be assembled before preregistration. Do not inspect JNU/OSE event-window price outcomes until timestamp corpus and statistical design are frozen."
-  },
+  "active": null,
   "current_global_blocker": null,
   "queue": [
     {
       "rank": 1,
-      "candidate": "BOJ_MPM_EVENT_VOLATILITY",
-      "status": "DATA_UNBLOCKED_TRUE_OSE_EVENT_TIMESTAMP_BUILD",
-      "next_action": "Complete official BOJ exact release-time corpus before outcome inspection; then preregister a true-OSE Mini event-volatility Stage A and exact JNU Micro Stage B. Do not stratify by weather, hike/cut, or surprise in G1."
-    },
-    {
-      "rank": 2,
       "candidate": "HAR_RSV_TRUE_OSE_CONFIRMATION",
       "evidence": "Direct Japanese/Nikkei futures volatility literature + 2011-2018 proxy-method PASS + 2026 public-proxy holdout consistency",
       "target_role": "Risk state / sizing / stop normalization",
@@ -52,6 +42,12 @@
           "2026-07-30"
         ]
       }
+    },
+    {
+      "rank": 2,
+      "candidate": "BOJ_MPM_EVENT_VOLATILITY",
+      "status": "STAGE3_PASS_EVENT_RISK_INFORMATION_STATE_CANDIDATE",
+      "next_action": "Stage-3 research closed. Only open a Stage-4+ downstream risk-rule translation if the framework will actually change entry/size/stop/confidence around BOJ MPM events."
     },
     {
       "rank": 3,
@@ -162,6 +158,15 @@
       "H3_bootstrap_prob_positive": 0.354,
       "holm_pass": false,
       "reopen_rule": "No window/predictor/cell/indicator rescue."
+    },
+    {
+      "candidate": "BOJ_MPM_TRUE_OSE_EVENT_VOLATILITY_G1",
+      "status": "TRUE_JNU_STAGE3_PASS_EVENT_RISK_INFORMATION_STATE_CANDIDATE",
+      "stage_a_run_id": 33396821958,
+      "stage_b_run_id": 33397255940,
+      "stage_a_bootstrap_prob_mean_positive": 0.981,
+      "stage_b_bootstrap_prob_mean_positive": 1,
+      "role": "EVENT_RISK_STATE_ONLY_NOT_DIRECTIONAL_ALPHA"
     }
   ],
   "screened_not_separate_families": [
