@@ -1,8 +1,81 @@
 {
-  "version": "1.0",
+  "version": "1.1",
   "timezone": "Asia/Tokyo",
   "purpose": "Authoritative historical session-version map for JNU/Nikkei research. Backtests must select the schedule valid on each observation date.",
   "ose_nikkei_index_futures": [
+    {
+      "valid_from": "2006-07-18",
+      "valid_to": "2007-09-14",
+      "day_session": [
+        [
+          "09:00",
+          "11:00"
+        ],
+        [
+          "12:30",
+          "15:10"
+        ]
+      ],
+      "night_session": null,
+      "evidence": "JPX Working Paper No.14 Table 1; Nikkei 225 mini launched 2006-07-18"
+    },
+    {
+      "valid_from": "2007-09-18",
+      "valid_to": "2008-10-10",
+      "day_session": [
+        [
+          "09:00",
+          "11:00"
+        ],
+        [
+          "12:30",
+          "15:10"
+        ]
+      ],
+      "night_session": [
+        "16:30",
+        "19:00"
+      ],
+      "evidence": "JPX Working Paper No.14 Table 1; OSE evening session launch"
+    },
+    {
+      "valid_from": "2008-10-14",
+      "valid_to": "2010-07-16",
+      "day_session": [
+        [
+          "09:00",
+          "11:00"
+        ],
+        [
+          "12:30",
+          "15:10"
+        ]
+      ],
+      "night_session": [
+        "16:30",
+        "20:00"
+      ],
+      "evidence": "JPX Working Paper No.14 Table 1"
+    },
+    {
+      "valid_from": "2010-07-20",
+      "valid_to": "2011-02-11",
+      "day_session": [
+        [
+          "09:00",
+          "11:00"
+        ],
+        [
+          "12:30",
+          "15:10"
+        ]
+      ],
+      "night_session": [
+        "16:30",
+        "23:30"
+      ],
+      "evidence": "JPX Working Paper No.14 Table 1"
+    },
     {
       "valid_from": "2011-02-14",
       "valid_to": "2011-07-15",
@@ -136,6 +209,7 @@
     "Never apply the latest 2026 session hours to historical observations.",
     "A source-provided date label must be reconciled with the venue's trading-day convention before aggregation.",
     "Session-version correction is a data-integrity change, not a tunable model parameter.",
-    "Any historical high-frequency result produced with the wrong session version must be retained for audit and rerun as a labeled DI correction."
+    "Any historical high-frequency result produced with the wrong session version must be retained for audit and rerun as a labeled DI correction.",
+    "Pre-2011 OSE derivatives had a midday recess; do not aggregate 11:00-12:30 JST as an active futures session."
   ]
 }
