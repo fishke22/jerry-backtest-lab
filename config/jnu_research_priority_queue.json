@@ -1,5 +1,5 @@
 {
-  "version": "1.5",
+  "version": "1.6",
   "updated_at": "2026-08-31",
   "policy": {
     "max_active_formal_families": 1,
@@ -17,7 +17,7 @@
   "queue": [
     {"rank":2,"candidate":"HAR_RSV_TRUE_OSE_CONFIRMATION","evidence":"Direct Japanese/Nikkei futures volatility literature + 2011-2018 proxy-method PASS + 2026 public-proxy holdout consistency","target_role":"Risk state / sizing / stop normalization","status":"BLOCKED_ON_PERSONALLY_LICENSED_LOCAL_OSE_FILE","data_plan":"Nikkei mini 2006+ long-history confirmation, then Micro 2023+ exact-product consistency","next_action":"Resume after exact 225Labo schema/sample is locally available; raw stays local."},
     {"rank":3,"candidate":"CBOE_LTV_LEFT_TAIL_RISK","status":"BLOCKED_NO_VERIFIED_FREE_OFFICIAL_HISTORY","next_action":"Do not substitute VIX/SKEW."},
-    {"rank":4,"candidate":"TRUE_VENUE_DPD_OSE_SGX_CME","status":"BLOCKED_ON_APPROVED_OSE_AND_SGX_INTRADAY_DATA","next_action":"No formal promotion until venue-specific data exists."},
+    {"rank":4,"candidate":"TRUE_VENUE_DPD_OSE_SGX_CME","status":"PARTIALLY_UNBLOCKED_CME_SHORT_SAMPLE_OSE_SGX_STILL_BLOCKED","new_source":"axb0306/cme-futures-ohlc public NKD tick/1m/5m sample, visible coverage ~2026-03-08 to 2026-04-15, TopstepX/ProjectX-derived","next_action":"Treat CME NKD as short-sample venue feasibility only. Continue searching for approved free matched-expiry OSE and SGX intraday history; no formal promotion until all required venues and adequate coverage exist.","source_note":"research_notes/jnu_new_source_discovery_cme_nkd_sgx_20260831.md"},
     {"rank":5,"candidate":"INTRADAY_PATH_US_TO_JNU_G1","evidence":"Direct Iwanaga 2026 evidence, but both 2011-2018 proxy G0 and 2026 Japan225/SPY proxy G2 fail OOS proxy confirmation","status":"DESIGN_FROZEN_AWAITING_TRUE_JNU_INTRADAY_DATA","preregistration":"config/jnu_intraday_path_us_g1_prereg.json","next_action":"True OSE/JNU minute data only. Do not open further proxy-rescue variants or change FIRST/LAST 30m/predictor after the two negative proxy screens."},
     {"rank":6,"candidate":"OSE_ORDER_IMBALANCE","status":"BLOCKED_NO_FREE_DIRECTIONAL_ORDER_FLOW_DATA","next_action":"Do not infer from OHLC/volume."},
     {"rank":7,"candidate":"BOJ_MPM_EVENT_VOLATILITY","status":"BLOCKED_ON_ADEQUATE_FREE_INTRADAY_VOLATILITY_HISTORY","next_action":"Do not launch weak small-event daily substitute."}
