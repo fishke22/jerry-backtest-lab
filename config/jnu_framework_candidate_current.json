@@ -1,7 +1,7 @@
 {
-  "version": "0.5",
+  "version": "0.6",
   "updated_at": "2026-08-31",
-  "status": "CANDIDATE_NOT_VALIDATED",
+  "status": "CANDIDATE_NOT_VALIDATED_DATA_BLOCKED",
   "validated_jnu_modules": 0,
   "objective": "Evidence-backed JNU decision architecture with strict data integrity, OOS validation and no post-hoc rescue.",
   "layers": [
@@ -36,7 +36,7 @@
       "order": 4,
       "id": "VOLATILITY_RISK_STATE",
       "role": "RISK_SIZING",
-      "status": "CONFIRMATION_CANDIDATE",
+      "status": "CONFIRMATION_CANDIDATE_DATA_BLOCKED",
       "admitted_candidates": [
         {
           "id": "HAR_RSV_DI1",
@@ -46,84 +46,42 @@
           "frozen_spec": "5-minute RV/RSV; HAR 1/5/22; existing expanding-OOS/block-bootstrap gate",
           "true_jnu_data_policy": "225Labo raw local-only under personal-use terms; cloud receives non-reconstructive derived panel/results only."
         }
-      ],
-      "rejected_or_quarantined": ["HAR_LEVERAGE proxy G1", "daily volatility_regime as validated alpha", "generic VIX direct directional vote"]
+      ]
     },
     {
       "order": 5,
       "id": "CONDITIONAL_MACRO",
       "role": "STATE_CANDIDATE",
       "status": "NO_ADMITTED_CURRENT_SPEC",
-      "candidates": [],
-      "gate": "Must improve frozen OOS MSE with bootstrap P>=0.95 and sign accuracy not worse.",
-      "rule": "No universal one-day USDJPY state is admitted. Any future FX design must be a newly preregistered family.",
-      "results": [
-        {
-          "id": "USDJPY_1D_PHASE4B",
-          "status": "REJECT_CURRENT_SPEC",
-          "oos_days": 642,
-          "mse_improvement": 0.0000028978076239843953,
-          "bootstrap_prob_positive": 0.7445,
-          "baseline_sign_accuracy": 0.5467289719626168,
-          "with_usdjpy_sign_accuracy": 0.5404984423676013,
-          "high_vix_bootstrap_prob_positive": 0.885,
-          "low_vix_mse_improvement": -0.000003183808249250422,
-          "guardrail": "Do not rescue post hoc by selecting the high-VIX subset."
-        }
-      ]
+      "results": [{"id":"USDJPY_1D_PHASE4B","status":"REJECT_CURRENT_SPEC","guardrail":"Do not rescue post hoc by selecting the high-VIX subset."}]
     },
     {
       "order": 6,
       "id": "NEWS_EVENT_STATE",
       "role": "STATE_CANDIDATE",
       "status": "NO_ADMITTED_CURRENT_SPEC",
-      "rule": "News begins as volatility/event/confidence state; directional use requires a separate preregistered test.",
       "results": [
-        {
-          "id": "PHASE4B_GDELT_BROAD_NEWS",
-          "status": "DATA_INCONCLUSIVE",
-          "reason": "Full preregistered panel could not be acquired under bounded conservative acquisition protocols.",
-          "statistical_result_available": false,
-          "guardrail": "Do not interpret as model FAIL; do not lower gates or drop categories post hoc."
-        },
-        {
-          "id": "NEWS_STATE_LANGUAGE_SOURCE_G1_DI1",
-          "status": "DATA_INCONCLUSIVE",
-          "terminal_run_id": 33348607397,
-          "logical_attempts_used": 3,
-          "missing_cache_count": 311,
-          "statistical_result_available": false,
-          "reason": "Final preregistered acquisition budget exhausted before a complete four-cell panel was available.",
-          "guardrail": "No fourth acquisition attempt and no significance interpretation."
-        }
-      ],
-      "next_generation_status": "CLOSED_UNLESS_SUBSTANTIVELY_NEW_RELIABLE_SOURCE_FAMILY"
+        {"id":"PHASE4B_GDELT_BROAD_NEWS","status":"DATA_INCONCLUSIVE","statistical_result_available":false},
+        {"id":"NEWS_STATE_LANGUAGE_SOURCE_G1_DI1","status":"DATA_INCONCLUSIVE","terminal_run_id":33348607397,"logical_attempts_used":3,"missing_cache_count":311,"statistical_result_available":false,"guardrail":"No fourth acquisition attempt and no significance interpretation."}
+      ]
     },
     {
       "order": 7,
       "id": "INTRADAY_PATH",
       "role": "DIRECTION_CANDIDATE",
-      "status": "NO_ADMITTED_PROXY",
-      "results": [
-        {
-          "id": "PRIOR_US_FIRST_LAST_30M_G0",
-          "status": "PROXY_SCREEN_NEGATIVE_TRUE_JNU_UNRESOLVED",
-          "first30": "Expected negative beta observed but OOS MSE and hit rate worsened; bootstrap P=0.1385.",
-          "last30": "Expected positive beta not stable; bootstrap P=0.6175.",
-          "guardrail": "Do not tune 30-minute windows, switch SPX to NQ, or add indicators to rescue this sample."
-        }
-      ],
+      "status": "NO_ADMITTED_PROXY_TRUE_OSE_BLOCKED",
       "frozen_true_ose_family": "config/jnu_intraday_path_us_g1_prereg.json",
-      "blocked_on": "Approved true OSE/JNU minute data."
+      "blocked_on": "Approved true OSE/JNU minute data.",
+      "guardrail": "Do not tune FIRST_30M/LAST_30M, switch SPX to NQ, or use proxy results for formal promotion."
     },
     {
       "order": 8,
       "id": "EVENT_VOLATILITY_STATE",
       "role": "RISK_EVENT_CANDIDATE",
-      "status": "READY_FOR_PREREGISTRATION_REVIEW",
+      "status": "DATA_BLOCKED",
       "candidate": "BOJ_MPM_EVENT_VOLATILITY",
-      "evidence": "Japanese monetary-policy release studies report intraday Nikkei 225 VI / VI futures responses.",
-      "data_feasibility": "Official BOJ MPM dates and release archive are publicly available; market-series feasibility still must be frozen before testing.",
+      "evidence": "Direct Japanese evidence exists for MPM-release effects on Nikkei 225 VI and VI futures; BOJ also provides official release dates/times.",
+      "data_feasibility": "Public Nikkei Indexes access provides only 3 years of daily and 10 years of monthly index data, insufficient for a robust replication of the cited intraday event effect. No weak small-event daily substitute will be opened.",
       "generation1_role": "Event volatility/risk state only; no directional claim."
     },
     {
@@ -133,7 +91,7 @@
       "status": "KEEP_NON_ALPHA",
       "candidates": ["VWAP", "POC", "VAH", "VAL", "RVOL", "basis", "roll spread", "liquidity"],
       "order_imbalance_status": "LITERATURE_ONLY_DATA_BLOCKED",
-      "rule": "Do not infer order imbalance from OHLC/VWAP/volume. Use microstructure features for execution/invalidation unless separately validated as directional."
+      "rule": "Do not infer order imbalance from OHLC/VWAP/volume."
     },
     {
       "order": 10,
@@ -144,24 +102,15 @@
       "rule": "Only validated or explicitly conditional modules may influence probabilities. Rejected or data-inconclusive families cannot re-enter without a new preregistration."
     }
   ],
-  "rejected_families": [
-    "fixed cross-market majority vote",
-    "cross_market_confirmation overfit family",
-    "trend_momentum previous family",
-    "breakout previous family",
-    "drawdown_repair previous family",
-    "relative_strength_ndx previous family",
-    "SMA baseline as alpha",
-    "Intraday Path US proxy G0"
-  ],
   "active_research": {
     "only_active_formal_screen": null,
     "last_resolved_family": "NEWS_STATE_LANGUAGE_SOURCE_G1_DI1",
     "last_terminal_run_id": 33348607397,
     "last_disposition": "DATA_INCONCLUSIVE",
-    "next_feasible_review": "BOJ_MPM_EVENT_VOLATILITY",
-    "rule": "At most one formal family may be active. Literature/source feasibility review may precede preregistration and does not count as an outcome test."
+    "current_global_blocker": "TRUE_OSE_INTRADAY_DATA_ACCESS",
+    "remote_desktop_status": "NO_DEVICE_AVAILABLE_AT_LAST_CHECK",
+    "rule": "Do not start a weaker proxy family merely to keep testing while the evidence-matched data are unavailable."
   },
   "decision_engine_current_output": "NO_VALIDATED_DIRECTIONAL_EDGE",
-  "next_gate": "Complete BOJ MPM event-volatility evidence/data feasibility review and freeze a preregistration before any outcome inspection, unless true OSE minute data becomes available first for the higher-ranked frozen families."
+  "next_gate": "Restore authorized local-device access to the personally licensed OSE data or verify another approved true-OSE intraday source; then execute the already-frozen HAR-RSV true-OSE confirmation first, followed by the frozen US-to-JNU intraday-path family if data requirements are met."
 }
