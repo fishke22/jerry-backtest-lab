@@ -1,0 +1,282 @@
+{
+  "request_id": "jnu_v22_phase4b_v1",
+  "status": "complete",
+  "usdjpy": {
+    "oos_days": 642,
+    "baseline_mse": 0.0003107946271604774,
+    "with_usdjpy_mse": 0.000307896819536493,
+    "mse_improvement": 2.8978076239843826e-06,
+    "bootstrap": {
+      "mean": 2.8978076239843826e-06,
+      "ci95": [
+        -4.795688318917216e-06,
+        1.129199846717637e-05
+      ],
+      "prob_positive": 0.7445
+    },
+    "baseline_sign_accuracy": 0.5467289719626168,
+    "with_usdjpy_sign_accuracy": 0.5404984423676013,
+    "regimes": {
+      "high_vix": {
+        "n": 398,
+        "mse_improvement": 6.626235445766525e-06,
+        "bootstrap": {
+          "mean": 6.626235445766525e-06,
+          "ci95": [
+            -3.601318992517022e-06,
+            2.0598155809742263e-05
+          ],
+          "prob_positive": 0.885
+        }
+      },
+      "low_vix": {
+        "n": 244,
+        "mse_improvement": -3.1838082492504216e-06,
+        "bootstrap": {
+          "mean": -3.1838082492504216e-06,
+          "ci95": [
+            -8.788829381941199e-06,
+            2.9327936874646075e-06
+          ],
+          "prob_positive": 0.15
+        }
+      }
+    },
+    "pass_incremental_state": false,
+    "trading_status": "NOT_TESTED"
+  },
+  "news": {
+    "source": "GDELT DOC 2.0 TimelineTone/TimelineVol",
+    "categories": {
+      "JAPAN_BOJ_MACRO": {
+        "query": "(\"Bank of Japan\" OR BOJ OR \"Japan inflation\" OR \"Japanese inflation\")",
+        "oos_days": 642,
+        "qlike_improvement": 0.024159514387417556,
+        "mse_improvement": 3.0726327979237254e-09,
+        "qlike_bootstrap": {
+          "mean": 0.024159514387417556,
+          "ci95": [
+            -0.5734016224911804,
+            0.8391957730374862
+          ],
+          "prob_positive": 0.4765
+        },
+        "mse_bootstrap": {
+          "mean": 3.0726327979237254e-09,
+          "ci95": [
+            -8.726980526431329e-10,
+            8.750145348028655e-09
+          ],
+          "prob_positive": 0.8915
+        },
+        "recent_qlike_improvement": -0.24403640022597634,
+        "recent_mse_improvement": 6.7393571117150435e-09,
+        "checks": {
+          "qlike_improves": true,
+          "mse_improves": true,
+          "bootstrap_qlike": false,
+          "recent_qlike": false,
+          "recent_mse": true,
+          "holm": false
+        },
+        "status": "FAIL_NEWS_STATE"
+      },
+      "US_FED_MACRO": {
+        "query": "(\"Federal Reserve\" OR FOMC OR \"US inflation\" OR \"US payrolls\")",
+        "oos_days": 642,
+        "qlike_improvement": 0.0054177481719388,
+        "mse_improvement": 1.544942224925228e-08,
+        "qlike_bootstrap": {
+          "mean": 0.0054177481719388,
+          "ci95": [
+            -2.571432770005787,
+            2.0018934467882965
+          ],
+          "prob_positive": 0.5295
+        },
+        "mse_bootstrap": {
+          "mean": 1.544942224925228e-08,
+          "ci95": [
+            1.2326421845090256e-09,
+            3.61976177780891e-08
+          ],
+          "prob_positive": 0.99
+        },
+        "recent_qlike_improvement": -4.054865974358182,
+        "recent_mse_improvement": 1.880919286959262e-08,
+        "checks": {
+          "qlike_improves": true,
+          "mse_improves": true,
+          "bootstrap_qlike": false,
+          "recent_qlike": false,
+          "recent_mse": true,
+          "holm": false
+        },
+        "status": "FAIL_NEWS_STATE"
+      },
+      "JPY_FX": {
+        "query": "(\"Japanese yen\" OR USDJPY OR \"yen depreciation\" OR \"yen appreciation\")",
+        "oos_days": 642,
+        "qlike_improvement": 0.5895835313986733,
+        "mse_improvement": 1.0479216252526833e-08,
+        "qlike_bootstrap": {
+          "mean": 0.5895835313986733,
+          "ci95": [
+            -0.027420990640662477,
+            1.3735045963076826
+          ],
+          "prob_positive": 0.968
+        },
+        "mse_bootstrap": {
+          "mean": 1.0479216252526833e-08,
+          "ci95": [
+            3.1205172595354513e-09,
+            2.1649598403146704e-08
+          ],
+          "prob_positive": 1.0
+        },
+        "recent_qlike_improvement": 1.1039425068934718,
+        "recent_mse_improvement": 2.0815709415561212e-08,
+        "checks": {
+          "qlike_improves": true,
+          "mse_improves": true,
+          "bootstrap_qlike": true,
+          "recent_qlike": true,
+          "recent_mse": true,
+          "holm": false
+        },
+        "status": "FAIL_NEWS_STATE"
+      },
+      "US_TECH_SEMICONDUCTOR": {
+        "query": "(Nasdaq OR semiconductor OR Nvidia OR \"chip stocks\")",
+        "oos_days": 642,
+        "qlike_improvement": 0.15210792364436815,
+        "mse_improvement": 3.696907120467882e-08,
+        "qlike_bootstrap": {
+          "mean": 0.15210792364436815,
+          "ci95": [
+            -0.5047331894223226,
+            0.7742905996236042
+          ],
+          "prob_positive": 0.7205
+        },
+        "mse_bootstrap": {
+          "mean": 3.696907120467882e-08,
+          "ci95": [
+            3.0146183601271564e-10,
+            9.48357093644814e-08
+          ],
+          "prob_positive": 0.981
+        },
+        "recent_qlike_improvement": -0.3275991100209213,
+        "recent_mse_improvement": 4.104301222988403e-09,
+        "checks": {
+          "qlike_improves": true,
+          "mse_improves": true,
+          "bootstrap_qlike": false,
+          "recent_qlike": false,
+          "recent_mse": true,
+          "holm": false
+        },
+        "status": "FAIL_NEWS_STATE"
+      },
+      "JAPAN_EQUITY_NIKKEI": {
+        "query": "(\"Nikkei 225\" OR \"Japanese stocks\" OR \"Tokyo stock market\")",
+        "oos_days": 642,
+        "qlike_improvement": -3.0910710124278813,
+        "mse_improvement": 5.811553683358847e-09,
+        "qlike_bootstrap": {
+          "mean": -3.0910710124278813,
+          "ci95": [
+            -10.199180406877996,
+            0.604803105103451
+          ],
+          "prob_positive": 0.285
+        },
+        "mse_bootstrap": {
+          "mean": 5.811553683358847e-09,
+          "ci95": [
+            1.6305759011329834e-09,
+            1.1536443274849147e-08
+          ],
+          "prob_positive": 0.998
+        },
+        "recent_qlike_improvement": 0.4241958489832734,
+        "recent_mse_improvement": 1.1744436574862404e-08,
+        "checks": {
+          "qlike_improves": false,
+          "mse_improves": true,
+          "bootstrap_qlike": false,
+          "recent_qlike": true,
+          "recent_mse": true,
+          "holm": false
+        },
+        "status": "FAIL_NEWS_STATE"
+      },
+      "GEOPOLITICAL_RISK": {
+        "query": "(\"geopolitical risk\" OR sanctions OR tariffs OR \"trade war\")",
+        "oos_days": 642,
+        "qlike_improvement": -0.18186958105130552,
+        "mse_improvement": 6.806437502506257e-09,
+        "qlike_bootstrap": {
+          "mean": -0.18186958105130552,
+          "ci95": [
+            -0.7479709926093957,
+            0.45017591725024314
+          ],
+          "prob_positive": 0.2555
+        },
+        "mse_bootstrap": {
+          "mean": 6.806437502506257e-09,
+          "ci95": [
+            3.0617945379923756e-10,
+            1.8859445668210445e-08
+          ],
+          "prob_positive": 0.989
+        },
+        "recent_qlike_improvement": 0.078272820644184,
+        "recent_mse_improvement": 5.038859838003617e-09,
+        "checks": {
+          "qlike_improves": false,
+          "mse_improves": true,
+          "bootstrap_qlike": false,
+          "recent_qlike": true,
+          "recent_mse": true,
+          "holm": false
+        },
+        "status": "FAIL_NEWS_STATE"
+      }
+    },
+    "multiple_testing": {
+      "alpha": 0.1,
+      "raw_tail_p": {
+        "JAPAN_BOJ_MACRO": 0.5235000000000001,
+        "US_FED_MACRO": 0.47050000000000003,
+        "JPY_FX": 0.03200000000000003,
+        "US_TECH_SEMICONDUCTOR": 0.27949999999999997,
+        "JAPAN_EQUITY_NIKKEI": 0.7150000000000001,
+        "GEOPOLITICAL_RISK": 0.7444999999999999
+      },
+      "adjusted_p": {
+        "JPY_FX": 0.19200000000000017,
+        "US_TECH_SEMICONDUCTOR": 1.0,
+        "US_FED_MACRO": 1.0,
+        "JAPAN_BOJ_MACRO": 1.0,
+        "JAPAN_EQUITY_NIKKEI": 1.0,
+        "GEOPOLITICAL_RISK": 1.0
+      },
+      "reject": {
+        "JAPAN_BOJ_MACRO": false,
+        "US_FED_MACRO": false,
+        "JPY_FX": false,
+        "US_TECH_SEMICONDUCTOR": false,
+        "JAPAN_EQUITY_NIKKEI": false,
+        "GEOPOLITICAL_RISK": false
+      }
+    },
+    "survivors": [],
+    "directional_trading_status": "NOT_TESTED"
+  },
+  "promotion_status": "INFORMATION_STATE_SCREEN_ONLY",
+  "generated_at_utc": "2026-08-31T00:08:38.003867+00:00"
+}
