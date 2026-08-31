@@ -45,10 +45,21 @@ jobs:
           set +e
           log="workflow_diagnostics/jnu_news_language_source_g1_${{ github.run_id }}.log"
           diag="workflow_diagnostics/jnu_news_language_source_g1_${{ github.run_id }}.json"
-          python scripts/process_jnu_news_language_source_g1.py 2>&1 | tee "$log"
+          logical_attempt=$(python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path('news_language_g1_requests/jnu_news_language_source_g1_v1.json')
+          print(json.loads(p.read_text())['execution'].get('logical_attempt', 2))
+          PY
+          )
+          if [ "$logical_attempt" -ge 3 ]; then
+            python scripts/process_jnu_news_language_source_g1_final.py 2>&1 | tee "$log"
+          else
+            python scripts/process_jnu_news_language_source_g1.py 2>&1 | tee "$log"
+          fi
           code=${PIPESTATUS[0]}
           echo "exit_code=$code" >> "$GITHUB_OUTPUT"
-          printf '{"workflow":"jnu-news-language-source-g1","exit_code":%s,"run_id":"%s","sha":"%s"}\n' "$code" "${{ github.run_id }}" "${{ github.sha }}" > "$diag"
+          printf '{"workflow":"jnu-news-language-source-g1","exit_code":%s,"run_id":"%s","sha":"%s","logical_attempt":%s}\n' "$code" "${{ github.run_id }}" "${{ github.sha }}" "$logical_attempt" > "$diag"
           exit 0
       - name: Save cumulative G1 news cache
         if: always()
