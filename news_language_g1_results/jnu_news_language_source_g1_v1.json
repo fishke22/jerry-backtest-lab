@@ -1,0 +1,466 @@
+{
+  "request_id": "jnu_news_language_source_g1_v1",
+  "candidate_id": "NEWS_STATE_LANGUAGE_SOURCE_G1",
+  "status": "complete",
+  "promotion_status": "DATA_INCONCLUSIVE",
+  "disposition": "DATA_INCONCLUSIVE",
+  "reason": "FINAL_ACQUISITION_BUDGET_EXHAUSTED_INCOMPLETE_FOUR_CELL_PANEL",
+  "logical_attempts_used": 3,
+  "data_integrity_revision": "G1_DI1",
+  "statistical_evaluation_performed": false,
+  "directional_trading_status": "PROHIBITED_G1",
+  "missing_cache_count": 311,
+  "missing_cache_examples": [
+    {
+      "cell": "JAPAN_MACRO_JA",
+      "mode": "TimelineTone",
+      "quarter": 4,
+      "chunk": 3,
+      "start": "20231201235958",
+      "end": "20240101000000",
+      "cache": "g1_JAPAN_MACRO_JA_timelinetone_q4_20230930_20240101_D3_20231201_20240101.json"
+    },
+    {
+      "cell": "JAPAN_MACRO_JA",
+      "mode": "TimelineTone",
+      "quarter": 5,
+      "chunk": 1,
+      "start": "20231231235959",
+      "end": "20240131235959",
+      "cache": "g1_JAPAN_MACRO_JA_timelinetone_q5_20231231_20240401_D1_20231231_20240131.json"
+    },
+    {
+      "cell": "JAPAN_MACRO_JA",
+      "mode": "TimelineTone",
+      "quarter": 5,
+      "chunk": 2,
+      "start": "20240131235958",
+      "end": "20240302235959",
+      "cache": "g1_JAPAN_MACRO_JA_timelinetone_q5_20231231_20240401_D2_20240131_20240302.json"
+    },
+    {
+      "cell": "JAPAN_MACRO_JA",
+      "mode": "TimelineTone",
+      "quarter": 5,
+      "chunk": 3,
+      "start": "20240302235958",
+      "end": "20240401000000",
+      "cache": "g1_JAPAN_MACRO_JA_timelinetone_q5_20231231_20240401_D3_20240302_20240401.json"
+    },
+    {
+      "cell": "JAPAN_MACRO_JA",
+      "mode": "TimelineTone",
+      "quarter": 6,
+      "chunk": 1,
+      "start": "20240331235959",
+      "end": "20240501235959",
+      "cache": "g1_JAPAN_MACRO_JA_timelinetone_q6_20240331_20240701_D1_20240331_20240501.json"
+    },
+    {
+      "cell": "JAPAN_MACRO_JA",
+      "mode": "TimelineTone",
+      "quarter": 6,
+      "chunk": 2,
+      "start": "20240501235958",
+      "end": "20240601235959",
+      "cache": "g1_JAPAN_MACRO_JA_timelinetone_q6_20240331_20240701_D2_20240501_20240601.json"
+    },
+    {
+      "cell": "JAPAN_MACRO_JA",
+      "mode": "TimelineTone",
+      "quarter": 6,
+      "chunk": 3,
+      "start": "20240601235958",
+      "end": "20240701000000",
+      "cache": "g1_JAPAN_MACRO_JA_timelinetone_q6_20240331_20240701_D3_20240601_20240701.json"
+    },
+    {
+      "cell": "JAPAN_MACRO_JA",
+      "mode": "TimelineTone",
+      "quarter": 7,
+      "chunk": 1,
+      "start": "20240630235959",
+      "end": "20240731235959",
+      "cache": "g1_JAPAN_MACRO_JA_timelinetone_q7_20240630_20241001_D1_20240630_20240731.json"
+    },
+    {
+      "cell": "JAPAN_MACRO_JA",
+      "mode": "TimelineTone",
+      "quarter": 7,
+      "chunk": 2,
+      "start": "20240731235958",
+      "end": "20240831235959",
+      "cache": "g1_JAPAN_MACRO_JA_timelinetone_q7_20240630_20241001_D2_20240731_20240831.json"
+    },
+    {
+      "cell": "JAPAN_MACRO_JA",
+      "mode": "TimelineTone",
+      "quarter": 7,
+      "chunk": 3,
+      "start": "20240831235958",
+      "end": "20241001000000",
+      "cache": "g1_JAPAN_MACRO_JA_timelinetone_q7_20240630_20241001_D3_20240831_20241001.json"
+    },
+    {
+      "cell": "JAPAN_MACRO_JA",
+      "mode": "TimelineTone",
+      "quarter": 8,
+      "chunk": 1,
+      "start": "20240930235959",
+      "end": "20241031235959",
+      "cache": "g1_JAPAN_MACRO_JA_timelinetone_q8_20240930_20250101_D1_20240930_20241031.json"
+    },
+    {
+      "cell": "JAPAN_MACRO_JA",
+      "mode": "TimelineTone",
+      "quarter": 8,
+      "chunk": 2,
+      "start": "20241031235958",
+      "end": "20241201235959",
+      "cache": "g1_JAPAN_MACRO_JA_timelinetone_q8_20240930_20250101_D2_20241031_20241201.json"
+    },
+    {
+      "cell": "JAPAN_MACRO_JA",
+      "mode": "TimelineTone",
+      "quarter": 8,
+      "chunk": 3,
+      "start": "20241201235958",
+      "end": "20250101000000",
+      "cache": "g1_JAPAN_MACRO_JA_timelinetone_q8_20240930_20250101_D3_20241201_20250101.json"
+    },
+    {
+      "cell": "JAPAN_MACRO_JA",
+      "mode": "TimelineTone",
+      "quarter": 9,
+      "chunk": 1,
+      "start": "20241231235959",
+      "end": "20250131235959",
+      "cache": "g1_JAPAN_MACRO_JA_timelinetone_q9_20241231_20250401_D1_20241231_20250131.json"
+    },
+    {
+      "cell": "JAPAN_MACRO_JA",
+      "mode": "TimelineTone",
+      "quarter": 9,
+      "chunk": 2,
+      "start": "20250131235958",
+      "end": "20250303235959",
+      "cache": "g1_JAPAN_MACRO_JA_timelinetone_q9_20241231_20250401_D2_20250131_20250303.json"
+    },
+    {
+      "cell": "JAPAN_MACRO_JA",
+      "mode": "TimelineTone",
+      "quarter": 9,
+      "chunk": 3,
+      "start": "20250303235958",
+      "end": "20250401000000",
+      "cache": "g1_JAPAN_MACRO_JA_timelinetone_q9_20241231_20250401_D3_20250303_20250401.json"
+    },
+    {
+      "cell": "JAPAN_MACRO_JA",
+      "mode": "TimelineTone",
+      "quarter": 10,
+      "chunk": 1,
+      "start": "20250331235959",
+      "end": "20250501235959",
+      "cache": "g1_JAPAN_MACRO_JA_timelinetone_q10_20250331_20250701_D1_20250331_20250501.json"
+    },
+    {
+      "cell": "JAPAN_MACRO_JA",
+      "mode": "TimelineTone",
+      "quarter": 10,
+      "chunk": 2,
+      "start": "20250501235958",
+      "end": "20250601235959",
+      "cache": "g1_JAPAN_MACRO_JA_timelinetone_q10_20250331_20250701_D2_20250501_20250601.json"
+    },
+    {
+      "cell": "JAPAN_MACRO_JA",
+      "mode": "TimelineTone",
+      "quarter": 10,
+      "chunk": 3,
+      "start": "20250601235958",
+      "end": "20250701000000",
+      "cache": "g1_JAPAN_MACRO_JA_timelinetone_q10_20250331_20250701_D3_20250601_20250701.json"
+    },
+    {
+      "cell": "JAPAN_MACRO_JA",
+      "mode": "TimelineTone",
+      "quarter": 11,
+      "chunk": 1,
+      "start": "20250630235959",
+      "end": "20250731235959",
+      "cache": "g1_JAPAN_MACRO_JA_timelinetone_q11_20250630_20251001_D1_20250630_20250731.json"
+    },
+    {
+      "cell": "JAPAN_MACRO_JA",
+      "mode": "TimelineTone",
+      "quarter": 11,
+      "chunk": 2,
+      "start": "20250731235958",
+      "end": "20250831235959",
+      "cache": "g1_JAPAN_MACRO_JA_timelinetone_q11_20250630_20251001_D2_20250731_20250831.json"
+    },
+    {
+      "cell": "JAPAN_MACRO_JA",
+      "mode": "TimelineTone",
+      "quarter": 11,
+      "chunk": 3,
+      "start": "20250831235958",
+      "end": "20251001000000",
+      "cache": "g1_JAPAN_MACRO_JA_timelinetone_q11_20250630_20251001_D3_20250831_20251001.json"
+    },
+    {
+      "cell": "JAPAN_MACRO_JA",
+      "mode": "TimelineTone",
+      "quarter": 12,
+      "chunk": 1,
+      "start": "20250930235959",
+      "end": "20251031235959",
+      "cache": "g1_JAPAN_MACRO_JA_timelinetone_q12_20250930_20260101_D1_20250930_20251031.json"
+    },
+    {
+      "cell": "JAPAN_MACRO_JA",
+      "mode": "TimelineTone",
+      "quarter": 12,
+      "chunk": 2,
+      "start": "20251031235958",
+      "end": "20251201235959",
+      "cache": "g1_JAPAN_MACRO_JA_timelinetone_q12_20250930_20260101_D2_20251031_20251201.json"
+    },
+    {
+      "cell": "JAPAN_MACRO_JA",
+      "mode": "TimelineTone",
+      "quarter": 12,
+      "chunk": 3,
+      "start": "20251201235958",
+      "end": "20260101000000",
+      "cache": "g1_JAPAN_MACRO_JA_timelinetone_q12_20250930_20260101_D3_20251201_20260101.json"
+    },
+    {
+      "cell": "JAPAN_MACRO_JA",
+      "mode": "TimelineTone",
+      "quarter": 13,
+      "chunk": 1,
+      "start": "20251231235959",
+      "end": "20260131235959",
+      "cache": "g1_JAPAN_MACRO_JA_timelinetone_q13_20251231_20260401_D1_20251231_20260131.json"
+    },
+    {
+      "cell": "JAPAN_MACRO_JA",
+      "mode": "TimelineTone",
+      "quarter": 13,
+      "chunk": 2,
+      "start": "20260131235958",
+      "end": "20260303235959",
+      "cache": "g1_JAPAN_MACRO_JA_timelinetone_q13_20251231_20260401_D2_20260131_20260303.json"
+    },
+    {
+      "cell": "JAPAN_MACRO_JA",
+      "mode": "TimelineTone",
+      "quarter": 13,
+      "chunk": 3,
+      "start": "20260303235958",
+      "end": "20260401000000",
+      "cache": "g1_JAPAN_MACRO_JA_timelinetone_q13_20251231_20260401_D3_20260303_20260401.json"
+    },
+    {
+      "cell": "JAPAN_MACRO_JA",
+      "mode": "TimelineTone",
+      "quarter": 14,
+      "chunk": 1,
+      "start": "20260331235959",
+      "end": "20260501235959",
+      "cache": "g1_JAPAN_MACRO_JA_timelinetone_q14_20260331_20260701_D1_20260331_20260501.json"
+    },
+    {
+      "cell": "JAPAN_MACRO_JA",
+      "mode": "TimelineTone",
+      "quarter": 14,
+      "chunk": 2,
+      "start": "20260501235958",
+      "end": "20260601235959",
+      "cache": "g1_JAPAN_MACRO_JA_timelinetone_q14_20260331_20260701_D2_20260501_20260601.json"
+    },
+    {
+      "cell": "JAPAN_MACRO_JA",
+      "mode": "TimelineTone",
+      "quarter": 14,
+      "chunk": 3,
+      "start": "20260601235958",
+      "end": "20260701000000",
+      "cache": "g1_JAPAN_MACRO_JA_timelinetone_q14_20260331_20260701_D3_20260601_20260701.json"
+    },
+    {
+      "cell": "JAPAN_MACRO_JA",
+      "mode": "TimelineTone",
+      "quarter": 15,
+      "chunk": 1,
+      "start": "20260630235959",
+      "end": "20260731235959",
+      "cache": "g1_JAPAN_MACRO_JA_timelinetone_q15_20260630_20260829_D1_20260630_20260731.json"
+    },
+    {
+      "cell": "JAPAN_MACRO_JA",
+      "mode": "TimelineTone",
+      "quarter": 15,
+      "chunk": 2,
+      "start": "20260731235958",
+      "end": "20260829000000",
+      "cache": "g1_JAPAN_MACRO_JA_timelinetone_q15_20260630_20260829_D2_20260731_20260829.json"
+    },
+    {
+      "cell": "JAPAN_MACRO_JA",
+      "mode": "TimelineVol",
+      "quarter": 1,
+      "chunk": 1,
+      "start": "20230104000000",
+      "end": "20230204000000",
+      "cache": "g1_JAPAN_MACRO_JA_timelinevol_q1_20230104_20230401_D1_20230104_20230204.json"
+    },
+    {
+      "cell": "JAPAN_MACRO_JA",
+      "mode": "TimelineVol",
+      "quarter": 1,
+      "chunk": 2,
+      "start": "20230203235959",
+      "end": "20230307000000",
+      "cache": "g1_JAPAN_MACRO_JA_timelinevol_q1_20230104_20230401_D2_20230203_20230307.json"
+    },
+    {
+      "cell": "JAPAN_MACRO_JA",
+      "mode": "TimelineVol",
+      "quarter": 1,
+      "chunk": 3,
+      "start": "20230306235959",
+      "end": "20230401000000",
+      "cache": "g1_JAPAN_MACRO_JA_timelinevol_q1_20230104_20230401_D3_20230306_20230401.json"
+    },
+    {
+      "cell": "JAPAN_MACRO_JA",
+      "mode": "TimelineVol",
+      "quarter": 2,
+      "chunk": 1,
+      "start": "20230331235959",
+      "end": "20230501235959",
+      "cache": "g1_JAPAN_MACRO_JA_timelinevol_q2_20230331_20230701_D1_20230331_20230501.json"
+    },
+    {
+      "cell": "JAPAN_MACRO_JA",
+      "mode": "TimelineVol",
+      "quarter": 2,
+      "chunk": 2,
+      "start": "20230501235958",
+      "end": "20230601235959",
+      "cache": "g1_JAPAN_MACRO_JA_timelinevol_q2_20230331_20230701_D2_20230501_20230601.json"
+    },
+    {
+      "cell": "JAPAN_MACRO_JA",
+      "mode": "TimelineVol",
+      "quarter": 2,
+      "chunk": 3,
+      "start": "20230601235958",
+      "end": "20230701000000",
+      "cache": "g1_JAPAN_MACRO_JA_timelinevol_q2_20230331_20230701_D3_20230601_20230701.json"
+    },
+    {
+      "cell": "JAPAN_MACRO_JA",
+      "mode": "TimelineVol",
+      "quarter": 3,
+      "chunk": 1,
+      "start": "20230630235959",
+      "end": "20230731235959",
+      "cache": "g1_JAPAN_MACRO_JA_timelinevol_q3_20230630_20231001_D1_20230630_20230731.json"
+    },
+    {
+      "cell": "JAPAN_MACRO_JA",
+      "mode": "TimelineVol",
+      "quarter": 3,
+      "chunk": 2,
+      "start": "20230731235958",
+      "end": "20230831235959",
+      "cache": "g1_JAPAN_MACRO_JA_timelinevol_q3_20230630_20231001_D2_20230731_20230831.json"
+    },
+    {
+      "cell": "JAPAN_MACRO_JA",
+      "mode": "TimelineVol",
+      "quarter": 3,
+      "chunk": 3,
+      "start": "20230831235958",
+      "end": "20231001000000",
+      "cache": "g1_JAPAN_MACRO_JA_timelinevol_q3_20230630_20231001_D3_20230831_20231001.json"
+    },
+    {
+      "cell": "JAPAN_MACRO_JA",
+      "mode": "TimelineVol",
+      "quarter": 4,
+      "chunk": 1,
+      "start": "20230930235959",
+      "end": "20231031235959",
+      "cache": "g1_JAPAN_MACRO_JA_timelinevol_q4_20230930_20240101_D1_20230930_20231031.json"
+    },
+    {
+      "cell": "JAPAN_MACRO_JA",
+      "mode": "TimelineVol",
+      "quarter": 4,
+      "chunk": 2,
+      "start": "20231031235958",
+      "end": "20231201235959",
+      "cache": "g1_JAPAN_MACRO_JA_timelinevol_q4_20230930_20240101_D2_20231031_20231201.json"
+    },
+    {
+      "cell": "JAPAN_MACRO_JA",
+      "mode": "TimelineVol",
+      "quarter": 4,
+      "chunk": 3,
+      "start": "20231201235958",
+      "end": "20240101000000",
+      "cache": "g1_JAPAN_MACRO_JA_timelinevol_q4_20230930_20240101_D3_20231201_20240101.json"
+    },
+    {
+      "cell": "JAPAN_MACRO_JA",
+      "mode": "TimelineVol",
+      "quarter": 5,
+      "chunk": 1,
+      "start": "20231231235959",
+      "end": "20240131235959",
+      "cache": "g1_JAPAN_MACRO_JA_timelinevol_q5_20231231_20240401_D1_20231231_20240131.json"
+    },
+    {
+      "cell": "JAPAN_MACRO_JA",
+      "mode": "TimelineVol",
+      "quarter": 5,
+      "chunk": 2,
+      "start": "20240131235958",
+      "end": "20240302235959",
+      "cache": "g1_JAPAN_MACRO_JA_timelinevol_q5_20231231_20240401_D2_20240131_20240302.json"
+    },
+    {
+      "cell": "JAPAN_MACRO_JA",
+      "mode": "TimelineVol",
+      "quarter": 5,
+      "chunk": 3,
+      "start": "20240302235958",
+      "end": "20240401000000",
+      "cache": "g1_JAPAN_MACRO_JA_timelinevol_q5_20231231_20240401_D3_20240302_20240401.json"
+    },
+    {
+      "cell": "JAPAN_MACRO_JA",
+      "mode": "TimelineVol",
+      "quarter": 6,
+      "chunk": 1,
+      "start": "20240331235959",
+      "end": "20240501235959",
+      "cache": "g1_JAPAN_MACRO_JA_timelinevol_q6_20240331_20240701_D1_20240331_20240501.json"
+    },
+    {
+      "cell": "JAPAN_MACRO_JA",
+      "mode": "TimelineVol",
+      "quarter": 6,
+      "chunk": 2,
+      "start": "20240501235958",
+      "end": "20240601235959",
+      "cache": "g1_JAPAN_MACRO_JA_timelinevol_q6_20240331_20240701_D2_20240501_20240601.json"
+    }
+  ],
+  "generated_at_utc": "2026-08-31T02:56:09.887798+00:00"
+}
