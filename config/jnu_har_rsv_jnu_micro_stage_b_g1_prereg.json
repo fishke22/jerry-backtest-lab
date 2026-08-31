@@ -1,0 +1,71 @@
+{
+  "version": "1.0",
+  "candidate_id": "HAR_RSV_JNU_MICRO_STAGE_B_G1",
+  "parent_family": "INTRADAY_VOLATILITY_HAR_RSV_DI1",
+  "requires": {
+    "stage_a_candidate": "HAR_RSV_TRUE_OSE_MINI_STAGE_A_G1",
+    "stage_a_status": "TRUE_OSE_MINI_STAGE_A_PASS",
+    "stage_a_valid_run_id": 33388746345
+  },
+  "frozen_at": "2026-08-31",
+  "status": "PREREGISTERED_BEFORE_MICRO_OUTCOME_INSPECTION",
+  "objective": "Confirm exact-product JNU Micro consistency of the frozen HAR-RSV specification after long-history true-OSE Mini Stage A passed.",
+  "source": {
+    "venue": "OSE",
+    "product": "Nikkei 225 Micro Futures (JNU)",
+    "source_provider": "225Labo",
+    "raw_frequency": "source-provided 5-minute primary; source-provided 1-minute measurement QA only",
+    "raw_storage": "LOCAL_ONLY_PERSONAL_USE",
+    "cloud_input": "non-reconstructive daily RV/RSV derived panel only",
+    "expected_coverage": "2023-07-24 through latest available 2026 data",
+    "formal_status": "TRUE_JNU_MICRO_EXACT_PRODUCT_STAGE_B"
+  },
+  "data_integrity": {
+    "session_calendar": "config/jnu_session_calendar_versions.json",
+    "primary_sampling": "source-provided 5min sheet",
+    "no_cross_session_return": true,
+    "minimum_5m_returns_per_day": 46,
+    "raw_manifest_requires_zero_critical_dq": true,
+    "raw_cloud_upload_prohibited": true
+  },
+  "models": {
+    "baseline": "HAR_RV: logRV_t ~ 1 + logRV_{t-1} + mean(logRV_{t-1:t-5}) + mean(logRV_{t-1:t-22})",
+    "challenger": "HAR_RSV: logRV_t ~ 1 + logRSV+_{t-1} + logRSV-_{t-1} + weekly_logRV + monthly_logRV"
+  },
+  "oos": {
+    "method": "expanding window",
+    "minimum_training_days": 504,
+    "forecast_horizon": "1 trading day",
+    "refit": "daily",
+    "metrics": [
+      "QLIKE",
+      "MSE"
+    ],
+    "bootstrap": {
+      "block_days": 5,
+      "samples": 2000,
+      "seed": 42
+    }
+  },
+  "stage_b_pass_rule": [
+    "HAR_RSV full-OOS mean QLIKE loss is lower than HAR_RV",
+    "HAR_RSV full-OOS mean MSE loss is lower than HAR_RV",
+    "At least one of QLIKE or MSE 5-day block-bootstrap probabilities of positive improvement is >= 0.95",
+    "Derived manifest has zero unresolved critical data-quality issues"
+  ],
+  "interpretation": {
+    "pass": "TRUE_JNU_MICRO_STAGE_B_PASS; Stage 3 true-target-data confirmation passes for HAR-RSV. Promote only to INFORMATION_STATE_CANDIDATE / risk-state role, not directional alpha and not Stage 9.",
+    "fail": "TRUE_JNU_MICRO_STAGE_B_FAIL; do not admit the HAR-RSV family as a confirmed JNU module despite Mini Stage A PASS.",
+    "role_if_passed": "VOLATILITY_RISK_STATE_ONLY_NOT_DIRECTIONAL_ALPHA"
+  },
+  "forbidden": [
+    "Change 5-minute sampling after Micro outcome inspection",
+    "Tune HAR 1/5/22 horizons",
+    "Change 504-day minimum training period",
+    "Change bootstrap block length/sample count/seed",
+    "Use 1-minute QA to choose a different primary estimator",
+    "Add leverage/jumps/neural features to rescue a negative Micro result",
+    "Use the shorter Micro sample to reinterpret or modify Stage A",
+    "Call Stage B PASS directional alpha or Stage 9 validation"
+  ]
+}
