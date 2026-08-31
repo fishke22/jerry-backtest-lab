@@ -140,3 +140,11 @@ Any future 225Labo Mini/Micro parser MUST load `config/jnu_session_calendar_vers
 - The parser must fail closed if an observation date is not covered by an explicit session version.
 - Session/version correction is data integrity, never a tunable feature.
 - RV/RSV aggregation may include day and night components only according to the trading-day convention valid on that date; do not apply current 2026 hours backward.
+
+
+## Phase-A tooling status
+
+As of 2026-08-31, the generic schema-audit utility is implemented at:
+`scripts/inspect_225labo_local_sample.py`.
+
+It is intentionally not a raw-data parser. It may be run only against a local user-downloaded sample and emits file hash plus structural metadata without raw market rows. Concrete normalization logic remains blocked until the sample's actual workbook/CSV schema is observed and verified.
