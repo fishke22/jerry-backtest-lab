@@ -1,0 +1,81 @@
+{
+  "version": "1.0",
+  "frozen_at": "2026-08-31",
+  "purpose": "Define when JNU research is complete without requiring every candidate to pass.",
+  "completion_is_not": [
+    "all candidate modules passing",
+    "a profitable in-sample backtest",
+    "a proxy-only PASS",
+    "an execution replay PASS",
+    "a subjective decision that the framework looks good"
+  ],
+  "required_terminal_classification_for_major_candidates": [
+    "VALIDATED_JNU_MODULE",
+    "REJECT_CURRENT_SPEC",
+    "FAIL_OVERFIT_GATES",
+    "DATA_INCONCLUSIVE",
+    "DATA_BLOCKED",
+    "LITERATURE_ONLY_DATA_BLOCKED",
+    "CONDITIONAL_ARCHITECTURE_ONLY"
+  ],
+  "major_candidate_set": [
+    "HAR_RSV_TRUE_OSE_CONFIRMATION",
+    "INTRADAY_PATH_US_TO_JNU_G1",
+    "TRUE_VENUE_DPD_OSE_SGX_CME_G1",
+    "OSE_ORDER_IMBALANCE",
+    "CBOE_LTV_LEFT_TAIL_RISK",
+    "BOJ_MPM_EVENT_VOLATILITY",
+    "NEWS_STATE_LANGUAGE_SOURCE_G1_DI1",
+    "PHASE4B_USDJPY_1D"
+  ],
+  "minimum_research_completion_requirements": {
+    "governance": [
+      "Attempt ledger complete and immutable in spirit",
+      "All formal families have preregistration before outcome inspection",
+      "No unresolved critical data-integrity issue in any promoted module",
+      "Family-wise multiplicity and cross-family selection bias explicitly accounted for"
+    ],
+    "true_target_validation": [
+      "Any module promoted from proxy evidence completes true-target confirmation where applicable",
+      "At least HAR-RSV and US-to-JNU intraday-path families receive true-OSE terminal dispositions when authorized data becomes available",
+      "If approved true-OSE data cannot legally or practically be obtained, framework may close with DATA_BLOCKED rather than inventing proxies"
+    ],
+    "trading_validation": [
+      "Any module that changes direction or position must have explicit trading translation",
+      "Applicable rules pass independent replay",
+      "Applicable rules pass CPCV/purge/embargo/PBO/DSR/Holm or a preregistered stricter successor",
+      "Fees/spread/slippage and liquidity constraints are applied",
+      "Forward or genuinely untouched holdout confirmation is completed for finalists"
+    ],
+    "decision_engine": [
+      "Role separation enforced: direction, risk, event, source-weight, execution",
+      "No arbitrary fixed cross-market weights",
+      "No correlated-feature vote counting",
+      "Combination model is separately validated",
+      "If zero directional modules validate, engine explicitly returns NO_VALIDATED_DIRECTIONAL_EDGE"
+    ],
+    "reproducibility": [
+      "Config, preregistration, results, reports, provenance hashes and derived non-reconstructive outputs persisted in GitHub/cloud",
+      "Personally licensed 225Labo raw data remains local-only",
+      "Terminal status can be reproduced from persisted configs plus authorized local data"
+    ]
+  },
+  "successful_completion_states": [
+    {
+      "id": "FRAMEWORK_COMPLETE_WITH_VALIDATED_EDGE",
+      "condition": "All major candidates terminally classified and at least one true-JNU directional module plus all applicable promotion gates pass.",
+      "decision_engine": "May emit calibrated directional probabilities subject to validated role constraints."
+    },
+    {
+      "id": "FRAMEWORK_COMPLETE_NO_VALIDATED_DIRECTIONAL_EDGE",
+      "condition": "All major candidates terminally classified but no true-JNU directional family passes.",
+      "decision_engine": "Must retain NO_VALIDATED_DIRECTIONAL_EDGE; risk/context/execution layers may still be used only within their validated roles."
+    },
+    {
+      "id": "FRAMEWORK_RESEARCH_COMPLETE_DATA_BLOCKED",
+      "condition": "All feasible free/legal families are terminally classified and remaining high-evidence families are blocked solely by unavailable or unauthorized required data.",
+      "decision_engine": "No unsupported promotion; framework is scientifically complete under the current data-rights constraint but not fully target-validated."
+    }
+  ],
+  "reopen_rule": "A completed framework is reopened only for genuinely new independent data, a substantively new preregistered family grounded in external evidence, or a documented implementation/data-integrity defect. Parameter rescue alone is insufficient."
+}
