@@ -1,5 +1,5 @@
 {
-  "version": "1.8",
+  "version": "1.9",
   "updated_at": "2026-08-31",
   "policy": {
     "max_active_formal_families": 1,
@@ -10,28 +10,29 @@
   "active": null,
   "current_global_blocker": {
     "id": "TRUE_OSE_INTRADAY_DATA_ACCESS",
-    "status": "OFFICIAL_APPLICATION_PATH_IDENTIFIED_TRUE_OSE_DATA_NOT_YET_ACQUIRED",
+    "status": "OFFICIAL_SCHEMA_AND_APPLICATION_PATH_IDENTIFIED_TRUE_OSE_DATA_NOT_YET_ACQUIRED",
     "impact": ["HAR_RSV_TRUE_OSE_CONFIRMATION","INTRADAY_PATH_US_TO_JNU_G1","TRUE_VENUE_DPD_OSE_SGX_CME"],
-    "rule": "Index/CFD proxies may support methodology/current-regime stress tests only; true-OSE/JNU promotion still requires target-market data. An official application path is not equivalent to acquired/approved data access."
+    "rule": "Parser/schema discovery is no longer the primary OSE blocker. True-OSE/JNU promotion still requires legally usable target-market history. An official application path or public schema is not equivalent to acquired/approved data access."
   },
   "queue": [
     {
       "rank": 1,
       "candidate": "JPX_OSE_HISTORICAL_FREE_ACCESS_RESOLUTION",
       "target_role": "Data acquisition gate, not an alpha family",
-      "status": "OFFICIAL_APPLICATION_PATH_ELIGIBILITY_AND_RIGHTS_UNRESOLVED",
-      "evidence": "JPX states historical OSE tick data may be provided for trading-methodology examination under certain conditions; general OSE free-trial material describes a one-month internal-use trial, while the published operational process describes a company applicant.",
-      "next_action": "Prepare an eligibility/rights inquiry for JPX Client Services covering individual eligibility, Nikkei 225 mini/micro availability, tick/1-minute history, local/internal research use, retention, and storage of only non-reconstructable derived outputs. Do not submit using guessed identity or company details.",
-      "fallback_if_not_eligible": "Return to personally licensed 225Labo local-only true-OSE path for HAR-RSV Stage A."
+      "status": "OFFICIAL_APPLICATION_PATH_ELIGIBILITY_AND_RIGHTS_UNRESOLVED_SCHEMA_RESOLVED",
+      "evidence": "JPX states historical OSE tick data may be provided for trading-methodology examination under certain conditions. Official public Data Cloud documentation now resolves the one-minute futures schema, including trading/execution date, index type, 9-digit security code, session, minute time, OHLC, volume, VWAP, number of trades and contract month. Published free-trial procedure still describes a company applicant.",
+      "identity_progress": "Official JPX evidence confirms Nikkei 225 large 9-digit examples ending 018 and Nikkei 225 mini example 166030019. Nikkei 225 micro is officially identified as NK225MCF and by vendor codes QUICK 115.n / Bloomberg JAIA / LSEG JNUcn / CQG F.US.MC225, but its 9-digit local-security-code suffix is not yet confirmed from a public primary-source issue example.",
+      "next_action": "Resolve individual eligibility/rights and obtain an official micro 9-digit issue-code example or issue master. Do not guess the micro suffix. If JPX access is unsuitable, fall back to personally licensed 225Labo local-only true-OSE path.",
+      "fallback_if_not_eligible": "Use 225Labo locally for Nikkei mini HAR-RSV Stage A, then Micro Stage B only if Stage A passes."
     },
     {
       "rank": 2,
       "candidate": "HAR_RSV_TRUE_OSE_CONFIRMATION",
       "evidence": "Direct Japanese/Nikkei futures volatility literature + 2011-2018 proxy-method PASS + 2026 public-proxy holdout consistency",
       "target_role": "Risk state / sizing / stop normalization",
-      "status": "BLOCKED_PENDING_TRUE_OSE_ACCESS_RESOLUTION",
-      "data_plan": "Preferred no-extra-cost route: approved JPX/OSE historical trial if eligible. Fallback: personally licensed 225Labo local-only Nikkei mini long-history confirmation, then Micro 2023+ exact-product consistency.",
-      "next_action": "Resolve JPX eligibility first; if unavailable or unsuitable, resume exact 225Labo schema/sample inspection locally. Raw licensed OSE data must remain local unless source terms explicitly permit otherwise."
+      "status": "BLOCKED_PENDING_TRUE_OSE_ACCESS_ONLY_PARSER_PREPARED",
+      "data_plan": "Preferred route: approved JPX/OSE historical trial if eligible. Fallback: personally licensed 225Labo local-only Nikkei mini long-history confirmation, then Micro exact-product consistency.",
+      "next_action": "Once true OSE data is observable, run Gate 0 then the frozen 5-minute RV/RSV Stage A without retuning. Raw licensed data remains local unless explicit source terms permit otherwise."
     },
     {
       "rank": 3,
@@ -42,7 +43,7 @@
     {
       "rank": 4,
       "candidate": "TRUE_VENUE_DPD_OSE_SGX_CME",
-      "status": "CME_ALIGNMENT_FEASIBLE_OSE_SGX_STILL_BLOCKED",
+      "status": "CME_ALIGNMENT_FEASIBLE_SGX_CURRENT_CODES_MAPPED_LEGACY_MAPPING_AND_OSE_ACCESS_STILL_BLOCKED",
       "new_source": "axb0306/cme-futures-ohlc public NKD tick/1m/5m sample, visible coverage 2026-03-08 to 2026-04-15, TopstepX/ProjectX-derived",
       "feasibility_result": {
         "run_id": 33359934341,
@@ -54,10 +55,16 @@
         "rolling_corr_median": 0.915635577176246,
         "promotion_power": "NONE"
       },
-      "sgx_lead": "Legacy SGX WEBPXTICK derivatives archive endpoint is technically documented by multiple public downloader projects, but current automation/retention/non-display research rights are unresolved.",
-      "next_action": "Keep CME NKD as a viable CME-side input. Resolve SGX historical archive rights and Nikkei contract identity before any acquisition. Continue searching for approved free matched-expiry OSE and SGX intraday history; no formal DPD promotion until all required venues and adequate coverage exist.",
-      "source_note": "research_notes/jnu_new_source_discovery_cme_nkd_sgx_20260831.md",
-      "guardrail": "Strong alignment with Japan225 proxy does not establish CME leadership, OSE leadership, directional alpha, or true-JNU validation. Do not bulk-download SGX legacy archives under unresolved rights."
+      "sgx_identity_progress": {
+        "NK": "SGX JPY Nikkei 225 Index Futures",
+        "NKTI": "Trade-At-Index-Close variant",
+        "NU": "SGX USD Nikkei 225 Index Futures",
+        "NS": "SGX Mini Nikkei 225 Index Futures",
+        "legacy_archive_mapping": "NOT_YET_PROVEN"
+      },
+      "next_action": "Find a metadata-only TC/TC_structure example or other official historical reference that proves how legacy archive contract identifiers map to current NK/NS codes. Do not bulk-download tick archives while rights remain unresolved. Formal DPD still requires matched-expiry OSE+SGX+CME with adequate coverage.",
+      "source_note": "config/jnu_source_identity_mapping_20260831.json",
+      "guardrail": "Current SGX product codes do not prove historical archive codes. Strong CME alignment does not establish venue leadership or directional alpha."
     },
     {
       "rank": 5,
