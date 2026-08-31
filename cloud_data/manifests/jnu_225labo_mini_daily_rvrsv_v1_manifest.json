@@ -1,0 +1,632 @@
+{
+  "version": "1.0",
+  "source_license_classification": "225LABO_PERSONAL_USE_LOCAL_RAW_DERIVED_NON_RECONSTRUCTIVE_EXPORT",
+  "raw_data_cloud_uploaded": false,
+  "source_hashes": [
+    {
+      "source_id": "225mini2006d.xls",
+      "sha256": "397ded0c7d1ad61201d37a93bc2281acc2381a88e54fb0e71478569b305bee04"
+    },
+    {
+      "source_id": "225mini2007d.xls",
+      "sha256": "3da2029ba3fbb11fc16ee31261928c85b9ae5a41dee2b669757adc91f6ef52bf"
+    },
+    {
+      "source_id": "225mini2008d.xls",
+      "sha256": "5827e8f998c38bc5a0887aeb87f26230c5d7ab7a240999fcfbaf299176f5ae1d"
+    },
+    {
+      "source_id": "225mini2009d.xls",
+      "sha256": "8b340032b7d9090227a75ae9f960e07890a634bd0a3d3419d2640b5c49a3538a"
+    },
+    {
+      "source_id": "225mini2010d.xls",
+      "sha256": "9efd85316ee1f3b09e5fe45f6de7e0ba227b549d0dbf09d49476fcb9ad5caa0f"
+    },
+    {
+      "source_id": "225mini2011d.xls",
+      "sha256": "6f7b41261f1f9ccbcc454fe41cc5c76c85a575f8f1ae17a634fc0f54da242d43"
+    },
+    {
+      "source_id": "N225minif_2012.zip",
+      "sha256": "13db64a872735ff89bd9a015cf6fddf0de9dcf86981d530f7503f8be1f43d1eb"
+    },
+    {
+      "source_id": "N225minif_2013.zip",
+      "sha256": "5d46f1a695e1597f5515ce19d5826289df75f21be5914adfa02bd1c494a359a1"
+    },
+    {
+      "source_id": "N225minif_2014.zip",
+      "sha256": "4815235850049766ca8156f26fc5816a1a1d9dd3333a1b88df939e7399874252"
+    },
+    {
+      "source_id": "N225minif_2015.zip",
+      "sha256": "d1b9bb49009b6718ff2a6867b1176ae1d5dd38bca68ad68b1de935df1a81ebf3"
+    },
+    {
+      "source_id": "N225minif_2016.zip",
+      "sha256": "d8dc20191b8dd3a790feb049d9aa911316444894eca7abf2e73f3cc3fbd80e01"
+    },
+    {
+      "source_id": "N225minif_2017.zip",
+      "sha256": "b34797ee12ca2d0f9e48866ddee9f81b75ce066a515a4cd8dc37dbf54e2ef6fd"
+    },
+    {
+      "source_id": "N225minif_2018.zip",
+      "sha256": "339df2f7d1229e397d34f9c8be19d481e01c86be8edf0415213f1f27a125b2ac"
+    },
+    {
+      "source_id": "N225minif_2019.zip",
+      "sha256": "2de8414c0f854a54e54eb3ef922542c3ef19178d5316176307e4e99cae869e3e"
+    },
+    {
+      "source_id": "N225minif_2020.zip",
+      "sha256": "77ad8d59ebff6aad88b5688701499490f27f817fb77afbebacdbd01baea42b97"
+    },
+    {
+      "source_id": "N225minif_2021.zip",
+      "sha256": "88fae8021f134c4169ad854abe5e64d5837adefe63ff8cf2e03cf3b6f384df97"
+    },
+    {
+      "source_id": "N225minif_2022.zip",
+      "sha256": "cec6b4217abffaf0aaf1af9fe03b250f7865bc5751088936be3ba698d5f3d62b"
+    },
+    {
+      "source_id": "N225minif_2023.zip",
+      "sha256": "6f49c51a794ccd72f7c5f3f07acad8e0604da64184ec5fda14a14a8bb42e9a84"
+    },
+    {
+      "source_id": "N225minif_2024.zip",
+      "sha256": "90ebca46b531c0217a73f37765cbbb1ced4ccf08e530990c1a5575a03ae49a4c"
+    },
+    {
+      "source_id": "N225minif_2025.zip",
+      "sha256": "c43285b95c54c5cc38a96f33c9d6e3c7349bc9d7bd1d55706be935eeb9b214e1"
+    },
+    {
+      "source_id": "N225minif_2026.zip",
+      "sha256": "c302cb0e261d211bd481437d8ee304b028304fe5362ae89e002b2463f96d9303"
+    }
+  ],
+  "parser_version_commit": "0964f7563ebb41c6d91b403c50fdf26ed8b00021",
+  "calendar_session_version": "1.2",
+  "product_contract_coverage": {
+    "venue": "OSE",
+    "product": "Nikkei 225 Mini Futures",
+    "source_series": "225Labo annual central/near contract minute packages",
+    "years_present": [
+      2006,
+      2007,
+      2008,
+      2009,
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025,
+      2026
+    ],
+    "missing_year_packages": []
+  },
+  "date_range": [
+    "2006-07-18",
+    "2026-08-31"
+  ],
+  "missingness_summary": {
+    "selected_trading_days": 4972,
+    "annual_packages_missing": [],
+    "days_below_95pct_session_coverage": 19,
+    "minimum_session_coverage_ratio": 0.24752475247524752
+  },
+  "duplicate_summary": {
+    "overlap_trading_days_across_annual_packages": 18
+  },
+  "derived_feature_definitions": {
+    "rv_5m": "sum squared log close-to-close returns within each valid historical OSE session; no cross-session returns",
+    "rsv_pos_5m": "sum squared non-negative 5m log returns",
+    "rsv_neg_5m": "sum squared negative 5m log returns",
+    "day_session_rv": "same measure restricted to DAY segments",
+    "night_session_rv": "same measure restricted to NIGHT segments"
+  },
+  "derived_output_hash": "36b1787b5bcbab7d167f9237d39bff60b7f946fbf60dbb675d23b97c959f30a0",
+  "critical_data_quality_issues": [],
+  "measurement_qa_1m": [
+    {
+      "file": "225mini2006d.xls",
+      "status": "QA_1M_DEFERRED_PRIMARY_5M_BUILD"
+    },
+    {
+      "file": "225mini2007d.xls",
+      "status": "QA_1M_DEFERRED_PRIMARY_5M_BUILD"
+    },
+    {
+      "file": "225mini2008d.xls",
+      "status": "QA_1M_DEFERRED_PRIMARY_5M_BUILD"
+    },
+    {
+      "file": "225mini2009d.xls",
+      "status": "QA_1M_DEFERRED_PRIMARY_5M_BUILD"
+    },
+    {
+      "file": "225mini2010d.xls",
+      "status": "QA_1M_DEFERRED_PRIMARY_5M_BUILD"
+    },
+    {
+      "file": "225mini2011d.xls",
+      "status": "QA_1M_DEFERRED_PRIMARY_5M_BUILD"
+    },
+    {
+      "file": "N225minif_2012.zip",
+      "status": "QA_1M_DEFERRED_PRIMARY_5M_BUILD"
+    },
+    {
+      "file": "N225minif_2013.zip",
+      "status": "QA_1M_DEFERRED_PRIMARY_5M_BUILD"
+    },
+    {
+      "file": "N225minif_2014.zip",
+      "status": "QA_1M_DEFERRED_PRIMARY_5M_BUILD"
+    },
+    {
+      "file": "N225minif_2015.zip",
+      "status": "QA_1M_DEFERRED_PRIMARY_5M_BUILD"
+    },
+    {
+      "file": "N225minif_2016.zip",
+      "status": "QA_1M_DEFERRED_PRIMARY_5M_BUILD"
+    },
+    {
+      "file": "N225minif_2017.zip",
+      "status": "QA_1M_DEFERRED_PRIMARY_5M_BUILD"
+    },
+    {
+      "file": "N225minif_2018.zip",
+      "status": "QA_1M_DEFERRED_PRIMARY_5M_BUILD"
+    },
+    {
+      "file": "N225minif_2019.zip",
+      "status": "QA_1M_DEFERRED_PRIMARY_5M_BUILD"
+    },
+    {
+      "file": "N225minif_2020.zip",
+      "status": "QA_1M_DEFERRED_PRIMARY_5M_BUILD"
+    },
+    {
+      "file": "N225minif_2021.zip",
+      "status": "QA_1M_DEFERRED_PRIMARY_5M_BUILD"
+    },
+    {
+      "file": "N225minif_2022.zip",
+      "status": "QA_1M_DEFERRED_PRIMARY_5M_BUILD"
+    },
+    {
+      "file": "N225minif_2023.zip",
+      "status": "QA_1M_DEFERRED_PRIMARY_5M_BUILD"
+    },
+    {
+      "file": "N225minif_2024.zip",
+      "status": "QA_1M_DEFERRED_PRIMARY_5M_BUILD"
+    },
+    {
+      "file": "N225minif_2025.zip",
+      "status": "QA_1M_DEFERRED_PRIMARY_5M_BUILD"
+    },
+    {
+      "file": "N225minif_2026.zip",
+      "status": "QA_1M_DEFERRED_PRIMARY_5M_BUILD"
+    }
+  ],
+  "measurement_qa_1m_deferred": true,
+  "sources": [
+    {
+      "source_id": "225mini2006d.xls",
+      "sha256": "397ded0c7d1ad61201d37a93bc2281acc2381a88e54fb0e71478569b305bee04",
+      "size_bytes": 5504512,
+      "nominal_year": 2006,
+      "meta_5m": {
+        "workbook_member": "225mini2006d.xls",
+        "workbook_member_size": 5504512,
+        "source_container": ".xls",
+        "sheet": "5min",
+        "row_count": 6639,
+        "distinct_trading_dates": 115,
+        "date_min": "2006-07-18",
+        "date_max": "2006-12-29",
+        "invalid_ohlcv_rows": 0,
+        "out_of_session_rows": 2,
+        "duplicate_timestamp_rows": 0
+      }
+    },
+    {
+      "source_id": "225mini2007d.xls",
+      "sha256": "3da2029ba3fbb11fc16ee31261928c85b9ae5a41dee2b669757adc91f6ef52bf",
+      "size_bytes": 13564928,
+      "nominal_year": 2007,
+      "meta_5m": {
+        "workbook_member": "225mini2007d.xls",
+        "workbook_member_size": 13564928,
+        "source_container": ".xls",
+        "sheet": "5min",
+        "row_count": 16287,
+        "distinct_trading_dates": 245,
+        "date_min": "2007-01-04",
+        "date_max": "2007-12-28",
+        "invalid_ohlcv_rows": 0,
+        "out_of_session_rows": 4,
+        "duplicate_timestamp_rows": 0
+      }
+    },
+    {
+      "source_id": "225mini2008d.xls",
+      "sha256": "5827e8f998c38bc5a0887aeb87f26230c5d7ab7a240999fcfbaf299176f5ae1d",
+      "size_bytes": 18595840,
+      "nominal_year": 2008,
+      "meta_5m": {
+        "workbook_member": "225mini2008d.xls",
+        "workbook_member_size": 18595840,
+        "source_container": ".xls",
+        "sheet": "5min",
+        "row_count": 22305,
+        "distinct_trading_dates": 245,
+        "date_min": "2008-01-04",
+        "date_max": "2008-12-30",
+        "invalid_ohlcv_rows": 0,
+        "out_of_session_rows": 4,
+        "duplicate_timestamp_rows": 0
+      }
+    },
+    {
+      "source_id": "225mini2009d.xls",
+      "sha256": "8b340032b7d9090227a75ae9f960e07890a634bd0a3d3419d2640b5c49a3538a",
+      "size_bytes": 20534272,
+      "nominal_year": 2009,
+      "meta_5m": {
+        "workbook_member": "225mini2009d.xls",
+        "workbook_member_size": 20534272,
+        "source_container": ".xls",
+        "sheet": "5min",
+        "row_count": 24469,
+        "distinct_trading_dates": 244,
+        "date_min": "2009-01-05",
+        "date_max": "2010-01-04",
+        "invalid_ohlcv_rows": 0,
+        "out_of_session_rows": 2,
+        "duplicate_timestamp_rows": 12
+      }
+    },
+    {
+      "source_id": "225mini2010d.xls",
+      "sha256": "9efd85316ee1f3b09e5fe45f6de7e0ba227b549d0dbf09d49476fcb9ad5caa0f",
+      "size_bytes": 24573952,
+      "nominal_year": 2010,
+      "meta_5m": {
+        "workbook_member": "225mini2010d.xls",
+        "workbook_member_size": 24573952,
+        "source_container": ".xls",
+        "sheet": "5min",
+        "row_count": 29449,
+        "distinct_trading_dates": 246,
+        "date_min": "2010-01-04",
+        "date_max": "2011-01-04",
+        "invalid_ohlcv_rows": 0,
+        "out_of_session_rows": 0,
+        "duplicate_timestamp_rows": 0
+      }
+    },
+    {
+      "source_id": "225mini2011d.xls",
+      "sha256": "6f7b41261f1f9ccbcc454fe41cc5c76c85a575f8f1ae17a634fc0f54da242d43",
+      "size_bytes": 36613120,
+      "nominal_year": 2011,
+      "meta_5m": {
+        "workbook_member": "225mini2011d.xls",
+        "workbook_member_size": 36613120,
+        "source_container": ".xls",
+        "sheet": "5min",
+        "row_count": 43705,
+        "distinct_trading_dates": 246,
+        "date_min": "2011-01-04",
+        "date_max": "2012-01-04",
+        "invalid_ohlcv_rows": 0,
+        "out_of_session_rows": 0,
+        "duplicate_timestamp_rows": 0
+      }
+    },
+    {
+      "source_id": "N225minif_2012.zip",
+      "sha256": "13db64a872735ff89bd9a015cf6fddf0de9dcf86981d530f7503f8be1f43d1eb",
+      "size_bytes": 9428974,
+      "nominal_year": 2012,
+      "meta_5m": {
+        "workbook_member": "N225minif_2012.xls",
+        "workbook_member_size": 43491840,
+        "source_container": ".zip",
+        "sheet": "5min",
+        "row_count": 50344,
+        "distinct_trading_dates": 249,
+        "date_min": "2012-01-04",
+        "date_max": "2013-01-04",
+        "invalid_ohlcv_rows": 0,
+        "out_of_session_rows": 0,
+        "duplicate_timestamp_rows": 0
+      }
+    },
+    {
+      "source_id": "N225minif_2013.zip",
+      "sha256": "5d46f1a695e1597f5515ce19d5826289df75f21be5914adfa02bd1c494a359a1",
+      "size_bytes": 9756575,
+      "nominal_year": 2013,
+      "meta_5m": {
+        "workbook_member": "N225minif_2013.xls",
+        "workbook_member_size": 41800192,
+        "source_container": ".zip",
+        "sheet": "5min",
+        "row_count": 49608,
+        "distinct_trading_dates": 245,
+        "date_min": "2013-01-04",
+        "date_max": "2013-12-30",
+        "invalid_ohlcv_rows": 0,
+        "out_of_session_rows": 0,
+        "duplicate_timestamp_rows": 0
+      }
+    },
+    {
+      "source_id": "N225minif_2014.zip",
+      "sha256": "4815235850049766ca8156f26fc5816a1a1d9dd3333a1b88df939e7399874252",
+      "size_bytes": 9602600,
+      "nominal_year": 2014,
+      "meta_5m": {
+        "workbook_member": "N225minif_2014.xls",
+        "workbook_member_size": 41402880,
+        "source_container": ".zip",
+        "sheet": "5min",
+        "row_count": 49659,
+        "distinct_trading_dates": 245,
+        "date_min": "2014-01-06",
+        "date_max": "2015-01-05",
+        "invalid_ohlcv_rows": 0,
+        "out_of_session_rows": 0,
+        "duplicate_timestamp_rows": 0
+      }
+    },
+    {
+      "source_id": "N225minif_2015.zip",
+      "sha256": "d1b9bb49009b6718ff2a6867b1176ae1d5dd38bca68ad68b1de935df1a81ebf3",
+      "size_bytes": 8729443,
+      "nominal_year": 2015,
+      "meta_5m": {
+        "workbook_member": "N225minif_2015.xls",
+        "workbook_member_size": 41366528,
+        "source_container": ".zip",
+        "sheet": "5min",
+        "row_count": 49532,
+        "distinct_trading_dates": 244,
+        "date_min": "2015-01-05",
+        "date_max": "2015-12-30",
+        "invalid_ohlcv_rows": 0,
+        "out_of_session_rows": 0,
+        "duplicate_timestamp_rows": 0
+      }
+    },
+    {
+      "source_id": "N225minif_2016.zip",
+      "sha256": "d8dc20191b8dd3a790feb049d9aa911316444894eca7abf2e73f3cc3fbd80e01",
+      "size_bytes": 19286537,
+      "nominal_year": 2016,
+      "meta_5m": {
+        "workbook_member": "N225minif_2016.xlsx",
+        "workbook_member_size": 19639765,
+        "source_container": ".zip",
+        "sheet": "5min",
+        "row_count": 53903,
+        "distinct_trading_dates": 248,
+        "date_min": "2016-01-04",
+        "date_max": "2017-01-06",
+        "invalid_ohlcv_rows": 0,
+        "out_of_session_rows": 0,
+        "duplicate_timestamp_rows": 0
+      }
+    },
+    {
+      "source_id": "N225minif_2017.zip",
+      "sha256": "b34797ee12ca2d0f9e48866ddee9f81b75ce066a515a4cd8dc37dbf54e2ef6fd",
+      "size_bytes": 20124738,
+      "nominal_year": 2017,
+      "meta_5m": {
+        "workbook_member": "N225minif_2017.xlsx",
+        "workbook_member_size": 20499559,
+        "source_container": ".zip",
+        "sheet": "5min",
+        "row_count": 58292,
+        "distinct_trading_dates": 247,
+        "date_min": "2017-01-04",
+        "date_max": "2017-12-29",
+        "invalid_ohlcv_rows": 0,
+        "out_of_session_rows": 0,
+        "duplicate_timestamp_rows": 0
+      }
+    },
+    {
+      "source_id": "N225minif_2018.zip",
+      "sha256": "339df2f7d1229e397d34f9c8be19d481e01c86be8edf0415213f1f27a125b2ac",
+      "size_bytes": 20569532,
+      "nominal_year": 2018,
+      "meta_5m": {
+        "workbook_member": "N225minif_2018.xlsx",
+        "workbook_member_size": 20952915,
+        "source_container": ".zip",
+        "sheet": "5min",
+        "row_count": 57977,
+        "distinct_trading_dates": 246,
+        "date_min": "2018-01-04",
+        "date_max": "2019-01-04",
+        "invalid_ohlcv_rows": 0,
+        "out_of_session_rows": 0,
+        "duplicate_timestamp_rows": 0
+      }
+    },
+    {
+      "source_id": "N225minif_2019.zip",
+      "sha256": "2de8414c0f854a54e54eb3ef922542c3ef19178d5316176307e4e99cae869e3e",
+      "size_bytes": 19910530,
+      "nominal_year": 2019,
+      "meta_5m": {
+        "workbook_member": "N225minif_2019.xlsx",
+        "workbook_member_size": 20280965,
+        "source_container": ".zip",
+        "sheet": "5min",
+        "row_count": 57033,
+        "distinct_trading_dates": 242,
+        "date_min": "2019-01-04",
+        "date_max": "2020-01-06",
+        "invalid_ohlcv_rows": 0,
+        "out_of_session_rows": 0,
+        "duplicate_timestamp_rows": 0
+      }
+    },
+    {
+      "source_id": "N225minif_2020.zip",
+      "sha256": "77ad8d59ebff6aad88b5688701499490f27f817fb77afbebacdbd01baea42b97",
+      "size_bytes": 20534310,
+      "nominal_year": 2020,
+      "meta_5m": {
+        "workbook_member": "N225minif_2020.xlsx",
+        "workbook_member_size": 20888553,
+        "source_container": ".zip",
+        "sheet": "5min",
+        "row_count": 57505,
+        "distinct_trading_dates": 244,
+        "date_min": "2020-01-06",
+        "date_max": "2021-01-04",
+        "invalid_ohlcv_rows": 0,
+        "out_of_session_rows": 0,
+        "duplicate_timestamp_rows": 0
+      }
+    },
+    {
+      "source_id": "N225minif_2021.zip",
+      "sha256": "88fae8021f134c4169ad854abe5e64d5837adefe63ff8cf2e03cf3b6f384df97",
+      "size_bytes": 20808990,
+      "nominal_year": 2021,
+      "meta_5m": {
+        "workbook_member": "N225minif_2021.xlsx",
+        "workbook_member_size": 21175029,
+        "source_container": ".zip",
+        "sheet": "5min",
+        "row_count": 58240,
+        "distinct_trading_dates": 246,
+        "date_min": "2021-01-04",
+        "date_max": "2022-01-04",
+        "invalid_ohlcv_rows": 0,
+        "out_of_session_rows": 0,
+        "duplicate_timestamp_rows": 0
+      }
+    },
+    {
+      "source_id": "N225minif_2022.zip",
+      "sha256": "cec6b4217abffaf0aaf1af9fe03b250f7865bc5751088936be3ba698d5f3d62b",
+      "size_bytes": 22026366,
+      "nominal_year": 2022,
+      "meta_5m": {
+        "workbook_member": "N225minif_2022.xlsx",
+        "workbook_member_size": 22430610,
+        "source_container": ".zip",
+        "sheet": "5min",
+        "row_count": 60179,
+        "distinct_trading_dates": 249,
+        "date_min": "2022-01-04",
+        "date_max": "2023-01-03",
+        "invalid_ohlcv_rows": 0,
+        "out_of_session_rows": 0,
+        "duplicate_timestamp_rows": 0
+      }
+    },
+    {
+      "source_id": "N225minif_2023.zip",
+      "sha256": "6f49c51a794ccd72f7c5f3f07acad8e0604da64184ec5fda14a14a8bb42e9a84",
+      "size_bytes": 22680747,
+      "nominal_year": 2023,
+      "meta_5m": {
+        "workbook_member": "N225minif_2023.xlsx",
+        "workbook_member_size": 23116052,
+        "source_container": ".zip",
+        "sheet": "5min",
+        "row_count": 62357,
+        "distinct_trading_dates": 258,
+        "date_min": "2023-01-03",
+        "date_max": "2024-01-03",
+        "invalid_ohlcv_rows": 0,
+        "out_of_session_rows": 0,
+        "duplicate_timestamp_rows": 0
+      }
+    },
+    {
+      "source_id": "N225minif_2024.zip",
+      "sha256": "90ebca46b531c0217a73f37765cbbb1ced4ccf08e530990c1a5575a03ae49a4c",
+      "size_bytes": 22863582,
+      "nominal_year": 2024,
+      "meta_5m": {
+        "workbook_member": "N225minif_2024.xlsx",
+        "workbook_member_size": 23256454,
+        "source_container": ".zip",
+        "sheet": "5min",
+        "row_count": 61873,
+        "distinct_trading_dates": 256,
+        "date_min": "2024-01-03",
+        "date_max": "2025-01-03",
+        "invalid_ohlcv_rows": 0,
+        "out_of_session_rows": 6,
+        "duplicate_timestamp_rows": 0
+      }
+    },
+    {
+      "source_id": "N225minif_2025.zip",
+      "sha256": "c43285b95c54c5cc38a96f33c9d6e3c7349bc9d7bd1d55706be935eeb9b214e1",
+      "size_bytes": 23731650,
+      "nominal_year": 2025,
+      "meta_5m": {
+        "workbook_member": "N225minif_2025.xlsx",
+        "workbook_member_size": 24152245,
+        "source_container": ".zip",
+        "sheet": "5min",
+        "row_count": 62351,
+        "distinct_trading_dates": 258,
+        "date_min": "2024-12-30",
+        "date_max": "2026-01-05",
+        "invalid_ohlcv_rows": 0,
+        "out_of_session_rows": 0,
+        "duplicate_timestamp_rows": 0
+      }
+    },
+    {
+      "source_id": "N225minif_2026.zip",
+      "sha256": "c302cb0e261d211bd481437d8ee304b028304fe5362ae89e002b2463f96d9303",
+      "size_bytes": 16625179,
+      "nominal_year": 2026,
+      "meta_5m": {
+        "workbook_member": "N225minif_2026.xlsx",
+        "workbook_member_size": 16865154,
+        "source_container": ".zip",
+        "sheet": "5min",
+        "row_count": 41624,
+        "distinct_trading_dates": 172,
+        "date_min": "2025-12-30",
+        "date_max": "2026-08-31",
+        "invalid_ohlcv_rows": 0,
+        "out_of_session_rows": 0,
+        "duplicate_timestamp_rows": 0
+      }
+    }
+  ]
+}
