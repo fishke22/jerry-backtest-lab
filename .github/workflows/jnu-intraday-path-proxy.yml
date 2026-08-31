@@ -1,12 +1,8 @@
 name: JNU Intraday Path Proxy G0
 
+# G0 is a resolved historical proxy family. Keep manual replay available for audit,
+# but do not auto-trigger it when a different intraday_path_requests family is added.
 on:
-  push:
-    paths:
-      - "intraday_path_requests/*.json"
-  pull_request:
-    paths:
-      - "intraday_path_requests/*.json"
   workflow_dispatch:
 
 permissions:
