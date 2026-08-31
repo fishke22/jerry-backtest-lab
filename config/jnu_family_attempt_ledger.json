@@ -1,5 +1,5 @@
 {
-  "version": "1.6",
+  "version": "1.7",
   "updated_at": "2026-08-31",
   "rule": "Permanent family-level attempt ledger. Never delete failed/inconclusive families to improve apparent research success rate.",
   "families": [
@@ -256,6 +256,29 @@
       "admitted_role": "EVENT_RISK_STATE_ONLY_NOT_DIRECTIONAL_ALPHA",
       "stage9_validated": false,
       "next_rule": "Any entry blackout, size reduction, stop widening, or confidence rule is a new downstream translation and must be preregistered/validated."
+    },
+    {
+      "id": "INTRADAY_MOMENTUM_REVERSION_TRUE_JNU_G1",
+      "status": "TRUE_OSE_MINI_STAGE_A_FAIL_TERMINAL",
+      "preregistration": "config/jnu_intraday_momentum_reversion_true_jnu_g1_prereg.json",
+      "run_id": 33399653907,
+      "artifact_id": 9760719973,
+      "panel_days": 4170,
+      "H1_1M_MOMENTUM": {
+        "status": "FAIL",
+        "mean_daily_signal_payoff": -0.00005914279386709916,
+        "directional_accuracy": 0.4081390742120026,
+        "bootstrap_prob_mean_positive": 0
+      },
+      "H2_10M_REVERSION": {
+        "status": "PASS_WITHIN_FAILED_FAMILY_ONLY",
+        "mean_daily_signal_payoff": 0.00003836712557711084,
+        "directional_accuracy": 0.522454101654589,
+        "bootstrap_prob_mean_positive": 1
+      },
+      "holm_pass": false,
+      "stage_b_status": "PROHIBITED_BY_PREREG_STAGE_A_FAIL",
+      "reopen_rule": "No sign-flip, H2-only salvage, horizon search, session switch, overlapping 10m windows, or filter rescue."
     }
   ],
   "conservative_rule": "Unknown legacy multiplicity is treated against promotion, not ignored."
