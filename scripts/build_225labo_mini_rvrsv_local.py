@@ -111,79 +111,136 @@ class DailyAcc:
     def __post_init__(self):
         if self.session_counts is None: self.session_counts={}
 
-def parse_sheet_from_zip(zip_path: Path, sheet: str, cal: dict[str,Any]) -> tuple[dict[date,DailyAcc],dict[str,Any]]:
-    with zipfile.ZipFile(zip_path) as zf:
+def _find_header_and_rows(rows: Iterable[tuple[Any,...]], source_name: str, sheet: str):
+    """Scan a small preamble for the exact seven-column 225Labo header."""
+    it=iter(rows)
+    pre=[]
+    for _ in range(12):
+        try: r=next(it)
+        except StopIteration: break
+        vals=[str(x).strip() if x is not None else "" for x in list(r)[:7]]
+        if vals == EXPECTED_HEADER:
+            return it
+        pre.append(vals)
+    raise ValueError(f"{source_name}/{sheet}: standard header not found in first 12 rows; preamble={pre[:3]}")
+
+def _workbook_payload(source_path: Path) -> tuple[str, bytes, str]:
+    """Return (member/name, workbook bytes, suffix) from ZIP or direct XLS/XLSX."""
+    suffix=source_path.suffix.lower()
+    if suffix in {".xls",".xlsx"}:
+        return source_path.name, source_path.read_bytes(), suffix
+    if suffix != ".zip":
+        raise ValueError(f"{source_path.name}: unsupported source type {suffix}")
+    with zipfile.ZipFile(source_path) as zf:
         members=[x for x in zf.infolist() if not x.is_dir()]
         books=[x for x in members if Path(x.filename).suffix.lower() in {".xls",".xlsx"}]
         if len(books)!=1:
-            raise ValueError(f"{zip_path.name}: expected one workbook, found {len(books)}")
+            raise ValueError(f"{source_path.name}: expected one workbook, found {len(books)}")
         info=books[0]
-        raw=zf.read(info)
-        suffix=Path(info.filename).suffix.lower()
-        rows=iter_xlsx_rows(raw,sheet) if suffix==".xlsx" else iter_xls_rows(raw,sheet)
-        it=iter(rows)
-        header=list(next(it))
-        header=[str(x).strip() if x is not None else "" for x in header[:7]]
-        if header != EXPECTED_HEADER:
-            raise ValueError(f"{zip_path.name}/{sheet}: unexpected header {header}")
+        return info.filename, zf.read(info), Path(info.filename).suffix.lower()
 
-        daily: dict[date,DailyAcc]={}
-        seen=set()
-        prev_close: dict[tuple[date,str],float]={}
-        row_count=0; invalid_ohlcv=0; out_of_session=0
-        dmin=None; dmax=None
-        for row in it:
-            if not row or all(v in (None,"") for v in row): continue
-            row_count+=1
-            d=normalize_date(row[0]); t=normalize_time(row[1])
-            sched=schedule_for(d,cal)
-            sess=classify_session(t,sched)
-            acc=daily.setdefault(d,DailyAcc([] ,[],[]))
-            if sess is None:
-                acc.invalid_bars+=1; out_of_session+=1; continue
-            try:
-                o,h,l,c,vol=[float(row[i]) for i in range(2,7)]
-            except Exception:
-                acc.invalid_bars+=1; invalid_ohlcv+=1; continue
-            if not (h>=max(o,c,l) and l<=min(o,c,h) and vol>=0 and o>0 and h>0 and l>0 and c>0):
-                acc.invalid_bars+=1; invalid_ohlcv+=1; continue
-            key=(d,t)
-            if key in seen:
-                acc.duplicate_keys+=1
-                continue
-            seen.add(key)
-            acc.valid_bars+=1
-            acc.session_counts[sess]=acc.session_counts.get(sess,0)+1
-            pkey=(d,sess)
-            if pkey in prev_close:
-                r=math.log(c/prev_close[pkey])
-                acc.returns.append(r)
-                if sess.startswith("DAY"): acc.day_returns.append(r)
-                else: acc.night_returns.append(r)
-            prev_close[pkey]=c
-            dmin=d if dmin is None or d<dmin else dmin
-            dmax=d if dmax is None or d>dmax else dmax
-        meta={
-            "workbook_member":info.filename,
-            "workbook_member_size":info.file_size,
-            "sheet":sheet,
-            "row_count":row_count,
-            "distinct_trading_dates":len(daily),
-            "date_min":dmin.isoformat() if dmin else None,
-            "date_max":dmax.isoformat() if dmax else None,
-            "invalid_ohlcv_rows":invalid_ohlcv,
-            "out_of_session_rows":out_of_session,
-            "duplicate_timestamp_rows":sum(a.duplicate_keys for a in daily.values()),
-        }
-        return daily,meta
+def _sheet_names(raw: bytes, suffix: str) -> list[str]:
+    if suffix==".xlsx":
+        import openpyxl
+        wb=openpyxl.load_workbook(io.BytesIO(raw),read_only=True,data_only=True)
+        try: return list(wb.sheetnames)
+        finally: wb.close()
+    import xlrd
+    book=xlrd.open_workbook(file_contents=raw,on_demand=True)
+    try: return list(book.sheet_names())
+    finally: book.release_resources()
+
+def _iter_sheet(raw: bytes, suffix: str, sheet: str) -> Iterable[tuple[Any,...]]:
+    return iter_xlsx_rows(raw,sheet) if suffix==".xlsx" else iter_xls_rows(raw,sheet)
+
+def parse_sheet_from_source(source_path: Path, sheet: str, cal: dict[str,Any]) -> tuple[dict[date,DailyAcc],dict[str,Any]]:
+    member_name,raw,suffix=_workbook_payload(source_path)
+    rows=_iter_sheet(raw,suffix,sheet)
+    it=_find_header_and_rows(rows,source_path.name,sheet)
+
+    daily: dict[date,DailyAcc]={}
+    seen=set()
+    prev_close: dict[tuple[date,str],float]={}
+    row_count=0; invalid_ohlcv=0; out_of_session=0
+    dmin=None; dmax=None
+    for row in it:
+        if not row or all(v in (None,"") for v in row): continue
+        row_count+=1
+        d=normalize_date(row[0]); t=normalize_time(row[1])
+        sched=schedule_for(d,cal)
+        sess=classify_session(t,sched)
+        acc=daily.setdefault(d,DailyAcc([] ,[],[]))
+        if sess is None:
+            acc.invalid_bars+=1; out_of_session+=1; continue
+        try:
+            o,h,l,c,vol=[float(row[i]) for i in range(2,7)]
+        except Exception:
+            acc.invalid_bars+=1; invalid_ohlcv+=1; continue
+        if not (h>=max(o,c,l) and l<=min(o,c,h) and vol>=0 and o>0 and h>0 and l>0 and c>0):
+            acc.invalid_bars+=1; invalid_ohlcv+=1; continue
+        key=(d,t)
+        if key in seen:
+            acc.duplicate_keys+=1
+            continue
+        seen.add(key)
+        acc.valid_bars+=1
+        acc.session_counts[sess]=acc.session_counts.get(sess,0)+1
+        pkey=(d,sess)
+        if pkey in prev_close:
+            r=math.log(c/prev_close[pkey])
+            acc.returns.append(r)
+            if sess.startswith("DAY"): acc.day_returns.append(r)
+            else: acc.night_returns.append(r)
+        prev_close[pkey]=c
+        dmin=d if dmin is None or d<dmin else dmin
+        dmax=d if dmax is None or d>dmax else dmax
+    meta={
+        "workbook_member":member_name,
+        "workbook_member_size":len(raw),
+        "source_container":source_path.suffix.lower(),
+        "sheet":sheet,
+        "row_count":row_count,
+        "distinct_trading_dates":len(daily),
+        "date_min":dmin.isoformat() if dmin else None,
+        "date_max":dmax.isoformat() if dmax else None,
+        "invalid_ohlcv_rows":invalid_ohlcv,
+        "out_of_session_rows":out_of_session,
+        "duplicate_timestamp_rows":sum(a.duplicate_keys for a in daily.values()),
+    }
+    return daily,meta
+
+def parse_1m_qa_from_source(source_path: Path, cal: dict[str,Any]) -> tuple[dict[date,DailyAcc],dict[str,Any]]:
+    """Concatenate all 1min* sheets for measurement QA only."""
+    member_name,raw,suffix=_workbook_payload(source_path)
+    names=_sheet_names(raw,suffix)
+    one=[n for n in names if str(n).strip().startswith("1min")]
+    if not one:
+        raise ValueError("no 1min sheet")
+    merged: dict[date,DailyAcc]={}
+    metas=[]
+    for sh in one:
+        d,m=parse_sheet_from_source(source_path,sh,cal)
+        metas.append(m)
+        for dt,acc in d.items():
+            tgt=merged.setdefault(dt,DailyAcc([],[],[]))
+            tgt.returns.extend(acc.returns)
+            tgt.day_returns.extend(acc.day_returns)
+            tgt.night_returns.extend(acc.night_returns)
+            tgt.valid_bars+=acc.valid_bars
+            tgt.invalid_bars+=acc.invalid_bars
+            tgt.duplicate_keys+=acc.duplicate_keys
+            for k,v in acc.session_counts.items():
+                tgt.session_counts[k]=tgt.session_counts.get(k,0)+v
+    return merged,{"workbook_member":member_name,"sheets":one,"components":metas}
 
 def sumsq(xs:list[float])->float: return float(sum(x*x for x in xs))
 def semipos(xs:list[float])->float: return float(sum(x*x for x in xs if x>=0))
 def semineg(xs:list[float])->float: return float(sum(x*x for x in xs if x<0))
 
 def annual_files(folder:Path)->list[Path]:
-    fs=sorted(folder.glob("N225minif_*.zip"))
-    if not fs: raise SystemExit("no N225minif_*.zip files found")
+    fs=list(folder.glob("N225minif_*.zip")) + list(folder.glob("225mini20*d.xls"))
+    fs=sorted(fs,key=lambda p:p.name)
+    if not fs: raise SystemExit("no 225Labo Mini annual minute files found")
     return fs
 
 def main():
@@ -195,7 +252,8 @@ def main():
     args.output_dir.mkdir(parents=True,exist_ok=True)
     cal=load_calendar(args.calendar)
 
-    # Read annual 5m files, de-duplicating overlapping trading dates by choosing
+    # Read annual 5m files from both legacy direct XLS (2006-2011) and later ZIP
+    # containers, de-duplicating overlapping trading dates by choosing
     # the package whose nominal year equals the trading date year; if absent,
     # prefer the newest package deterministically.
     candidates: dict[date,list[tuple[int,Path,DailyAcc]]]={}
@@ -204,9 +262,9 @@ def main():
     for p in annual_files(args.input_dir):
         m=re.search(r"(20\d{2})",p.name)
         nominal=int(m.group(1)) if m else -1
-        d5,meta5=parse_sheet_from_zip(p,"5min",cal)
+        d5,meta5=parse_sheet_from_source(p,"5min",cal)
         try:
-            d1,meta1=parse_sheet_from_zip(p,"1min",cal)
+            d1,meta1=parse_1m_qa_from_source(p,cal)
             # Aggregate-only measurement QA summary per file, no daily 1m export.
             common=sorted(set(d5)&set(d1))
             pairs=[]
