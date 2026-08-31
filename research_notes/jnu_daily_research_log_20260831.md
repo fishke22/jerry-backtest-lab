@@ -377,3 +377,17 @@ Scientific interpretation:
 - It is not directional alpha and not a live entry/size/stop rule.
 - Any entry blackout, size reduction, stop widening, or confidence adjustment is a new downstream translation requiring preregistration and validation.
 - Framework now has two Stage-3 risk/information candidates: HAR-RSV and BOJ MPM event volatility. Validated directional modules remain 0; decision output remains `NO_VALIDATED_DIRECTIONAL_EDGE`.
+
+
+## 30. Momentum-reversion Stage A terminal result
+The preregistered `INTRADAY_MOMENTUM_REVERSION_TRUE_JNU_G1` family completed its true-OSE Mini Stage A on 4,170 usable trading days.
+
+- Valid run: 33399653907; artifact 9760719973.
+- Overall status: `TRUE_OSE_MINI_MOMREV_STAGE_A_FAIL`.
+- H1 1-minute momentum: FAIL. Mean daily signal payoff = -5.914279386709916e-05; directional accuracy = 0.4081390742120026; bootstrap P(mean>0)=0.0.
+- H2 non-overlapping 10-minute mean reversion: PASS inside the family. Mean daily signal payoff = +3.836712557711084e-05; directional accuracy = 0.522454101654589; bootstrap P=1.0.
+- Holm family pass = false.
+- Exact-JNU Micro Stage B is prohibited by preregistration.
+
+Interpretation:
+The literature-shaped two-cell family is terminally rejected. The strong 10-minute reversal result cannot be isolated after inspection, and the failed 1-minute momentum sign cannot be flipped into a new signal as a rescue. Any future related family requires substantively independent evidence and a new preregistration before outcomes.
