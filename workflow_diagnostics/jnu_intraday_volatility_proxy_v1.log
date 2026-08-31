@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "/home/runner/work/jerry-backtest-lab/jerry-backtest-lab/scripts/process_jnu_intraday_volatility_proxy.py", line 422, in main
+    process(p)
+  File "/home/runner/work/jerry-backtest-lab/jerry-backtest-lab/scripts/process_jnu_intraday_volatility_proxy.py", line 359, in process
+    panel,sources=build_panel(req)
+                  ^^^^^^^^^^^^^^^^
+  File "/home/runner/work/jerry-backtest-lab/jerry-backtest-lab/scripts/process_jnu_intraday_volatility_proxy.py", line 147, in build_panel
+    for year in req["years"]:
+                ~~~^^^^^^^^^
+KeyError: 'years'
+completed jnu_intraday_volatility_proxy_v1
+{"failures": [["jnu_har_rsv_jpn225_public_holdout_g2.json", "'years'"]]}
