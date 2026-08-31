@@ -1,13 +1,14 @@
 name: JNU News Language Source G1
 
 on:
-  push:
-    paths:
-      - "news_language_g1_requests/*.json"
   pull_request:
     paths:
       - "news_language_g1_requests/*.json"
   workflow_dispatch:
+
+concurrency:
+  group: jnu-news-g1-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: true
 
 permissions:
   contents: write
@@ -34,6 +35,8 @@ jobs:
             phase4b-gdelt-${{ runner.os }}-
       - name: Install dependencies
         run: pip install -r requirements.txt
+      - name: Run JNU data-integrity selftest
+        run: python scripts/selftest_jnu_data_integrity.py
       - name: Run preregistered News Language/Source G1
         id: g1run
         shell: bash
