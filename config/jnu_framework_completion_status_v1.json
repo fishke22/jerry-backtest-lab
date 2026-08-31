@@ -1,13 +1,13 @@
 {
-  "version": "1.2",
+  "version": "1.3",
   "as_of": "2026-08-31",
   "framework": "JNU_FINAL_FRAMEWORK_V3",
   "architecture_status": "FROZEN",
-  "research_completion_state": "FRAMEWORK_RESEARCH_COMPLETE_DATA_BLOCKED",
+  "research_completion_state": "FRAMEWORK_RESEARCH_COMPLETE_INTRADAY_DATA_BLOCKED",
   "validated_jnu_modules": 0,
   "validated_directional_modules": 0,
   "decision_engine_output": "NO_VALIDATED_DIRECTIONAL_EDGE",
-  "meaning": "The architecture remains frozen. Proxy-only stress tests and source-feasibility work have advanced, and an official OSE application path plus a current local-only 225Labo true-OSE path are now verified, but no approved true-OSE raw dataset has yet been processed in this session.",
+  "meaning": "Architecture remains frozen. Local QROS inspection now verifies substantial exact true-OSE daily/session history (Mini 1,250 distinct days; Micro 364 distinct days) with JPX/NDL provenance, but the frozen high-value families still require genuine 1m/5m/tick history. No module is promoted by this discovery.",
   "substitute_data_update": {
     "GETDATA_JPN225_PUBLIC_SAMPLE_1M": "2026-02-01 through 2026-07-31 public Japan225 1-minute sample; usable for proxy stress tests only.",
     "HAR_RSV_JPN225_PUBLIC_HOLDOUT_G2": {
@@ -56,21 +56,134 @@
     ]
   },
   "major_candidates": [
-    {"candidate":"JPX_OSE_HISTORICAL_FREE_ACCESS_RESOLUTION","role":"DATA_ACQUISITION_GATE","status":"ELIGIBILITY_AND_RIGHTS_UNRESOLVED","blocker":"Historical tick trial is official but individual eligibility, Nikkei product/date coverage, retention and processing rights are not yet confirmed.","next_when_unblocked":"If eligible and terms are suitable, use approved true-OSE data under those terms. Otherwise fall back to local-only 225Labo."},
-    {"candidate":"HAR_RSV_TRUE_OSE_CONFIRMATION","role":"RISK_SIZING","status":"DATA_BLOCKED","evidence":"2011-2018 proxy-method PASS plus 2026 public-proxy current-regime consistency","blocker":"True OSE mini/micro raw files are not currently observable to the cloud session; Remote Desktop device is offline.","next_when_unblocked":"Stage A Nikkei mini long-history frozen confirmation, then Stage B JNU micro exact-product consistency. Preferred paths: approved JPX trial if eligible, otherwise 225Labo local-only."},
-    {"candidate":"INTRADAY_PATH_US_TO_JNU_G1","role":"DIRECTION_CANDIDATE","status":"DATA_BLOCKED","evidence":"Direct Nikkei-futures literature, but two separate proxy screens (2011-2018 G0 and 2026 G2) do not confirm OOS path edge.","blocker":"Approved true OSE/JNU minute data unavailable to this session.","next_when_unblocked":"Run the frozen true-OSE family once; do not open further proxy-rescue variants."},
-    {"candidate":"TRUE_VENUE_DPD_OSE_SGX_CME_G1","role":"SOURCE_WEIGHTING","status":"PARTIALLY_DATA_BLOCKED","blocker":"CME side has a short true-CME sample and completed feasibility alignment, but approved matched-expiry OSE+SGX history remains unavailable.","guardrail":"Proxy architecture and short-sample CME feasibility cannot be promoted as true-venue DPD."},
-    {"candidate":"OSE_ORDER_IMBALANCE","role":"MICROSTRUCTURE_INFORMATION","status":"LITERATURE_ONLY_DATA_BLOCKED","blocker":"No approved signed-trade/limit-order/spread history.","guardrail":"Do not infer order imbalance from OHLC/VWAP/aggregate volume."},
-    {"candidate":"CBOE_LTV_LEFT_TAIL_RISK","role":"GLOBAL_TAIL_RISK_STATE","status":"DATA_BLOCKED","blocker":"No verified free official historical LTV series.","guardrail":"Do not substitute VIX/SKEW and call it LTV."},
-    {"candidate":"BOJ_MPM_EVENT_VOLATILITY","role":"EVENT_VOLATILITY_RISK_STATE","status":"DATA_BLOCKED","blocker":"Verified free public history is insufficient for robust intraday Nikkei 225 VI/VI-futures replication.","guardrail":"Do not open a weak small-event daily substitute merely to obtain a result."},
-    {"candidate":"NEWS_STATE_LANGUAGE_SOURCE_G1_DI1","role":"EVENT_STATE","status":"DATA_INCONCLUSIVE","terminal_run_id":33348607397,"logical_attempts_used":3,"missing_cache_count":311,"statistical_evaluation_performed":false,"guardrail":"No fourth acquisition attempt."},
-    {"candidate":"PHASE4B_USDJPY_1D","role":"CONDITIONAL_MACRO","status":"REJECT_CURRENT_SPEC","guardrail":"No post-hoc high-VIX rescue."}
+    {
+      "candidate": "JPX_OSE_HISTORICAL_FREE_ACCESS_RESOLUTION",
+      "role": "DATA_ACQUISITION_GATE",
+      "status": "ELIGIBILITY_AND_RIGHTS_UNRESOLVED",
+      "blocker": "Historical tick trial is official but individual eligibility, Nikkei product/date coverage, retention and processing rights are not yet confirmed.",
+      "next_when_unblocked": "If eligible and terms are suitable, use approved true-OSE data under those terms. Otherwise fall back to local-only 225Labo."
+    },
+    {
+      "candidate": "HAR_RSV_TRUE_OSE_CONFIRMATION",
+      "role": "RISK_SIZING",
+      "status": "DATA_BLOCKED",
+      "evidence": "2011-2018 proxy-method PASS plus 2026 public-proxy current-regime consistency",
+      "blocker": "True OSE mini/micro raw files are not currently observable to the cloud session; Remote Desktop device is offline.",
+      "next_when_unblocked": "Stage A Nikkei mini long-history frozen confirmation, then Stage B JNU micro exact-product consistency. Preferred paths: approved JPX trial if eligible, otherwise 225Labo local-only."
+    },
+    {
+      "candidate": "INTRADAY_PATH_US_TO_JNU_G1",
+      "role": "DIRECTION_CANDIDATE",
+      "status": "DATA_BLOCKED",
+      "evidence": "Direct Nikkei-futures literature, but two separate proxy screens (2011-2018 G0 and 2026 G2) do not confirm OOS path edge.",
+      "blocker": "Approved true OSE/JNU minute data unavailable to this session.",
+      "next_when_unblocked": "Run the frozen true-OSE family once; do not open further proxy-rescue variants."
+    },
+    {
+      "candidate": "TRUE_VENUE_DPD_OSE_SGX_CME_G1",
+      "role": "SOURCE_WEIGHTING",
+      "status": "PARTIALLY_DATA_BLOCKED",
+      "blocker": "CME side has a short true-CME sample and completed feasibility alignment, but approved matched-expiry OSE+SGX history remains unavailable.",
+      "guardrail": "Proxy architecture and short-sample CME feasibility cannot be promoted as true-venue DPD."
+    },
+    {
+      "candidate": "OSE_ORDER_IMBALANCE",
+      "role": "MICROSTRUCTURE_INFORMATION",
+      "status": "LITERATURE_ONLY_DATA_BLOCKED",
+      "blocker": "No approved signed-trade/limit-order/spread history.",
+      "guardrail": "Do not infer order imbalance from OHLC/VWAP/aggregate volume."
+    },
+    {
+      "candidate": "CBOE_LTV_LEFT_TAIL_RISK",
+      "role": "GLOBAL_TAIL_RISK_STATE",
+      "status": "DATA_BLOCKED",
+      "blocker": "No verified free official historical LTV series.",
+      "guardrail": "Do not substitute VIX/SKEW and call it LTV."
+    },
+    {
+      "candidate": "BOJ_MPM_EVENT_VOLATILITY",
+      "role": "EVENT_VOLATILITY_RISK_STATE",
+      "status": "DATA_BLOCKED",
+      "blocker": "Verified free public history is insufficient for robust intraday Nikkei 225 VI/VI-futures replication.",
+      "guardrail": "Do not open a weak small-event daily substitute merely to obtain a result."
+    },
+    {
+      "candidate": "NEWS_STATE_LANGUAGE_SOURCE_G1_DI1",
+      "role": "EVENT_STATE",
+      "status": "DATA_INCONCLUSIVE",
+      "terminal_run_id": 33348607397,
+      "logical_attempts_used": 3,
+      "missing_cache_count": 311,
+      "statistical_evaluation_performed": false,
+      "guardrail": "No fourth acquisition attempt."
+    },
+    {
+      "candidate": "PHASE4B_USDJPY_1D",
+      "role": "CONDITIONAL_MACRO",
+      "status": "REJECT_CURRENT_SPEC",
+      "guardrail": "No post-hoc high-VIX rescue."
+    }
   ],
-  "admitted_architecture_now": ["DATA_INTEGRITY_CAUSAL_TIMING","SESSION_MARKET_STATE","MICROSTRUCTURE_EXECUTION_AS_NON_ALPHA_CONTEXT","DECISION_ENGINE_FAIL_CLOSED_POLICY"],
-  "conditionally_admitted_after_validation": ["HAR_RSV_DI1 as risk/sizing only if true-OSE confirmation passes","INTRADAY_PATH_US_TO_JNU_G1 as session/path directional layer only if true-OSE family passes","TRUE_VENUE_DPD as source weighting only if matched-expiry true-venue family passes"],
-  "not_admitted": ["Fixed cross-market majority vote","Arbitrary NQ/USDJPY or other fixed weights","SMA as alpha","Legacy trend/breakout/drawdown/relative-strength families","Current USDJPY 1d specification","GDELT news families as validated state","Proxy DPD as true-venue evidence","OHLC-derived fake order imbalance"],
+  "admitted_architecture_now": [
+    "DATA_INTEGRITY_CAUSAL_TIMING",
+    "SESSION_MARKET_STATE",
+    "MICROSTRUCTURE_EXECUTION_AS_NON_ALPHA_CONTEXT",
+    "DECISION_ENGINE_FAIL_CLOSED_POLICY"
+  ],
+  "conditionally_admitted_after_validation": [
+    "HAR_RSV_DI1 as risk/sizing only if true-OSE confirmation passes",
+    "INTRADAY_PATH_US_TO_JNU_G1 as session/path directional layer only if true-OSE family passes",
+    "TRUE_VENUE_DPD as source weighting only if matched-expiry true-venue family passes"
+  ],
+  "not_admitted": [
+    "Fixed cross-market majority vote",
+    "Arbitrary NQ/USDJPY or other fixed weights",
+    "SMA as alpha",
+    "Legacy trend/breakout/drawdown/relative-strength families",
+    "Current USDJPY 1d specification",
+    "GDELT news families as validated state",
+    "Proxy DPD as true-venue evidence",
+    "OHLC-derived fake order imbalance"
+  ],
   "completion_criteria": "config/jnu_framework_completion_criteria_v1.json",
   "architecture_prereg": "config/jnu_final_framework_v3_prereg.json",
   "true_ose_handoff": "config/jnu_true_ose_execution_package_v1.json",
-  "reopen_trigger": "Authorized true-OSE data becomes observable, a genuinely new independent high-evidence/free-legal data source appears, or a documented implementation/data-integrity defect is found."
+  "reopen_trigger": "Authorized true-OSE data becomes observable, a genuinely new independent high-evidence/free-legal data source appears, or a documented implementation/data-integrity defect is found.",
+  "local_qros_update": {
+    "device_status": "ONLINE",
+    "exact_micro_daily_session": {
+      "distinct_days": 364,
+      "date_range": [
+        "2025-02-03",
+        "2026-07-30"
+      ],
+      "contract_rows": 1455,
+      "continuous_contracts": 19,
+      "rolls": 18,
+      "source": "JPX_PUBLIC_DAILY_REPORT"
+    },
+    "exact_mini_common_day_session": {
+      "distinct_days": 1250,
+      "date_range": [
+        "2015-12-01",
+        "2026-07-30"
+      ],
+      "contract_rows": 14999,
+      "sources": [
+        "NDL_ARCHIVED_OSE_DAILY_REPORT",
+        "JPX_PUBLIC_DAILY_REPORT"
+      ]
+    },
+    "ndl_item_index": {
+      "items": 1414,
+      "date_range": [
+        "2014-03-24",
+        "2019-12-30"
+      ],
+      "role": "metadata/provenance only"
+    },
+    "intraday_status": "NOT_FOUND_IN_EXISTING_QROS_DATA_OR_REALTIME_CAPTURE",
+    "scientific_boundary": "Daily/session exact-product evidence cannot satisfy 5-minute RV/RSV, FIRST/LAST30, DPD lead-lag or order-imbalance gates.",
+    "next_action": "Acquire genuine Mini 1m/5m locally, preferred 225Labo under personal-use local-only boundary; reuse QROS ingestion/DQ/provenance."
+  }
 }
