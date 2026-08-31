@@ -226,3 +226,16 @@ Detailed inventory: `research_notes/jnu_qros_local_source_inventory_20260831.md`
 4. Search/acquire true OSE Mini 1m/5m locally, with 225Labo the preferred no-extra-cost personal-use path; raw remains local-only.
 5. If local 225Labo minute acquisition is unavailable, continue JPX historical-trial eligibility resolution.
 6. Never synthesize 5-minute RV/RSV from daily/session OHLC.
+
+
+## 22. 225Labo authenticated-acquisition boundary
+Current 225Labo pages were rechecked after the local device came online. Nikkei 225 mini minute history is offered from 2006 onward in 1/3/5/10/15/20/30/60-minute intervals; Micro minute history is offered from 2023-07-24. Download requires member login. 225Labo's download terms state that the data are privately collected/created, are provided without warranty, and are intended for the individual data user's own learning/verification; third-party provision/redistribution is prohibited. Therefore the adopted boundary remains: login and raw files local only, no credentials/cookies/authenticated URLs in GitHub/cloud, and only non-reconstructive derived RV/RSV panels/hashes may leave the local machine.
+
+The local default browser was opened to the 225Labo login page and Mini download page to make the required human authentication step available. No password, session cookie, or browser credential was read or exported.
+
+A generic fail-closed Phase-A schema auditor was added at `scripts/inspect_225labo_local_sample.py`. It supports local CSV/TXT/XLSX/XLSM/ZIP structure inspection, hashes the raw file, emits only structural/header metadata, and never prints raw market-data rows. A concrete 225Labo parser remains prohibited until an actual user-downloaded sample is observable.
+
+## 23. QROS July source report supersession
+Two QROS reports dated 2026-07-12 stated that the JPX Daily Report was settlement-only and that no authoritative OSE Micro historical OHLC/volume/OI had been obtained. Those statements were correct for that task's knowledge state but are superseded by later QROS work from August: hundreds of JPX public Daily Report PDFs were downloaded and parser v1.0.2 extracted explicit night/day OHLC, settlement, volume and open interest for Large/Mini/Micro contract rows. The exact Micro common-day corpus now has 364 distinct days and the Mini corpus 1,250 distinct days.
+
+Future sessions must use the later provenance/DQ artifacts rather than treating the 2026-07-12 report as current source availability. This supersession still does not create minute/tick history; the remaining blocker is true OSE 1m/5m intraday history.
