@@ -146,6 +146,13 @@
         33341758160,
         33341760779
       ]
+    },
+    "quality_gate": {
+      "min_common_trading_day_coverage": 0.95,
+      "min_common_oos_evaluation_days": 500,
+      "failure_disposition": "DATA_INCONCLUSIVE",
+      "rationale": "A four-cell comparison is not interpretable if source omissions materially change the evaluation population; coverage is a data-quality gate, not a performance threshold.",
+      "no_rescue": "Do not drop a low-coverage cell after inspection to raise common coverage."
     }
   }
 }
