@@ -1,0 +1,33 @@
+{
+  "candidate_id": "BOJ_MPM_TRUE_OSE_EVENT_VOLATILITY_G1",
+  "stage": "B_EXACT_JNU_MICRO",
+  "status": "TRUE_JNU_MICRO_BOJ_EVENT_VOL_STAGE_B_PASS",
+  "stage_b_pass": true,
+  "stage_a_prerequisite": "TRUE_OSE_MINI_BOJ_EVENT_VOL_STAGE_A_PASS",
+  "role": "EVENT_RISK_STATE_ONLY_NOT_DIRECTIONAL_ALPHA",
+  "usable_events": 22,
+  "minimum_usable_events": 20,
+  "mean_log_event_to_baseline_rv_ratio": 1.6034692468630831,
+  "median_log_event_to_baseline_rv_ratio": 1.7268933093975936,
+  "bootstrap": {
+    "samples": 5000,
+    "seed": 42,
+    "prob_mean_positive": 1,
+    "ci95": [
+      1.0789356833387151,
+      2.126909061305105
+    ]
+  },
+  "derived_panel_sha256": "43fd2ec741e30e8c4596a58d0f8366c54c84582eb4e288ad81963ef4769148aa",
+  "manifest_sha256": "c0f8bd6801345bc6cb690314c70710091ffa1d29c805ce427cfdf9117589d38e",
+  "promotion_pipeline_stage": 3,
+  "promotion_state_if_pass": "EVENT_RISK_INFORMATION_STATE_CANDIDATE",
+  "next_rule": "Stage 3 true-target event/risk confirmation passes. Any entry blackout, size reduction, stop widening, or confidence rule must be separately preregistered and validated downstream.",
+  "workflow_evidence": {
+    "run_id": 33397255940,
+    "head_sha": "b74e44dce3e18c4ebc10b02ac57a5bdfdfee17d8",
+    "artifact_id": 9759799976,
+    "conclusion": "success"
+  },
+  "generated_at_utc": "2026-08-31T13:29:37.387095+00:00"
+}
