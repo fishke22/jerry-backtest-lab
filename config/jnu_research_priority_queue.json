@@ -1,115 +1,39 @@
 {
-  "version": "1.2",
+  "version": "1.3",
   "updated_at": "2026-08-31",
   "policy": {
     "max_active_formal_families": 1,
     "rule": "Do not start the next formal information family until the active family is resolved PASS/FAIL/INCONCLUSIVE and its disposition is persisted.",
-    "ranking_dimensions": [
-      "Direct Nikkei/Nikkei-futures academic evidence",
-      "Independent/true OSE data quality",
-      "No-extra-cost data availability",
-      "Causal timing and point-in-time integrity",
-      "Multiple-testing/overfit risk",
-      "Incremental role not duplicated by existing layers"
-    ],
-    "prohibited": [
-      "Parameter rescue after a failed preregistered family",
-      "Testing many indicators in parallel and selecting the prettiest result",
-      "Promoting proxy-only evidence as validated JNU alpha",
-      "Counting correlated features as independent votes"
-    ]
+    "ranking_dimensions": ["Direct Nikkei/Nikkei-futures academic evidence","Independent/true OSE data quality","No-extra-cost data availability","Causal timing and point-in-time integrity","Multiple-testing/overfit risk","Incremental role not duplicated by existing layers"],
+    "prohibited": ["Parameter rescue after a failed preregistered family","Testing many indicators in parallel and selecting the prettiest result","Promoting proxy-only evidence as validated JNU alpha","Counting correlated features as independent votes"]
   },
-  "active": null,
-  "next_feasible_review": null,
+  "active": {
+    "candidate": "HAR_RSV_JPN225_PUBLIC_HOLDOUT_G2",
+    "run_id": 33357752091,
+    "status": "RUNNING_PROXY_HOLDOUT",
+    "role": "Current-regime proxy stress test for HAR-RSV risk-state candidate",
+    "promotion_power": "NONE_TO_TRUE_JNU",
+    "note": "New free public 2026 Japan 225 1-minute sample discovered after prior 2011-2018 proxy work. Uses preregistered 5-minute RV/RSV and HAR 1/5/22. True-OSE confirmation remains mandatory regardless of result."
+  },
   "current_global_blocker": {
     "id": "TRUE_OSE_INTRADAY_DATA_ACCESS",
-    "status": "BLOCKED_LOCAL_DEVICE_OFFLINE_OR_APPROVED_FREE_SOURCE_UNVERIFIED",
-    "impact": [
-      "HAR_RSV_TRUE_OSE_CONFIRMATION",
-      "INTRADAY_PATH_US_TO_JNU_G1",
-      "TRUE_VENUE_DPD_OSE_SGX_CME"
-    ],
-    "rule": "Do not replace true OSE/JNU minute data with index proxies for formal promotion."
+    "status": "PARTIALLY_BYPASSED_FOR_PROXY_STRESS_ONLY_TRUE_PROMOTION_STILL_BLOCKED",
+    "impact": ["HAR_RSV_TRUE_OSE_CONFIRMATION","INTRADAY_PATH_US_TO_JNU_G1","TRUE_VENUE_DPD_OSE_SGX_CME"],
+    "rule": "Index/CFD proxies may be used for explicitly preregistered methodology or holdout stress tests, but never for true-OSE/JNU promotion."
   },
   "queue": [
-    {
-      "rank": 2,
-      "candidate": "HAR_RSV_TRUE_OSE_CONFIRMATION",
-      "evidence": "Direct Japanese/Nikkei futures volatility literature + DI1 proxy-method pass",
-      "target_role": "Risk state / sizing / stop normalization",
-      "status": "BLOCKED_ON_PERSONALLY_LICENSED_LOCAL_OSE_FILE",
-      "data_plan": "Nikkei mini 2006+ long-history confirmation, then Micro 2023+ exact-product consistency",
-      "next_action": "Resume only after exact 225Labo schema/sample is locally available; raw personal-use data stays local."
-    },
-    {
-      "rank": 3,
-      "candidate": "CBOE_LTV_LEFT_TAIL_RISK",
-      "evidence": "Very high conceptual match to Andersen-Todorov-Ubukata Japanese-equity tail-risk research",
-      "target_role": "Global tail-risk state",
-      "status": "BLOCKED_NO_VERIFIED_FREE_OFFICIAL_HISTORY",
-      "next_action": "Do not substitute VIX/SKEW. Revisit only if a free/authorized official LTV history becomes verifiable."
-    },
-    {
-      "rank": 4,
-      "candidate": "TRUE_VENUE_DPD_OSE_SGX_CME",
-      "evidence": "Direct price-discovery literature",
-      "target_role": "Dynamic source weighting",
-      "status": "BLOCKED_ON_APPROVED_OSE_AND_SGX_INTRADAY_DATA",
-      "next_action": "No formal promotion until venue-specific data exists."
-    },
-    {
-      "rank": 5,
-      "candidate": "INTRADAY_PATH_US_TO_JNU_G1",
-      "evidence": "Direct Nikkei 225 futures evidence (Iwanaga 2026) with frozen FIRST_30M/LAST_30M hypotheses",
-      "target_role": "Session/path conditional directional layer",
-      "status": "DESIGN_FROZEN_AWAITING_TRUE_JNU_INTRADAY_DATA",
-      "preregistration": "config/jnu_intraday_path_us_g1_prereg.json",
-      "next_action": "No proxy rescue. Execute only when approved true OSE/JNU minute data is available."
-    },
-    {
-      "rank": 6,
-      "candidate": "OSE_ORDER_IMBALANCE",
-      "evidence": "Direct Nikkei-futures microstructure literature",
-      "target_role": "Microstructure information",
-      "status": "BLOCKED_NO_FREE_DIRECTIONAL_ORDER_FLOW_DATA",
-      "next_action": "Do not infer from OHLC/volume. Wait for approved trade/order-side data."
-    },
-    {
-      "rank": 7,
-      "candidate": "BOJ_MPM_EVENT_VOLATILITY",
-      "evidence": "Japanese monetary-policy release literature with Nikkei 225 VI / VI futures intraday response",
-      "target_role": "Event-volatility/risk state",
-      "status": "BLOCKED_ON_ADEQUATE_FREE_INTRADAY_VOLATILITY_HISTORY",
-      "data_plan": "Official BOJ MPM/release timestamps are available, but the public Nikkei Indexes site provides only 3 years of daily index data and 10 years of monthly data; that is insufficient to replicate or robustly OOS-test the cited intraday MPM effect.",
-      "next_action": "Do not launch a weak small-event daily substitute. Revisit only with an approved intraday Nikkei VI/VI-futures or equivalent preregistered market series."
-    }
+    {"rank":2,"candidate":"HAR_RSV_TRUE_OSE_CONFIRMATION","evidence":"Direct Japanese/Nikkei futures volatility literature + DI1 proxy-method pass","target_role":"Risk state / sizing / stop normalization","status":"BLOCKED_ON_PERSONALLY_LICENSED_LOCAL_OSE_FILE","data_plan":"Nikkei mini 2006+ long-history confirmation, then Micro 2023+ exact-product consistency","next_action":"Resume after exact 225Labo schema/sample is locally available; raw stays local."},
+    {"rank":3,"candidate":"CBOE_LTV_LEFT_TAIL_RISK","status":"BLOCKED_NO_VERIFIED_FREE_OFFICIAL_HISTORY","next_action":"Do not substitute VIX/SKEW."},
+    {"rank":4,"candidate":"TRUE_VENUE_DPD_OSE_SGX_CME","status":"BLOCKED_ON_APPROVED_OSE_AND_SGX_INTRADAY_DATA","next_action":"No formal promotion until venue-specific data exists."},
+    {"rank":5,"candidate":"INTRADAY_PATH_US_TO_JNU_G1","status":"DESIGN_FROZEN_AWAITING_TRUE_JNU_INTRADAY_DATA","preregistration":"config/jnu_intraday_path_us_g1_prereg.json","next_action":"No proxy rescue; true OSE/JNU minute data required for formal promotion."},
+    {"rank":6,"candidate":"OSE_ORDER_IMBALANCE","status":"BLOCKED_NO_FREE_DIRECTIONAL_ORDER_FLOW_DATA","next_action":"Do not infer from OHLC/volume."},
+    {"rank":7,"candidate":"BOJ_MPM_EVENT_VOLATILITY","status":"BLOCKED_ON_ADEQUATE_FREE_INTRADAY_VOLATILITY_HISTORY","next_action":"Do not launch weak small-event daily substitute."}
   ],
   "resolved": [
-    {
-      "candidate": "PHASE4B_GDELT_NEWS_STATE",
-      "status": "DATA_INCONCLUSIVE",
-      "reason": "Bounded conservative acquisition protocol could not complete full preregistered panel.",
-      "final_run_id": 33331409697
-    },
-    {
-      "candidate": "NEWS_STATE_LANGUAGE_SOURCE_G1_DI1",
-      "status": "DATA_INCONCLUSIVE",
-      "reason": "Third and final preregistered acquisition attempt ended with an incomplete four-cell panel; 311 cache windows missing. Statistical evaluation was not performed.",
-      "final_run_id": 33348607397,
-      "logical_attempts_used": 3,
-      "reopen_rule": "No fourth acquisition attempt."
-    }
+    {"candidate":"PHASE4B_GDELT_NEWS_STATE","status":"DATA_INCONCLUSIVE","final_run_id":33331409697},
+    {"candidate":"NEWS_STATE_LANGUAGE_SOURCE_G1_DI1","status":"DATA_INCONCLUSIVE","final_run_id":33348607397,"logical_attempts_used":3,"reopen_rule":"No fourth acquisition attempt."}
   ],
   "screened_not_separate_families": [
-    {
-      "candidate": "FUTURES_CASH_BASIS_ALPHA",
-      "disposition": "DO_NOT_OPEN_SEPARATE_FAMILY",
-      "reason": [
-        "Direct Nikkei basis literature reports unstable/unit-root-like basis behavior for standalone prediction.",
-        "Modern spot-futures adjustment evidence overlaps conceptually with Dynamic Price Discovery.",
-        "Fair-value basis is mechanically driven by financing, dividends and time-to-expiry, so counting it as an independent directional vote risks duplication."
-      ],
-      "allowed_use": "DPD/fair-value sanity check, roll diagnostics and execution context only."
-    }
+    {"candidate":"FUTURES_CASH_BASIS_ALPHA","disposition":"DO_NOT_OPEN_SEPARATE_FAMILY","allowed_use":"DPD/fair-value sanity check, roll diagnostics and execution context only."}
   ]
 }
