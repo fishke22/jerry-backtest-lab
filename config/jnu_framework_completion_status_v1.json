@@ -1,5 +1,5 @@
 {
-  "version": "1.7",
+  "version": "1.8",
   "as_of": "2026-08-31",
   "framework": "JNU_FINAL_FRAMEWORK_V3",
   "architecture_status": "FROZEN",
@@ -214,5 +214,11 @@
     "mini_stage_a_run": 33396821958,
     "micro_stage_b_run": 33397255940,
     "stage9_validated": false
+  },
+  "momentum_reversion_true_ose": {
+    "status": "STAGE_A_FAIL",
+    "run_id": 33399653907,
+    "stage_b_prohibited": true,
+    "note": "H2 10m reversion passed inside the failed family but is not independently admissible."
   }
 }
