@@ -319,7 +319,14 @@ def main()->None:
             "venue":"OSE",
             "product":"Nikkei 225 Micro Futures (JNU)",
             "years_present":years,
-            "date_range":[rows[0]["trading_date"] if rows else None,rows[-1]["trading_date"] if rows else None],
+        },
+        "date_range":[rows[0]["trading_date"] if rows else None,rows[-1]["trading_date"] if rows else None],
+        "missingness_summary":{
+            "selected_trading_days":len(rows),
+            "incomplete_window_days_count":len(incomplete),
+            "minimum_first30_bars":min((r["first30_bars"] for r in rows),default=None),
+            "minimum_last30_bars":min((r["last30_bars"] for r in rows),default=None),
+            "minimum_middle_coverage_ratio":min((r["middle_coverage_ratio"] for r in rows),default=None),
         },
         "window_definitions":{
             "FIRST_30M":"historical OSE day open inclusive to open+30 exclusive",
@@ -352,7 +359,7 @@ def main()->None:
     print(json.dumps({
         "status":"DERIVED_PANEL_BUILT" if not critical else "DERIVED_PANEL_BUILT_WITH_CRITICAL_DQ",
         "rows":len(rows),
-        "date_range":manifest["product_contract_coverage"]["date_range"],
+        "date_range":manifest["date_range"],
         "incomplete_days":len(incomplete),
         "critical_issue_count":len(critical),
         "derived_output_hash":manifest["derived_output_hash"],
