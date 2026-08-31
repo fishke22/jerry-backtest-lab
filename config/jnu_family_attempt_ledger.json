@@ -92,22 +92,23 @@
     },
     {
       "id": "NEWS_STATE_LANGUAGE_SOURCE_G1",
-      "status": "RUNNING_DI1_LOGICAL_ATTEMPT_2",
+      "status": "DATA_INCONCLUSIVE",
       "multiplicity": "PREREGISTERED_4_CELL_HOLM_FAMILY",
-      "run_id": 33341760779,
       "data_integrity_revision": "G1_DI1",
-      "old_runs": [
-        33341758160,
-        33341760779
-      ],
+      "logical_attempts_used": 3,
+      "terminal_run_id": 33348607397,
+      "terminal_reason": "FINAL_ACQUISITION_BUDGET_EXHAUSTED_INCOMPLETE_FOUR_CELL_PANEL",
+      "statistical_evaluation_performed": false,
+      "missing_cache_count": 311,
+      "directional_trading_status": "PROHIBITED_G1",
+      "old_runs": [33341758160, 33341760779, 33343945135],
       "old_runs_eligibility": "DATA_AUDIT_ONLY",
-      "note": "No statistical result was inspected before DI1 missing-day/common-sample policy was frozen.",
-      "active_run_id": 33343945135,
       "selftest": "PASS",
       "quality_gate": {
         "min_common_trading_day_coverage": 0.95,
         "min_common_oos_evaluation_days": 500
-      }
+      },
+      "note": "G1-DI1 closed after the preregistered third and final acquisition attempt. Incomplete four-cell source panel prevented the frozen data-quality gate and therefore no significance interpretation was performed. No fourth acquisition attempt is permitted."
     }
   ],
   "conservative_rule": "Unknown legacy multiplicity is treated against promotion, not ignored."
