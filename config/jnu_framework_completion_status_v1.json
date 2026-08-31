@@ -1,5 +1,5 @@
 {
-  "version": "1.8",
+  "version": "1.9",
   "as_of": "2026-08-31",
   "framework": "JNU_FINAL_FRAMEWORK_V3",
   "architecture_status": "FROZEN",
@@ -220,5 +220,11 @@
     "run_id": 33399653907,
     "stage_b_prohibited": true,
     "note": "H2 10m reversion passed inside the failed family but is not independently admissible."
+  },
+  "overnight_overreaction_true_ose": {
+    "status": "STAGE_A_FAIL",
+    "run_id": 33400904120,
+    "stage_b_prohibited": true,
+    "note": "Near-pass direction/accuracy but bootstrap confidence below preregistered threshold."
   }
 }
