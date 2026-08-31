@@ -1,0 +1,2876 @@
+{
+  "version": "1.0",
+  "as_of": "2026-08-31",
+  "timezone": "Asia/Tokyo",
+  "candidate": "BOJ_MPM_TRUE_OSE_EVENT_VOLATILITY_G1",
+  "eligibility_based_only_on_event_time_and_historical_OSE_session": true,
+  "market_outcome_inspected": false,
+  "primary_event_window": "[-10m,+20m) around official BOJ release",
+  "baseline_window": "[-40m,-10m) immediately preceding, non-overlapping",
+  "eligible_event_count": 192,
+  "stage_a_event_count": 170,
+  "stage_b_event_count": 22,
+  "eligible_events": [
+    {
+      "date": "2007-02-21",
+      "release_time_jst": "14:19",
+      "release_title": "Announcement of the Monetary Policy Meeting Decisions (Change in the Guideline for Money Market Operations, Announced at 2:19pm) [PDF 64KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2007/k070221.pdf",
+      "source_sha256": "c261995e27b1945882f4b800ee7e94b7ba00239cee32e43e0111a274b932ffc0",
+      "session_segment": [
+        "12:30",
+        "15:10"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2007-04-27",
+      "release_time_jst": "14:07",
+      "release_title": "Announcement of the Monetary Policy Meeting Decisions (unchanged, Announced at 2:07 pm) [PDF 50KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2007/k070427.pdf",
+      "source_sha256": "ee69e96156c96101acb64c10edd15042e2f8d3a654d1d67a796907043d0db879",
+      "session_segment": [
+        "12:30",
+        "15:10"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2007-09-19",
+      "release_time_jst": "13:21",
+      "release_title": "Announcement of the Monetary Policy Meeting Decisions (unchanged, Announced at 1:21 pm) [PDF 72KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2007/k070919.pdf",
+      "source_sha256": "ac2683d3075680552e30a84462699bb1996814db91e25d606c7178741903392e",
+      "session_segment": [
+        "12:30",
+        "15:10"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2007-10-11",
+      "release_time_jst": "13:32",
+      "release_title": "Announcement of the Monetary Policy Meeting Decisions (unchanged, Announced at 1:32 pm) [PDF 71KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2007/k071011.pdf",
+      "source_sha256": "36cc21d9e37c7df91f4636554e8d3d8eb974cddc6d3ce45984546fabc0482ac6",
+      "session_segment": [
+        "12:30",
+        "15:10"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2008-04-30",
+      "release_time_jst": "13:28",
+      "release_title": "Announcement of the Monetary Policy Meeting Decisions (unchanged, Announced at 1:28 pm) [PDF 77KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2008/k080430.pdf",
+      "source_sha256": "bb7ccb7cca9451e01de3d78cc92de95e53a08e41c1c6469720bda4e02fe7b1f6",
+      "session_segment": [
+        "12:30",
+        "15:10"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2008-07-15",
+      "release_time_jst": "13:34",
+      "release_title": "Statement on Monetary Policy (Policy unchanged, Announced at 1:34 pm) [PDF 111KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2008/k080715.pdf",
+      "source_sha256": "09e7534a9b63c912d2f68768f71fc22ae14e327d571dc658e5b8bb250767edbb",
+      "session_segment": [
+        "12:30",
+        "15:10"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2008-09-17",
+      "release_time_jst": "14:00",
+      "release_title": "Statement on Monetary Policy (Policy unchanged, Announced at 12:47 pm) [PDF 65KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2008/k080917.pdf",
+      "source_sha256": "f035c618d012d33cc612738c9eeaf55395162a1bcf182a532f4518239cd1464f",
+      "session_segment": [
+        "12:30",
+        "15:10"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2008-10-07",
+      "release_time_jst": "14:00",
+      "release_title": "Statement on Monetary Policy (Policy unchanged, Announced at 12:58 pm) [PDF 80KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2008/k081007.pdf",
+      "source_sha256": "a7d343eb1507f28d8918829b9644ae1048ff5acf9f0600cc93f55772c1ccb884",
+      "session_segment": [
+        "12:30",
+        "15:10"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2008-10-31",
+      "release_time_jst": "13:58",
+      "release_title": "On Monetary Policy Decisions (Change in the Guideline for Money Market Operations, Announced at 1:58pm) [PDF 99KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2008/k081031.pdf",
+      "source_sha256": "f1edf663083b34d28ca8dd66c77f5d3c9289539ea1ef2922582ebfe2bf42eb5a",
+      "session_segment": [
+        "12:30",
+        "15:10"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2008-11-21",
+      "release_time_jst": "14:00",
+      "release_title": "Statement on Monetary Policy (Policy unchanged, Announced at 12:34 pm) [PDF 65KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2008/k081121.pdf",
+      "source_sha256": "ebf9dd3544007f03e466ed71812559b69ae61d97e443a261af8372524b6ad18e",
+      "session_segment": [
+        "12:30",
+        "15:10"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2008-12-02",
+      "release_time_jst": "14:34",
+      "release_title": "Announcement of the Monetary Policy Meeting Decisions (Policy unchanged, Announced at 2:34 pm) [PDF 48KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2008/k081202.pdf",
+      "source_sha256": "8eb6f89b06972af7b7fd6e4146de350c31206ffb77febcf8965b9503563c1982",
+      "session_segment": [
+        "12:30",
+        "15:10"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2008-12-19",
+      "release_time_jst": "14:00",
+      "release_title": "On Monetary Policy Decisions (Announced at 2:05 p.m.) --Additional Measures regarding Money Market Operation Tools [PDF 86KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2008/k081219.pdf",
+      "source_sha256": "11db4f0563f68b433e569085119e169f9f6a5df07420047b43f8bbe94630d265",
+      "session_segment": [
+        "12:30",
+        "15:10"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2009-01-22",
+      "release_time_jst": "14:00",
+      "release_title": "Statement on Monetary Policy (Policy unchanged, Announced at 1:43 p.m.) [PDF 120KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2009/k090122.pdf",
+      "source_sha256": "cb77a16efc508f807b17716403ee1ce740bd5ef0022c5970bb21388d9933e653",
+      "session_segment": [
+        "12:30",
+        "15:10"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2009-02-19",
+      "release_time_jst": "14:00",
+      "release_title": "Statement on Monetary Policy (Policy unchanged, Announced at 1:52 p.m.) [PDF 80KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2009/k090219.pdf",
+      "source_sha256": "abc9bb6b06ca9d669e0e41e65e2bd65753dd744d2e53c45ea6735a7621c27430",
+      "session_segment": [
+        "12:30",
+        "15:10"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2009-03-18",
+      "release_time_jst": "14:00",
+      "release_title": "Statement on Monetary Policy (Policy unchanged, Announced at 12:27 p.m.) [PDF 95KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2009/k090318.pdf",
+      "source_sha256": "0faea534e3c90de0a15e085e541af959168a9196aa63f0464d88fc3198b4ad12",
+      "session_segment": [
+        "12:30",
+        "15:10"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2009-04-07",
+      "release_time_jst": "14:00",
+      "release_title": "Statement on Monetary Policy (Policy unchanged, Announced at 12:22 p.m.) [PDF 79KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2009/k090407.pdf",
+      "source_sha256": "2de55c631dee348aed54e38311419b994a42875fa8ff39af7dc88c59f26cfa68",
+      "session_segment": [
+        "12:30",
+        "15:10"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2009-04-30",
+      "release_time_jst": "13:37",
+      "release_title": "Announcement of the Monetary Policy Meeting Decision (Policy unchanged, Announced at 1:37 p.m.) [PDF 48KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2009/k090430.pdf",
+      "source_sha256": "b993dbc415e5725e23aa6261c1e7d6d931f0e2cb2e1914036a2784b9cee149ae",
+      "session_segment": [
+        "12:30",
+        "15:10"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2009-05-22",
+      "release_time_jst": "14:00",
+      "release_title": "Statement on Monetary Policy (Policy unchanged, Announced at 12:33 p.m.) [PDF 94KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2009/k090522.pdf",
+      "source_sha256": "d16a636f4938e856bda7f3b093a642f347785c881539d018f79a3083cc782f5f",
+      "session_segment": [
+        "12:30",
+        "15:10"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2009-06-16",
+      "release_time_jst": "14:00",
+      "release_title": "Statement on Monetary Policy (Policy unchanged, Announced at 12:34 p.m.) [PDF 83KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2009/k090616.pdf",
+      "source_sha256": "96a7ad62401ca09a77c702a81c8df7cba6860f5dbc4432163535dd8661a5159d",
+      "session_segment": [
+        "12:30",
+        "15:10"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2009-07-15",
+      "release_time_jst": "14:00",
+      "release_title": "Statement on Monetary Policy (Policy unchanged, Announced at 1:35 p.m.) [PDF 32KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2009/k090715.pdf",
+      "source_sha256": "49fc30688a15508766d11906c97bc6b0f5ff9131f00ebd7d8f7da95ef28885a1",
+      "session_segment": [
+        "12:30",
+        "15:10"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2009-08-11",
+      "release_time_jst": "14:00",
+      "release_title": "Statement on Monetary Policy (Policy unchanged, Announced at 11:51 a.m.) [PDF 24KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2009/k090811.pdf",
+      "source_sha256": "748803779921b159a3ce84ccbf68a0865da96d39730dc2b482dc790ec87ee019",
+      "session_segment": [
+        "12:30",
+        "15:10"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2009-09-17",
+      "release_time_jst": "14:00",
+      "release_title": "Statement on Monetary Policy (Policy unchanged, Announced at 12:39 p.m.) [PDF 19KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2009/k090917.pdf",
+      "source_sha256": "f4ca10d287b297f40fcfd4c4c3cb5029fa1a1fdf29dbb4ab08ecad9b907e9823",
+      "session_segment": [
+        "12:30",
+        "15:10"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2009-10-14",
+      "release_time_jst": "14:00",
+      "release_title": "Statement on Monetary Policy (Policy unchanged, Announced at 1:14 p.m.) [PDF 17KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2009/k091014.pdf",
+      "source_sha256": "d0a3aa7353318c08193b468abb5bd5471c220f472b47d624db6528dbe8b8bda1",
+      "session_segment": [
+        "12:30",
+        "15:10"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2009-11-20",
+      "release_time_jst": "14:00",
+      "release_title": "Statement on Monetary Policy (Policy unchanged, Announced at 12:35 p.m.) [PDF 35KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2009/k091120.pdf",
+      "source_sha256": "66f2deec61171793d3172997cd0ee045137498fe636dabdd35e524b0b44c316b",
+      "session_segment": [
+        "12:30",
+        "15:10"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2009-12-18",
+      "release_time_jst": "14:00",
+      "release_title": "Statement on Monetary Policy (Policy unchanged, Announced at 12:13 p.m.) [PDF 43KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2009/k091218.pdf",
+      "source_sha256": "ff83b7bf3bf0d0d170109262b2458e0cc352ec9b0c4da297e3c1e278508e35c0",
+      "session_segment": [
+        "12:30",
+        "15:10"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2010-01-26",
+      "release_time_jst": "14:00",
+      "release_title": "Statement on Monetary Policy (Policy unchanged, Announced at 12:26 p.m.) [PDF 33KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2010/k100126.pdf",
+      "source_sha256": "94c7a0e352408d54ce35e690e197f971a5338d9e58362a9fcca246aa030de9e7",
+      "session_segment": [
+        "12:30",
+        "15:10"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2010-02-18",
+      "release_time_jst": "14:00",
+      "release_title": "Statement on Monetary Policy (Policy unchanged, Announced at 11:45 a.m.) [PDF 73KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2010/k100218.pdf",
+      "source_sha256": "168adc827c2c3f2ce538a2da7921a6b9a59af01dc90064ba48cfe448068bc92b",
+      "session_segment": [
+        "12:30",
+        "15:10"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2010-03-17",
+      "release_time_jst": "14:00",
+      "release_title": "Statement on Monetary Policy (Expansion of the measure to encourage a decline in longer-term interest rates, Announced at 12:49 p.m.) [PDF 41KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2010/k100317.pdf",
+      "source_sha256": "866ae41f1a48e6181e4b9d066d39cc5c965934dac74ae3c246330106b631f7b1",
+      "session_segment": [
+        "12:30",
+        "15:10"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2010-04-07",
+      "release_time_jst": "14:00",
+      "release_title": "Statement on Monetary Policy (Policy unchanged, Announced at 12:03 p.m.) [PDF 41KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2010/k100407.pdf",
+      "source_sha256": "5e04db67d4681dba0e26f6c1e872f95a99a63395e0c8e068cbe91dabe7c365e0",
+      "session_segment": [
+        "12:30",
+        "15:10"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2010-04-30",
+      "release_time_jst": "13:18",
+      "release_title": "Statement on Monetary Policy (Policy unchanged, Chairman's Instructions to the Staff, Announced at 1:18 p.m.) [PDF 19KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2010/k100430.pdf",
+      "source_sha256": "9b2e8f080109d50b8b93bc538f7a882159424f2b9a0c3e208805eb1bdea2c926",
+      "session_segment": [
+        "12:30",
+        "15:10"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2010-05-21",
+      "release_time_jst": "14:00",
+      "release_title": "Statement on Monetary Policy (Policy unchanged, Preliminary Framework for the Fund-Provisioning Measure to Facilitate Strengthening of the Foundations for Economic Growth, Announced at 12:42 p.m.) [PDF 23KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2010/k100521.pdf",
+      "source_sha256": "c7db53e2181a3c5bd376d49f023e08bd9c6f7523ad4533047fc3e2de0ef9a636",
+      "session_segment": [
+        "12:30",
+        "15:10"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2010-06-15",
+      "release_time_jst": "14:00",
+      "release_title": "Statement on Monetary Policy (Policy unchanged, Fund-Provisioning Measure to Support Strengthening the Foundations for Economic Growth, Announced at 12:56 p.m.) [PDF 51KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2010/k100615.pdf",
+      "source_sha256": "1609cc35333c23cefcc0babdd47bd449ac5a92f42c3092d3c4f15c5091b5ae4b",
+      "session_segment": [
+        "12:30",
+        "15:10"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2010-07-15",
+      "release_time_jst": "14:00",
+      "release_title": "Statement on Monetary Policy (Policy unchanged, Announced at 12:45 p.m.) [PDF 92KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2010/k100715.pdf",
+      "source_sha256": "732855fea9c79483dabb275e64935f1042d3a7361837e4c6657e8290460e39db",
+      "session_segment": [
+        "12:30",
+        "15:10"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2010-08-10",
+      "release_time_jst": "14:00",
+      "release_title": "Statement on Monetary Policy (Policy unchanged, Announced at 12:28 p.m.) [PDF 21KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2010/k100810.pdf",
+      "source_sha256": "e2d1df8e21334f629be2b99b9fd7b61458bfa3f3edec6a892ddcfa45f3c12684",
+      "session_segment": [
+        "12:30",
+        "15:10"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2010-09-07",
+      "release_time_jst": "14:00",
+      "release_title": "Statement on Monetary Policy (Policy unchanged, Announced at 12:39 p.m.) [PDF 21KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2010/k100907.pdf",
+      "source_sha256": "9736ca5db7126e2963e7c0ac202eea4eb4ec7093ecd4bf4fb9587db4317387c9",
+      "session_segment": [
+        "12:30",
+        "15:10"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2010-10-05",
+      "release_time_jst": "14:00",
+      "release_title": "Comprehensive Monetary Easing (Announced at 1:38 p.m.) [PDF 47KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2010/k101005.pdf",
+      "source_sha256": "463a02c1febfadc985b78f4b99611af4f8747bb882e52b4a674f03908e799d1a",
+      "session_segment": [
+        "12:30",
+        "15:10"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2010-10-28",
+      "release_time_jst": "13:31",
+      "release_title": "Statement on Monetary Policy (Policy unchanged, Establishment of the Asset Purchase Program, Announced at 1:31 p.m.) [PDF 53KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2010/k101028.pdf",
+      "source_sha256": "44fcbebfc7f3f2183de9b171bc106306bc735737d39a226e1f309656030519b2",
+      "session_segment": [
+        "12:30",
+        "15:10"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2010-11-05",
+      "release_time_jst": "14:00",
+      "release_title": "Statement on Monetary Policy (Policy unchanged, Purchases of ETFs and J-REITs, Announced at 11:36 a.m.) [PDF 45KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2010/k101105.pdf",
+      "source_sha256": "bd27d26fa32c6f6963300d7ff4088c7eb598c12fbcb3c6b67ecdd5312c93d0f9",
+      "session_segment": [
+        "12:30",
+        "15:10"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2010-12-21",
+      "release_time_jst": "14:00",
+      "release_title": "Statement on Monetary Policy (Policy unchanged, Announced at 12:55 p.m.) [PDF 22KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2010/k101221.pdf",
+      "source_sha256": "2ca5d06d63ac66182a976e2cf149b2031483ff88a17512727ff0500002631f30",
+      "session_segment": [
+        "12:30",
+        "15:10"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2011-01-25",
+      "release_time_jst": "14:00",
+      "release_title": "Statement on Monetary Policy (Policy unchanged, Announced at 12:29 p.m.) [PDF 72KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2011/k110125a.pdf",
+      "source_sha256": "b1514c1687e7b736eccb34756a3d13a4fecf6b8320b4881d73d458fb457b6e95",
+      "session_segment": [
+        "12:30",
+        "15:10"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2011-02-15",
+      "release_time_jst": "14:00",
+      "release_title": "Statement on Monetary Policy (Policy unchanged, Announced at 12:37 p.m.) [PDF 40KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2011/k110215.pdf",
+      "source_sha256": "0c5c1b05a7a63fbdb2430c3ecdf4e44aa00f74b25043f7ef2597cc65d56f4df5",
+      "session_segment": [
+        "09:00",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2011-03-14",
+      "release_time_jst": "14:00",
+      "release_title": "Enhancement of Monetary Easing (Announced at 2:48 p.m.) [PDF 22KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2011/k110314a.pdf",
+      "source_sha256": "5b9e7d96305033a46fb42c41c0115732b309413217c4714f573637940f9f4de7",
+      "session_segment": [
+        "09:00",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2011-04-07",
+      "release_time_jst": "14:00",
+      "release_title": "Statement on Monetary Policy (Policy unchanged, Chairman's Instructions to the Staff, Announced at 1:10 p.m.) [PDF 25KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2011/k110407a.pdf",
+      "source_sha256": "0b35275971b13495e46cc738f50b6656bbe6fbf3c9044102f3ac4b0cc0e34757",
+      "session_segment": [
+        "09:00",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2011-04-28",
+      "release_time_jst": "13:31",
+      "release_title": "Announcement of the Monetary Policy Meeting Decision (Policy unchanged, Announced at 1:31 p.m.) [PDF 25KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2011/k110428a.pdf",
+      "source_sha256": "c42286531500fe6682117613fd486a9e56b9513e5aebfb70e89343136b412d85",
+      "session_segment": [
+        "09:00",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2011-05-20",
+      "release_time_jst": "14:00",
+      "release_title": "Statement on Monetary Policy (Policy unchanged, Announced at 12:14 p.m.) [PDF 35KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2011/k110520a.pdf",
+      "source_sha256": "7e046f801d44bfb6564f5b72fd5295ff4d2a05a9fc5101fbea2ddc6bc4b93a40",
+      "session_segment": [
+        "09:00",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2011-06-14",
+      "release_time_jst": "14:00",
+      "release_title": "Statement on Monetary Policy (Policy unchanged, New Line of Credit Established for the Fund-Provisioning Measure to Support Strengthening the Foundations for Economic Growth, Announced at 12:42 p.m.) [PDF 59KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2011/k110614a.pdf",
+      "source_sha256": "b91fd72d9f0d6553d6a4e3a46780d9bbed521e0b7673893033bf8920140a0579",
+      "session_segment": [
+        "09:00",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2011-07-12",
+      "release_time_jst": "14:00",
+      "release_title": "Statement on Monetary Policy (Policy unchanged, Announced at 1:20 p.m.) [PDF 126KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2011/k110712a.pdf",
+      "source_sha256": "e1340d6856b313f4831c4305d98f01b97d7bdbfa3f7d499b8ce3b044e3ce1b41",
+      "session_segment": [
+        "09:00",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2011-08-04",
+      "release_time_jst": "14:00",
+      "release_title": "Enhancement of Monetary Easing (Announced at 2:00 p.m.) [PDF 30KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2011/k110804a.pdf",
+      "source_sha256": "42bc71a1d20a15b2eb591dc2837e0a35e0ed90418cf2c61ac7dcd78b25da6a95",
+      "session_segment": [
+        "09:00",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2011-09-07",
+      "release_time_jst": "14:00",
+      "release_title": "Statement on Monetary Policy (Policy unchanged, Announced at 12:21 p.m.) [PDF 22KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2011/k110907a.pdf",
+      "source_sha256": "56a5b7e3f1b78420f51483395dd483891aec6cc81aca414ae20fbdc1b057fccb",
+      "session_segment": [
+        "09:00",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2011-10-07",
+      "release_time_jst": "14:00",
+      "release_title": "Statement on Monetary Policy (Policy unchanged, Announced at 12:37 p.m.) [PDF 16KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2011/k111007a.pdf",
+      "source_sha256": "24d2a1691e8d4d94ffa356bd9c3c82aae020529a5ea7e3ab73c1922e6785c6e7",
+      "session_segment": [
+        "09:00",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2011-10-27",
+      "release_time_jst": "13:31",
+      "release_title": "Enhancement of Monetary Easing (Announced at 1:31 p.m.) [PDF 30KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2011/k111027a.pdf",
+      "source_sha256": "827827d8af9482e2726bc6d2091c8302f77c16c2a72fd5fa3339a39be27e3000",
+      "session_segment": [
+        "09:00",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2011-11-16",
+      "release_time_jst": "14:00",
+      "release_title": "Statement on Monetary Policy (Policy unchanged, Announced at 12:49 p.m.) [PDF 42KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2011/k111116a.pdf",
+      "source_sha256": "b26667dc9abe069f2e72d8d06f9cc9edfe8f567f0dd8a034b709b987a1b63d17",
+      "session_segment": [
+        "09:00",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2011-12-21",
+      "release_time_jst": "14:00",
+      "release_title": "Statement on Monetary Policy (Policy unchanged, Announced at 12:16 p.m.) [PDF 14KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2011/k111221a.pdf",
+      "source_sha256": "d37382681364729967639689a2271d100eee9b010999bf17561c9170eb648ed6",
+      "session_segment": [
+        "09:00",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2012-01-24",
+      "release_time_jst": "14:00",
+      "release_title": "Statement on Monetary Policy (Policy unchanged, Announced at 12:31 p.m.) [PDF 59KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2012/k120124a.pdf",
+      "source_sha256": "c1d89a83fe652e29a8caaf64af0295b6fb1707cc2eca89631fa7ad8df2736b41",
+      "session_segment": [
+        "09:00",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2012-02-14",
+      "release_time_jst": "14:00",
+      "release_title": "Enhancement of Monetary Easing (Announced at 12:43 p.m.) [PDF 51KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2012/k120214a.pdf",
+      "source_sha256": "0c54587f48ce8d2946c9c1d6878cbd73c9e3250e1d57398721074c9b49cb5a18",
+      "session_segment": [
+        "09:00",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2012-03-13",
+      "release_time_jst": "14:00",
+      "release_title": "Statement on Monetary Policy (Enhancement of the Fund-Provisioning Measure to Support Strengthening the Foundations for Economic Growth, Announced at 2:07 p.m.) [PDF 69KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2012/k120313a.pdf",
+      "source_sha256": "a9b3f5680162d24ace0f8d80e5e15fd37284302ed3714fc131138d1a85208337",
+      "session_segment": [
+        "09:00",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2012-04-10",
+      "release_time_jst": "14:00",
+      "release_title": "Statement on Monetary Policy (A New U.S. Dollar Lending Arrangement Established as part of the \"Fund-Provisioning Measure to Support Strengthening the Foundations for Economic Growth,\" Announced at 12:09 p.m.) [PDF 37KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2012/k120410a.pdf",
+      "source_sha256": "e16304b6f60fc5d93524b573ea9be90dce7d0f919c3ab7fc8073fd33640a0bd5",
+      "session_segment": [
+        "09:00",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2012-04-27",
+      "release_time_jst": "12:46",
+      "release_title": "Enhancement of Monetary Easing (Announced at 12:46 p.m.) [PDF 67KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2012/k120427a.pdf",
+      "source_sha256": "cef88e15ff300506de983f0fceb42af93fd304dfaffe4a6628ce868901bbc05c",
+      "session_segment": [
+        "09:00",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2012-05-23",
+      "release_time_jst": "14:00",
+      "release_title": "Statement on Monetary Policy (Policy unchanged, Announced at 11:37 a.m.) [PDF 12KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2012/k120523a.pdf",
+      "source_sha256": "bd97b3933d123d9e3f867c28f3f902f2c2be483a5276e13b235bb5abda056656",
+      "session_segment": [
+        "09:00",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2012-06-15",
+      "release_time_jst": "14:00",
+      "release_title": "Statement on Monetary Policy (Policy unchanged, Announced at 11:52 a.m.) [PDF 13KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2012/k120615a.pdf",
+      "source_sha256": "7861030f877da02df94912c785e745ac4799bdf24c6369aafe80b16c8d8d6218",
+      "session_segment": [
+        "09:00",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2012-07-12",
+      "release_time_jst": "14:00",
+      "release_title": "Statement on Monetary Policy (Announced at 12:51 p.m.) [PDF 101KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2012/k120712a.pdf",
+      "source_sha256": "2a236b8bca39b2a9698110939b27b3a7ef11ebe26f7bfbd66ca48582aa480f7e",
+      "session_segment": [
+        "09:00",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2012-08-09",
+      "release_time_jst": "14:00",
+      "release_title": "Statement on Monetary Policy (Policy unchanged, Announced at 12:19 p.m.) [PDF 37KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2012/k120809a.pdf",
+      "source_sha256": "97c65685e068c6d53b014220669c0f6e00743fbc06d06c9ea2565d49810f81aa",
+      "session_segment": [
+        "09:00",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2012-09-19",
+      "release_time_jst": "14:00",
+      "release_title": "Enhancement of Monetary Easing (Announced at 12:44 p.m.) [PDF 86KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2012/k120919a.pdf",
+      "source_sha256": "8179141e81ba61882eac4f5f4c7c1f6173696558a2e94e5e0e4f9095f46c1252",
+      "session_segment": [
+        "09:00",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2012-10-05",
+      "release_time_jst": "14:00",
+      "release_title": "Statement on Monetary Policy (Policy unchanged, Announced at 12:14 p.m.) [PDF 36KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2012/k121005a.pdf",
+      "source_sha256": "8c982371f8e2bef60f9373a9f0c723627faa9436ce529c8aa72103195a719826",
+      "session_segment": [
+        "09:00",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2012-10-30",
+      "release_time_jst": "14:46",
+      "release_title": "Enhancement of Monetary Easing (Announced at 2:46 p.m.) [PDF 89KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2012/k121030a.pdf",
+      "source_sha256": "50c1587d3a1a7d93acf97d33de6ad0599e9bdb5dd1b8bbdf7968fd423e550471",
+      "session_segment": [
+        "09:00",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2012-11-20",
+      "release_time_jst": "14:00",
+      "release_title": "Statement on Monetary Policy (Policy unchanged, Announced at 12:14 p.m.) [PDF 36KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2012/k121120a.pdf",
+      "source_sha256": "148a383aac8d272a6ac2f97d0822d1270a1d53eec4f83f852609dffc02d271a2",
+      "session_segment": [
+        "09:00",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2012-12-20",
+      "release_time_jst": "14:00",
+      "release_title": "Enhancement of Monetary Easing (Announced at 1:01 p.m.) [PDF 113KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2012/k121220a.pdf",
+      "source_sha256": "68f70146ead246229ba931443781de27b00154d4b475da5a996567fb1141bb88",
+      "session_segment": [
+        "09:00",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2013-01-22",
+      "release_time_jst": "12:47",
+      "release_title": "Introduction of the \"Price Stability Target\" and the \"Open-Ended Asset Purchasing Method\"",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2013/k130122a.pdf",
+      "source_sha256": "7e73fda1dbc7fb322efe0eaadd153c614888695c1c2a0029e6a3c1d2eb586a05",
+      "session_segment": [
+        "09:00",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2013-02-14",
+      "release_time_jst": "14:00",
+      "release_title": "Statement on Monetary Policy (Policy unchanged, Announced at 12:39 p.m.) [PDF 38KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2013/k130214a.pdf",
+      "source_sha256": "9e4b5d022d033b3ffd431f3a1d2349b4e8c97a0d8301c02cfbe07206415e95bd",
+      "session_segment": [
+        "09:00",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2013-03-07",
+      "release_time_jst": "14:00",
+      "release_title": "Statement on Monetary Policy (Policy unchanged, Announced at 12:24 p.m.) [PDF 38KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2013/k130307a.pdf",
+      "source_sha256": "d7c182ab8b9bac16b74347c0b84c9b4df0c60b6af3f7745b9743e57e217f7bce",
+      "session_segment": [
+        "09:00",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2013-04-04",
+      "release_time_jst": "14:00",
+      "release_title": "Introduction of the \"Quantitative and Qualitative Monetary Easing\" (Announced at 1:40 p.m.) [PDF 154KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2013/k130404a.pdf",
+      "source_sha256": "808a67d9016cf22ea6e4129f2084a5a0f2ca63e8b4af8d832aacf8d90fac3d0f",
+      "session_segment": [
+        "09:00",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2013-04-26",
+      "release_time_jst": "13:35",
+      "release_title": "Statement on Monetary Policy (Announced at 1:35 p.m.) [PDF 9KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2013/k130426a.pdf",
+      "source_sha256": "ad230ad4b572db48f0060c19634d9af3fcdd458380953620aec19b7dee53755c",
+      "session_segment": [
+        "09:00",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2013-05-22",
+      "release_time_jst": "14:00",
+      "release_title": "Statement on Monetary Policy (Announced at 12:07 p.m.) [PDF 37KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2013/k130522a.pdf",
+      "source_sha256": "2a56b450ccee1bf806ae6fcbd6f675253fbf67a3754b154a0da6519d632214cd",
+      "session_segment": [
+        "09:00",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2013-06-11",
+      "release_time_jst": "14:00",
+      "release_title": "Statement on Monetary Policy (Announced at 11:48 a.m.) [PDF 37KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2013/k130611a.pdf",
+      "source_sha256": "6377652fc00c24333d75836274191a94b91d207445a2831876b095aeb2c76c30",
+      "session_segment": [
+        "09:00",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2013-07-11",
+      "release_time_jst": "14:00",
+      "release_title": "Statement on Monetary Policy (Announced at 11:47 a.m.) [PDF 60KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2013/k130711a.pdf",
+      "source_sha256": "eb98699fe146f8bedf08e64b57b06b1d4da9709eec164c4c11dee54ff5d533ae",
+      "session_segment": [
+        "09:00",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2013-08-08",
+      "release_time_jst": "14:00",
+      "release_title": "Statement on Monetary Policy (Announced at 11:59 a.m.) [PDF 17KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2013/k130808a.pdf",
+      "source_sha256": "b1833afa100cb7e922a2d9ddc723fe3f9c53bf70320b735b9c07076c52be056b",
+      "session_segment": [
+        "09:00",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2013-09-05",
+      "release_time_jst": "14:00",
+      "release_title": "Statement on Monetary Policy (Announced at 11:42 a.m.) [PDF 16KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2013/k130905a.pdf",
+      "source_sha256": "a4fffd165112af15b0296e817c9d08a3d36fede4de38c198ed518de60a70777d",
+      "session_segment": [
+        "09:00",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2013-10-04",
+      "release_time_jst": "14:00",
+      "release_title": "Statement on Monetary Policy (Announced at 11:49 a.m.) [PDF 17KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2013/k131004a.pdf",
+      "source_sha256": "19accfe9cf4f4f11858d596115ab9fa516af48781c8a57ccf7211faf6d9986ce",
+      "session_segment": [
+        "09:00",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2013-10-31",
+      "release_time_jst": "13:14",
+      "release_title": "Statement on Monetary Policy (Announced at 1:14 p.m.) [PDF 9KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2013/k131031a.pdf",
+      "source_sha256": "8c6eb4612b47b6324e83c3d2b095530de9583ccf29c10adc8602c0497a3a9deb",
+      "session_segment": [
+        "09:00",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2013-11-21",
+      "release_time_jst": "14:00",
+      "release_title": "Statement on Monetary Policy (Announced at 12:15 p.m.) [PDF 17KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2013/k131121a.pdf",
+      "source_sha256": "7381f3e56da94bf055943e238179bea4b35e446a68f8c54b1e034062ba923a07",
+      "session_segment": [
+        "09:00",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2013-12-20",
+      "release_time_jst": "14:00",
+      "release_title": "Statement on Monetary Policy (Announced at 11:57 a.m.) [PDF 17KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2013/k131220a.pdf",
+      "source_sha256": "d094ac883fa6c1a4e9727d693ab0e5aaa5661ad5dbb66afb96adb179b6301c77",
+      "session_segment": [
+        "09:00",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2014-01-22",
+      "release_time_jst": "14:00",
+      "release_title": "Statement on Monetary Policy (Announced at 12:20 p.m.) [PDF 60KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2014/k140122a.pdf",
+      "source_sha256": "16c82cbf6466423c25366334b3ce76f39482ab14d381da50e1935adbd9caddcc",
+      "session_segment": [
+        "09:00",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2014-02-18",
+      "release_time_jst": "14:00",
+      "release_title": "Statement on Monetary Policy (Extension and Enhancement of the Stimulating Bank Lending Facility and the Growth-Supporting Funding Facility, Announced at 12:28 p.m.) [PDF 25KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2014/k140218a.pdf",
+      "source_sha256": "85ec1364f3b1c5d48840a903bec0ddbe7659c8787dd710f5c84bc5fb0942a56f",
+      "session_segment": [
+        "09:00",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2014-03-11",
+      "release_time_jst": "14:00",
+      "release_title": "Statement on Monetary Policy (Announced at 12:00 p.m.) [PDF 17KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2014/k140311a.pdf",
+      "source_sha256": "dea95e666777888dcbc1f4eaa093ea767ad2accd3939fafac6866aac84ce2fd1",
+      "session_segment": [
+        "09:00",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2014-04-08",
+      "release_time_jst": "14:00",
+      "release_title": "Statement on Monetary Policy (Announced at 11:50 a.m.) [PDF 17KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2014/k140408a.pdf",
+      "source_sha256": "967f50bb9ff8703a82bb5f23d4915ca52356d1b405ce459887325430baa6cfcd",
+      "session_segment": [
+        "09:00",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2014-04-30",
+      "release_time_jst": "12:51",
+      "release_title": "Statement on Monetary Policy (Announced at 12:51 p.m.) [PDF 9KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2014/k140430a.pdf",
+      "source_sha256": "5549962b644afc92d01fd24a63f6ba8fd56d110640feacc852ebc89f5ebcd1fb",
+      "session_segment": [
+        "09:00",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2014-05-21",
+      "release_time_jst": "14:00",
+      "release_title": "Statement on Monetary Policy (Announced at 11:41 a.m.) [PDF 17KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2014/k140521a.pdf",
+      "source_sha256": "868cf5598cdf7be95a06e1a3ab850c3203616a6c04ef539d96de8ae1b1fef5e9",
+      "session_segment": [
+        "09:00",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2014-06-13",
+      "release_time_jst": "14:00",
+      "release_title": "Statement on Monetary Policy (Announced at 11:41 a.m.) [PDF 17KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2014/k140613a.pdf",
+      "source_sha256": "9cf83db53ffb249c19166e6748d695c7017ba78f6767e20c84861baac1d2d84b",
+      "session_segment": [
+        "09:00",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2014-07-15",
+      "release_time_jst": "14:00",
+      "release_title": "Statement on Monetary Policy (Announced at 11:58 a.m.) [PDF 42KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2014/k140715a.pdf",
+      "source_sha256": "0a8297be9abb0d008a1cec81b25bf2d18248c05175bbc15128013c912d9b2c5e",
+      "session_segment": [
+        "09:00",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2014-08-08",
+      "release_time_jst": "14:00",
+      "release_title": "Statement on Monetary Policy (Announced at 12:08 p.m.) [PDF 18KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2014/k140808a.pdf",
+      "source_sha256": "9ba987283aa5866ac1878359479b5903cdf4cfcbddc678ae0a4121ee3813ecbb",
+      "session_segment": [
+        "09:00",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2014-09-04",
+      "release_time_jst": "14:00",
+      "release_title": "Statement on Monetary Policy (Announced at 12:07 p.m.) [PDF 19KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2014/k140904a.pdf",
+      "source_sha256": "69eec6ecc8afc1b8d0aef48bef9cae7e99c549591c70736dec3439938729fa0c",
+      "session_segment": [
+        "09:00",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2014-10-07",
+      "release_time_jst": "14:00",
+      "release_title": "Statement on Monetary Policy (Announced at 1:54 p.m.) [PDF 20KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2014/k141007a.pdf",
+      "source_sha256": "a638d834de94baf1dca69306a24b05e0785c53e7304880668bd5674b1bbe8eb9",
+      "session_segment": [
+        "09:00",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2014-10-31",
+      "release_time_jst": "13:44",
+      "release_title": "Expansion of the Quantitative and Qualitative Monetary Easing (Announced at 1:44 p.m.) [PDF 65KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2014/k141031a.pdf",
+      "source_sha256": "22cca5439f40ca355156becc9f819f592bde7f009c2d205e08bee439c0044481",
+      "session_segment": [
+        "09:00",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2014-11-19",
+      "release_time_jst": "14:00",
+      "release_title": "Statement on Monetary Policy (Announced at 12:24 p.m.) [PDF 20KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2014/k141119a.pdf",
+      "source_sha256": "a1746f6bbb004c2b4524b77d8961e9eaa7c83aad90eeb4054e06b3c5d6a7a8e4",
+      "session_segment": [
+        "09:00",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2014-12-19",
+      "release_time_jst": "14:00",
+      "release_title": "Statement on Monetary Policy (Announced at 12:28 p.m.) [PDF 20KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2014/k141219a.pdf",
+      "source_sha256": "e9e4e8ce2eea16ea0571b12dd38e5481bf15e446496219615971c0b360fc3c54",
+      "session_segment": [
+        "09:00",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2015-01-21",
+      "release_time_jst": "14:00",
+      "release_title": "Statement on Monetary Policy (Extension of the Stimulating Bank Lending Facility and the Growth-Supporting Funding Facility, Announced at 12:29 p.m.) [PDF 47KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2015/k150121a.pdf",
+      "source_sha256": "49bef7f2207de7706fa8b7ceb5bbd54dd7b831ae7b3d5e64fe0b507f52f51e32",
+      "session_segment": [
+        "09:00",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2015-02-18",
+      "release_time_jst": "14:00",
+      "release_title": "Statement on Monetary Policy (Announced at 11:49 a.m.) [PDF 18KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2015/k150218a.pdf",
+      "source_sha256": "60db2ee4caaad9e9a24135ebcaca1fcad9271104fd54a0e9c7d9e0f3a2eb2823",
+      "session_segment": [
+        "09:00",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2015-03-17",
+      "release_time_jst": "14:00",
+      "release_title": "Statement on Monetary Policy (Announced at 12:04 p.m.) [PDF 18KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2015/k150317a.pdf",
+      "source_sha256": "762cf9b404414633816baa3da0269d2c1d168101adf62e658f6d81eca516dc87",
+      "session_segment": [
+        "09:00",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2015-04-08",
+      "release_time_jst": "14:00",
+      "release_title": "Statement on Monetary Policy (Announced at 12:36 p.m.) [PDF 18KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2015/k150408a.pdf",
+      "source_sha256": "47f4a7dbd704de90d88b41321d32a9a66d793196ab2f055d5e5b8f18cdf293a4",
+      "session_segment": [
+        "09:00",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2015-04-30",
+      "release_time_jst": "13:04",
+      "release_title": "Statement on Monetary Policy (Announced at 1:04 p.m.) [PDF 13KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2015/k150430a.pdf",
+      "source_sha256": "79ecd153e84a4433ee48f8c8ad232966b19ca22a5c24779dc4c4b52734c1f95f",
+      "session_segment": [
+        "09:00",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2015-05-22",
+      "release_time_jst": "14:00",
+      "release_title": "Statement on Monetary Policy (Announced at 11:49 a.m.) [PDF 20KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2015/k150522a.pdf",
+      "source_sha256": "85adef4fe3fd6234946113fa9eab3f53db4663e82cc9a18fa5ba534764fc9161",
+      "session_segment": [
+        "09:00",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2015-06-19",
+      "release_time_jst": "14:00",
+      "release_title": "Statement on Monetary Policy (Announced at 12:04 p.m.) [PDF 20KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2015/k150619a.pdf",
+      "source_sha256": "3e942fd9e1021b31a427e82ed6043a48ce5cd7355a4504c027643932df333775",
+      "session_segment": [
+        "09:00",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2015-07-15",
+      "release_time_jst": "14:00",
+      "release_title": "Statement on Monetary Policy (Announced at 12:18 p.m.) [PDF 57KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2015/k150715a.pdf",
+      "source_sha256": "f992a6d57c559747233c1f4b8f593cc69215cde677f71968e43fbf9a4710eb3f",
+      "session_segment": [
+        "09:00",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2015-08-07",
+      "release_time_jst": "14:00",
+      "release_title": "Statement on Monetary Policy (Announced at 12:18 p.m.) [PDF 31KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2015/k150807a.pdf",
+      "source_sha256": "ac4184a90df58c5f4aef4066a43d93a108bec5bdd14063ee2697d3c9ed79dc48",
+      "session_segment": [
+        "09:00",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2015-09-15",
+      "release_time_jst": "14:00",
+      "release_title": "Statement on Monetary Policy (Announced at 12:07 p.m.) [PDF 32KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2015/k150915a.pdf",
+      "source_sha256": "8328fe2b20641fc15e94d55494329af60fa7ae3332a007eb3d7ab480cbd79886",
+      "session_segment": [
+        "09:00",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2015-10-07",
+      "release_time_jst": "14:00",
+      "release_title": "Statement on Monetary Policy (Announced at 12:00 p.m.) [PDF 32KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2015/k151007a.pdf",
+      "source_sha256": "41247e767c68d6254a202e590581bfbf0a2761e77c33952ff8003b5855106d60",
+      "session_segment": [
+        "09:00",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2015-10-30",
+      "release_time_jst": "12:22",
+      "release_title": "Statement on Monetary Policy (Announced at 12:22 p.m.) [PDF 13KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2015/k151030a.pdf",
+      "source_sha256": "1d24658d26aa902f47c3f114a351e43eee12adfed1902e13db105428dcb91e6e",
+      "session_segment": [
+        "09:00",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2015-11-19",
+      "release_time_jst": "14:00",
+      "release_title": "Statement on Monetary Policy (Announced at 12:17 p.m.) [PDF 32KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2015/k151119a.pdf",
+      "source_sha256": "7c932248a05ac3ad8428e10d0e0530d5953492b5d5752d0157179288c8b8540a",
+      "session_segment": [
+        "09:00",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2015-12-18",
+      "release_time_jst": "14:00",
+      "release_title": "Statement on Monetary Policy (Introduction of Supplementary Measures for Quantitative and Qualitative Monetary Easing, Announced at 12:50 p.m.) [PDF 32KB]",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2015/k151218a.pdf",
+      "source_sha256": "de32df3214ee0748309fb875b543c2a9c06c48399b91784adc604f7cf185b4fd",
+      "session_segment": [
+        "09:00",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2016-01-29",
+      "release_time_jst": "12:38",
+      "release_title": "Release Dates and Time: Introduction of “Quantitative and Qualitative Monetary Easing with a Negative Interest Rate”",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2016/k160129a.pdf",
+      "source_sha256": "604f4b9bb33f131864eb3f83dccb47bb15b3b9747e777b4c45caa19315500e90",
+      "session_segment": [
+        "09:00",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2016-03-15",
+      "release_time_jst": "12:35",
+      "release_title": "Release Dates and Time: Statement on Monetary Policy",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2016/k160315a.pdf",
+      "source_sha256": "44125da67f19416d7da9a8b2e87108f61c2f18b2a358d7115a3faadffd4ee1b2",
+      "session_segment": [
+        "09:00",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2016-04-28",
+      "release_time_jst": "12:01",
+      "release_title": "Release Dates and Time: Statement on Monetary Policy",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2016/k160428a.pdf",
+      "source_sha256": "2f46a50b1464db7b70ae632c9438e78a49ede11892d9e66f5650924d3af26fa4",
+      "session_segment": [
+        "09:00",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2016-06-16",
+      "release_time_jst": "11:45",
+      "release_title": "Release Dates and Time: Statement on Monetary Policy",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2016/k160616a.pdf",
+      "source_sha256": "b9a7ba9b079abbb417786f187c96d741925b120008d2364495501851bbad0cc4",
+      "session_segment": [
+        "09:00",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2016-07-29",
+      "release_time_jst": "12:44",
+      "release_title": "Release Dates and Time: Enhancement of Monetary Easing",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2016/k160729a.pdf",
+      "source_sha256": "97b3548153e3839bb8f6e951195fbfb884a1c5d658d6bea1eba80f99c746b73b",
+      "session_segment": [
+        "08:45",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2016-09-21",
+      "release_time_jst": "13:18",
+      "release_title": "Release Dates and Time: New Framework for Strengthening Monetary Easing: \"Quantitative and Qualitative Monetary Easing with Yield Curve Control\"",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2016/k160921a.pdf",
+      "source_sha256": "c15180b02d80fd86300bdcefbaa01cf27ef607b2ad8f32bbb4aafb59374804cb",
+      "session_segment": [
+        "08:45",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2016-11-01",
+      "release_time_jst": "11:55",
+      "release_title": "Release Dates and Time: Statement on Monetary Policy",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2016/k161101a.pdf",
+      "source_sha256": "bc29a3aed7e95fdad5530fb59ef48bbf7ffdefdd7fba1dccd5d20ad2658d0416",
+      "session_segment": [
+        "08:45",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2016-12-20",
+      "release_time_jst": "11:51",
+      "release_title": "Release Dates and Time: Statement on Monetary Policy",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2016/k161220a.pdf",
+      "source_sha256": "62c6e2ba4ce8eeea0ab883bc5de3dcc0b68e9e363bb0cd604edba3c3d34f36be",
+      "session_segment": [
+        "08:45",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2017-01-31",
+      "release_time_jst": "11:56",
+      "release_title": "Release Dates and Time: Statement on Monetary Policy",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2017/k170131a.pdf",
+      "source_sha256": "6c66f8f4df5639f875d7b447b766d15b371608585d9a1a9b1144240711fb618d",
+      "session_segment": [
+        "08:45",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2017-03-16",
+      "release_time_jst": "11:54",
+      "release_title": "Release Dates and Time: Statement on Monetary Policy",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2017/k170316a.pdf",
+      "source_sha256": "a2874c979b0c55f640524ee1c411b509ce7ba638de2aec67656c41d2f6c94eb1",
+      "session_segment": [
+        "08:45",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2017-04-27",
+      "release_time_jst": "12:14",
+      "release_title": "Release Dates and Time: Statement on Monetary Policy",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2017/k170427a.pdf",
+      "source_sha256": "29c5ce1fa09c555069202697652a08b4f64c2094b299da4678ab45a3b12d53f1",
+      "session_segment": [
+        "08:45",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2017-06-16",
+      "release_time_jst": "11:54",
+      "release_title": "Release Dates and Time: Statement on Monetary Policy",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2017/k170616a.pdf",
+      "source_sha256": "663158e8612fb856097f66926adeb14b57bf6d78712079a5fcb97ebd0a3ee87c",
+      "session_segment": [
+        "08:45",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2017-07-20",
+      "release_time_jst": "12:10",
+      "release_title": "Release Dates and Time: Statement on Monetary Policy",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2017/k170720a.pdf",
+      "source_sha256": "d7caa9268c6fd7d680ca3658316a3ddfffb657e3ef0a4860f4fb5fa2aa613129",
+      "session_segment": [
+        "08:45",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2017-09-21",
+      "release_time_jst": "12:15",
+      "release_title": "Release Dates and Time: Statement on Monetary Policy",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2017/k170921a.pdf",
+      "source_sha256": "9581111e72b84e146d60d9c96de383bb363d538804f21c1e4f5dc3c04155fe85",
+      "session_segment": [
+        "08:45",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2017-10-31",
+      "release_time_jst": "12:05",
+      "release_title": "Release Dates and Time: Statement on Monetary Policy",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2017/k171031a.pdf",
+      "source_sha256": "52545e285ba05bf6d38d4804c926c56360c161769de7e6a0e4c08ad42fc03ba2",
+      "session_segment": [
+        "08:45",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2017-12-21",
+      "release_time_jst": "11:46",
+      "release_title": "Release Dates and Time: Statement on Monetary Policy",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2017/k171221a.pdf",
+      "source_sha256": "d116781f513017576b29d9fd82e58670bc077af53ca79b0950fe2fe049cb8d0c",
+      "session_segment": [
+        "08:45",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2018-01-23",
+      "release_time_jst": "12:14",
+      "release_title": "Release Dates and Time: Statement on Monetary Policy",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/state_2018/k180123a.htm",
+      "source_sha256": "ccee9778116c62834bed54bbc0953c88bdd8c781682936e9bc7cef5204f9af9f",
+      "session_segment": [
+        "08:45",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2018-03-09",
+      "release_time_jst": "11:46",
+      "release_title": "Release Dates and Time: Statement on Monetary Policy",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/state_2018/k180309a.htm",
+      "source_sha256": "fcffa4a94673191cda9c0c365502c725d4212b24051964f417f751b28e46a921",
+      "session_segment": [
+        "08:45",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2018-04-27",
+      "release_time_jst": "12:03",
+      "release_title": "Release Dates and Time: Statement on Monetary Policy",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/state_2018/k180427a.htm",
+      "source_sha256": "9ef6b390ae81eceb609b12906f81bd9708da4dfe53b8fcf5d0955c220667bbd7",
+      "session_segment": [
+        "08:45",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2018-06-15",
+      "release_time_jst": "11:41",
+      "release_title": "Release Dates and Time: Statement on Monetary Policy",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/state_2018/k180615a.htm",
+      "source_sha256": "cd0643cafd8a07cfcf40d52c8dde69ee5ca3b556ad0cf94990222765565a9f48",
+      "session_segment": [
+        "08:45",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2018-07-31",
+      "release_time_jst": "13:03",
+      "release_title": "Release Dates and Time: Strengthening the Framework for Continuous Powerful Monetary Easing",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/state_2018/k180731a.htm",
+      "source_sha256": "9b4735f9bce99ddb6d44aef9749616055ad30b98a2344ebffff72edcd1ad5f53",
+      "session_segment": [
+        "08:45",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2018-09-19",
+      "release_time_jst": "11:47",
+      "release_title": "Release Dates and Time: Statement on Monetary Policy",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/state_2018/k180919a.htm",
+      "source_sha256": "c9fe94ab92cc621e4d212fb189e45a0efb69eab166599b08520888c98f9a5598",
+      "session_segment": [
+        "08:45",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2018-10-31",
+      "release_time_jst": "12:08",
+      "release_title": "Release Dates and Time: Statement on Monetary Policy",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/state_2018/k181031a.htm",
+      "source_sha256": "3e91f92e80b68d4910e7d2803a026d4584c0fbd670ccba3b018b4d5cf73e09ef",
+      "session_segment": [
+        "08:45",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2018-12-20",
+      "release_time_jst": "11:52",
+      "release_title": "Statement on Monetary Policy",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/state_2018/k181220a.htm",
+      "source_sha256": "35c5d345bd7da638a68f3ad9740ff56648201f02a3bb144fb69c19e02de216fd",
+      "session_segment": [
+        "08:45",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2019-01-23",
+      "release_time_jst": "11:59",
+      "release_title": "Release dates and times: Statement on Monetary Policy",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/state_2019/k190123a.htm",
+      "source_sha256": "cff40f8d3329f1471bbb1d77990f0404cc326606b1f7a98c983fb92256578ae1",
+      "session_segment": [
+        "08:45",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2019-03-15",
+      "release_time_jst": "11:39",
+      "release_title": "Release dates and times: Statement on Monetary Policy",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/state_2019/k190315a.htm",
+      "source_sha256": "edbdbb62cb2c5faed5e2f2addf9543da39708247d8b46e11a8e9e68ecb35c801",
+      "session_segment": [
+        "08:45",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2019-04-25",
+      "release_time_jst": "12:27",
+      "release_title": "Release dates and times: Statement on Monetary Policy",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/state_2019/k190425a.htm",
+      "source_sha256": "0ecdb5b286bd4973769e8e21b9b2672f644754493e4800e26ffbb49351a5bf75",
+      "session_segment": [
+        "08:45",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2019-06-20",
+      "release_time_jst": "11:45",
+      "release_title": "Release dates and times: Statement on Monetary Policy",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/state_2019/k190620a.htm",
+      "source_sha256": "4f2300cb866691822c81041adb6c18196a7bf68540ff8c4ca7b4fb4538310d4a",
+      "session_segment": [
+        "08:45",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2019-07-30",
+      "release_time_jst": "11:55",
+      "release_title": "Release dates and times: Statement on Monetary Policy",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/state_2019/k190730a.htm",
+      "source_sha256": "643f75243ca61d9a2f57cb7cbbc8aa6e21f7cc5112c0688dd6856a9084de6611",
+      "session_segment": [
+        "08:45",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2019-09-19",
+      "release_time_jst": "11:49",
+      "release_title": "Release dates and times: Statement on Monetary Policy",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/state_2019/k190919a.htm",
+      "source_sha256": "dfecc77a4794d3137eef6a8d4a2cf8613ce9db441a08db1909b2e9bcf4d1bc38",
+      "session_segment": [
+        "08:45",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2019-10-31",
+      "release_time_jst": "12:32",
+      "release_title": "Release dates and times: Statement on Monetary Policy",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/state_2019/k191031a.htm",
+      "source_sha256": "356b0eaf436798a66637f57e0b26ea5ae7f3cac7eac4f4d9df6c2e8e2efc354c",
+      "session_segment": [
+        "08:45",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2019-12-19",
+      "release_time_jst": "11:45",
+      "release_title": "Statement on Monetary Policy",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/state_2019/k191219a.htm",
+      "source_sha256": "6544dbdc618c580f0da6597557571b3bbddd7efeb203ef1101b722e870b9cda9",
+      "session_segment": [
+        "08:45",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2020-01-21",
+      "release_time_jst": "12:01",
+      "release_title": "Release dates and times: Statement on Monetary Policy",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/state_2020/k200121a.htm",
+      "source_sha256": "6e2fb77ddac6ab2a7ec7862b15746676a716d7164a4fa7dcebd8a41aa16b9f47",
+      "session_segment": [
+        "08:45",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2020-03-16",
+      "release_time_jst": "14:06",
+      "release_title": "Release dates and times: Enhancement of Monetary Easing in Light of the Impact of the Outbreak of the Novel Coronavirus (COVID-19)",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/state_2020/k200316b.htm",
+      "source_sha256": "abee5a686ae13cb646d9f0f0078784d6c6fc62e4739c549590509b5b3184fc00",
+      "session_segment": [
+        "08:45",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2020-04-27",
+      "release_time_jst": "12:08",
+      "release_title": "Release dates and times: Enhancement of Monetary Easing",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/state_2020/k200427a.htm",
+      "source_sha256": "829b46537f29c967174d7b4c936a7b319f4f3727a286f15d576d6843a2ea7e17",
+      "session_segment": [
+        "08:45",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2020-05-22",
+      "release_time_jst": "10:01",
+      "release_title": "Release dates and times: Statement on Monetary Policy",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/state_2020/k200522b.htm",
+      "source_sha256": "0a5f7b388e5d76283b7825e0772055f4fc30a625838d8b2e30f6d222a4154b74",
+      "session_segment": [
+        "08:45",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2020-06-16",
+      "release_time_jst": "11:33",
+      "release_title": "Release dates and times: Statement on Monetary Policy",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/state_2020/k200616a.htm",
+      "source_sha256": "9488abb42bc7f9eb5ee275e2ca92c163c94cf26d62c5c6950715efc24f0c9162",
+      "session_segment": [
+        "08:45",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2020-07-15",
+      "release_time_jst": "11:57",
+      "release_title": "Release dates and times: Statement on Monetary Policy",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/state_2020/k200715a.htm",
+      "source_sha256": "2bf3138a2ab0ed67d86cb3c8b6bd3692761c37534a629d6372c18769b76044b8",
+      "session_segment": [
+        "08:45",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2020-09-17",
+      "release_time_jst": "11:51",
+      "release_title": "Release dates and times: Statement on Monetary Policy",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/state_2020/k200917a.htm",
+      "source_sha256": "87ff8c991e8ce6d8f9157f585a312ed240bf37ff4afd790f63f6ecf202a50663",
+      "session_segment": [
+        "08:45",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2020-10-29",
+      "release_time_jst": "12:12",
+      "release_title": "Release dates and times: Statement on Monetary Policy",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/state_2020/k201029a.htm",
+      "source_sha256": "74503789821bdf69436c47bf7e8afaca738d4ee6eee293eee872a5d9fb73a7f8",
+      "session_segment": [
+        "08:45",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2020-12-18",
+      "release_time_jst": "12:13",
+      "release_title": "Statement on Monetary Policy",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/state_2020/k201218a.htm",
+      "source_sha256": "bc84ac95262f067c43aef0c444c1c4870f0068e8be09c4f5204d810db14a06a7",
+      "session_segment": [
+        "08:45",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2021-01-21",
+      "release_time_jst": "11:38",
+      "release_title": "Release dates and times: Statement on Monetary Policy",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/state_2021/k210121a.htm",
+      "source_sha256": "0740b38a1dacde535b86a67dafc48135b365896948d9eccaf3e36a0a8af48429",
+      "session_segment": [
+        "08:45",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2021-03-19",
+      "release_time_jst": "12:39",
+      "release_title": "Release dates and times: Further Effective and Sustainable Monetary Easing",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/state_2021/k210319a.htm",
+      "source_sha256": "53a0fa21ad6b98ab59d26891c6f568ed1237ebf050fb8b35ddbb97b261cca083",
+      "session_segment": [
+        "08:45",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2021-04-27",
+      "release_time_jst": "12:00",
+      "release_title": "Release dates and times: Statement on Monetary Policy",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/state_2021/k210427a.htm",
+      "source_sha256": "9d2444f70a9e5d8eb31e6c5e471b7408efba99159052cbbfe089e4e50e960555",
+      "session_segment": [
+        "08:45",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2021-06-18",
+      "release_time_jst": "12:30",
+      "release_title": "Release dates and times: Statement on Monetary Policy",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/state_2021/k210618a.htm",
+      "source_sha256": "58376534c12b0be6693832bd702b90f1509f0d1e039dac3b875600ea6c201c9b",
+      "session_segment": [
+        "08:45",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2021-07-16",
+      "release_time_jst": "11:56",
+      "release_title": "Release dates and times: Statement on Monetary Policy",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/state_2021/k210716a.htm",
+      "source_sha256": "916bec128bf6c84ddc5b41b9a19dd4917ba8e903c3eb5cc4b1ed754f8d94f825",
+      "session_segment": [
+        "08:45",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2021-09-22",
+      "release_time_jst": "11:47",
+      "release_title": "Release dates and times: Statement on Monetary Policy",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/state_2021/k210922a.htm",
+      "source_sha256": "a155f1868811fb622932cd3a1d2baf28c0fc5440050eeaa59a44b11605cca534",
+      "session_segment": [
+        "08:45",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2021-10-28",
+      "release_time_jst": "11:45",
+      "release_title": "Release dates and times: Statement on Monetary Policy",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/state_2021/k211028a.htm",
+      "source_sha256": "ed255d2652d3a1fb64562b030e06d50be6f36a6e533e7d4714e301d66ab94b67",
+      "session_segment": [
+        "08:45",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2021-12-17",
+      "release_time_jst": "11:57",
+      "release_title": "Statement on Monetary Policy",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/state_2021/k211217a.htm",
+      "source_sha256": "570505adf3e07dba94d3f58874fc6259ad8634b6d3374045ab9b7598f786565e",
+      "session_segment": [
+        "08:45",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2022-01-18",
+      "release_time_jst": "11:46",
+      "release_title": "Release dates and times: Statement on Monetary Policy",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/state_2022/k220118a.htm",
+      "source_sha256": "cf2230f84e701f137874e5a564208895c7e6c2f7181eb91e5a6bd72be39d35f0",
+      "session_segment": [
+        "08:45",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2022-03-18",
+      "release_time_jst": "11:51",
+      "release_title": "Release dates and times: Statement on Monetary Policy",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/state_2022/k220318a.htm",
+      "source_sha256": "24c6f69e2f24b35b9fdd33114966d8e93e4bab7d530797757a2abf496df693f6",
+      "session_segment": [
+        "08:45",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2022-04-28",
+      "release_time_jst": "12:09",
+      "release_title": "Release dates and times: Statement on Monetary Policy",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/state_2022/k220428a.htm",
+      "source_sha256": "b97b0b6cedfac78be8173757bff25c50f9f44dc9061f1a094256abba7570a5d8",
+      "session_segment": [
+        "08:45",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2022-06-17",
+      "release_time_jst": "11:43",
+      "release_title": "Release dates and times: Statement on Monetary Policy",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/state_2022/k220617a.htm",
+      "source_sha256": "e88438305cf28e171766908d2fae6680d253ccb78f21a330724eba3ae56e4d40",
+      "session_segment": [
+        "08:45",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2022-07-21",
+      "release_time_jst": "12:04",
+      "release_title": "Release dates and times: Statement on Monetary Policy",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/state_2022/k220721a.htm",
+      "source_sha256": "d7f27f0a1aad52563eaa37b7f0d8653c6c2cab775da02caebd7ccb7958e13233",
+      "session_segment": [
+        "08:45",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2022-09-22",
+      "release_time_jst": "11:51",
+      "release_title": "Release dates and times: Statement on Monetary Policy",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/state_2022/k220922a.htm",
+      "source_sha256": "79329be6dfdb801d07a85f8b61320b0a35753c7e3118a94818deb4e24b2935ad",
+      "session_segment": [
+        "08:45",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2022-10-28",
+      "release_time_jst": "11:50",
+      "release_title": "Release dates and times: Statement on Monetary Policy",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/state_2022/k221028a.htm",
+      "source_sha256": "5a7a12afce78b52153023fc529f6050f263096c60112ef2f2d5f008ff5cbf368",
+      "session_segment": [
+        "08:45",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2022-12-20",
+      "release_time_jst": "12:01",
+      "release_title": "Statement on Monetary Policy",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/state_2022/k221220a.htm",
+      "source_sha256": "cd230274c97700f9a73aafb5b05288a306cc97f29377f985eeb4fbaf988640bb",
+      "session_segment": [
+        "08:45",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2023-01-18",
+      "release_time_jst": "11:40",
+      "release_title": "Release dates and times: Statement on Monetary Policy",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/state_2023/k230118a.htm",
+      "source_sha256": "347bcfc25e30684eaea06df65465b9451e90719846a7a1065d2ef1229ece0718",
+      "session_segment": [
+        "08:45",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2023-03-10",
+      "release_time_jst": "11:30",
+      "release_title": "Release dates and times: Statement on Monetary Policy",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/state_2023/k230310a.htm",
+      "source_sha256": "48346f903810b8c1dfc5d5589bcc547d8aa078902b9bd63adf519d2b06f7b639",
+      "session_segment": [
+        "08:45",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2023-04-28",
+      "release_time_jst": "13:00",
+      "release_title": "Release dates and times: Statement on Monetary Policy",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/state_2023/k230428a.htm",
+      "source_sha256": "8335758c2e6489b96840e07896550cd37c4091a154e07be273120e1adae96bc1",
+      "session_segment": [
+        "08:45",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2023-06-16",
+      "release_time_jst": "11:47",
+      "release_title": "Release dates and times: Statement on Monetary Policy",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/state_2023/k230616a.htm",
+      "source_sha256": "1824aee99e0bc759db30181e62f19ddd61bc5730cf0e90ca529c67f4070788e5",
+      "session_segment": [
+        "08:45",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "A_TRUE_OSE_MINI"
+    },
+    {
+      "date": "2023-07-28",
+      "release_time_jst": "12:28",
+      "release_title": "Release dates and times: Statement on Monetary Policy",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/state_2023/k230728a.htm",
+      "source_sha256": "58ea5a820f14793e75a3e09609d345ee4c7f5a99e188be9efc994595bf9a86f5",
+      "session_segment": [
+        "08:45",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "B_EXACT_JNU_MICRO"
+    },
+    {
+      "date": "2023-09-22",
+      "release_time_jst": "11:52",
+      "release_title": "Release dates and times: Statement on Monetary Policy",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/state_2023/k230922a.htm",
+      "source_sha256": "c2404059f54159a7cdbf17f1c1ee315bac6959e1facdce62efd99ea0dcd68bc7",
+      "session_segment": [
+        "08:45",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "B_EXACT_JNU_MICRO"
+    },
+    {
+      "date": "2023-10-31",
+      "release_time_jst": "12:27",
+      "release_title": "Release dates and times: Statement on Monetary Policy",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/state_2023/k231031a.htm",
+      "source_sha256": "b18b411d136ff60eddbc0e080fa832714607dd66fd9931fdd48e61730b50aa9c",
+      "session_segment": [
+        "08:45",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "B_EXACT_JNU_MICRO"
+    },
+    {
+      "date": "2023-12-19",
+      "release_time_jst": "11:49",
+      "release_title": "Statement on Monetary Policy",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/state_2023/k231219a.htm",
+      "source_sha256": "30adeaa30c0afca42f5d42ce4335cdf243b7047899101fb267852c8153dc31b7",
+      "session_segment": [
+        "08:45",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "B_EXACT_JNU_MICRO"
+    },
+    {
+      "date": "2024-01-23",
+      "release_time_jst": "12:09",
+      "release_title": "Release dates and times: Statement on Monetary Policy",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/state_2024/k240123a.htm",
+      "source_sha256": "6ecd1b547bf99772dfeec055275df4a31f71aabe2eaca738a7184de4470512a1",
+      "session_segment": [
+        "08:45",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "B_EXACT_JNU_MICRO"
+    },
+    {
+      "date": "2024-03-19",
+      "release_time_jst": "12:35",
+      "release_title": "Release dates and times: Changes in the Monetary Policy Framework",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/state_2024/k240319a.htm",
+      "source_sha256": "ff08e3d02d80f81bcdd0a206862ba5edcfc5abef10838b337a7d3bccfb7d9ff5",
+      "session_segment": [
+        "08:45",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "B_EXACT_JNU_MICRO"
+    },
+    {
+      "date": "2024-04-26",
+      "release_time_jst": "12:22",
+      "release_title": "Release dates and times: Statement on Monetary Policy",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/state_2024/k240426a.htm",
+      "source_sha256": "7d79d6b1d0e44fee1e709ec2a1f65fd5141c109d64c3ad52890c01256fcb75bf",
+      "session_segment": [
+        "08:45",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "B_EXACT_JNU_MICRO"
+    },
+    {
+      "date": "2024-06-14",
+      "release_time_jst": "12:23",
+      "release_title": "Release dates and times: Statement on Monetary Policy",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/state_2024/k240614a.htm",
+      "source_sha256": "af0174ad9d0c16c9128292720ddec3fb8e96c601b68c06eadf6f3bea6a77bfff",
+      "session_segment": [
+        "08:45",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "B_EXACT_JNU_MICRO"
+    },
+    {
+      "date": "2024-09-20",
+      "release_time_jst": "11:52",
+      "release_title": "Release dates and times: Statement on Monetary Policy",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/state_2024/k240920a.htm",
+      "source_sha256": "a34f93b5d610410e5e822a27e3bc8c61738ff874aa21d1c66022ab19ca745b50",
+      "session_segment": [
+        "08:45",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "B_EXACT_JNU_MICRO"
+    },
+    {
+      "date": "2024-10-31",
+      "release_time_jst": "11:48",
+      "release_title": "Release dates and times: Statement on Monetary Policy",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/state_2024/k241031a.htm",
+      "source_sha256": "41da1e0ff4a19bd2b76d23806cabc5c601c938633389b8dc040d535ab7e2c2ff",
+      "session_segment": [
+        "08:45",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "B_EXACT_JNU_MICRO"
+    },
+    {
+      "date": "2024-12-19",
+      "release_time_jst": "11:52",
+      "release_title": "Statement on Monetary Policy",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/state_2024/k241219a.htm",
+      "source_sha256": "58cb6d743886e6cb68aeb9ed6e902afc0e96ed6ee3dbe1bc2abd5e625d3cc2e5",
+      "session_segment": [
+        "08:45",
+        "15:45"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "B_EXACT_JNU_MICRO"
+    },
+    {
+      "date": "2025-03-19",
+      "release_time_jst": "11:25",
+      "release_title": "Release dates and times: Statement on Monetary Policy",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/state_2025/k250319a.htm",
+      "source_sha256": "e47a44f56fc350098cbd99dd58eaaed83c54172579507ff720deb3b43f363c62",
+      "session_segment": [
+        "08:45",
+        "15:45"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "B_EXACT_JNU_MICRO"
+    },
+    {
+      "date": "2025-05-01",
+      "release_time_jst": "12:02",
+      "release_title": "Release dates and times: Statement on Monetary Policy",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/state_2025/k250501a.htm",
+      "source_sha256": "86c843c5e4a7187636d08a04fdde688d9d9dccf9b14ee81b4f6f94b77865f408",
+      "session_segment": [
+        "08:45",
+        "15:45"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "B_EXACT_JNU_MICRO"
+    },
+    {
+      "date": "2025-06-17",
+      "release_time_jst": "12:31",
+      "release_title": "Release dates and times: Statement on Monetary Policy",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/state_2025/k250617a.htm",
+      "source_sha256": "808637ccaddc085c73af7d0978fc08eeac12679edfcf04127054d94893afbb57",
+      "session_segment": [
+        "08:45",
+        "15:45"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "B_EXACT_JNU_MICRO"
+    },
+    {
+      "date": "2025-07-31",
+      "release_time_jst": "11:57",
+      "release_title": "Release dates and times: Statement on Monetary Policy",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/state_2025/k250731a.htm",
+      "source_sha256": "25f45c89cc16b55b49cffbdd62629cb698cfe7a6bed88cc786b0b6ca65493206",
+      "session_segment": [
+        "08:45",
+        "15:45"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "B_EXACT_JNU_MICRO"
+    },
+    {
+      "date": "2025-09-19",
+      "release_time_jst": "12:47",
+      "release_title": "Release dates and times: Statement on Monetary Policy",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/state_2025/k250919a.htm",
+      "source_sha256": "ddb42afd42060d0b5a9fbc289be4b3943eebb91a03453533fd6831f45a7f8ef6",
+      "session_segment": [
+        "08:45",
+        "15:45"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "B_EXACT_JNU_MICRO"
+    },
+    {
+      "date": "2025-10-30",
+      "release_time_jst": "12:15",
+      "release_title": "Release dates and times: Statement on Monetary Policy",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/state_2025/k251030a.htm",
+      "source_sha256": "2d1e5bf786caa70a7a8b33e32578bed9cda760033307cebcc75214acafe7df50",
+      "session_segment": [
+        "08:45",
+        "15:45"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "B_EXACT_JNU_MICRO"
+    },
+    {
+      "date": "2025-12-19",
+      "release_time_jst": "12:19",
+      "release_title": "Change in the Guideline for Money Market Operations",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/state_2025/k251219a.htm",
+      "source_sha256": "c2919ea70749595db70751db0051556b2f2d67e81c49395f3cb78d37079888de",
+      "session_segment": [
+        "08:45",
+        "15:45"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "B_EXACT_JNU_MICRO"
+    },
+    {
+      "date": "2026-01-23",
+      "release_time_jst": "12:07",
+      "release_title": "Release dates and times: Statement on Monetary Policy",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/state_2026/k260123a.htm",
+      "source_sha256": "78947418b84041478adf63947ba0a6d97ffd6c68f013520ac591cc2a5a4957ec",
+      "session_segment": [
+        "08:45",
+        "15:45"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "B_EXACT_JNU_MICRO"
+    },
+    {
+      "date": "2026-03-19",
+      "release_time_jst": "11:46",
+      "release_title": "Release dates and times: Statement on Monetary Policy",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2026/k260319a.pdf",
+      "source_sha256": "c67a60ffeeccf3e22ed6c4f895d83a9cfcf75b25bcdc42ffbb5d163cc67f8339",
+      "session_segment": [
+        "08:45",
+        "15:45"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "B_EXACT_JNU_MICRO"
+    },
+    {
+      "date": "2026-04-28",
+      "release_time_jst": "12:04",
+      "release_title": "Release dates and times: Statement on Monetary Policy",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2026/k260428a.pdf",
+      "source_sha256": "a884475cc1a90632aee22a528f6ccd5925fbaf1057c883a5f3c890c9627958e0",
+      "session_segment": [
+        "08:45",
+        "15:45"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "B_EXACT_JNU_MICRO"
+    },
+    {
+      "date": "2026-07-31",
+      "release_time_jst": "12:11",
+      "release_title": "Release dates and times: Statement on Monetary Policy",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2026/k260731a.pdf",
+      "source_sha256": "f862844f0b476f44bcd76044475755f2bae5c22fea72fd3425bc946ce32e6470",
+      "session_segment": [
+        "08:45",
+        "15:45"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "B_EXACT_JNU_MICRO"
+    }
+  ],
+  "excluded_event_count": 34,
+  "excluded_events": [
+    {
+      "date": "2006-08-11",
+      "release_time_jst": "12:17",
+      "reason": "FIXED_WINDOWS_NOT_FULLY_INSIDE_ONE_CONTINUOUS_OSE_DAY_SESSION"
+    },
+    {
+      "date": "2006-09-08",
+      "release_time_jst": "12:37",
+      "reason": "FIXED_WINDOWS_NOT_FULLY_INSIDE_ONE_CONTINUOUS_OSE_DAY_SESSION"
+    },
+    {
+      "date": "2006-10-13",
+      "release_time_jst": "12:47",
+      "reason": "FIXED_WINDOWS_NOT_FULLY_INSIDE_ONE_CONTINUOUS_OSE_DAY_SESSION"
+    },
+    {
+      "date": "2006-10-31",
+      "release_time_jst": "12:47",
+      "reason": "FIXED_WINDOWS_NOT_FULLY_INSIDE_ONE_CONTINUOUS_OSE_DAY_SESSION"
+    },
+    {
+      "date": "2006-11-16",
+      "release_time_jst": "12:24",
+      "reason": "FIXED_WINDOWS_NOT_FULLY_INSIDE_ONE_CONTINUOUS_OSE_DAY_SESSION"
+    },
+    {
+      "date": "2006-12-19",
+      "release_time_jst": "12:26",
+      "reason": "FIXED_WINDOWS_NOT_FULLY_INSIDE_ONE_CONTINUOUS_OSE_DAY_SESSION"
+    },
+    {
+      "date": "2007-01-18",
+      "release_time_jst": "13:05",
+      "reason": "FIXED_WINDOWS_NOT_FULLY_INSIDE_ONE_CONTINUOUS_OSE_DAY_SESSION"
+    },
+    {
+      "date": "2007-03-20",
+      "release_time_jst": "12:40",
+      "reason": "FIXED_WINDOWS_NOT_FULLY_INSIDE_ONE_CONTINUOUS_OSE_DAY_SESSION"
+    },
+    {
+      "date": "2007-04-10",
+      "release_time_jst": "12:48",
+      "reason": "FIXED_WINDOWS_NOT_FULLY_INSIDE_ONE_CONTINUOUS_OSE_DAY_SESSION"
+    },
+    {
+      "date": "2007-05-17",
+      "release_time_jst": "12:41",
+      "reason": "FIXED_WINDOWS_NOT_FULLY_INSIDE_ONE_CONTINUOUS_OSE_DAY_SESSION"
+    },
+    {
+      "date": "2007-06-15",
+      "release_time_jst": "12:18",
+      "reason": "FIXED_WINDOWS_NOT_FULLY_INSIDE_ONE_CONTINUOUS_OSE_DAY_SESSION"
+    },
+    {
+      "date": "2007-07-12",
+      "release_time_jst": "12:55",
+      "reason": "FIXED_WINDOWS_NOT_FULLY_INSIDE_ONE_CONTINUOUS_OSE_DAY_SESSION"
+    },
+    {
+      "date": "2007-08-23",
+      "release_time_jst": "12:35",
+      "reason": "FIXED_WINDOWS_NOT_FULLY_INSIDE_ONE_CONTINUOUS_OSE_DAY_SESSION"
+    },
+    {
+      "date": "2007-10-31",
+      "release_time_jst": "12:42",
+      "reason": "FIXED_WINDOWS_NOT_FULLY_INSIDE_ONE_CONTINUOUS_OSE_DAY_SESSION"
+    },
+    {
+      "date": "2007-11-13",
+      "release_time_jst": "12:29",
+      "reason": "FIXED_WINDOWS_NOT_FULLY_INSIDE_ONE_CONTINUOUS_OSE_DAY_SESSION"
+    },
+    {
+      "date": "2007-12-20",
+      "release_time_jst": "12:51",
+      "reason": "FIXED_WINDOWS_NOT_FULLY_INSIDE_ONE_CONTINUOUS_OSE_DAY_SESSION"
+    },
+    {
+      "date": "2008-01-22",
+      "release_time_jst": "12:19",
+      "reason": "FIXED_WINDOWS_NOT_FULLY_INSIDE_ONE_CONTINUOUS_OSE_DAY_SESSION"
+    },
+    {
+      "date": "2008-02-15",
+      "release_time_jst": "12:51",
+      "reason": "FIXED_WINDOWS_NOT_FULLY_INSIDE_ONE_CONTINUOUS_OSE_DAY_SESSION"
+    },
+    {
+      "date": "2008-03-07",
+      "release_time_jst": "12:52",
+      "reason": "FIXED_WINDOWS_NOT_FULLY_INSIDE_ONE_CONTINUOUS_OSE_DAY_SESSION"
+    },
+    {
+      "date": "2008-04-09",
+      "release_time_jst": "12:24",
+      "reason": "FIXED_WINDOWS_NOT_FULLY_INSIDE_ONE_CONTINUOUS_OSE_DAY_SESSION"
+    },
+    {
+      "date": "2008-05-20",
+      "release_time_jst": "12:04",
+      "reason": "FIXED_WINDOWS_NOT_FULLY_INSIDE_ONE_CONTINUOUS_OSE_DAY_SESSION"
+    },
+    {
+      "date": "2008-06-13",
+      "release_time_jst": "12:23",
+      "reason": "FIXED_WINDOWS_NOT_FULLY_INSIDE_ONE_CONTINUOUS_OSE_DAY_SESSION"
+    },
+    {
+      "date": "2008-08-19",
+      "release_time_jst": "12:30",
+      "reason": "FIXED_WINDOWS_NOT_FULLY_INSIDE_ONE_CONTINUOUS_OSE_DAY_SESSION"
+    },
+    {
+      "date": "2008-09-18",
+      "release_time_jst": "16:00",
+      "reason": "FIXED_WINDOWS_NOT_FULLY_INSIDE_ONE_CONTINUOUS_OSE_DAY_SESSION"
+    },
+    {
+      "date": "2008-09-29",
+      "release_time_jst": "23:00",
+      "reason": "FIXED_WINDOWS_NOT_FULLY_INSIDE_ONE_CONTINUOUS_OSE_DAY_SESSION"
+    },
+    {
+      "date": "2008-10-14",
+      "release_time_jst": "21:38",
+      "reason": "FIXED_WINDOWS_NOT_FULLY_INSIDE_ONE_CONTINUOUS_OSE_DAY_SESSION"
+    },
+    {
+      "date": "2009-10-30",
+      "release_time_jst": "13:05",
+      "reason": "FIXED_WINDOWS_NOT_FULLY_INSIDE_ONE_CONTINUOUS_OSE_DAY_SESSION"
+    },
+    {
+      "date": "2009-12-01",
+      "release_time_jst": "15:38",
+      "reason": "FIXED_WINDOWS_NOT_FULLY_INSIDE_ONE_CONTINUOUS_OSE_DAY_SESSION"
+    },
+    {
+      "date": "2010-05-10",
+      "release_time_jst": "12:11",
+      "reason": "FIXED_WINDOWS_NOT_FULLY_INSIDE_ONE_CONTINUOUS_OSE_DAY_SESSION"
+    },
+    {
+      "date": "2010-08-30",
+      "release_time_jst": "12:11",
+      "reason": "FIXED_WINDOWS_NOT_FULLY_INSIDE_ONE_CONTINUOUS_OSE_DAY_SESSION"
+    },
+    {
+      "date": "2011-11-30",
+      "release_time_jst": "22:00",
+      "reason": "FIXED_WINDOWS_NOT_FULLY_INSIDE_ONE_CONTINUOUS_OSE_DAY_SESSION"
+    },
+    {
+      "date": "2024-07-31",
+      "release_time_jst": "8:50",
+      "reason": "FIXED_WINDOWS_NOT_FULLY_INSIDE_ONE_CONTINUOUS_OSE_DAY_SESSION"
+    },
+    {
+      "date": "2025-01-24",
+      "release_time_jst": "8:50",
+      "reason": "FIXED_WINDOWS_NOT_FULLY_INSIDE_ONE_CONTINUOUS_OSE_DAY_SESSION"
+    },
+    {
+      "date": "2026-06-16",
+      "release_time_jst": "8:50",
+      "reason": "FIXED_WINDOWS_NOT_FULLY_INSIDE_ONE_CONTINUOUS_OSE_DAY_SESSION"
+    }
+  ]
+}
