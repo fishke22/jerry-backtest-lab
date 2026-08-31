@@ -1,0 +1,130 @@
+{
+  "version": "3.0-preregistered",
+  "frozen_at": "2026-08-31",
+  "status": "ARCHITECTURE_FROZEN_VALIDATION_PENDING",
+  "objective": "Define the final evidence-governed Osaka Nikkei/JNU analysis architecture before true-OSE outcome inspection.",
+  "hard_principles": [
+    "No module enters the decision engine because it is intuitive, popular, or profitable in-sample.",
+    "Proxy PASS is not true-JNU PASS.",
+    "Execution replay PASS is not alpha PASS.",
+    "DATA_INCONCLUSIVE is not statistical FAIL.",
+    "Rejected families cannot be rescued by post-hoc windows, predictors, regimes, or indicators.",
+    "Correlated modules are not independent votes.",
+    "Combination/ensemble design is itself a new preregistered family requiring OOS and overfit validation.",
+    "No broker login or trading is part of research validation."
+  ],
+  "layers": [
+    {
+      "order": 1,
+      "id": "DATA_INTEGRITY_CAUSAL_TIMING",
+      "role": "MANDATORY_GATE",
+      "admission": "ALWAYS",
+      "requirements": [
+        "contract identity",
+        "date-correct historical session mapping",
+        "causal timestamp availability",
+        "roll/trading-day identity",
+        "missingness semantics",
+        "source provenance/hash",
+        "license/storage rights"
+      ]
+    },
+    {
+      "order": 2,
+      "id": "SESSION_MARKET_STATE",
+      "role": "CONTEXT",
+      "admission": "ALWAYS",
+      "states": [
+        "OSE_DAY",
+        "OSE_NIGHT",
+        "JAPAN_CASH_OVERLAP",
+        "US_CASH_OVERLAP",
+        "BRIDGE_OR_SINGLE_VENUE",
+        "HOLIDAY_SPECIAL"
+      ],
+      "rule": "No universal all-session sign or fixed cross-market weight."
+    },
+    {
+      "order": 3,
+      "id": "DYNAMIC_PRICE_DISCOVERY",
+      "role": "SOURCE_WEIGHTING",
+      "candidate": "TRUE_VENUE_DPD_OSE_SGX_CME_G1",
+      "current_status": "DATA_BLOCKED_NOT_TRIGGERED",
+      "promotion_requires": "Matched-expiry venue-specific OSE/SGX/CME intraday data and frozen OOS validation.",
+      "forbidden": "Directional vote or fixed venue weights without separate alpha validation."
+    },
+    {
+      "order": 4,
+      "id": "VOLATILITY_RISK_STATE",
+      "role": "RISK_SIZING",
+      "primary_candidate": "HAR_RSV_DI1",
+      "current_status": "PROXY_METHOD_PASS_TRUE_OSE_PENDING",
+      "frozen_spec": {
+        "primary_sampling": "5-minute returns",
+        "har_horizons": [1, 5, 22],
+        "measurement_qa_only": ["1-minute vs 5-minute stability", "noise-robust RV estimator where feasible"],
+        "stage_a": "Nikkei 225 mini 2006+ true-OSE confirmation",
+        "stage_b": "JNU micro 2023+ exact-product consistency"
+      },
+      "allowed_if_passed": ["risk state", "position-size multiplier", "stop-distance normalization", "confidence adjustment"],
+      "forbidden": "Directional alpha unless separately preregistered."
+    },
+    {
+      "order": 5,
+      "id": "EVENT_STATE",
+      "role": "VOLATILITY_CONFIDENCE_NO_TRADE",
+      "current_admitted_modules": [],
+      "closed_or_blocked": [
+        "PHASE4B_GDELT_BROAD_NEWS: DATA_INCONCLUSIVE",
+        "NEWS_STATE_LANGUAGE_SOURCE_G1_DI1: DATA_INCONCLUSIVE",
+        "BOJ_MPM_EVENT_VOLATILITY: BLOCKED_ON_ADEQUATE_FREE_INTRADAY_VOLATILITY_HISTORY",
+        "CBOE_LTV_LEFT_TAIL_RISK: BLOCKED_NO_VERIFIED_FREE_OFFICIAL_HISTORY"
+      ],
+      "rule": "Event-state direction requires a separate directional family."
+    },
+    {
+      "order": 6,
+      "id": "INTRADAY_DIRECTIONAL_PATH",
+      "role": "DIRECTION_CANDIDATE",
+      "primary_candidate": "INTRADAY_PATH_US_TO_JNU_G1",
+      "current_status": "DESIGN_FROZEN_AWAITING_TRUE_JNU_INTRADAY_DATA",
+      "preregistration": "config/jnu_intraday_path_us_g1_prereg.json",
+      "frozen_hypotheses": [
+        "Prior completed S&P 500 return -> JNU FIRST_30M expected negative coefficient",
+        "Prior completed S&P 500 return -> JNU LAST_30M expected positive coefficient",
+        "State interaction must beat universal-sign model OOS if evidence generalizes"
+      ],
+      "forbidden": ["optimize 30-minute windows", "switch to NQ after result", "add indicators to rescue failure", "promote proxy result as true-JNU alpha"]
+    },
+    {
+      "order": 7,
+      "id": "MICROSTRUCTURE_EXECUTION",
+      "role": "ENTRY_EXIT_INVALIDATION",
+      "default_non_alpha_features": ["VWAP", "POC", "VAH", "VAL", "RVOL", "basis", "roll spread", "liquidity"],
+      "order_imbalance_status": "LITERATURE_ONLY_DATA_BLOCKED",
+      "forbidden": "Manufacture signed/order imbalance from OHLC, VWAP, or aggregate volume."
+    },
+    {
+      "order": 8,
+      "id": "DECISION_ENGINE",
+      "role": "OUTPUT",
+      "outputs": ["P(up)", "P(down)", "P(range)", "confidence", "volatility_state", "event_state", "price_discovery_leader", "preferred_intraday_path", "position_size_multiplier", "invalidation"],
+      "current_fallback": "NO_VALIDATED_DIRECTIONAL_EDGE",
+      "rules": [
+        "No validated directional module => do not manufacture directional probability edge.",
+        "Risk/event/source-weight/execution modules cannot be silently converted into direction votes.",
+        "Probability calibration must be OOS and role-consistent.",
+        "Any ensemble/stacking/weighting model is a new family and must pass the full applicable promotion pipeline."
+      ]
+    }
+  ],
+  "promotion_pipeline": "config/jnu_promotion_pipeline_v1.json",
+  "research_governance": "config/jnu_research_governance_v1.json",
+  "data_quality_contract": "config/jnu_data_quality_contract_v1.json",
+  "attempt_ledger": "config/jnu_family_attempt_ledger.json",
+  "completion_criteria": "config/jnu_framework_completion_criteria_v1.json",
+  "true_ose_execution_contract": "config/jnu_true_ose_execution_package_v1.json",
+  "current_validated_jnu_modules": 0,
+  "current_validated_directional_modules": 0,
+  "current_decision_output": "NO_VALIDATED_DIRECTIONAL_EDGE"
+}
