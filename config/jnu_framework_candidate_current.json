@@ -166,12 +166,12 @@
     "Intraday Path US proxy G0"
   ],
   "active_research": {
-    "only_active_formal_screen": "Phase4B six-category GDELT news state",
-    "run_id": 33341713229,
-    "branch": "research/phase4b-ratelimited-cache-v1",
-    "status": "CACHED_RESUME_1_RUNNING",
-    "acquisition_stop_rule": "config/jnu_phase4b_news_acquisition_stop_rule.json",
-    "rule": "USDJPY current specification is resolved FAIL. Do not alter news queries/statistical gates. If cached resume 1 fails, only one final cached resume is permitted under the frozen stop rule."
+    "only_active_formal_screen": "NEWS_STATE_LANGUAGE_SOURCE_G1_DI1",
+    "run_id": 33343945135,
+    "branch": "research/news-language-source-g1",
+    "logical_attempt": 2,
+    "data_integrity_revision": "G1_DI1",
+    "rule": "No other formal market family may start until this run resolves or hits its bounded acquisition limit."
   },
-  "next_gate": "Resolve the full Phase4B news family under the frozen acquisition stop rule; then choose exactly one next formal family."
+  "next_gate": "Resolve G1-DI1 with data-quality gate first, then statistical gates. A data-quality failure is DATA_INCONCLUSIVE, not model FAIL."
 }
