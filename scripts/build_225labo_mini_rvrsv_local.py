@@ -265,6 +265,7 @@ def main():
     ap.add_argument("--input-dir",type=Path,required=True)
     ap.add_argument("--calendar",type=Path,required=True)
     ap.add_argument("--output-dir",type=Path,required=True)
+    ap.add_argument("--skip-1m-qa",action="store_true",help="Build the frozen 5m primary panel first; 1m measurement QA can be run separately.")
     args=ap.parse_args()
     args.output_dir.mkdir(parents=True,exist_ok=True)
     cal=load_calendar(args.calendar)
@@ -280,24 +281,27 @@ def main():
         m=re.search(r"(20\d{2})",p.name)
         nominal=int(m.group(1)) if m else -1
         d5,meta5=parse_sheet_from_source(p,"5min",cal)
-        try:
-            d1,meta1=parse_1m_qa_from_source(p,cal)
-            # Aggregate-only measurement QA summary per file, no daily 1m export.
-            common=sorted(set(d5)&set(d1))
-            pairs=[]
-            for d in common:
-                if d5[d].returns and d1[d].returns:
-                    pairs.append((sumsq(d5[d].returns),sumsq(d1[d].returns)))
-            if len(pairs)>=2:
-                xs=[a for a,b in pairs]; ys=[b for a,b in pairs]
-                corr=pearson_corr(xs,ys)
-                ratios=[b/a for a,b in pairs if a>0]
-                ratio_median=float(statistics.median(ratios)) if ratios else None
-            else:
-                corr=None; ratio_median=None
-            qa1m.append({"file":p.name,"common_days":len(pairs),"rv_1m_vs_5m_corr":corr,"rv_1m_to_5m_ratio_median":ratio_median,"meta":meta1})
-        except Exception as exc:
-            qa1m.append({"file":p.name,"status":"QA_1M_UNAVAILABLE","error":type(exc).__name__})
+        if args.skip_1m_qa:
+            qa1m.append({"file":p.name,"status":"QA_1M_DEFERRED_PRIMARY_5M_BUILD"})
+        else:
+            try:
+                d1,meta1=parse_1m_qa_from_source(p,cal)
+                # Aggregate-only measurement QA summary per file, no daily 1m export.
+                common=sorted(set(d5)&set(d1))
+                pairs=[]
+                for d in common:
+                    if d5[d].returns and d1[d].returns:
+                        pairs.append((sumsq(d5[d].returns),sumsq(d1[d].returns)))
+                if len(pairs)>=2:
+                    xs=[a for a,b in pairs]; ys=[b for a,b in pairs]
+                    corr=pearson_corr(xs,ys)
+                    ratios=[b/a for a,b in pairs if a>0]
+                    ratio_median=float(statistics.median(ratios)) if ratios else None
+                else:
+                    corr=None; ratio_median=None
+                qa1m.append({"file":p.name,"common_days":len(pairs),"rv_1m_vs_5m_corr":corr,"rv_1m_to_5m_ratio_median":ratio_median,"meta":meta1})
+            except Exception as exc:
+                qa1m.append({"file":p.name,"status":"QA_1M_UNAVAILABLE","error":type(exc).__name__})
         for d,acc in d5.items():
             candidates.setdefault(d,[]).append((nominal,p,acc))
         sources.append({
@@ -398,6 +402,7 @@ def main():
         "derived_output_hash":panel_hash,
         "critical_data_quality_issues":critical,
         "measurement_qa_1m":qa1m,
+        "measurement_qa_1m_deferred":bool(args.skip_1m_qa),
         "sources":sources,
     }
     mpath=args.output_dir/"jnu_225labo_mini_daily_rvrsv_v1_manifest.json"
