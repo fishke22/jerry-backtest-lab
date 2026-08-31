@@ -1,6 +1,6 @@
 {
-  "version": "3.0",
-  "updated_at": "2026-08-31",
+  "version": "3.1",
+  "updated_at": "2026-09-01",
   "policy": {
     "max_active_formal_families": 1,
     "rule": "Do not start the next formal information family until the active family is resolved PASS/FAIL/INCONCLUSIVE and its disposition is persisted.",
@@ -19,69 +19,41 @@
       "Counting correlated features as independent votes"
     ]
   },
-  "active": null,
+  "active": {
+    "candidate": "PRIOR_NIGHT_USDJPY_TO_JNU_DAY_G1",
+    "preregistration": "config/jnu_prior_night_usdjpy_to_jnu_day_g1_prereg.json",
+    "status": "STAGE_A_POST_PAPER_TRUE_OSE_MINI_DATA_BUILD_PENDING",
+    "rule": "Single active formal family. Keep BOJ-17JST/Fed-noon FX definition, negative signal sign, OSE day target and thresholds frozen. No FX-time/filter/threshold/sign rescue."
+  },
   "current_global_blocker": null,
   "queue": [
     {
-      "rank": 99,
-      "candidate": "OVERNIGHT_OVERREACTION_TRUE_JNU_G1",
-      "status": "TRUE_OSE_MINI_STAGE_A_FAIL_TERMINAL",
-      "evidence": "Miwa 2019 direct OSE Nikkei 225 futures evidence: overnight return negatively associated with subsequent morning intraday return.",
+      "rank": 1,
+      "candidate": "PRIOR_NIGHT_USDJPY_TO_JNU_DAY_G1",
+      "status": "PREREGISTERED_STAGE_A_PENDING",
+      "evidence": "Satoyoshi 2018 direct OSE Nikkei 225 futures evidence: lagged prior-night USD/JPY change has significant negative coefficient for following day-session futures return.",
       "target_role": "Directional information gate",
-      "next_action": "None. Exact-JNU Stage B prohibited; preserve near-pass result without threshold/horizon/filter rescue."
+      "next_action": "Build 2018-08-01 to 2023-07-21 post-paper OSE Mini sufficient statistics using official BOJ/Fed FX inputs; Gate 0; execute Stage A."
     },
     {
       "rank": 3,
       "candidate": "HAR_RSV_TRUE_OSE_CONFIRMATION",
-      "evidence": "Direct Japanese/Nikkei futures volatility literature + 2011-2018 proxy-method PASS + 2026 public-proxy holdout consistency",
+      "evidence": "Direct Japanese/Nikkei futures volatility literature + proxy-method evidence + true-OSE/JNU confirmation",
       "target_role": "Risk state / sizing / stop normalization",
       "status": "STAGE3_PASS_INFORMATION_STATE_CANDIDATE_MEASUREMENT_QA_COMPLETE",
-      "data_plan": "True-OSE Mini Stage A and exact-product JNU Micro Stage B are complete and passed without retuning. Raw 225Labo remains local-only; derived panels/results are in GitHub.",
-      "next_action": "Downstream Stage-4 risk-state translation is deferred until a concrete position/risk-control use is proposed; do not reopen Stage-3 statistics.",
-      "local_existing_evidence": {
-        "mini_distinct_day_session_days": 1250,
-        "micro_distinct_day_session_days": 364,
-        "mini_range": [
-          "2015-12-01",
-          "2026-07-30"
-        ],
-        "micro_range": [
-          "2025-02-03",
-          "2026-07-30"
-        ]
-      }
+      "next_action": "Downstream Stage-4 risk-state translation deferred until a concrete position/risk-control use is proposed; do not reopen Stage-3 statistics."
     },
     {
       "rank": 4,
       "candidate": "BOJ_MPM_EVENT_VOLATILITY",
       "status": "STAGE3_PASS_EVENT_RISK_INFORMATION_STATE_CANDIDATE",
-      "next_action": "Stage-3 research closed. Only open a Stage-4+ downstream risk-rule translation if the framework will actually change entry/size/stop/confidence around BOJ MPM events."
+      "next_action": "Stage-3 research closed. Only open downstream risk-rule translation if it will actually change entry/size/stop/confidence."
     },
     {
       "rank": 5,
       "candidate": "TRUE_VENUE_DPD_OSE_SGX_CME",
       "status": "DATA_RIGHTS_BLOCKED_SGX_INTRADAY",
-      "new_source": "axb0306/cme-futures-ohlc public NKD tick/1m/5m sample, visible coverage 2026-03-08 to 2026-04-15, TopstepX/ProjectX-derived",
-      "feasibility_result": {
-        "run_id": 33359934341,
-        "candidate": "CME_NKD_JPN225_ALIGNMENT_G0",
-        "status": "SOURCE_FEASIBILITY_COMPLETE",
-        "common_5m_bars": 7305,
-        "contemporaneous_corr": 0.9221838112308237,
-        "max_abs_corr_lag_5m_units": 0,
-        "rolling_corr_median": 0.915635577176246,
-        "promotion_power": "NONE"
-      },
-      "sgx_identity_progress": {
-        "NK": "SGX JPY Nikkei 225 Index Futures",
-        "NKTI": "Trade-At-Index-Close variant",
-        "NU": "SGX USD Nikkei 225 Index Futures",
-        "NS": "SGX Mini Nikkei 225 Index Futures",
-        "legacy_archive_mapping": "NOT_YET_PROVEN"
-      },
-      "next_action": "Pause formal DPD. Reopen only when a free/authorized matched-expiry SGX Nikkei intraday source with quantitative/non-display and retention rights is verified. Do not bulk-download SGX legacy website archives or use paid Barchart/Tick Data without explicit authorization.",
-      "source_note": "config/jnu_source_identity_mapping_20260831.json",
-      "guardrail": "OSE and CME sides are available, but no rights-clean SGX matched-expiry intraday source is currently verified. Downloader code or public endpoints do not establish data-use rights."
+      "next_action": "Pause formal DPD. Reopen only with a free/authorized matched-expiry SGX Nikkei intraday source with quantitative/non-display and retention rights."
     },
     {
       "rank": 5,
@@ -100,123 +72,45 @@
       "candidate": "JPX_OSE_HISTORICAL_FREE_ACCESS_RESOLUTION",
       "target_role": "Data acquisition gate, not an alpha family",
       "status": "ALTERNATE_SOURCE_ONLY_NOT_CURRENT_BLOCKER",
-      "evidence": "JPX states historical OSE tick data may be provided for trading-methodology examination under certain conditions. Official public Data Cloud documentation now resolves the one-minute futures schema, including trading/execution date, index type, 9-digit security code, session, minute time, OHLC, volume, VWAP, number of trades and contract month. Published free-trial procedure still describes a company applicant.",
-      "identity_progress": "Official JPX evidence confirms Nikkei 225 large 9-digit examples ending 018 and Nikkei 225 mini example 166030019. Nikkei 225 micro is officially identified as NK225MCF and by vendor codes QUICK 115.n / Bloomberg JAIA / LSEG JNUcn / CQG F.US.MC225, but its 9-digit local-security-code suffix is not yet confirmed from a public primary-source issue example.",
-      "next_action": "No active work required while 225Labo true-OSE data remain available locally.",
-      "fallback_if_not_eligible": "Use 225Labo locally for Nikkei mini HAR-RSV Stage A, then Micro Stage B only if Stage A passes."
+      "next_action": "No active work required while 225Labo true-OSE data remain available locally."
+    },
+    {
+      "rank": 99,
+      "candidate": "OVERNIGHT_OVERREACTION_TRUE_JNU_G1",
+      "status": "TRUE_OSE_MINI_STAGE_A_FAIL_TERMINAL",
+      "next_action": "None. Exact-JNU Stage B prohibited; preserve near-pass result without threshold/horizon/filter rescue."
     },
     {
       "rank": 99,
       "candidate": "INTRADAY_MOMENTUM_REVERSION_TRUE_JNU_G1",
       "status": "TRUE_OSE_MINI_STAGE_A_FAIL_TERMINAL",
-      "evidence": "Peng & Wang 2008 direct Nikkei-futures evidence: 1m momentum, 10m mean reversion, robust to intraday seasonality.",
-      "target_role": "Directional information gate",
       "next_action": "None. Exact-JNU Stage B prohibited. Preserve failed family; no H2-only or sign-flip rescue."
     },
     {
       "rank": 99,
       "candidate": "INTRADAY_PATH_US_TO_JNU_G1",
-      "evidence": "Direct Iwanaga 2026 evidence, but both 2011-2018 proxy G0 and 2026 Japan225/SPY proxy G2 fail OOS proxy confirmation",
       "status": "REJECT_TRUE_JNU_CURRENT_SPEC_TERMINAL",
-      "preregistration": "config/jnu_intraday_path_us_to_jnu_true_g1_prereg.json",
       "next_action": "None. Preserve result and do not rescue."
     }
   ],
   "resolved": [
-    {
-      "candidate": "PHASE4B_GDELT_NEWS_STATE",
-      "status": "DATA_INCONCLUSIVE",
-      "final_run_id": 33331409697
-    },
-    {
-      "candidate": "NEWS_STATE_LANGUAGE_SOURCE_G1_DI1",
-      "status": "DATA_INCONCLUSIVE",
-      "final_run_id": 33348607397,
-      "logical_attempts_used": 3,
-      "reopen_rule": "No fourth acquisition attempt."
-    },
-    {
-      "candidate": "HAR_RSV_JPN225_PUBLIC_HOLDOUT_G2",
-      "status": "CURRENT_SAMPLE_PROXY_CONSISTENT",
-      "final_run_id": 33357752091,
-      "panel_days": 130,
-      "oos_days": 48,
-      "mse_bootstrap_prob_positive": 0.975,
-      "promotion_power": "NONE_TO_TRUE_JNU"
-    },
-    {
-      "candidate": "INTRADAY_PATH_JPN225_SPY_PUBLIC_HOLDOUT_G2",
-      "status": "PROXY_PATH_CURRENT_SAMPLE_NOT_CONFIRMED",
-      "final_run_id": 33358017603,
-      "panel_days": 130,
-      "oos_days_per_cell": 70,
-      "H1_FIRST30_mse_bootstrap_prob_positive": 0.297,
-      "H2_LAST30_mse_bootstrap_prob_positive": 0.788,
-      "holm_pass": false,
-      "promotion_power": "NONE_TO_TRUE_JNU"
-    },
-    {
-      "candidate": "CME_NKD_JPN225_ALIGNMENT_G0",
-      "status": "SOURCE_FEASIBILITY_COMPLETE",
-      "final_run_id": 33359934341,
-      "implementation_revision": "DI1_POSITIONAL_VALUE_ALIGNMENT_FIX_ONLY",
-      "common_5m_bars": 7305,
-      "contemporaneous_corr": 0.9221838112308237,
-      "rolling_corr_median": 0.915635577176246,
-      "promotion_power": "NONE"
-    },
-    {
-      "candidate": "INTRADAY_PATH_US_TO_JNU_TRUE_G1",
-      "status": "REJECT_TRUE_JNU_CURRENT_SPEC",
-      "final_run_id": 33391992462,
-      "H1_bootstrap_prob_positive": 0.84,
-      "H2_bootstrap_prob_positive": 0.454,
-      "H3_bootstrap_prob_positive": 0.354,
-      "holm_pass": false,
-      "reopen_rule": "No window/predictor/cell/indicator rescue."
-    },
-    {
-      "candidate": "BOJ_MPM_TRUE_OSE_EVENT_VOLATILITY_G1",
-      "status": "TRUE_JNU_STAGE3_PASS_EVENT_RISK_INFORMATION_STATE_CANDIDATE",
-      "stage_a_run_id": 33396821958,
-      "stage_b_run_id": 33397255940,
-      "stage_a_bootstrap_prob_mean_positive": 0.981,
-      "stage_b_bootstrap_prob_mean_positive": 1,
-      "role": "EVENT_RISK_STATE_ONLY_NOT_DIRECTIONAL_ALPHA"
-    },
-    {
-      "candidate": "INTRADAY_MOMENTUM_REVERSION_TRUE_JNU_G1",
-      "status": "TRUE_OSE_MINI_STAGE_A_FAIL_TERMINAL",
-      "run_id": 33399653907,
-      "H1_bootstrap_prob_positive": 0,
-      "H2_bootstrap_prob_positive": 1,
-      "holm_pass": false,
-      "stage_b": "PROHIBITED"
-    },
-    {
-      "candidate": "OVERNIGHT_OVERREACTION_TRUE_JNU_G1",
-      "status": "TRUE_OSE_MINI_STAGE_A_FAIL_TERMINAL",
-      "run_id": 33400904120,
-      "accuracy": 0.5451002227171492,
-      "bootstrap_prob_mean_positive": 0.9208,
-      "stage_b": "PROHIBITED"
-    }
+    {"candidate":"PHASE4B_GDELT_NEWS_STATE","status":"DATA_INCONCLUSIVE","final_run_id":33331409697},
+    {"candidate":"NEWS_STATE_LANGUAGE_SOURCE_G1_DI1","status":"DATA_INCONCLUSIVE","final_run_id":33348607397,"logical_attempts_used":3,"reopen_rule":"No fourth acquisition attempt."},
+    {"candidate":"HAR_RSV_JPN225_PUBLIC_HOLDOUT_G2","status":"CURRENT_SAMPLE_PROXY_CONSISTENT","final_run_id":33357752091,"promotion_power":"NONE_TO_TRUE_JNU"},
+    {"candidate":"INTRADAY_PATH_JPN225_SPY_PUBLIC_HOLDOUT_G2","status":"PROXY_PATH_CURRENT_SAMPLE_NOT_CONFIRMED","final_run_id":33358017603,"holm_pass":false,"promotion_power":"NONE_TO_TRUE_JNU"},
+    {"candidate":"CME_NKD_JPN225_ALIGNMENT_G0","status":"SOURCE_FEASIBILITY_COMPLETE","final_run_id":33359934341,"promotion_power":"NONE"},
+    {"candidate":"INTRADAY_PATH_US_TO_JNU_TRUE_G1","status":"REJECT_TRUE_JNU_CURRENT_SPEC","final_run_id":33391992462,"holm_pass":false,"reopen_rule":"No window/predictor/cell/indicator rescue."},
+    {"candidate":"BOJ_MPM_TRUE_OSE_EVENT_VOLATILITY_G1","status":"TRUE_JNU_STAGE3_PASS_EVENT_RISK_INFORMATION_STATE_CANDIDATE","stage_a_run_id":33396821958,"stage_b_run_id":33397255940,"role":"EVENT_RISK_STATE_ONLY_NOT_DIRECTIONAL_ALPHA"},
+    {"candidate":"INTRADAY_MOMENTUM_REVERSION_TRUE_JNU_G1","status":"TRUE_OSE_MINI_STAGE_A_FAIL_TERMINAL","run_id":33399653907,"H1_bootstrap_prob_positive":0,"H2_bootstrap_prob_positive":1,"holm_pass":false,"stage_b":"PROHIBITED"},
+    {"candidate":"OVERNIGHT_OVERREACTION_TRUE_JNU_G1","status":"TRUE_OSE_MINI_STAGE_A_FAIL_TERMINAL","run_id":33400904120,"accuracy":0.5451002227171492,"bootstrap_prob_mean_positive":0.9208,"stage_b":"PROHIBITED"}
   ],
   "screened_not_separate_families": [
-    {
-      "candidate": "FUTURES_CASH_BASIS_ALPHA",
-      "disposition": "DO_NOT_OPEN_SEPARATE_FAMILY",
-      "allowed_use": "DPD/fair-value sanity check, roll diagnostics and execution context only."
-    }
+    {"candidate":"FUTURES_CASH_BASIS_ALPHA","disposition":"DO_NOT_OPEN_SEPARATE_FAMILY","allowed_use":"DPD/fair-value sanity check, roll diagnostics and execution context only."}
   ],
   "directional_research_checkpoint": {
-    "status": "PAUSE_NEW_DIRECTIONAL_FAMILY_UNTIL_NEW_INDEPENDENT_EVIDENCE",
-    "reason": "Three recent literature-grounded directional families have failed true-OSE/JNU preregistered gates. Opening further closely related variants now would materially raise selection-bias/multiple-testing risk.",
-    "recent_terminal_families": [
-      "INTRADAY_PATH_US_TO_JNU_TRUE_G1",
-      "INTRADAY_MOMENTUM_REVERSION_TRUE_JNU_G1",
-      "OVERNIGHT_OVERREACTION_TRUE_JNU_G1"
-    ],
-    "allowed_next": "Only substantively independent direct Nikkei/OSE evidence with a pre-outcome specification, or downstream validation of already-passed risk-information modules."
+    "status": "INDEPENDENT_EVIDENCE_FOUND_ACTIVE_FAMILY_OPENED",
+    "prior_reason": "Three recent literature-grounded directional families failed true-target gates, so related variants remain prohibited.",
+    "new_independent_family": "PRIOR_NIGHT_USDJPY_TO_JNU_DAY_G1",
+    "why_independent": "External FX predictor and strict post-paper holdout; not a futures-own overnight, prior-SPX, or intraday momentum/reversion variant."
   }
 }
