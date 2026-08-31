@@ -1,5 +1,5 @@
 {
-  "version": "1.0",
+  "version": "1.1",
   "as_of": "2026-08-31",
   "purpose": "Single durable catalog of JNU/OSE research data available for cloud backtests and local-only licensed raw sources.",
   "cloud_backtest_ready": [
@@ -37,6 +37,30 @@
       "use": [
         "reproduce terminal prior-SPX intraday-path family",
         "future preregistered path/state research only"
+      ],
+      "raw_cloud": false
+    },
+    {
+      "id": "TRUE_OSE_MINI_BOJ_MPM_EVENT_VOL_G1",
+      "path": "cloud_data/derived/jnu_boj_mpm_mini_event_volatility_g1.csv",
+      "manifest": "cloud_data/manifests/jnu_boj_mpm_mini_event_volatility_g1_manifest.json",
+      "coverage": "170 preregistered eligible Mini MPM events, 2007-02-21 through 2023-06-16",
+      "grain": "per-event non-reconstructive baseline/event 1m RV aggregates",
+      "use": [
+        "BOJ MPM Stage A reproduction",
+        "event-volatility/risk research"
+      ],
+      "raw_cloud": false
+    },
+    {
+      "id": "TRUE_JNU_MICRO_BOJ_MPM_EVENT_VOL_G1",
+      "path": "cloud_data/derived/jnu_boj_mpm_micro_event_volatility_g1.csv",
+      "manifest": "cloud_data/manifests/jnu_boj_mpm_micro_event_volatility_g1_manifest.json",
+      "coverage": "22 preregistered eligible exact-JNU MPM events, 2023-07-28 through 2026-07-31",
+      "grain": "per-event non-reconstructive baseline/event 1m RV aggregates",
+      "use": [
+        "BOJ MPM Stage B reproduction",
+        "exact-JNU event-volatility/risk research"
       ],
       "raw_cloud": false
     }
