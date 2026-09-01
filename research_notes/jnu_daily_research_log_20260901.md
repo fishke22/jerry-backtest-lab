@@ -86,3 +86,10 @@
 ### PCR recovery cloud checkpoint: 2018-2021 shard
 - Run 33520336720 2018-2021 shard SUCCESS; artifact 9806942661; 47 PCR_DEFINED + 1 PCR_UNDEFINED_REQUIRED_DAY; 0 parser/source errors.
 - 2018-12-25 undefined reason is frozen ZERO_SELECTED_CALL_DENOMINATOR with both selected call legs explicitly zero-volume; no directional outcomes inspected.
+
+### PCR recovery run 2009-2013 shard cloud verification
+- Run 33520336720 shard 2009-2013: SUCCESS; artifact 9807745504.
+- 52 PCR_DEFINED, 3 ARCHIVE_INCOMPLETE, 1 PCR_UNDEFINED_REQUIRED_DAY, 0 parser/source errors.
+- Recovery panel JSON SHA256 exactly matches prior control: ffa00e69afd09932cf1487df2c59aa08f895781ab7d6a7ad69b94d0c068fbd80.
+- Known archive gaps remain 2009-05, 2009-06, 2010-06; 2010-08-31 remains ZERO_SELECTED_CALL_DENOMINATOR.
+- Directional outcomes remain unopened; Data Gate not yet evaluated.

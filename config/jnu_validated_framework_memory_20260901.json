@@ -100,7 +100,7 @@
   },
   "pcr_directional_candidate": {
     "id": "NIKKEI225_OPTIONS_PCR_SENTIMENT_POSTPUBLICATION_G1",
-    "status": "FULL_PANEL_RECOVERY_RUN_IN_PROGRESS_2014_2021_PASS",
+    "status": "FULL_PANEL_RECOVERY_RUN_IN_PROGRESS_3_OF_4_SHARDS_PASS",
     "formal_directional_family_opened": false,
     "directional_outcome_inspected": false,
     "memory_file": "config/jnu_pcr_data_feasibility_memory_v1.json",

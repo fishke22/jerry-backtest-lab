@@ -59,6 +59,29 @@
         "NDL": 240
       },
       "missing_provenance_sha": 0
+    },
+    "2009_2013": {
+      "status": "SUCCESS",
+      "artifact_id": 9807745504,
+      "artifact_digest": "sha256:8c0478fc0beea196f1e44c918ad7367cc92cb307a807975806bb5af4a1fd6f05",
+      "panel_json_sha256": "ffa00e69afd09932cf1487df2c59aa08f895781ab7d6a7ad69b94d0c068fbd80",
+      "months": 56,
+      "status_counts": {
+        "ARCHIVE_INCOMPLETE": 3,
+        "PCR_DEFINED": 52,
+        "PCR_UNDEFINED_REQUIRED_DAY": 1
+      },
+      "parser_or_source_errors": 0,
+      "known_archive_incomplete_months": [
+        "2009-05",
+        "2009-06",
+        "2010-06"
+      ],
+      "undefined_day": {
+        "date": "2010-08-31",
+        "reason": "ZERO_SELECTED_CALL_DENOMINATOR"
+      },
+      "control_panel_json_sha256_match": true
     }
   },
   "control_shard_2009_2013_from_invalid_run": {
@@ -74,6 +97,6 @@
       "reason": "ZERO_SELECTED_CALL_DENOMINATOR"
     }
   },
-  "remaining": "2009_2013 and 2022_2026 in progress; merge pending.",
+  "remaining": "2022_2026 in progress; merge pending.",
   "next_action": "Continue active run 33520336720. After all four shards and merge complete, download full artifact, run scripts/audit_jnu_pcr_full_information_gate.py against the frozen preregistration, and only then classify Data Gate."
 }
