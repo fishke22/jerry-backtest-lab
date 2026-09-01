@@ -1,0 +1,147 @@
+phase4b GDELT chunk ready: TimelineTone 20230104->20240101
+phase4b GDELT chunk ready: TimelineTone 20231231->20250101
+phase4b GDELT adaptive split depth=1: TimelineTone 20230104->20230704 + 20230703->20240101 after RuntimeError
+phase4b GDELT chunk ready: TimelineTone 20230104->20240101
+phase4b GDELT chunk ready: TimelineTone 20231231->20250101
+phase4b GDELT chunk ready: TimelineTone 20230104->20240101
+phase4b GDELT adaptive split depth=1: TimelineTone 20231231->20240701 + 20240701->20250101 after RuntimeError
+phase4b GDELT chunk ready: TimelineTone 20241231->20260101
+phase4b GDELT adaptive split depth=1: TimelineTone 20241231->20250702 + 20250702->20260101 after RuntimeError
+phase4b GDELT chunk ready: TimelineTone 20251231->20260829
+phase4b GDELT chunk ready: TimelineVol 20230104->20240101
+phase4b GDELT chunk ready: TimelineTone 20241231->20260101
+phase4b GDELT chunk ready: TimelineVol 20231231->20250101
+phase4b GDELT chunk ready: TimelineVol 20241231->20260101
+phase4b GDELT chunk ready: TimelineVol 20251231->20260829
+phase4b news data ready: JAPAN_BOJ_MACRO
+phase4b GDELT adaptive split depth=2: TimelineTone 20231231->20240401 + 20240401->20240701 after RuntimeError
+phase4b GDELT adaptive split depth=1: TimelineTone 20251231->20260430 + 20260430->20260829 after RuntimeError
+phase4b GDELT chunk ready: TimelineTone 20231231->20250101
+phase4b GDELT adaptive split depth=1: TimelineTone 20230104->20230704 + 20230703->20240101 after RuntimeError
+phase4b GDELT chunk ready: TimelineTone 20241231->20260101
+phase4b GDELT chunk ready: TimelineTone 20251231->20260829
+phase4b GDELT chunk ready: TimelineVol 20230104->20240101
+phase4b GDELT chunk ready: TimelineVol 20231231->20250101
+phase4b GDELT chunk ready: TimelineTone 20230104->20240101
+phase4b GDELT adaptive split depth=2: TimelineTone 20260430->20260629 + 20260629->20260829 after RuntimeError
+phase4b GDELT chunk ready: TimelineTone 20231231->20250101
+phase4b GDELT chunk ready: TimelineVol 20241231->20260101
+phase4b GDELT chunk ready: TimelineVol 20251231->20260829
+phase4b news data ready: US_FED_MACRO
+phase4b GDELT chunk ready: TimelineTone 20241231->20260101
+phase4b GDELT chunk ready: TimelineTone 20251231->20260829
+phase4b GDELT chunk ready: TimelineTone 20251231->20260829
+phase4b GDELT chunk ready: TimelineVol 20230104->20240101
+phase4b GDELT adaptive split depth=1: TimelineTone 20230104->20230704 + 20230703->20240101 after RuntimeError
+phase4b GDELT adaptive split depth=1: TimelineVol 20230104->20230704 + 20230703->20240101 after RuntimeError
+phase4b GDELT chunk ready: TimelineTone 20230104->20240101
+phase4b GDELT adaptive split depth=1: TimelineVol 20231231->20240701 + 20240701->20250101 after RuntimeError
+phase4b GDELT adaptive split depth=1: TimelineTone 20231231->20240701 + 20240701->20250101 after RuntimeError
+phase4b GDELT adaptive split depth=2: TimelineTone 20231231->20240401 + 20240401->20240701 after RuntimeError
+phase4b GDELT adaptive split depth=3: TimelineTone 20231231->20240215 + 20240215->20240401 after RuntimeError
+phase4b GDELT adaptive split depth=4: TimelineTone 20231231->20240123 + 20240123->20240215 after RuntimeError
+phase4b GDELT adaptive split depth=2: TimelineVol 20231231->20240401 + 20240401->20240701 after RuntimeError
+phase4b GDELT adaptive split depth=1: TimelineTone 20230104->20230704 + 20230703->20240101 after RuntimeError
+phase4b GDELT adaptive split depth=3: TimelineVol 20231231->20240215 + 20240215->20240401 after RuntimeError
+phase4b GDELT adaptive split depth=2: TimelineTone 20230104->20230404 + 20230404->20230704 after RuntimeError
+phase4b GDELT adaptive split depth=4: TimelineVol 20231231->20240123 + 20240123->20240215 after RuntimeError
+phase4b GDELT adaptive split depth=3: TimelineTone 20230104->20230218 + 20230218->20230404 after RuntimeError
+phase4b GDELT adaptive split depth=4: TimelineTone 20230104->20230126 + 20230126->20230218 after RuntimeError
+phase4b GDELT adaptive split depth=2: TimelineVol 20230104->20230404 + 20230404->20230704 after RuntimeError
+phase4b GDELT adaptive split depth=3: TimelineVol 20230104->20230218 + 20230218->20230404 after RuntimeError
+phase4b GDELT adaptive split depth=4: TimelineVol 20230104->20230126 + 20230126->20230218 after RuntimeError
+Traceback (most recent call last):
+  File "/home/runner/work/jerry-backtest-lab/jerry-backtest-lab/scripts/process_phase4b_evidence.py", line 227, in _gdelt_timeline_adaptive
+    return _gdelt_timeline_one(query, mode, start, end, cache_name, force)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/jerry-backtest-lab/jerry-backtest-lab/scripts/process_phase4b_evidence.py", line 202, in _gdelt_timeline_one
+    raw = fetch(url, cache_name, force, timeout=75, attempts=2)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/jerry-backtest-lab/jerry-backtest-lab/scripts/process_phase4b_evidence.py", line 51, in fetch
+    raise RuntimeError(f"fetch failed {cache_name}: {last}")
+RuntimeError: fetch failed gdelt_JAPAN_EQUITY_NIKKEI_tone_chunk2_20231231_20250101.json: <urlopen error [Errno 111] Connection refused>
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/work/jerry-backtest-lab/jerry-backtest-lab/scripts/process_phase4b_evidence.py", line 227, in _gdelt_timeline_adaptive
+    return _gdelt_timeline_one(query, mode, start, end, cache_name, force)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/jerry-backtest-lab/jerry-backtest-lab/scripts/process_phase4b_evidence.py", line 202, in _gdelt_timeline_one
+    raw = fetch(url, cache_name, force, timeout=75, attempts=2)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/jerry-backtest-lab/jerry-backtest-lab/scripts/process_phase4b_evidence.py", line 51, in fetch
+    raise RuntimeError(f"fetch failed {cache_name}: {last}")
+RuntimeError: fetch failed gdelt_JAPAN_EQUITY_NIKKEI_tone_chunk2_20231231_20250101_L1.json: <urlopen error [Errno 111] Connection refused>
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/work/jerry-backtest-lab/jerry-backtest-lab/scripts/process_phase4b_evidence.py", line 227, in _gdelt_timeline_adaptive
+    return _gdelt_timeline_one(query, mode, start, end, cache_name, force)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/jerry-backtest-lab/jerry-backtest-lab/scripts/process_phase4b_evidence.py", line 202, in _gdelt_timeline_one
+    raw = fetch(url, cache_name, force, timeout=75, attempts=2)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/jerry-backtest-lab/jerry-backtest-lab/scripts/process_phase4b_evidence.py", line 51, in fetch
+    raise RuntimeError(f"fetch failed {cache_name}: {last}")
+RuntimeError: fetch failed gdelt_JAPAN_EQUITY_NIKKEI_tone_chunk2_20231231_20250101_L1_L2.json: <urlopen error [Errno 111] Connection refused>
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/work/jerry-backtest-lab/jerry-backtest-lab/scripts/process_phase4b_evidence.py", line 227, in _gdelt_timeline_adaptive
+    return _gdelt_timeline_one(query, mode, start, end, cache_name, force)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/jerry-backtest-lab/jerry-backtest-lab/scripts/process_phase4b_evidence.py", line 202, in _gdelt_timeline_one
+    raw = fetch(url, cache_name, force, timeout=75, attempts=2)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/jerry-backtest-lab/jerry-backtest-lab/scripts/process_phase4b_evidence.py", line 51, in fetch
+    raise RuntimeError(f"fetch failed {cache_name}: {last}")
+RuntimeError: fetch failed gdelt_JAPAN_EQUITY_NIKKEI_tone_chunk2_20231231_20250101_L1_L2_L3.json: <urlopen error [Errno 111] Connection refused>
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/work/jerry-backtest-lab/jerry-backtest-lab/scripts/process_phase4b_evidence.py", line 559, in main
+    process(p)
+  File "/home/runner/work/jerry-backtest-lab/jerry-backtest-lab/scripts/process_phase4b_evidence.py", line 545, in process
+    "news": test_news(close, req),
+            ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/jerry-backtest-lab/jerry-backtest-lab/scripts/process_phase4b_evidence.py", line 430, in test_news
+    feature_map[key] = fut.result()
+                       ^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.14/x64/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.14/x64/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/opt/hostedtoolcache/Python/3.12.14/x64/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/jerry-backtest-lab/jerry-backtest-lab/scripts/process_phase4b_evidence.py", line 385, in news_features
+    tone = gdelt_timeline(query, "TimelineTone", start, end, f"gdelt_{key}_tone.json", force)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/jerry-backtest-lab/jerry-backtest-lab/scripts/process_phase4b_evidence.py", line 294, in gdelt_timeline
+    part = _gdelt_timeline_adaptive(query, mode, chunk_start, chunk_end, chunk_name, force)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/jerry-backtest-lab/jerry-backtest-lab/scripts/process_phase4b_evidence.py", line 248, in _gdelt_timeline_adaptive
+    left = _gdelt_timeline_adaptive(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/jerry-backtest-lab/jerry-backtest-lab/scripts/process_phase4b_evidence.py", line 248, in _gdelt_timeline_adaptive
+    left = _gdelt_timeline_adaptive(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/jerry-backtest-lab/jerry-backtest-lab/scripts/process_phase4b_evidence.py", line 248, in _gdelt_timeline_adaptive
+    left = _gdelt_timeline_adaptive(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  [Previous line repeated 1 more time]
+  File "/home/runner/work/jerry-backtest-lab/jerry-backtest-lab/scripts/process_phase4b_evidence.py", line 227, in _gdelt_timeline_adaptive
+    return _gdelt_timeline_one(query, mode, start, end, cache_name, force)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/jerry-backtest-lab/jerry-backtest-lab/scripts/process_phase4b_evidence.py", line 202, in _gdelt_timeline_one
+    raw = fetch(url, cache_name, force, timeout=75, attempts=2)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/jerry-backtest-lab/jerry-backtest-lab/scripts/process_phase4b_evidence.py", line 51, in fetch
+    raise RuntimeError(f"fetch failed {cache_name}: {last}")
+RuntimeError: fetch failed gdelt_JAPAN_EQUITY_NIKKEI_tone_chunk2_20231231_20250101_L1_L2_L3_L4.json: <urlopen error [Errno 111] Connection refused>
+{"failures": [["jnu_v22_phase4b_v1.json", "fetch failed gdelt_JAPAN_EQUITY_NIKKEI_tone_chunk2_20231231_20250101_L1_L2_L3_L4.json: <urlopen error [Errno 111] Connection refused>"]]}
