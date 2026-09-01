@@ -1,0 +1,55 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-01",
+  "candidate_id": "NIKKEI225_OPTIONS_PCR_SENTIMENT_POSTPUBLICATION_G1",
+  "directional_return_outcomes_used": false,
+  "formal_directional_family_opened": false,
+  "data_gate_evaluated": false,
+  "recovery_commit": "c65ea6e8946352365261aa71aba01fa4b069c1b3",
+  "independent_audit_commit": "6a6a445",
+  "invalid_prior_run": {
+    "run_id": 33514784926,
+    "final_status": "CANCELLED_AFTER_ENGINEERING_INVALIDATION",
+    "data_gate_disposition": "DATA_GATE_NOT_EVALUABLE_ENGINEERING_FAILURE"
+  },
+  "active_run": {
+    "run_id": 33520336720,
+    "head_sha": "c65ea6e8946352365261aa71aba01fa4b069c1b3",
+    "workflow": "JNU PCR Full Information Panel V1"
+  },
+  "completed_shards": {
+    "2014_2017": {
+      "status": "SUCCESS",
+      "artifact_id": 9805796894,
+      "artifact_digest": "sha256:dc2e484cc98249181ca2a80391f450515ab19b4319ed4908bad9009abbc06c5e",
+      "panel_json_sha256": "31470c3bf9f5b0669d32a1511f0265e5352ada3941a11fa23d17cc462e96f18d",
+      "months": 48,
+      "status_counts": {
+        "PCR_DEFINED": 48
+      },
+      "required_days": 240,
+      "parser_or_source_errors": 0,
+      "noninteger_selected_volume_fields": 0,
+      "negative_selected_volume_fields": 0,
+      "provenance_source": {
+        "NDL": 240
+      },
+      "missing_provenance_sha": 0
+    }
+  },
+  "control_shard_2009_2013_from_invalid_run": {
+    "use": "NONAUTHORITATIVE_CONTROL_ONLY",
+    "panel_json_sha256": "ffa00e69afd09932cf1487df2c59aa08f895781ab7d6a7ad69b94d0c068fbd80",
+    "status_counts": {
+      "ARCHIVE_INCOMPLETE": 3,
+      "PCR_DEFINED": 52,
+      "PCR_UNDEFINED_REQUIRED_DAY": 1
+    },
+    "undefined_day": {
+      "date": "2010-08-31",
+      "reason": "ZERO_SELECTED_CALL_DENOMINATOR"
+    }
+  },
+  "remaining": "2009_2013 and 2018_2021 in progress; 2022_2026 queued; merge pending.",
+  "next_action": "Continue active run 33520336720. After all four shards and merge complete, download full artifact, run scripts/audit_jnu_pcr_full_information_gate.py against the frozen preregistration, and only then classify Data Gate."
+}

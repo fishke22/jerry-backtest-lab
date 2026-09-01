@@ -69,3 +69,9 @@
 - Frozen 9-date regression: 9/9 unchanged under pypdf 6.0.0. Transition-layout smoke: 20/20 required days across 2016-07, 2017-06, 2018-01, 2019-11; 4/4 months PCR_DEFINED.
 - 2016-07-25 selected-leg audit: 201608 PUT 904+1399, CALL 63+2; 201609 PUT 8+1605, CALL 17+0 (Auction+J-NET).
 - No raw NDL/JPX report uploaded. Next: commit/push recovery and dispatch the same preregistered full-information-panel workflow.
+
+## PCR full-panel recovery run checkpoint
+- Invalid run 33514784926 was cancelled after engineering invalidation to stop redundant source downloads; it remains DATA_GATE_NOT_EVALUABLE_ENGINEERING_FAILURE.
+- Active recovery run 33520336720 at c65ea6e: 2014-2017 shard SUCCESS, artifact 9805796894.
+- 2014-2017: 48/48 PCR_DEFINED, 240/240 required days parsed, 0 parser/source errors, 0 noninteger/negative selected-volume fields, all 240 NDL provenance SHA present.
+- Data Gate not evaluated; directional outcomes remain unread; formal directional family remains unopened.

@@ -3,7 +3,7 @@
   "as_of": "2026-09-01",
   "candidate_id": "NIKKEI225_OPTIONS_PCR_SENTIMENT_POSTPUBLICATION_G1",
   "formal_directional_family_opened": false,
-  "status": "FULL_PANEL_ENGINEERING_RECOVERY_READY_FOR_RERUN",
+  "status": "FULL_PANEL_RECOVERY_RUN_IN_PROGRESS_2014_2017_PASS",
   "governance": {
     "independence": "SUBSTANTIVELY_INDEPENDENT_FROM_RECENT_FAILED_DIRECTIONAL_FAMILIES",
     "literature_anchor": "Tsuji (2009), Japan-specific Nikkei 225 index-options put/call-ratio market-timing evidence",
@@ -105,7 +105,7 @@
   },
   "directional_outcome_inspected": false,
   "formal_preregistration_created": false,
-  "next_action": "Commit/push engineering recovery, dispatch the same preregistered full-information-panel workflow at the recovery commit, then classify Data Gate only after all shards/merge/artifact complete.",
+  "next_action": "Continue active run 33520336720. After all four shards and merge complete, download full artifact, run scripts/audit_jnu_pcr_full_information_gate.py against the frozen preregistration, and only then classify Data Gate.",
   "zero_denominator_rule": "Daily PCR undefined when selected near+second-near call volume is zero; month unusable if any of five required daily PCRs is undefined. No rescue.",
   "cloud_smoke": {
     "run_id": 33509640334,
@@ -141,5 +141,7 @@
       "2022_2026": "IN_PROGRESS_AT_RECOVERY_COMMIT"
     }
   },
-  "full_panel_engineering_recovery": "config/jnu_pcr_full_panel_engineering_recovery_v1.json"
+  "full_panel_engineering_recovery": "config/jnu_pcr_full_panel_engineering_recovery_v1.json",
+  "active_full_panel_recovery_run": 33520336720,
+  "active_full_panel_recovery_checkpoint": "config/jnu_pcr_full_panel_recovery_run_33520336720_checkpoint_v1.json"
 }
