@@ -35,6 +35,32 @@
         "NDL": 240
       },
       "missing_provenance_sha": 0
+    },
+    "2018_2021": {
+      "status": "SUCCESS",
+      "artifact_id": 9806942661,
+      "artifact_digest": "sha256:441f386380f1d4c6af9906738630772d3d196a2b7c7b191576e78ea313659302",
+      "panel_json_sha256": "790f64e4fea2c9843816ea8b73d83ed1f8e3bb3745b80d2b86ea6c8cf3075187",
+      "months": 48,
+      "status_counts": {
+        "PCR_DEFINED": 47,
+        "PCR_UNDEFINED_REQUIRED_DAY": 1
+      },
+      "required_days": 240,
+      "daily_pcr_defined_days": 239,
+      "parser_or_source_errors": 0,
+      "undefined_day": {
+        "date": "2018-12-25",
+        "reason": "ZERO_SELECTED_CALL_DENOMINATOR",
+        "selected_put_volume": 625.0,
+        "selected_call_volume": 0.0
+      },
+      "noninteger_selected_volume_fields": 0,
+      "negative_selected_volume_fields": 0,
+      "provenance_source": {
+        "NDL": 240
+      },
+      "missing_provenance_sha": 0
     }
   },
   "control_shard_2009_2013_from_invalid_run": {
@@ -50,6 +76,6 @@
       "reason": "ZERO_SELECTED_CALL_DENOMINATOR"
     }
   },
-  "remaining": "2009_2013 and 2018_2021 in progress; 2022_2026 queued; merge pending.",
+  "remaining": "2009_2013 and 2022_2026 in progress; merge pending.",
   "next_action": "Continue active run 33520336720. After all four shards and merge complete, download full artifact, run scripts/audit_jnu_pcr_full_information_gate.py against the frozen preregistration, and only then classify Data Gate."
 }

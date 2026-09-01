@@ -75,3 +75,10 @@
 - Active recovery run 33520336720 at c65ea6e: 2014-2017 shard SUCCESS, artifact 9805796894.
 - 2014-2017: 48/48 PCR_DEFINED, 240/240 required days parsed, 0 parser/source errors, 0 noninteger/negative selected-volume fields, all 240 NDL provenance SHA present.
 - Data Gate not evaluated; directional outcomes remain unread; formal directional family remains unopened.
+
+### PCR recovery run 2018-2021 shard cloud verification
+- Run 33520336720 shard 2018-2021: SUCCESS; artifact 9806942661.
+- 47 PCR_DEFINED months, 1 PCR_UNDEFINED_REQUIRED_DAY month, 0 parser/source errors.
+- The prior 23 transition-era parser failures are eliminated in the cloud run.
+- 2018-12-25 is undefined only because both selected CALL legs have zero official volume (ZERO_SELECTED_CALL_DENOMINATOR); this is a frozen-definition data outcome, not an engineering failure.
+- 240/240 required days have NDL provenance SHA; all selected volume fields are nonnegative integers; no directional outcomes inspected.
