@@ -1,6 +1,6 @@
 {
-  "version": "1.0",
-  "as_of": "2026-08-31",
+  "version": "1.1-DI3",
+  "as_of": "2026-09-01",
   "timezone": "Asia/Tokyo",
   "mini_launch_boundary": "2006-07-18",
   "event_count": 226,
@@ -2309,13 +2309,22 @@
     {
       "year": 2024,
       "date": "2024-07-31",
-      "release_time_jst": "8:50",
-      "release_title": "Minutes of the Monetary Policy Meeting",
+      "release_time_jst": "12:56",
+      "release_title": "Change in the Guideline for Money Market Operations and Decision on the Plan for the Reduction of the Purchase Amount of Japanese Government Bonds",
       "index_link_text": "Change in the Guideline for Money Market Operations and Decision on the Plan for the Reduction of the Purchase Amount of Japanese Government Bonds",
       "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/state_2024/k240731a.htm",
       "source_type": "BOJ_OFFICIAL_HTML",
       "source_sha256": "26ea1c361b42399646a1de587b721fe5b91a5ee2daaf0cc254fc047177cb6ba6",
-      "release_time_provenance": "DOCUMENT_REFERENCE"
+      "release_time_provenance": "BOJ_OFFICIAL_RELEASE_DATES_AND_TIMES_DI3",
+      "data_integrity_revision": {
+        "id": "DI3_EVENT_TIMESTAMP_CORRECTION",
+        "old": {
+          "release_time_jst": "8:50",
+          "release_title": "Minutes of the Monetary Policy Meeting"
+        },
+        "evidence": "BOJ official release dates and times: policy decision released 12:56; 08:50 belongs to later Summary/Minutes publication.",
+        "research_spec_changed": false
+      }
     },
     {
       "year": 2024,
@@ -2353,13 +2362,22 @@
     {
       "year": 2025,
       "date": "2025-01-24",
-      "release_time_jst": "8:50",
-      "release_title": "Minutes of the Monetary Policy Meeting",
+      "release_time_jst": "12:23",
+      "release_title": "Change in the Guideline for Money Market Operations",
       "index_link_text": "Change in the Guideline for Money Market Operations",
       "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/state_2025/k250124a.htm",
       "source_type": "BOJ_OFFICIAL_HTML",
       "source_sha256": "ca9ae15712d28f828c35880f4d86b70d5b2e516405dde7ee3d77d259f7a9939c",
-      "release_time_provenance": "DOCUMENT_REFERENCE"
+      "release_time_provenance": "BOJ_OFFICIAL_RELEASE_DATES_AND_TIMES_DI3",
+      "data_integrity_revision": {
+        "id": "DI3_EVENT_TIMESTAMP_CORRECTION",
+        "old": {
+          "release_time_jst": "8:50",
+          "release_title": "Minutes of the Monetary Policy Meeting"
+        },
+        "evidence": "BOJ official release dates and times: policy decision released 12:23; 08:50 belongs to later Summary/Minutes publication.",
+        "research_spec_changed": false
+      }
     },
     {
       "year": 2025,
@@ -2474,13 +2492,22 @@
     {
       "year": 2026,
       "date": "2026-06-16",
-      "release_time_jst": "8:50",
-      "release_title": "Minutes of the Monetary Policy Meeting",
+      "release_time_jst": "12:19",
+      "release_title": "Change in the Guideline for Money Market Operations",
       "index_link_text": "Change in the Guideline for Money Market Operations [PDF 187KB]",
       "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2026/k260616a.pdf",
       "source_type": "BOJ_OFFICIAL_PDF",
       "source_sha256": "93fe8f756750d1b38be0b42887dddb69f78bfc00b701c8edc77052101cf9a399",
-      "release_time_provenance": "DOCUMENT_REFERENCE"
+      "release_time_provenance": "BOJ_OFFICIAL_RELEASE_DATES_AND_TIMES_DI3",
+      "data_integrity_revision": {
+        "id": "DI3_EVENT_TIMESTAMP_CORRECTION",
+        "old": {
+          "release_time_jst": "8:50",
+          "release_title": "Minutes of the Monetary Policy Meeting"
+        },
+        "evidence": "BOJ official release dates and times: policy decision released 12:19; 08:50 belongs to later Summary/Minutes publication.",
+        "research_spec_changed": false
+      }
     },
     {
       "year": 2026,
@@ -2493,5 +2520,16 @@
       "source_sha256": "f862844f0b476f44bcd76044475755f2bae5c22fea72fd3425bc946ce32e6470",
       "release_time_provenance": "DOCUMENT_REFERENCE"
     }
-  ]
+  ],
+  "data_integrity_revision": {
+    "id": "DI3_EVENT_TIMESTAMP_CORRECTION",
+    "dates": [
+      "2024-07-31",
+      "2025-01-24",
+      "2026-06-16"
+    ],
+    "reason": "Three policy-decision entries incorrectly inherited the 08:50 release time of later Summary/Minutes publications. Corrected from BOJ official decision-page release dates/times.",
+    "market_price_outcomes_used": false,
+    "research_spec_changed": false
+  }
 }

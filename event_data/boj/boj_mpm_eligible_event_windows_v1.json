@@ -1,15 +1,15 @@
 {
-  "version": "1.0",
-  "as_of": "2026-08-31",
+  "version": "1.1-DI3",
+  "as_of": "2026-09-01",
   "timezone": "Asia/Tokyo",
   "candidate": "BOJ_MPM_TRUE_OSE_EVENT_VOLATILITY_G1",
   "eligibility_based_only_on_event_time_and_historical_OSE_session": true,
   "market_outcome_inspected": false,
   "primary_event_window": "[-10m,+20m) around official BOJ release",
   "baseline_window": "[-40m,-10m) immediately preceding, non-overlapping",
-  "eligible_event_count": 192,
+  "eligible_event_count": 195,
   "stage_a_event_count": 170,
-  "stage_b_event_count": 22,
+  "stage_b_event_count": 25,
   "eligible_events": [
     {
       "date": "2007-02-21",
@@ -2504,6 +2504,21 @@
       "stage": "B_EXACT_JNU_MICRO"
     },
     {
+      "date": "2024-07-31",
+      "release_time_jst": "12:56",
+      "release_title": "Change in the Guideline for Money Market Operations and Decision on the Plan for the Reduction of the Purchase Amount of Japanese Government Bonds",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/state_2024/k240731a.htm",
+      "source_sha256": "26ea1c361b42399646a1de587b721fe5b91a5ee2daaf0cc254fc047177cb6ba6",
+      "session_segment": [
+        "08:45",
+        "15:15"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "B_EXACT_JNU_MICRO",
+      "data_integrity_revision": "DI3_EVENT_TIMESTAMP_CORRECTION"
+    },
+    {
       "date": "2024-09-20",
       "release_time_jst": "11:52",
       "release_title": "Release dates and times: Statement on Monetary Policy",
@@ -2544,6 +2559,21 @@
       "baseline_window": "[-40m,-10m)",
       "event_window": "[-10m,+20m)",
       "stage": "B_EXACT_JNU_MICRO"
+    },
+    {
+      "date": "2025-01-24",
+      "release_time_jst": "12:23",
+      "release_title": "Change in the Guideline for Money Market Operations",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/state_2025/k250124a.htm",
+      "source_sha256": "ca9ae15712d28f828c35880f4d86b70d5b2e516405dde7ee3d77d259f7a9939c",
+      "session_segment": [
+        "08:45",
+        "15:45"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "B_EXACT_JNU_MICRO",
+      "data_integrity_revision": "DI3_EVENT_TIMESTAMP_CORRECTION"
     },
     {
       "date": "2025-03-19",
@@ -2686,6 +2716,21 @@
       "stage": "B_EXACT_JNU_MICRO"
     },
     {
+      "date": "2026-06-16",
+      "release_time_jst": "12:19",
+      "release_title": "Change in the Guideline for Money Market Operations",
+      "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2026/k260616a.pdf",
+      "source_sha256": "93fe8f756750d1b38be0b42887dddb69f78bfc00b701c8edc77052101cf9a399",
+      "session_segment": [
+        "08:45",
+        "15:45"
+      ],
+      "baseline_window": "[-40m,-10m)",
+      "event_window": "[-10m,+20m)",
+      "stage": "B_EXACT_JNU_MICRO",
+      "data_integrity_revision": "DI3_EVENT_TIMESTAMP_CORRECTION"
+    },
+    {
       "date": "2026-07-31",
       "release_time_jst": "12:11",
       "release_title": "Release dates and times: Statement on Monetary Policy",
@@ -2700,7 +2745,7 @@
       "stage": "B_EXACT_JNU_MICRO"
     }
   ],
-  "excluded_event_count": 34,
+  "excluded_event_count": 31,
   "excluded_events": [
     {
       "date": "2006-08-11",
@@ -2856,21 +2901,17 @@
       "date": "2011-11-30",
       "release_time_jst": "22:00",
       "reason": "FIXED_WINDOWS_NOT_FULLY_INSIDE_ONE_CONTINUOUS_OSE_DAY_SESSION"
-    },
-    {
-      "date": "2024-07-31",
-      "release_time_jst": "8:50",
-      "reason": "FIXED_WINDOWS_NOT_FULLY_INSIDE_ONE_CONTINUOUS_OSE_DAY_SESSION"
-    },
-    {
-      "date": "2025-01-24",
-      "release_time_jst": "8:50",
-      "reason": "FIXED_WINDOWS_NOT_FULLY_INSIDE_ONE_CONTINUOUS_OSE_DAY_SESSION"
-    },
-    {
-      "date": "2026-06-16",
-      "release_time_jst": "8:50",
-      "reason": "FIXED_WINDOWS_NOT_FULLY_INSIDE_ONE_CONTINUOUS_OSE_DAY_SESSION"
     }
-  ]
+  ],
+  "data_integrity_revision": {
+    "id": "DI3_EVENT_TIMESTAMP_CORRECTION",
+    "dates": [
+      "2024-07-31",
+      "2025-01-24",
+      "2026-06-16"
+    ],
+    "effect": "Stage A unchanged at 170; Stage B timing-eligible count increases from 22 to 25 solely because corrected official release times place the frozen windows inside the OSE day session.",
+    "market_price_outcomes_used": false,
+    "research_spec_changed": false
+  }
 }

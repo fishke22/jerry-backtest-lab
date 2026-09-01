@@ -5,10 +5,10 @@
   "product": "OSE Nikkei 225 Micro Futures (JNU)",
   "source_license_classification": "225LABO_PERSONAL_USE_LOCAL_RAW_DERIVED_NON_RECONSTRUCTIVE_EXPORT",
   "raw_data_cloud_uploaded": false,
-  "parser_version_commit": "909391dee8cf4e6fd3cd09046bdf11453049af7f",
-  "event_manifest_sha256": "fcfd9b81c61ed7cb575ad43b67d8c7348c9979ffe164525953766a8bc975c60a",
-  "timing_eligible_event_count": 22,
-  "usable_event_count": 22,
+  "parser_version_commit": "4e586ed1b3b378d6d31d1f325444b88dec9e8e32",
+  "event_manifest_sha256": "67eee2bec91ba83b160fb2f54aba4fae09c02e4a85ad62338c241beee95c2e83",
+  "timing_eligible_event_count": 25,
+  "usable_event_count": 25,
   "unusable_event_count": 0,
   "unusable_events": [],
   "calendar_session_version": "1.2",
@@ -22,8 +22,8 @@
     "2026-07-31"
   ],
   "missingness_summary": {
-    "timing_eligible_event_count": 22,
-    "usable_event_count": 22,
+    "timing_eligible_event_count": 25,
+    "usable_event_count": 25,
     "unusable_event_count": 0
   },
   "duplicate_summary": {
@@ -85,7 +85,7 @@
         "sheets": [
           "1min"
         ],
-        "relevant_rows": 8414,
+        "relevant_rows": 9616,
         "duplicate_minute_rows": 0,
         "invalid_close_rows": 0
       }
@@ -100,7 +100,7 @@
         "sheets": [
           "1min"
         ],
-        "relevant_rows": 8414,
+        "relevant_rows": 9616,
         "duplicate_minute_rows": 0,
         "invalid_close_rows": 0
       }
@@ -115,13 +115,13 @@
         "sheets": [
           "1min"
         ],
-        "relevant_rows": 4808,
+        "relevant_rows": 6010,
         "duplicate_minute_rows": 0,
         "invalid_close_rows": 0
       }
     }
   ],
   "critical_data_quality_issues": [],
-  "derived_output_hash": "43fd2ec741e30e8c4596a58d0f8366c54c84582eb4e288ad81963ef4769148aa",
+  "derived_output_hash": "3db105e1294031beef9ffabecf5288ccdaf8cb5e0e393e27b406102b5e58b43a",
   "market_outcome_interpretation_performed": false
 }
