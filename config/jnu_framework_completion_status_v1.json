@@ -1,5 +1,5 @@
 {
-  "version": "2.1",
+  "version": "2.2",
   "as_of": "2026-09-01",
   "framework": "JNU_FINAL_FRAMEWORK_V3",
   "architecture_status": "FROZEN",
@@ -209,11 +209,17 @@
     "rescue_prohibited": true
   },
   "boj_mpm_stage3": {
-    "status": "PASS",
+    "status": "PASS_DI3_RECONFIRMED",
     "role": "EVENT_RISK_STATE_ONLY_NOT_DIRECTIONAL_ALPHA",
     "mini_stage_a_run": 33396821958,
-    "micro_stage_b_run": 33397255940,
-    "stage9_validated": false
+    "micro_stage_b_run": 33499625359,
+    "micro_stage_b_artifact": 9797148545,
+    "micro_usable_events": 25,
+    "micro_mean_log_event_to_baseline_rv_ratio": 1.596492392509979,
+    "micro_median_log_event_to_baseline_rv_ratio": 1.6834848265376794,
+    "micro_bootstrap_prob_positive": 1.0,
+    "stage9_validated": false,
+    "stage4_priority": 1
   },
   "momentum_reversion_true_ose": {
     "status": "STAGE_A_FAIL",

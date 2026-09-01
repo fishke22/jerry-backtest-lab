@@ -38,5 +38,20 @@
     ],
     "allowed_next": "Only substantively independent direct Nikkei/OSE evidence with pre-outcome specification, or downstream validation of passed risk-information modules."
   },
-  "raw_data_boundary": "225Labo raw remains local-only; only non-reconstructive derived outputs/hashes/manifests/results are public-cloud persisted."
+  "raw_data_boundary": "225Labo raw remains local-only; only non-reconstructive derived outputs/hashes/manifests/results are public-cloud persisted.",
+  "boj_mpm_stage3_di3_reconfirmation": {
+    "status": "TRUE_JNU_STAGE3_PASS_EVENT_RISK_INFORMATION_STATE_CANDIDATE_DI3_RECONFIRMED",
+    "di3_commit": "434808e439d85051eec7e33b8bcb86f527d403bc",
+    "run_id": 33499625359,
+    "artifact_id": 9797148545,
+    "usable_events": 25,
+    "mean_log_event_to_baseline_rv_ratio": 1.596492392509979,
+    "median_log_event_to_baseline_rv_ratio": 1.6834848265376794,
+    "bootstrap_prob_mean_positive": 1.0
+  },
+  "stage4_priority": [
+    "BOJ_MPM_STAGE4_NEW_ENTRY_BLACKOUT_DESIGN",
+    "HAR_RSV_STAGE4_EXPOSURE_CAP_DESIGN"
+  ],
+  "directional_scout_top_independent_blocked": "US_OPTION_IMPLIED_LEFT_TAIL_RISK_TO_JAPAN_RETURN"
 }

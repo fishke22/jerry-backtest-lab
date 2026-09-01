@@ -5,29 +5,23 @@
   "stage_b_pass": true,
   "stage_a_prerequisite": "TRUE_OSE_MINI_BOJ_EVENT_VOL_STAGE_A_PASS",
   "role": "EVENT_RISK_STATE_ONLY_NOT_DIRECTIONAL_ALPHA",
-  "usable_events": 22,
+  "usable_events": 25,
   "minimum_usable_events": 20,
-  "mean_log_event_to_baseline_rv_ratio": 1.6034692468630831,
-  "median_log_event_to_baseline_rv_ratio": 1.7268933093975936,
+  "mean_log_event_to_baseline_rv_ratio": 1.596492392509979,
+  "median_log_event_to_baseline_rv_ratio": 1.6834848265376794,
   "bootstrap": {
     "samples": 5000,
     "seed": 42,
-    "prob_mean_positive": 1,
+    "prob_mean_positive": 1.0,
     "ci95": [
-      1.0789356833387151,
-      2.126909061305105
+      1.1365538431921822,
+      2.0633442915156213
     ]
   },
-  "derived_panel_sha256": "43fd2ec741e30e8c4596a58d0f8366c54c84582eb4e288ad81963ef4769148aa",
-  "manifest_sha256": "c0f8bd6801345bc6cb690314c70710091ffa1d29c805ce427cfdf9117589d38e",
+  "derived_panel_sha256": "3db105e1294031beef9ffabecf5288ccdaf8cb5e0e393e27b406102b5e58b43a",
+  "manifest_sha256": "b7bd63fd14d5f79e6d47a8920535e88b99ec792c0fd2f9aad8b9a56eb2f964de",
   "promotion_pipeline_stage": 3,
   "promotion_state_if_pass": "EVENT_RISK_INFORMATION_STATE_CANDIDATE",
   "next_rule": "Stage 3 true-target event/risk confirmation passes. Any entry blackout, size reduction, stop widening, or confidence rule must be separately preregistered and validated downstream.",
-  "workflow_evidence": {
-    "run_id": 33397255940,
-    "head_sha": "b74e44dce3e18c4ebc10b02ac57a5bdfdfee17d8",
-    "artifact_id": 9759799976,
-    "conclusion": "success"
-  },
-  "generated_at_utc": "2026-08-31T13:29:37.387095+00:00"
+  "generated_at_utc": "2026-09-01T10:52:48.392593+00:00"
 }

@@ -1,0 +1,57 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-01",
+  "formal_directional_family_opened": false,
+  "checkpoint": "NO_CLOSE_VARIANTS_AFTER_FIVE_RECENT_TRUE_TARGET_DIRECTIONAL_FAILURES",
+  "candidates": [
+    {
+      "rank": 1,
+      "candidate": "US_OPTION_IMPLIED_LEFT_TAIL_RISK_TO_JAPAN_RETURN",
+      "independence": "SUBSTANTIVELY_INDEPENDENT",
+      "evidence_grade": "B",
+      "data_grade": "C",
+      "status": "INDEPENDENT_MECHANISM_DATA_BLOCKED_NO_VERIFIED_FREE_RIGHTS_CLEAN_HISTORY",
+      "evidence": "Andersen, Todorov & Ubukata (2021), Journal of Econometrics, DOI 10.1016/j.jeconom.2020.07.005: U.S. option-implied negative tail risk forecasts Japanese excess returns; Japan-specific predictors are generally weak.",
+      "guardrail": "Do not substitute VIX or SKEW and call it the paper's tail-risk measure.",
+      "formal_family_opened": false
+    },
+    {
+      "rank": 2,
+      "candidate": "CFTC_CME_NIKKEI_PARTICIPANT_POSITIONING",
+      "independence": "SUBSTANTIVELY_INDEPENDENT",
+      "evidence_grade": "C",
+      "data_grade": "A",
+      "status": "SCOUTING_ONLY_DIRECT_PREDICTIVE_LITERATURE_INSUFFICIENT",
+      "evidence": "CFTC publishes free Nikkei yen-denominated Financial TFF/COT positioning, but the scout did not find strong direct peer-reviewed evidence that a frozen positioning transform predicts subsequent OSE/JNU returns.",
+      "formal_family_opened": false
+    },
+    {
+      "rank": 3,
+      "candidate": "BOJ_POLICY_SURPRISE_DIRECTION",
+      "independence": "SUBSTANTIVELY_INDEPENDENT",
+      "evidence_grade": "B",
+      "data_grade": "C",
+      "status": "CONTEMPORANEOUS_SURPRISE_EFFECT_NOT_PRE_EVENT_DIRECTIONAL_PREDICTOR",
+      "formal_family_opened": false
+    },
+    {
+      "rank": 99,
+      "candidate": "BOJ_ETF_PURCHASE_SURPRISE_DIRECTION",
+      "independence": "SUBSTANTIVELY_INDEPENDENT_BUT_OBSOLETE_POLICY",
+      "evidence_grade": "A",
+      "data_grade": "A_HISTORICAL",
+      "status": "HISTORICAL_ONLY_POLICY_REGIME_DISCONTINUED",
+      "evidence": "2024 JJIE research finds unexpected BOJ large-scale ETF purchases had large positive instantaneous Nikkei effects; 2026 Nikkei futures work finds anticipated purchases mainly changed volume, not price.",
+      "formal_family_opened": false
+    }
+  ],
+  "screened_out_close_variants": [
+    "Other MACD tuples or rules",
+    "RSI/KD/Bollinger/technical-indicator rescues",
+    "H2-only 10m reversion rescue",
+    "overnight horizon/threshold/filter variants",
+    "prior-US-return window variants",
+    "USDJPY timing/sign/filter variants"
+  ],
+  "next_directional_rule": "Do not open a formal directional family until a substantively independent mechanism has both sufficiently direct evidence and executable rights-clean data."
+}

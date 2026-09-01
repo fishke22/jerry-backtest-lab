@@ -1,5 +1,5 @@
 {
-  "version": "3.2",
+  "version": "3.3",
   "updated_at": "2026-09-01",
   "policy": {
     "max_active_formal_families": 1,
@@ -23,18 +23,31 @@
   "current_global_blocker": null,
   "queue": [
     {
-      "rank": 4,
-      "candidate": "HAR_RSV_TRUE_OSE_CONFIRMATION",
-      "evidence": "Direct Japanese/Nikkei futures volatility literature + proxy-method evidence + true-OSE/JNU confirmation",
-      "target_role": "Risk state / sizing / stop normalization",
-      "status": "STAGE3_PASS_INFORMATION_STATE_CANDIDATE_MEASUREMENT_QA_COMPLETE",
-      "next_action": "Downstream Stage-4 risk-state translation deferred until a concrete position/risk-control use is proposed; do not reopen Stage-3 statistics."
+      "rank": 1,
+      "candidate": "BOJ_MPM_STAGE4_NEW_ENTRY_BLACKOUT_DESIGN",
+      "status": "PREPREREG_DESIGN_ONLY_STAGE3_DI3_RECONFIRMED",
+      "target_role": "Risk/event entry guard, no directional vote",
+      "next_action": "Freeze one PIT-safe new-entry blackout specification and one validation objective before any Stage-4 test; no parallel variants."
     },
     {
-      "rank": 5,
-      "candidate": "BOJ_MPM_EVENT_VOLATILITY",
-      "status": "STAGE3_PASS_EVENT_RISK_INFORMATION_STATE_CANDIDATE",
-      "next_action": "Stage-3 research closed. Only open downstream risk-rule translation if it will actually change entry/size/stop/confidence."
+      "rank": 2,
+      "candidate": "HAR_RSV_STAGE4_EXPOSURE_CAP_DESIGN",
+      "status": "DESIGN_ONLY_NOT_FROZEN",
+      "target_role": "Volatility-based exposure cap only",
+      "next_action": "Defer formal test until a single mapping and a valid exposure/entry process are defined; do not bundle sizing/stops/confidence."
+    },
+    {
+      "rank": 3,
+      "candidate": "US_OPTION_IMPLIED_LEFT_TAIL_RISK_TO_JAPAN_RETURN",
+      "status": "INDEPENDENT_DIRECTIONAL_MECHANISM_DATA_BLOCKED",
+      "target_role": "Directional information scout only",
+      "next_action": "Reopen only if a free/authorized rights-clean historical tail-risk/options source can reproduce the literature measure; no VIX/SKEW substitution."
+    },
+    {
+      "rank": 6,
+      "candidate": "CBOE_LTV_LEFT_TAIL_RISK",
+      "status": "BLOCKED_NO_VERIFIED_FREE_OFFICIAL_HISTORY",
+      "next_action": "Do not substitute VIX/SKEW."
     },
     {
       "rank": 6,
@@ -43,10 +56,11 @@
       "next_action": "Pause formal DPD. Reopen only with a free/authorized matched-expiry SGX Nikkei intraday source with quantitative/non-display and retention rights."
     },
     {
-      "rank": 6,
-      "candidate": "CBOE_LTV_LEFT_TAIL_RISK",
-      "status": "BLOCKED_NO_VERIFIED_FREE_OFFICIAL_HISTORY",
-      "next_action": "Do not substitute VIX/SKEW."
+      "rank": 8,
+      "candidate": "CFTC_CME_NIKKEI_PARTICIPANT_POSITIONING",
+      "status": "SCOUTING_ONLY_EVIDENCE_INSUFFICIENT",
+      "target_role": "Directional information scout only",
+      "next_action": "Continue literature-only scouting; do not formalize a transform from data availability alone."
     },
     {
       "rank": 9,
@@ -60,20 +74,6 @@
       "target_role": "Data acquisition gate, not an alpha family",
       "status": "ALTERNATE_SOURCE_ONLY_NOT_CURRENT_BLOCKER",
       "next_action": "No active work required while 225Labo true-OSE data remain available locally."
-    },
-    {
-      "rank": 99,
-      "candidate": "PRIOR_NIGHT_USDJPY_TO_JNU_DAY_G1",
-      "status": "TRUE_OSE_MINI_STAGE_A_FAIL_TERMINAL",
-      "evidence": "Satoyoshi 2018 direct OSE Nikkei 225 futures evidence: lagged prior-night USD/JPY change has significant negative coefficient for following day-session futures return.",
-      "target_role": "Directional information gate",
-      "next_action": "None. Exact-JNU Stage B prohibited; no FX-time/filter/sign/threshold/night-target rescue."
-    },
-    {
-      "rank": 99,
-      "candidate": "OVERNIGHT_OVERREACTION_TRUE_JNU_G1",
-      "status": "TRUE_OSE_MINI_STAGE_A_FAIL_TERMINAL",
-      "next_action": "None. Exact-JNU Stage B prohibited; preserve near-pass result without threshold/horizon/filter rescue."
     },
     {
       "rank": 99,
@@ -94,6 +94,20 @@
       "evidence": "Kang 2021 direct Nikkei 225 futures MACD(4,22,3), tested only on frozen post-publication OSE Mini holdout.",
       "target_role": "Directional information gate",
       "next_action": "None. Exact-JNU Stage B prohibited; no MACD rescue variants."
+    },
+    {
+      "rank": 99,
+      "candidate": "OVERNIGHT_OVERREACTION_TRUE_JNU_G1",
+      "status": "TRUE_OSE_MINI_STAGE_A_FAIL_TERMINAL",
+      "next_action": "None. Exact-JNU Stage B prohibited; preserve near-pass result without threshold/horizon/filter rescue."
+    },
+    {
+      "rank": 99,
+      "candidate": "PRIOR_NIGHT_USDJPY_TO_JNU_DAY_G1",
+      "status": "TRUE_OSE_MINI_STAGE_A_FAIL_TERMINAL",
+      "evidence": "Satoyoshi 2018 direct OSE Nikkei 225 futures evidence: lagged prior-night USD/JPY change has significant negative coefficient for following day-session futures return.",
+      "target_role": "Directional information gate",
+      "next_action": "None. Exact-JNU Stage B prohibited; no FX-time/filter/sign/threshold/night-target rescue."
     }
   ],
   "resolved": [
@@ -137,10 +151,12 @@
     },
     {
       "candidate": "BOJ_MPM_TRUE_OSE_EVENT_VOLATILITY_G1",
-      "status": "TRUE_JNU_STAGE3_PASS_EVENT_RISK_INFORMATION_STATE_CANDIDATE",
+      "status": "TRUE_JNU_STAGE3_PASS_EVENT_RISK_INFORMATION_STATE_CANDIDATE_DI3_RECONFIRMED",
       "stage_a_run_id": 33396821958,
-      "stage_b_run_id": 33397255940,
-      "role": "EVENT_RISK_STATE_ONLY_NOT_DIRECTIONAL_ALPHA"
+      "stage_b_run_id": 33499625359,
+      "role": "EVENT_RISK_STATE_ONLY_NOT_DIRECTIONAL_ALPHA",
+      "stage_b_artifact_id": 9797148545,
+      "stage_b_usable_events": 25
     },
     {
       "candidate": "INTRADAY_MOMENTUM_REVERSION_TRUE_JNU_G1",
@@ -192,5 +208,8 @@
       "MACD_4_22_3_POSTPUBLICATION_TRUE_JNU_G1"
     ],
     "allowed_next": "Only substantively independent direct Nikkei/OSE evidence with pre-outcome specification, or downstream validation of passed risk-information modules."
-  }
+  },
+  "directional_scout_status": "NO_NEW_FORMAL_DIRECTIONAL_FAMILY_OPENED",
+  "stage4_priority_file": "config/jnu_stage4_risk_translation_priority_v1.json",
+  "directional_scout_file": "config/jnu_directional_evidence_scout_v1.json"
 }

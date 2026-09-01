@@ -1,5 +1,5 @@
 {
-  "version": "3.1",
+  "version": "3.2",
   "as_of": "2026-09-01",
   "purpose": "Single durable catalog of JNU/OSE research data available for cloud backtests and local-only licensed raw sources.",
   "cloud_backtest_ready": [
@@ -56,13 +56,14 @@
       "id": "TRUE_JNU_MICRO_BOJ_MPM_EVENT_VOL_G1",
       "path": "cloud_data/derived/jnu_boj_mpm_micro_event_volatility_g1.csv",
       "manifest": "cloud_data/manifests/jnu_boj_mpm_micro_event_volatility_g1_manifest.json",
-      "coverage": "22 preregistered eligible exact-JNU MPM events, 2023-07-28 through 2026-07-31",
+      "coverage": "25 preregistered/DI3-corrected eligible exact-JNU MPM events, 2023-07-28 through 2026-07-31",
       "grain": "per-event non-reconstructive baseline/event 1m RV aggregates",
       "use": [
-        "BOJ MPM Stage B reproduction",
+        "BOJ MPM Stage B DI3 reproduction",
         "exact-JNU event-volatility/risk research"
       ],
-      "raw_cloud": false
+      "raw_cloud": false,
+      "di3_commit": "434808e439d85051eec7e33b8bcb86f527d403bc"
     },
     {
       "id": "TRUE_OSE_MINI_MACD_4_22_3_STAGE_A_G1",

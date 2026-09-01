@@ -1,0 +1,62 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-01",
+  "formal_stage4_family_opened": false,
+  "active_formal_stage4_family": null,
+  "rule": "This file ranks downstream risk translations only. It does not authorize a live rule or a statistical test.",
+  "priority": [
+    {
+      "rank": 1,
+      "candidate": "BOJ_MPM_STAGE4_NEW_ENTRY_BLACKOUT_DESIGN",
+      "parent_stage3": "BOJ_MPM_TRUE_OSE_EVENT_VOLATILITY_G1",
+      "status": "PREPREREG_DESIGN_ONLY_STAGE3_DI3_RECONFIRMED",
+      "why_first": [
+        "Exact-JNU Stage B reconfirmed after DI3 on 25 events with P=1.000.",
+        "Discrete official event state keeps translation degrees of freedom low.",
+        "Low turnover and no need to alter directional vote.",
+        "Official MPM dates are known in advance."
+      ],
+      "pit_issue": "Exact Statement release time is not known before the meeting ends; the 2026-09-18 BOJ schedule lists it as undecided. Therefore a live release-minus-10-minute start would leak future information.",
+      "timing_only_diagnostic": {
+        "sample": "regular/scheduled MPM decision releases 2016-2026, excluding the clearly unscheduled 2020-03-16 and 2020-05-22 meetings",
+        "n": 84,
+        "earliest": "11:25",
+        "p05": "11:39",
+        "p10": "11:45",
+        "median": "12:00",
+        "p90": "12:35",
+        "latest": "13:18",
+        "price_outcomes_used": false
+      },
+      "design_seed_not_formally_frozen": {
+        "scheduled_mpm_decision_day": true,
+        "block_new_entries_from_jst": "11:00",
+        "release_end_rule": "Continue until 20 minutes after the official policy decision/Statement release is actually observed.",
+        "fail_safe": "If official release is not observed, keep new-entry blackout through the OSE day-session close.",
+        "existing_positions": "UNCHANGED_IN_FIRST_TRANSLATION",
+        "directional_vote": "NONE"
+      },
+      "before_formal_test": [
+        "Freeze one primary utility/risk objective and opportunity-cost metric.",
+        "Validate PIT release-detection plumbing without price-based timestamp inference.",
+        "Do not test alternate start clocks, post-release lengths, size cuts, stop widening or forced exits in parallel."
+      ],
+      "live_use": false
+    },
+    {
+      "rank": 2,
+      "candidate": "HAR_RSV_STAGE4_EXPOSURE_CAP_DESIGN",
+      "parent_stage3": "INTRADAY_VOLATILITY_HAR_RSV_DI1",
+      "status": "DESIGN_ONLY_NOT_FROZEN",
+      "why_second": [
+        "Long true-OSE evidence and exact-JNU Stage B pass exist.",
+        "Continuous sizing creates materially more degrees of freedom than a discrete event blackout.",
+        "Exact-JNU QLIKE bootstrap was 0.522 while MSE bootstrap was 0.9685; the frozen Stage-B rule passed, but translation should remain conservative.",
+        "No validated directional base strategy currently exists for measuring sizing utility and opportunity cost."
+      ],
+      "allowed_first_translation": "One exposure-cap mapping only; do not combine sizing, stop distance and confidence changes.",
+      "live_use": false
+    }
+  ],
+  "shared_blocker": "No validated directional entry module exists. Stage-4 risk translations can be designed now, but final operational utility must eventually be tested with a valid exposure/entry process rather than by claiming trivial risk reduction from simply trading less."
+}

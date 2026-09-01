@@ -16,3 +16,10 @@
 - Decision engine remains NO_VALIDATED_DIRECTIONAL_EDGE.
 - HAR-RSV and BOJ MPM remain Stage-3 risk-information candidates only.
 - Directional checkpoint: five recent independent/literature-grounded directional families failed strict true-target gates; pause close-variant search.
+
+## Independent directional scout + Stage-4 priority
+- No new formal directional family opened.
+- BOJ MPM DI3 corrected three official decision timestamps; exact-JNU Stage B reconfirmed PASS on 25 events, run 33499625359.
+- Stage-4 priority #1: BOJ MPM new-entry blackout design (pre-prereg only); #2 HAR-RSV exposure-cap design.
+- Top independent directional mechanism found: U.S. option-implied left-tail risk to Japanese returns; currently data-rights/free-history blocked.
+- CFTC Nikkei positioning remains scouting-only because direct predictive literature is insufficient.
