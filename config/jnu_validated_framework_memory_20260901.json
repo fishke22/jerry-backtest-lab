@@ -97,5 +97,32 @@
     "alpha_or_utility_evidence": false,
     "live_use": false,
     "downstream_blocker": "NO_VALIDATED_BASE_ENTRY_PROCESS_FOR_ECONOMIC_STAGE6_PLUS"
+  },
+  "pcr_directional_candidate": {
+    "id": "NIKKEI225_OPTIONS_PCR_SENTIMENT_POSTPUBLICATION_G1",
+    "status": "DATA_INCONCLUSIVE_PARSER_ROBUSTNESS_PENDING",
+    "formal_directional_family_opened": false,
+    "directional_outcome_inspected": false,
+    "memory_file": "config/jnu_pcr_data_feasibility_memory_v1.json",
+    "coverage": {
+      "months": 208,
+      "full_5of5_months": 205,
+      "full_month_pct": 0.9855769230769231,
+      "day_coverage": 0.9923076923076923
+    },
+    "canonical_information_definition": {
+      "frequency": "MONTHLY",
+      "observation_days": "Last 5 regular business/trading days of each calendar month.",
+      "maturities": "Nearest and second-nearest standard Nikkei 225 option maturities.",
+      "put_strike_rule": "Nearest OTM put = maximum strike strictly below same-day Nikkei 225 reference close.",
+      "call_strike_rule": "Nearest OTM call = minimum strike strictly above same-day Nikkei 225 reference close.",
+      "spot_source": "Same official OSE/Osaka Exchange daily report: reference Nikkei 225 OHLC/close on the futures page.",
+      "daily_pcr_formula": "100 * (put volume at selected strike for near maturity + put volume at selected strike for second-near maturity) / (call volume at selected strike for near maturity + call volume at selected strike for second-near maturity).",
+      "monthly_pcr_formula": "Arithmetic mean of the five daily PCR observations.",
+      "holiday_session_rule": "For modern holiday trading sessions, preserve Tsuji's regular business-day convention; Japanese national-holiday sessions are not counted as separate month-end business days.",
+      "pit_status": "PIT_FEASIBLE_SAME_DAY_EOD_ONLY"
+    },
+    "parser_blocker": "Some older PDF text layers split sparse auction volume/value digits, e.g. '49  200  201602' into spaced glyph sequences. Coordinate-based row fallback must recover this without manual correction.",
+    "next_action": "Implement coordinate-based fallback for legacy auction rows, then run a frozen cross-era parser QA sample without using any JNU/Nikkei return outcome. If PASS, freeze venue interpretation and create formal post-publication preregistration before building the full PCR panel."
   }
 }

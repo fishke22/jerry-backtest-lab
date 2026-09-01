@@ -1,0 +1,101 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-01",
+  "candidate_id": "NIKKEI225_OPTIONS_PCR_SENTIMENT_POSTPUBLICATION_G1",
+  "formal_directional_family_opened": false,
+  "status": "DATA_INCONCLUSIVE_PARSER_ROBUSTNESS_PENDING",
+  "governance": {
+    "independence": "SUBSTANTIVELY_INDEPENDENT_FROM_RECENT_FAILED_DIRECTIONAL_FAMILIES",
+    "literature_anchor": "Tsuji (2009), Japan-specific Nikkei 225 index-options put/call-ratio market-timing evidence",
+    "publication_date": "2009-04-19",
+    "original_sample": "1990-01 through 2005-02",
+    "selection_risk": "Published rule is already selected after multiple threshold/rule experiments; any future test must be strict post-publication replication only.",
+    "forbidden": [
+      "Re-optimize PCR thresholds on post-2009 outcomes.",
+      "Use total-market PCR as a substitute for the canonical issue-level PCR.",
+      "Switch to Auction-only versus Auction+J-NET after seeing returns.",
+      "Change number of month-end business days after seeing returns.",
+      "Change near/second-near maturity selection after seeing returns.",
+      "Use holiday trading sessions as extra business days when reproducing the historical monthly convention.",
+      "Inspect post-2009 directional return outcomes before data/parser/prereg gates are frozen."
+    ]
+  },
+  "canonical_information_definition": {
+    "frequency": "MONTHLY",
+    "observation_days": "Last 5 regular business/trading days of each calendar month.",
+    "maturities": "Nearest and second-nearest standard Nikkei 225 option maturities.",
+    "put_strike_rule": "Nearest OTM put = maximum strike strictly below same-day Nikkei 225 reference close.",
+    "call_strike_rule": "Nearest OTM call = minimum strike strictly above same-day Nikkei 225 reference close.",
+    "spot_source": "Same official OSE/Osaka Exchange daily report: reference Nikkei 225 OHLC/close on the futures page.",
+    "daily_pcr_formula": "100 * (put volume at selected strike for near maturity + put volume at selected strike for second-near maturity) / (call volume at selected strike for near maturity + call volume at selected strike for second-near maturity).",
+    "monthly_pcr_formula": "Arithmetic mean of the five daily PCR observations.",
+    "holiday_session_rule": "For modern holiday trading sessions, preserve Tsuji's regular business-day convention; Japanese national-holiday sessions are not counted as separate month-end business days.",
+    "pit_status": "PIT_FEASIBLE_SAME_DAY_EOD_ONLY"
+  },
+  "volume_venue_definition": {
+    "status": "MUST_BE_FROZEN_BEFORE_FORMAL_PREREG",
+    "available_components": [
+      "AUCTION",
+      "JNET"
+    ],
+    "current_preoutcome_interpretation": "OSE total volume = Auction + J-NET is the leading canonical interpretation because the source paper describes OSE option volume, but this interpretation is not yet promoted to formal-family status.",
+    "no_outcome_selection": true
+  },
+  "rights_and_storage": {
+    "historical_source": "National Diet Library Digital Collection / NDL Search daily OSE and Osaka Exchange reports",
+    "current_source": "JPX official daily-report JSON/ZIP for the recent period not yet ingested by NDL",
+    "ndl_provider": "R100000039",
+    "raw_report_public_repo_upload": false,
+    "raw_225labo_public_repo_upload": false,
+    "225labo_use_at_data_gate": "Trading-date calendar QA only; no price/return outcome use.",
+    "public_repo_allowed": "Source identifiers/URLs, hashes, parser provenance, coverage manifests, non-reconstructive derived PCR and validation results subject to source terms."
+  },
+  "coverage_gate": {
+    "window": "2009-05 through 2026-08",
+    "months": 208,
+    "required_month_end_reports": 1040,
+    "available_reports": 1032,
+    "day_coverage": 0.9923076923076923,
+    "full_5of5_months": 205,
+    "full_month_pct": 0.9855769230769231,
+    "nonfull_months": {
+      "2009-05": {
+        "present": 3,
+        "required": 5
+      },
+      "2009-06": {
+        "present": 4,
+        "required": 5
+      },
+      "2010-06": {
+        "present": 0,
+        "required": 5
+      }
+    },
+    "usable_contiguous_interpretation": "From 2009-07 through 2026-08, all month-end five-business-day sets are covered except 2010-06.",
+    "status": "COVERAGE_GATE_PROVISIONALLY_PASS_SUBJECT_TO_PARSER_QA"
+  },
+  "schema_and_parser_gate": {
+    "cross_era_samples": [
+      "2009-05-29",
+      "2016-01-04",
+      "2024-01-04"
+    ],
+    "required_fields": [
+      "Nikkei reference close",
+      "contract month",
+      "exercise price",
+      "put/call",
+      "trading volume",
+      "open interest",
+      "Auction/J-NET venue"
+    ],
+    "schema_fields_present_all_eras": true,
+    "automated_parser_status": "PARTIAL_PASS_COORDINATE_FALLBACK_REQUIRED",
+    "known_issue": "Some older PDF text layers split sparse auction volume/value digits, e.g. '49  200  201602' into spaced glyph sequences. Coordinate-based row fallback must recover this without manual correction.",
+    "formal_gate": "Do not label data feasibility PASS until fixed-sample cross-era parser QA passes."
+  },
+  "directional_outcome_inspected": false,
+  "formal_preregistration_created": false,
+  "next_action": "Implement coordinate-based fallback for legacy auction rows, then run a frozen cross-era parser QA sample without using any JNU/Nikkei return outcome. If PASS, freeze venue interpretation and create formal post-publication preregistration before building the full PCR panel."
+}
