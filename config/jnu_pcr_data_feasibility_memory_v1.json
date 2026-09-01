@@ -3,7 +3,7 @@
   "as_of": "2026-09-01",
   "candidate_id": "NIKKEI225_OPTIONS_PCR_SENTIMENT_POSTPUBLICATION_G1",
   "formal_directional_family_opened": false,
-  "status": "DATA_INCONCLUSIVE_PARSER_INTEGRITY_RERUN_PENDING",
+  "status": "PARSER_QA_PASS_FULL_PANEL_FEASIBILITY_PENDING",
   "governance": {
     "independence": "SUBSTANTIVELY_INDEPENDENT_FROM_RECENT_FAILED_DIRECTIONAL_FAMILIES",
     "literature_anchor": "Tsuji (2009), Japan-specific Nikkei 225 index-options put/call-ratio market-timing evidence",
@@ -33,12 +33,9 @@
     "pit_status": "PIT_FEASIBLE_SAME_DAY_EOD_ONLY"
   },
   "volume_venue_definition": {
-    "status": "MUST_BE_FROZEN_BEFORE_FORMAL_PREREG",
-    "available_components": [
-      "AUCTION",
-      "JNET"
-    ],
-    "current_preoutcome_interpretation": "OSE total volume = Auction + J-NET is the leading canonical interpretation because the source paper describes OSE option volume, but this interpretation is not yet promoted to formal-family status.",
+    "status": "FROZEN_PREOUTCOME",
+    "canonical": "OSE_TOTAL_VOLUME_AUCTION_PLUS_JNET",
+    "freeze_file": "config/jnu_pcr_information_definition_freeze_v1.json",
     "no_outcome_selection": true
   },
   "rights_and_storage": {
@@ -91,13 +88,17 @@
       "Auction/J-NET venue"
     ],
     "schema_fields_present_all_eras": true,
-    "automated_parser_status": "PARTIAL_PASS_COORDINATE_FALLBACK_REQUIRED",
+    "automated_parser_status": "PCR_PARSER_QA_PASS",
     "known_issue": "Some older PDF text layers split sparse auction volume/value digits, e.g. '49  200  201602' into spaced glyph sequences. Coordinate-based row fallback must recover this without manual correction.",
     "formal_gate": "Do not label data feasibility PASS until fixed-sample cross-era parser QA passes.",
     "initial_frozen_qa_disposition": "INELIGIBLE_ENGINEERING_FALSE_PASS_NUMERIC_COLUMN_MISALIGNMENT",
-    "integrity_guard": "config/jnu_pcr_parser_integrity_guard_v1.json"
+    "integrity_guard": "config/jnu_pcr_parser_integrity_guard_v1.json",
+    "eligible_qa_samples": "9/9",
+    "qa_result": "config/jnu_pcr_parser_qa_result_v1.json",
+    "initial_false_pass_preserved": true
   },
   "directional_outcome_inspected": false,
   "formal_preregistration_created": false,
-  "next_action": "Implement coordinate-based fallback for legacy auction rows, then run a frozen cross-era parser QA sample without using any JNU/Nikkei return outcome. If PASS, freeze venue interpretation and create formal post-publication preregistration before building the full PCR panel."
+  "next_action": "Build the PCR-only full post-publication information panel under the frozen definition, without reading directional returns; quantify undefined days/months and archive gaps before any formal directional preregistration.",
+  "zero_denominator_rule": "Daily PCR undefined when selected near+second-near call volume is zero; month unusable if any of five required daily PCRs is undefined. No rescue."
 }

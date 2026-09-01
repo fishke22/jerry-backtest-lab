@@ -1,0 +1,423 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-01",
+  "candidate_id": "NIKKEI225_OPTIONS_PCR_SENTIMENT_POSTPUBLICATION_G1",
+  "status": "PCR_PARSER_QA_PASS",
+  "qa_prereg": "config/jnu_pcr_parser_qa_prereg_v1.json",
+  "integrity_guard": "config/jnu_pcr_parser_integrity_guard_v1.json",
+  "initial_false_pass_disposition": "INELIGIBLE_ENGINEERING_FALSE_PASS_NUMERIC_COLUMN_MISALIGNMENT",
+  "eligible_rerun": {
+    "samples": 9,
+    "passed": 9,
+    "directional_return_outcomes_used": false
+  },
+  "samples": [
+    {
+      "date": "2009-05-29",
+      "pass": true,
+      "spot_close": 9522.5,
+      "months": [
+        "200906",
+        "200907"
+      ],
+      "parsed_rows": 415,
+      "legs": [
+        {
+          "month": "200906",
+          "type": "PUT",
+          "strike": 9500.0,
+          "auction_volume": 1610.0,
+          "jnet_volume": 0,
+          "total_volume": 1610.0
+        },
+        {
+          "month": "200906",
+          "type": "CALL",
+          "strike": 9750.0,
+          "auction_volume": 4091.0,
+          "jnet_volume": 200.0,
+          "total_volume": 4291.0
+        },
+        {
+          "month": "200907",
+          "type": "PUT",
+          "strike": 9500.0,
+          "auction_volume": 88.0,
+          "jnet_volume": 600.0,
+          "total_volume": 688.0
+        },
+        {
+          "month": "200907",
+          "type": "CALL",
+          "strike": 9750.0,
+          "auction_volume": 752.0,
+          "jnet_volume": 0,
+          "total_volume": 752.0
+        }
+      ],
+      "daily_pcr_ose_total": 45.56811421772754
+    },
+    {
+      "date": "2010-05-31",
+      "pass": true,
+      "spot_close": 9768.7,
+      "months": [
+        "201006",
+        "201007"
+      ],
+      "parsed_rows": 445,
+      "legs": [
+        {
+          "month": "201006",
+          "type": "PUT",
+          "strike": 9750.0,
+          "auction_volume": 4352.0,
+          "jnet_volume": 400.0,
+          "total_volume": 4752.0
+        },
+        {
+          "month": "201006",
+          "type": "CALL",
+          "strike": 10000.0,
+          "auction_volume": 9827.0,
+          "jnet_volume": 1350.0,
+          "total_volume": 11177.0
+        },
+        {
+          "month": "201007",
+          "type": "PUT",
+          "strike": 9750.0,
+          "auction_volume": 981.0,
+          "jnet_volume": 0,
+          "total_volume": 981.0
+        },
+        {
+          "month": "201007",
+          "type": "CALL",
+          "strike": 10000.0,
+          "auction_volume": 1780.0,
+          "jnet_volume": 700.0,
+          "total_volume": 2480.0
+        }
+      ],
+      "daily_pcr_ose_total": 41.97847257816505
+    },
+    {
+      "date": "2011-12-30",
+      "pass": true,
+      "spot_close": 8455.35,
+      "months": [
+        "201201",
+        "201202"
+      ],
+      "parsed_rows": 435,
+      "legs": [
+        {
+          "month": "201201",
+          "type": "PUT",
+          "strike": 8250.0,
+          "auction_volume": 5287.0,
+          "jnet_volume": 2800.0,
+          "total_volume": 8087.0
+        },
+        {
+          "month": "201201",
+          "type": "CALL",
+          "strike": 8500.0,
+          "auction_volume": 3928.0,
+          "jnet_volume": 2400.0,
+          "total_volume": 6328.0
+        },
+        {
+          "month": "201202",
+          "type": "PUT",
+          "strike": 8250.0,
+          "auction_volume": 560.0,
+          "jnet_volume": 0,
+          "total_volume": 560.0
+        },
+        {
+          "month": "201202",
+          "type": "CALL",
+          "strike": 8500.0,
+          "auction_volume": 373.0,
+          "jnet_volume": 500.0,
+          "total_volume": 873.0
+        }
+      ],
+      "daily_pcr_ose_total": 120.08054436883766
+    },
+    {
+      "date": "2014-01-06",
+      "pass": true,
+      "spot_close": 15908.88,
+      "months": [
+        "201401",
+        "201402"
+      ],
+      "parsed_rows": 697,
+      "legs": [
+        {
+          "month": "201401",
+          "type": "PUT",
+          "strike": 15875.0,
+          "auction_volume": 2041.0,
+          "jnet_volume": 200.0,
+          "total_volume": 2241.0
+        },
+        {
+          "month": "201401",
+          "type": "CALL",
+          "strike": 16000.0,
+          "auction_volume": 8115.0,
+          "jnet_volume": 4398.0,
+          "total_volume": 12513.0
+        },
+        {
+          "month": "201402",
+          "type": "PUT",
+          "strike": 15875.0,
+          "auction_volume": 8.0,
+          "jnet_volume": 0,
+          "total_volume": 8.0
+        },
+        {
+          "month": "201402",
+          "type": "CALL",
+          "strike": 16000.0,
+          "auction_volume": 598.0,
+          "jnet_volume": 878.0,
+          "total_volume": 1476.0
+        }
+      ],
+      "daily_pcr_ose_total": 16.076917578097078
+    },
+    {
+      "date": "2016-01-04",
+      "pass": true,
+      "spot_close": 18450.98,
+      "months": [
+        "201601",
+        "201602"
+      ],
+      "parsed_rows": 697,
+      "legs": [
+        {
+          "month": "201601",
+          "type": "PUT",
+          "strike": 18375.0,
+          "auction_volume": 3550.0,
+          "jnet_volume": 608.0,
+          "total_volume": 4158.0
+        },
+        {
+          "month": "201601",
+          "type": "CALL",
+          "strike": 18500.0,
+          "auction_volume": 1343.0,
+          "jnet_volume": 150.0,
+          "total_volume": 1493.0
+        },
+        {
+          "month": "201602",
+          "type": "PUT",
+          "strike": 18375.0,
+          "auction_volume": 49.0,
+          "jnet_volume": 0,
+          "total_volume": 49.0
+        },
+        {
+          "month": "201602",
+          "type": "CALL",
+          "strike": 18500.0,
+          "auction_volume": 219.0,
+          "jnet_volume": 0,
+          "total_volume": 219.0
+        }
+      ],
+      "daily_pcr_ose_total": 245.73598130841123
+    },
+    {
+      "date": "2019-12-30",
+      "pass": true,
+      "spot_close": 23656.62,
+      "months": [
+        "202001",
+        "202002"
+      ],
+      "parsed_rows": 1000,
+      "legs": [
+        {
+          "month": "202001",
+          "type": "PUT",
+          "strike": 23625.0,
+          "auction_volume": 0,
+          "jnet_volume": 37.0,
+          "total_volume": 37.0
+        },
+        {
+          "month": "202001",
+          "type": "CALL",
+          "strike": 23750.0,
+          "auction_volume": 1501.0,
+          "jnet_volume": 119.0,
+          "total_volume": 1620.0
+        },
+        {
+          "month": "202002",
+          "type": "PUT",
+          "strike": 23625.0,
+          "auction_volume": 68.0,
+          "jnet_volume": 0,
+          "total_volume": 68.0
+        },
+        {
+          "month": "202002",
+          "type": "CALL",
+          "strike": 23750.0,
+          "auction_volume": 274.0,
+          "jnet_volume": 2.0,
+          "total_volume": 276.0
+        }
+      ],
+      "daily_pcr_ose_total": 5.537974683544304
+    },
+    {
+      "date": "2021-12-30",
+      "pass": true,
+      "spot_close": 28791.71,
+      "months": [
+        "202201",
+        "202202"
+      ],
+      "parsed_rows": 950,
+      "legs": [
+        {
+          "month": "202201",
+          "type": "PUT",
+          "strike": 28750.0,
+          "auction_volume": 152.0,
+          "jnet_volume": 9.0,
+          "total_volume": 161.0
+        },
+        {
+          "month": "202201",
+          "type": "CALL",
+          "strike": 28875.0,
+          "auction_volume": 113.0,
+          "jnet_volume": 12.0,
+          "total_volume": 125.0
+        },
+        {
+          "month": "202202",
+          "type": "PUT",
+          "strike": 28750.0,
+          "auction_volume": 4.0,
+          "jnet_volume": 0,
+          "total_volume": 4.0
+        },
+        {
+          "month": "202202",
+          "type": "CALL",
+          "strike": 28875.0,
+          "auction_volume": 0.0,
+          "jnet_volume": 0,
+          "total_volume": 0.0
+        }
+      ],
+      "daily_pcr_ose_total": 132.0
+    },
+    {
+      "date": "2024-01-04",
+      "pass": true,
+      "spot_close": 33288.29,
+      "months": [
+        "202401",
+        "202402"
+      ],
+      "parsed_rows": 1109,
+      "legs": [
+        {
+          "month": "202401",
+          "type": "PUT",
+          "strike": 33250.0,
+          "auction_volume": 286.0,
+          "jnet_volume": 329.0,
+          "total_volume": 615.0
+        },
+        {
+          "month": "202401",
+          "type": "CALL",
+          "strike": 33375.0,
+          "auction_volume": 337.0,
+          "jnet_volume": 16.0,
+          "total_volume": 353.0
+        },
+        {
+          "month": "202402",
+          "type": "PUT",
+          "strike": 33250.0,
+          "auction_volume": 10.0,
+          "jnet_volume": 0,
+          "total_volume": 10.0
+        },
+        {
+          "month": "202402",
+          "type": "CALL",
+          "strike": 33375.0,
+          "auction_volume": 63.0,
+          "jnet_volume": 0,
+          "total_volume": 63.0
+        }
+      ],
+      "daily_pcr_ose_total": 150.2403846153846
+    },
+    {
+      "date": "2026-08-31",
+      "pass": true,
+      "spot_close": 66311.93,
+      "months": [
+        "202609",
+        "202610"
+      ],
+      "parsed_rows": 1389,
+      "legs": [
+        {
+          "month": "202609",
+          "type": "PUT",
+          "strike": 66125.0,
+          "auction_volume": 6.0,
+          "jnet_volume": 0,
+          "total_volume": 6.0
+        },
+        {
+          "month": "202609",
+          "type": "CALL",
+          "strike": 66375.0,
+          "auction_volume": 0.0,
+          "jnet_volume": 0,
+          "total_volume": 0.0
+        },
+        {
+          "month": "202610",
+          "type": "PUT",
+          "strike": 66250.0,
+          "auction_volume": 0.0,
+          "jnet_volume": 0,
+          "total_volume": 0.0
+        },
+        {
+          "month": "202610",
+          "type": "CALL",
+          "strike": 66375.0,
+          "auction_volume": 0.0,
+          "jnet_volume": 0,
+          "total_volume": 0.0
+        }
+      ],
+      "daily_pcr_ose_total": null
+    }
+  ],
+  "raw_reports_uploaded": false,
+  "interpretation": "Parser/schema gate PASS only. No directional alpha or family promotion."
+}

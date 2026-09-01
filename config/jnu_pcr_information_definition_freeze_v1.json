@@ -1,0 +1,56 @@
+{
+  "version": "1.0",
+  "frozen_at": "2026-09-01",
+  "candidate_id": "NIKKEI225_OPTIONS_PCR_SENTIMENT_POSTPUBLICATION_G1",
+  "formal_directional_family_opened": false,
+  "status": "PREOUTCOME_INFORMATION_DEFINITION_FROZEN_FOR_FULL_PANEL_FEASIBILITY",
+  "paper": {
+    "author": "Chikashi Tsuji",
+    "year": 2009,
+    "doi": "10.5539/ijbm.v4n5p92",
+    "sample": "1990-01 through 2005-02"
+  },
+  "formula": {
+    "daily_ratio": "100 * (VP_near + VP_second_near) / (VC_near + VC_second_near)",
+    "monthly_pcr": "Arithmetic mean of the five daily ratios over the last N=5 regular business days of the month.",
+    "option_selection": "OTM options nearest to ATM; near and second-nearest maturities."
+  },
+  "venue": {
+    "canonical": "OSE_TOTAL_VOLUME",
+    "definition": "Auction Market Trading Volume + J-NET Market Trading Volume for the same selected standard Nikkei 225 option issue.",
+    "rationale": "The paper states option volume data are from the Osaka Securities Exchange; both Auction and J-NET are OSE execution venues in the official daily report. Freeze total OSE volume before any return outcome.",
+    "auction_only_rescue_forbidden": true
+  },
+  "zero_denominator": {
+    "rule": "If selected near+second-near CALL total volume equals zero on any required day, that daily PCR is UNDEFINED.",
+    "monthly_rule": "Because the paper specifies N=5 and the monthly PCR is the arithmetic mean of five daily ratios, a month with any required undefined daily PCR is DATA_UNUSABLE under G1.",
+    "forbidden_rescues": [
+      "Move the call strike farther OTM until volume is positive.",
+      "Drop the zero-volume day and average fewer than five days.",
+      "Replace mean-of-daily-ratios with five-day ratio-of-sums.",
+      "Add weekly or Nikkei 225 mini options.",
+      "Add a denominator constant/pseudocount."
+    ]
+  },
+  "calendar": {
+    "required_days": "Last five regular business days of each calendar month.",
+    "modern_holiday_sessions": "Not counted as additional business days for historical-convention replication."
+  },
+  "data_boundaries": {
+    "historical": "NDL Digital Collection OSE/Osaka Exchange Daily Reports",
+    "recent": "JPX official Daily Report bundle where NDL ingestion lags",
+    "same_day_spot": "Official reference Nikkei 225 close from the same daily report/bundle",
+    "raw_public_repo_upload": false
+  },
+  "full_panel_gate": {
+    "directional_returns_must_remain_unread": true,
+    "required_outputs": [
+      "All required daily selected legs and venue volumes.",
+      "Daily PCR or explicit UNDEFINED reason.",
+      "Monthly PCR only when all five required daily ratios are defined.",
+      "Parser extraction mode and source/hash provenance.",
+      "Counts of undefined days/months and source/archive gaps."
+    ],
+    "pass_not_yet_claimed": true
+  }
+}

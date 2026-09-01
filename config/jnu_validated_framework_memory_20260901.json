@@ -100,7 +100,7 @@
   },
   "pcr_directional_candidate": {
     "id": "NIKKEI225_OPTIONS_PCR_SENTIMENT_POSTPUBLICATION_G1",
-    "status": "DATA_INCONCLUSIVE_PARSER_ROBUSTNESS_PENDING",
+    "status": "PARSER_QA_PASS_FULL_PANEL_FEASIBILITY_PENDING",
     "formal_directional_family_opened": false,
     "directional_outcome_inspected": false,
     "memory_file": "config/jnu_pcr_data_feasibility_memory_v1.json",
@@ -123,6 +123,8 @@
       "pit_status": "PIT_FEASIBLE_SAME_DAY_EOD_ONLY"
     },
     "parser_blocker": "Some older PDF text layers split sparse auction volume/value digits, e.g. '49  200  201602' into spaced glyph sequences. Coordinate-based row fallback must recover this without manual correction.",
-    "next_action": "Implement coordinate-based fallback for legacy auction rows, then run a frozen cross-era parser QA sample without using any JNU/Nikkei return outcome. If PASS, freeze venue interpretation and create formal post-publication preregistration before building the full PCR panel."
+    "next_action": "Build the PCR-only full post-publication information panel under the frozen definition, without reading directional returns; quantify undefined days/months and archive gaps before any formal directional preregistration.",
+    "parser_qa": "9/9 PASS after integrity rerun; initial false-pass retained in governance.",
+    "information_definition_freeze": "config/jnu_pcr_information_definition_freeze_v1.json"
   }
 }
