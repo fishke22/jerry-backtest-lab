@@ -31,7 +31,7 @@
     }
   },
   "control_plane_retrigger": {
-    "nonce": 1,
-    "reason": "Re-trigger GitHub Actions after adding fail-closed diagnostics; research parameters unchanged."
+    "nonce": 9,
+    "reason": "Resume unchanged Phase4B from cumulative cache saved by run 33331409697; fill only missing GDELT chunks."
   }
 }
