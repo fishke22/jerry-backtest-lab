@@ -54,8 +54,8 @@
     "HAR_RSV_STAGE4_EXPOSURE_CAP_DESIGN"
   ],
   "directional_scout_top_independent_blocked": "US_OPTION_IMPLIED_LEFT_TAIL_RISK_TO_JAPAN_RETURN",
-  "active_formal_stage4_family": "BOJ_MPM_STAGE4_NEW_ENTRY_BLACKOUT_G1",
-  "active_formal_stage4_status": "STAGE5_NAUTILUS_REPLAY_PREREGISTERED_PENDING",
+  "active_formal_stage4_family": null,
+  "active_formal_stage4_status": "NO_ACTIVE_STAGE4_TRANSLATION_BOJ_G1_STAGE5_PASS_DOWNSTREAM_BLOCKED",
   "tail_risk_public_data_audit": {
     "status": "PUBLIC_AUTHOR_LJV_HISTORY_FOUND_POSTPUBLICATION_OOS_STILL_BLOCKED",
     "rows": 1075,
@@ -76,11 +76,25 @@
     "alpha_or_utility_evidence": false,
     "live_use": false
   },
-  "active_formal_stage5_replay": "BOJ_MPM_STAGE5_NAUTILUS_EXECUTION_REPLAY_G1",
-  "active_formal_stage5_status": "PREREGISTERED_REPLAY_PENDING_AFTER_ENGINEERING_API_FIX",
+  "active_formal_stage5_replay": null,
+  "active_formal_stage5_status": "NO_ACTIVE_STAGE5_REPLAY_AFTER_PASS",
   "stage5_engineering_ineligible_run": {
     "run_id": 33501798114,
     "reason": "cancel_order API type mismatch",
     "research_spec_changed": false
+  },
+  "boj_mpm_stage5_replay": {
+    "candidate": "BOJ_MPM_STAGE5_NAUTILUS_EXECUTION_REPLAY_G1",
+    "status": "PASS_STAGE5_INDEPENDENT_EXECUTION_REPLAY",
+    "run_id": 33502066320,
+    "artifact_id": 9798096673,
+    "head_sha": "3b0d5ea9152e1ec1f83b3b9a85de24ae69de3a0e",
+    "passed_scenarios": 12,
+    "scenario_count": 12,
+    "real_jnu_prices_used": false,
+    "real_pnl_used": false,
+    "alpha_or_utility_evidence": false,
+    "live_use": false,
+    "downstream_blocker": "NO_VALIDATED_BASE_ENTRY_PROCESS_FOR_ECONOMIC_STAGE6_PLUS"
   }
 }

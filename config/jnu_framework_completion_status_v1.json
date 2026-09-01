@@ -1,5 +1,5 @@
 {
-  "version": "2.3",
+  "version": "2.4",
   "as_of": "2026-09-01",
   "framework": "JNU_FINAL_FRAMEWORK_V3",
   "architecture_status": "FROZEN",
@@ -250,15 +250,20 @@
   },
   "boj_mpm_stage4_translation": {
     "candidate": "BOJ_MPM_STAGE4_NEW_ENTRY_BLACKOUT_G1",
-    "status": "STAGE4_IMPLEMENTATION_SELFTEST_PASS_FORMAL_STAGE5_PENDING",
+    "status": "STAGE5_PASS_DOWNSTREAM_BLOCKED_NO_VALIDATED_BASE_ENTRY",
     "preregistration": "config/jnu_boj_mpm_stage4_new_entry_blackout_g1_prereg.json",
     "preregistration_commit": "113272f03429cc393f1cb2fdaaec43e18cd262e3",
     "selftest_run_id": 33501154606,
     "selftest_artifact_id": 9797734168,
     "selftest_cases_passed": 15,
     "selftest_cases_total": 15,
-    "formal_stage5_independent_replay_pass": false,
+    "formal_stage5_independent_replay_pass": true,
     "alpha_or_utility_evidence": false,
-    "live_use": false
+    "live_use": false,
+    "stage5_run_id": 33502066320,
+    "stage5_artifact_id": 9798096673,
+    "stage5_scenarios_passed": 12,
+    "stage5_scenarios_total": 12,
+    "downstream_blocker": "NO_VALIDATED_BASE_ENTRY_PROCESS_FOR_ECONOMIC_STAGE6_PLUS"
   }
 }

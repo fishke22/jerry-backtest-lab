@@ -1,16 +1,16 @@
 {
-  "version": "1.1",
+  "version": "1.2",
   "as_of": "2026-09-01",
-  "candidate": "BOJ_MPM_STAGE5_NAUTILUS_EXECUTION_REPLAY_G1",
+  "candidate": null,
   "parent_stage4": "BOJ_MPM_STAGE4_NEW_ENTRY_BLACKOUT_G1",
   "preregistration": "config/jnu_boj_mpm_stage5_nautilus_execution_replay_g1_prereg.json",
-  "status": "PREREGISTERED_REPLAY_PENDING_AFTER_ENGINEERING_API_FIX",
+  "status": "NO_ACTIVE_STAGE5_REPLAY_AFTER_PASS",
   "engine": "NautilusTrader 1.231.0",
   "scenario_count": 12,
   "real_jnu_prices_used": false,
   "real_pnl_used": false,
   "research_spec_frozen": true,
-  "next_action": "Run the unchanged 12-scenario replay after ENG1. First complete classifiable run determines Stage-5 PASS/FAIL.",
+  "next_action": "Do not proceed to Stage 6/7 for this overlay until a validated base-entry process and a separately frozen economic evaluation protocol exist.",
   "engineering_ineligible_runs": [
     {
       "run_id": 33501798114,
@@ -26,5 +26,17 @@
     "id": "ENG1_CANCEL_ORDER_OBJECT_API_FIX",
     "change": "Store the resting Order object and pass it directly to Strategy.cancel_order.",
     "research_spec_changed": false
+  },
+  "resolved": {
+    "candidate": "BOJ_MPM_STAGE5_NAUTILUS_EXECUTION_REPLAY_G1",
+    "status": "PASS_STAGE5_INDEPENDENT_EXECUTION_REPLAY",
+    "run_id": 33502066320,
+    "artifact_id": 9798096673,
+    "head_sha": "3b0d5ea9152e1ec1f83b3b9a85de24ae69de3a0e",
+    "passed_scenarios": 12,
+    "scenario_count": 12,
+    "alpha_or_utility_evidence": false,
+    "live_use": false,
+    "promotion_ceiling": "STAGE5_EXECUTION_REPLAY_ONLY_UNTIL_VALIDATED_BASE_ENTRY_EXISTS"
   }
 }

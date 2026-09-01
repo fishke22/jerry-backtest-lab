@@ -1,0 +1,339 @@
+{
+  "candidate_id": "BOJ_MPM_STAGE5_NAUTILUS_EXECUTION_REPLAY_G1",
+  "status": "PASS_STAGE5_INDEPENDENT_EXECUTION_REPLAY",
+  "promotion_pipeline_stage": 5,
+  "engine": {
+    "name": "NautilusTrader",
+    "version": "1.231.0",
+    "python": "3.12"
+  },
+  "independent_code_path": true,
+  "imports_stage4_selftest": false,
+  "real_jnu_prices_used": false,
+  "real_pnl_used": false,
+  "scenario_count": 12,
+  "passed_scenarios": 12,
+  "scenarios": [
+    {
+      "scenario_id": "NON_MPM_PASSTHROUGH",
+      "pass": true,
+      "checks": {
+        "fill_count_match": true,
+        "final_position_match": true
+      },
+      "expected_fills": 1,
+      "actual_fills": 1,
+      "expected_final_position": 1,
+      "actual_final_position": 1,
+      "order_statuses": [
+        "FILLED"
+      ],
+      "canceled_orders": 0,
+      "actions": [
+        {
+          "time": "12:00",
+          "current": 0,
+          "base_target": 1,
+          "blocked": false,
+          "effective_target": 1
+        }
+      ]
+    },
+    {
+      "scenario_id": "MPM_BEFORE_1100_PASSTHROUGH",
+      "pass": true,
+      "checks": {
+        "fill_count_match": true,
+        "final_position_match": true
+      },
+      "expected_fills": 1,
+      "actual_fills": 1,
+      "expected_final_position": 1,
+      "actual_final_position": 1,
+      "order_statuses": [
+        "FILLED"
+      ],
+      "canceled_orders": 0,
+      "actions": [
+        {
+          "time": "10:59",
+          "current": 0,
+          "base_target": 1,
+          "blocked": false,
+          "effective_target": 1
+        }
+      ]
+    },
+    {
+      "scenario_id": "MPM_AT_1100_ENTRY_SUPPRESSED",
+      "pass": true,
+      "checks": {
+        "fill_count_match": true,
+        "final_position_match": true
+      },
+      "expected_fills": 0,
+      "actual_fills": 0,
+      "expected_final_position": 0,
+      "actual_final_position": 0,
+      "order_statuses": [],
+      "canceled_orders": 0,
+      "actions": [
+        {
+          "time": "11:00",
+          "current": 0,
+          "base_target": 1,
+          "blocked": true,
+          "effective_target": 0
+        }
+      ]
+    },
+    {
+      "scenario_id": "MPM_EXIT_INSIDE_BLACKOUT",
+      "pass": true,
+      "checks": {
+        "fill_count_match": true,
+        "final_position_match": true
+      },
+      "expected_fills": 2,
+      "actual_fills": 2,
+      "expected_final_position": 0,
+      "actual_final_position": 0,
+      "order_statuses": [
+        "FILLED",
+        "FILLED"
+      ],
+      "canceled_orders": 0,
+      "actions": [
+        {
+          "time": "10:59",
+          "current": 0,
+          "base_target": 1,
+          "blocked": false,
+          "effective_target": 1
+        },
+        {
+          "time": "11:30",
+          "current": 1,
+          "base_target": 0,
+          "blocked": true,
+          "effective_target": 0
+        }
+      ]
+    },
+    {
+      "scenario_id": "MPM_EXPOSURE_INCREASE_SUPPRESSED",
+      "pass": true,
+      "checks": {
+        "fill_count_match": true,
+        "final_position_match": true
+      },
+      "expected_fills": 1,
+      "actual_fills": 1,
+      "expected_final_position": 1,
+      "actual_final_position": 1,
+      "order_statuses": [
+        "FILLED"
+      ],
+      "canceled_orders": 0,
+      "actions": [
+        {
+          "time": "10:59",
+          "current": 0,
+          "base_target": 1,
+          "blocked": false,
+          "effective_target": 1
+        },
+        {
+          "time": "11:30",
+          "current": 1,
+          "base_target": 2,
+          "blocked": true,
+          "effective_target": 1
+        }
+      ]
+    },
+    {
+      "scenario_id": "MPM_REVERSAL_CLAMP_TO_FLAT",
+      "pass": true,
+      "checks": {
+        "fill_count_match": true,
+        "final_position_match": true
+      },
+      "expected_fills": 2,
+      "actual_fills": 2,
+      "expected_final_position": 0,
+      "actual_final_position": 0,
+      "order_statuses": [
+        "FILLED",
+        "FILLED"
+      ],
+      "canceled_orders": 0,
+      "actions": [
+        {
+          "time": "10:59",
+          "current": 0,
+          "base_target": 1,
+          "blocked": false,
+          "effective_target": 1
+        },
+        {
+          "time": "11:30",
+          "current": 1,
+          "base_target": -1,
+          "blocked": true,
+          "effective_target": 0
+        }
+      ]
+    },
+    {
+      "scenario_id": "RELEASE_PLUS_19M_BLOCKED",
+      "pass": true,
+      "checks": {
+        "fill_count_match": true,
+        "final_position_match": true
+      },
+      "expected_fills": 0,
+      "actual_fills": 0,
+      "expected_final_position": 0,
+      "actual_final_position": 0,
+      "order_statuses": [],
+      "canceled_orders": 0,
+      "actions": [
+        {
+          "time": "12:42",
+          "current": 0,
+          "base_target": 1,
+          "blocked": true,
+          "effective_target": 0
+        }
+      ]
+    },
+    {
+      "scenario_id": "RELEASE_PLUS_20M_UNBLOCKED",
+      "pass": true,
+      "checks": {
+        "fill_count_match": true,
+        "final_position_match": true
+      },
+      "expected_fills": 1,
+      "actual_fills": 1,
+      "expected_final_position": 1,
+      "actual_final_position": 1,
+      "order_statuses": [
+        "FILLED"
+      ],
+      "canceled_orders": 0,
+      "actions": [
+        {
+          "time": "12:43",
+          "current": 0,
+          "base_target": 1,
+          "blocked": false,
+          "effective_target": 1
+        }
+      ]
+    },
+    {
+      "scenario_id": "MISSING_RELEASE_FAILSAFE",
+      "pass": true,
+      "checks": {
+        "fill_count_match": true,
+        "final_position_match": true
+      },
+      "expected_fills": 0,
+      "actual_fills": 0,
+      "expected_final_position": 0,
+      "actual_final_position": 0,
+      "order_statuses": [],
+      "canceled_orders": 0,
+      "actions": [
+        {
+          "time": "15:44",
+          "current": 0,
+          "base_target": 1,
+          "blocked": true,
+          "effective_target": 0
+        }
+      ]
+    },
+    {
+      "scenario_id": "SUMMARY_0850_NOT_POLICY_RELEASE",
+      "pass": true,
+      "checks": {
+        "fill_count_match": true,
+        "final_position_match": true
+      },
+      "expected_fills": 0,
+      "actual_fills": 0,
+      "expected_final_position": 0,
+      "actual_final_position": 0,
+      "order_statuses": [],
+      "canceled_orders": 0,
+      "actions": [
+        {
+          "time": "11:30",
+          "current": 0,
+          "base_target": 1,
+          "blocked": true,
+          "effective_target": 0
+        }
+      ]
+    },
+    {
+      "scenario_id": "UNSCHEDULED_OUT_OF_SCOPE",
+      "pass": true,
+      "checks": {
+        "fill_count_match": true,
+        "final_position_match": true
+      },
+      "expected_fills": 1,
+      "actual_fills": 1,
+      "expected_final_position": 1,
+      "actual_final_position": 1,
+      "order_statuses": [
+        "FILLED"
+      ],
+      "canceled_orders": 0,
+      "actions": [
+        {
+          "time": "11:00",
+          "current": 0,
+          "base_target": 1,
+          "blocked": false,
+          "effective_target": 1
+        }
+      ]
+    },
+    {
+      "scenario_id": "OUTSTANDING_ENTRY_CANCEL_AT_1100",
+      "pass": true,
+      "checks": {
+        "fill_count_match": true,
+        "final_position_match": true,
+        "canceled_order_count_match": true
+      },
+      "expected_fills": 0,
+      "actual_fills": 0,
+      "expected_final_position": 0,
+      "actual_final_position": 0,
+      "order_statuses": [
+        "CANCELED"
+      ],
+      "canceled_orders": 1,
+      "actions": [
+        {
+          "action": "SUBMIT_RESTING_LIMIT",
+          "client_order_id": "O-20260127-015900-11-000-1"
+        },
+        {
+          "action": "CANCEL_RESTING_ENTRY",
+          "client_order_id": "O-20260127-015900-11-000-1"
+        }
+      ]
+    }
+  ],
+  "alpha_or_utility_evidence": false,
+  "live_use": false,
+  "promotion_ceiling": "STAGE5_EXECUTION_REPLAY_ONLY_UNTIL_VALIDATED_BASE_ENTRY_EXISTS",
+  "next_rule": "Stage-5 PASS confirms mechanical replay only. Do not run Stage 6/7 economic validation until a validated base-entry process and downstream protocol exist."
+}

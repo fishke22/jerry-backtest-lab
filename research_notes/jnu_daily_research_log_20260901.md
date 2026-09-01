@@ -31,3 +31,10 @@
 - No JNU price/PnL outcomes were used; this is implementation QA only.
 - Formal Stage-5 independent replay has NOT passed and remains pending.
 - No alpha/utility evidence; live use remains prohibited.
+
+## BOJ MPM Stage-5 independent Nautilus replay
+- First cloud run 33501798114 is permanently classified INELIGIBLE_ENGINEERING_RUN due solely to Nautilus cancel_order API object-type mismatch before full classification; research spec/scenarios were unchanged.
+- Eligible replay run: 33502066320; artifact: 9798096673; head: 3b0d5ea9152e1ec1f83b3b9a85de24ae69de3a0e.
+- Result: PASS_STAGE5_INDEPENDENT_EXECUTION_REPLAY, 12/12 preregistered scenarios.
+- Real JNU prices/PnL used: false. Alpha/utility evidence: none. Live use: prohibited.
+- BOJ G1 is frozen at Stage-5 ceiling until a validated base-entry process exists.

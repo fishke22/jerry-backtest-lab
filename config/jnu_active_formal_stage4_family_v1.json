@@ -1,15 +1,15 @@
 {
-  "version": "1.2",
+  "version": "1.3",
   "as_of": "2026-09-01",
-  "candidate": "BOJ_MPM_STAGE4_NEW_ENTRY_BLACKOUT_G1",
+  "candidate": null,
   "preregistration": "config/jnu_boj_mpm_stage4_new_entry_blackout_g1_prereg.json",
-  "status": "STAGE5_NAUTILUS_REPLAY_PREREGISTERED_PENDING",
+  "status": "NO_ACTIVE_STAGE4_TRANSLATION_BOJ_G1_STAGE5_PASS_DOWNSTREAM_BLOCKED",
   "parent_stage3": "BOJ_MPM_TRUE_OSE_EVENT_VOLATILITY_G1",
   "formal_directional_family_opened": false,
   "single_active_formal_stage4_translation": true,
   "research_spec_frozen": true,
   "promotion_ceiling_without_valid_base_entry": "STAGE4_TRANSLATION_SPEC_PLUS_ENGINEERING_SELFTEST_ONLY",
-  "next_action": "Run the preregistered Nautilus Stage-5 replay exactly once; do not change Stage-4 mapping or scenario set after seeing replay.",
+  "next_action": "Keep BOJ overlay frozen. Reopen downstream only after a validated base-entry process exists; do not optimize blackout parameters.",
   "stage4_selftest": {
     "run_id": 33501154606,
     "artifact_id": 9797734168,
@@ -21,5 +21,14 @@
     "alpha_or_utility_evidence": false
   },
   "stage5_candidate": "BOJ_MPM_STAGE5_NAUTILUS_EXECUTION_REPLAY_G1",
-  "stage5_preregistration": "config/jnu_boj_mpm_stage5_nautilus_execution_replay_g1_prereg.json"
+  "stage5_preregistration": "config/jnu_boj_mpm_stage5_nautilus_execution_replay_g1_prereg.json",
+  "resolved_family": {
+    "candidate": "BOJ_MPM_STAGE4_NEW_ENTRY_BLACKOUT_G1",
+    "stage4_status": "STAGE4_IMPLEMENTATION_SELFTEST_PASS",
+    "stage5_status": "PASS_STAGE5_INDEPENDENT_EXECUTION_REPLAY",
+    "stage5_run_id": 33502066320,
+    "stage5_artifact_id": 9798096673,
+    "live_use": false,
+    "downstream_blocker": "NO_VALIDATED_BASE_ENTRY_PROCESS_FOR_ECONOMIC_STAGE6_PLUS"
+  }
 }

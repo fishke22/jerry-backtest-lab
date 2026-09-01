@@ -1,5 +1,5 @@
 {
-  "version": "2.2",
+  "version": "2.3",
   "updated_at": "2026-09-01",
   "rule": "Permanent family-level attempt ledger. Never delete failed/inconclusive families to improve apparent research success rate.",
   "families": [
@@ -365,17 +365,29 @@
       "id": "BOJ_MPM_STAGE4_NEW_ENTRY_BLACKOUT_G1",
       "family_type": "STAGE4_RISK_TRANSLATION",
       "parent": "BOJ_MPM_TRUE_OSE_EVENT_VOLATILITY_G1",
-      "status": "STAGE4_IMPLEMENTATION_SELFTEST_PASS_FORMAL_STAGE5_PENDING",
+      "status": "STAGE5_PASS_DOWNSTREAM_BLOCKED_NO_VALIDATED_BASE_ENTRY",
       "preregistration": "config/jnu_boj_mpm_stage4_new_entry_blackout_g1_prereg.json",
       "preregistration_commit": "113272f03429cc393f1cb2fdaaec43e18cd262e3",
       "selftest_run_id": 33501154606,
       "selftest_artifact_id": 9797734168,
       "selftest_cases_passed": 15,
       "selftest_cases_total": 15,
-      "formal_stage5_independent_replay_pass": false,
+      "formal_stage5_independent_replay_pass": true,
       "alpha_or_utility_evidence": false,
-      "promotion_ceiling": "STAGE4_TRANSLATION_SPEC_PLUS_ENGINEERING_SELFTEST_ONLY",
-      "rescue_rule": "No alternate blackout starts/post-release windows/forced exits/size cuts/stops/confidence variants."
+      "promotion_ceiling": "STAGE5_EXECUTION_REPLAY_ONLY_UNTIL_VALIDATED_BASE_ENTRY_EXISTS",
+      "rescue_rule": "No alternate blackout starts/post-release windows/forced exits/size cuts/stops/confidence variants.",
+      "stage5": {
+        "candidate": "BOJ_MPM_STAGE5_NAUTILUS_EXECUTION_REPLAY_G1",
+        "run_id": 33502066320,
+        "artifact_id": 9798096673,
+        "head_sha": "3b0d5ea9152e1ec1f83b3b9a85de24ae69de3a0e",
+        "status": "PASS_STAGE5_INDEPENDENT_EXECUTION_REPLAY",
+        "passed_scenarios": 12,
+        "scenario_count": 12,
+        "real_jnu_prices_used": false,
+        "real_pnl_used": false,
+        "alpha_or_utility_evidence": false
+      }
     }
   ],
   "conservative_rule": "Unknown legacy multiplicity is treated against promotion, not ignored.",

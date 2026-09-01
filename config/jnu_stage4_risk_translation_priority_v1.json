@@ -1,15 +1,15 @@
 {
-  "version": "1.2",
+  "version": "1.3",
   "as_of": "2026-09-01",
-  "formal_stage4_family_opened": true,
-  "active_formal_stage4_family": "BOJ_MPM_STAGE4_NEW_ENTRY_BLACKOUT_G1",
+  "formal_stage4_family_opened": false,
+  "active_formal_stage4_family": null,
   "rule": "This file ranks downstream risk translations only. It does not authorize a live rule or a statistical test.",
   "priority": [
     {
       "rank": 1,
       "candidate": "BOJ_MPM_STAGE4_NEW_ENTRY_BLACKOUT_G1",
       "parent_stage3": "BOJ_MPM_TRUE_OSE_EVENT_VOLATILITY_G1",
-      "status": "STAGE4_IMPLEMENTATION_SELFTEST_PASS_FORMAL_STAGE5_PENDING",
+      "status": "STAGE5_PASS_DOWNSTREAM_BLOCKED_NO_VALIDATED_BASE_ENTRY",
       "why_first": [
         "Exact-JNU Stage B reconfirmed after DI3 on 25 events with P=1.000.",
         "Discrete official event state keeps translation degrees of freedom low.",
@@ -46,9 +46,12 @@
       "selftest_run_id": 33501154606,
       "selftest_artifact_id": 9797734168,
       "selftest_cases": "15/15",
-      "formal_stage5_independent_replay_pass": false,
+      "formal_stage5_independent_replay_pass": true,
       "alpha_or_utility_evidence": false,
-      "next_action": "One independent Stage-5 replay only; no economic outcome testing."
+      "next_action": "Frozen at current ceiling. No Stage 6/7 until a validated base-entry process exists.",
+      "stage5_run_id": 33502066320,
+      "stage5_artifact_id": 9798096673,
+      "stage5_scenarios": "12/12"
     },
     {
       "rank": 2,
