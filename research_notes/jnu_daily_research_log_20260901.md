@@ -61,3 +61,11 @@
 - 2026-08 remains PCR_UNDEFINED_REQUIRED_DAY on 2026-08-26 and 2026-08-31 due to zero selected call denominator.
 - Full information-only data gate frozen before execution: 0 parser/source errors; >=185 defined of 205 archive-complete months; >=30 defined in latest 36 archive-complete months.
 - No directional returns inspected; no formal directional family opened.
+
+## PCR full-panel first-run engineering recovery
+- Full-panel run 33514784926 at head 8cbd4b4 is DATA_GATE_NOT_EVALUABLE_ENGINEERING_FAILURE, not a research/data transportability FAIL.
+- 2014-2017 and 2018-2021 shards exposed a 2016-07 through 2019-11 OSE PDF text-order/layout transition; directional returns remained unread.
+- Recovery preserves PCR definition, frozen QA dates, source manifest and all preregistered Gate thresholds.
+- Frozen 9-date regression: 9/9 unchanged under pypdf 6.0.0. Transition-layout smoke: 20/20 required days across 2016-07, 2017-06, 2018-01, 2019-11; 4/4 months PCR_DEFINED.
+- 2016-07-25 selected-leg audit: 201608 PUT 904+1399, CALL 63+2; 201609 PUT 8+1605, CALL 17+0 (Auction+J-NET).
+- No raw NDL/JPX report uploaded. Next: commit/push recovery and dispatch the same preregistered full-information-panel workflow.

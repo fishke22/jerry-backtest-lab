@@ -3,7 +3,7 @@
   "as_of": "2026-09-01",
   "candidate_id": "NIKKEI225_OPTIONS_PCR_SENTIMENT_POSTPUBLICATION_G1",
   "formal_directional_family_opened": false,
-  "status": "CLOUD_SMOKE_PASS_FULL_INFORMATION_PANEL_PREREGISTERED",
+  "status": "FULL_PANEL_ENGINEERING_RECOVERY_READY_FOR_RERUN",
   "governance": {
     "independence": "SUBSTANTIVELY_INDEPENDENT_FROM_RECENT_FAILED_DIRECTIONAL_FAMILIES",
     "literature_anchor": "Tsuji (2009), Japan-specific Nikkei 225 index-options put/call-ratio market-timing evidence",
@@ -99,11 +99,13 @@
     "regression_after_modern_prefix_fix": "9/9 PASS",
     "regression_result": "config/jnu_pcr_parser_qa_result_v2.json",
     "latest_regression": "9/9 PASS after legacy no-trade and weekly-row fixes",
-    "latest_result": "config/jnu_pcr_parser_qa_result_v3.json"
+    "latest_result": "config/jnu_pcr_parser_qa_result_v3.json",
+    "post_full_panel_fix_frozen_qa": "9/9 PASS unchanged under pypdf 6.0.0",
+    "transition_layout_smoke": "20/20 required days across 2016-07, 2017-06, 2018-01, 2019-11; 4/4 PCR_DEFINED"
   },
   "directional_outcome_inspected": false,
   "formal_preregistration_created": false,
-  "next_action": "Execute the four frozen information-only shards with max parallelism 2, merge them, and classify the preregistered data-feasibility gate without reading returns.",
+  "next_action": "Commit/push engineering recovery, dispatch the same preregistered full-information-panel workflow at the recovery commit, then classify Data Gate only after all shards/merge/artifact complete.",
   "zero_denominator_rule": "Daily PCR undefined when selected near+second-near call volume is zero; month unusable if any of five required daily PCRs is undefined. No rescue.",
   "cloud_smoke": {
     "run_id": 33509640334,
@@ -125,5 +127,19 @@
     "status": "PCR_CLOUD_SMOKE_PASS",
     "record": "config/jnu_pcr_cloud_smoke_pass_v1.json"
   },
-  "full_information_panel_prereg": "config/jnu_pcr_full_information_panel_prereg_v1.json"
+  "full_information_panel_prereg": "config/jnu_pcr_full_information_panel_prereg_v1.json",
+  "full_panel_first_run": {
+    "run_id": 33514784926,
+    "head_sha": "8cbd4b4c807c67d1fefc1f731b0c9e509d68244f",
+    "workflow": "JNU PCR Full Information Panel V1",
+    "data_gate_disposition": "DATA_GATE_NOT_EVALUABLE_ENGINEERING_FAILURE",
+    "research_fail": false,
+    "jobs": {
+      "2009_2013": "SUCCESS",
+      "2014_2017": "FAIL_ENGINEERING",
+      "2018_2021": "FAIL_ENGINEERING",
+      "2022_2026": "IN_PROGRESS_AT_RECOVERY_COMMIT"
+    }
+  },
+  "full_panel_engineering_recovery": "config/jnu_pcr_full_panel_engineering_recovery_v1.json"
 }

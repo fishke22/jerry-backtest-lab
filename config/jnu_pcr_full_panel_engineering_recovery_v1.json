@@ -1,0 +1,90 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-01",
+  "candidate_id": "NIKKEI225_OPTIONS_PCR_SENTIMENT_POSTPUBLICATION_G1",
+  "directional_return_outcomes_used": false,
+  "formal_directional_family_opened": false,
+  "source_run": {
+    "run_id": 33514784926,
+    "head_sha": "8cbd4b4c807c67d1fefc1f731b0c9e509d68244f",
+    "workflow": "JNU PCR Full Information Panel V1",
+    "data_gate_disposition": "DATA_GATE_NOT_EVALUABLE_ENGINEERING_FAILURE",
+    "research_fail": false,
+    "jobs": {
+      "2009_2013": "SUCCESS",
+      "2014_2017": "FAIL_ENGINEERING",
+      "2018_2021": "FAIL_ENGINEERING",
+      "2022_2026": "IN_PROGRESS_AT_RECOVERY_COMMIT"
+    }
+  },
+  "artifacts_observed": [
+    {
+      "id": 9804474351,
+      "name": "jnu-pcr-panel-2009_2013",
+      "sha256": "8aac76c3ac352ff9ce213e747945f15123dc3b4eb2d1c46513c32e31f40b582c"
+    },
+    {
+      "id": 9803546978,
+      "name": "jnu-pcr-panel-2014_2017",
+      "sha256": "5333ea8e9bf24824277afc8691171794054c1b360ec87199023b549dc71ecd6c"
+    },
+    {
+      "id": 9804271037,
+      "name": "jnu-pcr-panel-2018_2021",
+      "sha256": "7c70cffd729958388f8af3f42e0bdbdcd693521813d0060efd59be76876302f3"
+    }
+  ],
+  "engineering_defects": [
+    "2016-07 through 2019-11 OSE PDF text extraction places the reference Nikkei label after the same-page OHLC row.",
+    "Transition option rows place strike before option code; J-NET may contain two issues per extracted line.",
+    "J-NET heading can occur beyond the prior 2400-character page-market scan, causing Auction state leakage."
+  ],
+  "patch_scope": [
+    "Same-page backward fallback for reference close only when forward-anchor extraction has fewer than five decimals.",
+    "Transition-layout issue parser with explicit Auction and J-NET field structures.",
+    "Whole-page market-heading detection; all pre-existing parser branches preserved."
+  ],
+  "regression": {
+    "frozen_qa": "9/9 PASS unchanged under pypdf 6.0.0",
+    "transition_month_smoke": {
+      "months": [
+        "2016-07",
+        "2017-06",
+        "2018-01",
+        "2019-11"
+      ],
+      "required_days": 20,
+      "parsed_days": 20,
+      "status": "4/4 PCR_DEFINED"
+    },
+    "selected_leg_audit_2016_07_25": {
+      "spot_close": 16620.29,
+      "201608_PUT": {
+        "strike": 16500.0,
+        "auction": 904.0,
+        "jnet": 1399.0
+      },
+      "201608_CALL": {
+        "strike": 16625.0,
+        "auction": 63.0,
+        "jnet": 2.0
+      },
+      "201609_PUT": {
+        "strike": 16500.0,
+        "auction": 8.0,
+        "jnet": 1605.0
+      },
+      "201609_CALL": {
+        "strike": 16625.0,
+        "auction": 17.0,
+        "jnet": 0.0
+      }
+    }
+  },
+  "research_spec_changed": false,
+  "pcr_definition_changed": false,
+  "gate_thresholds_changed": false,
+  "qa_dates_changed": false,
+  "raw_reports_uploaded": false,
+  "next_action": "Commit/push engineering recovery, dispatch the same preregistered full-information-panel workflow at the recovery commit, then classify Data Gate only after all shards/merge/artifact complete."
+}

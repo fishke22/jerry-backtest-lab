@@ -22,6 +22,7 @@ CODE_RE=re.compile(r"(1[34]\d{7})")
 MONTH_EXACT=re.compile(r"(?<!\d)(20\d{4})(?!\d)")
 MODERN_PREFIX=re.compile(r"^(20\d{4})\s+\d{2}\.\d{2}\s+")
 WEEKLY_PREFIX=re.compile(r"^20\d{6}\s+\d{2}\.\d{2}\s+")
+TRANSITION_ISSUE=re.compile(r"(?<!\d)(20\d{4})\s+\d{2}\.\d{2}\s+([\d,]+)\s+(1[34]\d{7})\s+")
 OLD_AUC=re.compile(r"(\d[\d,]*)(20\d{4})(?!\d)")
 OLD_AUC_SPACED=re.compile(r"…\s*([\d ]+?)\s{2,}([\d ]+?)(20\d{4})(?!\d)")
 NUM_RE=re.compile(r"(?<![A-Za-z0-9])\d[\d,]*(?:\.\d+)?")
@@ -43,18 +44,27 @@ def request_bytes(url:str, attempts:int=3)->bytes:
 def spot_close_from_reader(reader:PdfReader)->float:
     for page in reader.pages:
         txt=page.extract_text() or ""
-        pos=txt.find("参考 日経平均株価")
-        if pos>=0:
-            vals=[num(x) for x in re.findall(r"\d{1,3}(?:,\d{3})*\.\d+",txt[pos:])]
+        lines=txt.splitlines()
+        for i,line in enumerate(lines):
+            if "参考 日経平均株価" not in line:
+                continue
+            vals=[num(x) for x in re.findall(r"\d{1,3}(?:,\d{3})*\.\d+","\n".join(lines[i:]))]
             if len(vals)>=5:
                 return vals[-2]
+            # OSE report text extraction order from roughly 2016-07 through 2019-11
+            # places the reference label after the OHLC/net-change row. Walk backward
+            # on the same page and select the nearest line carrying the five decimals.
+            for prior in reversed(lines[max(0,i-30):i]):
+                vals=[num(x) for x in re.findall(r"\d{1,3}(?:,\d{3})*\.\d+",prior)]
+                if len(vals)>=5:
+                    return vals[-2]
     raise RuntimeError("reference Nikkei close not parsed")
 
 def page_market(txt:str)->str|None:
     anchor=txt.find("Nikkei 225 Options")
     if anchor<0:
         return None
-    body=txt[anchor:anchor+2400]
+    body=txt[anchor:]
     pa=body.find("Auction Market"); pj=body.find("J-NET Market")
     if pa>=0 and (pj<0 or pa<pj):
         return "AUCTION"
@@ -140,6 +150,44 @@ def parse_line(line:str, market:str|None)->dict|None:
         return {"month":mm.group(1),"type":typ,"market":"JNET","strike":num(toks_after[-1]),"volume":num(toks_before[-1]),"extraction_mode":"LEGACY_JNET"}
     return None
 
+def parse_transition_rows(line:str,market:str|None)->list[dict]:
+    matches=list(TRANSITION_ISSUE.finditer(line))
+    out=[]
+    for i,m in enumerate(matches):
+        month,strike_s,code=m.groups()
+        typ="PUT" if code.startswith("13") else "CALL"
+        tail=line[m.end():matches[i+1].start() if i+1<len(matches) else len(line)]
+        if market=="AUCTION":
+            # Transition layout puts strike before code. Volume is the integer
+            # between net-change and trading-value, not a tail-relative token:
+            # ... NetChange Volume TradingValue Settlement ...
+            fm=list(re.finditer(
+                r"[+-]?\s*\d[\d,]*\.\d+\s+([\d,]+)\s+[\d,]+\s+\d[\d,]*\.\d+",
+                tail,
+            ))
+            if not fm:
+                volume=0.0
+                mode="TRANSITION_AUCTION_NO_TRADE_ZERO"
+            else:
+                volume=num(fm[-1].group(1))
+                mode="TRANSITION_AUCTION_EXPLICIT_TRADE_FIELDS"
+        elif market=="JNET":
+            # J-NET rows are OHLC + Volume + TradingValue and may contain two
+            # issues on one extracted text line; each issue is segmented above.
+            jm=re.search(
+                r"(?:\d[\d,]*\.\d+\s+){4}([\d,]+)\s+[\d,]+",
+                tail,
+            )
+            if not jm:
+                continue
+            volume=num(jm.group(1))
+            mode="TRANSITION_JNET_EXPLICIT_TRADE_FIELDS"
+        else:
+            continue
+        out.append({"month":month,"type":typ,"market":market,"strike":num(strike_s),
+                    "volume":volume,"extraction_mode":mode})
+    return out
+
 def parse_options_reader(reader:PdfReader)->list[dict]:
     market=None
     rows=[]
@@ -153,7 +201,12 @@ def parse_options_reader(reader:PdfReader)->list[dict]:
         if market is None:
             continue
         for line in txt.splitlines():
-            row=parse_line(line.strip(),market)
+            line=line.strip()
+            transition=parse_transition_rows(line,market)
+            if transition:
+                rows.extend(transition)
+                continue
+            row=parse_line(line,market)
             if row:
                 rows.append(row)
     return rows

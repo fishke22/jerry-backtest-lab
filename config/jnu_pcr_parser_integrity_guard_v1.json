@@ -1,5 +1,5 @@
 {
-  "version": "1.2",
+  "version": "1.3",
   "frozen_at": "2026-09-01",
   "candidate_id": "NIKKEI225_OPTIONS_PCR_SENTIMENT_POSTPUBLICATION_G1",
   "prior_qa_run_disposition": {
@@ -19,10 +19,13 @@
     "Every selected leg must retain raw-line evidence and extraction_mode for audit.",
     "Same frozen 9 QA dates must be rerun; no replacement dates.",
     "Legacy Auction no-trade rows with ellipsis-only trade fields must map Trading Volume to zero; option code, last-trading-day date, and open interest are never volume.",
-    "Weekly option rows identified by YYYYMMDD MM.DD prefix are excluded before any standard-month or legacy parser fallback."
+    "Weekly option rows identified by YYYYMMDD MM.DD prefix are excluded before any standard-month or legacy parser fallback.",
+    "Transition-layout Auction volume must be captured from the explicit NetChange -> Volume -> TradingValue -> Settlement field sequence; tail-relative numeric indexing is forbidden.",
+    "Transition-layout J-NET rows must be segmented per issue before parsing OHLC -> Volume -> TradingValue; a second issue on the same extracted line may not be discarded.",
+    "Market state may carry across pages only when the current page has no explicit market heading; whole-page Auction/J-NET headings override prior state."
   ],
   "directional_return_outcomes_allowed": false,
-  "next_action": "Rerun unchanged four-month cloud smoke with modern-prefix, weekly-exclusion, and legacy-no-trade protections.",
+  "next_action": "Dispatch the unchanged preregistered full-information-panel workflow at the committed transition-layout recovery and require zero unexpected parser/source errors before Data Gate evaluation.",
   "engineering_invalid_smoke_runs": [
     {
       "run_id": 33509640334,
@@ -32,5 +35,13 @@
       "run_id": 33512367293,
       "reason": "legacy no-trade option-code/date text misread as volume"
     }
-  ]
+  ],
+  "full_panel_engineering_incident": {
+    "run_id": 33514784926,
+    "head_sha": "8cbd4b4c807c67d1fefc1f731b0c9e509d68244f",
+    "disposition": "DATA_GATE_NOT_EVALUABLE_ENGINEERING_FAILURE",
+    "directional_return_outcomes_used": false,
+    "research_fail": false,
+    "recovery_record": "config/jnu_pcr_full_panel_engineering_recovery_v1.json"
+  }
 }
