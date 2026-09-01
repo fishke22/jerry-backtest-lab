@@ -41,7 +41,7 @@ class IndependentBlackoutStrategy(Strategy):
         self.scenario=scenario
         self.date_s=date_s
         self.intent_map={hhmm:int(target) for hhmm,target in scenario.get("intents",[])}
-        self.pending_limit_client_id=None
+        self.pending_limit_order=None
         self.actions=[]
 
     def on_start(self)->None:
@@ -92,7 +92,7 @@ class IndependentBlackoutStrategy(Strategy):
             price=inst.make_price(90.0),
             time_in_force=TimeInForce.GTC,
         )
-        self.pending_limit_client_id=order.client_order_id
+        self.pending_limit_order=order
         self.submit_order(order)
         self.actions.append({"action":"SUBMIT_RESTING_LIMIT","client_order_id":str(order.client_order_id)})
 
@@ -103,9 +103,9 @@ class IndependentBlackoutStrategy(Strategy):
         if self.scenario.get("special_limit_entry")==hhmm:
             self._submit_resting_limit()
 
-        if hhmm=="11:00" and self.pending_limit_client_id is not None and bool(self.scenario.get("scheduled")):
-            self.cancel_order(self.pending_limit_client_id)
-            self.actions.append({"action":"CANCEL_RESTING_ENTRY","client_order_id":str(self.pending_limit_client_id)})
+        if hhmm=="11:00" and self.pending_limit_order is not None and bool(self.scenario.get("scheduled")):
+            self.cancel_order(self.pending_limit_order)
+            self.actions.append({"action":"CANCEL_RESTING_ENTRY","client_order_id":str(self.pending_limit_order.client_order_id)})
 
         if hhmm not in self.intent_map:
             return

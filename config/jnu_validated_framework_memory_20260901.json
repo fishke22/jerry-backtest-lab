@@ -77,5 +77,10 @@
     "live_use": false
   },
   "active_formal_stage5_replay": "BOJ_MPM_STAGE5_NAUTILUS_EXECUTION_REPLAY_G1",
-  "active_formal_stage5_status": "PREREGISTERED_REPLAY_PENDING"
+  "active_formal_stage5_status": "PREREGISTERED_REPLAY_PENDING_AFTER_ENGINEERING_API_FIX",
+  "stage5_engineering_ineligible_run": {
+    "run_id": 33501798114,
+    "reason": "cancel_order API type mismatch",
+    "research_spec_changed": false
+  }
 }

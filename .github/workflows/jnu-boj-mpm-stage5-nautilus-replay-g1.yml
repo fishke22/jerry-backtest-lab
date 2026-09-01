@@ -5,6 +5,7 @@ on:
   push:
     paths:
       - ".github/workflows/jnu-boj-mpm-stage5-nautilus-replay-g1.yml"
+      - "scripts/replay_jnu_boj_mpm_stage5_nautilus_g1.py"
 
 jobs:
   replay:
