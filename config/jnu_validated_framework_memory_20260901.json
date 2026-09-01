@@ -55,7 +55,7 @@
   ],
   "directional_scout_top_independent_blocked": "US_OPTION_IMPLIED_LEFT_TAIL_RISK_TO_JAPAN_RETURN",
   "active_formal_stage4_family": "BOJ_MPM_STAGE4_NEW_ENTRY_BLACKOUT_G1",
-  "active_formal_stage4_status": "STAGE4_IMPLEMENTATION_SELFTEST_PASS_FORMAL_STAGE5_PENDING",
+  "active_formal_stage4_status": "STAGE5_NAUTILUS_REPLAY_PREREGISTERED_PENDING",
   "tail_risk_public_data_audit": {
     "status": "PUBLIC_AUTHOR_LJV_HISTORY_FOUND_POSTPUBLICATION_OOS_STILL_BLOCKED",
     "rows": 1075,
@@ -75,5 +75,7 @@
     "formal_stage5_independent_replay_pass": false,
     "alpha_or_utility_evidence": false,
     "live_use": false
-  }
+  },
+  "active_formal_stage5_replay": "BOJ_MPM_STAGE5_NAUTILUS_EXECUTION_REPLAY_G1",
+  "active_formal_stage5_status": "PREREGISTERED_REPLAY_PENDING"
 }

@@ -1,5 +1,5 @@
 {
-  "version": "3.5",
+  "version": "3.6",
   "updated_at": "2026-09-01",
   "policy": {
     "max_active_formal_families": 1,
@@ -25,9 +25,9 @@
     {
       "rank": 1,
       "candidate": "BOJ_MPM_STAGE4_NEW_ENTRY_BLACKOUT_G1",
-      "status": "STAGE4_IMPLEMENTATION_SELFTEST_PASS_FORMAL_STAGE5_PENDING",
+      "status": "STAGE5_NAUTILUS_REPLAY_PREREGISTERED_PENDING",
       "target_role": "Risk/event entry guard, no directional vote",
-      "next_action": "Preregister/run one genuinely independent Stage-5 replay. No PnL/utility/CPCV until a validated base-entry process exists.",
+      "next_action": "Dispatch frozen Stage-5 Nautilus replay exactly once; no PnL/utility evaluation.",
       "selftest_run_id": 33501154606,
       "selftest_artifact_id": 9797734168
     },
@@ -214,5 +214,6 @@
   "directional_scout_status": "NO_NEW_FORMAL_DIRECTIONAL_FAMILY_OPENED",
   "stage4_priority_file": "config/jnu_stage4_risk_translation_priority_v1.json",
   "directional_scout_file": "config/jnu_directional_evidence_scout_v1.json",
-  "active_stage4_translation": "BOJ_MPM_STAGE4_NEW_ENTRY_BLACKOUT_G1"
+  "active_stage4_translation": "BOJ_MPM_STAGE4_NEW_ENTRY_BLACKOUT_G1",
+  "active_stage5_replay": "BOJ_MPM_STAGE5_NAUTILUS_EXECUTION_REPLAY_G1"
 }

@@ -1,0 +1,14 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-01",
+  "candidate": "BOJ_MPM_STAGE5_NAUTILUS_EXECUTION_REPLAY_G1",
+  "parent_stage4": "BOJ_MPM_STAGE4_NEW_ENTRY_BLACKOUT_G1",
+  "preregistration": "config/jnu_boj_mpm_stage5_nautilus_execution_replay_g1_prereg.json",
+  "status": "PREREGISTERED_REPLAY_PENDING",
+  "engine": "NautilusTrader 1.231.0",
+  "scenario_count": 12,
+  "real_jnu_prices_used": false,
+  "real_pnl_used": false,
+  "research_spec_frozen": true,
+  "next_action": "Dispatch the frozen Stage-5 workflow exactly once and classify PASS/FAIL without changing cases."
+}

@@ -1,15 +1,15 @@
 {
-  "version": "1.1",
+  "version": "1.2",
   "as_of": "2026-09-01",
   "candidate": "BOJ_MPM_STAGE4_NEW_ENTRY_BLACKOUT_G1",
   "preregistration": "config/jnu_boj_mpm_stage4_new_entry_blackout_g1_prereg.json",
-  "status": "STAGE4_IMPLEMENTATION_SELFTEST_PASS_FORMAL_STAGE5_PENDING",
+  "status": "STAGE5_NAUTILUS_REPLAY_PREREGISTERED_PENDING",
   "parent_stage3": "BOJ_MPM_TRUE_OSE_EVENT_VOLATILITY_G1",
   "formal_directional_family_opened": false,
   "single_active_formal_stage4_translation": true,
   "research_spec_frozen": true,
   "promotion_ceiling_without_valid_base_entry": "STAGE4_TRANSLATION_SPEC_PLUS_ENGINEERING_SELFTEST_ONLY",
-  "next_action": "Preregister and run one genuinely independent Stage-5 execution replay using a separate implementation path. Do not run PnL/alpha/utility tests.",
+  "next_action": "Run the preregistered Nautilus Stage-5 replay exactly once; do not change Stage-4 mapping or scenario set after seeing replay.",
   "stage4_selftest": {
     "run_id": 33501154606,
     "artifact_id": 9797734168,
@@ -19,5 +19,7 @@
     "engineering_selftest_only": true,
     "formal_stage5_independent_replay_pass": false,
     "alpha_or_utility_evidence": false
-  }
+  },
+  "stage5_candidate": "BOJ_MPM_STAGE5_NAUTILUS_EXECUTION_REPLAY_G1",
+  "stage5_preregistration": "config/jnu_boj_mpm_stage5_nautilus_execution_replay_g1_prereg.json"
 }

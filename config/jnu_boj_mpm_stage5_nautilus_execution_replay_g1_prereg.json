@@ -1,0 +1,203 @@
+{
+  "version": "1.0",
+  "candidate_id": "BOJ_MPM_STAGE5_NAUTILUS_EXECUTION_REPLAY_G1",
+  "parent_stage4": "BOJ_MPM_STAGE4_NEW_ENTRY_BLACKOUT_G1",
+  "frozen_at": "2026-09-01",
+  "status": "PREREGISTERED_BEFORE_NAUTILUS_REPLAY",
+  "engine": {
+    "name": "NautilusTrader",
+    "version": "1.231.0",
+    "python": "3.12"
+  },
+  "purpose": "Independent second-code-path execution replay of the frozen BOJ MPM Stage-4 overlay. No import/reuse of the first selftest implementation and no PnL/alpha/utility evaluation.",
+  "inputs": {
+    "stage4_prereg": "config/jnu_boj_mpm_stage4_new_entry_blackout_g1_prereg.json",
+    "stage4_selftest": "stage4_results/jnu_boj_mpm_stage4_new_entry_blackout_g1_selftest.json",
+    "market_prices": "Synthetic constant-price bars used only to drive order/fill/cancel sequencing.",
+    "real_jnu_prices_used": false,
+    "real_pnl_used": false
+  },
+  "scenarios": [
+    {
+      "id": "NON_MPM_PASSTHROUGH",
+      "scheduled": false,
+      "release": null,
+      "intents": [
+        [
+          "12:00",
+          1
+        ]
+      ],
+      "expected_fills": 1,
+      "expected_final_position": 1
+    },
+    {
+      "id": "MPM_BEFORE_1100_PASSTHROUGH",
+      "scheduled": true,
+      "release": "12:23",
+      "intents": [
+        [
+          "10:59",
+          1
+        ]
+      ],
+      "expected_fills": 1,
+      "expected_final_position": 1
+    },
+    {
+      "id": "MPM_AT_1100_ENTRY_SUPPRESSED",
+      "scheduled": true,
+      "release": "12:23",
+      "intents": [
+        [
+          "11:00",
+          1
+        ]
+      ],
+      "expected_fills": 0,
+      "expected_final_position": 0
+    },
+    {
+      "id": "MPM_EXIT_INSIDE_BLACKOUT",
+      "scheduled": true,
+      "release": "12:23",
+      "intents": [
+        [
+          "10:59",
+          1
+        ],
+        [
+          "11:30",
+          0
+        ]
+      ],
+      "expected_fills": 2,
+      "expected_final_position": 0
+    },
+    {
+      "id": "MPM_EXPOSURE_INCREASE_SUPPRESSED",
+      "scheduled": true,
+      "release": "12:23",
+      "intents": [
+        [
+          "10:59",
+          1
+        ],
+        [
+          "11:30",
+          2
+        ]
+      ],
+      "expected_fills": 1,
+      "expected_final_position": 1
+    },
+    {
+      "id": "MPM_REVERSAL_CLAMP_TO_FLAT",
+      "scheduled": true,
+      "release": "12:23",
+      "intents": [
+        [
+          "10:59",
+          1
+        ],
+        [
+          "11:30",
+          -1
+        ]
+      ],
+      "expected_fills": 2,
+      "expected_final_position": 0
+    },
+    {
+      "id": "RELEASE_PLUS_19M_BLOCKED",
+      "scheduled": true,
+      "release": "12:23",
+      "intents": [
+        [
+          "12:42",
+          1
+        ]
+      ],
+      "expected_fills": 0,
+      "expected_final_position": 0
+    },
+    {
+      "id": "RELEASE_PLUS_20M_UNBLOCKED",
+      "scheduled": true,
+      "release": "12:23",
+      "intents": [
+        [
+          "12:43",
+          1
+        ]
+      ],
+      "expected_fills": 1,
+      "expected_final_position": 1
+    },
+    {
+      "id": "MISSING_RELEASE_FAILSAFE",
+      "scheduled": true,
+      "release": null,
+      "intents": [
+        [
+          "15:44",
+          1
+        ]
+      ],
+      "expected_fills": 0,
+      "expected_final_position": 0
+    },
+    {
+      "id": "SUMMARY_0850_NOT_POLICY_RELEASE",
+      "scheduled": true,
+      "release": "12:23",
+      "summary_time": "08:50",
+      "intents": [
+        [
+          "11:30",
+          1
+        ]
+      ],
+      "expected_fills": 0,
+      "expected_final_position": 0
+    },
+    {
+      "id": "UNSCHEDULED_OUT_OF_SCOPE",
+      "scheduled": false,
+      "release": "10:01",
+      "intents": [
+        [
+          "11:00",
+          1
+        ]
+      ],
+      "expected_fills": 1,
+      "expected_final_position": 1
+    },
+    {
+      "id": "OUTSTANDING_ENTRY_CANCEL_AT_1100",
+      "scheduled": true,
+      "release": "12:23",
+      "special_limit_entry": "10:59",
+      "expected_fills": 0,
+      "expected_final_position": 0,
+      "expected_canceled_orders": 1
+    }
+  ],
+  "pass_rule": [
+    "All 12 preregistered scenarios pass expected fill count and final position.",
+    "Outstanding-entry scenario has exactly one canceled unfilled order and zero fills.",
+    "No real JNU price/PnL data are loaded or evaluated.",
+    "Implementation does not import the Stage-4 selftest module."
+  ],
+  "interpretation_if_pass": "PASS_STAGE5_INDEPENDENT_EXECUTION_REPLAY_ONLY. This validates mechanical implementation consistency, not alpha, economic risk reduction, or live-use eligibility.",
+  "interpretation_if_fail": "FAIL_STAGE5_INDEPENDENT_EXECUTION_REPLAY. Fix only objectively identified implementation defects; do not change the frozen Stage-4 trading rule to obtain PASS.",
+  "promotion_ceiling": "STAGE5_EXECUTION_REPLAY_ONLY_UNTIL_VALIDATED_BASE_ENTRY_EXISTS",
+  "forbidden": [
+    "Use real JNU PnL to decide replay PASS.",
+    "Change 11:00 start or release+20m end after replay.",
+    "Drop failing scenarios post hoc.",
+    "Turn event state into direction.",
+    "Proceed to Stage 6/7 economic validation without a validated base-entry process."
+  ]
+}
