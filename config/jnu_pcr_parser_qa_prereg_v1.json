@@ -1,0 +1,74 @@
+{
+  "version": "1.0",
+  "frozen_at": "2026-09-01",
+  "candidate_id": "NIKKEI225_OPTIONS_PCR_SENTIMENT_POSTPUBLICATION_G1",
+  "status": "PARSER_QA_SAMPLE_FROZEN_BEFORE_QA",
+  "directional_return_outcomes_allowed": false,
+  "sample_rule": "Deterministic cross-era structural sample selected without using any return/PCR-performance outcome. Dates cover legacy OSE PDF, transition-era Osaka Exchange PDF, modern Osaka Exchange PDF, and current JPX archive.",
+  "samples": [
+    {
+      "date": "2009-05-29",
+      "source": "NDL",
+      "reason": "earliest already-audited legacy OSE layout"
+    },
+    {
+      "date": "2010-05-31",
+      "source": "NDL",
+      "reason": "legacy OSE layout before known 2010-06 archive gap"
+    },
+    {
+      "date": "2011-12-30",
+      "source": "NDL",
+      "reason": "late legacy OSE layout"
+    },
+    {
+      "date": "2014-01-06",
+      "source": "NDL",
+      "reason": "Osaka Exchange transition-era layout"
+    },
+    {
+      "date": "2016-01-04",
+      "source": "NDL",
+      "reason": "known sparse-glyph legacy/transition parser edge case"
+    },
+    {
+      "date": "2019-12-30",
+      "source": "NDL",
+      "reason": "pre-modern-layout Osaka Exchange sample"
+    },
+    {
+      "date": "2021-12-30",
+      "source": "NDL",
+      "reason": "modern pre-holiday-trading sample"
+    },
+    {
+      "date": "2024-01-04",
+      "source": "NDL",
+      "reason": "modern report layout"
+    },
+    {
+      "date": "2026-08-31",
+      "source": "JPX_CURRENT",
+      "reason": "current official ZIP/archive layout"
+    }
+  ],
+  "required_checks_per_sample": [
+    "Official report is retrievable from the frozen source reference.",
+    "Reference Nikkei 225 close is parsed from the same report.",
+    "At least two standard monthly Nikkei 225 option maturities are parsed.",
+    "Both PUT and CALL issue rows are parsed for near and second-near maturities.",
+    "Nearest-OTM selected put strike is strictly below reference close.",
+    "Nearest-OTM selected call strike is strictly above reference close.",
+    "Selected volume is numeric and nonnegative.",
+    "Parser records Auction and J-NET separately where present.",
+    "No manual row correction is used."
+  ],
+  "global_pass_rule": "9/9 samples must pass all structural checks. Any parser failure is DATA_INCONCLUSIVE until an objectively identified parser implementation defect is fixed without changing PCR information rules or QA sample dates.",
+  "forbidden": [
+    "Replace a failing QA date after seeing parser output.",
+    "Use JNU/Nikkei future returns or PCR predictive performance in parser decisions.",
+    "Manually patch an individual option volume into the derived panel.",
+    "Drop J-NET or Auction only because one layout is harder to parse.",
+    "Change nearest-OTM, maturity, or five-business-day rules to obtain parser PASS."
+  ]
+}
