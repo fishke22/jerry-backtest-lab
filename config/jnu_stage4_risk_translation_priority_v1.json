@@ -1,15 +1,15 @@
 {
-  "version": "1.0",
+  "version": "1.1",
   "as_of": "2026-09-01",
-  "formal_stage4_family_opened": false,
-  "active_formal_stage4_family": null,
+  "formal_stage4_family_opened": true,
+  "active_formal_stage4_family": "BOJ_MPM_STAGE4_NEW_ENTRY_BLACKOUT_G1",
   "rule": "This file ranks downstream risk translations only. It does not authorize a live rule or a statistical test.",
   "priority": [
     {
       "rank": 1,
-      "candidate": "BOJ_MPM_STAGE4_NEW_ENTRY_BLACKOUT_DESIGN",
+      "candidate": "BOJ_MPM_STAGE4_NEW_ENTRY_BLACKOUT_G1",
       "parent_stage3": "BOJ_MPM_TRUE_OSE_EVENT_VOLATILITY_G1",
-      "status": "PREPREREG_DESIGN_ONLY_STAGE3_DI3_RECONFIRMED",
+      "status": "PREREGISTERED_ENGINEERING_SELFTEST_PENDING",
       "why_first": [
         "Exact-JNU Stage B reconfirmed after DI3 on 25 events with P=1.000.",
         "Discrete official event state keeps translation degrees of freedom low.",
@@ -41,7 +41,8 @@
         "Validate PIT release-detection plumbing without price-based timestamp inference.",
         "Do not test alternate start clocks, post-release lengths, size cuts, stop widening or forced exits in parallel."
       ],
-      "live_use": false
+      "live_use": false,
+      "preregistration": "config/jnu_boj_mpm_stage4_new_entry_blackout_g1_prereg.json"
     },
     {
       "rank": 2,

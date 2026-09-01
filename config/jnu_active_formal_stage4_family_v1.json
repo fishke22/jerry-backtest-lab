@@ -1,0 +1,13 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-01",
+  "candidate": "BOJ_MPM_STAGE4_NEW_ENTRY_BLACKOUT_G1",
+  "preregistration": "config/jnu_boj_mpm_stage4_new_entry_blackout_g1_prereg.json",
+  "status": "STAGE4_PREREGISTERED_ENGINEERING_SELFTEST_PENDING",
+  "parent_stage3": "BOJ_MPM_TRUE_OSE_EVENT_VOLATILITY_G1",
+  "formal_directional_family_opened": false,
+  "single_active_formal_stage4_translation": true,
+  "research_spec_frozen": true,
+  "promotion_ceiling_without_valid_base_entry": "STAGE4_TRANSLATION_SPEC_PLUS_ENGINEERING_SELFTEST_ONLY",
+  "next_action": "Run the cloud engineering selftest exactly once. Do not inspect price/PnL or open a directional family."
+}

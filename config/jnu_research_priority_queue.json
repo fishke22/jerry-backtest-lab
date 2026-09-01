@@ -1,5 +1,5 @@
 {
-  "version": "3.3",
+  "version": "3.4",
   "updated_at": "2026-09-01",
   "policy": {
     "max_active_formal_families": 1,
@@ -24,10 +24,10 @@
   "queue": [
     {
       "rank": 1,
-      "candidate": "BOJ_MPM_STAGE4_NEW_ENTRY_BLACKOUT_DESIGN",
-      "status": "PREPREREG_DESIGN_ONLY_STAGE3_DI3_RECONFIRMED",
+      "candidate": "BOJ_MPM_STAGE4_NEW_ENTRY_BLACKOUT_G1",
+      "status": "PREREGISTERED_ENGINEERING_SELFTEST_PENDING",
       "target_role": "Risk/event entry guard, no directional vote",
-      "next_action": "Freeze one PIT-safe new-entry blackout specification and one validation objective before any Stage-4 test; no parallel variants."
+      "next_action": "Run engineering selftest exactly once; no price/PnL outcomes. Formal Stage-5 independent replay remains separate."
     },
     {
       "rank": 2,
@@ -39,9 +39,9 @@
     {
       "rank": 3,
       "candidate": "US_OPTION_IMPLIED_LEFT_TAIL_RISK_TO_JAPAN_RETURN",
-      "status": "INDEPENDENT_DIRECTIONAL_MECHANISM_DATA_BLOCKED",
+      "status": "PUBLIC_AUTHOR_LJV_HISTORY_FOUND_POSTPUBLICATION_OOS_STILL_BLOCKED",
       "target_role": "Directional information scout only",
-      "next_action": "Reopen only if a free/authorized rights-clean historical tail-risk/options source can reproduce the literature measure; no VIX/SKEW substitution."
+      "next_action": "Historical replication source is available; do not open formal family until a rights-clean post-2021 continuation exists and target/horizon are preregistered."
     },
     {
       "rank": 6,
@@ -211,5 +211,6 @@
   },
   "directional_scout_status": "NO_NEW_FORMAL_DIRECTIONAL_FAMILY_OPENED",
   "stage4_priority_file": "config/jnu_stage4_risk_translation_priority_v1.json",
-  "directional_scout_file": "config/jnu_directional_evidence_scout_v1.json"
+  "directional_scout_file": "config/jnu_directional_evidence_scout_v1.json",
+  "active_stage4_translation": "BOJ_MPM_STAGE4_NEW_ENTRY_BLACKOUT_G1"
 }

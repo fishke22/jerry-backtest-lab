@@ -1,0 +1,37 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-01",
+  "candidate": "US_OPTION_IMPLIED_LEFT_TAIL_RISK_TO_JAPAN_RETURN",
+  "formal_directional_family_opened": false,
+  "status": "PUBLIC_AUTHOR_LJV_HISTORY_FOUND_REPLICATION_ONLY_POSTPUBLICATION_OOS_STILL_BLOCKED",
+  "literature": {
+    "japan_paper": "Andersen, Todorov & Ubukata (2021), Journal of Econometrics, DOI 10.1016/j.jeconom.2020.07.005",
+    "source_method_paper": "Bollerslev, Todorov & Xu (2015), Journal of Financial Economics, DOI 10.1016/j.jfineco.2015.02.010",
+    "japan_target_finding": "For yen-denominated Nikkei 225 excess returns, LJV-US is described as moderate/less-than-compelling; significance is strongest around 5-8 month horizons. Dollar-denominated Nikkei predictability is materially stronger.",
+    "timing_guardrail": "The Japan paper excludes the last U.S. trading day of each month when constructing U.S. predictors because Japan closes before U.S. month-end information is available."
+  },
+  "public_author_data": {
+    "author_page": "https://sites.google.com/site/laixuduke/publications",
+    "public_sheet_url": "https://docs.google.com/spreadsheets/d/1-BbRXjkUfUOFaL5mZ3yl_BwJa1P1m4vV/edit",
+    "access": "PUBLIC_AUTHOR_LINK_NO_CHARGE",
+    "redistribution_rights": "NOT_EXPLICITLY_STATED_DO_NOT_MIRROR_RAW_SHEET_TO_PUBLIC_GITHUB",
+    "local_audit_sha256": "f787dd575ed697044866e34164c0c55b4f48c6f4c9d8eaec4bb765df2c0a6157",
+    "sheet": "LJV",
+    "rows": 1075,
+    "columns": 2,
+    "first_date": "1996-01-05",
+    "last_date": "2017-05-19",
+    "fields_inferred": [
+      "week_end_date",
+      "LJV"
+    ],
+    "identity_check": "For the original 1996-Aug-2013 sample, public series mean*100=0.4547 and stdev*100=0.5449, closely matching the published 2015 LJV summary statistics (mean 0.45, stdev 0.54), supporting that this is the authors' LJV series."
+  },
+  "data_lineage": {
+    "raw_options_origin": "The 2015 paper states raw S&P 500 option closing bid/ask data came from OptionMetrics.",
+    "public_series_value": "Author-provided derived LJV history can support historical method/series replication without repurchasing raw OptionMetrics for that old interval.",
+    "remaining_blocker": "Series ends in May 2017, before the 2021 Japan paper publication. It therefore cannot provide a genuine post-publication OOS predictor sample. Extending the same LJV measure after 2017 still requires new rights-clean deep-OTM SPX option data or an independently published continuation."
+  },
+  "promotion_disposition": "DO_NOT_OPEN_FORMAL_DIRECTIONAL_FAMILY",
+  "reopen_rule": "Reopen only if a rights-clean continuation of the same/sufficiently equivalent LJV measure supplies genuinely new post-publication observations and the yen-denominated JNU/Nikkei target/horizon is preregistered without mining."
+}

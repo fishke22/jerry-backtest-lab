@@ -1,0 +1,87 @@
+{
+  "version": "1.0",
+  "candidate_id": "BOJ_MPM_STAGE4_NEW_ENTRY_BLACKOUT_G1",
+  "parent_stage3": "BOJ_MPM_TRUE_OSE_EVENT_VOLATILITY_G1",
+  "frozen_at": "2026-09-01",
+  "status": "PREREGISTERED_BEFORE_STAGE4_EXECUTION_REPLAY",
+  "promotion_pipeline_stage": 4,
+  "role": "EVENT_RISK_OVERLAY_ONLY_NOT_DIRECTIONAL_ALPHA",
+  "prerequisites": {
+    "stage3_status": "TRUE_JNU_STAGE3_PASS_EVENT_RISK_INFORMATION_STATE_CANDIDATE_DI3_RECONFIRMED",
+    "stage3_micro_run_id": 33499625359,
+    "stage3_micro_artifact_id": 9797148545,
+    "di3_commit": "434808e439d85051eec7e33b8bcb86f527d403bc"
+  },
+  "objective": "Translate the validated BOJ MPM event-risk state into one causal, base-signal-agnostic new-entry blackout overlay. The overlay may suppress exposure increases but may never create long/short direction.",
+  "scope": {
+    "applies_on": "Pre-announced regular/scheduled BOJ Monetary Policy Meeting decision days only.",
+    "does_not_apply_on": [
+      "Summary of Opinions release dates unless they are also the MPM decision date",
+      "MPM Minutes release dates unless they are also the MPM decision date",
+      "unscheduled/emergency MPMs in G1 because the date is not known under the same pre-event information set"
+    ],
+    "timezone": "Asia/Tokyo",
+    "session_calendar": "config/jnu_session_calendar_versions.json"
+  },
+  "causal_timing": {
+    "blackout_start_jst": "11:00",
+    "blackout_start_rationale": "Chosen only from official release-time metadata before any Stage-4 price/base-signal outcome test. For regular/scheduled MPM decision releases in 2016-2026 excluding the clearly unscheduled 2020-03-16 and 2020-05-22 meetings, n=84, earliest observed release=11:25, p05=11:39, median=12:00, p90=12:35, latest=13:18.",
+    "blackout_interval": "[11:00, observed_policy_decision_release + 20 minutes)",
+    "release_observation_rule": "End time can begin counting only when the official BOJ policy decision / Statement on Monetary Policy publication is actually observed. Historical replays may inject the archived official publication timestamp as an event arrival at that timestamp; they may not expose it earlier.",
+    "release_not_observed_failsafe": "Keep blackout active through the historical/current OSE day-session close.",
+    "future_time_guardrail": "Do not use release-minus-10-minutes in live logic. Exact Statement release time is generally undecided before the MPM concludes."
+  },
+  "position_mapping": {
+    "input": "Any independently generated base target-position or order intent.",
+    "outside_blackout": "Pass through unchanged.",
+    "inside_blackout": [
+      "Any intent that increases absolute exposure is suppressed.",
+      "Any intent that reduces absolute exposure or closes a position passes through.",
+      "A reversal intent may reduce the current position to flat but the opposite-side opening leg is suppressed.",
+      "Existing filled positions are never force-closed solely because the blackout starts.",
+      "At 11:00, any remaining unfilled quantity of an outstanding order that would increase absolute exposure is cancelled.",
+      "Partially filled entry-increasing orders keep the filled position; only the remaining unfilled exposure-increasing quantity is cancelled.",
+      "Risk-reducing exit/stop orders remain active."
+    ],
+    "directional_vote": "NONE"
+  },
+  "cost_and_execution": {
+    "suppressed_entry": "No fill, hence zero commission/spread/slippage from the suppressed quantity.",
+    "cancelled_unfilled_entry": "Assume zero exchange fill cost because no execution occurs; any broker-specific cancellation fee, if one exists in the future execution stack, must be included before Stage 7.",
+    "passed_through_orders": "Inherit the independently preregistered base strategy fee/spread/slippage model. Stage 4 does not create a new price assumption.",
+    "forced_exit_cost": "Not applicable; G1 does not force exits."
+  },
+  "stage4_pass_definition": [
+    "Exact causal mapping is frozen and machine-readable.",
+    "Entry/exit/reversal/no-trade states are explicit.",
+    "Cost treatment is explicit.",
+    "No opportunistic indicator voting or directional transformation is introduced."
+  ],
+  "engineering_selftest": {
+    "purpose": "Implementation QA only; not alpha or risk-utility evidence and not a substitute for an independent Stage-5 execution engine.",
+    "required_cases": [
+      "Non-MPM passthrough",
+      "Scheduled MPM before 11:00 passthrough",
+      "Scheduled MPM exposure increase at/after 11:00 suppressed",
+      "Risk-reducing exit inside blackout passes",
+      "Reversal inside blackout clamps to flat",
+      "Official policy-decision release ends blackout only after +20m",
+      "Summary/Minutes 08:50 publication does not end blackout",
+      "Missing release keeps blackout through day-session close",
+      "Outstanding exposure-increasing order is cancelled at 11:00",
+      "Historical metadata QA reproduces n=84 regular/scheduled release-time sample and no price outcomes are used"
+    ]
+  },
+  "promotion_ceiling_without_valid_base_entry": "STAGE4_TRANSLATION_SPEC_PLUS_ENGINEERING_SELFTEST_ONLY",
+  "stage5_rule": "Formal independent execution replay requires a second implementation/engine. Engineering selftest PASS cannot be labeled Stage-5 PASS.",
+  "stage6plus_rule": "Do not evaluate economic utility, CPCV/PBO/DSR, cost stress, or forward performance until an independently validated base-entry process exists and a downstream evaluation protocol is separately frozen.",
+  "forbidden": [
+    "Try alternate blackout starts such as 10:30/11:15/11:30 after seeing trading outcomes.",
+    "Try alternate post-release windows such as +10/+30/+60 after seeing trading outcomes.",
+    "Add forced exits, size cuts, stop widening or confidence changes to rescue G1.",
+    "Infer BOJ release time from market price/volume reaction.",
+    "Treat Summary of Opinions or Minutes 08:50 timestamps as the policy-decision release.",
+    "Use the overlay as a directional long/short signal.",
+    "Claim lower risk merely because fewer trades occur without measuring opportunity cost in later applicable stages."
+  ]
+}

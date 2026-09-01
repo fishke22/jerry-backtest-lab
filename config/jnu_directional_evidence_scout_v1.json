@@ -1,5 +1,5 @@
 {
-  "version": "1.0",
+  "version": "1.1",
   "as_of": "2026-09-01",
   "formal_directional_family_opened": false,
   "checkpoint": "NO_CLOSE_VARIANTS_AFTER_FIVE_RECENT_TRUE_TARGET_DIRECTIONAL_FAILURES",
@@ -9,11 +9,12 @@
       "candidate": "US_OPTION_IMPLIED_LEFT_TAIL_RISK_TO_JAPAN_RETURN",
       "independence": "SUBSTANTIVELY_INDEPENDENT",
       "evidence_grade": "B",
-      "data_grade": "C",
-      "status": "INDEPENDENT_MECHANISM_DATA_BLOCKED_NO_VERIFIED_FREE_RIGHTS_CLEAN_HISTORY",
-      "evidence": "Andersen, Todorov & Ubukata (2021), Journal of Econometrics, DOI 10.1016/j.jeconom.2020.07.005: U.S. option-implied negative tail risk forecasts Japanese excess returns; Japan-specific predictors are generally weak.",
-      "guardrail": "Do not substitute VIX or SKEW and call it the paper's tail-risk measure.",
-      "formal_family_opened": false
+      "data_grade": "B_HISTORICAL_REPLICATION_ONLY",
+      "status": "PUBLIC_AUTHOR_LJV_HISTORY_FOUND_POSTPUBLICATION_OOS_STILL_BLOCKED",
+      "evidence": "Andersen, Todorov & Ubukata (2021) provides direct Japanese return-predictability evidence; a public author-linked Bollerslev-Todorov-Xu LJV series was found for 1996-2017, but it ends before the 2021 publication and cannot supply genuine post-publication OOS.",
+      "guardrail": "Do not open a formal family from in-sample/public-history replication alone; do not substitute VIX/SKEW; obtain a rights-clean continuation before OOS.",
+      "formal_family_opened": false,
+      "data_audit": "config/jnu_tail_risk_data_source_audit_v1.json"
     },
     {
       "rank": 2,

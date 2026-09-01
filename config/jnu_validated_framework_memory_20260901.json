@@ -50,8 +50,20 @@
     "bootstrap_prob_mean_positive": 1.0
   },
   "stage4_priority": [
-    "BOJ_MPM_STAGE4_NEW_ENTRY_BLACKOUT_DESIGN",
+    "BOJ_MPM_STAGE4_NEW_ENTRY_BLACKOUT_G1",
     "HAR_RSV_STAGE4_EXPOSURE_CAP_DESIGN"
   ],
-  "directional_scout_top_independent_blocked": "US_OPTION_IMPLIED_LEFT_TAIL_RISK_TO_JAPAN_RETURN"
+  "directional_scout_top_independent_blocked": "US_OPTION_IMPLIED_LEFT_TAIL_RISK_TO_JAPAN_RETURN",
+  "active_formal_stage4_family": "BOJ_MPM_STAGE4_NEW_ENTRY_BLACKOUT_G1",
+  "active_formal_stage4_status": "PREREGISTERED_ENGINEERING_SELFTEST_PENDING",
+  "tail_risk_public_data_audit": {
+    "status": "PUBLIC_AUTHOR_LJV_HISTORY_FOUND_POSTPUBLICATION_OOS_STILL_BLOCKED",
+    "rows": 1075,
+    "coverage": [
+      "1996-01-05",
+      "2017-05-19"
+    ],
+    "local_audit_sha256": "f787dd575ed697044866e34164c0c55b4f48c6f4c9d8eaec4bb765df2c0a6157",
+    "raw_public_sheet_redistributed": false
+  }
 }

@@ -1,0 +1,21 @@
+name: JNU BOJ MPM Stage4 Blackout Engineering Selftest G1
+
+on:
+  workflow_dispatch:
+
+jobs:
+  selftest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python scripts/selftest_jnu_boj_mpm_stage4_new_entry_blackout_g1.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: jnu-boj-mpm-stage4-blackout-selftest-g1
+          path: |
+            stage4_results/jnu_boj_mpm_stage4_new_entry_blackout_g1_selftest.json
+            stage4_reports/jnu_boj_mpm_stage4_new_entry_blackout_g1_selftest.md
