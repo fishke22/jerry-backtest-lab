@@ -1,5 +1,5 @@
 {
-  "version": "2.1",
+  "version": "2.2",
   "updated_at": "2026-09-01",
   "rule": "Permanent family-level attempt ledger. Never delete failed/inconclusive families to improve apparent research success rate.",
   "families": [
@@ -360,6 +360,22 @@
       "bootstrap_block_days": 5,
       "stage_b_status": "PROHIBITED_BY_PREREG_STAGE_A_FAIL",
       "reopen_rule": "No MACD parameter/rule/filter/sign/execution-lag/sample-window or exact-JNU Micro rescue in this lineage."
+    },
+    {
+      "id": "BOJ_MPM_STAGE4_NEW_ENTRY_BLACKOUT_G1",
+      "family_type": "STAGE4_RISK_TRANSLATION",
+      "parent": "BOJ_MPM_TRUE_OSE_EVENT_VOLATILITY_G1",
+      "status": "STAGE4_IMPLEMENTATION_SELFTEST_PASS_FORMAL_STAGE5_PENDING",
+      "preregistration": "config/jnu_boj_mpm_stage4_new_entry_blackout_g1_prereg.json",
+      "preregistration_commit": "113272f03429cc393f1cb2fdaaec43e18cd262e3",
+      "selftest_run_id": 33501154606,
+      "selftest_artifact_id": 9797734168,
+      "selftest_cases_passed": 15,
+      "selftest_cases_total": 15,
+      "formal_stage5_independent_replay_pass": false,
+      "alpha_or_utility_evidence": false,
+      "promotion_ceiling": "STAGE4_TRANSLATION_SPEC_PLUS_ENGINEERING_SELFTEST_ONLY",
+      "rescue_rule": "No alternate blackout starts/post-release windows/forced exits/size cuts/stops/confidence variants."
     }
   ],
   "conservative_rule": "Unknown legacy multiplicity is treated against promotion, not ignored.",

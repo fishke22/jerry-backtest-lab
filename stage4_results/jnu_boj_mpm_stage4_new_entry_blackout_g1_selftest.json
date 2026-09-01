@@ -1,0 +1,186 @@
+{
+  "candidate_id": "BOJ_MPM_STAGE4_NEW_ENTRY_BLACKOUT_G1",
+  "status": "STAGE4_IMPLEMENTATION_SELFTEST_PASS",
+  "promotion_pipeline_stage": 4,
+  "engineering_selftest_only": true,
+  "formal_stage5_independent_replay_pass": false,
+  "alpha_or_utility_evidence": false,
+  "case_count": 15,
+  "passed_cases": 15,
+  "cases": [
+    {
+      "name": "non_mpm_passthrough",
+      "got": [
+        1,
+        "PASS_OUTSIDE_BLACKOUT"
+      ],
+      "expected": [
+        1,
+        "PASS_OUTSIDE_BLACKOUT"
+      ],
+      "pass": true
+    },
+    {
+      "name": "mpm_before_1100_passthrough",
+      "got": [
+        1,
+        "PASS_OUTSIDE_BLACKOUT"
+      ],
+      "expected": [
+        1,
+        "PASS_OUTSIDE_BLACKOUT"
+      ],
+      "pass": true
+    },
+    {
+      "name": "mpm_at_1100_suppress_entry",
+      "got": [
+        0,
+        "SUPPRESS_NEW_EXPOSURE"
+      ],
+      "expected": [
+        0,
+        "SUPPRESS_NEW_EXPOSURE"
+      ],
+      "pass": true
+    },
+    {
+      "name": "inside_blackout_exit_passes",
+      "got": [
+        0,
+        "PASS_EXIT"
+      ],
+      "expected": [
+        0,
+        "PASS_EXIT"
+      ],
+      "pass": true
+    },
+    {
+      "name": "inside_blackout_reduce_passes",
+      "got": [
+        1,
+        "PASS_RISK_REDUCTION"
+      ],
+      "expected": [
+        1,
+        "PASS_RISK_REDUCTION"
+      ],
+      "pass": true
+    },
+    {
+      "name": "inside_blackout_add_suppressed",
+      "got": [
+        1,
+        "SUPPRESS_EXPOSURE_INCREASE"
+      ],
+      "expected": [
+        1,
+        "SUPPRESS_EXPOSURE_INCREASE"
+      ],
+      "pass": true
+    },
+    {
+      "name": "inside_blackout_reversal_flat_only",
+      "got": [
+        0,
+        "CLAMP_REVERSAL_TO_FLAT"
+      ],
+      "expected": [
+        0,
+        "CLAMP_REVERSAL_TO_FLAT"
+      ],
+      "pass": true
+    },
+    {
+      "name": "release_plus_19m_still_blocked",
+      "got": [
+        0,
+        "SUPPRESS_NEW_EXPOSURE"
+      ],
+      "expected": [
+        0,
+        "SUPPRESS_NEW_EXPOSURE"
+      ],
+      "pass": true
+    },
+    {
+      "name": "release_plus_20m_unblocked",
+      "got": [
+        1,
+        "PASS_OUTSIDE_BLACKOUT"
+      ],
+      "expected": [
+        1,
+        "PASS_OUTSIDE_BLACKOUT"
+      ],
+      "pass": true
+    },
+    {
+      "name": "missing_release_blocks_to_close_minus_1m",
+      "got": [
+        0,
+        "SUPPRESS_NEW_EXPOSURE"
+      ],
+      "expected": [
+        0,
+        "SUPPRESS_NEW_EXPOSURE"
+      ],
+      "pass": true
+    },
+    {
+      "name": "cancel_outstanding_entry_at_1100",
+      "got": true,
+      "expected": true,
+      "pass": true
+    },
+    {
+      "name": "do_not_cancel_exit_order",
+      "got": false,
+      "expected": false,
+      "pass": true
+    },
+    {
+      "name": "summary_0850_does_not_release_blackout",
+      "got": [
+        0,
+        "SUPPRESS_NEW_EXPOSURE"
+      ],
+      "expected": [
+        0,
+        "SUPPRESS_NEW_EXPOSURE"
+      ],
+      "pass": true
+    },
+    {
+      "name": "unscheduled_mpm_out_of_scope_passthrough",
+      "got": [
+        1,
+        "PASS_OUTSIDE_BLACKOUT"
+      ],
+      "expected": [
+        1,
+        "PASS_OUTSIDE_BLACKOUT"
+      ],
+      "pass": true
+    },
+    {
+      "name": "historical_release_metadata_qa",
+      "got": true,
+      "expected": true,
+      "pass": true
+    }
+  ],
+  "historical_timing_metadata": {
+    "n": 84,
+    "earliest_minute": 685,
+    "p05_minute": 699.15,
+    "median_minute": 720.5,
+    "p90_minute": 755.0,
+    "latest_minute": 798,
+    "all_at_or_after_1100": true,
+    "price_outcomes_used": false
+  },
+  "promotion_ceiling": "STAGE4_TRANSLATION_SPEC_PLUS_ENGINEERING_SELFTEST_ONLY",
+  "next_rule": "If PASS, Stage-4 translation implementation is ready for a genuinely independent Stage-5 replay. Do not run PnL/alpha utility tests without a validated base-entry process."
+}

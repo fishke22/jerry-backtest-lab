@@ -1,5 +1,5 @@
 {
-  "version": "1.1",
+  "version": "1.2",
   "as_of": "2026-09-01",
   "formal_stage4_family_opened": true,
   "active_formal_stage4_family": "BOJ_MPM_STAGE4_NEW_ENTRY_BLACKOUT_G1",
@@ -9,7 +9,7 @@
       "rank": 1,
       "candidate": "BOJ_MPM_STAGE4_NEW_ENTRY_BLACKOUT_G1",
       "parent_stage3": "BOJ_MPM_TRUE_OSE_EVENT_VOLATILITY_G1",
-      "status": "PREREGISTERED_ENGINEERING_SELFTEST_PENDING",
+      "status": "STAGE4_IMPLEMENTATION_SELFTEST_PASS_FORMAL_STAGE5_PENDING",
       "why_first": [
         "Exact-JNU Stage B reconfirmed after DI3 on 25 events with P=1.000.",
         "Discrete official event state keeps translation degrees of freedom low.",
@@ -42,7 +42,13 @@
         "Do not test alternate start clocks, post-release lengths, size cuts, stop widening or forced exits in parallel."
       ],
       "live_use": false,
-      "preregistration": "config/jnu_boj_mpm_stage4_new_entry_blackout_g1_prereg.json"
+      "preregistration": "config/jnu_boj_mpm_stage4_new_entry_blackout_g1_prereg.json",
+      "selftest_run_id": 33501154606,
+      "selftest_artifact_id": 9797734168,
+      "selftest_cases": "15/15",
+      "formal_stage5_independent_replay_pass": false,
+      "alpha_or_utility_evidence": false,
+      "next_action": "One independent Stage-5 replay only; no economic outcome testing."
     },
     {
       "rank": 2,

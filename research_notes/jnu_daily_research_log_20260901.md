@@ -23,3 +23,11 @@
 - Stage-4 priority #1: BOJ MPM new-entry blackout design (pre-prereg only); #2 HAR-RSV exposure-cap design.
 - Top independent directional mechanism found: U.S. option-implied left-tail risk to Japanese returns; currently data-rights/free-history blocked.
 - CFTC Nikkei positioning remains scouting-only because direct predictive literature is insufficient.
+
+## BOJ MPM Stage-4 new-entry blackout G1 engineering selftest
+- Preregistration was committed before outcome-free engineering replay: 113272f03429cc393f1cb2fdaaec43e18cd262e3.
+- GitHub Actions run: 33501154606; artifact: 9797734168.
+- Result: STAGE4_IMPLEMENTATION_SELFTEST_PASS, 15/15 cases.
+- No JNU price/PnL outcomes were used; this is implementation QA only.
+- Formal Stage-5 independent replay has NOT passed and remains pending.
+- No alpha/utility evidence; live use remains prohibited.
