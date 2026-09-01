@@ -1,13 +1,13 @@
 {
-  "version": "2.0",
+  "version": "2.1",
   "as_of": "2026-09-01",
   "framework": "JNU_FINAL_FRAMEWORK_V3",
   "architecture_status": "FROZEN",
-  "research_completion_state": "FRAMEWORK_RESEARCH_TWO_STAGE3_RISK_INFORMATION_CANDIDATES_DIRECTIONAL_EDGE_NONE",
+  "research_completion_state": "FRAMEWORK_RESEARCH_TWO_STAGE3_RISK_INFORMATION_CANDIDATES_DIRECTIONAL_EDGE_NONE_FIVE_RECENT_DIRECTIONAL_FAMILIES_FAILED",
   "validated_jnu_modules": 0,
   "validated_directional_modules": 0,
   "decision_engine_output": "NO_VALIDATED_DIRECTIONAL_EDGE",
-  "meaning": "Two independently preregistered true-JNU information-state candidates now exist: HAR-RSV next-day volatility/risk state and BOJ MPM event-volatility state. The prior-SPX directional path family was rejected. No directional module or Stage-9 module is validated.",
+  "meaning": "HAR-RSV and BOJ MPM remain Stage-3 risk-information candidates only. Five recent independent/literature-grounded directional families, now including fixed post-publication MACD(4,22,3), failed strict true-target gates. No directional or Stage-9 module is validated.",
   "substitute_data_update": {
     "GETDATA_JPN225_PUBLIC_SAMPLE_1M": "2026-02-01 through 2026-07-31 public Japan225 1-minute sample; usable for proxy stress tests only.",
     "HAR_RSV_JPN225_PUBLIC_HOLDOUT_G2": {
@@ -230,6 +230,16 @@
   "prior_night_usdjpy_true_ose": {
     "status": "STAGE_A_FAIL",
     "run_id": 33447920715,
+    "stage_b_prohibited": true
+  },
+  "macd_4_22_3_true_ose": {
+    "status": "STAGE_A_FAIL",
+    "run_id": 33498323765,
+    "artifact_id": 9796634718,
+    "usable_days": 251,
+    "mean_gross_daily_strategy_return": -3.0451509658307074e-05,
+    "directional_accuracy": 0.492,
+    "bootstrap_prob_mean_positive": 0.5504,
     "stage_b_prohibited": true
   }
 }

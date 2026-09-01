@@ -1,5 +1,5 @@
 {
-  "version": "1.9",
+  "version": "2.0",
   "updated_at": "2026-09-01",
   "rule": "Permanent family-level attempt ledger. Never delete failed/inconclusive families to improve apparent research success rate.",
   "families": [
@@ -307,7 +307,34 @@
       "diagnostic_slope_day_on_fx": 0.03685914294781518,
       "stage_b_status": "PROHIBITED_BY_PREREG_STAGE_A_FAIL",
       "reopen_rule": "No FX-time/filter/sign/threshold/night-target or Micro rescue."
+    },
+    {
+      "id": "MACD_4_22_3_POSTPUBLICATION_TRUE_JNU_G1",
+      "status": "TRUE_OSE_MINI_STAGE_A_FAIL_TERMINAL",
+      "multiplicity": "ONE_EXTERNALLY_FIXED_POSTPUBLICATION_MACD_4_22_3_FAMILY",
+      "preregistration": "config/jnu_macd_4_22_3_postpublication_g1_prereg.json",
+      "run_id": 33498323765,
+      "artifact_id": 9796634718,
+      "derived_panel_commit": "bd444897bbe0ee0d1b47daca4b4e2291ab9cb547",
+      "data_integrity_revision": {
+        "id": "DI1_FINAL_MINUTE_INCLUSIVE",
+        "commit": "d92c0c1d31f685ae23fe3cb0d0126dc4d64ebb74"
+      },
+      "usable_days": 251,
+      "mean_gross_daily_strategy_return": -3.0451509658307074e-05,
+      "directional_accuracy": 0.492,
+      "bootstrap_prob_mean_positive": 0.5504,
+      "bootstrap_block_days": 5,
+      "stage_b_status": "PROHIBITED_BY_PREREG_STAGE_A_FAIL",
+      "reopen_rule": "No MACD parameter/rule/filter/sign/execution-lag/sample-window or exact-JNU Micro rescue in this lineage."
     }
   ],
-  "conservative_rule": "Unknown legacy multiplicity is treated against promotion, not ignored."
+  "conservative_rule": "Unknown legacy multiplicity is treated against promotion, not ignored.",
+  "governance_duplicates_not_attempts": [
+    {
+      "id": "MACD_4223_POST_PUBLICATION_TRUE_JNU_G1",
+      "canonical": "MACD_4_22_3_POSTPUBLICATION_TRUE_JNU_G1",
+      "disposition": "NO_OUTCOME_DUPLICATE_NOT_A_SEPARATE_ATTEMPT"
+    }
+  ]
 }

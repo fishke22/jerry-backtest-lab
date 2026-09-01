@@ -1,11 +1,11 @@
 {
-  "version": "1.1",
+  "version": "1.2",
   "as_of": "2026-09-01",
-  "candidate": "MACD_4_22_3_POSTPUBLICATION_TRUE_JNU_G1",
-  "preregistration": "config/jnu_macd_4_22_3_postpublication_g1_prereg.json",
-  "status": "STAGE_A_LOCAL_DATA_BUILD_BLOCKED_ONLY_BY_REMOTE_DEVICE_OFFLINE",
+  "candidate": null,
+  "preregistration": null,
+  "status": "NO_ACTIVE_FORMAL_DIRECTIONAL_FAMILY_AFTER_MACD_STAGE_A_FAIL",
   "single_active_family_rule": true,
-  "research_spec_frozen": true,
+  "research_spec_frozen": false,
   "pre_outcome_data_integrity_revision": {
     "id": "DI1_FINAL_MINUTE_INCLUSIVE",
     "commit": "d92c0c1d31f685ae23fe3cb0d0126dc4d64ebb74",
@@ -17,12 +17,22 @@
     "disposition": "GOVERNANCE_DUPLICATE_NO_OUTCOME_NOT_A_SEPARATE_ATTEMPT",
     "reason": "Created minutes after the already-active fixed MACD(4,22,3) family. No Stage A outcome was inspected. The earlier active family remains canonical because it already freezes execution lag and 5-day moving-block bootstrap consistent with JNU governance."
   },
-  "next_action": "When the authorized Windows device is online, build 2022-08-01 through 2023-07-21 Mini sufficient statistics using DI1, run Gate 0, persist only non-reconstructive derived output, then execute the existing canonical Stage A workflow. Do not open another formal directional family while this candidate is unresolved.",
+  "next_action": "Do not run MACD Stage B. Keep directional research paused until substantively independent direct Nikkei/OSE evidence appears; downstream validation of passed risk-information modules remains allowed.",
   "prohibited": [
     "Any MACD tuple other than 4,22,3",
     "Any modified MACD rescue rule",
     "Any parameter search",
     "Any second formal directional family before this one resolves",
-    "Treating MACD_4223_POST_PUBLICATION_TRUE_JNU_G1 as an independent attempt"
-  ]
+    "Treating MACD_4223_POST_PUBLICATION_TRUE_JNU_G1 as an independent attempt",
+    "Exact-JNU Micro Stage B for failed MACD G1",
+    "Any MACD parameter/rule/filter/sign/execution-lag/sample-window rescue",
+    "Recounting the duplicate MACD alias as another attempt"
+  ],
+  "resolved_family": {
+    "candidate": "MACD_4_22_3_POSTPUBLICATION_TRUE_JNU_G1",
+    "status": "TRUE_OSE_MINI_STAGE_A_FAIL_TERMINAL",
+    "run_id": 33498323765,
+    "artifact_id": 9796634718,
+    "stage_b_status": "PROHIBITED_BY_PREREG_STAGE_A_FAIL"
+  }
 }

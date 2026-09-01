@@ -1,0 +1,42 @@
+{
+  "version": "2026-09-01",
+  "as_of": "2026-09-01",
+  "VALIDATED_JNU_MODULE": 0,
+  "validated_directional_modules": 0,
+  "decision_engine": "NO_VALIDATED_DIRECTIONAL_EDGE",
+  "stage3_information_candidates": [
+    {
+      "id": "INTRADAY_VOLATILITY_HAR_RSV_DI1",
+      "role": "VOLATILITY_RISK_STATE_ONLY_NOT_DIRECTIONAL_ALPHA"
+    },
+    {
+      "id": "BOJ_MPM_TRUE_OSE_EVENT_VOLATILITY_G1",
+      "role": "EVENT_RISK_STATE_ONLY_NOT_DIRECTIONAL_ALPHA"
+    }
+  ],
+  "active_formal_directional_family": null,
+  "latest_terminal_family": {
+    "id": "MACD_4_22_3_POSTPUBLICATION_TRUE_JNU_G1",
+    "status": "TRUE_OSE_MINI_STAGE_A_FAIL_TERMINAL",
+    "run_id": 33498323765,
+    "artifact_id": 9796634718,
+    "usable_days": 251,
+    "mean_gross_daily_strategy_return": -3.0451509658307074e-05,
+    "directional_accuracy": 0.492,
+    "bootstrap_prob_mean_positive": 0.5504,
+    "stage_b_prohibited": true
+  },
+  "directional_checkpoint": {
+    "status": "PAUSE_NEW_DIRECTIONAL_FAMILY_UNTIL_NEW_INDEPENDENT_EVIDENCE",
+    "reason": "Five recent independent/literature-grounded directional families failed strict true-target gates. Do not open close variants or weaken gates.",
+    "recent_terminal_families": [
+      "INTRADAY_PATH_US_TO_JNU_TRUE_G1",
+      "INTRADAY_MOMENTUM_REVERSION_TRUE_JNU_G1",
+      "OVERNIGHT_OVERREACTION_TRUE_JNU_G1",
+      "PRIOR_NIGHT_USDJPY_TO_JNU_DAY_G1",
+      "MACD_4_22_3_POSTPUBLICATION_TRUE_JNU_G1"
+    ],
+    "allowed_next": "Only substantively independent direct Nikkei/OSE evidence with pre-outcome specification, or downstream validation of passed risk-information modules."
+  },
+  "raw_data_boundary": "225Labo raw remains local-only; only non-reconstructive derived outputs/hashes/manifests/results are public-cloud persisted."
+}

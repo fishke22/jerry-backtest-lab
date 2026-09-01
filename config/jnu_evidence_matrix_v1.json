@@ -1,5 +1,5 @@
 {
-  "version": "2.0",
+  "version": "2.1",
   "updated_at": "2026-09-01",
   "scoring": {
     "evidence_grade": {
@@ -216,6 +216,16 @@
       "status": "REJECT_TRUE_OSE_CURRENT_SPEC_STAGE_B_PROHIBITED",
       "admitted_role": "None",
       "next_evidence_needed": "None within current family; no sign/time/filter/threshold rescue."
+    },
+    {
+      "module": "MACD_4_22_3_POSTPUBLICATION_DIRECTION",
+      "evidence_grade": "A",
+      "data_grade": "A",
+      "external_evidence": "Kang 2021 directly studies Nikkei 225 futures and identifies MACD(4,22,3), but after a large external parameter search; only the frozen post-publication holdout has promotion power.",
+      "internal_result": "True-OSE Mini Stage A fails on 251 post-publication days: mean gross daily strategy return -3.04515e-05, directional accuracy 49.2%, 5-day moving-block bootstrap P(mean>0)=0.5504.",
+      "status": "REJECT_TRUE_OSE_CURRENT_SPEC_STAGE_B_PROHIBITED",
+      "admitted_role": "None",
+      "next_evidence_needed": "None within this lineage. Do not rescue by MACD retuning, filters, execution changes, sample changes or exact-JNU Stage B."
     }
   ],
   "selection_rule": "Prefer high evidence + executable data + non-duplicative role. Proxy consistency can strengthen evidence but cannot satisfy a true-target promotion gate.",

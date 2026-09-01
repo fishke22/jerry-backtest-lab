@@ -1,5 +1,5 @@
 {
-  "version": "3.1",
+  "version": "3.2",
   "updated_at": "2026-09-01",
   "policy": {
     "max_active_formal_families": 1,
@@ -19,22 +19,9 @@
       "Counting correlated features as independent votes"
     ]
   },
-  "active": {
-    "candidate": "MACD_4223_POST_PUBLICATION_TRUE_JNU_G1",
-    "preregistration": "config/jnu_macd_4223_post_publication_true_jnu_g1_prereg.json",
-    "status": "STAGE_A_TRUE_OSE_MINI_BLOCKED_LOCAL_DEVICE_OFFLINE",
-    "rule": "Do not substitute proxy data. Resume local Mini build when authorized device reconnects; cloud statistical runner can be prepared in advance."
-  },
+  "active": null,
   "current_global_blocker": null,
   "queue": [
-    {
-      "rank": 1,
-      "candidate": "MACD_4223_POST_PUBLICATION_TRUE_JNU_G1",
-      "status": "PREREGISTERED_LOCAL_BUILD_BLOCKED_DEVICE_OFFLINE",
-      "evidence": "Direct Nikkei 225 futures evidence from Kang 2021; fixed external MACD(4,22,3), with 2022 follow-up used only to define post-publication holdout boundary.",
-      "target_role": "Directional information gate",
-      "next_action": "When local device reconnects, build 2022-08-01 to 2023-07-21 true-OSE Mini holdout, Gate 0, then run Stage A."
-    },
     {
       "rank": 4,
       "candidate": "HAR_RSV_TRUE_OSE_CONFIRMATION",
@@ -99,6 +86,14 @@
       "candidate": "INTRADAY_PATH_US_TO_JNU_G1",
       "status": "REJECT_TRUE_JNU_CURRENT_SPEC_TERMINAL",
       "next_action": "None. Preserve result and do not rescue."
+    },
+    {
+      "rank": 99,
+      "candidate": "MACD_4_22_3_POSTPUBLICATION_TRUE_JNU_G1",
+      "status": "TRUE_OSE_MINI_STAGE_A_FAIL_TERMINAL",
+      "evidence": "Kang 2021 direct Nikkei 225 futures MACD(4,22,3), tested only on frozen post-publication OSE Mini holdout.",
+      "target_role": "Directional information gate",
+      "next_action": "None. Exact-JNU Stage B prohibited; no MACD rescue variants."
     }
   ],
   "resolved": [
@@ -171,6 +166,12 @@
       "accuracy": 0.4739057239057239,
       "bootstrap_prob_mean_positive": 0.0304,
       "stage_b": "PROHIBITED"
+    },
+    {
+      "candidate": "MACD_4_22_3_POSTPUBLICATION_TRUE_JNU_G1",
+      "status": "TRUE_OSE_MINI_STAGE_A_FAIL_TERMINAL",
+      "final_run_id": 33498323765,
+      "artifact_id": 9796634718
     }
   ],
   "screened_not_separate_families": [
@@ -182,12 +183,13 @@
   ],
   "directional_research_checkpoint": {
     "status": "PAUSE_NEW_DIRECTIONAL_FAMILY_UNTIL_NEW_INDEPENDENT_EVIDENCE",
-    "reason": "Four recent independent/literature-grounded directional families failed strict true-target gates. Do not open close variants or weaken gates.",
+    "reason": "Five recent independent/literature-grounded directional families failed strict true-target gates. Do not open close variants or weaken gates.",
     "recent_terminal_families": [
       "INTRADAY_PATH_US_TO_JNU_TRUE_G1",
       "INTRADAY_MOMENTUM_REVERSION_TRUE_JNU_G1",
       "OVERNIGHT_OVERREACTION_TRUE_JNU_G1",
-      "PRIOR_NIGHT_USDJPY_TO_JNU_DAY_G1"
+      "PRIOR_NIGHT_USDJPY_TO_JNU_DAY_G1",
+      "MACD_4_22_3_POSTPUBLICATION_TRUE_JNU_G1"
     ],
     "allowed_next": "Only substantively independent direct Nikkei/OSE evidence with pre-outcome specification, or downstream validation of passed risk-information modules."
   }

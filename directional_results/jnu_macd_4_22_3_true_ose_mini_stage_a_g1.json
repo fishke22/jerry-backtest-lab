@@ -1,0 +1,29 @@
+{
+  "candidate_id": "MACD_4_22_3_POSTPUBLICATION_TRUE_JNU_G1",
+  "stage": "A_TRUE_OSE_MINI",
+  "status": "TRUE_OSE_MINI_MACD_4_22_3_STAGE_A_FAIL",
+  "stage_a_pass": false,
+  "role": "DIRECTIONAL_TRADING_RULE_INFORMATION_GATE",
+  "usable_days": 251,
+  "minimum_usable_days": 200,
+  "mean_gross_daily_strategy_return": -3.0451509658307074e-05,
+  "aggregate_directional_accuracy_nonzero_targets": 0.492,
+  "correct_nonzero_targets": 123,
+  "accuracy_denominator": 250,
+  "position_changes_diagnostic": 55,
+  "bootstrap": {
+    "block_days": 5,
+    "samples": 5000,
+    "seed": 42,
+    "prob_mean_positive": 0.5504,
+    "one_sided_p": 0.4496,
+    "ci95": [
+      -0.0012065180473726429,
+      0.0012671633152768927
+    ]
+  },
+  "derived_panel_sha256": "0ec1eee844d04c393d0576c831dc82fdec86a191b04ccd1618d344302a7f9be7",
+  "manifest_sha256": "68d9a1a3ac931fe2988052984b69a524c8821d0f9fd9ec07e6c80bb699306f84",
+  "next_rule": "Close MACD G1 permanently; do not test parameter/rule variants.",
+  "generated_at_utc": "2026-09-01T10:37:10.618087+00:00"
+}

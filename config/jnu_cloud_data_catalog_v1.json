@@ -1,6 +1,6 @@
 {
-  "version": "1.1",
-  "as_of": "2026-08-31",
+  "version": "3.1",
+  "as_of": "2026-09-01",
   "purpose": "Single durable catalog of JNU/OSE research data available for cloud backtests and local-only licensed raw sources.",
   "cloud_backtest_ready": [
     {
@@ -63,6 +63,19 @@
         "exact-JNU event-volatility/risk research"
       ],
       "raw_cloud": false
+    },
+    {
+      "id": "TRUE_OSE_MINI_MACD_4_22_3_STAGE_A_G1",
+      "path": "cloud_data/derived/jnu_macd_4_22_3_mini_stage_a_g1.csv",
+      "manifest": "cloud_data/manifests/jnu_macd_4_22_3_mini_stage_a_g1_manifest.json",
+      "coverage": "2022-08-01 through 2023-07-21; 251 evaluation days",
+      "grain": "daily non-reconstructive MACD state/implemented-position/strategy-return sufficient statistics",
+      "use": [
+        "reproduce terminal MACD Stage A result",
+        "audit only; no rescue search"
+      ],
+      "raw_cloud": false,
+      "terminal_family": true
     }
   ],
   "runtime_pinned_external_sources": [
