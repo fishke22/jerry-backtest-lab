@@ -1,5 +1,5 @@
 {
-  "version": "3.7",
+  "version": "3.8",
   "updated_at": "2026-09-01",
   "policy": {
     "max_active_formal_families": 1,
@@ -43,9 +43,9 @@
     {
       "rank": 3,
       "candidate": "US_OPTION_IMPLIED_LEFT_TAIL_RISK_TO_JAPAN_RETURN",
-      "status": "PUBLIC_AUTHOR_LJV_HISTORY_FOUND_POSTPUBLICATION_OOS_STILL_BLOCKED",
+      "status": "HISTORICAL_REPLICATION_FEASIBLE_POSTPUBLICATION_US_LJV_OOS_DATA_BLOCKED",
       "target_role": "Directional information scout only",
-      "next_action": "Historical replication source is available; do not open formal family until a rights-clean post-2021 continuation exists and target/horizon are preregistered."
+      "next_action": "Rights-clean post-2021 U.S. LJV continuation required. Do not substitute VIX/SKEW/Japan LJV or mine historical in-sample horizons."
     },
     {
       "rank": 6,

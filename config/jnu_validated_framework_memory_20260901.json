@@ -57,14 +57,15 @@
   "active_formal_stage4_family": null,
   "active_formal_stage4_status": "NO_ACTIVE_STAGE4_TRANSLATION_BOJ_G1_STAGE5_PASS_DOWNSTREAM_BLOCKED",
   "tail_risk_public_data_audit": {
-    "status": "PUBLIC_AUTHOR_LJV_HISTORY_FOUND_POSTPUBLICATION_OOS_STILL_BLOCKED",
+    "status": "HISTORICAL_REPLICATION_FEASIBLE_POSTPUBLICATION_US_LJV_OOS_DATA_BLOCKED",
     "rows": 1075,
     "coverage": [
       "1996-01-05",
       "2017-05-19"
     ],
     "local_audit_sha256": "f787dd575ed697044866e34164c0c55b4f48c6f4c9d8eaec4bb765df2c0a6157",
-    "raw_public_sheet_redistributed": false
+    "raw_public_sheet_redistributed": false,
+    "continuation_search": "No verified rights-clean self-service U.S. LJV continuation sufficient for post-2021 OOS was found; later papers demonstrate LJV computation through 2021 but do not unlock a reusable series."
   },
   "boj_mpm_stage4_selftest": {
     "run_id": 33501154606,

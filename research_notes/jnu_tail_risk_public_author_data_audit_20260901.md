@@ -26,3 +26,10 @@ It does not create a valid new JNU directional family:
 5. Public access is not explicit permission to redistribute the raw author sheet, so the raw workbook remains local-only.
 
 Disposition: PUBLIC_AUTHOR_LJV_HISTORY_FOUND_REPLICATION_ONLY_POSTPUBLICATION_OOS_STILL_BLOCKED. No formal directional family opened.
+
+## Continuation search after Stage-5 BOJ closure
+- Andersen/Todorov/Ubukata Japanese-equity sample runs through 2018-06, but no verified public post-publication continuation is supplied.
+- Jacobs/Ke/Pan 2026 computes Bollerslev-style LJV/RJV over 1996-2021 and provides supplementary material, showing method continuation, but no reusable raw LJV series was verified.
+- JPX June-2024 report extends Japanese option-implied LJV illustration through 2024-03; this is not U.S. LJV and cannot substitute for the candidate predictor.
+- Suh/Yoo/Yoon 2021 states supporting data are available from the corresponding author on reasonable request; no self-service equivalent series was verified.
+- Disposition remains: historical replication feasible, genuine post-2021 U.S.-LJV OOS data blocked; no formal directional family opened.

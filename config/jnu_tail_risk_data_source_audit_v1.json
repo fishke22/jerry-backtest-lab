@@ -1,9 +1,9 @@
 {
-  "version": "1.0",
+  "version": "1.1",
   "as_of": "2026-09-01",
   "candidate": "US_OPTION_IMPLIED_LEFT_TAIL_RISK_TO_JAPAN_RETURN",
   "formal_directional_family_opened": false,
-  "status": "PUBLIC_AUTHOR_LJV_HISTORY_FOUND_REPLICATION_ONLY_POSTPUBLICATION_OOS_STILL_BLOCKED",
+  "status": "HISTORICAL_REPLICATION_FEASIBLE_POSTPUBLICATION_US_LJV_OOS_DATA_BLOCKED",
   "literature": {
     "japan_paper": "Andersen, Todorov & Ubukata (2021), Journal of Econometrics, DOI 10.1016/j.jeconom.2020.07.005",
     "source_method_paper": "Bollerslev, Todorov & Xu (2015), Journal of Financial Economics, DOI 10.1016/j.jfineco.2015.02.010",
@@ -33,5 +33,38 @@
     "remaining_blocker": "Series ends in May 2017, before the 2021 Japan paper publication. It therefore cannot provide a genuine post-publication OOS predictor sample. Extending the same LJV measure after 2017 still requires new rights-clean deep-OTM SPX option data or an independently published continuation."
   },
   "promotion_disposition": "DO_NOT_OPEN_FORMAL_DIRECTIONAL_FAMILY",
-  "reopen_rule": "Reopen only if a rights-clean continuation of the same/sufficiently equivalent LJV measure supplies genuinely new post-publication observations and the yen-denominated JNU/Nikkei target/horizon is preregistered without mining."
+  "reopen_rule": "Reopen only if a rights-clean continuation of the same/sufficiently equivalent LJV measure supplies genuinely new post-publication observations and the yen-denominated JNU/Nikkei target/horizon is preregistered without mining.",
+  "continuation_search": {
+    "status": "NO_RIGHTS_CLEAN_SELF_SERVICE_POSTPUBLICATION_US_LJV_SERIES_FOUND",
+    "findings": [
+      {
+        "source": "Andersen, Todorov & Ubukata (2021), Journal of Econometrics",
+        "coverage": "January 1996 through June 2018",
+        "meaning": "The Japanese-equity paper itself extends its source data beyond the public author LJV workbook, but does not provide a verified self-service public post-publication continuation."
+      },
+      {
+        "source": "Jacobs, Ke & Pan (2026), JFQA, Tail Risk Around FOMC Announcements",
+        "coverage": "January 1996 through December 2021",
+        "meaning": "The paper reports Bollerslev-et-al.-style 7-day LJV/RJV through 2021 and has supplementary material, demonstrating methodological continuation. No downloadable raw LJV time series suitable for our replication was verified in this search."
+      },
+      {
+        "source": "JPX Futures & Options Report, June 2024",
+        "coverage": "Japanese option-implied LJV illustrated through March 2024",
+        "meaning": "Useful evidence that the LJV concept remains computable in Japan, but it is Japan-specific LJV and cannot substitute for the U.S. LJV predictor emphasized by Andersen et al. for Japanese returns."
+      },
+      {
+        "source": "Suh, Yoo & Yoon (2021), Journal of Futures Markets",
+        "coverage": "Paper reports S&P 500 option-derived tail-risk indexes",
+        "meaning": "Data availability says available from corresponding author upon reasonable request, not a verified free self-service dataset; measures are not automatically equivalent to the Andersen/Bollerslev U.S. LJV series."
+      }
+    ],
+    "postpublication_requirement": "For a formal new directional family, obtain enough genuinely post-2021 U.S. LJV observations under rights-clean access to support the preregistered yen-denominated Japanese/JNU horizon. Historical 1996-2017/2018 replication alone has no promotion power.",
+    "prohibited_substitutions": [
+      "VIX",
+      "CBOE SKEW",
+      "Japan-specific LJV",
+      "generic variance risk premium",
+      "other tail-risk index without an independently justified new family"
+    ]
+  }
 }

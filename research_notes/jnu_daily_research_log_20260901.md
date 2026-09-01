@@ -38,3 +38,9 @@
 - Result: PASS_STAGE5_INDEPENDENT_EXECUTION_REPLAY, 12/12 preregistered scenarios.
 - Real JNU prices/PnL used: false. Alpha/utility evidence: none. Live use: prohibited.
 - BOJ G1 is frozen at Stage-5 ceiling until a validated base-entry process exists.
+
+## Tail-risk continuation search
+- Public author LJV enables historical replication through 2017; Japanese paper sample reaches 2018-06.
+- Later research demonstrates comparable LJV calculation through 2021, but no rights-clean self-service post-2021 U.S. LJV series was verified.
+- JPX Japanese LJV through 2024-03 is not a valid substitute for U.S. LJV.
+- No new directional family opened.
