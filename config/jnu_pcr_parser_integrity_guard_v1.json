@@ -1,0 +1,24 @@
+{
+  "version": "1.0",
+  "frozen_at": "2026-09-01",
+  "candidate_id": "NIKKEI225_OPTIONS_PCR_SENTIMENT_POSTPUBLICATION_G1",
+  "prior_qa_run_disposition": {
+    "file": "D:/JNU_STAGEA_WORK/pcr_parser_qa_results_v1.json",
+    "reported_status": "PCR_PARSER_QA_PASS",
+    "governance_status": "INELIGIBLE_ENGINEERING_FALSE_PASS_NUMERIC_COLUMN_MISALIGNMENT",
+    "reason": "2026 sparse modern Auction call rows were assigned contract-month values (202609/202610) as Trading Volume because the text parser used a positional fallback with too few numeric columns.",
+    "directional_return_outcomes_used": false,
+    "sample_dates_changed": false,
+    "pcr_information_rule_changed": false
+  },
+  "integrity_rules": [
+    "Modern Auction rows: contract month and last-trading-day prefix can never be interpreted as volume.",
+    "Modern Auction rows with insufficient price/trade-field tokens are classified as NO_TRADE and Trading Volume=0.",
+    "Only rows with sufficient explicit trade-field tokens may use the modern positional volume field.",
+    "Legacy spaced-glyph rows may reconstruct digits only inside the observed volume/value segment; no manual per-row numeric patching.",
+    "Every selected leg must retain raw-line evidence and extraction_mode for audit.",
+    "Same frozen 9 QA dates must be rerun; no replacement dates."
+  ],
+  "directional_return_outcomes_allowed": false,
+  "next_action": "Apply the parser-only integrity fix and rerun the unchanged frozen 9-sample QA."
+}
