@@ -100,7 +100,7 @@
   },
   "pcr_directional_candidate": {
     "id": "NIKKEI225_OPTIONS_PCR_SENTIMENT_POSTPUBLICATION_G1",
-    "status": "PARSER_QA_PASS_THIRD_CLOUD_SMOKE_PENDING",
+    "status": "CLOUD_SMOKE_PASS_FULL_INFORMATION_PANEL_PREREGISTERED",
     "formal_directional_family_opened": false,
     "directional_outcome_inspected": false,
     "memory_file": "config/jnu_pcr_data_feasibility_memory_v1.json",
@@ -123,12 +123,17 @@
       "pit_status": "PIT_FEASIBLE_SAME_DAY_EOD_ONLY"
     },
     "parser_blocker": "Some older PDF text layers split sparse auction volume/value digits, e.g. '49  200  201602' into spaced glyph sequences. Coordinate-based row fallback must recover this without manual correction.",
-    "next_action": "Run the same four cloud smoke months a third time. If parser/source errors and evidence-integrity faults are absent, start the full PCR-only information-panel build.",
+    "next_action": "Execute the four frozen information-only shards with max parallelism 2, merge them, and classify the preregistered data-feasibility gate without reading returns.",
     "parser_qa": "9/9 PASS after integrity rerun; initial false-pass retained in governance.",
     "information_definition_freeze": "config/jnu_pcr_information_definition_freeze_v1.json",
     "parser_regression_after_modern_prefix_fix": "9/9 PASS",
     "cloud_smoke_run_33509640334": "Mixed: 2016 engineering parser defect; 2026-08 valid zero-call-denominator information finding.",
     "latest_parser_regression": "9/9 PASS plus targeted 2016-01-29 legacy no-trade and 2019 weekly exclusion regressions.",
-    "cloud_smoke_run_33512367293": "Workflow success but engineering-invalid after evidence audit; 2026 zero-denominator finding retained."
+    "cloud_smoke_run_33512367293": "Workflow success but engineering-invalid after evidence audit; 2026 zero-denominator finding retained.",
+    "cloud_smoke_pass": {
+      "run_id": 33513973356,
+      "artifact_id": 9802914506
+    },
+    "full_information_panel_prereg": "config/jnu_pcr_full_information_panel_prereg_v1.json"
   }
 }

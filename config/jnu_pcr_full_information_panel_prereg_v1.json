@@ -1,0 +1,66 @@
+{
+  "version": "1.0",
+  "frozen_at": "2026-09-01",
+  "candidate_id": "NIKKEI225_OPTIONS_PCR_SENTIMENT_POSTPUBLICATION_G1",
+  "status": "FULL_INFORMATION_PANEL_BUILD_PREREGISTERED_PREOUTCOME",
+  "directional_return_outcomes_allowed": false,
+  "formal_directional_family_opened": false,
+  "definition_freeze": "config/jnu_pcr_information_definition_freeze_v1.json",
+  "source_manifest": "config/jnu_pcr_required_report_manifest_v1.json",
+  "parser_integrity_guard": "config/jnu_pcr_parser_integrity_guard_v1.json",
+  "cloud_smoke_pass": "config/jnu_pcr_cloud_smoke_pass_v1.json",
+  "shards": [
+    {
+      "id": "2009_2013",
+      "year_start": 2009,
+      "year_end": 2013
+    },
+    {
+      "id": "2014_2017",
+      "year_start": 2014,
+      "year_end": 2017
+    },
+    {
+      "id": "2018_2021",
+      "year_start": 2018,
+      "year_end": 2021
+    },
+    {
+      "id": "2022_2026",
+      "year_start": 2022,
+      "year_end": 2026
+    }
+  ],
+  "execution": {
+    "max_parallel_shards": 2,
+    "within_shard": "sequential official-report download and parsing",
+    "reason": "Bound source concurrency and avoid single-job timeout."
+  },
+  "data_feasibility_gate": {
+    "expected_manifest_months": 208,
+    "expected_archive_complete_months": 205,
+    "known_archive_incomplete_months": [
+      "2009-05",
+      "2009-06",
+      "2010-06"
+    ],
+    "unexpected_parser_or_source_errors_allowed": 0,
+    "minimum_pcr_defined_months": 185,
+    "minimum_total_defined_fraction_of_archive_complete": 0.9,
+    "recent_window": "latest 36 archive-complete months",
+    "minimum_recent_defined_months": 30,
+    "minimum_recent_defined_fraction": 0.8333333333333334
+  },
+  "classification": {
+    "pass": "PCR_FULL_INFORMATION_DATA_FEASIBILITY_PASS",
+    "fail_or_inconclusive": "PCR_FULL_INFORMATION_DATA_FEASIBILITY_FAIL_OR_INCONCLUSIVE"
+  },
+  "important": "PASS means the canonical PCR information series can be reconstructed with sufficient coverage. It does not test or imply directional alpha.",
+  "forbidden": [
+    "Inspect future Nikkei/JNU returns during full information-panel build.",
+    "Change zero-denominator rule after seeing undefined-month frequency.",
+    "Move strikes, add weekly/mini options, reduce N below five, or use ratio-of-sums to rescue undefined months.",
+    "Change the 90% total or 30-of-36 recent feasibility thresholds after seeing the panel.",
+    "Open a formal directional family before this data gate is classified and a separate directional preregistration is committed."
+  ]
+}

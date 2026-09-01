@@ -55,3 +55,9 @@
 - Fixed structurally: ellipsis-only legacy trade fields => zero volume; YYYYMMDD weekly rows excluded before standard-month parsing.
 - Frozen 9-date QA remains 9/9 PASS. Targeted 2016-01-29 and 2019-12-30 engineering regressions PASS.
 - Local 2016-01 PCR-only smoke now yields monthly PCR 366.4021493956121; no return outcomes used.
+
+## PCR third cloud smoke PASS and full-panel prereg
+- Run 33513973356 / artifact 9802914506: PCR_CLOUD_SMOKE_PASS. 2016-01-29 daily PCR=69.71514242878561; 2016-01 monthly PCR=366.4021493956121.
+- 2026-08 remains PCR_UNDEFINED_REQUIRED_DAY on 2026-08-26 and 2026-08-31 due to zero selected call denominator.
+- Full information-only data gate frozen before execution: 0 parser/source errors; >=185 defined of 205 archive-complete months; >=30 defined in latest 36 archive-complete months.
+- No directional returns inspected; no formal directional family opened.

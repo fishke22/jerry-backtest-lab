@@ -3,7 +3,7 @@
   "as_of": "2026-09-01",
   "candidate_id": "NIKKEI225_OPTIONS_PCR_SENTIMENT_POSTPUBLICATION_G1",
   "formal_directional_family_opened": false,
-  "status": "PARSER_QA_PASS_THIRD_CLOUD_SMOKE_PENDING",
+  "status": "CLOUD_SMOKE_PASS_FULL_INFORMATION_PANEL_PREREGISTERED",
   "governance": {
     "independence": "SUBSTANTIVELY_INDEPENDENT_FROM_RECENT_FAILED_DIRECTIONAL_FAMILIES",
     "literature_anchor": "Tsuji (2009), Japan-specific Nikkei 225 index-options put/call-ratio market-timing evidence",
@@ -103,7 +103,7 @@
   },
   "directional_outcome_inspected": false,
   "formal_preregistration_created": false,
-  "next_action": "Run the same four cloud smoke months a third time. If parser/source errors and evidence-integrity faults are absent, start the full PCR-only information-panel build.",
+  "next_action": "Execute the four frozen information-only shards with max parallelism 2, merge them, and classify the preregistered data-feasibility gate without reading returns.",
   "zero_denominator_rule": "Daily PCR undefined when selected near+second-near call volume is zero; month unusable if any of five required daily PCRs is undefined. No rescue.",
   "cloud_smoke": {
     "run_id": 33509640334,
@@ -118,5 +118,12 @@
     "workflow_status": "SUCCESS",
     "governance_disposition": "INELIGIBLE_ENGINEERING_SMOKE_AFTER_EVIDENCE_AUDIT",
     "record": "config/jnu_pcr_cloud_smoke_run_33512367293_v1.json"
-  }
+  },
+  "cloud_smoke_3": {
+    "run_id": 33513973356,
+    "artifact_id": 9802914506,
+    "status": "PCR_CLOUD_SMOKE_PASS",
+    "record": "config/jnu_pcr_cloud_smoke_pass_v1.json"
+  },
+  "full_information_panel_prereg": "config/jnu_pcr_full_information_panel_prereg_v1.json"
 }

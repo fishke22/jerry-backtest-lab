@@ -227,10 +227,19 @@ def main():
     assert freeze["formal_directional_family_opened"] is False
     wanted=os.environ.get("PCR_SMOKE_MONTHS","").strip()
     smoke=set(x.strip() for x in wanted.split(",") if x.strip()) if wanted else None
+    yr=os.environ.get("PCR_YEAR_RANGE","").strip()
+    year_range=None
+    if yr:
+        a,b=yr.split("-",1)
+        year_range=(int(a),int(b))
     months=[]
     for m in manifest["months"]:
         if smoke is not None and m["month"] not in smoke:
             continue
+        if year_range is not None:
+            y=int(m["month"][:4])
+            if y<year_range[0] or y>year_range[1]:
+                continue
         rec={"month":m["month"],"archive_complete":m["archive_complete"],"days":[]}
         if not m["archive_complete"]:
             rec["status"]="ARCHIVE_INCOMPLETE"
@@ -273,6 +282,7 @@ def main():
         "directional_return_outcomes_used":False,
         "formal_directional_family_opened":False,
         "smoke_months":sorted(smoke) if smoke is not None else None,
+        "year_range":list(year_range) if year_range is not None else None,
         "status_counts":statuses,"months":months,
     }
     OUT.parent.mkdir(exist_ok=True)

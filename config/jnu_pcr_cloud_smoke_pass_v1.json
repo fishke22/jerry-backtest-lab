@@ -1,0 +1,33 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-01",
+  "candidate_id": "NIKKEI225_OPTIONS_PCR_SENTIMENT_POSTPUBLICATION_G1",
+  "run_id": 33513973356,
+  "artifact_id": 9802914506,
+  "artifact_zip_sha256": "23861a82b1a7c71ebb68d2e78c5d930ec1f10b06c61c9d06534503d190c1aed0",
+  "head_sha": "d89a0dd9eda22f558604775dd460177774a84c8b",
+  "status": "PCR_CLOUD_SMOKE_PASS",
+  "directional_return_outcomes_used": false,
+  "formal_directional_family_opened": false,
+  "smoke_months": [
+    "2009-07",
+    "2016-01",
+    "2024-01",
+    "2026-08"
+  ],
+  "status_counts": {
+    "PCR_DEFINED": 3,
+    "PCR_UNDEFINED_REQUIRED_DAY": 1
+  },
+  "evidence_audit": {
+    "2016-01-29_daily_pcr": 69.71514242878561,
+    "2016-01_monthly_pcr": 366.4021493956121,
+    "2026-08_undefined_dates": [
+      "2026-08-26",
+      "2026-08-31"
+    ],
+    "2026-08_reason": "ZERO_SELECTED_CALL_DENOMINATOR",
+    "parser_or_source_errors": 0
+  },
+  "interpretation": "Cloud source/parser path is mechanically valid for the smoke sample. This is not directional-alpha evidence."
+}

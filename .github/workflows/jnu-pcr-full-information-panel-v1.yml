@@ -1,0 +1,65 @@
+name: JNU PCR Full Information Panel V1
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/jnu-pcr-full-information-panel-v1.yml"
+
+jobs:
+  build_shards:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 120
+    strategy:
+      fail-fast: false
+      max-parallel: 2
+      matrix:
+        include:
+          - shard: "2009_2013"
+            year_range: "2009-2013"
+          - shard: "2014_2017"
+            year_range: "2014-2017"
+          - shard: "2018_2021"
+            year_range: "2018-2021"
+          - shard: "2022_2026"
+            year_range: "2022-2026"
+    env:
+      PCR_YEAR_RANGE: ${{ matrix.year_range }}
+      PCR_SMOKE_MONTHS: ""
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install pypdf==6.0.0
+      - run: python scripts/jnu_pcr_build_information_panel.py
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: jnu-pcr-panel-${{ matrix.shard }}
+          path: |
+            pcr_results/jnu_pcr_information_panel_v1.json
+            pcr_reports/jnu_pcr_information_panel_v1.md
+
+  merge:
+    needs: build_shards
+    if: always() && !cancelled()
+    runs-on: ubuntu-22.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: jnu-pcr-panel-*
+          path: pcr_shards
+          merge-multiple: false
+      - run: python scripts/jnu_pcr_merge_information_shards.py
+        env:
+          PCR_SHARDS_DIR: pcr_shards
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: jnu-pcr-full-information-panel-v1
+          path: |
+            pcr_results/jnu_pcr_full_information_panel_v1.json
+            pcr_reports/jnu_pcr_full_information_panel_v1.md
