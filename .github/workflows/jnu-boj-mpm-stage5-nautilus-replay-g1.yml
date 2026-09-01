@@ -2,6 +2,9 @@ name: JNU BOJ MPM Stage5 Nautilus Execution Replay G1
 
 on:
   workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/jnu-boj-mpm-stage5-nautilus-replay-g1.yml"
 
 jobs:
   replay:
