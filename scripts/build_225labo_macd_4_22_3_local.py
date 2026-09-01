@@ -7,7 +7,7 @@ from pathlib import Path
 from typing import Any,Iterable
 
 EXPECTED_HEADER=["日付","時間","始値","高値","安値","終値","出来高"]
-TRANSFORM_VERSION="JNU_MACD_4_22_3_POSTPUBLICATION_G1_V1"
+TRANSFORM_VERSION="JNU_MACD_4_22_3_POSTPUBLICATION_G1_V1_DI1_FINAL_MINUTE_INCLUSIVE"
 
 def sha256_file(path:Path)->str:
     h=hashlib.sha256()
@@ -95,6 +95,12 @@ def source_files(folder:Path,product:str)->dict[int,Path]:
         if m:out[int(m.group(1))]=p
     return out
 
+def active_day_minutes(sched:dict[str,Any])->list[int]:
+    active=[]
+    for a,b in sched['day_session_segments']:
+        active.extend(range(hhmm(a),hhmm(b)+1))
+    return active
+
 def parse_daily_close(path:Path,start:date,end:date,cal:dict[str,Any]):
     member,raw,suf=workbook_payload(path);one=[n for n in sheet_names(raw,suf) if str(n).strip().startswith('1min')]
     if not one:raise ValueError(f'{path.name}: no 1min')
@@ -109,17 +115,14 @@ def parse_daily_close(path:Path,start:date,end:date,cal:dict[str,Any]):
             try:m=minute(norm_time(row[1]));c=float(row[5])
             except:invalid+=1;continue
             if not(c>0 and math.isfinite(c)):invalid+=1;continue
-            sched=schedule_for(d,cal);active=[]
-            for a,b in sched['day_session_segments']:active.extend(range(hhmm(a),hhmm(b)))
+            active=active_day_minutes(schedule_for(d,cal))
             if m not in set(active):continue
             rec=days.setdefault(d,{})
             if m in rec:dup+=1;continue
             rec[m]=c
     out={}
     for d,bars in days.items():
-        sched=schedule_for(d,cal);active=[]
-        for a,b in sched['day_session_segments']:active.extend(range(hhmm(a),hhmm(b)))
-        expected=set(active);coverage=len(expected&set(bars))/len(expected) if expected else 0
+        active=active_day_minutes(schedule_for(d,cal));expected=set(active);coverage=len(expected&set(bars))/len(expected) if expected else 0
         last=max(active) if active else None
         if last in bars:out[d]={'close':bars[last],'coverage':coverage}
     return out,{'member':member,'sheets':one,'duplicate_rows':dup,'invalid_rows':invalid,'distinct_dates':len(out)}
@@ -169,6 +172,6 @@ def main():
     stem='jnu_macd_4_22_3_mini_stage_a_g1' if args.product=='MINI' else 'jnu_macd_4_22_3_micro_stage_b_g1';panel=args.output_dir/f'{stem}.csv';fields=list(rows[0].keys()) if rows else []
     with panel.open('w',encoding='utf-8',newline='') as fh:
         w=csv.DictWriter(fh,fieldnames=fields,lineterminator='\n');w.writeheader();w.writerows(rows)
-    manifest={'version':'1.0','candidate_id':pre['candidate_id'],'stage':'A_TRUE_OSE_MINI' if args.product=='MINI' else 'B_EXACT_JNU_MICRO','source_license_classification':'225LABO_PERSONAL_USE_LOCAL_RAW_DERIVED_NON_RECONSTRUCTIVE_EXPORT','raw_data_cloud_uploaded':False,'parser_version_commit':args.parser_commit,'calendar_session_version':cal.get('version'),'product_contract_coverage':{'venue':'OSE','product':'Nikkei 225 Mini Futures' if args.product=='MINI' else 'Nikkei 225 Micro Futures (JNU)','evaluation_from':cfg['evaluation_from'],'evaluation_to':cfg['evaluation_to']},'date_range':[rows[0]['trading_date'] if rows else None,rows[-1]['trading_date'] if rows else None],'missingness_summary':{'usable_trading_days':len(rows),'excluded_trading_days':len(excluded)},'duplicate_summary':{'source_duplicate_minute_rows':sum(x['meta_1m']['duplicate_rows'] for x in sources)},'derived_feature_definitions':{'raw_signal_at_prior_close':'sign(MACD(4,22,3) histogram at prior day close)','implemented_position':'prior-close signal implemented one close later','strategy_return':'implemented_position * daily close-to-close log return'},'source_hashes':[{'source_id':x['source_id'],'sha256':x['sha256']} for x in sources],'sources':sources,'excluded_days':excluded[:100],'critical_data_quality_issues':critical,'derived_output_hash':sha256_file(panel),'market_outcome_interpretation_performed':False}
+    manifest={'version':'1.1-DI1','candidate_id':pre['candidate_id'],'stage':'A_TRUE_OSE_MINI' if args.product=='MINI' else 'B_EXACT_JNU_MICRO','source_license_classification':'225LABO_PERSONAL_USE_LOCAL_RAW_DERIVED_NON_RECONSTRUCTIVE_EXPORT','raw_data_cloud_uploaded':False,'parser_version_commit':args.parser_commit,'calendar_session_version':cal.get('version'),'data_integrity_revision':'DI1: session end minute is inclusive so the frozen day-session final 1-minute close uses the calendar end label (15:15 in the Stage-A period). No signal, parameter, sample-boundary, or pass-threshold change.','product_contract_coverage':{'venue':'OSE','product':'Nikkei 225 Mini Futures' if args.product=='MINI' else 'Nikkei 225 Micro Futures (JNU)','evaluation_from':cfg['evaluation_from'],'evaluation_to':cfg['evaluation_to']},'date_range':[rows[0]['trading_date'] if rows else None,rows[-1]['trading_date'] if rows else None],'missingness_summary':{'usable_trading_days':len(rows),'excluded_trading_days':len(excluded)},'duplicate_summary':{'source_duplicate_minute_rows':sum(x['meta_1m']['duplicate_rows'] for x in sources)},'derived_feature_definitions':{'raw_signal_at_prior_close':'sign(MACD(4,22,3) histogram at prior day close)','implemented_position':'prior-close signal implemented one close later','strategy_return':'implemented_position * daily close-to-close log return'},'source_hashes':[{'source_id':x['source_id'],'sha256':x['sha256']} for x in sources],'sources':sources,'excluded_days':excluded[:100],'critical_data_quality_issues':critical,'derived_output_hash':sha256_file(panel),'market_outcome_interpretation_performed':False}
     mp=args.output_dir/f'{stem}_manifest.json';mp.write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n',encoding='utf-8');print(json.dumps({'usable_days':len(rows),'excluded_days':len(excluded),'critical':len(critical),'date_range':manifest['date_range'],'panel_sha256':manifest['derived_output_hash'],'panel':str(panel),'manifest':str(mp)},ensure_ascii=False,indent=2))
 if __name__=='__main__':main()
