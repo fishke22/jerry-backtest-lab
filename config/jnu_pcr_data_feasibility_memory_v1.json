@@ -3,7 +3,7 @@
   "as_of": "2026-09-01",
   "candidate_id": "NIKKEI225_OPTIONS_PCR_SENTIMENT_POSTPUBLICATION_G1",
   "formal_directional_family_opened": false,
-  "status": "PARSER_QA_PASS_FULL_PANEL_FEASIBILITY_PENDING",
+  "status": "PARSER_REGRESSION_QA_PASS_CLOUD_SMOKE_RERUN_PENDING",
   "governance": {
     "independence": "SUBSTANTIVELY_INDEPENDENT_FROM_RECENT_FAILED_DIRECTIONAL_FAMILIES",
     "literature_anchor": "Tsuji (2009), Japan-specific Nikkei 225 index-options put/call-ratio market-timing evidence",
@@ -95,10 +95,19 @@
     "integrity_guard": "config/jnu_pcr_parser_integrity_guard_v1.json",
     "eligible_qa_samples": "9/9",
     "qa_result": "config/jnu_pcr_parser_qa_result_v1.json",
-    "initial_false_pass_preserved": true
+    "initial_false_pass_preserved": true,
+    "regression_after_modern_prefix_fix": "9/9 PASS",
+    "regression_result": "config/jnu_pcr_parser_qa_result_v2.json"
   },
   "directional_outcome_inspected": false,
   "formal_preregistration_created": false,
-  "next_action": "Build the PCR-only full post-publication information panel under the frozen definition, without reading directional returns; quantify undefined days/months and archive gaps before any formal directional preregistration.",
-  "zero_denominator_rule": "Daily PCR undefined when selected near+second-near call volume is zero; month unusable if any of five required daily PCRs is undefined. No rescue."
+  "next_action": "Push the parser-only modern-prefix fix and rerun the same four cloud smoke months. If no parser/source errors remain, build the full PCR-only information panel without reading returns.",
+  "zero_denominator_rule": "Daily PCR undefined when selected near+second-near call volume is zero; month unusable if any of five required daily PCRs is undefined. No rescue.",
+  "cloud_smoke": {
+    "run_id": 33509640334,
+    "artifact_id": 9801184929,
+    "disposition": "MIXED_ENGINEERING_AND_VALID_INFORMATION_FINDING_NOT_A_DIRECTIONAL_TEST",
+    "record": "config/jnu_pcr_cloud_smoke_run_33509640334_v1.json",
+    "rerun_pending": true
+  }
 }

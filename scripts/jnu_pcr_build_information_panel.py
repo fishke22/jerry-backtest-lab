@@ -20,6 +20,7 @@ REPORT=ROOT/"pcr_reports"/"jnu_pcr_information_panel_v1.md"
 
 CODE_RE=re.compile(r"(1[34]\d{7})")
 MONTH_EXACT=re.compile(r"(?<!\d)(20\d{4})(?!\d)")
+MODERN_PREFIX=re.compile(r"^(20\d{4})\s+\d{2}\.\d{2}\s+")
 OLD_AUC=re.compile(r"(\d[\d,]*)(20\d{4})(?!\d)")
 OLD_AUC_SPACED=re.compile(r"…\s*([\d ]+?)\s{2,}([\d ]+?)(20\d{4})(?!\d)")
 NUM_RE=re.compile(r"(?<![A-Za-z0-9])\d[\d,]*(?:\.\d+)?")
@@ -72,7 +73,7 @@ def parse_line(line:str, market:str|None)->dict|None:
     code=cm.group(1)
     typ="PUT" if code.startswith("13") else "CALL"
 
-    m=MONTH_EXACT.match(line.lstrip())
+    m=MODERN_PREFIX.match(line.lstrip())
     if m:
         month=m.group(1)
         sm=re.match(r"([\d,]+)",line[cm.end():])

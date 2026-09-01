@@ -1,0 +1,44 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-01",
+  "candidate_id": "NIKKEI225_OPTIONS_PCR_SENTIMENT_POSTPUBLICATION_G1",
+  "run_id": 33509640334,
+  "artifact_id": 9801184929,
+  "head_sha": "982fa3ae0fd5e3a2aea19d84ba42ccfe601a73fd",
+  "workflow_status": "FAILURE",
+  "governance_disposition": "MIXED_ENGINEERING_AND_VALID_INFORMATION_FINDING_NOT_A_DIRECTIONAL_TEST",
+  "directional_return_outcomes_used": false,
+  "formal_directional_family_opened": false,
+  "smoke_months": [
+    "2009-07",
+    "2016-01",
+    "2024-01",
+    "2026-08"
+  ],
+  "findings": {
+    "2009-07": {
+      "status": "PCR_DEFINED",
+      "meaning": "cloud parser/source path worked"
+    },
+    "2016-01": {
+      "status": "INELIGIBLE_ENGINEERING_PARSER_DEFECT",
+      "error": "Legacy price token such as 200575 was misread as YYYYMM, producing spurious 200400/200575 maturities.",
+      "research_rule_changed": false,
+      "fix": "Modern rows must match full YYYYMM MM.DD prefix; legacy embedded YYYYMM parser handles older layouts."
+    },
+    "2024-01": {
+      "status": "PCR_DEFINED",
+      "meaning": "cloud parser/source path worked"
+    },
+    "2026-08": {
+      "status": "VALID_INFORMATION_FINDING_PCR_UNDEFINED_REQUIRED_DAY",
+      "undefined_dates": [
+        "2026-08-26",
+        "2026-08-31"
+      ],
+      "reason": "Selected near+second-near call OSE total volume was zero; under the frozen mean-of-five-daily-ratios definition, the month is unusable.",
+      "rescue_forbidden": true
+    }
+  },
+  "rerun_rule": "Rerun the same four smoke months after the parser-only modern-prefix fix. 2026-08 must remain allowed to classify PCR_UNDEFINED_REQUIRED_DAY; do not alter the frozen information definition."
+}

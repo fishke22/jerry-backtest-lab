@@ -10,6 +10,7 @@ on:
   push:
     paths:
       - ".github/workflows/jnu-pcr-information-panel-v1.yml"
+      - "scripts/jnu_pcr_build_information_panel.py"
 
 jobs:
   build:

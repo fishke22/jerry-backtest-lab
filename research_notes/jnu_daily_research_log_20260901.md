@@ -44,3 +44,8 @@
 - Later research demonstrates comparable LJV calculation through 2021, but no rights-clean self-service post-2021 U.S. LJV series was verified.
 - JPX Japanese LJV through 2024-03 is not a valid substitute for U.S. LJV.
 - No new directional family opened.
+
+## PCR parser regression and first cloud smoke
+- Frozen 9-date regression after modern YYYYMM MM.DD prefix fix: 9/9 PASS; no directional returns used.
+- Cloud smoke 33509640334 is mixed, not a directional/research FAIL. 2016-01 was an engineering parser defect; 2026-08 exposed valid zero-call-denominator days on 2026-08-26 and 2026-08-31.
+- Frozen zero-denominator rule remains unchanged; no strike/day/formula rescue.

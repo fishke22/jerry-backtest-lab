@@ -1,0 +1,96 @@
+{
+  "version": "2.0",
+  "as_of": "2026-09-01",
+  "candidate_id": "NIKKEI225_OPTIONS_PCR_SENTIMENT_POSTPUBLICATION_G1",
+  "status": "PCR_PARSER_REGRESSION_QA_PASS_AFTER_MODERN_PREFIX_FIX",
+  "qa_prereg": "config/jnu_pcr_parser_qa_prereg_v1.json",
+  "integrity_guard": "config/jnu_pcr_parser_integrity_guard_v1.json",
+  "directional_return_outcomes_used": false,
+  "sample_count": 9,
+  "passed_samples": 9,
+  "parser_revision": "MODERN_ROW_REQUIRES_YYYYMM_SPACE_MM.DD_PREFIX",
+  "purpose": "Regression confirmation after fixing legacy price-token false month recognition.",
+  "samples": [
+    {
+      "date": "2009-05-29",
+      "pass": true,
+      "spot_close": 9522.5,
+      "months": [
+        "200906",
+        "200907"
+      ]
+    },
+    {
+      "date": "2010-05-31",
+      "pass": true,
+      "spot_close": 9768.7,
+      "months": [
+        "201006",
+        "201007"
+      ]
+    },
+    {
+      "date": "2011-12-30",
+      "pass": true,
+      "spot_close": 8455.35,
+      "months": [
+        "201201",
+        "201202"
+      ]
+    },
+    {
+      "date": "2014-01-06",
+      "pass": true,
+      "spot_close": 15908.88,
+      "months": [
+        "201401",
+        "201402"
+      ]
+    },
+    {
+      "date": "2016-01-04",
+      "pass": true,
+      "spot_close": 18450.98,
+      "months": [
+        "201601",
+        "201602"
+      ]
+    },
+    {
+      "date": "2019-12-30",
+      "pass": true,
+      "spot_close": 23656.62,
+      "months": [
+        "202001",
+        "202002"
+      ]
+    },
+    {
+      "date": "2021-12-30",
+      "pass": true,
+      "spot_close": 28791.71,
+      "months": [
+        "202201",
+        "202202"
+      ]
+    },
+    {
+      "date": "2024-01-04",
+      "pass": true,
+      "spot_close": 33288.29,
+      "months": [
+        "202401",
+        "202402"
+      ]
+    },
+    {
+      "date": "2026-08-31",
+      "pass": true,
+      "spot_close": 66311.93,
+      "months": [
+        "202609",
+        "202610"
+      ]
+    }
+  ]
+}
