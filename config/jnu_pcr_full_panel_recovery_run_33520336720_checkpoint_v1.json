@@ -47,12 +47,10 @@
         "PCR_UNDEFINED_REQUIRED_DAY": 1
       },
       "required_days": 240,
-      "daily_pcr_defined_days": 239,
       "parser_or_source_errors": 0,
       "undefined_day": {
         "date": "2018-12-25",
         "reason": "ZERO_SELECTED_CALL_DENOMINATOR",
-        "selected_put_volume": 625.0,
         "selected_call_volume": 0.0
       },
       "noninteger_selected_volume_fields": 0,

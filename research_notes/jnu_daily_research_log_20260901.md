@@ -82,3 +82,7 @@
 - The prior 23 transition-era parser failures are eliminated in the cloud run.
 - 2018-12-25 is undefined only because both selected CALL legs have zero official volume (ZERO_SELECTED_CALL_DENOMINATOR); this is a frozen-definition data outcome, not an engineering failure.
 - 240/240 required days have NDL provenance SHA; all selected volume fields are nonnegative integers; no directional outcomes inspected.
+
+### PCR recovery cloud checkpoint: 2018-2021 shard
+- Run 33520336720 2018-2021 shard SUCCESS; artifact 9806942661; 47 PCR_DEFINED + 1 PCR_UNDEFINED_REQUIRED_DAY; 0 parser/source errors.
+- 2018-12-25 undefined reason is frozen ZERO_SELECTED_CALL_DENOMINATOR with both selected call legs explicitly zero-volume; no directional outcomes inspected.

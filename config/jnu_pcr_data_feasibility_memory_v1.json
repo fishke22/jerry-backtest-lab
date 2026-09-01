@@ -3,7 +3,7 @@
   "as_of": "2026-09-01",
   "candidate_id": "NIKKEI225_OPTIONS_PCR_SENTIMENT_POSTPUBLICATION_G1",
   "formal_directional_family_opened": false,
-  "status": "FULL_PANEL_RECOVERY_RUN_IN_PROGRESS_2014_2017_AND_2018_2021_PASS",
+  "status": "FULL_PANEL_RECOVERY_RUN_IN_PROGRESS_2014_2021_PASS",
   "governance": {
     "independence": "SUBSTANTIVELY_INDEPENDENT_FROM_RECENT_FAILED_DIRECTIONAL_FAMILIES",
     "literature_anchor": "Tsuji (2009), Japan-specific Nikkei 225 index-options put/call-ratio market-timing evidence",
