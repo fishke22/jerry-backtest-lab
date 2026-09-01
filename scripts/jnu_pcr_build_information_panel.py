@@ -21,6 +21,7 @@ REPORT=ROOT/"pcr_reports"/"jnu_pcr_information_panel_v1.md"
 CODE_RE=re.compile(r"(1[34]\d{7})")
 MONTH_EXACT=re.compile(r"(?<!\d)(20\d{4})(?!\d)")
 MODERN_PREFIX=re.compile(r"^(20\d{4})\s+\d{2}\.\d{2}\s+")
+WEEKLY_PREFIX=re.compile(r"^20\d{6}\s+\d{2}\.\d{2}\s+")
 OLD_AUC=re.compile(r"(\d[\d,]*)(20\d{4})(?!\d)")
 OLD_AUC_SPACED=re.compile(r"…\s*([\d ]+?)\s{2,}([\d ]+?)(20\d{4})(?!\d)")
 NUM_RE=re.compile(r"(?<![A-Za-z0-9])\d[\d,]*(?:\.\d+)?")
@@ -67,6 +68,10 @@ def page_market(txt:str)->str|None:
     return None
 
 def parse_line(line:str, market:str|None)->dict|None:
+    # Weekly Nikkei 225 option rows use an 8-digit expiry date (YYYYMMDD).
+    # G1 is frozen to standard monthly options, so exclude them before legacy fallbacks.
+    if WEEKLY_PREFIX.match(line.lstrip()):
+        return None
     cm=CODE_RE.search(line)
     if not cm:
         return None
@@ -110,11 +115,21 @@ def parse_line(line:str, market:str|None)->dict|None:
     ea=OLD_AUC.search(line)
     if ea:
         month=ea.group(2)
-        toks_before=NUM_RE.findall(line[:ea.start(1)])
         toks_after=NUM_RE.findall(line[ea.end():])
-        if not toks_before or len(toks_after)<2:
+        if len(toks_after)<2:
             return None
-        return {"month":month,"type":typ,"market":"AUCTION","strike":num(toks_after[-2]),"volume":num(toks_before[-1]),"extraction_mode":"LEGACY_AUCTION_COMPACT"}
+        # In legacy rows, the segment after option code and last-trading-day date
+        # contains the explicit traded fields. A no-trade row contains only ellipses.
+        segment=line[cm.end():ea.start(1)]
+        segment=re.sub(r"^\d{2}\.\d{2}", "", segment)
+        trade_tokens=NUM_RE.findall(segment)
+        if trade_tokens:
+            volume=num(trade_tokens[-1])
+            mode="LEGACY_AUCTION_COMPACT"
+        else:
+            volume=0.0
+            mode="LEGACY_AUCTION_NO_TRADE_ZERO"
+        return {"month":month,"type":typ,"market":"AUCTION","strike":num(toks_after[-2]),"volume":volume,"extraction_mode":mode}
 
     mm=MONTH_EXACT.search(line)
     if mm:

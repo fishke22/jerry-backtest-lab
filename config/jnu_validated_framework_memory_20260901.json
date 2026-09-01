@@ -100,7 +100,7 @@
   },
   "pcr_directional_candidate": {
     "id": "NIKKEI225_OPTIONS_PCR_SENTIMENT_POSTPUBLICATION_G1",
-    "status": "PARSER_REGRESSION_QA_PASS_CLOUD_SMOKE_RERUN_PENDING",
+    "status": "PARSER_QA_PASS_THIRD_CLOUD_SMOKE_PENDING",
     "formal_directional_family_opened": false,
     "directional_outcome_inspected": false,
     "memory_file": "config/jnu_pcr_data_feasibility_memory_v1.json",
@@ -123,10 +123,12 @@
       "pit_status": "PIT_FEASIBLE_SAME_DAY_EOD_ONLY"
     },
     "parser_blocker": "Some older PDF text layers split sparse auction volume/value digits, e.g. '49  200  201602' into spaced glyph sequences. Coordinate-based row fallback must recover this without manual correction.",
-    "next_action": "Push the parser-only modern-prefix fix and rerun the same four cloud smoke months. If no parser/source errors remain, build the full PCR-only information panel without reading returns.",
+    "next_action": "Run the same four cloud smoke months a third time. If parser/source errors and evidence-integrity faults are absent, start the full PCR-only information-panel build.",
     "parser_qa": "9/9 PASS after integrity rerun; initial false-pass retained in governance.",
     "information_definition_freeze": "config/jnu_pcr_information_definition_freeze_v1.json",
     "parser_regression_after_modern_prefix_fix": "9/9 PASS",
-    "cloud_smoke_run_33509640334": "Mixed: 2016 engineering parser defect; 2026-08 valid zero-call-denominator information finding."
+    "cloud_smoke_run_33509640334": "Mixed: 2016 engineering parser defect; 2026-08 valid zero-call-denominator information finding.",
+    "latest_parser_regression": "9/9 PASS plus targeted 2016-01-29 legacy no-trade and 2019 weekly exclusion regressions.",
+    "cloud_smoke_run_33512367293": "Workflow success but engineering-invalid after evidence audit; 2026 zero-denominator finding retained."
   }
 }

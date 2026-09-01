@@ -1,0 +1,65 @@
+{
+  "version": "3.0",
+  "as_of": "2026-09-01",
+  "candidate_id": "NIKKEI225_OPTIONS_PCR_SENTIMENT_POSTPUBLICATION_G1",
+  "status": "PCR_PARSER_QA_PASS_AFTER_LEGACY_NOTRADE_AND_WEEKLY_EXCLUSION_FIXES",
+  "directional_return_outcomes_used": false,
+  "frozen_qa": {
+    "samples": 9,
+    "passed": 9,
+    "qa_prereg": "config/jnu_pcr_parser_qa_prereg_v1.json"
+  },
+  "parser_integrity_revision": [
+    "Modern standard monthly row requires YYYYMM MM.DD prefix.",
+    "Weekly rows with YYYYMMDD MM.DD prefix are excluded before legacy fallbacks.",
+    "Legacy auction no-trade rows with ellipsis-only trade fields get volume=0; option code/date/OI may not be used as volume."
+  ],
+  "targeted_engineering_regressions": {
+    "2016-01-29": {
+      "spot_close": 17518.3,
+      "near_month": "201602",
+      "second_near_month": "201603",
+      "selected_legs": {
+        "201602_PUT": {
+          "strike": 17500.0,
+          "auction": 930.0,
+          "jnet": 0.0
+        },
+        "201602_CALL": {
+          "strike": 17625.0,
+          "auction": 1168.0,
+          "jnet": 142.0
+        },
+        "201603_PUT": {
+          "strike": 17500.0,
+          "auction": 0.0,
+          "jnet": 0.0,
+          "mode": "LEGACY_AUCTION_NO_TRADE_ZERO"
+        },
+        "201603_CALL": {
+          "strike": 17625.0,
+          "auction": 24.0,
+          "jnet": 0.0
+        }
+      },
+      "daily_pcr": 69.71514242878561
+    },
+    "2019-12-30": {
+      "weekly_rows_excluded": true,
+      "spurious_pre2019_maturities_remaining": 0,
+      "near_month": "202001",
+      "second_near_month": "202002"
+    }
+  },
+  "local_2016_01_information_smoke": {
+    "daily_pcr": {
+      "2016-01-25": 348.9887640449438,
+      "2016-01-26": 246.0431654676259,
+      "2016-01-27": 3.897338403041825,
+      "2016-01-28": 1163.3663366336634,
+      "2016-01-29": 69.71514242878561
+    },
+    "monthly_pcr": 366.4021493956121,
+    "directional_returns_used": false
+  }
+}

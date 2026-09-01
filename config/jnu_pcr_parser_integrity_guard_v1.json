@@ -1,5 +1,5 @@
 {
-  "version": "1.0",
+  "version": "1.2",
   "frozen_at": "2026-09-01",
   "candidate_id": "NIKKEI225_OPTIONS_PCR_SENTIMENT_POSTPUBLICATION_G1",
   "prior_qa_run_disposition": {
@@ -17,8 +17,20 @@
     "Only rows with sufficient explicit trade-field tokens may use the modern positional volume field.",
     "Legacy spaced-glyph rows may reconstruct digits only inside the observed volume/value segment; no manual per-row numeric patching.",
     "Every selected leg must retain raw-line evidence and extraction_mode for audit.",
-    "Same frozen 9 QA dates must be rerun; no replacement dates."
+    "Same frozen 9 QA dates must be rerun; no replacement dates.",
+    "Legacy Auction no-trade rows with ellipsis-only trade fields must map Trading Volume to zero; option code, last-trading-day date, and open interest are never volume.",
+    "Weekly option rows identified by YYYYMMDD MM.DD prefix are excluded before any standard-month or legacy parser fallback."
   ],
   "directional_return_outcomes_allowed": false,
-  "next_action": "Apply the parser-only integrity fix and rerun the unchanged frozen 9-sample QA."
+  "next_action": "Rerun unchanged four-month cloud smoke with modern-prefix, weekly-exclusion, and legacy-no-trade protections.",
+  "engineering_invalid_smoke_runs": [
+    {
+      "run_id": 33509640334,
+      "reason": "legacy price token misread as month"
+    },
+    {
+      "run_id": 33512367293,
+      "reason": "legacy no-trade option-code/date text misread as volume"
+    }
+  ]
 }

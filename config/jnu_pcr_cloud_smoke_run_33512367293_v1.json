@@ -1,0 +1,29 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-01",
+  "candidate_id": "NIKKEI225_OPTIONS_PCR_SENTIMENT_POSTPUBLICATION_G1",
+  "run_id": 33512367293,
+  "artifact_id": 9802289053,
+  "head_sha": "b45ceb1a7cfded96b453463c11d001789966237e",
+  "workflow_status": "SUCCESS",
+  "governance_disposition": "INELIGIBLE_ENGINEERING_SMOKE_AFTER_EVIDENCE_AUDIT",
+  "directional_return_outcomes_used": false,
+  "reason": "Although the workflow completed, evidence audit found 2016-01-29 second-near PUT Auction volume misparsed as 13,103,751,803.1 from option-code/date text in a legacy no-trade row.",
+  "valid_information_retained": {
+    "2026-08": {
+      "status": "PCR_UNDEFINED_REQUIRED_DAY",
+      "undefined_dates": [
+        "2026-08-26",
+        "2026-08-31"
+      ],
+      "reason": "ZERO_SELECTED_CALL_DENOMINATOR"
+    }
+  },
+  "engineering_fixes_after_run": [
+    "Legacy no-trade row: ellipsis-only trade segment => Auction volume 0.",
+    "Weekly YYYYMMDD rows excluded before legacy parsing."
+  ],
+  "research_spec_changed": false,
+  "smoke_months_changed": false,
+  "next_action": "Run the same four smoke months again after the parser-only fixes."
+}

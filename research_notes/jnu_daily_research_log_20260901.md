@@ -49,3 +49,9 @@
 - Frozen 9-date regression after modern YYYYMM MM.DD prefix fix: 9/9 PASS; no directional returns used.
 - Cloud smoke 33509640334 is mixed, not a directional/research FAIL. 2016-01 was an engineering parser defect; 2026-08 exposed valid zero-call-denominator days on 2026-08-26 and 2026-08-31.
 - Frozen zero-denominator rule remains unchanged; no strike/day/formula rescue.
+
+## PCR second cloud smoke evidence audit
+- Run 33512367293 completed SUCCESS but is engineering-ineligible after evidence audit: 2016-01-29 legacy no-trade second-near PUT was misread as 13,103,751,803.1 volume.
+- Fixed structurally: ellipsis-only legacy trade fields => zero volume; YYYYMMDD weekly rows excluded before standard-month parsing.
+- Frozen 9-date QA remains 9/9 PASS. Targeted 2016-01-29 and 2019-12-30 engineering regressions PASS.
+- Local 2016-01 PCR-only smoke now yields monthly PCR 366.4021493956121; no return outcomes used.

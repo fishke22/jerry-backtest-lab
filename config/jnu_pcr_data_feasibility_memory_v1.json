@@ -3,7 +3,7 @@
   "as_of": "2026-09-01",
   "candidate_id": "NIKKEI225_OPTIONS_PCR_SENTIMENT_POSTPUBLICATION_G1",
   "formal_directional_family_opened": false,
-  "status": "PARSER_REGRESSION_QA_PASS_CLOUD_SMOKE_RERUN_PENDING",
+  "status": "PARSER_QA_PASS_THIRD_CLOUD_SMOKE_PENDING",
   "governance": {
     "independence": "SUBSTANTIVELY_INDEPENDENT_FROM_RECENT_FAILED_DIRECTIONAL_FAMILIES",
     "literature_anchor": "Tsuji (2009), Japan-specific Nikkei 225 index-options put/call-ratio market-timing evidence",
@@ -97,11 +97,13 @@
     "qa_result": "config/jnu_pcr_parser_qa_result_v1.json",
     "initial_false_pass_preserved": true,
     "regression_after_modern_prefix_fix": "9/9 PASS",
-    "regression_result": "config/jnu_pcr_parser_qa_result_v2.json"
+    "regression_result": "config/jnu_pcr_parser_qa_result_v2.json",
+    "latest_regression": "9/9 PASS after legacy no-trade and weekly-row fixes",
+    "latest_result": "config/jnu_pcr_parser_qa_result_v3.json"
   },
   "directional_outcome_inspected": false,
   "formal_preregistration_created": false,
-  "next_action": "Push the parser-only modern-prefix fix and rerun the same four cloud smoke months. If no parser/source errors remain, build the full PCR-only information panel without reading returns.",
+  "next_action": "Run the same four cloud smoke months a third time. If parser/source errors and evidence-integrity faults are absent, start the full PCR-only information-panel build.",
   "zero_denominator_rule": "Daily PCR undefined when selected near+second-near call volume is zero; month unusable if any of five required daily PCRs is undefined. No rescue.",
   "cloud_smoke": {
     "run_id": 33509640334,
@@ -109,5 +111,12 @@
     "disposition": "MIXED_ENGINEERING_AND_VALID_INFORMATION_FINDING_NOT_A_DIRECTIONAL_TEST",
     "record": "config/jnu_pcr_cloud_smoke_run_33509640334_v1.json",
     "rerun_pending": true
+  },
+  "cloud_smoke_2": {
+    "run_id": 33512367293,
+    "artifact_id": 9802289053,
+    "workflow_status": "SUCCESS",
+    "governance_disposition": "INELIGIBLE_ENGINEERING_SMOKE_AFTER_EVIDENCE_AUDIT",
+    "record": "config/jnu_pcr_cloud_smoke_run_33512367293_v1.json"
   }
 }
