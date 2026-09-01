@@ -1,0 +1,33 @@
+name: JNU PCR Information Panel V1
+
+on:
+  workflow_dispatch:
+    inputs:
+      smoke_months:
+        description: "Comma-separated YYYY-MM months; blank = full panel"
+        required: false
+        default: ""
+  push:
+    paths:
+      - ".github/workflows/jnu-pcr-information-panel-v1.yml"
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 180
+    env:
+      PCR_SMOKE_MONTHS: ${{ github.event.inputs.smoke_months || '2009-07,2016-01,2024-01,2026-08' }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install pypdf==6.0.0
+      - run: python scripts/jnu_pcr_build_information_panel.py
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: jnu-pcr-information-panel-v1
+          path: |
+            pcr_results/jnu_pcr_information_panel_v1.json
+            pcr_reports/jnu_pcr_information_panel_v1.md
