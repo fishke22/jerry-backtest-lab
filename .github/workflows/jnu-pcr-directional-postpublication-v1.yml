@@ -1,0 +1,39 @@
+name: JNU PCR Directional Postpublication V1
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  replicate:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Download authoritative PCR information panel
+        uses: actions/download-artifact@v4
+        with:
+          name: jnu-pcr-full-information-panel-recovery-2023-02-v1
+          path: pcr_authoritative
+          repository: fishke22/jerry-backtest-lab
+          run-id: "33611084116"
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Run preregistered post-publication replication
+        run: >
+          python scripts/run_jnu_pcr_directional_postpublication_v1.py
+          --panel pcr_authoritative/pcr_results/jnu_pcr_full_information_panel_v1.json
+          --prereg config/jnu_pcr_directional_postpublication_prereg_v1.json
+      - name: Upload directional replication evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: jnu-pcr-directional-postpublication-v1
+          path: |
+            results/jnu_pcr_directional_postpublication_v1.json
+            reports/jnu_pcr_directional_postpublication_v1.md
