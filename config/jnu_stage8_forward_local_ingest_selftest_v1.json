@@ -1,0 +1,32 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-02",
+  "status": "LOCAL_FORWARD_INGEST_SELFTEST_PASS_NO_SOURCE_CHANGE",
+  "script": "scripts/ingest_jnu_stage8_forward_local.py",
+  "raw_boundary": "Personally licensed 225Labo Micro raw files remain local-only; the script performs no login or download.",
+  "current_source_packages": 4,
+  "current_raw_changed": false,
+  "current_event_manifest_changed": false,
+  "har_builder_commit": "15f619c3f1746a8421497dac45fe9d44320692f2",
+  "boj_builder_commit": "909391dee8cf4e6fd3cd09046bdf11453049af7f",
+  "year_handling": "Dynamic N225microf_*.zip discovery; missing-year inventory extends through runtime current year.",
+  "check_only_selftest": {
+    "status": "NO_SOURCE_CHANGE",
+    "derived_panels_modified": false,
+    "credentials_or_download_performed": false
+  },
+  "apply_no_change_selftest": {
+    "status": "NO_SOURCE_CHANGE",
+    "tracked_repo_files_modified": false,
+    "derived_panels_modified": false
+  },
+  "future_apply_sequence": [
+    "User/local authorized process updates or adds the personally licensed N225microf annual package; this script does not download it.",
+    "Run check-only mode first; SOURCE_CHANGE_DETECTED_APPLY_REQUIRED is required before regeneration.",
+    "Run --apply using the same local raw directory.",
+    "Frozen HAR-RSV and BOJ adapters rebuild into a local-only work directory using their exact last-touch parser commits.",
+    "Only validated non-reconstructive derived panel/manifest files are copied to the research repo.",
+    "Stage8 readiness gate reruns automatically; no Stage8 performance is computed by ingest."
+  ],
+  "command_template": "D:/QROS/.venv/Scripts/python.exe scripts/ingest_jnu_stage8_forward_local.py --raw-dir <LOCAL_225LABO_MICRO_RAW_DIR> --work-dir <LOCAL_WORK_DIR> [--apply]"
+}

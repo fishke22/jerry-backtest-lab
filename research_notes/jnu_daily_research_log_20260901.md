@@ -157,3 +157,9 @@
 - Final-completion cloud audit run 33626831915 PASS; artifact 9845124762.
 - Current state remains 6/8 major candidates terminal, HAR/BOJ Stage8 pending, validated JNU modules 0, directional modules 0.
 - The only active research blocker is future untouched exact-JNU data accumulation; no partial Stage8 outcome inspection is permitted.
+
+## Stage8 local forward-data ingest orchestrator (2026-09-02)
+- Added scripts/ingest_jnu_stage8_forward_local.py; it performs no login/download and keeps licensed raw data local-only.
+- Check-only selftest on current four Micro annual packages: NO_SOURCE_CHANGE; no derived modification.
+- --apply selftest with unchanged source also no-op; tracked repo diff remained empty.
+- Builder provenance is resolved from each builder last-touch Git commit; future annual packages are dynamically discovered.

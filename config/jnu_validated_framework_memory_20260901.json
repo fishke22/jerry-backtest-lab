@@ -208,5 +208,12 @@
   "authoritative_validation_pipeline_checkpoint": "config/jnu_validation_pipeline_checkpoint_20260902_v1.json",
   "validation_pipeline_status": "JNU_VALIDATION_PIPELINE_READY_FORWARD_DATA_PENDING",
   "validation_pipeline_head": "ff322f11dbb23da6be093056ac6ef47f2db10e4a",
-  "next_action": "Wait only for genuinely new authorized exact-JNU data; use cloud readiness gate before any Stage8 outcome inspection."
+  "next_action": "Wait only for genuinely new authorized exact-JNU data; use cloud readiness gate before any Stage8 outcome inspection.",
+  "stage8_forward_local_ingest": {
+    "status": "SELFTEST_PASS_NO_SOURCE_CHANGE",
+    "script": "scripts/ingest_jnu_stage8_forward_local.py",
+    "record": "config/jnu_stage8_forward_local_ingest_selftest_v1.json",
+    "download_or_login_automation": false,
+    "next_action": "After a manually/authorized updated 225Labo Micro package exists locally, run check-only then --apply; inspect readiness only."
+  }
 }
