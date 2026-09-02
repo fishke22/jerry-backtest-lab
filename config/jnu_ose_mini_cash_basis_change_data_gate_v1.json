@@ -1,0 +1,48 @@
+{
+  "version": "1.0",
+  "candidate_id": "OSE_MINI_CASH_BASIS_CHANGE_G1",
+  "status": "SOURCE_SIGNAL_ALIGNMENT_DATA_GATE_PASS",
+  "signal_panel_local_only": true,
+  "signal_panel_sha256": "f193024c01f4b5ec8351cd845116f056fc20191ab5bfb3673f1267c37470d349",
+  "signal_panel_size_bytes": 1450977,
+  "fred_csv_sha256": "d6fbeb6d04aa6e651fe529a4ed9edcbcab43826e902e84b9d9844a72845b4dd5",
+  "mini_source_file_count": 15,
+  "mini_source_hashes": {
+    "N225minif_2012.zip": "13db64a872735ff89bd9a015cf6fddf0de9dcf86981d530f7503f8be1f43d1eb",
+    "N225minif_2013.zip": "5d46f1a695e1597f5515ce19d5826289df75f21be5914adfa02bd1c494a359a1",
+    "N225minif_2014.zip": "4815235850049766ca8156f26fc5816a1a1d9dd3333a1b88df939e7399874252",
+    "N225minif_2015.zip": "d1b9bb49009b6718ff2a6867b1176ae1d5dd38bca68ad68b1de935df1a81ebf3",
+    "N225minif_2016.zip": "d8dc20191b8dd3a790feb049d9aa911316444894eca7abf2e73f3cc3fbd80e01",
+    "N225minif_2017.zip": "b34797ee12ca2d0f9e48866ddee9f81b75ce066a515a4cd8dc37dbf54e2ef6fd",
+    "N225minif_2018.zip": "339df2f7d1229e397d34f9c8be19d481e01c86be8edf0415213f1f27a125b2ac",
+    "N225minif_2019.zip": "2de8414c0f854a54e54eb3ef922542c3ef19178d5316176307e4e99cae869e3e",
+    "N225minif_2020.zip": "77ad8d59ebff6aad88b5688701499490f27f817fb77afbebacdbd01baea42b97",
+    "N225minif_2021.zip": "88fae8021f134c4169ad854abe5e64d5837adefe63ff8cf2e03cf3b6f384df97",
+    "N225minif_2022.zip": "cec6b4217abffaf0aaf1af9fe03b250f7865bc5751088936be3ba698d5f3d62b",
+    "N225minif_2023.zip": "6f49c51a794ccd72f7c5f3f07acad8e0604da64184ec5fda14a14a8bb42e9a84",
+    "N225minif_2024.zip": "90ebca46b531c0217a73f37765cbbb1ced4ccf08e530990c1a5575a03ae49a4c",
+    "N225minif_2025.zip": "c43285b95c54c5cc38a96f33c9d6e3c7349bc9d7bd1d55706be935eeb9b214e1",
+    "N225minif_2026.zip": "c302cb0e261d211bd481437d8ee304b028304fe5362ae89e002b2463f96d9303"
+  },
+  "gate": {
+    "formal_sample_start": "2012-01-04",
+    "formal_sample_last_available_signal_date": "2026-08-17",
+    "fred_valid_cash_days_through_2026_08_31": 3586,
+    "mini_cash_reference_days": 3586,
+    "basis_missing_days": 0,
+    "roll_excluded_unique_days": 765,
+    "complete_signal_alignment_records": 2705,
+    "minimum_2500_observations_pass": true,
+    "incomplete_nonroll_records": 0,
+    "duplicate_bar_conflicts": 0,
+    "entry_exit_prices_read": false,
+    "directional_outcomes_read": false,
+    "signal_counts": {
+      "long": 1349,
+      "short": 1356,
+      "flat": 0
+    }
+  },
+  "directional_outcome_inspected": false,
+  "next_action": "Freeze four chronological subperiod boundaries from signal-date records before reading entry/exit price values."
+}

@@ -1,0 +1,16 @@
+{
+  "version": "1.0",
+  "candidate_id": "OSE_MINI_CASH_BASIS_CHANGE_G1",
+  "status": "PRE_OUTCOME_COST_BOUNDARY_CLARIFICATION",
+  "frozen_at": "2026-09-02",
+  "rule": {
+    "contiguous_intervals": "If the next signal interval begins on the immediately following cash trading day, position turnover at the boundary is abs(new_position - old_position). Same-sign continuation has zero boundary cost; reversal has two one-way costs.",
+    "gap_intervals": "If the next signal interval is not contiguous because of roll-risk exclusion or missing eligibility, the prior interval is forced flat at its exit and the next later interval starts from flat.",
+    "first_interval": "Starts from flat.",
+    "final_interval": "Ends flat and pays one exit-side cost.",
+    "primary_one_way_cost": "1 Mini tick = 5 index points.",
+    "stress_one_way_cost": "2 Mini ticks = 10 index points."
+  },
+  "directional_outcome_inspected": false,
+  "no_signal_rule_changed": true
+}
