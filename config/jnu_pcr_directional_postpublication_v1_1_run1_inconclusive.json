@@ -1,0 +1,16 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-02",
+  "candidate_id": "NIKKEI225_OPTIONS_PCR_TSUIJI_88_7_116_5_POSTPUBLICATION_G1_V1_1",
+  "preregistration": "config/jnu_pcr_directional_postpublication_prereg_v1_1.json",
+  "run_id": 33613022329,
+  "head_sha": "1733033c6ab3d8349406a5e89545c19b106bdf8a",
+  "status": "INCONCLUSIVE_SOURCE_TRANSPORT_TIMEOUT",
+  "research_fail": false,
+  "directional_result_produced": false,
+  "strategy_return_records_produced": 0,
+  "failure": "TimeoutError while reading the unbounded FRED NIKKEI225 CSV",
+  "engineering_fix_allowed": "Restrict the same FRED NIKKEI225 series request to the already frozen 2009-07 through 2026-08 sample window and retry transient network reads.",
+  "research_rules_changed": false,
+  "next_action": "Apply transport-only bounded-request recovery and rerun the identical v1.1 preregistration."
+}
