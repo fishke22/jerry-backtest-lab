@@ -1,0 +1,78 @@
+{
+  "version": "1.1",
+  "frozen_at": "2026-09-02",
+  "candidate_id": "NIKKEI225_OPTIONS_PCR_TSUIJI_88_7_116_5_POSTPUBLICATION_G1_V1_1",
+  "parent_preregistration": "config/jnu_pcr_directional_postpublication_prereg_v1.json",
+  "run1_disposition": "config/jnu_pcr_directional_postpublication_v1_run1_inconclusive.json",
+  "status": "DIRECTIONAL_POSTPUBLICATION_PREREGISTERED_PREOUTCOME_SOURCE_TRANSPORT_AMENDMENT",
+  "directional_outcome_inspected_before_freeze": false,
+  "directional_result_produced_before_freeze": false,
+  "amendment_scope": "RETURN_DATA_TRANSPORT_ONLY",
+  "unchanged_rules": {
+    "threshold_lower": 88.7,
+    "threshold_upper": 116.5,
+    "signal_rule": "PCR > 116.5 LONG; PCR < 88.7 SHORT; otherwise FLAT; undefined PCR => FLAT next month.",
+    "signal_month_start": "2009-07",
+    "signal_month_end": "2026-07",
+    "primary_return_timing": "following calendar month first available daily close to last available daily close",
+    "primary_one_way_bps": 10.0,
+    "stress_one_way_bps": 20.0,
+    "bootstrap_block_length_months": 6,
+    "bootstrap_resamples": 10000,
+    "bootstrap_seed": 20260902,
+    "fixed_subperiods": ["2009-08 through 2013-12","2014-01 through 2018-12","2019-01 through 2022-12","2023-01 through 2026-08"],
+    "mechanical_pass_gate": "identical to v1"
+  },
+  "return_proxy": {
+    "series": "NIKKEI225",
+    "description": "Nikkei Stock Average, Nikkei 225, daily close",
+    "economic_source": "Nikkei Industry Research Institute / Nikkei Indexes",
+    "transport": "FRED, Federal Reserve Bank of St. Louis",
+    "csv_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=NIKKEI225",
+    "coverage_verified_preoutcome": "1949-05-16 through 2026-09-01 at amendment freeze",
+    "role": "Literature-aligned Nikkei 225 daily-close proxy. It is not exact OSE Mini/Micro execution validation.",
+    "reason": "The originally preregistered public Nikkei Futures Index CSV lacks 2009-2022 coverage. Run 33612445360 stopped before producing any strategy return record, so this transport amendment is frozen before directional outcomes."
+  },
+  "literature": {
+    "citation": "Tsuji (2009), Are Investment Strategies Exploiting Option Investor Sentiment Profitable? Evidence from Japan",
+    "published_best_rule": "88.7-116.5 (30-70 percentile) strategy",
+    "parameter_tuning_allowed": false
+  },
+  "evaluation_sample": {
+    "signal_month_start": "2009-07",
+    "signal_month_end": "2026-07"
+  },
+  "costs": {
+    "primary_one_way_bps": 10.0,
+    "stress_one_way_bps": 20.0,
+    "turnover_rule": "cost = abs(position_t - position_t_minus_1) * one_way_bps / 10000"
+  },
+  "statistics": {
+    "annualization_factor": 12,
+    "bootstrap": {"method":"moving_block_bootstrap_on_calendar_month_net_returns","block_length_months":6,"resamples":10000,"seed":20260902,"confidence":0.95},
+    "fixed_subperiods": ["2009-08 through 2013-12","2014-01 through 2018-12","2019-01 through 2022-12","2023-01 through 2026-08"],
+    "recent_window": "2023-01 through 2026-08"
+  },
+  "mechanical_pass_gate": {
+    "minimum_active_months": 24,
+    "primary_net_cumulative_return_gt": 0.0,
+    "primary_net_annualized_sharpe_gt": 0.0,
+    "bootstrap_95pct_lower_bound_mean_monthly_net_return_gt": 0.0,
+    "stress_20bps_net_cumulative_return_gt": 0.0,
+    "minimum_positive_fixed_subperiods": 3,
+    "recent_window_net_cumulative_return_gt": 0.0,
+    "all_required": true
+  },
+  "classification": {
+    "pass": "PCR_POSTPUBLICATION_PROXY_REPLICATION_PASS_REQUIRES_TRUE_JNU_CONFIRMATION",
+    "fail": "PCR_POSTPUBLICATION_DIRECTIONAL_RULE_FAIL",
+    "inconclusive": "PCR_POSTPUBLICATION_DIRECTIONAL_RULE_INCONCLUSIVE_DATA_OR_IMPLEMENTATION"
+  },
+  "promotion_limit": "PASS is not VALIDATED_JNU_MODULE; true OSE Mini/Micro or independent second-engine confirmation remains mandatory.",
+  "forbidden": [
+    "Change 88.7 or 116.5 after observing outcomes.",
+    "Change sample, costs, bootstrap, subperiods, or PASS gates.",
+    "Try alternate Tsuji thresholds to rescue failure.",
+    "Call proxy PASS exact-JNU validation."
+  ]
+}
