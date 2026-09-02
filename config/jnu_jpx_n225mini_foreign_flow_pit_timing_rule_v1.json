@@ -1,0 +1,23 @@
+{
+  "version":"1.0",
+  "candidate_id":"JPX_N225MINI_FOREIGN_FLOW_SIGN_G1",
+  "status":"PIT_TIMING_RULE_AMENDMENT_FROZEN_BEFORE_RETURN_MERGE",
+  "frozen_at":"2026-09-02",
+  "reason":"JPX official guide states weekly publication is usually 15:30 JST on the fourth business day and explicitly warns year-end/New Year and Golden Week can be irregular.",
+  "holiday_source":"Japan Cabinet Office syukujitsu.csv, 1955-2027",
+  "holiday_source_sha256":"cec37a743c96995cdb9cb52b685c9003634682a9b0e1a640a6b9b96881fe964a",
+  "jpx_regular_business_day_definition":[
+    "Monday-Friday",
+    "exclude Cabinet Office national holidays/observed holidays",
+    "exclude JPX fixed market holidays Jan 2, Jan 3, Dec 31"
+  ],
+  "standard_publication_date_rule":"Fourth JPX regular business day in the calendar week immediately following the covered week.",
+  "publication_time_jst":"15:30",
+  "earliest_signal_use":"Next JPX regular trading day after publication date; no same-day execution.",
+  "irregular_week_rule":"If the immediately following calendar week contains fewer than four JPX regular business days, classify PIT_TIMING_IRREGULAR and exclude the observation from the directional return panel.",
+  "no_imputation":true,
+  "no_archive_timestamp_substitution":true,
+  "http_last_modified_rule":"May be used only as an audit cross-check for recent files; never as historical publication truth because archived files can be rewritten later.",
+  "maximum_irregular_exclusion_fraction":0.05,
+  "directional_returns_forbidden_until_gate_pass":true
+}
