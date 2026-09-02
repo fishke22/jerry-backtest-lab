@@ -169,3 +169,11 @@
 - Future JNU/Osaka Nikkei analyses must use its nine-layer regime/event/cross-market/price-discovery/path/positioning/SQ/evidence-fusion/decision-output structure.
 - HAR-RSV and BOJ remain role-constrained TRUE_JNU_CONFIRMED / FORWARD_VALIDATION_PENDING modules; no validated directional edge exists yet.
 - Rejected PCR/MACD/USDJPY/overnight/simple US-to-JNU families remain prohibited as directional signals.
+
+## JPX Nikkei 225 mini foreign-flow sign family terminal result (2026-09-02)
+- Source/PIT Data Gate PASS: 554/554 parsed, 528 standard PIT weeks, 26 irregular weeks excluded under preregistered fail-closed rule.
+- Phase1 observations: 527; long 239 / short 288 / flat 0.
+- 10bps cumulative -71.7288%; 20bps cumulative -83.8472%; annualized Sharpe -0.48798.
+- Moving-block bootstrap 95% lower mean weekly net -0.41472%; positive subperiods 0/4; recent 104 weeks -30.1084%.
+- Independent arithmetic audit 3162/3162 row checks PASS; all aggregate checks reproduce exactly.
+- Governance: TERMINAL_FAIL_NO_RESCUE. Do not test the opposite sign as a rescue of this family.

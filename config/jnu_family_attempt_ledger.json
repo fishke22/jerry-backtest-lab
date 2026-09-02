@@ -422,6 +422,16 @@
       "positive_fixed_subperiods": 1,
       "recent_window_net_cumulative_return": 0.9489856936211525,
       "reopen_rule": "No threshold/sample/cost/sign/subperiod rescue. Reopen only for substantively new independent evidence/family."
+    },
+    {
+      "id": "JPX_N225MINI_FOREIGN_FLOW_SIGN_G1",
+      "status": "TERMINAL_FAIL_NO_RESCUE",
+      "mechanism": "JPX/OSE weekly Nikkei 225 mini foreign-investor net trading-value sign, used only after publication",
+      "multiplicity": "ONE_SIGN_ONLY_CAPITAL_FLOW_FAMILY",
+      "preregistration": "config/jnu_jpx_n225mini_foreign_flow_sign_g1_prereg_min.json",
+      "data_gate": "config/jnu_jpx_n225mini_foreign_flow_data_gate_pass_v1.json",
+      "terminal_result": "config/jnu_jpx_n225mini_foreign_flow_terminal_fail_v1.json",
+      "reopen_rule": "No sign flip, magnitude threshold, horizon change or regime-filter rescue. Reopen only with a substantively different independent mechanism/hypothesis."
     }
   ],
   "conservative_rule": "Unknown legacy multiplicity is treated against promotion, not ignored.",

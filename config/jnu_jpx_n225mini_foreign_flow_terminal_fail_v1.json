@@ -1,0 +1,63 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-02",
+  "candidate_id": "JPX_N225MINI_FOREIGN_FLOW_SIGN_G1",
+  "status": "TERMINAL_FAIL_NO_RESCUE",
+  "research_fail": true,
+  "validated_jnu_module": false,
+  "validated_directional_edge": false,
+  "source_pit_data_gate": "PASS",
+  "source_weeks": 554,
+  "pit_standard_eligible_weeks": 528,
+  "phase1_complete_observations": 527,
+  "position_counts": {
+    "long": 239,
+    "short": 288,
+    "flat": 0
+  },
+  "metrics": {
+    "net_cumulative_10bps": -0.7172875533712538,
+    "net_cumulative_20bps": -0.83847200277975,
+    "mean_weekly_net_10bps": -0.0019710987614639827,
+    "annualized_sharpe_10bps": -0.48798047721694426,
+    "bootstrap_95_lower_mean_weekly_net": -0.004147207838241257,
+    "bootstrap_prob_mean_positive": 0.0336,
+    "positive_subperiods": 0,
+    "recent_104_net_cumulative_10bps": -0.3010836180688854
+  },
+  "subperiod_net_cumulative_10bps": [
+    -0.1666612231510416,
+    -0.1736854051307597,
+    -0.3800832592304022,
+    -0.337715562487268
+  ],
+  "checks": {
+    "minimum_300_weeks": true,
+    "net_cumulative_10bps_positive": false,
+    "annualized_sharpe_positive": false,
+    "stress_20bps_cumulative_positive": false,
+    "bootstrap_95_lower_mean_positive": false,
+    "at_least_3_of_4_subperiods_positive": false
+  },
+  "parser_mapping_audit": {
+    "status": "PASS",
+    "sample_2017_10_10_to_2017_10_13": "Exact match to official JPX PDF Nikkei 225 mini / Foreigners sales, purchases and balance",
+    "sample_2025_12_08_to_2025_12_12": "Exact match to official JPX PDF Nikkei 225 mini / Foreigners sales, purchases and balance"
+  },
+  "independent_arithmetic_audit": {
+    "status": "PASS",
+    "row_checks_total": 3162,
+    "row_checks_pass": 3162,
+    "aggregate_checks_all_pass": true
+  },
+  "result_sha256": "738bee594fb8731f79ba8c8bb2b5fa873c36c0324d4655396a6a498ce4f736e4",
+  "runner_commit": "53cb6ab4f54ef99cd87bdb8fd7f555e6430d8f92",
+  "alignment_commit": "ef9b7d46587580a0741ab5f09d59ef546a9515cc",
+  "data_gate_commit": "b4a5ba35845cf529f1a23b68a22011d417ab716c",
+  "retest_prohibited": true,
+  "sign_flip_rescue_prohibited": true,
+  "threshold_rescue_prohibited": true,
+  "horizon_rescue_prohibited": true,
+  "interpretation": "The preregistered positive-flow-following rule fails strongly and consistently across all four chronological subperiods. The opposite sign is not tested because that would be a post-outcome rescue of the same family.",
+  "next_action": "Move to a substantively independent directional mechanism; do not reopen this family by sign flip, magnitude threshold, horizon change or regime filters."
+}

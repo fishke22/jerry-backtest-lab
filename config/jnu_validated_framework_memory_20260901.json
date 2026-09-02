@@ -218,5 +218,11 @@
   },
   "authoritative_operational_framework": "config/jnu_operational_framework_current_v1.json",
   "operational_framework_status": "AUTHORITATIVE_JNU_OPERATIONAL_FRAMEWORK",
-  "operational_framework_usage": "Use for all future Osaka Nikkei/JNU analysis unless explicitly superseded by a later committed framework."
+  "operational_framework_usage": "Use for all future Osaka Nikkei/JNU analysis unless explicitly superseded by a later committed framework.",
+  "jpx_n225mini_foreign_flow_sign_g1": {
+    "status": "TERMINAL_FAIL_NO_RESCUE",
+    "terminal_result": "config/jnu_jpx_n225mini_foreign_flow_terminal_fail_v1.json",
+    "validated_directional_edge": false,
+    "next_action": "Do not flip sign or retune. Select a substantively independent directional mechanism."
+  }
 }
