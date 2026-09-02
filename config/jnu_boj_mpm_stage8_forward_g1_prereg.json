@@ -1,0 +1,74 @@
+{
+  "version": "1.0",
+  "candidate_id": "BOJ_MPM_JNU_MICRO_STAGE8_FORWARD_G1",
+  "parent_family": "BOJ_MPM_TRUE_OSE_EVENT_VOLATILITY_G1",
+  "frozen_at": "2026-09-02",
+  "status": "PREREGISTERED_BEFORE_FORWARD_EVENT_OUTCOME",
+  "role": "EVENT_RISK_STATE_ONLY_NOT_DIRECTIONAL_ALPHA",
+  "requires": {
+    "stage_a": {
+      "status": "TRUE_OSE_MINI_BOJ_EVENT_VOL_STAGE_A_PASS",
+      "run_id": 33396821958
+    },
+    "stage_b": {
+      "status": "TRUE_JNU_MICRO_BOJ_EVENT_VOL_STAGE_B_PASS",
+      "run_id": 33499625359,
+      "usable_events": 25
+    },
+    "promotion_stage_completed": 3
+  },
+  "source": {
+    "venue": "OSE",
+    "product": "Nikkei 225 Micro Futures (JNU)",
+    "event_source": "Bank of Japan official policy-decision releases",
+    "price_source": "225Labo source-provided 1-minute JNU Micro data, locally transformed to non-reconstructive per-event aggregates",
+    "raw_storage": "LOCAL_ONLY_PERSONAL_USE",
+    "durable_input": "cloud_data/derived/jnu_boj_mpm_micro_event_volatility_g1.csv",
+    "pre_holdout_cutoff": "2026-07-31",
+    "eligible_holdout": "First official BOJ MPM decision events strictly after cutoff whose frozen baseline/event windows are fully inside the same eligible OSE day-session segment."
+  },
+  "holdout": {
+    "event_count": 8,
+    "rationale": "One fixed forward batch of eight eligible policy-decision events; count frozen before any post-cutoff event-price outcome inspection.",
+    "partial_outcome_policy": "PROHIBITED",
+    "pending_behavior": "If fewer than 8 eligible post-cutoff events exist, report only event count, dates/provenance availability and data-integrity status. Do not compute or reveal effect mean, median, bootstrap probability or event-level effects.",
+    "leakage_rule": "No event on or before 2026-07-31 may enter Stage8."
+  },
+  "frozen_measurement": {
+    "baseline_window": "[release-40m, release-10m)",
+    "event_window": "[release-10m, release+20m)",
+    "bar_frequency": "1 minute",
+    "returns_per_window": 30,
+    "primary_effect": "log((RV_event + 1e-18)/(RV_baseline + 1e-18))",
+    "transform": "Identical to Stage A/B; no window or measurement change."
+  },
+  "evaluation": {
+    "bootstrap": {
+      "unit": "event",
+      "samples": 5000,
+      "seed": 42
+    },
+    "pass_all": [
+      "Exactly 8 preregistered forward eligible events are evaluated",
+      "Mean primary effect > 0",
+      "Median primary effect > 0",
+      "Bootstrap P(mean primary effect > 0) >= 0.95",
+      "Zero unresolved critical data-quality issues"
+    ]
+  },
+  "interpretation": {
+    "pass": "STAGE8_FORWARD_EVENT_HOLDOUT_PASS; proceed to Stage9 role-consistent validation review for event/risk-state use only.",
+    "fail": "STAGE8_FORWARD_EVENT_HOLDOUT_FAIL_CURRENT_SPEC; BOJ parent event-state remains non-validated and cannot be rescued by changing windows/event subsets.",
+    "pending": "STAGE8_FORWARD_EVENT_HOLDOUT_PENDING_INSUFFICIENT_NEW_EVENTS"
+  },
+  "forbidden": [
+    "Inspect partial post-cutoff event-effect performance before 8 events",
+    "Change [-40,-10) baseline or [-10,+20) event window",
+    "Select only hikes, cuts, surprises, or favorable event types after outcomes",
+    "Change 1-minute measurement",
+    "Change bootstrap samples, seed or 0.95 threshold",
+    "Use directional returns as Stage8 evidence",
+    "Use Stage8 event-state PASS as directional alpha"
+  ],
+  "next_action": "Implement fail-closed Stage8 runner/selftest. Until 8 new eligible events exist, no event-effect metrics may be calculated or emitted."
+}
