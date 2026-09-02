@@ -1,0 +1,34 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-02",
+  "status": "STAGE8_READINESS_CLOUD_VALIDATION_PASS",
+  "workflow": ".github/workflows/jnu-stage8-readiness-v1.yml",
+  "script": "scripts/check_jnu_stage8_readiness_v1.py",
+  "head_sha": "fa08c104865f2db6f167cd4a2afab3fbb3295589",
+  "push_run": {
+    "run_id": 33626204221,
+    "conclusion": "success",
+    "artifact_id": 9844872997,
+    "artifact_digest": "sha256:1a24193a7f51cb5b8817392f07c524f6a1c9e9b222f9e332de6be23df63a9c00",
+    "artifact_name": "jnu-stage8-readiness-33626204221"
+  },
+  "manual_run": {
+    "run_id": 33626221824,
+    "conclusion": "success",
+    "artifact_id": 9844882077,
+    "artifact_digest": "sha256:af00babad0579dae2190ee0e94d83c3ec279ba7f8d0101661aacf2ffc2453bd8",
+    "artifact_name": "jnu-stage8-readiness-33626221824"
+  },
+  "semantic_result": {
+    "overall": "STAGE8_DATA_ACCUMULATION_PENDING",
+    "HAR_RSV_available_new_days": 0,
+    "HAR_RSV_required_new_days": 126,
+    "BOJ_MPM_available_new_events": 0,
+    "BOJ_MPM_required_new_events": 8,
+    "performance_metrics_computed": false,
+    "HAR_performance_columns_read": false,
+    "BOJ_event_effect_columns_read": false
+  },
+  "validation": "Local and two independent cloud triggers agree semantically. Readiness gate is cloud/mobile-usable and cannot reveal partial Stage8 performance.",
+  "next_action": "After derived panels/manifests are updated with genuinely new authorized data, this workflow may be rerun to determine readiness only. Stage8 outcome runner remains separately gated."
+}

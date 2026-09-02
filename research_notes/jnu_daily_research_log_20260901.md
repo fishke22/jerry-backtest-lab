@@ -143,3 +143,9 @@
 - Selftest: HAR-RSV and BOJ event-state are both STAGE9_BLOCKED_STAGE8_PENDING.
 - Validated JNU modules remain 0; validated directional modules remain 0; direction engine remains NO_VALIDATED_DIRECTIONAL_EDGE.
 - PCR fixed-threshold terminal failure added to the permanent family attempt ledger; no rescue/reopen by parameter tuning.
+
+## Stage8 cloud readiness gate validation (2026-09-02)
+- Readiness-only workflow added at .github/workflows/jnu-stage8-readiness-v1.yml.
+- Push run 33626204221 PASS; artifact 9844872997.
+- Manual run 33626221824 PASS; artifact 9844882077.
+- Both cloud runs match local semantics: HAR 0/126, BOJ 0/8, performance/effect columns not read and metrics not computed.

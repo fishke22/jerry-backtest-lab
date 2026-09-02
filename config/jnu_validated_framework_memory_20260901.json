@@ -196,5 +196,13 @@
     "validated_jnu_modules": 0,
     "validated_directional_modules": 0,
     "decision_engine_direction": "NO_VALIDATED_DIRECTIONAL_EDGE"
+  },
+  "stage8_readiness_cloud_validation": {
+    "status": "PASS",
+    "record": "config/jnu_stage8_readiness_cloud_validation_v1.json",
+    "workflow": ".github/workflows/jnu-stage8-readiness-v1.yml",
+    "push_run_id": 33626204221,
+    "manual_run_id": 33626221824,
+    "next_action": "Use cloud readiness gate after new derived data arrives; do not run Stage8 outcome before READY."
   }
 }
