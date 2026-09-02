@@ -1,0 +1,34 @@
+{
+  "version": "1.0",
+  "status": "STAGE8_DATA_ACCUMULATION_PENDING",
+  "HAR_RSV": {
+    "candidate_id": "HAR_RSV_JNU_MICRO_STAGE8_FORWARD_G1",
+    "status": "PENDING_NEW_DATA",
+    "pre_holdout_cutoff": "2026-08-31",
+    "required_new_days": 126,
+    "available_new_days": 0,
+    "remaining_new_days": 126,
+    "first_new_date": null,
+    "last_new_date": null,
+    "panel_sha256": "adbd6307d8e2327d9c851f2d17f7d21957609b6f68bf323867a54e7b1b150bcd",
+    "manifest_sha256": "a560f66d3c9ad256c56bf33feed818d6a23e623b7b24139366163c4917bbb5ea",
+    "performance_metrics_computed": false,
+    "performance_columns_read": false
+  },
+  "BOJ_MPM": {
+    "candidate_id": "BOJ_MPM_JNU_MICRO_STAGE8_FORWARD_G1",
+    "status": "PENDING_NEW_EVENTS",
+    "pre_holdout_cutoff": "2026-07-31",
+    "required_new_events": 8,
+    "available_new_events": 0,
+    "remaining_new_events": 8,
+    "first_new_event": null,
+    "last_new_event": null,
+    "panel_sha256": "3db105e1294031beef9ffabecf5288ccdaf8cb5e0e393e27b406102b5e58b43a",
+    "manifest_sha256": "5e4ac3a41af7b6a99ab56333ea6132324632c15baca4fa1706b674ce8d9a2069",
+    "performance_metrics_computed": false,
+    "event_effect_columns_read": false
+  },
+  "performance_metrics_computed": false,
+  "generated_at_utc": "2026-09-02T11:44:07.936971+00:00"
+}

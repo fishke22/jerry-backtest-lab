@@ -1,0 +1,40 @@
+name: JNU Stage8 Readiness Gate
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "cloud_data/derived/jnu_225labo_micro_daily_rvrsv_v1.csv"
+      - "cloud_data/manifests/jnu_225labo_micro_daily_rvrsv_v1_manifest.json"
+      - "cloud_data/derived/jnu_boj_mpm_micro_event_volatility_g1.csv"
+      - "cloud_data/manifests/jnu_boj_mpm_micro_event_volatility_g1_manifest.json"
+      - "config/jnu_har_rsv_jnu_micro_stage8_forward_g1_prereg.json"
+      - "config/jnu_boj_mpm_stage8_forward_g1_prereg.json"
+      - "scripts/check_jnu_stage8_readiness_v1.py"
+
+permissions:
+  contents: read
+
+jobs:
+  readiness:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run readiness-only gate
+        run: python scripts/check_jnu_stage8_readiness_v1.py
+      - name: Publish job summary
+        run: cat stage8_readiness/jnu_stage8_readiness_v1.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Upload readiness artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: jnu-stage8-readiness-${{ github.run_id }}
+          path: |
+            stage8_readiness/jnu_stage8_readiness_v1.json
+            stage8_readiness/jnu_stage8_readiness_v1.md
+          if-no-files-found: error
+          retention-days: 30
