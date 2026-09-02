@@ -1,0 +1,21 @@
+{
+  "version":"1.0",
+  "candidate_id":"JPX_N225MINI_FOREIGN_FLOW_SIGN_G1",
+  "status":"SOURCE_PIT_DATA_GATE_PREREGISTERED_BEFORE_RETURN_MERGE",
+  "sample_start":"2016-01-01",
+  "sample_end":"latest_public_week_before_return_merge",
+  "source_pages":"JPX derivatives weekly Trading by Type of Investors public archives",
+  "minimum_weekly_reports":500,
+  "minimum_source_file_availability_fraction":0.95,
+  "minimum_parse_success_fraction":0.95,
+  "required_product":"Nikkei 225 mini",
+  "required_investor_category":"Foreigners",
+  "required_primary_field":"Trading Value Balance",
+  "publication_rule":"Fourth JPX business day of the following week; approximately 15:30 JST",
+  "execution_lag":"No earlier than next JPX trading day after publication",
+  "parser_source_errors_allowed":0,
+  "directional_returns_forbidden_during_gate":true,
+  "threshold_or_horizon_changes_forbidden":true,
+  "pass_status":"JPX_FOREIGN_FLOW_SOURCE_PIT_DATA_GATE_PASS",
+  "fail_status":"JPX_FOREIGN_FLOW_SOURCE_PIT_DATA_GATE_FAIL_OR_INCONCLUSIVE"
+}
