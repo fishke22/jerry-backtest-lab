@@ -1,0 +1,47 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-02",
+  "memory_scope": "CROSS_SESSION_MANDATORY",
+  "subject": "JNU Operational Framework",
+  "authoritative_framework": "config/jnu_operational_framework_current_v1.json",
+  "usage_rule": "For every future JNU / Osaka Nikkei / Osaka Micro Nikkei analysis in any session, apply this framework by default unless a later committed authoritative framework explicitly supersedes it.",
+  "mandatory_layers": [
+    "Market Regime",
+    "Event Risk State",
+    "Cross-Market Information",
+    "Dynamic Price Discovery",
+    "Intraday Price Path / Rejection",
+    "Positioning / Derivatives",
+    "Dynamic SQ Bias",
+    "Evidence Fusion",
+    "Decision Output"
+  ],
+  "validated_role_constrained_modules": {
+    "HAR_RSV": "TRUE_JNU_CONFIRMED_FORWARD_VALIDATION_PENDING; volatility/risk-state only",
+    "BOJ_MPM_EVENT_VOLATILITY": "TRUE_JNU_CONFIRMED_FORWARD_VALIDATION_PENDING; event/risk-state only"
+  },
+  "directional_governance": {
+    "current_status": "NO_VALIDATED_DIRECTIONAL_EDGE",
+    "rule": "Do not represent any unvalidated or terminal-failed family as proven directional alpha.",
+    "terminal_or_rejected_families_remain_prohibited": [
+      "PCR 88.7/116.5",
+      "MACD 4/22/3 post-publication",
+      "prior-night USDJPY sign",
+      "simple US-to-JNU intraday path",
+      "overnight overreaction",
+      "legacy rejected trend/breakout/drawdown-repair/relative-strength families"
+    ]
+  },
+  "output_contract": [
+    "directional bias",
+    "confidence level",
+    "expected price path",
+    "key levels",
+    "invalidation conditions",
+    "event risk",
+    "conditions that flip the bias",
+    "evidence quality and counter-evidence"
+  ],
+  "parallel_research_rule": "Operational use is allowed now while higher-level forward validation continues. Continue independent preregistered historical OOS/walk-forward/overfit-controlled directional research without waiting for future Stage8 data.",
+  "supersession_rule": "Only a later committed authoritative framework file may supersede this memory. Do not silently simplify back to generic technical/fundamental analysis."
+}
