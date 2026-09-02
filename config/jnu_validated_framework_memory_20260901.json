@@ -155,5 +155,12 @@
     "directional_prereg": "config/jnu_pcr_directional_postpublication_prereg_v1.json",
     "directional_prereg_transport_amendment": "config/jnu_pcr_directional_postpublication_prereg_v1_1.json",
     "terminal_result": "config/jnu_pcr_directional_postpublication_terminal_fail_v1.json"
+  },
+  "news_state_language_source_g1": {
+    "status": "DATA_INCONCLUSIVE_TERMINAL_ACQUISITION_BUDGET_EXHAUSTED",
+    "statistical_evaluation_performed": false,
+    "directional_trading_status": "PROHIBITED_G1",
+    "terminal_record": "config/jnu_news_state_language_source_g1_terminal_inconclusive.json",
+    "next_action": "Do not retry GDELT G1. Select another independent candidate with executable data."
   }
 }

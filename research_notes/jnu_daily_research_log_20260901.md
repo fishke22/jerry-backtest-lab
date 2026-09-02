@@ -119,3 +119,9 @@
 - Fixed subperiods positive: 1/4; recent 2023-01..2026-08 cumulative +94.8986% does not override failed robustness gates.
 - Independent arithmetic audit: 1025/1025 row checks pass; primary/stress/Sharpe/bootstrap/subperiod outputs reproduce exactly.
 - Governance disposition: TERMINAL_FAIL_NO_RESCUE. No threshold retuning, sample rescue, or reopening of this PCR family.
+
+## News Language/Source G1 terminal data disposition sync (2026-09-02)
+- Research branch research/news-language-source-g1 terminal HEAD: 87b04d491185cdce5b0901ba444298b94e671580.
+- Final disposition: DATA_INCONCLUSIVE; logical attempts used 3/3; 311 required cache windows still missing.
+- Statistical evaluation was not performed; directional trading remained prohibited by preregistration.
+- No fourth acquisition attempt is allowed. This family is closed as data-inconclusive, not research FAIL.

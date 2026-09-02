@@ -1,0 +1,25 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-02",
+  "candidate_id": "NEWS_STATE_LANGUAGE_SOURCE_G1",
+  "status": "DATA_INCONCLUSIVE_TERMINAL_ACQUISITION_BUDGET_EXHAUSTED",
+  "research_fail": false,
+  "statistical_evaluation_performed": false,
+  "directional_trading_status": "PROHIBITED_G1",
+  "source_branch": "research/news-language-source-g1",
+  "terminal_branch_head": "87b04d491185cdce5b0901ba444298b94e671580",
+  "source_result_path": "news_language_g1_results/jnu_news_language_source_g1_v1.json",
+  "source_result_blob_sha": "32f5632e18511fc88ff2310893935aa99a2e4b50",
+  "source_report_blob_sha": "337365573221319bd55f1b2a0ea9c93fc9dd37ee",
+  "logical_attempts_used": 3,
+  "missing_cache_windows": 311,
+  "reason": "FINAL_ACQUISITION_BUDGET_EXHAUSTED_INCOMPLETE_FOUR_CELL_PANEL",
+  "governance": {
+    "query_or_threshold_changes": false,
+    "cell_dropping": false,
+    "posthoc_merge": false,
+    "fourth_acquisition_attempt_allowed": false
+  },
+  "interpretation": "No statistical PASS/FAIL is permitted because the preregistered complete four-cell source panel was not acquired. This family is closed as data-inconclusive, not as evidence for or against a volatility-state effect.",
+  "next_action": "Do not trigger a fourth GDELT acquisition attempt. Move to another independent candidate with an executable data path."
+}
