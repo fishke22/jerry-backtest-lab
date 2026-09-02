@@ -1,0 +1,90 @@
+{
+  "version": "1.0",
+  "frozen_at": "2026-09-02",
+  "candidate_id": "NIKKEI225_OPTIONS_PCR_TSUIJI_88_7_116_5_POSTPUBLICATION_G1",
+  "parent_information_candidate": "NIKKEI225_OPTIONS_PCR_SENTIMENT_POSTPUBLICATION_G1",
+  "status": "DIRECTIONAL_POSTPUBLICATION_PREREGISTERED_PREOUTCOME",
+  "directional_outcome_inspected_before_freeze": false,
+  "authoritative_data_gate_pass": "config/jnu_pcr_full_information_data_gate_pass_v1.json",
+  "literature": {
+    "citation": "Tsuji (2009), Are Investment Strategies Exploiting Option Investor Sentiment Profitable? Evidence from Japan",
+    "doi": "10.5539/ijbm.v4n5p92",
+    "publication_date": "2009-04-19",
+    "original_sample": "1990-01 through 2005-02",
+    "published_best_rule": "88.7-116.5 (30-70 percentile) strategy",
+    "selection_risk": "The paper compared multiple thresholds. This replication freezes the paper-reported best rule and forbids re-selection on post-publication data."
+  },
+  "signal": {
+    "frequency": "MONTHLY",
+    "pcr_source": "authoritative frozen full information panel from run 33611084116",
+    "threshold_lower": 88.7,
+    "threshold_upper": 116.5,
+    "long_rule": "monthly_pcr > 116.5",
+    "short_rule": "monthly_pcr < 88.7",
+    "flat_rule": "88.7 <= monthly_pcr <= 116.5",
+    "undefined_month_rule": "FLAT for the following month; do not carry the prior position and do not rescue the PCR definition.",
+    "parameter_tuning_allowed": false
+  },
+  "evaluation_sample": {
+    "signal_month_start": "2009-07",
+    "signal_month_end": "2026-07",
+    "reason_start": "First usable post-publication PCR month after the known 2009-05 and 2009-06 archive gaps.",
+    "reason_end": "2026-07 is the final signal month with a fully observable following calendar month as of preregistration on 2026-09-02.",
+    "future_extension_rule": "Any later extension must be a separately versioned locked forward test; it may not alter this v1 result."
+  },
+  "return_proxy": {
+    "primary_source": "Nikkei official Nikkei 225 Futures Index daily series",
+    "source_url": "https://indexes.nikkei.co.jp/nkave/historical/nikkei_225_futures_index_series_daily_en.csv",
+    "role": "Phase-1 daily directional proxy only; not exact JNU micro execution validation.",
+    "primary_return": "For signal month t, position is applied to the following calendar month t+1. Return is first available official Futures Index level in t+1 to last available official Futures Index level in t+1.",
+    "lookahead_control": "The month-t PCR is same-day-EOD information. No month-t close return is credited to the signal.",
+    "secondary_literature_aligned_diagnostic": "Last official level of t to last official level of t+1; diagnostic only and forbidden from determining PASS."
+  },
+  "costs": {
+    "primary_one_way_bps": 10.0,
+    "stress_one_way_bps": 20.0,
+    "turnover_rule": "cost = abs(position_t - position_t_minus_1) * one_way_bps / 10000; a -1 to +1 reversal costs two one-way units.",
+    "cost_selection_after_outcome_allowed": false
+  },
+  "statistics": {
+    "annualization_factor": 12,
+    "bootstrap": {
+      "method": "moving_block_bootstrap_on_calendar_month_net_returns",
+      "block_length_months": 6,
+      "resamples": 10000,
+      "seed": 20260902,
+      "confidence": 0.95
+    },
+    "fixed_subperiods": [
+      "2009-08 through 2013-12",
+      "2014-01 through 2018-12",
+      "2019-01 through 2022-12",
+      "2023-01 through 2026-08"
+    ],
+    "recent_window": "2023-01 through 2026-08"
+  },
+  "mechanical_pass_gate": {
+    "minimum_active_months": 24,
+    "primary_net_cumulative_return_gt": 0.0,
+    "primary_net_annualized_sharpe_gt": 0.0,
+    "bootstrap_95pct_lower_bound_mean_monthly_net_return_gt": 0.0,
+    "stress_20bps_net_cumulative_return_gt": 0.0,
+    "minimum_positive_fixed_subperiods": 3,
+    "recent_window_net_cumulative_return_gt": 0.0,
+    "all_required": true
+  },
+  "classification": {
+    "pass": "PCR_POSTPUBLICATION_PROXY_REPLICATION_PASS_REQUIRES_TRUE_JNU_CONFIRMATION",
+    "fail": "PCR_POSTPUBLICATION_DIRECTIONAL_RULE_FAIL",
+    "inconclusive": "PCR_POSTPUBLICATION_DIRECTIONAL_RULE_INCONCLUSIVE_DATA_OR_IMPLEMENTATION"
+  },
+  "promotion_limit": "Even PASS is not VALIDATED_JNU_MODULE. Promotion requires independent review, regime/cost robustness already reported here, and true OSE mini/micro or second-engine confirmation under existing validation policy.",
+  "forbidden": [
+    "Change 88.7 or 116.5 after observing post-publication returns.",
+    "Try other Tsuji percentile thresholds to rescue a failed primary rule.",
+    "Use the secondary same-month-close diagnostic to determine PASS.",
+    "Carry positions through undefined PCR months.",
+    "Change costs, sample boundaries, bootstrap seed/block length, subperiods, or PASS thresholds after observing outcomes.",
+    "Call a proxy PASS a validated exact-JNU module."
+  ]
+}
