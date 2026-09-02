@@ -1,0 +1,74 @@
+{
+  "version": "1.0",
+  "candidate_id": "JPX_CASH_FOREIGN_FLOW_TOKYO_NAGOYA_SIGN_G1",
+  "frozen_at": "2026-09-02",
+  "status": "PREREGISTERED_BEFORE_OUTCOME",
+  "broad_family": "FOREIGN_INVESTOR_CAPITAL_FLOW",
+  "related_family_test_index": 2,
+  "maximum_related_flow_tests": 2,
+  "mechanism": "JPX weekly cash-equity foreign investor net trading value in the common Tokyo & Nagoya aggregate sheet; sibling but distinct from OSE Nikkei 225 mini futures trading flow.",
+  "literature_basis": [
+    "Kamesaka, Nofsinger & Kawakita (2003): foreign investors in Japan showed favorable market timing in weekly aggregate trading.",
+    "Bae, Yamada & Ito: foreign investors generated gains from good market timing in Japan.",
+    "Iwatsubo & Watkins (2021): foreign investors have information advantages in Tokyo price formation."
+  ],
+  "source": {
+    "publisher": "Japan Exchange Group / Tokyo Stock Exchange",
+    "dataset": "Trading by Type of Investors - Equities - Weekly - Value",
+    "sheet": "Tokyo & Nagoya",
+    "investor": "Foreigners",
+    "signal_field": "current-week purchases minus current-week sales",
+    "public_archive_only": true,
+    "paid_data_prohibited": true
+  },
+  "signal": {
+    "positive": "LONG",
+    "negative": "SHORT",
+    "zero": "FLAT",
+    "magnitude_threshold_search": false,
+    "scaling": false
+  },
+  "pit": {
+    "publication_rule": "Approximately 15:30 JST on the fourth JPX business day of the following week",
+    "irregular_week_rule": "Same fail-closed rule as foreign-flow PIT v1: if following week has fewer than four regular business days, exclude",
+    "earliest_use": "Next regular Nikkei trading day after publication",
+    "same_day_use": false
+  },
+  "return_window": {
+    "entry": "first Nikkei close on or after earliest-use date",
+    "exit": "close exactly five trading sessions after entry",
+    "holding_intervals": 5
+  },
+  "costs_bps": {
+    "primary": 10,
+    "stress": 20
+  },
+  "validation": {
+    "minimum_observations": 300,
+    "all_required": [
+      "10bps net cumulative > 0",
+      "annualized Sharpe > 0",
+      "20bps stress cumulative > 0",
+      "standard 2.5th-percentile moving-block bootstrap lower mean > 0",
+      "Bonferroni-adjusted 1.25th-percentile moving-block bootstrap lower mean > 0",
+      "at least 3 of 4 frozen chronological subperiods positive"
+    ],
+    "bootstrap": {
+      "block_weeks": 5,
+      "samples": 5000,
+      "seed": 42
+    },
+    "related_family_bonferroni_alpha": 0.025,
+    "recent_window": 104
+  },
+  "forbidden": [
+    "Reverse sign after outcome",
+    "Use Prime-only/TSE1st-only variant after outcome",
+    "Tune flow magnitude threshold",
+    "Change holding horizon",
+    "Add filters to rescue failure",
+    "Open a third foreign-flow sibling family after this test"
+  ],
+  "directional_outcome_inspected": false,
+  "next_action": "Build and pass source/PIT Data Gate before any return merge."
+}
