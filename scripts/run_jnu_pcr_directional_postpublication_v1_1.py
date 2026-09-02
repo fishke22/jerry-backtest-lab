@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import argparse
 import csv
@@ -14,7 +14,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_PREREG = ROOT / "config" / "jnu_pcr_directional_postpublication_prereg_v1_1.json"
-FRED_NIKKEI225_CSV = "https://fred.stlouisfed.org/graph/fredgraph.csv?id=NIKKEI225"
+FRED_NIKKEI225_CSV = "https://fred.stlouisfed.org/graph/fredgraph.csv?id=NIKKEI225&cosd=2009-07-01&coed=2026-08-31"
 
 
 def load_json(path: Path) -> dict:
@@ -270,3 +270,4 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+
