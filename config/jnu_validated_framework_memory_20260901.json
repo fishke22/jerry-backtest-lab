@@ -162,5 +162,11 @@
     "directional_trading_status": "PROHIBITED_G1",
     "terminal_record": "config/jnu_news_state_language_source_g1_terminal_inconclusive.json",
     "next_action": "Do not retry GDELT G1. Select another independent candidate with executable data."
-  }
+  },
+  "framework_completion_gap": "config/jnu_framework_completion_gap_20260902.json",
+  "framework_status": "FRAMEWORK_INCOMPLETE_TWO_STAGE8_FINALISTS_PENDING",
+  "major_candidates_terminal": 6,
+  "major_candidates_pending": 2,
+  "current_validated_jnu_modules": 0,
+  "current_validated_directional_modules": 0
 }

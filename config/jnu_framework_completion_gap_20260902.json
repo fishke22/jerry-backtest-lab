@@ -1,0 +1,48 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-02",
+  "status": "FRAMEWORK_INCOMPLETE_TWO_STAGE8_FINALISTS_PENDING",
+  "validated_jnu_modules": 0,
+  "validated_directional_modules": 0,
+  "decision_engine": "NO_VALIDATED_DIRECTIONAL_EDGE",
+  "major_candidates_total": 8,
+  "major_candidates_terminal": 6,
+  "major_candidates_pending": 2,
+  "terminal": {
+    "INTRADAY_PATH_US_TO_JNU_G1": "REJECT_TRUE_JNU_CURRENT_SPEC",
+    "TRUE_VENUE_DPD_OSE_SGX_CME_G1": "DATA_BLOCKED",
+    "OSE_ORDER_IMBALANCE": "LITERATURE_ONLY_DATA_BLOCKED",
+    "CBOE_LTV_LEFT_TAIL_RISK": "DATA_BLOCKED",
+    "NEWS_STATE_LANGUAGE_SOURCE_G1_DI1": "DATA_INCONCLUSIVE",
+    "PHASE4B_USDJPY_1D": "REJECT_CURRENT_SPEC"
+  },
+  "pending_finalists": {
+    "HAR_RSV_TRUE_OSE_CONFIRMATION": {
+      "current_status": "TRUE_JNU_STAGE3_PASS_INFORMATION_STATE_CANDIDATE",
+      "role": "VOLATILITY_RISK_STATE_ONLY_NOT_DIRECTIONAL_ALPHA",
+      "true_jnu_data_cutoff": "2026-08-31",
+      "next_applicable_stage": 8,
+      "blocker": "NO_UNTOUCHED_TRUE_JNU_FORWARD_DATA_AFTER_2026-08-31"
+    },
+    "BOJ_MPM_EVENT_VOLATILITY": {
+      "current_status": "TRUE_JNU_STAGE3_PASS_EVENT_RISK_INFORMATION_STATE_CANDIDATE_DI3_RECONFIRMED",
+      "role": "EVENT_RISK_STATE_ONLY_NOT_DIRECTIONAL_ALPHA",
+      "true_jnu_event_cutoff": "2026-07-31",
+      "next_applicable_stage": 8,
+      "blocker": "NO_NEW_ELIGIBLE_BOJ_DECISION_EVENT_AFTER_2026-07-31_AS_OF_2026-09-02"
+    }
+  },
+  "stage_applicability": {
+    "HAR_RSV": "Stages 4-7 are not required while used only as a non-directional information/risk-state forecast; Stage 8 forward confirmation remains required for finalist promotion to Stage 9.",
+    "BOJ_EVENT": "The Stage4/5 blackout translation is separately implementation-validated but not alpha evidence. The parent event-state information module still needs Stage 8 forward confirmation before Stage 9 role validation."
+  },
+  "remaining_research_milestones": [
+    "HAR-RSV Stage8 true-JNU forward holdout",
+    "HAR-RSV Stage9 role-consistent validation review if Stage8 passes",
+    "BOJ event-state Stage8 forward-event holdout",
+    "BOJ event-state Stage9 role-consistent validation review if Stage8 passes",
+    "Final framework completion review and immutable terminal-status audit"
+  ],
+  "completion_path_if_no_directional_edge": "FRAMEWORK_COMPLETE_NO_VALIDATED_DIRECTIONAL_EDGE if both finalists reach terminal classifications and no new directional family is validated.",
+  "governance": "No historical sample may be carved post hoc as a Stage8 holdout; only observations strictly after the recorded true-target cutoff are eligible."
+}
