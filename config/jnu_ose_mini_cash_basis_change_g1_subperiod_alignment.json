@@ -1,0 +1,51 @@
+{
+  "version": "1.0",
+  "candidate_id": "OSE_MINI_CASH_BASIS_CHANGE_G1",
+  "status": "SUBPERIOD_ALIGNMENT_FROZEN_BEFORE_OUTCOME",
+  "signal_panel_sha256": "f193024c01f4b5ec8351cd845116f056fc20191ab5bfb3673f1267c37470d349",
+  "signal_panel_local_only": true,
+  "observations": 2705,
+  "subperiod_sizes": [
+    677,
+    676,
+    676,
+    676
+  ],
+  "subperiods": [
+    {
+      "subperiod": 1,
+      "n": 677,
+      "first_signal_date": "2012-01-05",
+      "last_signal_date": "2015-08-12",
+      "first_entry_time": "15:05",
+      "last_exit_date": "2015-08-13"
+    },
+    {
+      "subperiod": 2,
+      "n": 676,
+      "first_signal_date": "2015-08-13",
+      "last_signal_date": "2019-04-17",
+      "first_entry_time": "15:05",
+      "last_exit_date": "2019-04-18"
+    },
+    {
+      "subperiod": 3,
+      "n": 676,
+      "first_signal_date": "2019-04-18",
+      "last_signal_date": "2022-12-29",
+      "first_entry_time": "15:05",
+      "last_exit_date": "2022-12-30"
+    },
+    {
+      "subperiod": 4,
+      "n": 676,
+      "first_signal_date": "2022-12-30",
+      "last_signal_date": "2026-08-17",
+      "first_entry_time": "15:05",
+      "last_exit_date": "2026-08-18"
+    }
+  ],
+  "recent_window_observations": 504,
+  "price_outcomes_read": false,
+  "directional_outcome_inspected": false
+}
