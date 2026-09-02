@@ -1,0 +1,74 @@
+{
+  "version": "1.0",
+  "frozen_at": "2026-09-02",
+  "status": "PREREGISTERED_BEFORE_STAGE8_OUTCOMES",
+  "purpose": "Define deterministic Stage9 admission checks for the two Stage3 JNU information-state finalists before their forward Stage8 outcomes are available.",
+  "global_rules": {
+    "validated_directional_modules": "UNCHANGED_ZERO_UNLESS_SEPARATE_DIRECTIONAL_FAMILY_PASSES",
+    "decision_engine_direction": "NO_VALIDATED_DIRECTIONAL_EDGE",
+    "no_cross_role_promotion": true,
+    "stage9_requires_stage8_pass": true,
+    "unresolved_critical_dq_blocks": true,
+    "reproducibility_required": true,
+    "no_posthoc_role_expansion": true
+  },
+  "modules": {
+    "HAR_RSV_DI1": {
+      "stage9_id": "HAR_RSV_JNU_RISK_STATE_STAGE9",
+      "role": "VOLATILITY_RISK_STATE_ONLY_NOT_DIRECTIONAL_ALPHA",
+      "prerequisites": [
+        "HAR_RSV_TRUE_OSE_MINI_STAGE_A_G1 = PASS",
+        "HAR_RSV_JNU_MICRO_STAGE_B_G1 = PASS",
+        "HAR_RSV_JNU_MICRO_STAGE8_FORWARD_G1 = PASS",
+        "all persisted input/config/result hashes resolve",
+        "zero unresolved critical data-quality issues",
+        "no forbidden retuning/rescue occurred"
+      ],
+      "admission_if_all_pass": "VALIDATED_JNU_MODULE_RISK_STATE",
+      "allowed_effects": [
+        "volatility_state",
+        "risk confidence",
+        "position-size multiplier only through a separately explicit deterministic risk mapping",
+        "volatility-normalized stop distance only through a separately explicit deterministic risk mapping"
+      ],
+      "prohibited": [
+        "directional probability vote",
+        "entry direction",
+        "treating forecast-loss improvement as trading alpha"
+      ]
+    },
+    "BOJ_MPM_EVENT_VOLATILITY_G1": {
+      "stage9_id": "BOJ_MPM_EVENT_STATE_STAGE9",
+      "role": "EVENT_RISK_STATE_ONLY_NOT_DIRECTIONAL_ALPHA",
+      "prerequisites": [
+        "BOJ MPM true-OSE Mini Stage A = PASS",
+        "BOJ MPM exact-JNU Micro Stage B = PASS",
+        "BOJ_MPM_JNU_MICRO_STAGE8_FORWARD_G1 = PASS",
+        "all persisted event-timing/config/result hashes resolve",
+        "zero unresolved critical data-quality issues",
+        "no event-window/subset rescue occurred"
+      ],
+      "admission_if_all_pass": "VALIDATED_JNU_MODULE_EVENT_STATE",
+      "allowed_effects": [
+        "event_state",
+        "volatility confidence",
+        "no-trade/blackout eligibility only through separately validated translation rules"
+      ],
+      "prohibited": [
+        "directional probability vote",
+        "policy-direction inference from event volatility",
+        "claiming Stage4/5 blackout replay is alpha evidence"
+      ]
+    }
+  },
+  "stage9_review_output": {
+    "pending": "STAGE9_BLOCKED_STAGE8_PENDING",
+    "pass": "VALIDATED_JNU_MODULE_ROLE_CONSTRAINED",
+    "fail": "STAGE9_NOT_ADMITTED",
+    "rule": "No human discretion may override a failed or missing prerequisite."
+  },
+  "framework_completion_after_reviews": {
+    "if_both_or_either_stage9_pass_and_no_directional_edge": "Framework may complete with validated risk/context modules while decision direction remains NO_VALIDATED_DIRECTIONAL_EDGE, once all major candidates are terminally classified.",
+    "if_stage8_fails": "Finalist receives terminal fail current spec; framework can still complete with no validated directional edge after terminal audit."
+  }
+}
