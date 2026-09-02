@@ -1,0 +1,61 @@
+{
+  "version": "1.0",
+  "frozen_at": "2026-09-02",
+  "status": "PREREGISTERED_BEFORE_PENDING_STAGE8_OUTCOMES",
+  "purpose": "Freeze the final JNU framework completion decision before the two pending Stage8 forward outcomes.",
+  "authoritative_inputs": [
+    "config/jnu_framework_completion_criteria_v1.json",
+    "config/jnu_family_attempt_ledger.json",
+    "config/jnu_framework_completion_gap_20260902.json",
+    "framework_status/jnu_framework_current_status_v1.json",
+    "stage9_results/jnu_stage9_role_validation_v1.json"
+  ],
+  "major_candidate_set": [
+    "HAR_RSV_TRUE_OSE_CONFIRMATION",
+    "INTRADAY_PATH_US_TO_JNU_G1",
+    "TRUE_VENUE_DPD_OSE_SGX_CME_G1",
+    "OSE_ORDER_IMBALANCE",
+    "CBOE_LTV_LEFT_TAIL_RISK",
+    "BOJ_MPM_EVENT_VOLATILITY",
+    "NEWS_STATE_LANGUAGE_SOURCE_G1_DI1",
+    "PHASE4B_USDJPY_1D"
+  ],
+  "terminal_status_classes": [
+    "VALIDATED_JNU_MODULE",
+    "VALIDATED_JNU_MODULE_ROLE_CONSTRAINED",
+    "REJECT_CURRENT_SPEC",
+    "REJECT_TRUE_JNU_CURRENT_SPEC",
+    "FAIL_OVERFIT_GATES",
+    "DATA_INCONCLUSIVE",
+    "DATA_BLOCKED",
+    "LITERATURE_ONLY_DATA_BLOCKED",
+    "CONDITIONAL_ARCHITECTURE_ONLY",
+    "STAGE8_FORWARD_HOLDOUT_FAIL_CURRENT_SPEC",
+    "STAGE8_FORWARD_EVENT_HOLDOUT_FAIL_CURRENT_SPEC",
+    "STAGE9_NOT_ADMITTED"
+  ],
+  "hard_gates": [
+    "Exactly 8 major candidates are accounted for.",
+    "Every major candidate has a terminal classification before framework completion.",
+    "No unresolved critical data-integrity issue exists in any promoted/validated module.",
+    "All formal outcome-tested families remain represented in the permanent attempt ledger.",
+    "Role separation is enforced: risk/event/source/execution cannot become directional votes without separate validated directional evidence.",
+    "Validated directional module count and decision-engine direction are logically consistent.",
+    "Config/prereg/results/reports/provenance or terminal records needed to reproduce each promoted/terminal disposition are persisted.",
+    "No pending Stage8 or Stage9 gate may be treated as terminal success."
+  ],
+  "completion_decision": {
+    "if_pending_major_candidates": "FRAMEWORK_INCOMPLETE_PENDING_MAJOR_CANDIDATES",
+    "if_all_terminal_and_directional_modules_gt_0": "FRAMEWORK_COMPLETE_WITH_VALIDATED_EDGE",
+    "if_all_terminal_and_directional_modules_eq_0": "FRAMEWORK_COMPLETE_NO_VALIDATED_DIRECTIONAL_EDGE",
+    "data_blocked_note": "DATA_BLOCKED terminal candidates remain explicitly listed; they do not become evidence and do not justify proxy substitution."
+  },
+  "prohibited": [
+    "Declare completion while a major candidate is pending.",
+    "Count proxy PASS or execution replay PASS as validated directional alpha.",
+    "Delete failed/inconclusive attempts from the ledger.",
+    "Convert a Stage3 information-state candidate into Stage9 validation without its preregistered Stage8 terminal disposition.",
+    "Override a failed hard gate by qualitative judgment."
+  ],
+  "current_expected_result": "FRAMEWORK_INCOMPLETE_PENDING_MAJOR_CANDIDATES because HAR-RSV and BOJ event-state Stage8 forward confirmations are pending."
+}
