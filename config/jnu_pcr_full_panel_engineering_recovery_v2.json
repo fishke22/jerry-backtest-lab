@@ -1,0 +1,88 @@
+{
+  "version": "2.0",
+  "as_of": "2026-09-02",
+  "candidate_id": "NIKKEI225_OPTIONS_PCR_SENTIMENT_POSTPUBLICATION_G1",
+  "source_run": {
+    "run_id": 33520336720,
+    "head_sha": "c65ea6e8946352365261aa71aba01fa4b069c1b3",
+    "workflow": "JNU PCR Full Information Panel V1",
+    "workflow_conclusion": "FAILURE",
+    "merge_conclusion": "SUCCESS",
+    "full_panel_artifact_id": 9809516285,
+    "full_panel_artifact_digest": "sha256:20cf1faea409c3dcb8f99b1bd75ecf81e5d0d4798b1499e5e27377792a7b764f",
+    "source_2022_2026_artifact_id": 9809509478,
+    "source_2022_2026_artifact_digest": "sha256:9c06880c6f41c5ab626fd40efa2ec10e43df89e400f2f35c44c87996f6e66e3e"
+  },
+  "governance_disposition": "DATA_GATE_NOT_EVALUABLE_ENGINEERING_FAILURE",
+  "research_fail": false,
+  "directional_return_outcomes_used": false,
+  "formal_directional_family_opened": false,
+  "source_gate_metrics": {
+    "months_total": 208,
+    "archive_complete_months": 205,
+    "pcr_defined_months": 196,
+    "pcr_undefined_required_day_months": 8,
+    "archive_incomplete_months": 3,
+    "parser_or_source_error_months": 1,
+    "defined_fraction_of_archive_complete": 0.9560975609756097,
+    "recent36_defined_months": 30,
+    "recent36_defined_fraction": 0.8333333333333334
+  },
+  "engineering_incident": {
+    "month": "2023-02",
+    "date": "2023-02-24",
+    "error": "RuntimeError('reference Nikkei close not parsed')",
+    "source": "NDL",
+    "identifier": "info:ndljp/pid/12767830",
+    "root_cause": "The official PDF text layer extracts the reference label as '参考日経平均株価Nikkei225' with no whitespace, while the parser required the literal spaced label '参考 日経平均株価'.",
+    "official_reference_row": [
+      27144.72,
+      27465.9,
+      27128.32,
+      27453.48,
+      349.16
+    ],
+    "official_reference_close": 27453.48,
+    "data_missing": false
+  },
+  "patch": {
+    "scope": "ENGINEERING_ONLY_LABEL_NORMALIZATION",
+    "description": "Normalize whitespace only for matching the Nikkei reference label; numeric OHLC extraction and all PCR research rules remain unchanged.",
+    "pcr_definition_changed": false,
+    "data_gate_changed": false,
+    "qa_dates_changed": false,
+    "directional_rules_changed": false
+  },
+  "local_validation": {
+    "target_month_smoke": "2023-02 PCR_DEFINED; 5/5 required days parsed",
+    "target_day_close": 27453.48,
+    "pre_post_frozen_9_date_regression": "9/9 exact parsed-output match versus c65ea6e",
+    "repaired_shard_changed_months": [
+      "2023-02"
+    ],
+    "repaired_2022_2026_status_counts": {
+      "PCR_DEFINED": 50,
+      "PCR_UNDEFINED_REQUIRED_DAY": 6
+    },
+    "local_repaired_shard_sha256": "09b6b7eed1937ff10189e4fd1fcc38c09b7f5da5b25e95be3d1e649502641f83",
+    "full_panel_preflight_gate": {
+      "status": "PCR_FULL_INFORMATION_DATA_FEASIBILITY_PASS",
+      "months_total": 208,
+      "archive_complete_months": 205,
+      "pcr_defined_months": 197,
+      "parser_or_source_error_months": 0,
+      "defined_fraction_of_archive_complete": 0.9609756097560975,
+      "recent36_defined_months": 30,
+      "recent36_defined_fraction": 0.8333333333333334,
+      "all_frozen_checks_pass": true,
+      "panel_sha256": "ed6f14009849bf54908b867b2c176633c2e6fbcb1cc6c66a9569c0933462eb9d"
+    }
+  },
+  "targeted_cloud_recovery": {
+    "workflow": ".github/workflows/jnu-pcr-engineering-recovery-2023-02-v1.yml",
+    "strategy": "Rebuild only 2023-02 with the engineering fix, assert that only 2023-02 changes in the 2022-2026 shard, reuse the three already-successful source-run shards, remerge all 208 months, then run the independent frozen Data Gate audit.",
+    "source_run_id": 33520336720,
+    "authoritative_gate_pending": true
+  },
+  "next_action": "Commit and dispatch the targeted cloud recovery. Only a cloud artifact with an independent frozen Data Gate PASS may advance to directional preregistration."
+}

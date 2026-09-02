@@ -46,7 +46,8 @@ def spot_close_from_reader(reader:PdfReader)->float:
         txt=page.extract_text() or ""
         lines=txt.splitlines()
         for i,line in enumerate(lines):
-            if "参考 日経平均株価" not in line:
+            normalized_line=re.sub(r"\s+","",line)
+            if "参考日経平均株価" not in normalized_line:
                 continue
             vals=[num(x) for x in re.findall(r"\d{1,3}(?:,\d{3})*\.\d+","\n".join(lines[i:]))]
             if len(vals)>=5:

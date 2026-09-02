@@ -1,5 +1,5 @@
 {
-  "version": "1.3",
+  "version": "1.4",
   "frozen_at": "2026-09-01",
   "candidate_id": "NIKKEI225_OPTIONS_PCR_SENTIMENT_POSTPUBLICATION_G1",
   "prior_qa_run_disposition": {
@@ -22,10 +22,11 @@
     "Weekly option rows identified by YYYYMMDD MM.DD prefix are excluded before any standard-month or legacy parser fallback.",
     "Transition-layout Auction volume must be captured from the explicit NetChange -> Volume -> TradingValue -> Settlement field sequence; tail-relative numeric indexing is forbidden.",
     "Transition-layout J-NET rows must be segmented per issue before parsing OHLC -> Volume -> TradingValue; a second issue on the same extracted line may not be discarded.",
-    "Market state may carry across pages only when the current page has no explicit market heading; whole-page Auction/J-NET headings override prior state."
+    "Market state may carry across pages only when the current page has no explicit market heading; whole-page Auction/J-NET headings override prior state.",
+    "Nikkei reference-label matching must be whitespace-normalized before anchor comparison; this normalization may not alter numeric OHLC extraction."
   ],
   "directional_return_outcomes_allowed": false,
-  "next_action": "Dispatch the unchanged preregistered full-information-panel workflow at the committed transition-layout recovery and require zero unexpected parser/source errors before Data Gate evaluation.",
+  "next_action": "Run targeted 2023-02 cloud engineering recovery and require the unchanged frozen Data Gate to PASS independently.",
   "engineering_invalid_smoke_runs": [
     {
       "run_id": 33509640334,
@@ -43,5 +44,13 @@
     "directional_return_outcomes_used": false,
     "research_fail": false,
     "recovery_record": "config/jnu_pcr_full_panel_engineering_recovery_v1.json"
+  },
+  "full_panel_engineering_incident_v2": {
+    "run_id": 33520336720,
+    "month": "2023-02",
+    "date": "2023-02-24",
+    "disposition": "DATA_GATE_NOT_EVALUABLE_ENGINEERING_FAILURE",
+    "research_fail": false,
+    "recovery_record": "config/jnu_pcr_full_panel_engineering_recovery_v2.json"
   }
 }

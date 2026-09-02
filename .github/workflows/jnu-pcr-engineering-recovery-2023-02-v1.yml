@@ -1,0 +1,94 @@
+name: JNU PCR 2023-02 Engineering Recovery V1
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  recover_and_merge:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 30
+    env:
+      SOURCE_RUN_ID: "33520336720"
+      TARGET_MONTH: "2023-02"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install pypdf==6.0.0
+
+      - name: Rebuild only failed month
+        env:
+          PCR_SMOKE_MONTHS: "2023-02"
+          PCR_YEAR_RANGE: ""
+        run: python scripts/jnu_pcr_build_information_panel.py
+      - name: Download prior 2009-2013 shard
+        uses: actions/download-artifact@v4
+        with:
+          name: jnu-pcr-panel-2009_2013
+          path: pcr_shards/jnu-pcr-panel-2009_2013
+          repository: fishke22/jerry-backtest-lab
+          run-id: "33520336720"
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Download prior 2014-2017 shard
+        uses: actions/download-artifact@v4
+        with:
+          name: jnu-pcr-panel-2014_2017
+          path: pcr_shards/jnu-pcr-panel-2014_2017
+          repository: fishke22/jerry-backtest-lab
+          run-id: "33520336720"
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Download prior 2018-2021 shard
+        uses: actions/download-artifact@v4
+        with:
+          name: jnu-pcr-panel-2018_2021
+          path: pcr_shards/jnu-pcr-panel-2018_2021
+          repository: fishke22/jerry-backtest-lab
+          run-id: "33520336720"
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Download engineering-invalid 2022-2026 source shard
+        uses: actions/download-artifact@v4
+        with:
+          name: jnu-pcr-panel-2022_2026
+          path: source_2022_2026
+          repository: fishke22/jerry-backtest-lab
+          run-id: "33520336720"
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Replace only 2023-02
+        run: >
+          python scripts/jnu_pcr_repair_information_shard.py
+          --source-shard source_2022_2026/pcr_results/jnu_pcr_information_panel_v1.json
+          --replacement-panel pcr_results/jnu_pcr_information_panel_v1.json
+          --output pcr_shards/jnu-pcr-panel-2022_2026/pcr_results/jnu_pcr_information_panel_v1.json
+
+      - name: Merge frozen four-shard information panel
+        env:
+          PCR_SHARDS_DIR: pcr_shards
+        run: python scripts/jnu_pcr_merge_information_shards.py
+
+      - name: Independent frozen Data Gate audit
+        run: >
+          python scripts/audit_jnu_pcr_full_information_gate.py
+          --panel pcr_results/jnu_pcr_full_information_panel_v1.json
+          --prereg config/jnu_pcr_full_information_panel_prereg_v1.json
+          --output pcr_results/jnu_pcr_full_information_gate_independent_audit_v1.json
+      - name: Upload authoritative recovery evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: jnu-pcr-full-information-panel-recovery-2023-02-v1
+          path: |
+            pcr_results/jnu_pcr_information_panel_v1.json
+            pcr_results/jnu_pcr_full_information_panel_v1.json
+            pcr_results/jnu_pcr_full_information_gate_independent_audit_v1.json
+            pcr_reports/jnu_pcr_information_panel_v1.md
+            pcr_reports/jnu_pcr_full_information_panel_v1.md
+            pcr_shards/jnu-pcr-panel-2022_2026/pcr_results/jnu_pcr_information_panel_v1.json
+            config/jnu_pcr_full_panel_engineering_recovery_v2.json

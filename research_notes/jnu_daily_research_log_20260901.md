@@ -93,3 +93,11 @@
 - Recovery panel JSON SHA256 exactly matches prior control: ffa00e69afd09932cf1487df2c59aa08f895781ab7d6a7ad69b94d0c068fbd80.
 - Known archive gaps remain 2009-05, 2009-06, 2010-06; 2010-08-31 remains ZERO_SELECTED_CALL_DENOMINATOR.
 - Directional outcomes remain unopened; Data Gate not yet evaluated.
+
+## PCR full-panel recovery run 33520336720 final engineering disposition
+- Run completed with 3 successful shards, 2022-2026 engineering failure, and a successful 208-month merge artifact 9809516285.
+- Frozen Gate metrics met every threshold except zero parser/source errors: 196/205 defined, 95.61%, recent 30/36; exactly one parser-error month, 2023-02.
+- Root cause: 2023-02-24 PDF removes whitespace in the reference label; official Nikkei reference close 27,453.48 is present. This is engineering, not missing data or research failure.
+- Whitespace-only label normalization repairs 2023-02 to 5/5 days; frozen 9-date pre/post builder outputs match 9/9 exactly.
+- Local repaired-shard assertion changed only 2023-02. Local full-panel preflight: 197/205 defined, 0 parser errors, recent 30/36, all frozen Gate checks PASS.
+- Official Gate remains unevaluated until targeted cloud recovery produces an authoritative artifact; directional outcomes remain unopened.
