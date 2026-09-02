@@ -1,0 +1,20 @@
+{
+  "version": "1.0",
+  "candidate_id": "JPX_CASH_FOREIGN_FLOW_TOKYO_NAGOYA_SIGN_G1",
+  "status": "JPX_CASH_FOREIGN_FLOW_SOURCE_PIT_DATA_GATE_PASS",
+  "pit_panel_sha256": "1c21e3df323574c2d989159c64e29e1a9508902be4645c5340a431972c0e3a60",
+  "pit_panel_local_size_bytes": 472158,
+  "pit_panel_cloud_uploaded": false,
+  "source_weeks": 554,
+  "source_parse_success_weeks": 554,
+  "source_parse_errors": 0,
+  "duplicate_periods": 0,
+  "pit_standard_eligible_weeks": 528,
+  "pit_irregular_excluded_weeks": 26,
+  "pit_irregular_exclusion_fraction": 0.04693140794223827,
+  "holiday_source": "Japan Cabinet Office syukujitsu.csv",
+  "holiday_source_sha256": "cec37a743c96995cdb9cb52b685c9003634682a9b0e1a640a6b9b96881fe964a",
+  "directional_returns_used": false,
+  "directional_outcome_inspected": false,
+  "next_action": "Freeze entry/exit date alignment and four chronological subperiod boundaries using trading dates only, then run phase1."
+}
