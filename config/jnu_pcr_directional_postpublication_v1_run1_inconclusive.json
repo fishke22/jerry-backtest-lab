@@ -1,0 +1,23 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-02",
+  "candidate_id": "NIKKEI225_OPTIONS_PCR_TSUIJI_88_7_116_5_POSTPUBLICATION_G1",
+  "preregistration": "config/jnu_pcr_directional_postpublication_prereg_v1.json",
+  "run_id": 33612445360,
+  "head_sha": "455377bfa773e401d8037deb13dbe640b7361cce",
+  "status": "INCONCLUSIVE_DATA_SOURCE_COVERAGE",
+  "research_fail": false,
+  "directional_result_produced": false,
+  "strategy_return_records_produced": 0,
+  "failure": "RuntimeError: missing official Futures Index return month 2009-08",
+  "root_cause": "The public Nikkei 225 Futures Index daily CSV currently exposes only the recent public-download window and does not cover the preregistered 2009-2026 replication sample.",
+  "governance": {
+    "thresholds_changed": false,
+    "sample_changed": false,
+    "costs_changed": false,
+    "bootstrap_changed": false,
+    "pass_gate_changed": false,
+    "post_outcome_parameter_selection": false
+  },
+  "next_action": "Before any directional outcome is computed, version an explicit source-transport amendment using a long-history daily Nikkei 225 close series sourced from Nikkei and available reproducibly through FRED; keep every strategy and validation rule unchanged."
+}
