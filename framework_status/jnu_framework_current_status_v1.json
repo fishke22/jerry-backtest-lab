@@ -1,0 +1,70 @@
+{
+  "version": "1.0",
+  "as_of_utc": "2026-09-02T11:47:09.744098+00:00",
+  "framework_status": "FRAMEWORK_INCOMPLETE_PENDING_STAGE8_FORWARD_DATA",
+  "major_candidates": {
+    "total": 8,
+    "terminal": 6,
+    "pending": 2,
+    "terminal_classifications": {
+      "INTRADAY_PATH_US_TO_JNU_G1": "REJECT_TRUE_JNU_CURRENT_SPEC",
+      "TRUE_VENUE_DPD_OSE_SGX_CME_G1": "DATA_BLOCKED",
+      "OSE_ORDER_IMBALANCE": "LITERATURE_ONLY_DATA_BLOCKED",
+      "CBOE_LTV_LEFT_TAIL_RISK": "DATA_BLOCKED",
+      "NEWS_STATE_LANGUAGE_SOURCE_G1_DI1": "DATA_INCONCLUSIVE",
+      "PHASE4B_USDJPY_1D": "REJECT_CURRENT_SPEC"
+    }
+  },
+  "validated_modules": {
+    "jnu_modules": 0,
+    "directional_modules": 0,
+    "decision_engine_direction": "NO_VALIDATED_DIRECTIONAL_EDGE"
+  },
+  "pending_finalists": {
+    "HAR_RSV": {
+      "role": "VOLATILITY_RISK_STATE_ONLY_NOT_DIRECTIONAL_ALPHA",
+      "stage3_status": "TRUE_JNU_STAGE3_PASS_INFORMATION_STATE_CANDIDATE",
+      "stage8_readiness": "PENDING_NEW_DATA",
+      "available_new_days": 0,
+      "required_new_days": 126,
+      "remaining_new_days": 126,
+      "stage9_status": "STAGE9_BLOCKED_STAGE8_PENDING"
+    },
+    "BOJ_MPM": {
+      "role": "EVENT_RISK_STATE_ONLY_NOT_DIRECTIONAL_ALPHA",
+      "stage3_status": "TRUE_JNU_STAGE3_PASS_EVENT_RISK_INFORMATION_STATE_CANDIDATE_DI3_RECONFIRMED",
+      "stage8_readiness": "PENDING_NEW_EVENTS",
+      "available_new_events": 0,
+      "required_new_events": 8,
+      "remaining_new_events": 8,
+      "stage9_status": "STAGE9_BLOCKED_STAGE8_PENDING"
+    }
+  },
+  "next_legal_actions": [
+    "Accumulate untouched exact-JNU observations after the preregistered Stage8 cutoffs.",
+    "Run scripts/check_jnu_stage8_readiness_v1.py or the cloud readiness workflow after derived panels/manifests update.",
+    "Run a Stage8 outcome runner only when its readiness status is READY_TO_RUN_STAGE8.",
+    "If Stage8 passes, run the preregistered fail-closed Stage9 role review without changing the module role.",
+    "When both pending finalists are terminally classified, run the final framework completion audit."
+  ],
+  "hard_blocks": [
+    "No partial Stage8 performance inspection.",
+    "No historical sample carve-out to manufacture a holdout.",
+    "No rejected-family parameter rescue.",
+    "No risk/event module may become a directional vote without a separate validated directional family."
+  ],
+  "artifact_hashes": {
+    "family_attempt_ledger": "a36b7b5d5c81934c014d3953a58ebaea177e0d7b4ab29f706c1cb64fec78219c",
+    "completion_gap": "564540c8cd4f201f6462d3113e05b198a94574d06d6527fd5744ab6a2be18172",
+    "stage8_readiness": "e18398228c1736e514476d563bad81653199e90418588828b998571b3ebdd242",
+    "stage9_review": "671c640664ef50162f3ec9f83c9cb89df6948178d5ccfe925f7b349e3e806f8b",
+    "validated_framework_memory": "546efa4a33fffbb69a20a9379cd79815f5e4e8b8c14d0d8c4b04e468bb15a66a"
+  },
+  "source_state": {
+    "ledger_version": "2.3",
+    "completion_gap_status": "FRAMEWORK_INCOMPLETE_TWO_STAGE8_FORWARD_HOLDOUTS_PREREGISTERED_PENDING_DATA",
+    "stage8_readiness_status": "STAGE8_DATA_ACCUMULATION_PENDING",
+    "stage9_status": "STAGE9_REVIEW_PENDING",
+    "memory_framework_status": "FRAMEWORK_INCOMPLETE_TWO_STAGE8_FORWARD_HOLDOUTS_PREREGISTERED_PENDING_DATA"
+  }
+}

@@ -1,0 +1,39 @@
+name: JNU Framework Current Status
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "config/jnu_family_attempt_ledger.json"
+      - "config/jnu_framework_completion_gap_20260902.json"
+      - "config/jnu_validated_framework_memory_20260901.json"
+      - "stage8_readiness/jnu_stage8_readiness_v1.json"
+      - "stage9_results/jnu_stage9_role_validation_v1.json"
+      - "scripts/build_jnu_framework_current_status_v1.py"
+
+permissions:
+  contents: read
+
+jobs:
+  status:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Build current framework status
+        run: python scripts/build_jnu_framework_current_status_v1.py
+      - name: Publish status summary
+        run: cat framework_status/jnu_framework_current_status_v1.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Upload status artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: jnu-framework-status-${{ github.run_id }}
+          path: |
+            framework_status/jnu_framework_current_status_v1.json
+            framework_status/jnu_framework_current_status_v1.md
+          if-no-files-found: error
+          retention-days: 30
