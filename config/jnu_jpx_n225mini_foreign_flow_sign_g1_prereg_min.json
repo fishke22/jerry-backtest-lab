@@ -1,0 +1,23 @@
+{
+  "version": "1.0",
+  "candidate_id": "JPX_N225MINI_FOREIGN_FLOW_SIGN_G1",
+  "status": "PREREGISTERED_BEFORE_OUTCOME",
+  "frozen_at": "2026-09-02",
+  "source": "JPX/OSE weekly Trading by Type of Investors; Nikkei 225 mini; Foreigners; trading-value balance",
+  "publication": "Usually 15:30 JST on the fourth business day of the following week",
+  "signal": {"positive":"LONG","negative":"SHORT","zero":"FLAT"},
+  "execution": "No earlier than next JPX trading day after publication",
+  "return_window": "Next 5 trading closes",
+  "costs_bps": {"primary":10,"stress":20},
+  "gates": [
+    "10bps net cumulative return > 0",
+    "annualized Sharpe > 0",
+    "20bps cumulative return > 0",
+    "5-week block-bootstrap 95% lower mean weekly return > 0",
+    "at least 3 of 4 fixed chronological subperiods positive"
+  ],
+  "bootstrap": {"block_weeks":5,"samples":5000,"seed":42},
+  "no_parameter_search": true,
+  "directional_outcome_inspected": false,
+  "next_action": "Build JPX information panel and PIT Data Gate before return merge."
+}
