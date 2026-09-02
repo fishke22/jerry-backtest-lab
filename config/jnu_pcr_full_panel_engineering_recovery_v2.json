@@ -82,7 +82,14 @@
     "workflow": ".github/workflows/jnu-pcr-engineering-recovery-2023-02-v1.yml",
     "strategy": "Rebuild only 2023-02 with the engineering fix, assert that only 2023-02 changes in the 2022-2026 shard, reuse the three already-successful source-run shards, remerge all 208 months, then run the independent frozen Data Gate audit.",
     "source_run_id": 33520336720,
-    "authoritative_gate_pending": true
+    "authoritative_gate_pending": false,
+    "run_id": 33611084116,
+    "head_sha": "786e23631b37ffc2722c36e7b941198f624769d8",
+    "conclusion": "SUCCESS",
+    "artifact_id": 9839020223,
+    "artifact_digest": "sha256:f80304ff086e6c0efdf4b32e61f413ce771dcfe0c6d1969cebfdf544190cb8d2",
+    "authoritative_gate_status": "PCR_FULL_INFORMATION_DATA_FEASIBILITY_PASS",
+    "full_panel_sha256": "d714c3753a2f64629837c81def1a0c9433f4ec2a2c25e2b3a473bbf6b9703332"
   },
-  "next_action": "Commit and dispatch the targeted cloud recovery. Only a cloud artifact with an independent frozen Data Gate PASS may advance to directional preregistration."
+  "next_action": "Create and commit a separate post-publication directional preregistration before inspecting any future Nikkei/JNU return outcome."
 }

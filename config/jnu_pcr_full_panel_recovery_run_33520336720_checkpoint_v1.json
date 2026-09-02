@@ -4,7 +4,7 @@
   "candidate_id": "NIKKEI225_OPTIONS_PCR_SENTIMENT_POSTPUBLICATION_G1",
   "directional_return_outcomes_used": false,
   "formal_directional_family_opened": false,
-  "data_gate_evaluated": false,
+  "data_gate_evaluated": true,
   "recovery_commit": "c65ea6e8946352365261aa71aba01fa4b069c1b3",
   "independent_audit_commit": "6a6a445",
   "invalid_prior_run": {
@@ -98,9 +98,9 @@
     }
   },
   "remaining": "2022_2026 in progress; merge pending.",
-  "next_action": "Dispatch targeted 2023-02 cloud recovery, remerge the unchanged four-shard information panel, and require independent frozen Data Gate PASS before opening a directional preregistration.",
+  "next_action": "Create and commit a separate post-publication directional preregistration before inspecting any future Nikkei/JNU return outcome.",
   "final_run_status": "COMPLETED_FAILURE_ENGINEERING_ONLY",
-  "final_disposition": "DATA_GATE_NOT_EVALUABLE_ENGINEERING_FAILURE",
+  "final_disposition": "PCR_FULL_INFORMATION_DATA_FEASIBILITY_PASS_AFTER_TARGETED_ENGINEERING_RECOVERY",
   "research_fail": false,
   "full_panel_artifact": {
     "id": 9809516285,
@@ -111,5 +111,7 @@
     "date": "2023-02-24",
     "error": "reference Nikkei close not parsed",
     "recovery_record": "config/jnu_pcr_full_panel_engineering_recovery_v2.json"
-  }
+  },
+  "authoritative_recovery_run": 33611084116,
+  "authoritative_data_gate_pass": "config/jnu_pcr_full_information_data_gate_pass_v1.json"
 }

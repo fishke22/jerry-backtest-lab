@@ -3,7 +3,7 @@
   "as_of": "2026-09-01",
   "candidate_id": "NIKKEI225_OPTIONS_PCR_SENTIMENT_POSTPUBLICATION_G1",
   "formal_directional_family_opened": false,
-  "status": "FULL_PANEL_ENGINEERING_RECOVERY_V2_TARGETED_CLOUD_RERUN_READY",
+  "status": "PCR_FULL_INFORMATION_DATA_FEASIBILITY_PASS_DIRECTIONAL_PREREG_REQUIRED",
   "governance": {
     "independence": "SUBSTANTIVELY_INDEPENDENT_FROM_RECENT_FAILED_DIRECTIONAL_FAMILIES",
     "literature_anchor": "Tsuji (2009), Japan-specific Nikkei 225 index-options put/call-ratio market-timing evidence",
@@ -105,7 +105,7 @@
   },
   "directional_outcome_inspected": false,
   "formal_preregistration_created": false,
-  "next_action": "Dispatch targeted 2023-02 cloud recovery, remerge the unchanged four-shard information panel, and require independent frozen Data Gate PASS before opening a directional preregistration.",
+  "next_action": "Create and commit a separate post-publication directional preregistration before inspecting any future Nikkei/JNU return outcome.",
   "zero_denominator_rule": "Daily PCR undefined when selected near+second-near call volume is zero; month unusable if any of five required daily PCRs is undefined. No rescue.",
   "cloud_smoke": {
     "run_id": 33509640334,
@@ -142,7 +142,7 @@
     }
   },
   "full_panel_engineering_recovery": "config/jnu_pcr_full_panel_engineering_recovery_v1.json",
-  "active_full_panel_recovery_run": 33520336720,
+  "active_full_panel_recovery_run": 33611084116,
   "active_full_panel_recovery_checkpoint": "config/jnu_pcr_full_panel_recovery_run_33520336720_checkpoint_v1.json",
   "full_panel_second_run": {
     "run_id": 33520336720,
@@ -156,5 +156,6 @@
     "parser_error_date": "2023-02-24",
     "full_panel_artifact_id": 9809516285
   },
-  "full_panel_engineering_recovery_v2": "config/jnu_pcr_full_panel_engineering_recovery_v2.json"
+  "full_panel_engineering_recovery_v2": "config/jnu_pcr_full_panel_engineering_recovery_v2.json",
+  "authoritative_data_gate_pass": "config/jnu_pcr_full_information_data_gate_pass_v1.json"
 }

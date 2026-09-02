@@ -1,0 +1,59 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-02",
+  "candidate_id": "NIKKEI225_OPTIONS_PCR_SENTIMENT_POSTPUBLICATION_G1",
+  "status": "PCR_FULL_INFORMATION_DATA_FEASIBILITY_PASS",
+  "authoritative_run": {
+    "run_id": 33611084116,
+    "head_sha": "786e23631b37ffc2722c36e7b941198f624769d8",
+    "workflow": "JNU PCR 2023-02 Engineering Recovery V1",
+    "conclusion": "SUCCESS",
+    "artifact_id": 9839020223,
+    "artifact_digest": "sha256:f80304ff086e6c0efdf4b32e61f413ce771dcfe0c6d1969cebfdf544190cb8d2"
+  },
+  "lineage": {
+    "source_run_id": 33520336720,
+    "source_recovery_commit": "c65ea6e8946352365261aa71aba01fa4b069c1b3",
+    "engineering_fix_commit": "df11085",
+    "trigger_commit": "786e23631b37ffc2722c36e7b941198f624769d8",
+    "recovery_record": "config/jnu_pcr_full_panel_engineering_recovery_v2.json"
+  },
+  "artifact_hashes": {
+    "full_panel_sha256": "d714c3753a2f64629837c81def1a0c9433f4ec2a2c25e2b3a473bbf6b9703332",
+    "independent_audit_sha256": "efc1a6c450046ccf8e26c13753908cbb0e638fbc082ed48fd8e805f038a5fd91",
+    "repaired_2022_2026_shard_sha256": "a00cc5eaabb4ec906cc1f7058e8eba5eda3b7ad49ede7608cbddd3bbf2d08aac"
+  },
+  "metrics": {
+    "months_total": 208,
+    "archive_complete_months": 205,
+    "pcr_defined_months": 197,
+    "pcr_undefined_required_day_months": 8,
+    "archive_incomplete_months": 3,
+    "parser_or_source_error_months": 0,
+    "defined_fraction_of_archive_complete": 0.9609756097560975,
+    "recent36_defined_months": 30,
+    "recent36_defined_fraction": 0.8333333333333334
+  },
+  "checks": {
+    "manifest_month_count_match": true,
+    "archive_complete_count_match": true,
+    "known_archive_incomplete_months_match": true,
+    "zero_unexpected_parser_or_source_errors": true,
+    "minimum_total_defined_months": true,
+    "minimum_total_defined_fraction": true,
+    "minimum_recent_defined_months": true,
+    "minimum_recent_defined_fraction": true,
+    "panel_status_matches_recomputed_gate": true,
+    "panel_pass_flag_matches_recomputed_gate": true
+  },
+  "known_archive_incomplete_months": [
+    "2009-05",
+    "2009-06",
+    "2010-06"
+  ],
+  "directional_return_outcomes_used": false,
+  "formal_directional_family_opened": false,
+  "alpha_evidence": false,
+  "interpretation": "PASS establishes reconstructability and sufficient coverage of the frozen canonical PCR information series only. It is not directional-alpha evidence.",
+  "next_action": "Create and commit a separate post-publication directional preregistration before inspecting any future Nikkei/JNU return outcome."
+}

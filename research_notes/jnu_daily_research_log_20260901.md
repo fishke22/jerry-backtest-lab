@@ -101,3 +101,12 @@
 - Whitespace-only label normalization repairs 2023-02 to 5/5 days; frozen 9-date pre/post builder outputs match 9/9 exactly.
 - Local repaired-shard assertion changed only 2023-02. Local full-panel preflight: 197/205 defined, 0 parser errors, recent 30/36, all frozen Gate checks PASS.
 - Official Gate remains unevaluated until targeted cloud recovery produces an authoritative artifact; directional outcomes remain unopened.
+
+## PCR full-information Data Gate authoritative PASS
+- Targeted engineering recovery run 33611084116 at 786e236 completed SUCCESS; artifact 9839020223, digest f80304ff...0cb8d2.
+- Recovery assertion changed only 2023-02 in the 2022-2026 shard; repaired shard SHA256 a00cc5ea...8aac.
+- Full panel SHA256 d714c375...3332; independent audit SHA256 efc1a6c4...fd91.
+- Frozen Gate PASS: 208 total, 205 archive-complete, 197 PCR_DEFINED, 8 undefined-required-day, 3 known archive gaps, 0 parser/source errors.
+- Coverage: 197/205 = 96.10%; recent 36 = 30/36 = 83.33%; every frozen Gate check PASS.
+- This is information/data feasibility only, not alpha evidence. Directional outcomes remain unopened and formal directional family remains closed.
+- Next legal step: commit a separate post-publication directional preregistration before inspecting future Nikkei/JNU returns.

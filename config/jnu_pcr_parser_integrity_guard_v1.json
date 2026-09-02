@@ -26,7 +26,7 @@
     "Nikkei reference-label matching must be whitespace-normalized before anchor comparison; this normalization may not alter numeric OHLC extraction."
   ],
   "directional_return_outcomes_allowed": false,
-  "next_action": "Run targeted 2023-02 cloud engineering recovery and require the unchanged frozen Data Gate to PASS independently.",
+  "next_action": "Data Gate PASS is authoritative. Freeze parser state and create a separate directional preregistration before any return outcome inspection.",
   "engineering_invalid_smoke_runs": [
     {
       "run_id": 33509640334,
@@ -52,5 +52,6 @@
     "disposition": "DATA_GATE_NOT_EVALUABLE_ENGINEERING_FAILURE",
     "research_fail": false,
     "recovery_record": "config/jnu_pcr_full_panel_engineering_recovery_v2.json"
-  }
+  },
+  "authoritative_data_gate_pass": "config/jnu_pcr_full_information_data_gate_pass_v1.json"
 }

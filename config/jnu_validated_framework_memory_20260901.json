@@ -100,7 +100,7 @@
   },
   "pcr_directional_candidate": {
     "id": "NIKKEI225_OPTIONS_PCR_SENTIMENT_POSTPUBLICATION_G1",
-    "status": "FULL_PANEL_ENGINEERING_RECOVERY_V2_TARGETED_CLOUD_RERUN_READY",
+    "status": "PCR_FULL_INFORMATION_DATA_FEASIBILITY_PASS_DIRECTIONAL_PREREG_REQUIRED",
     "formal_directional_family_opened": false,
     "directional_outcome_inspected": false,
     "memory_file": "config/jnu_pcr_data_feasibility_memory_v1.json",
@@ -123,7 +123,7 @@
       "pit_status": "PIT_FEASIBLE_SAME_DAY_EOD_ONLY"
     },
     "parser_blocker": "Some older PDF text layers split sparse auction volume/value digits, e.g. '49  200  201602' into spaced glyph sequences. Coordinate-based row fallback must recover this without manual correction.",
-    "next_action": "Dispatch targeted 2023-02 cloud recovery, remerge the unchanged four-shard information panel, and require independent frozen Data Gate PASS before opening a directional preregistration.",
+    "next_action": "Create and commit a separate post-publication directional preregistration before inspecting any future Nikkei/JNU return outcome.",
     "parser_qa": "9/9 PASS after integrity rerun; initial false-pass retained in governance.",
     "information_definition_freeze": "config/jnu_pcr_information_definition_freeze_v1.json",
     "parser_regression_after_modern_prefix_fix": "9/9 PASS",
@@ -141,13 +141,14 @@
       "research_fail": false
     },
     "full_panel_engineering_recovery": "config/jnu_pcr_full_panel_engineering_recovery_v1.json",
-    "active_recovery_run": 33520336720,
+    "active_recovery_run": 33611084116,
     "active_recovery_checkpoint": "config/jnu_pcr_full_panel_recovery_run_33520336720_checkpoint_v1.json",
     "full_panel_engineering_recovery_v2": "config/jnu_pcr_full_panel_engineering_recovery_v2.json",
     "latest_full_panel_run": {
       "run_id": 33520336720,
       "disposition": "DATA_GATE_NOT_EVALUABLE_ENGINEERING_FAILURE",
       "research_fail": false
-    }
+    },
+    "authoritative_data_gate_pass": "config/jnu_pcr_full_information_data_gate_pass_v1.json"
   }
 }
