@@ -177,3 +177,9 @@
 - Moving-block bootstrap 95% lower mean weekly net -0.41472%; positive subperiods 0/4; recent 104 weeks -30.1084%.
 - Independent arithmetic audit 3162/3162 row checks PASS; all aggregate checks reproduce exactly.
 - Governance: TERMINAL_FAIL_NO_RESCUE. Do not test the opposite sign as a rescue of this family.
+
+## JPX cash foreign-flow sibling terminal result (2026-09-02)
+- Data Gate PASS: 554/554 parsed, 528 standard PIT weeks, 527 complete phase1 observations.
+- 10bps cumulative -26.3243%; 20bps -50.0341%; Sharpe -0.03827; positive subperiods 2/4; recent104 -25.2101%.
+- Standard and Bonferroni bootstrap lower bounds both negative. Independent arithmetic audit 3162/3162 row checks PASS.
+- FOREIGN_INVESTOR_CAPITAL_FLOW broad family is CLOSED after 2/2 sibling tests; no third flow variant permitted.

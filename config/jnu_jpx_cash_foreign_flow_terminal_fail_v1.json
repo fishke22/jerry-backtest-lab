@@ -1,0 +1,71 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-02",
+  "candidate_id": "JPX_CASH_FOREIGN_FLOW_TOKYO_NAGOYA_SIGN_G1",
+  "broad_family": "FOREIGN_INVESTOR_CAPITAL_FLOW",
+  "related_family_test_index": 2,
+  "maximum_related_flow_tests": 2,
+  "status": "TERMINAL_FAIL_NO_RESCUE",
+  "research_fail": true,
+  "validated_jnu_module": false,
+  "validated_directional_edge": false,
+  "source_pit_data_gate": "PASS",
+  "source_weeks": 554,
+  "pit_standard_eligible_weeks": 528,
+  "phase1_complete_observations": 527,
+  "position_counts": {
+    "long": 245,
+    "short": 282,
+    "flat": 0
+  },
+  "metrics": {
+    "net_cumulative_10bps": -0.2632426172145733,
+    "net_cumulative_20bps": -0.500340971824172,
+    "mean_weekly_net_10bps": -0.00015460601309054498,
+    "annualized_sharpe_10bps": -0.03826594671648223,
+    "bootstrap_prob_mean_positive": 0.4332,
+    "bootstrap_lower_2_5pct": -0.0025265036286032964,
+    "bootstrap_bonferroni_lower_1_25pct": -0.0028293572899429635,
+    "positive_subperiods": 2,
+    "recent_104_net_cumulative_10bps": -0.25210059151375475
+  },
+  "subperiod_net_cumulative_10bps": [
+    0.4385888297675169,
+    -0.38975449847768173,
+    0.1613894941051488,
+    -0.27738772792413535
+  ],
+  "checks": {
+    "minimum_300_observations": true,
+    "net_cumulative_10bps_positive": false,
+    "annualized_sharpe_positive": false,
+    "stress_20bps_cumulative_positive": false,
+    "bootstrap_standard_lower_2_5pct_positive": false,
+    "bootstrap_bonferroni_lower_1_25pct_positive": false,
+    "at_least_3_of_4_subperiods_positive": false
+  },
+  "independent_arithmetic_audit": {
+    "status": "PASS",
+    "row_checks_total": 3162,
+    "row_checks_pass": 3162,
+    "all_aggregate_checks_pass": true
+  },
+  "cross_format_parser_audit": {
+    "status": "PASS",
+    "sample_2016_12_26_sign": 1,
+    "sample_2016_sha256": "da76cc58883f60e9f885fbd5373d5f42184e2d15639f4230c8c98cdb80728d7b",
+    "sample_2026_08_17_sign": -1,
+    "sample_2026_sha256": "f39037b0a6032aa117607f53933ad0b31069193129267897f66934f2deabe5b7"
+  },
+  "result_sha256": "1e2bcf4f01947f4e7345eeb79aa926c59600f430f95e9c1dabafc4632e512929",
+  "runner_commit": "a0218257ba91b38049757fec1bc5b6ddf2252498",
+  "alignment_commit": "7aa228972c78cf9d4aa05be03a558ea68ecb795e",
+  "data_gate_commit": "604aff4dbea9bd44cf7d935035333680d58393d6",
+  "retest_prohibited": true,
+  "sign_flip_rescue_prohibited": true,
+  "universe_variant_rescue_prohibited": true,
+  "threshold_rescue_prohibited": true,
+  "horizon_rescue_prohibited": true,
+  "interpretation": "The preregistered Tokyo & Nagoya cash foreign-flow sign rule fails the primary, stress, bootstrap, Bonferroni and subperiod gates. The broad foreign-investor capital-flow family has now used its two preregistered sibling tests and is closed.",
+  "next_action": "Close FOREIGN_INVESTOR_CAPITAL_FLOW after 2/2 tests. Move to a substantively independent directional mechanism."
+}

@@ -432,6 +432,18 @@
       "data_gate": "config/jnu_jpx_n225mini_foreign_flow_data_gate_pass_v1.json",
       "terminal_result": "config/jnu_jpx_n225mini_foreign_flow_terminal_fail_v1.json",
       "reopen_rule": "No sign flip, magnitude threshold, horizon change or regime-filter rescue. Reopen only with a substantively different independent mechanism/hypothesis."
+    },
+    {
+      "id": "JPX_CASH_FOREIGN_FLOW_TOKYO_NAGOYA_SIGN_G1",
+      "status": "TERMINAL_FAIL_NO_RESCUE",
+      "broad_family": "FOREIGN_INVESTOR_CAPITAL_FLOW",
+      "related_family_test_index": 2,
+      "maximum_related_flow_tests": 2,
+      "mechanism": "JPX weekly cash-equity foreign investor net trading-value sign in Tokyo & Nagoya aggregate, used only after publication",
+      "preregistration": "config/jnu_jpx_cash_foreign_flow_tokyo_nagoya_sign_g1_prereg.json",
+      "data_gate": "config/jnu_jpx_cash_foreign_flow_data_gate_pass_v1.json",
+      "terminal_result": "config/jnu_jpx_cash_foreign_flow_terminal_fail_v1.json",
+      "reopen_rule": "No sign flip, universe variant, magnitude threshold, horizon change or regime-filter rescue."
     }
   ],
   "conservative_rule": "Unknown legacy multiplicity is treated against promotion, not ignored.",
@@ -441,5 +453,17 @@
       "canonical": "MACD_4_22_3_POSTPUBLICATION_TRUE_JNU_G1",
       "disposition": "NO_OUTCOME_DUPLICATE_NOT_A_SEPARATE_ATTEMPT"
     }
-  ]
+  ],
+  "broad_family_closures": {
+    "FOREIGN_INVESTOR_CAPITAL_FLOW": {
+      "status": "CLOSED_2_OF_2_TESTS_EXHAUSTED",
+      "tests": [
+        "JPX_N225MINI_FOREIGN_FLOW_SIGN_G1",
+        "JPX_CASH_FOREIGN_FLOW_TOKYO_NAGOYA_SIGN_G1"
+      ],
+      "validated_directional_edge": false,
+      "new_variant_prohibited": true,
+      "rule": "Do not open a third foreign-flow variant absent a substantively new independent mechanism and external evidence."
+    }
+  }
 }

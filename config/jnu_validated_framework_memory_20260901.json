@@ -224,5 +224,15 @@
     "terminal_result": "config/jnu_jpx_n225mini_foreign_flow_terminal_fail_v1.json",
     "validated_directional_edge": false,
     "next_action": "Do not flip sign or retune. Select a substantively independent directional mechanism."
+  },
+  "jpx_cash_foreign_flow_tokyo_nagoya_sign_g1": {
+    "status": "TERMINAL_FAIL_NO_RESCUE",
+    "terminal_result": "config/jnu_jpx_cash_foreign_flow_terminal_fail_v1.json",
+    "validated_directional_edge": false
+  },
+  "foreign_investor_capital_flow_broad_family": {
+    "status": "CLOSED_2_OF_2_TESTS_EXHAUSTED",
+    "validated_directional_edge": false,
+    "third_variant_prohibited": true
   }
 }
