@@ -1,0 +1,64 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-02",
+  "status": "JNU_VALIDATION_PIPELINE_READY_FORWARD_DATA_PENDING",
+  "validation_head_sha": "ff322f11dbb23da6be093056ac6ef47f2db10e4a",
+  "repository": "fishke22/jerry-backtest-lab",
+  "cloud_checks": {
+    "stage8_readiness": {
+      "workflow": ".github/workflows/jnu-stage8-readiness-v1.yml",
+      "run_id": 33626955473,
+      "conclusion": "success",
+      "artifact_id": 9845172659,
+      "artifact_digest": "sha256:78f2c2d6772bf5189490762f031b67743ddb64b3696aedc1dac61877ee211aa0",
+      "semantic_result": "HAR 0/126; BOJ 0/8; no performance/effect columns read"
+    },
+    "framework_current_status": {
+      "workflow": ".github/workflows/jnu-framework-current-status-v1.yml",
+      "run_id": 33626897106,
+      "conclusion": "success",
+      "artifact_id": 9845149864,
+      "artifact_digest": "sha256:0d18064dfe18d102d06ca225a8762ad04f26eaf5533803d827e441ecbb4d937b",
+      "semantic_result": "6/8 major candidates terminal; 2 Stage8 finalists pending; 0 validated modules; NO_VALIDATED_DIRECTIONAL_EDGE"
+    },
+    "final_completion_audit": {
+      "workflow": ".github/workflows/jnu-final-completion-audit-v1.yml",
+      "run_id": 33626831915,
+      "conclusion": "success",
+      "artifact_id": 9845124762,
+      "artifact_digest": "sha256:0c15ef1eb68270b3b4ecd797a909b6fa181e58471b404773453ecc18deda62e6",
+      "semantic_result": "FRAMEWORK_INCOMPLETE_PENDING_MAJOR_CANDIDATES; 6/8 terminal; completion_allowed=false"
+    }
+  },
+  "forward_gates": {
+    "HAR_RSV": {
+      "stage3": "PASS",
+      "stage8_prereg": "config/jnu_har_rsv_jnu_micro_stage8_forward_g1_prereg.json",
+      "cutoff": "2026-08-31",
+      "required_new_trading_days": 126,
+      "available": 0,
+      "partial_outcome_inspection": false
+    },
+    "BOJ_MPM_EVENT_VOLATILITY": {
+      "stage3": "PASS",
+      "stage8_prereg": "config/jnu_boj_mpm_stage8_forward_g1_prereg.json",
+      "cutoff": "2026-07-31",
+      "required_new_eligible_events": 8,
+      "available": 0,
+      "partial_outcome_inspection": false
+    }
+  },
+  "stage9_prereg": "config/jnu_stage9_role_validation_prereg_v1.json",
+  "final_completion_prereg": "config/jnu_final_completion_audit_prereg_v1.json",
+  "validated_jnu_modules": 0,
+  "validated_directional_modules": 0,
+  "decision_engine": "NO_VALIDATED_DIRECTIONAL_EDGE",
+  "only_current_research_blocker": "Genuinely new untouched exact-JNU forward observations do not yet exist in sufficient quantity for the two preregistered Stage8 gates.",
+  "next_execution_rule": [
+    "Update locally licensed Micro raw data only when a new authorized source package is available.",
+    "Regenerate non-reconstructive derived panels using the frozen adapters.",
+    "Run the cloud Stage8 readiness workflow.",
+    "Do not execute or inspect a Stage8 outcome until its readiness gate says READY_TO_RUN_STAGE8.",
+    "After any Stage8 terminal result, rerun Stage9 review, framework status and final completion audit without changing frozen rules."
+  ]
+}

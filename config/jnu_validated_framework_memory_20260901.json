@@ -204,5 +204,9 @@
     "push_run_id": 33626204221,
     "manual_run_id": 33626221824,
     "next_action": "Use cloud readiness gate after new derived data arrives; do not run Stage8 outcome before READY."
-  }
+  },
+  "authoritative_validation_pipeline_checkpoint": "config/jnu_validation_pipeline_checkpoint_20260902_v1.json",
+  "validation_pipeline_status": "JNU_VALIDATION_PIPELINE_READY_FORWARD_DATA_PENDING",
+  "validation_pipeline_head": "ff322f11dbb23da6be093056ac6ef47f2db10e4a",
+  "next_action": "Wait only for genuinely new authorized exact-JNU data; use cloud readiness gate before any Stage8 outcome inspection."
 }

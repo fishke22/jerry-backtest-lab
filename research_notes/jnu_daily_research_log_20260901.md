@@ -149,3 +149,11 @@
 - Push run 33626204221 PASS; artifact 9844872997.
 - Manual run 33626221824 PASS; artifact 9844882077.
 - Both cloud runs match local semantics: HAR 0/126, BOJ 0/8, performance/effect columns not read and metrics not computed.
+
+## Authoritative validation pipeline checkpoint (2026-09-02)
+- Validation head: ff322f11dbb23da6be093056ac6ef47f2db10e4a.
+- Stage8 readiness cloud run 33626955473 PASS; artifact 9845172659.
+- Framework-status cloud run 33626897106 PASS; artifact 9845149864.
+- Final-completion cloud audit run 33626831915 PASS; artifact 9845124762.
+- Current state remains 6/8 major candidates terminal, HAR/BOJ Stage8 pending, validated JNU modules 0, directional modules 0.
+- The only active research blocker is future untouched exact-JNU data accumulation; no partial Stage8 outcome inspection is permitted.
