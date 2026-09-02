@@ -1,0 +1,17 @@
+{
+  "candidate_id": "HAR_RSV_JNU_MICRO_STAGE8_FORWARD_G1",
+  "prereg_sha256": "17d6f4e4b1c2875e366633df95a054fff7e6f0d5088d76ed8848f339a508d608",
+  "derived_panel_sha256": "adbd6307d8e2327d9c851f2d17f7d21957609b6f68bf323867a54e7b1b150bcd",
+  "manifest_sha256": "a560f66d3c9ad256c56bf33feed818d6a23e623b7b24139366163c4917bbb5ea",
+  "pre_holdout_cutoff": "2026-08-31",
+  "pre_holdout_days": 796,
+  "available_new_days": 0,
+  "required_new_days": 126,
+  "raw_data_cloud_uploaded": false,
+  "role": "VOLATILITY_RISK_STATE_ONLY_NOT_DIRECTIONAL_ALPHA",
+  "generated_at_utc": "2026-09-02T11:03:42.670928+00:00",
+  "status": "STAGE8_FORWARD_HOLDOUT_PENDING_INSUFFICIENT_NEW_DATA",
+  "remaining_new_days": 126,
+  "partial_holdout_performance_computed": false,
+  "holdout_metrics_revealed": false
+}

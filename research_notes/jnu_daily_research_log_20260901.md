@@ -125,3 +125,9 @@
 - Final disposition: DATA_INCONCLUSIVE; logical attempts used 3/3; 311 required cache windows still missing.
 - Statistical evaluation was not performed; directional trading remained prohibited by preregistration.
 - No fourth acquisition attempt is allowed. This family is closed as data-inconclusive, not research FAIL.
+
+## HAR-RSV Stage8 forward holdout prereg/selftest (2026-09-02)
+- Stage8 prereg frozen before any post-2026-08-31 JNU outcome: first 126 new eligible Micro trading days only.
+- Fail-closed selftest: 0/126 days available; 126 remaining.
+- Partial QLIKE/MSE/bootstrap computation is prohibited and was not performed; holdout_metrics is absent from the result.
+- Current status: STAGE8_FORWARD_HOLDOUT_PENDING_INSUFFICIENT_NEW_DATA.

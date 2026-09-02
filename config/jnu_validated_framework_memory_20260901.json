@@ -168,5 +168,14 @@
   "major_candidates_terminal": 6,
   "major_candidates_pending": 2,
   "current_validated_jnu_modules": 0,
-  "current_validated_directional_modules": 0
+  "current_validated_directional_modules": 0,
+  "har_rsv_stage8_forward": {
+    "status": "STAGE8_FORWARD_HOLDOUT_PENDING_INSUFFICIENT_NEW_DATA",
+    "preregistration": "config/jnu_har_rsv_jnu_micro_stage8_forward_g1_prereg.json",
+    "checkpoint": "config/jnu_har_rsv_stage8_forward_checkpoint_v1.json",
+    "available_new_days": 0,
+    "required_new_days": 126,
+    "partial_holdout_performance_computed": false,
+    "next_action": "Accumulate untouched post-2026-08-31 exact-JNU data; no partial outcome inspection."
+  }
 }

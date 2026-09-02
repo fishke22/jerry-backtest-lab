@@ -1,0 +1,23 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-02",
+  "candidate_id": "HAR_RSV_JNU_MICRO_STAGE8_FORWARD_G1",
+  "status": "STAGE8_FORWARD_HOLDOUT_PENDING_INSUFFICIENT_NEW_DATA",
+  "preregistration": "config/jnu_har_rsv_jnu_micro_stage8_forward_g1_prereg.json",
+  "runner": "scripts/process_jnu_har_rsv_jnu_micro_stage8_forward_g1.py",
+  "runner_commit": "89aceec4bb2e5bcd0aec058df73a7a809e0287fe",
+  "prereg_sha256": "17d6f4e4b1c2875e366633df95a054fff7e6f0d5088d76ed8848f339a508d608",
+  "derived_panel_sha256": "adbd6307d8e2327d9c851f2d17f7d21957609b6f68bf323867a54e7b1b150bcd",
+  "manifest_sha256": "a560f66d3c9ad256c56bf33feed818d6a23e623b7b24139366163c4917bbb5ea",
+  "result_sha256": "af563d2a1968b26ca99e89dfa8e9a9905807a67bec285b607bc27ea85ae61339",
+  "pre_holdout_cutoff": "2026-08-31",
+  "pre_holdout_days": 796,
+  "available_new_days": 0,
+  "required_new_days": 126,
+  "remaining_new_days": 126,
+  "partial_holdout_performance_computed": false,
+  "holdout_metrics_revealed": false,
+  "selftest": "PASS_FAIL_CLOSED_PENDING_NO_METRICS",
+  "python_environment": "D:/QROS/.venv/Scripts/python.exe; Python 3.14.5; numpy 2.4.6; pandas 3.0.3",
+  "next_action": "When newly authorized Micro data extends beyond 2026-08-31, regenerate the same non-reconstructive derived panel locally and rerun. Do not inspect performance until exactly 126 eligible post-cutoff days exist."
+}
