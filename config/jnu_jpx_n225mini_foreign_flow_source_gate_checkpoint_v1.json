@@ -1,0 +1,23 @@
+{
+  "version":"1.0",
+  "candidate_id":"JPX_N225MINI_FOREIGN_FLOW_SIGN_G1",
+  "status":"SOURCE_PARSE_GATE_PASS_PIT_TIMING_PENDING",
+  "information_panel_sha256":"a09ea126a81c5143d77be8af947f4ba8384f50b51b893ced859e9782720d1941",
+  "information_panel_local_size_bytes":313489,
+  "source_panel_cloud_uploaded":false,
+  "discovered_weekly_csv":554,
+  "parsed_target_weeks":554,
+  "parse_errors":0,
+  "parse_success_fraction":1.0,
+  "duplicate_periods":0,
+  "sample_from":"2016-01-04",
+  "sample_to":"2026-08-21",
+  "target_product_code":"313",
+  "target_product":"Nikkei 225 mini",
+  "target_investor_code":"60",
+  "target_investor":"Foreigners",
+  "legacy_format_supported":true,
+  "new_2026_format_supported":true,
+  "directional_return_inspected":false,
+  "next_action":"Attach exact publication dates using JPX business-day rules and pass the PIT timing gate before any return merge."
+}
