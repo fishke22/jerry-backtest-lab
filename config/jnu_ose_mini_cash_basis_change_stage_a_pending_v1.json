@@ -1,0 +1,46 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-02",
+  "candidate_id": "OSE_MINI_CASH_BASIS_CHANGE_G1",
+  "status": "STAGE_A_RUNNER_FROZEN_AWAITING_LOCAL_LICENSED_DATA_EXECUTION",
+  "prereg_commit": "512df0410792bcc1e6d84263e4e8377d8d0e9628",
+  "alignment_clarification_commit": "bc2fd90b553d671a462bcac5088f324350c8b843",
+  "data_gate_commit": "f42852917aac458dc3285eac6bf1cfee51954a48",
+  "subperiod_alignment_commit": "f9e7c006cf5df728dfcb431696899d671b487ece",
+  "final_execution_cost_commit": "0e9f51d97b3e17e944ada6cdbbba4df888e823af",
+  "runner_commit": "7e4cfdd00c0a184dbccc482f63743a640e68b854",
+  "signal_panel": {
+    "storage": "LOCAL_ONLY_PERSONAL_USE",
+    "path": "D:/QROS/data/derived/jnu_basis_change_g1/ose_mini_cash_basis_change_signal_panel_v1.json",
+    "sha256": "f193024c01f4b5ec8351cd845116f056fc20191ab5bfb3673f1267c37470d349",
+    "observations": 2705,
+    "long": 1349,
+    "short": 1356,
+    "flat": 0,
+    "directional_outcomes_read": false
+  },
+  "data_gate": {
+    "status": "PASS",
+    "cash_days": 3586,
+    "mini_reference_days": 3586,
+    "basis_missing_days": 0,
+    "roll_excluded_days": 765,
+    "complete_records": 2705,
+    "incomplete_nonroll_records": 0,
+    "duplicate_conflicts": 0
+  },
+  "subperiods": [
+    677,
+    676,
+    676,
+    676
+  ],
+  "execution_cost": "Independent round-trip per signal; primary 1 Mini tick each side, stress 2 Mini ticks each side.",
+  "current_validated_directional_edge": false,
+  "current_decision_engine": "NO_VALIDATED_DIRECTIONAL_EDGE",
+  "local_device_state_at_checkpoint": "OFFLINE",
+  "next_legal_action": "When KO-HONG-HSUAN reconnects, pull main and execute the already-committed Stage-A runner without changing any frozen file.",
+  "exact_command": "Set-Location D:\\JERRY_BACKTEST_CLOUD_SYNC_20260831; git pull --ff-only; D:\\QROS\\.venv\\Scripts\\python.exe scripts\\run_jnu_ose_mini_cash_basis_change_stage_a_v1.py",
+  "if_pass": "Run independent arithmetic audit, then preregister/freeze exact-JNU Micro Stage B without retuning.",
+  "if_fail": "Run independent arithmetic audit, then terminally close OSE_MINI_CASH_BASIS_CHANGE_G1 with no sign/threshold/roll-window/horizon rescue."
+}
