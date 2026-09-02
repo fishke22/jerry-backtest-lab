@@ -1,0 +1,155 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-02",
+  "status": "AUTHORITATIVE_JNU_OPERATIONAL_FRAMEWORK",
+  "usage_rule": "Use this framework for all future Osaka Nikkei / JNU analysis unless a later committed framework explicitly supersedes it.",
+  "validation_taxonomy": [
+    "RESEARCH_CANDIDATE",
+    "HISTORICAL_OOS_PASS",
+    "TRUE_JNU_CONFIRMED",
+    "FORWARD_VALIDATION_PENDING",
+    "FORWARD_VALIDATED",
+    "TERMINAL_FAIL"
+  ],
+  "layers": [
+    {
+      "id": 1,
+      "name": "Market Regime",
+      "items": [
+        "HAR-RSV volatility/risk state",
+        "realized volatility expansion/contraction",
+        "risk-on/off",
+        "VIX/US equity volatility",
+        "JPY regime"
+      ],
+      "role": "risk-state; HAR-RSV may not vote direction by itself"
+    },
+    {
+      "id": 2,
+      "name": "Event Risk State",
+      "items": [
+        "BOJ",
+        "Fed",
+        "CPI",
+        "NFP",
+        "SQ",
+        "major policy events"
+      ],
+      "role": "event-risk/volatility-state; not directional alpha"
+    },
+    {
+      "id": 3,
+      "name": "Cross-Market Information",
+      "items": [
+        "Nasdaq",
+        "S&P 500",
+        "SOX",
+        "USDJPY",
+        "US Treasury yields",
+        "VIX",
+        "global Nikkei-related markets"
+      ],
+      "role": "context/evidence only unless a separately validated directional family exists"
+    },
+    {
+      "id": 4,
+      "name": "Dynamic Price Discovery",
+      "items": [
+        "OSE",
+        "CME",
+        "cash Nikkei",
+        "US futures",
+        "FX leadership"
+      ],
+      "role": "identify current price-discovery venue; proxy evidence cannot be mislabeled as validated alpha"
+    },
+    {
+      "id": 5,
+      "name": "Intraday Price Path / Rejection",
+      "items": [
+        "overnight gap",
+        "opening location",
+        "time of intraday high/low",
+        "low-to-close recovery",
+        "high-to-close recovery",
+        "CLV",
+        "VWAP reclaim/loss",
+        "higher lows/lower highs",
+        "volume distribution"
+      ],
+      "role": "path-state evidence"
+    },
+    {
+      "id": 6,
+      "name": "Positioning / Derivatives",
+      "items": [
+        "put/call",
+        "strike OI",
+        "SQ",
+        "basis",
+        "term structure",
+        "investor flows"
+      ],
+      "role": "PIT-corrected positioning/context; failed PCR 88.7/116.5 family is prohibited as directional signal"
+    },
+    {
+      "id": 7,
+      "name": "Dynamic SQ Bias",
+      "items": [
+        "price location",
+        "OI distribution",
+        "gamma/strike concentration",
+        "intraday path",
+        "market response"
+      ],
+      "role": "never assume pull-up or press-down settlement"
+    },
+    {
+      "id": 8,
+      "name": "Evidence Fusion",
+      "items": [
+        "Bullish evidence",
+        "Bearish evidence",
+        "Neutral/risk evidence",
+        "Invalidated signals",
+        "A/B/C evidence quality"
+      ],
+      "role": "synthesize without fake precision"
+    },
+    {
+      "id": 9,
+      "name": "Decision Output",
+      "items": [
+        "directional bias",
+        "confidence",
+        "expected path",
+        "key levels",
+        "invalidation conditions",
+        "event risk",
+        "flip conditions"
+      ],
+      "role": "probabilistic/conditional analysis, not a claim of proven mechanical directional alpha"
+    }
+  ],
+  "current_validated_state_modules": {
+    "HAR_RSV": {
+      "status": "TRUE_JNU_CONFIRMED_FORWARD_VALIDATION_PENDING",
+      "role": "VOLATILITY_RISK_STATE_ONLY"
+    },
+    "BOJ_MPM_EVENT_VOLATILITY": {
+      "status": "TRUE_JNU_CONFIRMED_FORWARD_VALIDATION_PENDING",
+      "role": "EVENT_RISK_STATE_ONLY"
+    }
+  },
+  "prohibited_directional_families": [
+    "PCR 88.7/116.5",
+    "MACD 4/22/3 post-publication",
+    "prior-night USDJPY sign",
+    "simple US-to-JNU intraday path",
+    "overnight overreaction",
+    "legacy trend/breakout/drawdown-repair/NDX-relative-strength families already rejected"
+  ],
+  "current_directional_status": "NO_VALIDATED_DIRECTIONAL_EDGE",
+  "operational_use": "Framework is usable now for probabilistic JNU analysis. Historical/OSE/JNU-confirmed risk-state modules are used at their validated roles while forward certification continues in parallel.",
+  "research_parallel_track": "Continue preregistered independent directional research using PIT, OOS, walk-forward, bootstrap, cost stress, multiple-testing controls, and exact-JNU confirmation. Do not wait for future holdout before testing new independent historical families."
+}

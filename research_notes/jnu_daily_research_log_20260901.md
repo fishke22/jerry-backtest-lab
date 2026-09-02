@@ -163,3 +163,9 @@
 - Check-only selftest on current four Micro annual packages: NO_SOURCE_CHANGE; no derived modification.
 - --apply selftest with unchanged source also no-op; tracked repo diff remained empty.
 - Builder provenance is resolved from each builder last-touch Git commit; future annual packages are dynamically discovered.
+
+## Authoritative JNU Operational Framework frozen (2026-09-02)
+- Current operational framework persisted at config/jnu_operational_framework_current_v1.json.
+- Future JNU/Osaka Nikkei analyses must use its nine-layer regime/event/cross-market/price-discovery/path/positioning/SQ/evidence-fusion/decision-output structure.
+- HAR-RSV and BOJ remain role-constrained TRUE_JNU_CONFIRMED / FORWARD_VALIDATION_PENDING modules; no validated directional edge exists yet.
+- Rejected PCR/MACD/USDJPY/overnight/simple US-to-JNU families remain prohibited as directional signals.
