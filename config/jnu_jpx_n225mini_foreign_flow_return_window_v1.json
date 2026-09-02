@@ -1,0 +1,19 @@
+{
+  "version":"1.0",
+  "candidate_id":"JPX_N225MINI_FOREIGN_FLOW_SIGN_G1",
+  "status":"RETURN_WINDOW_EXECUTION_DETAIL_FROZEN_BEFORE_RETURN_MERGE",
+  "frozen_at":"2026-09-02",
+  "entry":"First available regular Nikkei trading close strictly after the 15:30 JST publication date.",
+  "exit":"Close exactly five regular Nikkei trading sessions after the entry close.",
+  "holding_intervals":5,
+  "gross_return":"exit_close / entry_close - 1",
+  "position_return":"signal_sign * gross_return",
+  "turnover_cost":"one-way cost bps multiplied by absolute change in weekly position versus prior eligible observation; initial position enters from flat.",
+  "primary_cost_bps":10,
+  "stress_cost_bps":20,
+  "annualized_sharpe_factor":"sqrt(52)",
+  "overlapping_week_rule":"Weekly observations remain timestamped by publication; holiday-driven overlap is not removed post hoc.",
+  "missing_price_rule":"If entry or fifth-session exit cannot be formed from the public price calendar, exclude that observation before metric calculation and report it.",
+  "no_same_day_execution":true,
+  "no_outcome_inspection_before_this_freeze":true
+}
