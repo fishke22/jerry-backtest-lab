@@ -1,0 +1,82 @@
+{
+  "version": "1.0",
+  "candidate_id": "HAR_RSV_JNU_MICRO_STAGE8_FORWARD_G1",
+  "parent_family": "INTRADAY_VOLATILITY_HAR_RSV_DI1",
+  "frozen_at": "2026-09-02",
+  "status": "PREREGISTERED_BEFORE_FORWARD_HOLDOUT_OUTCOME",
+  "role": "VOLATILITY_RISK_STATE_ONLY_NOT_DIRECTIONAL_ALPHA",
+  "requires": {
+    "stage_a": {
+      "candidate_id": "HAR_RSV_TRUE_OSE_MINI_STAGE_A_G1",
+      "status": "TRUE_OSE_MINI_STAGE_A_PASS",
+      "run_id": 33388746345
+    },
+    "stage_b": {
+      "candidate_id": "HAR_RSV_JNU_MICRO_STAGE_B_G1",
+      "status": "TRUE_JNU_MICRO_STAGE_B_PASS",
+      "run_id": 33389857914
+    },
+    "promotion_stage_completed": 3
+  },
+  "source": {
+    "venue": "OSE",
+    "product": "Nikkei 225 Micro Futures (JNU)",
+    "provider": "225Labo",
+    "raw_frequency": "source-provided 5-minute primary",
+    "raw_storage": "LOCAL_ONLY_PERSONAL_USE",
+    "cloud_input": "non-reconstructive daily RV/RSV panel only",
+    "pre_holdout_cutoff": "2026-08-31",
+    "eligible_holdout": "Strictly later trading dates only"
+  },
+  "holdout": {
+    "start_rule": "First eligible JNU trading day strictly after 2026-08-31",
+    "length_trading_days": 126,
+    "rationale": "Approximately six months of genuinely forward exact-product observations; fixed before any post-cutoff outcome inspection.",
+    "partial_outcome_policy": "PROHIBITED",
+    "pending_behavior": "If fewer than 126 eligible new trading days exist, report only available-day count and data-integrity status; do not compute or reveal QLIKE/MSE/bootstrap holdout performance.",
+    "leakage_rule": "No date on or before 2026-08-31 may enter holdout."
+  },
+  "frozen_models": {
+    "baseline": "HAR_RV: logRV_t ~ 1 + logRV_{t-1} + mean(logRV_{t-1:t-5}) + mean(logRV_{t-1:t-22})",
+    "challenger": "HAR_RSV: logRV_t ~ 1 + logRSV+_{t-1} + logRSV-_{t-1} + weekly_logRV + monthly_logRV",
+    "coefficient_estimation": "Fit each model once using all causally eligible exact-JNU Micro observations through 2026-08-31; freeze coefficients before scoring Stage8 holdout.",
+    "holdout_refit": "NONE",
+    "predictor_updates": "Lagged realized RV/RSV observations from completed holdout days may enter future-day predictors causally; coefficients remain frozen.",
+    "sampling": "5-minute",
+    "min_5m_returns_per_day": 46
+  },
+  "evaluation": {
+    "metrics": [
+      "QLIKE improvement",
+      "MSE improvement"
+    ],
+    "bootstrap": {
+      "block_days": 5,
+      "samples": 2000,
+      "seed": 42
+    },
+    "pass_all": [
+      "Holdout mean QLIKE improvement > 0",
+      "Holdout mean MSE improvement > 0",
+      "At least one of QLIKE or MSE 5-day block-bootstrap probabilities of positive improvement >= 0.95",
+      "No unresolved critical data-quality issue",
+      "Exactly 126 preregistered forward trading days are evaluated"
+    ]
+  },
+  "interpretation": {
+    "pass": "STAGE8_FORWARD_HOLDOUT_PASS; proceed to Stage9 role-consistent validation review for volatility/risk-state use only.",
+    "fail": "STAGE8_FORWARD_HOLDOUT_FAIL_CURRENT_SPEC; HAR-RSV remains non-validated and may not be rescued by refitting windows/features/thresholds on this holdout.",
+    "pending": "STAGE8_FORWARD_HOLDOUT_PENDING_INSUFFICIENT_NEW_DATA"
+  },
+  "forbidden": [
+    "Inspect partial holdout performance before 126 days",
+    "Refit coefficients using holdout target outcomes",
+    "Tune HAR 1/5/22 horizons",
+    "Change 5-minute primary sampling",
+    "Change bootstrap block length, samples, seed, or 0.95 threshold",
+    "Select a favorable shorter/later holdout after outcome inspection",
+    "Add leverage, jumps, neural features, filters, or regimes to rescue a failure",
+    "Use a Stage8 risk-state PASS as directional alpha"
+  ],
+  "next_action": "Implement a fail-closed Stage8 runner/selftest that emits no performance metrics until 126 post-cutoff trading days are present."
+}
