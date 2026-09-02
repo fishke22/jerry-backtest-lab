@@ -1,0 +1,15 @@
+{
+  "version": "1.0",
+  "candidate_id": "OSE_MINI_CASH_BASIS_CHANGE_G1",
+  "status": "PRE_OUTCOME_ALIGNMENT_CLARIFICATION",
+  "frozen_at": "2026-09-02",
+  "reason": "Clarify 'previous eligible trading day' so daily delta-basis cannot span the preregistered roll-risk exclusion window.",
+  "clarification": {
+    "previous_basis_day": "The immediately preceding valid Nikkei cash trading day in the public cash-price calendar.",
+    "requirement": "Both current signal day and immediately preceding cash trading day must lie outside the quarterly roll-risk exclusion window.",
+    "post_roll_behavior": "The first cash trading day after a roll-risk window has no signal if its immediately preceding cash trading day is still inside the excluded window.",
+    "no_skip_across_roll_window": true
+  },
+  "directional_outcome_inspected": false,
+  "no_other_rule_changed": true
+}
