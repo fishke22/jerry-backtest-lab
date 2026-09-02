@@ -1,0 +1,19 @@
+{
+  "version": "1.0",
+  "candidate_id": "OSE_MINI_CASH_BASIS_CHANGE_G1",
+  "status": "PRE_OUTCOME_EXECUTION_COST_SUPERSEDING_CLARIFICATION",
+  "frozen_at": "2026-09-02",
+  "supersedes": "config/jnu_ose_mini_cash_basis_change_g1_cost_boundary_clarification.json",
+  "reason": "Because the signal is formed at the cash close and entry is deliberately delayed by five minutes, same-sign position netting would require modeling the five-minute boundary return. To eliminate that ambiguity before outcome inspection, each observation is treated as an independent round-trip.",
+  "frozen_execution": {
+    "each_observation": "Flat before entry; enter at the preregistered +5-minute Mini bar open; exit at the next cash-close Mini bar open; flat immediately after exit.",
+    "same_sign_netting": false,
+    "primary_cost": "1 Mini tick (5 index points) on entry plus 1 Mini tick on exit.",
+    "stress_cost": "2 Mini ticks (10 index points) on entry plus 2 Mini ticks on exit.",
+    "cost_return_primary": "5/entry_price + 5/exit_price",
+    "cost_return_stress": "10/entry_price + 10/exit_price"
+  },
+  "signal_rule_changed": false,
+  "holding_window_changed": false,
+  "directional_outcome_inspected": false
+}
