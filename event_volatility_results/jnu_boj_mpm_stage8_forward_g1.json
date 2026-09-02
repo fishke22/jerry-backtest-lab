@@ -1,0 +1,16 @@
+{
+  "candidate_id": "BOJ_MPM_JNU_MICRO_STAGE8_FORWARD_G1",
+  "status": "STAGE8_FORWARD_EVENT_HOLDOUT_PENDING_INSUFFICIENT_NEW_EVENTS",
+  "prereg_sha256": "be2edf1bd5a80eb112b7dbcffa22809eace147642c7123006cd274201e4c4adc",
+  "panel_sha256": "3db105e1294031beef9ffabecf5288ccdaf8cb5e0e393e27b406102b5e58b43a",
+  "manifest_sha256": "5e4ac3a41af7b6a99ab56333ea6132324632c15baca4fa1706b674ce8d9a2069",
+  "pre_holdout_cutoff": "2026-07-31",
+  "available_new_events": 0,
+  "required_new_events": 8,
+  "raw_data_cloud_uploaded": false,
+  "role": "EVENT_RISK_STATE_ONLY_NOT_DIRECTIONAL_ALPHA",
+  "generated_at_utc": "2026-09-02T11:06:40.442100+00:00",
+  "remaining_new_events": 8,
+  "partial_holdout_performance_computed": false,
+  "holdout_metrics_revealed": false
+}

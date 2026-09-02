@@ -1,0 +1,21 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-02",
+  "candidate_id": "BOJ_MPM_JNU_MICRO_STAGE8_FORWARD_G1",
+  "status": "STAGE8_FORWARD_EVENT_HOLDOUT_PENDING_INSUFFICIENT_NEW_EVENTS",
+  "preregistration": "config/jnu_boj_mpm_stage8_forward_g1_prereg.json",
+  "runner": "scripts/process_jnu_boj_mpm_stage8_forward_g1.py",
+  "runner_commit": "ab152d894da569bb0ef68ab2f172782689f961ab",
+  "prereg_sha256": "be2edf1bd5a80eb112b7dbcffa22809eace147642c7123006cd274201e4c4adc",
+  "panel_sha256": "3db105e1294031beef9ffabecf5288ccdaf8cb5e0e393e27b406102b5e58b43a",
+  "manifest_sha256": "5e4ac3a41af7b6a99ab56333ea6132324632c15baca4fa1706b674ce8d9a2069",
+  "result_sha256": "7acb526043a7687b61e8e19a3051c15de7f5c5adebcc086a9cefdbc8d49a9e12",
+  "pre_holdout_cutoff": "2026-07-31",
+  "available_new_events": 0,
+  "required_new_events": 8,
+  "remaining_new_events": 8,
+  "partial_holdout_performance_computed": false,
+  "holdout_metrics_revealed": false,
+  "selftest": "PASS_FAIL_CLOSED_PENDING_NO_METRICS",
+  "next_action": "After eight newly eligible official BOJ decision events strictly after 2026-07-31 have local exact-JNU aggregates, rerun once. Do not inspect partial event effects."
+}

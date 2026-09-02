@@ -164,7 +164,7 @@
     "next_action": "Do not retry GDELT G1. Select another independent candidate with executable data."
   },
   "framework_completion_gap": "config/jnu_framework_completion_gap_20260902.json",
-  "framework_status": "FRAMEWORK_INCOMPLETE_TWO_STAGE8_FINALISTS_PENDING",
+  "framework_status": "FRAMEWORK_INCOMPLETE_TWO_STAGE8_FORWARD_HOLDOUTS_PREREGISTERED_PENDING_DATA",
   "major_candidates_terminal": 6,
   "major_candidates_pending": 2,
   "current_validated_jnu_modules": 0,
@@ -177,5 +177,14 @@
     "required_new_days": 126,
     "partial_holdout_performance_computed": false,
     "next_action": "Accumulate untouched post-2026-08-31 exact-JNU data; no partial outcome inspection."
+  },
+  "boj_mpm_stage8_forward": {
+    "status": "STAGE8_FORWARD_EVENT_HOLDOUT_PENDING_INSUFFICIENT_NEW_EVENTS",
+    "preregistration": "config/jnu_boj_mpm_stage8_forward_g1_prereg.json",
+    "checkpoint": "config/jnu_boj_mpm_stage8_forward_checkpoint_v1.json",
+    "available_new_events": 0,
+    "required_new_events": 8,
+    "partial_holdout_performance_computed": false,
+    "next_action": "Accumulate first 8 untouched post-2026-07-31 eligible BOJ decision events; no partial effect inspection."
   }
 }

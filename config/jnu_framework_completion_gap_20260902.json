@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "as_of": "2026-09-02",
-  "status": "FRAMEWORK_INCOMPLETE_TWO_STAGE8_FINALISTS_PENDING",
+  "status": "FRAMEWORK_INCOMPLETE_TWO_STAGE8_FORWARD_HOLDOUTS_PREREGISTERED_PENDING_DATA",
   "validated_jnu_modules": 0,
   "validated_directional_modules": 0,
   "decision_engine": "NO_VALIDATED_DIRECTIONAL_EDGE",
@@ -22,14 +22,18 @@
       "role": "VOLATILITY_RISK_STATE_ONLY_NOT_DIRECTIONAL_ALPHA",
       "true_jnu_data_cutoff": "2026-08-31",
       "next_applicable_stage": 8,
-      "blocker": "NO_UNTOUCHED_TRUE_JNU_FORWARD_DATA_AFTER_2026-08-31"
+      "blocker": "NO_UNTOUCHED_TRUE_JNU_FORWARD_DATA_AFTER_2026-08-31",
+      "stage8_preregistration": "config/jnu_har_rsv_jnu_micro_stage8_forward_g1_prereg.json",
+      "stage8_checkpoint": "config/jnu_har_rsv_stage8_forward_checkpoint_v1.json"
     },
     "BOJ_MPM_EVENT_VOLATILITY": {
       "current_status": "TRUE_JNU_STAGE3_PASS_EVENT_RISK_INFORMATION_STATE_CANDIDATE_DI3_RECONFIRMED",
       "role": "EVENT_RISK_STATE_ONLY_NOT_DIRECTIONAL_ALPHA",
       "true_jnu_event_cutoff": "2026-07-31",
       "next_applicable_stage": 8,
-      "blocker": "NO_NEW_ELIGIBLE_BOJ_DECISION_EVENT_AFTER_2026-07-31_AS_OF_2026-09-02"
+      "blocker": "NO_NEW_ELIGIBLE_BOJ_DECISION_EVENT_AFTER_2026-07-31_AS_OF_2026-09-02",
+      "stage8_preregistration": "config/jnu_boj_mpm_stage8_forward_g1_prereg.json",
+      "stage8_checkpoint": "config/jnu_boj_mpm_stage8_forward_checkpoint_v1.json"
     }
   },
   "stage_applicability": {
@@ -37,9 +41,9 @@
     "BOJ_EVENT": "The Stage4/5 blackout translation is separately implementation-validated but not alpha evidence. The parent event-state information module still needs Stage 8 forward confirmation before Stage 9 role validation."
   },
   "remaining_research_milestones": [
-    "HAR-RSV Stage8 true-JNU forward holdout",
+    "HAR-RSV: accumulate 126 untouched post-2026-08-31 exact-JNU trading days, then run frozen Stage8 once",
     "HAR-RSV Stage9 role-consistent validation review if Stage8 passes",
-    "BOJ event-state Stage8 forward-event holdout",
+    "BOJ event-state: accumulate 8 untouched eligible post-2026-07-31 BOJ decision events, then run frozen Stage8 once",
     "BOJ event-state Stage9 role-consistent validation review if Stage8 passes",
     "Final framework completion review and immutable terminal-status audit"
   ],

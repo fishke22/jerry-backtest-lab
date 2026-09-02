@@ -131,3 +131,9 @@
 - Fail-closed selftest: 0/126 days available; 126 remaining.
 - Partial QLIKE/MSE/bootstrap computation is prohibited and was not performed; holdout_metrics is absent from the result.
 - Current status: STAGE8_FORWARD_HOLDOUT_PENDING_INSUFFICIENT_NEW_DATA.
+
+## BOJ MPM Stage8 forward-event prereg/selftest (2026-09-02)
+- Stage8 frozen before post-2026-07-31 event outcomes: first 8 new eligible BOJ decision events only.
+- Fail-closed selftest: 0/8 new events available; 8 remaining.
+- Partial event-effect mean/median/bootstrap is prohibited and was not computed; holdout_metrics is absent.
+- Both pending Stage3 finalists now have Stage8 protocols frozen before future outcomes.
