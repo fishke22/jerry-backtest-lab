@@ -1,0 +1,43 @@
+{
+  "version": "1.0",
+  "prereg_sha256": "46f6533877b655d3c197e68c6eb7fdd622c00645ab8251357d252287a992dfb7",
+  "status": "STAGE9_REVIEW_PENDING",
+  "modules": {
+    "HAR_RSV_DI1": {
+      "stage9_id": "HAR_RSV_JNU_RISK_STATE_STAGE9",
+      "role": "VOLATILITY_RISK_STATE_ONLY_NOT_DIRECTIONAL_ALPHA",
+      "status": "STAGE9_BLOCKED_STAGE8_PENDING",
+      "reason": "STAGE8_FORWARD_HOLDOUT_NOT_TERMINAL",
+      "stage_a_pass": true,
+      "stage_b_pass": true,
+      "stage8_status": "STAGE8_FORWARD_HOLDOUT_PENDING_INSUFFICIENT_NEW_DATA",
+      "validated_directional_edge": false,
+      "allowed_effects": [],
+      "prohibited": [
+        "directional probability vote",
+        "entry direction",
+        "treating forecast-loss improvement as trading alpha"
+      ]
+    },
+    "BOJ_MPM_EVENT_VOLATILITY_G1": {
+      "stage9_id": "BOJ_MPM_EVENT_STATE_STAGE9",
+      "role": "EVENT_RISK_STATE_ONLY_NOT_DIRECTIONAL_ALPHA",
+      "status": "STAGE9_BLOCKED_STAGE8_PENDING",
+      "reason": "STAGE8_FORWARD_HOLDOUT_NOT_TERMINAL",
+      "stage_a_pass": true,
+      "stage_b_pass": true,
+      "stage8_status": "STAGE8_FORWARD_EVENT_HOLDOUT_PENDING_INSUFFICIENT_NEW_EVENTS",
+      "validated_directional_edge": false,
+      "allowed_effects": [],
+      "prohibited": [
+        "directional probability vote",
+        "policy-direction inference from event volatility",
+        "claiming Stage4/5 blackout replay is alpha evidence"
+      ]
+    }
+  },
+  "validated_jnu_modules_from_this_review": 0,
+  "validated_directional_modules_from_this_review": 0,
+  "decision_engine_direction": "NO_VALIDATED_DIRECTIONAL_EDGE",
+  "generated_at_utc": "2026-09-02T11:08:27.082403+00:00"
+}

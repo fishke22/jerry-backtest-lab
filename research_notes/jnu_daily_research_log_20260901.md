@@ -137,3 +137,9 @@
 - Fail-closed selftest: 0/8 new events available; 8 remaining.
 - Partial event-effect mean/median/bootstrap is prohibited and was not computed; holdout_metrics is absent.
 - Both pending Stage3 finalists now have Stage8 protocols frozen before future outcomes.
+
+## Stage9 role-validation gate prereg/selftest (2026-09-02)
+- Stage9 admission rules frozen before either Stage8 forward outcome.
+- Selftest: HAR-RSV and BOJ event-state are both STAGE9_BLOCKED_STAGE8_PENDING.
+- Validated JNU modules remain 0; validated directional modules remain 0; direction engine remains NO_VALIDATED_DIRECTIONAL_EDGE.
+- PCR fixed-threshold terminal failure added to the permanent family attempt ledger; no rescue/reopen by parameter tuning.

@@ -1,6 +1,6 @@
 {
   "version": "2.3",
-  "updated_at": "2026-09-01",
+  "updated_at": "2026-09-02",
   "rule": "Permanent family-level attempt ledger. Never delete failed/inconclusive families to improve apparent research success rate.",
   "families": [
     {
@@ -96,7 +96,17 @@
       },
       "promotion_pipeline_stage": 3,
       "admitted_role": "VOLATILITY_RISK_STATE_ONLY_NOT_DIRECTIONAL_ALPHA",
-      "stage9_validated": false
+      "stage9_validated": false,
+      "stage8_forward": {
+        "candidate_id": "HAR_RSV_JNU_MICRO_STAGE8_FORWARD_G1",
+        "status": "STAGE8_FORWARD_HOLDOUT_PENDING_INSUFFICIENT_NEW_DATA",
+        "preregistration": "config/jnu_har_rsv_jnu_micro_stage8_forward_g1_prereg.json",
+        "checkpoint": "config/jnu_har_rsv_stage8_forward_checkpoint_v1.json",
+        "cutoff": "2026-08-31",
+        "available_days": 0,
+        "required_days": 126,
+        "partial_outcome_inspection": false
+      }
     },
     {
       "id": "INTRADAY_PATH_US_NIKKEI_PROXY_G0",
@@ -288,7 +298,17 @@
           "bootstrap_prob_mean_positive": 1,
           "disposition": "SUPERSEDED_BY_DI3_EVENT_TIMESTAMP_CORRECTION"
         }
-      ]
+      ],
+      "stage8_forward": {
+        "candidate_id": "BOJ_MPM_JNU_MICRO_STAGE8_FORWARD_G1",
+        "status": "STAGE8_FORWARD_EVENT_HOLDOUT_PENDING_INSUFFICIENT_NEW_EVENTS",
+        "preregistration": "config/jnu_boj_mpm_stage8_forward_g1_prereg.json",
+        "checkpoint": "config/jnu_boj_mpm_stage8_forward_checkpoint_v1.json",
+        "cutoff": "2026-07-31",
+        "available_events": 0,
+        "required_events": 8,
+        "partial_outcome_inspection": false
+      }
     },
     {
       "id": "INTRADAY_MOMENTUM_REVERSION_TRUE_JNU_G1",
@@ -388,6 +408,20 @@
         "real_pnl_used": false,
         "alpha_or_utility_evidence": false
       }
+    },
+    {
+      "id": "NIKKEI225_OPTIONS_PCR_TSUIJI_88_7_116_5_POSTPUBLICATION_G1",
+      "status": "TERMINAL_FAIL_NO_RESCUE",
+      "multiplicity": "ONE_EXTERNALLY_PUBLISHED_FIXED_THRESHOLD_FAMILY",
+      "preregistration": "config/jnu_pcr_directional_postpublication_prereg_v1.json",
+      "transport_amendment": "config/jnu_pcr_directional_postpublication_prereg_v1_1.json",
+      "terminal_result": "config/jnu_pcr_directional_postpublication_terminal_fail_v1.json",
+      "primary_net_cumulative_return": 0.03255399664005476,
+      "stress_20bps_net_cumulative_return": -0.12131763831135434,
+      "bootstrap_95pct_lower_mean_monthly_return": -0.005695606011394414,
+      "positive_fixed_subperiods": 1,
+      "recent_window_net_cumulative_return": 0.9489856936211525,
+      "reopen_rule": "No threshold/sample/cost/sign/subperiod rescue. Reopen only for substantively new independent evidence/family."
     }
   ],
   "conservative_rule": "Unknown legacy multiplicity is treated against promotion, not ignored.",

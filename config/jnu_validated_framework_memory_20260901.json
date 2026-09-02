@@ -186,5 +186,15 @@
     "required_new_events": 8,
     "partial_holdout_performance_computed": false,
     "next_action": "Accumulate first 8 untouched post-2026-07-31 eligible BOJ decision events; no partial effect inspection."
+  },
+  "stage9_role_validation": {
+    "status": "STAGE9_REVIEW_PENDING",
+    "preregistration": "config/jnu_stage9_role_validation_prereg_v1.json",
+    "result": "stage9_results/jnu_stage9_role_validation_v1.json",
+    "HAR_RSV_DI1": "STAGE9_BLOCKED_STAGE8_PENDING",
+    "BOJ_MPM_EVENT_VOLATILITY_G1": "STAGE9_BLOCKED_STAGE8_PENDING",
+    "validated_jnu_modules": 0,
+    "validated_directional_modules": 0,
+    "decision_engine_direction": "NO_VALIDATED_DIRECTIONAL_EDGE"
   }
 }
