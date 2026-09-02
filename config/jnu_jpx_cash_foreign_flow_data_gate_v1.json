@@ -1,0 +1,21 @@
+{
+  "version": "1.0",
+  "candidate_id": "JPX_CASH_FOREIGN_FLOW_TOKYO_NAGOYA_SIGN_G1",
+  "status": "SOURCE_PIT_DATA_GATE_PREREGISTERED_BEFORE_RETURN_MERGE",
+  "sample_start": "2016-01-01",
+  "source": "JPX equities weekly investor-type value archives; stock_val_1_*.xls",
+  "required_sheet": "Tokyo & Nagoya",
+  "required_investor": "Foreigners",
+  "minimum_weekly_files": 500,
+  "minimum_parse_success_fraction": 0.95,
+  "parser_source_errors_allowed": 0,
+  "pit_rule": "Fourth JPX regular business day in immediately following calendar week at 15:30 JST",
+  "irregular_week_rule": "Following week with fewer than four regular business days is excluded",
+  "maximum_irregular_exclusion_fraction": 0.05,
+  "holiday_source": "Japan Cabinet Office syukujitsu.csv",
+  "holiday_source_sha256": "cec37a743c96995cdb9cb52b685c9003634682a9b0e1a640a6b9b96881fe964a",
+  "directional_returns_forbidden_during_gate": true,
+  "outcome_inspection_forbidden": true,
+  "pass_status": "JPX_CASH_FOREIGN_FLOW_SOURCE_PIT_DATA_GATE_PASS",
+  "fail_status": "JPX_CASH_FOREIGN_FLOW_SOURCE_PIT_DATA_GATE_FAIL_OR_INCONCLUSIVE"
+}
