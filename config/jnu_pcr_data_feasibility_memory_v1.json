@@ -3,7 +3,7 @@
   "as_of": "2026-09-01",
   "candidate_id": "NIKKEI225_OPTIONS_PCR_SENTIMENT_POSTPUBLICATION_G1",
   "formal_directional_family_opened": false,
-  "status": "PCR_FULL_INFORMATION_DATA_FEASIBILITY_PASS_DIRECTIONAL_PREREG_REQUIRED",
+  "status": "PCR_DATA_GATE_PASS_DIRECTIONAL_FAMILY_TERMINAL_FAIL",
   "governance": {
     "independence": "SUBSTANTIVELY_INDEPENDENT_FROM_RECENT_FAILED_DIRECTIONAL_FAMILIES",
     "literature_anchor": "Tsuji (2009), Japan-specific Nikkei 225 index-options put/call-ratio market-timing evidence",
@@ -103,9 +103,9 @@
     "post_full_panel_fix_frozen_qa": "9/9 PASS unchanged under pypdf 6.0.0",
     "transition_layout_smoke": "20/20 required days across 2016-07, 2017-06, 2018-01, 2019-11; 4/4 PCR_DEFINED"
   },
-  "directional_outcome_inspected": false,
-  "formal_preregistration_created": false,
-  "next_action": "Create and commit a separate post-publication directional preregistration before inspecting any future Nikkei/JNU return outcome.",
+  "directional_outcome_inspected": true,
+  "formal_preregistration_created": true,
+  "next_action": "Do not retune or reopen the 88.7/116.5 PCR family. Select the next substantively independent directional candidate under fresh preregistration.",
   "zero_denominator_rule": "Daily PCR undefined when selected near+second-near call volume is zero; month unusable if any of five required daily PCRs is undefined. No rescue.",
   "cloud_smoke": {
     "run_id": 33509640334,
@@ -157,5 +157,6 @@
     "full_panel_artifact_id": 9809516285
   },
   "full_panel_engineering_recovery_v2": "config/jnu_pcr_full_panel_engineering_recovery_v2.json",
-  "authoritative_data_gate_pass": "config/jnu_pcr_full_information_data_gate_pass_v1.json"
+  "authoritative_data_gate_pass": "config/jnu_pcr_full_information_data_gate_pass_v1.json",
+  "directional_terminal_result": "config/jnu_pcr_directional_postpublication_terminal_fail_v1.json"
 }

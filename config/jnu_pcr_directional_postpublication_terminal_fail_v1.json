@@ -1,0 +1,87 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-02",
+  "candidate_id": "NIKKEI225_OPTIONS_PCR_SENTIMENT_POSTPUBLICATION_G1",
+  "status": "TERMINAL_FAIL_NO_RESCUE",
+  "research_fail": true,
+  "validated_jnu_module": false,
+  "validated_directional_edge": false,
+  "data_gate_status": "PCR_FULL_INFORMATION_DATA_FEASIBILITY_PASS",
+  "preregistration": {
+    "original": "config/jnu_pcr_directional_postpublication_prereg_v1.json",
+    "pre_outcome_transport_amendment": "config/jnu_pcr_directional_postpublication_prereg_v1_1.json",
+    "threshold_lower": 88.7,
+    "threshold_upper": 116.5,
+    "signal_timing": "PCR signal month t -> return month t+1",
+    "rescue_or_retuning_allowed": false
+  },
+  "execution_lineage": {
+    "authoritative_pcr_run_id": 33611084116,
+    "authoritative_pcr_panel_sha256": "d714c3753a2f64629837c81def1a0c9433f4ec2a2c25e2b3a473bbf6b9703332",
+    "v1_cloud_run_coverage_inconclusive": 33612445360,
+    "v1_1_cloud_run_timeout_inconclusive": [
+      33613022329,
+      33613319868
+    ],
+    "local_execution_adapter_commit": "7956546b31a1271bf00b7f7bcb40a5fe50f3a47a",
+    "result_sha256": "f184b41397f6f0ceb039bd4c171b85bdcb1b1d6957128203b701011176fd0046",
+    "return_source": {
+      "pcr_panel_sha256": "d714c3753a2f64629837c81def1a0c9433f4ec2a2c25e2b3a473bbf6b9703332",
+      "prereg_sha256": "20dd16c4c1525d8552d5dbe1ca3115b6152a4df58c77a261da7cd897bb4b4088",
+      "nikkei_futures_index_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=NIKKEI225&cosd=2009-07-01&coed=2026-08-31",
+      "nikkei_futures_index_sha256": "5a5ec988d968fe746aba5af1db67b8ce7755b0cace8cdcd80eadb1860708b8e8"
+    }
+  },
+  "result": {
+    "status": "PCR_POSTPUBLICATION_DIRECTIONAL_RULE_FAIL",
+    "sample": {
+      "signal_month_start": "2009-07",
+      "signal_month_end": "2026-07",
+      "return_month_start": "2009-08",
+      "return_month_end": "2026-08",
+      "calendar_months": 205,
+      "active_months": 173
+    },
+    "metrics": {
+      "primary_net_cumulative_return": 0.03255399664005476,
+      "primary_mean_monthly_net_return": 0.0013529516876034458,
+      "primary_annualized_sharpe": 0.09569038926158521,
+      "stress_20bps_net_cumulative_return": -0.12131763831135434,
+      "bootstrap_95pct_lower_bound_mean_monthly_net_return": -0.005695606011394414,
+      "positive_fixed_subperiods": 1,
+      "recent_window_net_cumulative_return": 0.9489856936211525,
+      "subperiod_net_cumulative_returns": {
+        "2009-08_2013-12": -0.19738591382906645,
+        "2014-01_2018-12": -0.12181128263198882,
+        "2019-01_2022-12": -0.2483606814191629,
+        "2023-01_2026-08": 0.9489856936211525
+      }
+    },
+    "checks": {
+      "minimum_active_months": true,
+      "primary_net_cumulative_return": true,
+      "primary_net_annualized_sharpe": true,
+      "bootstrap_lower_mean_monthly_net_return": false,
+      "stress_20bps_net_cumulative_return": false,
+      "positive_fixed_subperiods": false,
+      "recent_window_net_cumulative_return": true
+    }
+  },
+  "independent_arithmetic_audit": {
+    "status": "PASS",
+    "row_checks_all": true,
+    "row_checks": 1025,
+    "primary_cumulative_exact_match": true,
+    "stress_cumulative_exact_match": true,
+    "annualized_sharpe_exact_match": true,
+    "bootstrap_lower_bound_exact_match": true,
+    "fixed_subperiods_exact_match": true
+  },
+  "terminal_reason": [
+    "bootstrap_lower_mean_monthly_net_return failed",
+    "stress_20bps_net_cumulative_return failed",
+    "positive_fixed_subperiods failed"
+  ],
+  "interpretation": "The frozen published PCR rule is not a validated directional edge over the strict post-publication sample. Strong recent-period performance does not override failed robustness and cross-period stability gates.",
+  "next_action": "Do not retune or reopen this PCR threshold family. Move to the next substantively independent preregistered directional candidate."
+}

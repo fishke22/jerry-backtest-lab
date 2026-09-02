@@ -100,9 +100,9 @@
   },
   "pcr_directional_candidate": {
     "id": "NIKKEI225_OPTIONS_PCR_SENTIMENT_POSTPUBLICATION_G1",
-    "status": "PCR_FULL_INFORMATION_DATA_FEASIBILITY_PASS_DIRECTIONAL_PREREG_REQUIRED",
-    "formal_directional_family_opened": false,
-    "directional_outcome_inspected": false,
+    "status": "TERMINAL_FAIL_NO_RESCUE",
+    "formal_directional_family_opened": true,
+    "directional_outcome_inspected": true,
     "memory_file": "config/jnu_pcr_data_feasibility_memory_v1.json",
     "coverage": {
       "months": 208,
@@ -123,7 +123,7 @@
       "pit_status": "PIT_FEASIBLE_SAME_DAY_EOD_ONLY"
     },
     "parser_blocker": "Some older PDF text layers split sparse auction volume/value digits, e.g. '49  200  201602' into spaced glyph sequences. Coordinate-based row fallback must recover this without manual correction.",
-    "next_action": "Create and commit a separate post-publication directional preregistration before inspecting any future Nikkei/JNU return outcome.",
+    "next_action": "Do not retune/reopen PCR 88.7/116.5. Move to the next substantively independent preregistered directional candidate.",
     "parser_qa": "9/9 PASS after integrity rerun; initial false-pass retained in governance.",
     "information_definition_freeze": "config/jnu_pcr_information_definition_freeze_v1.json",
     "parser_regression_after_modern_prefix_fix": "9/9 PASS",
@@ -149,6 +149,11 @@
       "disposition": "DATA_GATE_NOT_EVALUABLE_ENGINEERING_FAILURE",
       "research_fail": false
     },
-    "authoritative_data_gate_pass": "config/jnu_pcr_full_information_data_gate_pass_v1.json"
+    "authoritative_data_gate_pass": "config/jnu_pcr_full_information_data_gate_pass_v1.json",
+    "validated_directional_edge": false,
+    "validated_jnu_module": false,
+    "directional_prereg": "config/jnu_pcr_directional_postpublication_prereg_v1.json",
+    "directional_prereg_transport_amendment": "config/jnu_pcr_directional_postpublication_prereg_v1_1.json",
+    "terminal_result": "config/jnu_pcr_directional_postpublication_terminal_fail_v1.json"
   }
 }

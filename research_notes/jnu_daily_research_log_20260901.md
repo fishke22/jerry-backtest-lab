@@ -110,3 +110,12 @@
 - Coverage: 197/205 = 96.10%; recent 36 = 30/36 = 83.33%; every frozen Gate check PASS.
 - This is information/data feasibility only, not alpha evidence. Directional outcomes remain unopened and formal directional family remains closed.
 - Next legal step: commit a separate post-publication directional preregistration before inspecting future Nikkei/JNU returns.
+
+## PCR post-publication directional family terminal result (2026-09-02)
+- Authoritative PCR information Data Gate remains PASS: 197/205 defined, 0 parser/source errors.
+- Frozen published rule: PCR < 88.7 SHORT; PCR > 116.5 LONG; otherwise FLAT; signal month t applied only to month t+1.
+- First valid directional outcome: PCR_POSTPUBLICATION_DIRECTIONAL_RULE_FAIL; 173 active months.
+- Primary 10 bps cumulative +3.2554%, annualized Sharpe 0.09569; 20 bps stress -12.1318%; bootstrap 95% lower mean monthly return -0.56956%.
+- Fixed subperiods positive: 1/4; recent 2023-01..2026-08 cumulative +94.8986% does not override failed robustness gates.
+- Independent arithmetic audit: 1025/1025 row checks pass; primary/stress/Sharpe/bootstrap/subperiod outputs reproduce exactly.
+- Governance disposition: TERMINAL_FAIL_NO_RESCUE. No threshold retuning, sample rescue, or reopening of this PCR family.
