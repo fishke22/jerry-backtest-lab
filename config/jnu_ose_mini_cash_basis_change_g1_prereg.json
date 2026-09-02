@@ -1,0 +1,92 @@
+{
+  "version": "1.0",
+  "candidate_id": "OSE_MINI_CASH_BASIS_CHANGE_G1",
+  "frozen_at": "2026-09-02",
+  "status": "PREREGISTERED_BEFORE_DIRECTIONAL_OUTCOME",
+  "mechanism": "Spot-futures price-discovery / error-correction. A positive daily change in same-close OSE Mini minus Nikkei cash basis is hypothesized to indicate futures-led information that cash/futures direction continues into the next OSE interval.",
+  "literature_basis": [
+    "Brenner, Subrahmanyam & Uno (1989): Nikkei spot and futures prices exhibit economically meaningful basis/mispricing behavior.",
+    "Frino & West (2003): Nikkei futures markets lead the underlying index in price discovery.",
+    "Qin (2019): Nikkei futures mispricing is affected by dividends, currency risk and transaction costs; raw basis levels therefore require conservative handling."
+  ],
+  "source": {
+    "futures": "Personally licensed 225Labo Nikkei 225 mini center-contract minute data",
+    "source_methodology": "From 2011-02-14 onward 225Labo uses the most-active Large nearby contract month as the Mini center-contract continuous series.",
+    "formal_sample_start": "2012-01-04",
+    "cash": "Nikkei 225 official daily close transported through FRED NIKKEI225",
+    "raw_futures_storage": "LOCAL_ONLY_PERSONAL_USE",
+    "public_raw_redistribution_prohibited": true
+  },
+  "cash_close_alignment": {
+    "through_2024_11_01": "Use OSE Mini 5-minute bar OPEN stamped 15:00 JST against Nikkei official cash close.",
+    "from_2024_11_05": "Use OSE Mini 5-minute bar OPEN stamped 15:30 JST against Nikkei official cash close.",
+    "rationale": "TSE cash close moved from 15:00 to 15:30 on 2024-11-05; bar open at the cash-close timestamp avoids using later minutes."
+  },
+  "signal": {
+    "basis_points": "mini_reference_price - nikkei_cash_close",
+    "delta_basis": "basis_t - basis_previous_eligible_trading_day",
+    "positive_delta_basis": "LONG",
+    "negative_delta_basis": "SHORT",
+    "zero_or_missing": "FLAT",
+    "threshold_search": false,
+    "normalization_search": false,
+    "sign_flip_rescue": false
+  },
+  "roll_risk_exclusion": {
+    "rationale": "225Labo center contract follows the most-active Large nearby contract, so continuous-series basis can jump around quarterly roll.",
+    "sq_definition": "Quarterly March/June/September/December second Friday; if non-business day, preceding JPX regular business day.",
+    "excluded_window": "10 JPX regular business days before SQ through 2 JPX regular business days after SQ, inclusive.",
+    "interval_rule": "Signal day, previous basis day, entry day and exit day must all lie outside the excluded window.",
+    "no_data_driven_roll_detection": true
+  },
+  "execution": {
+    "signal_known_at": "cash close timestamp",
+    "entry": "Mini 5-minute bar OPEN exactly 5 minutes after cash-close timestamp (15:05 pre-2024-11-05; 15:35 thereafter).",
+    "exit": "Next eligible trading day's Mini 5-minute bar OPEN at that day's cash-close timestamp (15:00 pre-change; 15:30 thereafter).",
+    "return": "position * (exit_price / entry_price - 1)",
+    "overlapping_positions": false
+  },
+  "costs": {
+    "mini_tick_points": 5,
+    "primary_one_way_ticks": 1,
+    "stress_one_way_ticks": 2,
+    "turnover": "abs(position_t - previous_position); initial position starts from flat.",
+    "cost_return": "turnover * ticks * 5 / entry_price"
+  },
+  "validation": {
+    "minimum_complete_observations": 2500,
+    "bootstrap": {
+      "block_trading_days": 20,
+      "samples": 5000,
+      "seed": 42
+    },
+    "fixed_subperiods": "Four near-equal contiguous blocks frozen by observation count before outcome calculation.",
+    "all_required": [
+      "primary 1-tick net cumulative return > 0",
+      "primary annualized Sharpe > 0",
+      "2-tick stress net cumulative return > 0",
+      "20-day moving-block bootstrap 95% lower mean daily net return > 0",
+      "at least 3 of 4 fixed chronological subperiods have positive primary net cumulative return"
+    ],
+    "recent_504_trading_days": "report separately; not a rescue gate"
+  },
+  "true_jnu_confirmation": {
+    "trigger": "Only if OSE Mini Stage A passes every frozen gate.",
+    "product": "Nikkei 225 Micro Futures",
+    "sample": "2023-07-24 onward from locally licensed 225Labo Micro center-contract minute data",
+    "rule": "Apply identical basis-change sign, roll exclusion, cash-close alignment, entry/exit timing and 1/2-tick costs with no retuning.",
+    "promotion": "Mini PASS alone is not a validated JNU directional module; exact Micro confirmation is mandatory."
+  },
+  "forbidden": [
+    "Tune basis magnitude threshold",
+    "Reverse signal sign after outcome",
+    "Change roll window after outcome",
+    "Change cash-close reference timestamp",
+    "Change 5-minute execution lag",
+    "Change holding horizon",
+    "Add HAR/BOJ/FX/US-market filters to rescue a failure",
+    "Use basis level instead of delta-basis after outcome"
+  ],
+  "directional_outcome_inspected": false,
+  "next_action": "Build source/alignment Data Gate and freeze the signal panel before reading any next-interval returns."
+}
