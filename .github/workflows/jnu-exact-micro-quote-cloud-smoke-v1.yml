@@ -75,6 +75,7 @@ jobs:
 
           echo "status=$status" >> "$GITHUB_OUTPUT"
           echo "exit_code=$ec" >> "$GITHUB_OUTPUT"
+          export SMOKE_STATUS="$status"
           python - <<'PY'
           import json, os, pathlib, re
           status = os.environ["SMOKE_STATUS"]
@@ -97,8 +98,8 @@ jobs:
               out["quote"] = json.loads(q.read_text(encoding="utf-8"))
           pathlib.Path("smoke_status.json").write_text(json.dumps(out, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
           PY
-        env:
-          SMOKE_STATUS: ${{ steps.quote.outputs.status }}
+          echo "--- smoke_status.json ---"
+          cat smoke_status.json
 
       - name: Write job summary
         if: always()
