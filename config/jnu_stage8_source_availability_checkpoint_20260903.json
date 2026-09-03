@@ -1,0 +1,27 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-03",
+  "status": "STAGE8_SOURCE_PACKAGE_NOT_YET_EXTENDED_POST_CUTOFF",
+  "product": "OSE Nikkei 225 Micro Futures (JNU)",
+  "provider": "225Labo personal licensed local package",
+  "local_source": "N225microf_2026.zip",
+  "local_source_sha256": "e6149c02097814f885a1414cb405ff687b2c4be0aeaef561d9a20b7881c58378",
+  "local_source_size_bytes": 16048670,
+  "local_source_last_write_taipei": "2026-08-31T19:56:20.8412639+08:00",
+  "source_first_trading_date": "2025-12-30",
+  "source_last_trading_date": "2026-08-31",
+  "stage8_har_cutoff": "2026-08-31",
+  "stage8_boj_cutoff": "2026-07-31",
+  "ingest_check": {
+    "status": "NO_SOURCE_CHANGE",
+    "raw_package_count": 4,
+    "raw_changed": false,
+    "event_manifest_changed": false,
+    "derived_panels_modified": false,
+    "readiness_rerun": false
+  },
+  "authorized_updater_found_in_project": false,
+  "raw_data_cloud_uploaded": false,
+  "performance_metrics_computed": false,
+  "next_action": "When the licensed 225Labo Micro source package is legitimately updated beyond 2026-08-31, rerun scripts/ingest_jnu_stage8_forward_local.py in check-only mode first; use --apply only after SOURCE_CHANGE_DETECTED_APPLY_REQUIRED."
+}

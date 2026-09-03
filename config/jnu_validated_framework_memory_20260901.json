@@ -208,7 +208,7 @@
   "authoritative_validation_pipeline_checkpoint": "config/jnu_validation_pipeline_checkpoint_20260902_v1.json",
   "validation_pipeline_status": "JNU_VALIDATION_PIPELINE_READY_FORWARD_DATA_PENDING",
   "validation_pipeline_head": "ff322f11dbb23da6be093056ac6ef47f2db10e4a",
-  "next_action": "Use JNU Operational Framework v1.2 and the frozen decision protocol for all future JNU analyses. Register the first eligible exact-JNU forecast immutably with decision trace before outcome; continue HAR/BOJ Stage8 accumulation.",
+  "next_action": "Use JNU Operational Framework v1.2 for live analysis and register eligible exact-JNU forecasts. Stage8 ingestion resumes only after the licensed Micro source package extends beyond 2026-08-31; do not inspect partial holdout performance.",
   "stage8_forward_local_ingest": {
     "status": "SELFTEST_PASS_NO_SOURCE_CHANGE",
     "script": "scripts/ingest_jnu_stage8_forward_local.py",
@@ -265,5 +265,12 @@
     "status": "ACTIVE_SELFTEST_PASS",
     "spec": "config/jnu_operational_decision_protocol_v1.json",
     "selftest": "config/jnu_operational_decision_protocol_selftest_v1.json"
+  },
+  "stage8_source_availability": {
+    "status": "STAGE8_SOURCE_PACKAGE_NOT_YET_EXTENDED_POST_CUTOFF",
+    "checkpoint": "config/jnu_stage8_source_availability_checkpoint_20260903.json",
+    "source_last_trading_date": "2026-08-31",
+    "har_available_new_days": 0,
+    "boj_available_new_events": 0
   }
 }

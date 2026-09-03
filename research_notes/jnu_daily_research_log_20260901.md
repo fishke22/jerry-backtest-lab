@@ -209,3 +209,8 @@
 - Live-shadow v1.1 amendment requires protocol-generated decision_trace; manual bias override and protocol-SHA tamper are rejected.
 - No real live-shadow forecast existed before this amendment; all integration selftest records remain D:/Temp only.
 - Framework v1.2 is authoritative; numeric directional probabilities remain uncalibrated/prohibited as model probabilities.
+
+## Stage8 local source availability check (2026-09-03)
+- Licensed N225microf_2026.zip ends at trading date 2026-08-31; SHA256 e6149c02097814f885a1414cb405ff687b2c4be0aeaef561d9a20b7881c58378.
+- ingest_jnu_stage8_forward_local.py check-only returned NO_SOURCE_CHANGE; no derived panel or partial performance was modified/read.
+- No safe authorized downloader/updater exists in the project; wait for legitimate licensed source-package extension, then check-only before --apply.

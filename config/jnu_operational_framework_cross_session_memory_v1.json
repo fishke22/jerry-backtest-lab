@@ -55,5 +55,7 @@
   "operational_decision_protocol_selftest": "config/jnu_operational_decision_protocol_selftest_v1.json",
   "live_shadow_implementation": "config/jnu_operational_live_shadow_implementation_v1_1.json",
   "live_shadow_registrar": "scripts/register_jnu_operational_shadow_forecast_v1_1.py",
-  "live_shadow_integration_selftest": "config/jnu_operational_live_shadow_v1_1_integration_selftest.json"
+  "live_shadow_integration_selftest": "config/jnu_operational_live_shadow_v1_1_integration_selftest.json",
+  "stage8_source_availability_checkpoint": "config/jnu_stage8_source_availability_checkpoint_20260903.json",
+  "stage8_micro_source_last_trading_date": "2026-08-31"
 }
