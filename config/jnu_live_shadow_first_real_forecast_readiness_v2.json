@@ -1,0 +1,29 @@
+{
+  "version": "2.0",
+  "as_of": "2026-09-03",
+  "status": "READY_FOR_FIRST_REAL_JNU_LIVE_SHADOW_FORECAST_V1_4",
+  "authoritative_framework": "config/jnu_operational_framework_current_v1_4.json",
+  "preregistration": "config/jnu_operational_live_shadow_prereg_v1_3.json",
+  "implementation": "config/jnu_operational_live_shadow_implementation_v1_3.json",
+  "decision_protocol": "config/jnu_operational_decision_protocol_v1.json",
+  "exact_quote_adapter": "scripts/fetch_jnu_exact_micro_quote_tradingview_v1.py",
+  "source_cross_validation": "config/jnu_exact_micro_source_cross_validation_v1.json",
+  "atomic_forecast_tool": "scripts/register_jnu_operational_shadow_forecast_atomic_v1.py",
+  "atomic_outcome_tool": "scripts/record_jnu_operational_shadow_outcome_atomic_v1.py",
+  "integrity_scorer": "scripts/score_jnu_operational_live_shadow_v1_2.py",
+  "real_ledger": {
+    "forecasts": 0,
+    "outcomes": 0
+  },
+  "event_state_at_checkpoint": "PRE_RELEASE_HIGH",
+  "event_evidence": "2026-09-03 US 08:30 ET data/Waller speech and 10:00 ET ISM services occur before the 2026-09-04 OSE Micro day-session close.",
+  "current_protocol_consequence": "If a real forecast is registered before those events without post-event exact-JNU evidence, its formal bias must be NEUTRAL_ABSTAIN.",
+  "eligibility": [
+    "Individual OSE Nikkei 225 Micro month contract",
+    "source_id OSE",
+    "reference source metadata embedded immutably",
+    "source timestamp age <=900 seconds",
+    "decision trace generated from frozen protocol",
+    "real write uses --commit-push"
+  ]
+}

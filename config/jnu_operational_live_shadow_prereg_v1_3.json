@@ -1,0 +1,44 @@
+{
+  "version": "1.3",
+  "frozen_at": "2026-09-03",
+  "status": "PRE_FIRST_REAL_FORECAST_EXACT_SOURCE_METADATA_AMENDMENT",
+  "candidate_id": "JNU_OPERATIONAL_FRAMEWORK_LIVE_SHADOW_V1",
+  "supersedes": "config/jnu_operational_live_shadow_prereg_v1_2.json",
+  "authoritative_framework": "config/jnu_operational_framework_current_v1_4.json",
+  "reason": "Real ledger remains 0/0. Freeze UNKNOWN fail-safe risk states and require immutable exact-Micro source metadata before the first real forecast; scoring gates and target horizon remain unchanged.",
+  "unchanged_rules": [
+    "Every eligible user-facing forecast with exact timestamped JNU/Micro price must be registered before target endpoint",
+    "NEUTRAL_ABSTAIN is registered and counts toward coverage only",
+    "Exact JNU/Micro reference price; no proxy starting price",
+    "Maximum reference age 15 minutes",
+    "Target is next OSE Nikkei 225 Micro regular day-session close",
+    "LOW/MEDIUM confidence only while validated directional modules remain zero",
+    "Minimum 30 non-abstain forecasts for first formal review",
+    "Directional accuracy > 0.50",
+    "Mean signed outcome return > 0",
+    "5-forecast moving-block bootstrap P(mean signed return > 0) >= 0.90",
+    "No cherry-picking, backfill, target-horizon changes, or calibrated probability claims"
+  ],
+  "decision_protocol": "config/jnu_operational_decision_protocol_v1.json",
+  "implementation": "config/jnu_operational_live_shadow_implementation_v1_3.json",
+  "integrity_additions": [
+    "Forecast and outcome records in the real ledger are Git committed and pushed immediately",
+    "Forecast stores current framework/prereg/implementation/protocol SHA256 values",
+    "Scorer recomputes decision trace, bias/confidence, outcome return, signed return and hit before scoring",
+    "Any SHA or arithmetic mismatch fails closed"
+  ],
+  "real_live_shadow_forecasts_existing_at_freeze": 0,
+  "real_live_shadow_outcomes_existing_at_freeze": 0,
+  "directional_outcome_inspected": false,
+  "source_requirements": {
+    "adapter": "scripts/fetch_jnu_exact_micro_quote_tradingview_v1.py",
+    "source_spec": "config/jnu_exact_micro_tradingview_quote_source_v1.json",
+    "cross_validation": "config/jnu_exact_micro_source_cross_validation_v1.json",
+    "reference_source_metadata_required": true,
+    "primary_reference_must_be_individual_contract": true,
+    "continuous_contract_primary_reference_prohibited": true,
+    "maximum_source_age_seconds": 900,
+    "delayed_feed_allowed_only_if_source_timestamp_age_passes_gate": true
+  },
+  "unknown_risk_state_rule": "HAR/SQ UNKNOWN cap confidence; event UNKNOWN forces NEUTRAL_ABSTAIN. UNKNOWN never casts a directional vote."
+}

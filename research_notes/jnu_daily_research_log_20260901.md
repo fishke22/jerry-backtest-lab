@@ -220,3 +220,10 @@
 - Atomic forecast/outcome tools require immediate Git commit+push for the real ledger; custom temp dirs remain available only for selftest.
 - Integrity scorer independently recomputes decision trace, bias/confidence, outcome return, signed return and hit; SHA/tamper mismatches fail closed.
 - Selftests PASS for normal chain and rejection of manual bias, outcome-return and framework-SHA tampering. Real ledger remains 0 forecasts / 0 outcomes.
+
+## JNU Operational Framework v1.4 exact-source integrity (2026-09-03)
+- Added UNKNOWN fail-safe risk states before first real forecast: HAR/SQ UNKNOWN cap confidence, event UNKNOWN forces abstain.
+- TradingView individual OSE Micro adapter now reads quote-session lp_time, source_id=OSE, provider_id and delayed mode rather than browser refresh time.
+- Same-timestamp cross-validation PASS at epoch 1788435480: TradingView OSE:NK225MCU2026 last_price 63940 equals NikkeiRealtime N225MC.FUT.OSE.CONT 1-minute close 63940.
+- NikkeiRealtime remains B-grade cross-check only because its public policy does not name the upstream commercial provider; it is not used as the sole primary scored reference.
+- Live-shadow v1.3 requires immutable reference_source_metadata; tampered price and continuous-contract identity fail closed. Real ledger remains 0/0.

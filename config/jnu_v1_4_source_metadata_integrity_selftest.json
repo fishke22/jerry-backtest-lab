@@ -1,0 +1,49 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-03",
+  "status": "JNU_V1_4_SOURCE_METADATA_INTEGRITY_SELFTEST_PASS",
+  "hash_chain": {
+    "framework_sha256": "7fb2e85a2cdf93c65a9343a9ef46c46d3e6abcd9a7c95b22252482ae47dff5cb",
+    "prereg_sha256": "c08fa1c988b391e7de4031a0abc0316c4d370f7b7c9b50c61212d6ae0f909c63",
+    "implementation_sha256": "d54d24215dd0c4b50761fd05a29892265e85e9713b0497d653e20303e51b86f5",
+    "protocol_sha256": "fe10aca973f2038fcd2038ae9564253e58685c6d40f79a88d54f44f828a0d552"
+  },
+  "tests": {
+    "valid_source_metadata_chain": {
+      "pass": true,
+      "selftest_forecast_id": "JNU_LS_20260903T175000_cc4abcac2616",
+      "bias": "BEARISH",
+      "confidence": "MEDIUM"
+    },
+    "scorer_integrity": {
+      "pass": true,
+      "status": "LIVE_SHADOW_ACCUMULATING",
+      "forecasts_verified": 1,
+      "outcomes_verified": 1
+    },
+    "registrar_bad_source_price_rejected": {
+      "pass": true,
+      "exit_code": 1
+    },
+    "registrar_continuous_contract_rejected": {
+      "pass": true,
+      "exit_code": 1
+    },
+    "scorer_source_price_tamper_rejected": {
+      "pass": true,
+      "error_contains": "reference source price mismatch"
+    },
+    "scorer_contract_identity_tamper_rejected": {
+      "pass": true,
+      "error_contains": "reference source product identity invalid"
+    },
+    "real_empty_ledger": {
+      "pass": true,
+      "forecasts": 0,
+      "outcomes": 0,
+      "status": "LIVE_SHADOW_ACCUMULATING",
+      "integrity": "PASS"
+    }
+  },
+  "selftest_storage": "D:/Temp only; no selftest record is in the real ledger."
+}

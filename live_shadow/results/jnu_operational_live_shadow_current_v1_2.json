@@ -1,0 +1,44 @@
+{
+  "version": "1.2",
+  "status": "LIVE_SHADOW_ACCUMULATING",
+  "integrity": {
+    "status": "PASS",
+    "forecasts_verified": 0,
+    "outcomes_verified": 0,
+    "git_tracking_enforced": true,
+    "decision_trace_recomputed": true,
+    "outcomes_recomputed": true,
+    "protocol_sha256": "fe10aca973f2038fcd2038ae9564253e58685c6d40f79a88d54f44f828a0d552"
+  },
+  "framework_sha256": "7fb2e85a2cdf93c65a9343a9ef46c46d3e6abcd9a7c95b22252482ae47dff5cb",
+  "prereg_sha256": "c08fa1c988b391e7de4031a0abc0316c4d370f7b7c9b50c61212d6ae0f909c63",
+  "implementation_sha256": "d54d24215dd0c4b50761fd05a29892265e85e9713b0497d653e20303e51b86f5",
+  "forecast_records": 0,
+  "outcomes_recorded": 0,
+  "nonabstain_scored": 0,
+  "abstain_with_outcome": 0,
+  "coverage": null,
+  "directional_accuracy": null,
+  "mean_signed_return": null,
+  "median_signed_return": null,
+  "by_confidence": {
+    "LOW": {
+      "n": 0,
+      "accuracy": null,
+      "mean_signed_return": null
+    },
+    "MEDIUM": {
+      "n": 0,
+      "accuracy": null,
+      "mean_signed_return": null
+    }
+  },
+  "bootstrap": null,
+  "first_review_gate": {
+    "minimum_30_nonabstain": false,
+    "directional_accuracy_gt_0_50": false,
+    "mean_signed_return_positive": false,
+    "bootstrap_prob_mean_positive_ge_0_90": false
+  },
+  "rows": []
+}

@@ -208,7 +208,7 @@
   "authoritative_validation_pipeline_checkpoint": "config/jnu_validation_pipeline_checkpoint_20260902_v1.json",
   "validation_pipeline_status": "JNU_VALIDATION_PIPELINE_READY_FORWARD_DATA_PENDING",
   "validation_pipeline_head": "ff322f11dbb23da6be093056ac6ef47f2db10e4a",
-  "next_action": "At the next eligible exact-JNU user-facing analysis, generate the decision trace and register the forecast atomically with --commit-push before outcome. Record the exact JNU day-session close atomically after the target, then score through the integrity scorer. Continue Stage8 only when the licensed Micro package extends beyond 2026-08-31.",
+  "next_action": "Fetch a <=900-second individual OSE Micro quote through the frozen adapter. If registered before the verified 2026-09-03 US events, event PRE_RELEASE_HIGH forces NEUTRAL_ABSTAIN; after those events, require fresh post-event exact-JNU path evidence before any directional non-abstain.",
   "stage8_forward_local_ingest": {
     "status": "SELFTEST_PASS_NO_SOURCE_CHANGE",
     "script": "scripts/ingest_jnu_stage8_forward_local.py",
@@ -216,8 +216,8 @@
     "download_or_login_automation": false,
     "next_action": "After a manually/authorized updated 225Labo Micro package exists locally, run check-only then --apply; inspect readiness only."
   },
-  "authoritative_operational_framework": "config/jnu_operational_framework_current_v1_3.json",
-  "operational_framework_status": "AUTHORITATIVE_JNU_OPERATIONAL_FRAMEWORK_V1_3",
+  "authoritative_operational_framework": "config/jnu_operational_framework_current_v1_4.json",
+  "operational_framework_status": "AUTHORITATIVE_JNU_OPERATIONAL_FRAMEWORK_V1_4",
   "operational_framework_usage": "Use for all future Osaka Nikkei/JNU analysis unless explicitly superseded by a later committed framework.",
   "jpx_n225mini_foreign_flow_sign_g1": {
     "status": "TERMINAL_FAIL_NO_RESCUE",
@@ -253,21 +253,22 @@
   "directional_research_status": "PAUSE_NEW_FORMAL_DIRECTIONAL_FAMILIES_UNTIL_NEW_DIRECT_EVIDENCE",
   "directional_scout_checkpoint": "config/jnu_directional_scout_checkpoint_20260903_v1.json",
   "live_shadow_validation": {
-    "status": "ACTIVE_V1_2_ATOMIC_GIT_COMMITTED_INTEGRITY_SCORED",
-    "preregistration": "config/jnu_operational_live_shadow_prereg_v1_2.json",
-    "implementation": "config/jnu_operational_live_shadow_implementation_v1_2.json",
+    "status": "ACTIVE_V1_3_SOURCE_METADATA_ATOMIC_INTEGRITY",
+    "preregistration": "config/jnu_operational_live_shadow_prereg_v1_3.json",
+    "implementation": "config/jnu_operational_live_shadow_implementation_v1_3.json",
+    "registrar": "scripts/register_jnu_operational_shadow_forecast_v1_3.py",
     "atomic_forecast_tool": "scripts/register_jnu_operational_shadow_forecast_atomic_v1.py",
     "atomic_outcome_tool": "scripts/record_jnu_operational_shadow_outcome_atomic_v1.py",
-    "integrity_scorer": "scripts/score_jnu_operational_live_shadow_v1_1.py",
-    "selftest": "config/jnu_operational_live_shadow_atomic_integrity_selftest_v1.json",
+    "integrity_scorer": "scripts/score_jnu_operational_live_shadow_v1_2.py",
+    "selftest": "config/jnu_v1_4_source_metadata_integrity_selftest.json",
     "real_forecasts_registered": 0,
     "real_outcomes_registered": 0,
     "first_formal_review_min_nonabstain": 30
   },
   "operational_decision_protocol": {
-    "status": "ACTIVE_SELFTEST_PASS",
+    "status": "ACTIVE_UNKNOWN_FAILSAFE_SELFTEST_PASS",
     "spec": "config/jnu_operational_decision_protocol_v1.json",
-    "selftest": "config/jnu_operational_decision_protocol_selftest_v1.json"
+    "selftest": "config/jnu_operational_decision_protocol_selftest_v1_1.json"
   },
   "stage8_source_availability": {
     "status": "STAGE8_SOURCE_PACKAGE_NOT_YET_EXTENDED_POST_CUTOFF",
@@ -277,9 +278,16 @@
     "boj_available_new_events": 0
   },
   "first_real_live_shadow_forecast_readiness": {
-    "status": "READY_FOR_FIRST_REAL_JNU_LIVE_SHADOW_FORECAST",
-    "checkpoint": "config/jnu_live_shadow_first_real_forecast_readiness_v1.json",
+    "status": "READY_FOR_FIRST_REAL_JNU_LIVE_SHADOW_FORECAST_V1_4",
+    "checkpoint": "config/jnu_live_shadow_first_real_forecast_readiness_v2.json",
     "real_forecasts": 0,
     "real_outcomes": 0
+  },
+  "exact_micro_reference_source": {
+    "adapter": "scripts/fetch_jnu_exact_micro_quote_tradingview_v1.py",
+    "source_spec": "config/jnu_exact_micro_tradingview_quote_source_v1.json",
+    "cross_validation": "config/jnu_exact_micro_source_cross_validation_v1.json",
+    "quality": "B",
+    "primary_reference": "individual OSE Micro contract only"
   }
 }
