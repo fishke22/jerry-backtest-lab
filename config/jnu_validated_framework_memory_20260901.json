@@ -275,5 +275,11 @@
     "source_last_trading_date": "2026-08-31",
     "har_available_new_days": 0,
     "boj_available_new_events": 0
+  },
+  "first_real_live_shadow_forecast_readiness": {
+    "status": "READY_FOR_FIRST_REAL_JNU_LIVE_SHADOW_FORECAST",
+    "checkpoint": "config/jnu_live_shadow_first_real_forecast_readiness_v1.json",
+    "real_forecasts": 0,
+    "real_outcomes": 0
   }
 }

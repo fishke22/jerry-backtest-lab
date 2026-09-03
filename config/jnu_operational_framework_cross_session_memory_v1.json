@@ -62,5 +62,7 @@
   "live_shadow_atomic_outcome_tool": "scripts/record_jnu_operational_shadow_outcome_atomic_v1.py",
   "live_shadow_integrity_scorer": "scripts/score_jnu_operational_live_shadow_v1_1.py",
   "live_shadow_atomic_integrity_selftest": "config/jnu_operational_live_shadow_atomic_integrity_selftest_v1.json",
-  "real_live_shadow_outcomes_registered": 0
+  "real_live_shadow_outcomes_registered": 0,
+  "first_real_live_shadow_forecast_readiness": "config/jnu_live_shadow_first_real_forecast_readiness_v1.json",
+  "live_shadow_real_ledger_status": "READY_EMPTY_0_FORECASTS_0_OUTCOMES"
 }

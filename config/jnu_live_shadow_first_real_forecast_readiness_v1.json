@@ -1,0 +1,32 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-03",
+  "status": "READY_FOR_FIRST_REAL_JNU_LIVE_SHADOW_FORECAST",
+  "authoritative_framework": "config/jnu_operational_framework_current_v1_3.json",
+  "decision_protocol": "config/jnu_operational_decision_protocol_v1.json",
+  "live_shadow_preregistration": "config/jnu_operational_live_shadow_prereg_v1_2.json",
+  "live_shadow_implementation": "config/jnu_operational_live_shadow_implementation_v1_2.json",
+  "atomic_forecast_tool": "scripts/register_jnu_operational_shadow_forecast_atomic_v1.py",
+  "atomic_outcome_tool": "scripts/record_jnu_operational_shadow_outcome_atomic_v1.py",
+  "integrity_scorer": "scripts/score_jnu_operational_live_shadow_v1_1.py",
+  "baseline_real_ledger": {
+    "forecasts": 0,
+    "outcomes": 0,
+    "scorer_status": "LIVE_SHADOW_ACCUMULATING",
+    "integrity_status": "PASS",
+    "git_tracking_enforced": true
+  },
+  "eligibility_for_first_real_record": [
+    "User-facing JNU/Osaka Micro Nikkei analysis is being produced",
+    "Exact OSE Nikkei 225 Micro Futures reference price is available",
+    "Reference timestamp is offset-aware and no more than 15 minutes old at registration",
+    "Decision input is evaluated through the frozen four-block protocol",
+    "Forecast is registered before target day-session close",
+    "Real registration uses --commit-push"
+  ],
+  "scoring_target": "Next OSE Nikkei 225 Micro Futures regular day-session close",
+  "first_formal_review_minimum_nonabstain": 30,
+  "validated_directional_modules": 0,
+  "decision_engine": "NO_VALIDATED_DIRECTIONAL_EDGE",
+  "next_action": "On the next eligible exact-JNU analysis, use the atomic forecast tool with --commit-push; do not manually write a real ledger forecast file."
+}

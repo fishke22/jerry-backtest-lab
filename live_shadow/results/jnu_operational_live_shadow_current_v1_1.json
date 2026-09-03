@@ -1,0 +1,44 @@
+{
+  "version": "1.1",
+  "status": "LIVE_SHADOW_ACCUMULATING",
+  "integrity": {
+    "status": "PASS",
+    "forecasts_verified": 0,
+    "outcomes_verified": 0,
+    "git_tracking_enforced": true,
+    "decision_trace_recomputed": true,
+    "outcomes_recomputed": true,
+    "protocol_sha256": "7a9bbee9f5534fc0702eb75000393d6d2d7950aa60db9ceead3e9c25c03c08b0"
+  },
+  "framework_sha256": "13a7d949e5eb65ceb4951437a4029c6c4c08672a6b78fd38c5b31124e1fb1b5a",
+  "prereg_sha256": "e89479b4232b0c885358ab84f828515922a7896ab686544e38d87466ddec51d4",
+  "implementation_sha256": "2e18589648730f685236c2725152806773a96579208f7672f9ea5358926aebd9",
+  "forecast_records": 0,
+  "outcomes_recorded": 0,
+  "nonabstain_scored": 0,
+  "abstain_with_outcome": 0,
+  "coverage": null,
+  "directional_accuracy": null,
+  "mean_signed_return": null,
+  "median_signed_return": null,
+  "by_confidence": {
+    "LOW": {
+      "n": 0,
+      "accuracy": null,
+      "mean_signed_return": null
+    },
+    "MEDIUM": {
+      "n": 0,
+      "accuracy": null,
+      "mean_signed_return": null
+    }
+  },
+  "bootstrap": null,
+  "first_review_gate": {
+    "minimum_30_nonabstain": false,
+    "directional_accuracy_gt_0_50": false,
+    "mean_signed_return_positive": false,
+    "bootstrap_prob_mean_positive_ge_0_90": false
+  },
+  "rows": []
+}
