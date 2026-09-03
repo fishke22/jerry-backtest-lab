@@ -21,7 +21,7 @@
     "run_id": 33498323765,
     "artifact_id": 9796634718,
     "usable_days": 251,
-    "mean_gross_daily_strategy_return": -3.0451509658307074e-05,
+    "mean_gross_daily_strategy_return": -0.000030451509658307074,
     "directional_accuracy": 0.492,
     "bootstrap_prob_mean_positive": 0.5504,
     "stage_b_prohibited": true
@@ -208,7 +208,7 @@
   "authoritative_validation_pipeline_checkpoint": "config/jnu_validation_pipeline_checkpoint_20260902_v1.json",
   "validation_pipeline_status": "JNU_VALIDATION_PIPELINE_READY_FORWARD_DATA_PENDING",
   "validation_pipeline_head": "ff322f11dbb23da6be093056ac6ef47f2db10e4a",
-  "next_action": "Fetch a <=900-second individual OSE Micro quote through the frozen adapter. If registered before the verified 2026-09-03 US events, event PRE_RELEASE_HIGH forces NEUTRAL_ABSTAIN; after those events, require fresh post-event exact-JNU path evidence before any directional non-abstain.",
+  "next_action": "Use the v1.4 operational framework and cloud pipeline. Do not create a directional sample while event-state evidence is unresolved; exact quote and request freshness remain <=900 seconds. Stage8 remains separate.",
   "stage8_forward_local_ingest": {
     "status": "SELFTEST_PASS_NO_SOURCE_CHANGE",
     "script": "scripts/ingest_jnu_stage8_forward_local.py",
@@ -278,8 +278,12 @@
     "boj_available_new_events": 0
   },
   "first_real_live_shadow_forecast_readiness": {
-    "status": "READY_FOR_FIRST_REAL_JNU_LIVE_SHADOW_FORECAST_V1_4",
-    "checkpoint": "config/jnu_live_shadow_first_real_forecast_readiness_v2.json",
+    "status": "CLOUD_PIPELINE_READY_FIRST_REAL_FORECAST_PENDING_FRESH_MARKET_AND_EVENT_GATE",
+    "checkpoint": "config/jnu_live_shadow_cloud_readiness_v3.json",
+    "cloud_request_protocol": "config/jnu_cloud_forecast_request_protocol_v1.json",
+    "cloud_forecast_workflow": ".github/workflows/jnu-live-shadow-cloud-forecast-v1.yml",
+    "request_builder_selftest_run": 33818317282,
+    "actionlint_run": 33818714736,
     "real_forecasts": 0,
     "real_outcomes": 0
   },
