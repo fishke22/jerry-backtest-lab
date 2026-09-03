@@ -1,0 +1,238 @@
+name: JNU Cloud Forecast Request Selftest
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/jnu-live-shadow-cloud-request-selftest-v1.yml"
+      - "scripts/build_jnu_cloud_forecast_input_v1.py"
+      - "scripts/register_jnu_operational_shadow_forecast_atomic_v1.py"
+      - "scripts/register_jnu_operational_shadow_forecast_v1_3.py"
+      - "scripts/apply_jnu_operational_decision_protocol_v1.py"
+      - "config/jnu_operational_decision_protocol_v1.json"
+      - "config/jnu_operational_framework_current_v1_4.json"
+      - "config/jnu_operational_live_shadow_prereg_v1_3.json"
+      - "config/jnu_operational_live_shadow_implementation_v1_3.json"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: jnu-cloud-forecast-request-selftest
+  cancel-in-progress: false
+
+jobs:
+  selftest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Build synthetic fixtures
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          root=Path("selftest_tmp")
+          root.mkdir(exist_ok=True)
+
+          request={
+            "request_id":"JNU_REQ_SELFTEST_20260904_A",
+            "symbol":"NK225MCU2026",
+            "target_day_session_date":"2026-09-04",
+            "decision_input":{
+              "blocks":[
+                {"id":"EXACT_JNU_PRICE_PATH","vote":"BEARISH","quality":"A","reason":"synthetic exact-product path evidence"},
+                {"id":"DYNAMIC_PRICE_DISCOVERY","vote":"NEUTRAL","quality":"B","reason":"synthetic synchronized venues with no leader"},
+                {"id":"CONTEMPORANEOUS_CROSS_MARKET","vote":"BEARISH","quality":"B","reason":"synthetic aligned cross-market evidence"},
+                {"id":"POSITIONING_DERIVATIVES_CONTEXT","vote":"NEUTRAL","quality":"B","reason":"synthetic neutral positioning"}
+              ],
+              "risk_modifiers":{
+                "volatility_state":"UNKNOWN",
+                "event_state":"NORMAL",
+                "sq_state":"UNKNOWN",
+                "post_event_exact_jnu_path_available":False
+              }
+            },
+            "expected_path":"Synthetic downside test path.",
+            "key_levels":[63800,64200],
+            "invalidation_conditions":"Synthetic invalidation above 64200.",
+            "event_risk":"Synthetic normal event state.",
+            "flip_conditions":"Synthetic flip above 64200 with acceptance.",
+            "evidence_summary":"Synthetic cloud request-builder selftest only."
+          }
+          quote={
+            "version":"1.2",
+            "provider":"TradingView public symbol page",
+            "data_provider_id":"ice",
+            "source_id":"OSE",
+            "source_original_name":"OSE_DLY:NK225MCU2026",
+            "symbol":"NK225MCU2026",
+            "tradingview_symbol":"OSE:NK225MCU2026",
+            "contract_name":"Sep 2026 contract",
+            "exchange":"Osaka Exchange",
+            "product":"Nikkei 225 micro Futures",
+            "price":64000.0,
+            "currency":"JPY",
+            "source_timestamp_epoch":1788446700,
+            "source_timestamp":"2026-09-04T06:45:00+08:00",
+            "freshness_checked_at":"2026-09-04T06:45:30+08:00",
+            "freshness_age_seconds":30.0,
+            "maximum_allowed_age_seconds":900,
+            "freshness_pass":True,
+            "exact_product":True,
+            "continuous_contract":False,
+            "update_mode":"delayed_streaming",
+            "declared_update_mode_seconds":900,
+            "url":"https://www.tradingview.com/symbols/OSE-NK225MCU2026/",
+            "delayed_data":True
+          }
+
+          (root/"request.json").write_text(json.dumps(request,indent=2)+"\n")
+          (root/"quote.json").write_text(json.dumps(quote,indent=2)+"\n")
+
+          bad_manual=dict(request)
+          bad_manual["reference_price"]=12345
+          (root/"request_bad_manual_price.json").write_text(json.dumps(bad_manual,indent=2)+"\n")
+
+          stale=dict(quote)
+          stale["freshness_pass"]=False
+          stale["freshness_age_seconds"]=901.0
+          (root/"quote_stale.json").write_text(json.dumps(stale,indent=2)+"\n")
+
+          mismatch=dict(quote)
+          mismatch["symbol"]="NK225MCV2026"
+          mismatch["tradingview_symbol"]="OSE:NK225MCV2026"
+          (root/"quote_symbol_mismatch.json").write_text(json.dumps(mismatch,indent=2)+"\n")
+          PY
+
+      - name: Capture real ledger baseline
+        id: before
+        shell: bash
+        run: |
+          f=0; o=0
+          [ -d live_shadow/forecasts ] && f=$(find live_shadow/forecasts -maxdepth 1 -type f -name '*.json' | wc -l)
+          [ -d live_shadow/outcomes ] && o=$(find live_shadow/outcomes -maxdepth 1 -type f -name '*.json' | wc -l)
+          echo "forecasts=$f" >> "$GITHUB_OUTPUT"
+          echo "outcomes=$o" >> "$GITHUB_OUTPUT"
+          echo "baseline forecasts=$f outcomes=$o"
+
+      - name: Valid request builds and registers only in temp ledger
+        shell: bash
+        run: |
+          python scripts/build_jnu_cloud_forecast_input_v1.py \
+            --request selftest_tmp/request.json \
+            --quote selftest_tmp/quote.json \
+            --created-at-taipei 2026-09-04T06:46:00+08:00 \
+            --output selftest_tmp/atomic_input.json
+
+          python scripts/register_jnu_operational_shadow_forecast_atomic_v1.py \
+            --input selftest_tmp/atomic_input.json \
+            --output-dir selftest_tmp/forecasts \
+            > selftest_tmp/register_result.json
+
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          fs=list(Path("selftest_tmp/forecasts").glob("*.json"))
+          assert len(fs)==1, len(fs)
+          f=json.loads(fs[0].read_text())
+          assert f["request_id"]=="JNU_REQ_SELFTEST_20260904_A"
+          assert f["reference_price"]==64000.0
+          assert f["reference_timestamp"]=="2026-09-04T06:45:00+08:00"
+          assert f["reference_source_metadata"]["source_id"]=="OSE"
+          assert f["reference_source_metadata"]["continuous_contract"] is False
+          assert f["bias"]=="BEARISH"
+          assert f["confidence"]=="LOW"
+          assert f["decision_trace"]["net_directional_score"]==-2
+          print(json.dumps({
+            "status":"VALID_TEMP_REGISTRATION_PASS",
+            "forecast_id":f["forecast_id"],
+            "bias":f["bias"],
+            "confidence":f["confidence"],
+            "net_score":f["decision_trace"]["net_directional_score"]
+          },indent=2))
+          PY
+
+      - name: Manual request price must fail
+        shell: bash
+        run: |
+          set +e
+          python scripts/build_jnu_cloud_forecast_input_v1.py \
+            --request selftest_tmp/request_bad_manual_price.json \
+            --quote selftest_tmp/quote.json \
+            --created-at-taipei 2026-09-04T06:46:00+08:00 \
+            --output selftest_tmp/should_not_exist_1.json \
+            > selftest_tmp/manual.stdout 2> selftest_tmp/manual.stderr
+          ec=$?
+          set -e
+          test "$ec" -ne 0
+          grep -q "request must not carry quote/outcome-derived fields" selftest_tmp/manual.stderr
+          test ! -e selftest_tmp/should_not_exist_1.json
+
+      - name: Stale quote must fail
+        shell: bash
+        run: |
+          set +e
+          python scripts/build_jnu_cloud_forecast_input_v1.py \
+            --request selftest_tmp/request.json \
+            --quote selftest_tmp/quote_stale.json \
+            --created-at-taipei 2026-09-04T06:46:00+08:00 \
+            --output selftest_tmp/should_not_exist_2.json \
+            > selftest_tmp/stale.stdout 2> selftest_tmp/stale.stderr
+          ec=$?
+          set -e
+          test "$ec" -ne 0
+          grep -q "quote freshness_pass must be true" selftest_tmp/stale.stderr
+          test ! -e selftest_tmp/should_not_exist_2.json
+
+      - name: Symbol mismatch must fail
+        shell: bash
+        run: |
+          set +e
+          python scripts/build_jnu_cloud_forecast_input_v1.py \
+            --request selftest_tmp/request.json \
+            --quote selftest_tmp/quote_symbol_mismatch.json \
+            --created-at-taipei 2026-09-04T06:46:00+08:00 \
+            --output selftest_tmp/should_not_exist_3.json \
+            > selftest_tmp/mismatch.stdout 2> selftest_tmp/mismatch.stderr
+          ec=$?
+          set -e
+          test "$ec" -ne 0
+          grep -q "quote symbol does not match request symbol" selftest_tmp/mismatch.stderr
+          test ! -e selftest_tmp/should_not_exist_3.json
+
+      - name: Verify real ledger unchanged
+        shell: bash
+        env:
+          BEFORE_F: ${{ steps.before.outputs.forecasts }}
+          BEFORE_O: ${{ steps.before.outputs.outcomes }}
+        run: |
+          f=0; o=0
+          [ -d live_shadow/forecasts ] && f=$(find live_shadow/forecasts -maxdepth 1 -type f -name '*.json' | wc -l)
+          [ -d live_shadow/outcomes ] && o=$(find live_shadow/outcomes -maxdepth 1 -type f -name '*.json' | wc -l)
+          test "$f" = "$BEFORE_F"
+          test "$o" = "$BEFORE_O"
+          python - <<PY
+          import json
+          print(json.dumps({
+            "status":"JNU_CLOUD_FORECAST_REQUEST_SELFTEST_PASS",
+            "real_forecasts_before":int("$BEFORE_F"),
+            "real_forecasts_after":int("$f"),
+            "real_outcomes_before":int("$BEFORE_O"),
+            "real_outcomes_after":int("$o"),
+            "manual_price_rejected":True,
+            "stale_quote_rejected":True,
+            "symbol_mismatch_rejected":True
+          },indent=2))
+          PY
