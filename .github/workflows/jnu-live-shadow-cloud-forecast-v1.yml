@@ -22,7 +22,7 @@ concurrency:
 jobs:
   register:
     runs-on: ubuntu-latest
-    timeout-minutes: 12
+    timeout-minutes: 20
 
     steps:
       - name: Checkout main with history
@@ -153,7 +153,7 @@ jobs:
           python scripts/fetch_jnu_exact_micro_quote_tradingview_v1.py \
             --symbol "$SYMBOL" \
             --max-age-seconds 900 \
-            --max-wait-seconds 60 \
+            --max-wait-seconds 600 \
             --poll-seconds 5 \
             --output cloud_quote.json
 
