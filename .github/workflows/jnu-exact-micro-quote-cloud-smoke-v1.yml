@@ -106,7 +106,7 @@ jobs:
         shell: bash
         run: |
           echo "## JNU exact-Micro cloud smoke" >> "$GITHUB_STEP_SUMMARY"
-          echo "- Symbol: `$SYMBOL`" >> "$GITHUB_STEP_SUMMARY"
+          printf -- '- Symbol: `%s`\n' "$SYMBOL" >> "$GITHUB_STEP_SUMMARY"
           if [ -f smoke_status.json ]; then
             python - <<'PY' >> "$GITHUB_STEP_SUMMARY"
           import json
