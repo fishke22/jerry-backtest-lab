@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "as_of_utc": "2026-09-02T11:51:42.680329+00:00",
+  "as_of_utc": "2026-09-03T09:18:02.655843+00:00",
   "framework_status": "FRAMEWORK_INCOMPLETE_PENDING_STAGE8_FORWARD_DATA",
   "major_candidates": {
     "total": 8,
@@ -54,11 +54,11 @@
     "No risk/event module may become a directional vote without a separate validated directional family."
   ],
   "artifact_hashes": {
-    "family_attempt_ledger": "a36b7b5d5c81934c014d3953a58ebaea177e0d7b4ab29f706c1cb64fec78219c",
+    "family_attempt_ledger": "ed82ee233d15347971cf7c3edba433e68660b97c73816b64f04780214229cbd8",
     "completion_gap": "564540c8cd4f201f6462d3113e05b198a94574d06d6527fd5744ab6a2be18172",
-    "stage8_readiness": "e18398228c1736e514476d563bad81653199e90418588828b998571b3ebdd242",
+    "stage8_readiness": "7d70b221d84c037ef063f96ff6ae125c91b04b9536ab6db9212fcd4a8bcf5640",
     "stage9_review": "671c640664ef50162f3ec9f83c9cb89df6948178d5ccfe925f7b349e3e806f8b",
-    "validated_framework_memory": "546efa4a33fffbb69a20a9379cd79815f5e4e8b8c14d0d8c4b04e468bb15a66a"
+    "validated_framework_memory": "e22f96300e2f326b46009c7f9cd43685537eec3c2a3e37c7c24ffd573448f993"
   },
   "source_state": {
     "ledger_version": "2.3",

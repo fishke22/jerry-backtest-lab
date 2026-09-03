@@ -32,10 +32,10 @@
   "completion_allowed": false,
   "artifact_hashes": {
     "completion_criteria": "1ab7e1a697aedf3a14d7aa4ec939a5053800a0fcb3eb42de74c2b57bf53bfeb1",
-    "family_attempt_ledger": "a36b7b5d5c81934c014d3953a58ebaea177e0d7b4ab29f706c1cb64fec78219c",
+    "family_attempt_ledger": "ed82ee233d15347971cf7c3edba433e68660b97c73816b64f04780214229cbd8",
     "completion_gap": "564540c8cd4f201f6462d3113e05b198a94574d06d6527fd5744ab6a2be18172",
-    "current_framework_status": "1cff8dc2337ccfc5ff538152759ce793ff44daa7eaa80e7f8801c57cb042410c",
+    "current_framework_status": "6091771d9be035b64950048cd66b5a30567c4a5a68265a2dc54a1c04d7fe69a7",
     "stage9_review": "671c640664ef50162f3ec9f83c9cb89df6948178d5ccfe925f7b349e3e806f8b"
   },
-  "generated_at_utc": "2026-09-02T11:51:42.767947+00:00"
+  "generated_at_utc": "2026-09-03T09:18:02.749498+00:00"
 }
