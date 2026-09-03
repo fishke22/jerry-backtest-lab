@@ -105,26 +105,26 @@ jobs:
         if: always()
         shell: bash
         run: |
-          echo "## JNU exact-Micro cloud smoke" >> "$GITHUB_STEP_SUMMARY"
-          printf -- '- Symbol: `%s`\n' "$SYMBOL" >> "$GITHUB_STEP_SUMMARY"
-          if [ -f smoke_status.json ]; then
-            python - <<'PY' >> "$GITHUB_STEP_SUMMARY"
-          import json
-          x=json.load(open("smoke_status.json",encoding="utf-8"))
-          print(f"- Status: **{x['status']}**")
-          print("- Formal forecast created: **false**")
-          print("- Real ledger modified: **false**")
-          if "source_timestamp" in x:
-              print(f"- Source timestamp: `{x['source_timestamp']}`")
-              print(f"- Observed age seconds: `{x['observed_age_seconds']}`")
-          if isinstance(x.get("quote"),dict):
-              q=x["quote"]
-              print(f"- Exact product: `{q.get('tradingview_symbol')}`")
-              print(f"- Source ID: `{q.get('source_id')}`")
-              print(f"- Price: `{q.get('price')}`")
-              print(f"- Freshness age seconds: `{q.get('freshness_age_seconds')}`")
+          python - <<'PY' >> "$GITHUB_STEP_SUMMARY"
+          import json, os, pathlib
+          print("## JNU exact-Micro cloud smoke")
+          print(f"- Symbol: `{os.environ['SYMBOL']}`")
+          p=pathlib.Path("smoke_status.json")
+          if p.exists():
+              x=json.loads(p.read_text(encoding="utf-8"))
+              print(f"- Status: **{x['status']}**")
+              print("- Formal forecast created: **false**")
+              print("- Real ledger modified: **false**")
+              if "source_timestamp" in x:
+                  print(f"- Source timestamp: `{x['source_timestamp']}`")
+                  print(f"- Observed age seconds: `{x['observed_age_seconds']}`")
+              if isinstance(x.get("quote"),dict):
+                  q=x["quote"]
+                  print(f"- Exact product: `{q.get('tradingview_symbol')}`")
+                  print(f"- Source ID: `{q.get('source_id')}`")
+                  print(f"- Price: `{q.get('price')}`")
+                  print(f"- Freshness age seconds: `{q.get('freshness_age_seconds')}`")
           PY
-          fi
 
       - name: Upload smoke artifact
         if: always()
