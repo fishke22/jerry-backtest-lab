@@ -25,7 +25,7 @@ jobs:
         shell: bash
         run: |
           version=1.7.12
-          curl -fsSL -o actionlint.tar.gz "https://github.com/rhysd/actionlint/releases/download/v${version}/actionlint_${version}_linux_x86_64.tar.gz"
+          curl -fsSL -o actionlint.tar.gz "https://github.com/rhysd/actionlint/releases/download/v${version}/actionlint_${version}_linux_amd64.tar.gz"
           tar -xzf actionlint.tar.gz actionlint
           chmod +x actionlint
           ./actionlint -version
