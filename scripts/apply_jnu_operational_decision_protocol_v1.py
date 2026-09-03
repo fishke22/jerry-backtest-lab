@@ -51,17 +51,17 @@ def main():
     event=r.get("event_state","NORMAL")
     sq=r.get("sq_state","NORMAL")
     post_event=bool(r.get("post_event_exact_jnu_path_available",False))
-    allowed_vol={"NORMAL","HIGH"}; allowed_event={"NORMAL","PRE_RELEASE_HIGH","POST_EVENT_HIGH"}; allowed_sq={"NORMAL","UNRESOLVED_HIGH"}
+    allowed_vol={"NORMAL","HIGH","UNKNOWN"}; allowed_event={"NORMAL","PRE_RELEASE_HIGH","POST_EVENT_HIGH","UNKNOWN"}; allowed_sq={"NORMAL","UNRESOLVED_HIGH","UNKNOWN"}
     if volatility not in allowed_vol: raise RuntimeError("invalid volatility_state")
     if event not in allowed_event: raise RuntimeError("invalid event_state")
     if sq not in allowed_sq: raise RuntimeError("invalid sq_state")
-    forced_abstain=event=="PRE_RELEASE_HIGH" and not post_event
+    forced_abstain=(event=="PRE_RELEASE_HIGH" and not post_event) or event=="UNKNOWN"
     if forced_abstain: bias="NEUTRAL_ABSTAIN"
     if bias=="NEUTRAL_ABSTAIN":
         confidence="LOW"
     else:
         opp="BEARISH" if bias=="BULLISH" else "BULLISH"
-        medium=(abs(net)>=3 and aligned_a[bias]>=1 and aligned_a[opp]==0 and volatility!="HIGH" and sq!="UNRESOLVED_HIGH" and event!="PRE_RELEASE_HIGH" and event!="POST_EVENT_HIGH")
+        medium=(abs(net)>=3 and aligned_a[bias]>=1 and aligned_a[opp]==0 and volatility=="NORMAL" and sq=="NORMAL" and event=="NORMAL")
         confidence="MEDIUM" if medium else "LOW"
     result={
       "version":"1.0",

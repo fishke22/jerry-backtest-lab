@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "frozen_at": "2026-09-03",
-  "status": "OPERATIONAL_HEURISTIC_DECISION_PROTOCOL_LIVE_SHADOW_PENDING",
+  "status": "OPERATIONAL_HEURISTIC_DECISION_PROTOCOL_PRE_FIRST_FORECAST_AMENDED",
   "purpose": "Make JNU Operational Framework evidence fusion reproducible and prospectively auditable without claiming a validated mechanical directional alpha.",
   "directional_blocks": [
     {
@@ -100,16 +100,19 @@
   "nondirectional_risk_modifiers": {
     "HAR_RSV_VOLATILITY_STATE": {
       "role": "risk/exposure only",
-      "HIGH": "Cap MEDIUM directional confidence to LOW. Does not flip direction."
+      "HIGH": "Cap MEDIUM directional confidence to LOW. Does not flip direction.",
+      "UNKNOWN": "Treat as unavailable risk state; cap MEDIUM directional confidence to LOW. Does not vote direction."
     },
     "BOJ_OR_MAJOR_EVENT_STATE": {
       "role": "event-risk only",
       "PRE_RELEASE_HIGH": "If the event occurs before the target close and no exact-JNU post-event price-path evidence exists, force NEUTRAL_ABSTAIN for the formally scored forecast.",
-      "POST_EVENT_HIGH": "Cap MEDIUM to LOW until exact-JNU price-path acceptance/rejection is observed."
+      "POST_EVENT_HIGH": "Cap MEDIUM to LOW until exact-JNU price-path acceptance/rejection is observed.",
+      "UNKNOWN": "If event calendar/state cannot be verified for the target horizon, force NEUTRAL_ABSTAIN for the formally scored forecast."
     },
     "DYNAMIC_SQ_RISK": {
       "role": "settlement/microstructure risk only",
-      "UNRESOLVED_HIGH": "Cap MEDIUM to LOW. SQ bias cannot vote direction by itself."
+      "UNRESOLVED_HIGH": "Cap MEDIUM to LOW. SQ bias cannot vote direction by itself.",
+      "UNKNOWN": "Treat as unresolved risk; cap MEDIUM to LOW. Does not vote direction."
     }
   },
   "prohibited_directional_inputs": [
@@ -139,5 +142,30 @@
     "explicit statement that the bias is operational/shadow-validated-pending rather than calibrated alpha"
   ],
   "probability_rule": "Do not transform net score or confidence into a calibrated probability. Scenario weights may be stated only as explicitly non-calibrated judgmental weights.",
-  "live_shadow_rule": "Every scored live-shadow forecast must preserve the decision trace produced by this protocol."
+  "live_shadow_rule": "Every scored live-shadow forecast must preserve the decision trace produced by this protocol.",
+  "amended_at": "2026-09-03",
+  "amendment_reason": "Real live-shadow ledger is 0/0. Add UNKNOWN fail-safe risk states so unavailable HAR/event/SQ inputs are never fabricated as NORMAL or HIGH.",
+  "real_live_shadow_forecasts_existing_at_amendment": 0,
+  "real_live_shadow_outcomes_existing_at_amendment": 0,
+  "unknown_state_policy": {
+    "volatility_state": [
+      "NORMAL",
+      "HIGH",
+      "UNKNOWN"
+    ],
+    "event_state": [
+      "NORMAL",
+      "PRE_RELEASE_HIGH",
+      "POST_EVENT_HIGH",
+      "UNKNOWN"
+    ],
+    "sq_state": [
+      "NORMAL",
+      "UNRESOLVED_HIGH",
+      "UNKNOWN"
+    ],
+    "volatility_UNKNOWN": "confidence cap only",
+    "event_UNKNOWN": "force NEUTRAL_ABSTAIN",
+    "sq_UNKNOWN": "confidence cap only"
+  }
 }

@@ -1,0 +1,48 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-03",
+  "status": "B_GRADE_EXACT_PRODUCT_FEED_CROSS_VALIDATION_PASS",
+  "instrument": {
+    "product": "OSE Nikkei 225 Micro Futures",
+    "tradingview_symbol": "OSE:NK225MCU2026",
+    "nikkeirealtime_symbol": "N225MC.FUT.OSE.CONT"
+  },
+  "common_source_timestamp_epoch": 1788435480,
+  "common_source_timestamp_taipei": "2026-09-03T19:38:00+08:00",
+  "common_source_timestamp_tokyo": "2026-09-03T20:38:00+09:00",
+  "tradingview": {
+    "last_price": 63940,
+    "source_id": "OSE",
+    "provider_id": "ice",
+    "update_mode": "delayed_streaming",
+    "update_mode_seconds": 900,
+    "individual_contract": true
+  },
+  "nikkeirealtime": {
+    "websocket": "wss://con.nikkeirealtime.com/GIQS",
+    "instrument_id": "N225MC.FUT.OSE.CONT",
+    "ohlc_request_type": "nrtohlc",
+    "interval_seconds": 60,
+    "bar": [
+      1788435480,
+      63980,
+      63985,
+      63935,
+      63940
+    ],
+    "close": 63940,
+    "source_time_carried_by_feed": true,
+    "upstream_commercial_provider_publicly_named": false
+  },
+  "equality_checks": {
+    "same_timestamp": true,
+    "same_price": true,
+    "price_difference": 0
+  },
+  "classification": {
+    "nikkeirealtime_quality": "B",
+    "tradingview_quality": "B",
+    "reason": "Exact OSE Micro identity and source timestamps are mechanically verifiable, and the same-timestamp price cross-check matches exactly. Neither path is a direct first-party OSE real-time feed; NikkeiRealtime does not publicly name its upstream commercial provider."
+  },
+  "scoring_policy": "NikkeiRealtime may be used as B-grade contemporaneous cross-check/context. The primary scored reference remains an individual exact OSE Micro contract source with an immutable source timestamp and <=900-second age."
+}

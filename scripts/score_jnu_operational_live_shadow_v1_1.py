@@ -61,16 +61,16 @@ def recompute_trace(trace:dict, protocol:dict)->dict:
     event=r.get("event_state","NORMAL")
     sq=r.get("sq_state","NORMAL")
     post=bool(r.get("post_event_exact_jnu_path_available",False))
-    if vol not in {"NORMAL","HIGH"}: raise RuntimeError("invalid stored volatility state")
-    if event not in {"NORMAL","PRE_RELEASE_HIGH","POST_EVENT_HIGH"}: raise RuntimeError("invalid stored event state")
-    if sq not in {"NORMAL","UNRESOLVED_HIGH"}: raise RuntimeError("invalid stored SQ state")
-    force=event=="PRE_RELEASE_HIGH" and not post
+    if vol not in {"NORMAL","HIGH","UNKNOWN"}: raise RuntimeError("invalid stored volatility state")
+    if event not in {"NORMAL","PRE_RELEASE_HIGH","POST_EVENT_HIGH","UNKNOWN"}: raise RuntimeError("invalid stored event state")
+    if sq not in {"NORMAL","UNRESOLVED_HIGH","UNKNOWN"}: raise RuntimeError("invalid stored SQ state")
+    force=(event=="PRE_RELEASE_HIGH" and not post) or event=="UNKNOWN"
     if force: bias="NEUTRAL_ABSTAIN"
     if bias=="NEUTRAL_ABSTAIN":
         conf="LOW"
     else:
         opp="BEARISH" if bias=="BULLISH" else "BULLISH"
-        med=abs(net)>=3 and qa[bias]>=1 and qa[opp]==0 and vol!="HIGH" and sq!="UNRESOLVED_HIGH" and event not in {"PRE_RELEASE_HIGH","POST_EVENT_HIGH"}
+        med=abs(net)>=3 and qa[bias]>=1 and qa[opp]==0 and vol=="NORMAL" and sq=="NORMAL" and event=="NORMAL"
         conf="MEDIUM" if med else "LOW"
     return {
         "bias":bias,"confidence":conf,"eligible_directional_blocks":eligible,

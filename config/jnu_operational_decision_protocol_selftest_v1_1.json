@@ -1,0 +1,33 @@
+{
+  "version": "1.1",
+  "as_of": "2026-09-03",
+  "status": "JNU_OPERATIONAL_DECISION_PROTOCOL_UNKNOWN_STATE_SELFTEST_PASS",
+  "prereq_real_ledger": {
+    "forecasts": 0,
+    "outcomes": 0
+  },
+  "tests": {
+    "volatility_unknown": {
+      "pass": true,
+      "bias": "BULLISH",
+      "confidence": "LOW",
+      "eligible_directional_blocks": 3,
+      "event_forced_abstain": false
+    },
+    "event_unknown": {
+      "pass": true,
+      "bias": "NEUTRAL_ABSTAIN",
+      "confidence": "LOW",
+      "eligible_directional_blocks": 3,
+      "event_forced_abstain": true
+    },
+    "sq_unknown": {
+      "pass": true,
+      "bias": "BEARISH",
+      "confidence": "LOW",
+      "eligible_directional_blocks": 3,
+      "event_forced_abstain": false
+    }
+  },
+  "governance": "UNKNOWN states are fail-safe risk modifiers only. They cannot create a directional vote. Event UNKNOWN forces abstention."
+}

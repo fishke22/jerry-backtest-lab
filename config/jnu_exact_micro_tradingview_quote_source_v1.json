@@ -1,0 +1,37 @@
+{
+  "version": "1.0",
+  "frozen_at": "2026-09-03",
+  "status": "EXACT_JNU_PUBLIC_QUOTE_SOURCE_ADAPTER_ACTIVE",
+  "provider": "TradingView public symbol page",
+  "product_requirement": "Individual Osaka Exchange Nikkei 225 micro Futures contract, e.g. OSE:NK225MCU2026. Continuous NK225MC1! may be context only and is not used as the scored reference when an individual front contract is available.",
+  "browser_dependency": {
+    "cli": "agent-browser",
+    "version": "0.36.0",
+    "publisher": "Vercel Labs",
+    "license": "Apache-2.0",
+    "local_install": "global npm on KO-HONG-HSUAN"
+  },
+  "source_fields_required": [
+    "symbol",
+    "contract_name",
+    "exchange",
+    "price",
+    "currency",
+    "change",
+    "change_pct",
+    "market_state",
+    "displayed_asof_time",
+    "displayed_timezone"
+  ],
+  "freshness_rule": {
+    "maximum_age_seconds": 900,
+    "conservative_minute_rule": "TradingView displays As-of time to minute precision. Interpret displayed HH:MM as HH:MM:00, not the end of the minute. This makes the age calculation conservative.",
+    "fail_closed": true
+  },
+  "scored_forecast_rule": "Reference source must be an individual exact OSE Micro contract and freshness_age_seconds <= 900 at registration.",
+  "outcome_rule": "Target day-session close may be sourced from the same individual exact contract only after the displayed quote timestamp reaches or exceeds the frozen OSE 15:45 JST close and the closing value is available.",
+  "delayed_data_disclosure": true,
+  "no_login_required_in_selftest": true,
+  "no_broker_access": true,
+  "no_order_execution": true
+}
