@@ -1,0 +1,62 @@
+{
+  "version": "1.0",
+  "candidate_id": "NIKKEI_DEKANSHO_BUSHI_POSTPUBLICATION_G1",
+  "frozen_at": "2026-09-03",
+  "status": "PREREGISTERED_BEFORE_POSTPUBLICATION_OUTCOME",
+  "mechanism": "Calendar/seasonality. Long Japanese equities in January-June and short in July-December, following the published Dekansho-bushi effect.",
+  "literature": {
+    "citation": "Sakakibara, Yamasaki & Okada (2013), The Calendar Structure of the Japanese Stock Market: The 'Sell in May Effect' versus the 'Dekansho-bushi Effect', International Review of Finance 13(2):161-185.",
+    "doi": "10.1111/irfi.12003",
+    "published": "2013-06-01",
+    "original_sample": "1950-2008",
+    "published_result": "Mean Japanese stock returns are significantly positive in January-June and significantly negative in July-December; Nikkei 225 first-half cumulative performance greatly exceeded second-half performance."
+  },
+  "phase0_public_postpublication": {
+    "source": "FRED NIKKEI225 daily close; economic source Nikkei Indexes",
+    "sample_start": "2014-01-01",
+    "sample_end": "2026-08-31",
+    "reason": "Use only full calendar years after the June 2013 publication; exclude incomplete September 2026.",
+    "signal": {
+      "January-June": "LONG +1",
+      "July-December": "SHORT -1"
+    },
+    "return_definition": "Daily close-to-close simple return multiplied by the calendar-half position assigned to the return date.",
+    "costs": {
+      "primary_one_way_bps": 10,
+      "stress_one_way_bps": 20,
+      "transition_rule": "Costs apply only when the calendar-half position changes. A +1 to -1 or -1 to +1 reversal costs two one-way units."
+    },
+    "monthly_evaluation": "Compound daily net returns into calendar-month observations after applying transition cost on the exact trading day of the half-year switch.",
+    "minimum_complete_months": 144,
+    "bootstrap": {
+      "block_months": 6,
+      "samples": 10000,
+      "seed": 42
+    },
+    "subperiods": "Four near-equal contiguous blocks by complete month count, frozen before price values are evaluated.",
+    "recent_window_months": 36
+  },
+  "phase0_gates": [
+    "Primary 10bps net cumulative return > 0",
+    "Annualized monthly Sharpe > 0",
+    "20bps stress cumulative return > 0",
+    "6-month moving-block bootstrap 95% lower mean monthly net return > 0",
+    "At least 3 of 4 fixed chronological subperiods have positive primary net cumulative return"
+  ],
+  "promotion": {
+    "phase0_pass": "POSTPUBLICATION_SPOT_REPLICATION_PASS_REQUIRES_TRUE_OSE_CONFIRMATION",
+    "phase0_fail": "DEKANSHO_BUSHI_POSTPUBLICATION_FAIL_CURRENT_SPEC",
+    "true_ose_rule": "Only if phase0 passes, preregister true OSE Mini confirmation with identical calendar sign and no season-boundary retuning."
+  },
+  "forbidden": [
+    "Change January-June / July-December boundary",
+    "Drop individual months after outcome",
+    "Use first-half long only or second-half short only after outcome",
+    "Switch to Sell-in-May months after outcome",
+    "Add trend, HAR, FX, BOJ or other filters to rescue failure",
+    "Use original 1950-2008 sample as validation evidence",
+    "Count incomplete September 2026"
+  ],
+  "directional_outcome_inspected": false,
+  "next_action": "Freeze monthly calendar/subperiod alignment from dates only, then run the post-publication public replication."
+}
