@@ -208,7 +208,7 @@
   "authoritative_validation_pipeline_checkpoint": "config/jnu_validation_pipeline_checkpoint_20260902_v1.json",
   "validation_pipeline_status": "JNU_VALIDATION_PIPELINE_READY_FORWARD_DATA_PENDING",
   "validation_pipeline_head": "ff322f11dbb23da6be093056ac6ef47f2db10e4a",
-  "next_action": "Use JNU Operational Framework v1.1 for live analysis and immutably register eligible forecasts; continue HAR/BOJ Stage8 forward accumulation. Open no new directional family without new direct evidence.",
+  "next_action": "At the next exact-JNU user-facing forecast, register it immutably under the live-shadow protocol before outcome; meanwhile continue HAR/BOJ Stage8 readiness checks and do not open weak new directional families.",
   "stage8_forward_local_ingest": {
     "status": "SELFTEST_PASS_NO_SOURCE_CHANGE",
     "script": "scripts/ingest_jnu_stage8_forward_local.py",
@@ -255,6 +255,9 @@
   "live_shadow_validation": {
     "status": "ACTIVE",
     "preregistration": "config/jnu_operational_live_shadow_prereg_v1.json",
-    "first_formal_review_min_nonabstain": 30
+    "first_formal_review_min_nonabstain": 30,
+    "selftest_status": "PASS",
+    "selftest_record": "config/jnu_operational_live_shadow_selftest_v1.json",
+    "real_forecasts_registered": 0
   }
 }

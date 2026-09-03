@@ -1,0 +1,34 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-03",
+  "status": "JNU_OPERATIONAL_LIVE_SHADOW_SELFTEST_PASS",
+  "framework": "config/jnu_operational_framework_current_v1_1.json",
+  "preregistration": "config/jnu_operational_live_shadow_prereg_v1.json",
+  "implementation": "config/jnu_operational_live_shadow_implementation_v1.json",
+  "tests": {
+    "stale_reference_rejected": {
+      "pass": true,
+      "reference_age_minutes": 35,
+      "maximum_allowed_minutes": 15,
+      "exit_code": 1
+    },
+    "valid_exact_product_forecast_registered": {
+      "pass": true,
+      "selftest_forecast_id": "JNU_LS_20260903T165500_31afc24e12c4"
+    },
+    "exact_product_outcome_recorded": {
+      "pass": true,
+      "selftest_outcome_return": 0.01,
+      "directional_hit": true
+    },
+    "premature_validation_blocked": {
+      "pass": true,
+      "scorer_status": "LIVE_SHADOW_ACCUMULATING",
+      "nonabstain_scored": 1,
+      "formal_minimum": 30,
+      "bootstrap_not_run": true
+    }
+  },
+  "selftest_storage": "D:/Temp/jnu_shadow_selftest only; no selftest forecast/outcome is part of the real live-shadow ledger.",
+  "next_action": "For the next user-facing JNU forecast with an exact timestamped JNU/Micro price, register the real forecast before the target day-session close and commit the immutable record before outcome."
+}

@@ -197,3 +197,9 @@
 - Bootstrap P(mean>0)=0.3142; 95% lower mean monthly net -1.0325%. Recent 36 months +22.9545% is diagnostic only.
 - Independent audit: 15,465/15,465 daily checks and 456/456 monthly checks PASS; all aggregates exact.
 - Governance: TERMINAL_FAIL_NO_RESCUE; no OSE confirmation and no calendar-boundary or long/short-leg rescue.
+
+## JNU Operational Framework v1.1 + live-shadow selftest (2026-09-03)
+- Directional scout paused new formal families unless new direct Japan/Nikkei/OSE evidence passes the evidence gate.
+- Operational Framework v1.1 forbids presenting judgmental scenario weights as calibrated probabilities and keeps formal shadow confidence at LOW/MEDIUM while directional modules remain zero.
+- Live-shadow registrar/outcome/scorer selftest PASS: stale reference rejected, exact-product forecast/outcome accepted, n=1 correctly remains LIVE_SHADOW_ACCUMULATING.
+- Selftest data remain in D:/Temp only and are not part of the real forecast ledger.
