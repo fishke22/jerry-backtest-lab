@@ -63,9 +63,17 @@
   "live_shadow_integrity_scorer": "scripts/score_jnu_operational_live_shadow_v1_2.py",
   "live_shadow_atomic_integrity_selftest": "config/jnu_operational_live_shadow_atomic_integrity_selftest_v1.json",
   "real_live_shadow_outcomes_registered": 0,
-  "first_real_live_shadow_forecast_readiness": "config/jnu_live_shadow_first_real_forecast_readiness_v2.json",
-  "live_shadow_real_ledger_status": "READY_EMPTY_0_FORECASTS_0_OUTCOMES",
+  "first_real_live_shadow_forecast_readiness": "config/jnu_live_shadow_cloud_readiness_v3.json",
+  "live_shadow_real_ledger_status": "CLOUD_PIPELINE_READY_EMPTY_0_FORECASTS_0_OUTCOMES",
   "exact_micro_quote_adapter": "scripts/fetch_jnu_exact_micro_quote_tradingview_v1.py",
   "exact_micro_source_cross_validation": "config/jnu_exact_micro_source_cross_validation_v1.json",
-  "source_metadata_integrity_selftest": "config/jnu_v1_4_source_metadata_integrity_selftest.json"
+  "source_metadata_integrity_selftest": "config/jnu_v1_4_source_metadata_integrity_selftest.json",
+  "cloud_forecast_request_protocol": "config/jnu_cloud_forecast_request_protocol_v1.json",
+  "cloud_forecast_request_builder": "scripts/build_jnu_cloud_forecast_input_v1.py",
+  "cloud_forecast_workflow": ".github/workflows/jnu-live-shadow-cloud-forecast-v1.yml",
+  "cloud_quote_smoke_workflow": ".github/workflows/jnu-exact-micro-quote-cloud-smoke-v1.yml",
+  "cloud_request_selftest_run": 33818317282,
+  "cloud_actionlint_run": 33818714736,
+  "cloud_pipeline_status": "READY_ACTIONLINT_PASS_REAL_LEDGER_EMPTY",
+  "next_action": "At the next simultaneous fresh exact-Micro quote + verified event-state + <=900-second immutable request window, commit one live_shadow_requests/<request_id>.json. Cloud workflow owns price/timestamp and atomically registers at most one real forecast."
 }
