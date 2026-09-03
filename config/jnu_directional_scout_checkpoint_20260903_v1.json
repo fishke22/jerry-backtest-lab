@@ -1,0 +1,48 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-03",
+  "status": "PAUSE_NEW_FORMAL_DIRECTIONAL_FAMILIES_UNTIL_NEW_DIRECT_EVIDENCE",
+  "reason": "Recent independent, externally grounded families have produced repeated strict OOS/true-OSE failures. Additional weakly justified variants would raise multiple-testing risk faster than information value.",
+  "newly_screened_not_opened": [
+    {
+      "candidate": "FOMC_PREANNOUNCEMENT_DRIFT_TO_JNU",
+      "disposition": "DO_NOT_OPEN",
+      "reason": "Lucca-Moench international appendix lists FTSE/DAX/CAC40/SMI/IBEX/TSX, not Japan. Later international evidence is not a direct fixed Nikkei rule; US drift also weakened after 2015."
+    },
+    {
+      "candidate": "CFTC_CME_NIKKEI_POSITIONING",
+      "disposition": "SCOUT_ONLY_NO_PREDICTIVE_RULE",
+      "reason": "Free public positioning data exist, but current evidence supports sentiment/herding/position description, not a preregisterable future-return sign rule."
+    },
+    {
+      "candidate": "NIKKEI_LEVERAGED_ETF_REBALANCING",
+      "disposition": "RESEARCH_LEAD_NOT_FORMAL",
+      "reason": "Japanese literature found is predominantly artificial-market simulation or ETF tracking/performance; no sufficiently direct empirical Nikkei-futures future-return rule with free historical AUM inputs."
+    },
+    {
+      "candidate": "NIKKEI_VOLUME_PARTICIPATION_DIRECTION",
+      "disposition": "DO_NOT_OPEN",
+      "reason": "Direct Nikkei work mainly uses volume as volatility/liquidity or conditioning information, not a standalone future-direction rule. No OHLCV threshold mining permitted."
+    },
+    {
+      "candidate": "TURN_OF_MONTH_JAPAN",
+      "disposition": "DO_NOT_OPEN_SECOND_CALENDAR_VARIANT",
+      "reason": "Older international/Japan evidence is mixed; newer international evidence identifies Japan as an exception and modern Japan evidence does not robustly confirm TOM after volatility adjustment."
+    },
+    {
+      "candidate": "OVERNIGHT_RETURN_TO_FIRST_LAST30",
+      "disposition": "DO_NOT_REOPEN_ADJACENT_FAILED_FAMILY",
+      "reason": "Direct 2026 evidence exists, but it is the same first/last-30-minute intraday-path family and predictor neighborhood already governed by the failed Iwanaga-shaped US-to-JNU family; predictor rescue is prohibited."
+    }
+  ],
+  "recent_terminal_additions": [
+    "JPX_N225MINI_FOREIGN_FLOW_SIGN_G1",
+    "JPX_CASH_FOREIGN_FLOW_TOKYO_NAGOYA_SIGN_G1",
+    "OSE_MINI_CASH_BASIS_CHANGE_G1",
+    "NIKKEI_DEKANSHO_BUSHI_POSTPUBLICATION_G1"
+  ],
+  "allowed_next_formal_directional_family": "Only a substantively independent direct Japan/Nikkei/OSE rule with externally fixed specification, rights-clean/free or already-authorized data, causal PIT timing, and no adjacency to a terminal family.",
+  "operational_priority": "Validate the full JNU Operational Framework prospectively via an immutable live shadow forecast ledger while HAR/BOJ Stage8 forward data accumulate.",
+  "validated_directional_edge": false,
+  "decision_engine": "NO_VALIDATED_DIRECTIONAL_EDGE"
+}

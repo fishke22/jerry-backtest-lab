@@ -1,0 +1,84 @@
+{
+  "version": "1.0",
+  "frozen_at": "2026-09-03",
+  "status": "PREREGISTERED_BEFORE_LIVE_SHADOW_OUTCOMES",
+  "candidate_id": "JNU_OPERATIONAL_FRAMEWORK_LIVE_SHADOW_V1",
+  "purpose": "Prospectively validate the real operational JNU decision process as used in user-facing forecasts. This validates the discretionary evidence-fusion process, not a mechanical directional-alpha module.",
+  "authoritative_framework": "config/jnu_operational_framework_current_v1_1.json",
+  "inclusion_rule": {
+    "formal_forecast": "Every future user-facing JNU/Osaka Micro Nikkei analysis that gives a directional bias and has an exact JNU/Micro reference price with timestamp must be registered before its target endpoint.",
+    "abstention": "NEUTRAL/ABSTAIN forecasts are also registered and count toward coverage but not directional hit-rate.",
+    "no_cherry_picking": true,
+    "retroactive_editing_prohibited": true,
+    "correction_rule": "A correction may supersede a record only before the target endpoint and must preserve the original record plus a reason."
+  },
+  "primary_horizon": {
+    "target": "Next OSE Nikkei 225 Micro Futures regular day-session close after the forecast timestamp.",
+    "start": "Exact JNU/Micro reference price observed at the forecast timestamp from a timestamped user screenshot or trusted exact-product live source.",
+    "outcome_return": "target_day_session_close / forecast_reference_price - 1",
+    "bullish_success": "outcome_return > 0",
+    "bearish_success": "outcome_return < 0",
+    "zero_return": "directional tie",
+    "note": "A forecast without an exact timestamped JNU/Micro reference price is operationally useful but ineligible for primary shadow scoring."
+  },
+  "forecast_fields": [
+    "forecast_id",
+    "created_at_taipei",
+    "reference_price",
+    "reference_timestamp",
+    "reference_source",
+    "target_day_session_date",
+    "bias",
+    "confidence",
+    "expected_path",
+    "key_levels",
+    "invalidation_conditions",
+    "event_risk",
+    "flip_conditions",
+    "evidence_summary",
+    "framework_sha256"
+  ],
+  "bias_enum": [
+    "BULLISH",
+    "BEARISH",
+    "NEUTRAL_ABSTAIN"
+  ],
+  "confidence_enum": [
+    "LOW",
+    "MEDIUM"
+  ],
+  "confidence_rule": "HIGH is not used in the formal shadow ledger while validated directional modules remain zero. Confidence labels are ordinal, not calibrated probabilities.",
+  "probability_rule": "Do not present numeric values as calibrated model probabilities. Judgmental scenario weights may be discussed only when explicitly labelled non-calibrated and are not used for primary shadow scoring.",
+  "scoring": {
+    "minimum_nonabstain_forecasts_for_first_formal_review": 30,
+    "metrics": [
+      "directional accuracy",
+      "mean signed outcome return",
+      "median signed outcome return",
+      "coverage / abstention rate",
+      "LOW vs MEDIUM performance",
+      "maximum adverse excursion where exact intraday outcome data are available"
+    ],
+    "bootstrap": {
+      "unit": "forecast",
+      "block_forecasts": 5,
+      "samples": 5000,
+      "seed": 20260903
+    },
+    "first_review_gate": [
+      "At least 30 non-abstain eligible forecasts",
+      "Directional accuracy > 0.50",
+      "Mean signed outcome return > 0",
+      "5-forecast moving-block bootstrap P(mean signed outcome return > 0) >= 0.90"
+    ],
+    "interpretation": "A pass supports the operational evidence-fusion process prospectively. It does not create a mechanical validated directional-alpha module."
+  },
+  "prohibited": [
+    "Omit losing forecasts from the ledger",
+    "Backfill forecasts after the target close",
+    "Change target horizon after outcomes",
+    "Use proxy SGX/CME price as exact JNU starting price for scored records",
+    "Call scenario weights calibrated probabilities",
+    "Promote a shadow-process pass to mechanical alpha"
+  ]
+}
