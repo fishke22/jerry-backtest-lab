@@ -3,7 +3,7 @@
   "as_of": "2026-09-02",
   "memory_scope": "CROSS_SESSION_MANDATORY",
   "subject": "JNU Operational Framework",
-  "authoritative_framework": "config/jnu_operational_framework_current_v1.json",
+  "authoritative_framework": "config/jnu_operational_framework_current_v1_1.json",
   "usage_rule": "For every future JNU / Osaka Nikkei / Osaka Micro Nikkei analysis in any session, apply this framework by default unless a later committed authoritative framework explicitly supersedes it.",
   "mandatory_layers": [
     "Market Regime",
@@ -45,5 +45,9 @@
     "evidence quality and counter-evidence"
   ],
   "parallel_research_rule": "Operational use is allowed now while higher-level forward validation continues. Continue independent preregistered historical OOS/walk-forward/overfit-controlled directional research without waiting for future Stage8 data.",
-  "supersession_rule": "Only a later committed authoritative framework file may supersede this memory. Do not silently simplify back to generic technical/fundamental analysis."
+  "supersession_rule": "Only a later committed authoritative framework file may supersede this memory. Do not silently simplify back to generic technical/fundamental analysis.",
+  "current_framework_version": "1.1",
+  "latest_framework_commit_pending": true,
+  "live_shadow_preregistration": "config/jnu_operational_live_shadow_prereg_v1.json",
+  "directional_research_checkpoint": "config/jnu_directional_scout_checkpoint_20260903_v1.json"
 }

@@ -208,7 +208,7 @@
   "authoritative_validation_pipeline_checkpoint": "config/jnu_validation_pipeline_checkpoint_20260902_v1.json",
   "validation_pipeline_status": "JNU_VALIDATION_PIPELINE_READY_FORWARD_DATA_PENDING",
   "validation_pipeline_head": "ff322f11dbb23da6be093056ac6ef47f2db10e4a",
-  "next_action": "Select a substantively independent literature-grounded directional mechanism; do not reopen failed calendar, basis-change, or foreign-flow families.",
+  "next_action": "Use JNU Operational Framework v1.1 for live analysis and immutably register eligible forecasts; continue HAR/BOJ Stage8 forward accumulation. Open no new directional family without new direct evidence.",
   "stage8_forward_local_ingest": {
     "status": "SELFTEST_PASS_NO_SOURCE_CHANGE",
     "script": "scripts/ingest_jnu_stage8_forward_local.py",
@@ -216,8 +216,8 @@
     "download_or_login_automation": false,
     "next_action": "After a manually/authorized updated 225Labo Micro package exists locally, run check-only then --apply; inspect readiness only."
   },
-  "authoritative_operational_framework": "config/jnu_operational_framework_current_v1.json",
-  "operational_framework_status": "AUTHORITATIVE_JNU_OPERATIONAL_FRAMEWORK",
+  "authoritative_operational_framework": "config/jnu_operational_framework_current_v1_1.json",
+  "operational_framework_status": "AUTHORITATIVE_JNU_OPERATIONAL_FRAMEWORK_V1_1",
   "operational_framework_usage": "Use for all future Osaka Nikkei/JNU analysis unless explicitly superseded by a later committed framework.",
   "jpx_n225mini_foreign_flow_sign_g1": {
     "status": "TERMINAL_FAIL_NO_RESCUE",
@@ -249,5 +249,12 @@
     "terminal_result": "config/jnu_dekansho_bushi_postpublication_terminal_fail_v1.json",
     "validated_directional_edge": false,
     "recent_36_month_strength": "DIAGNOSTIC_ONLY_NOT_RESCUE"
+  },
+  "directional_research_status": "PAUSE_NEW_FORMAL_DIRECTIONAL_FAMILIES_UNTIL_NEW_DIRECT_EVIDENCE",
+  "directional_scout_checkpoint": "config/jnu_directional_scout_checkpoint_20260903_v1.json",
+  "live_shadow_validation": {
+    "status": "ACTIVE",
+    "preregistration": "config/jnu_operational_live_shadow_prereg_v1.json",
+    "first_formal_review_min_nonabstain": 30
   }
 }

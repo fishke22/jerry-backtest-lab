@@ -1,6 +1,6 @@
 {
   "version": "3.8",
-  "updated_at": "2026-09-01",
+  "updated_at": "2026-09-03",
   "policy": {
     "max_active_formal_families": 1,
     "rule": "Do not start the next formal information family until the active family is resolved PASS/FAIL/INCONCLUSIVE and its disposition is persisted.",
@@ -202,18 +202,17 @@
     }
   ],
   "directional_research_checkpoint": {
-    "status": "PAUSE_NEW_DIRECTIONAL_FAMILY_UNTIL_NEW_INDEPENDENT_EVIDENCE",
-    "reason": "Five recent independent/literature-grounded directional families failed strict true-target gates. Do not open close variants or weaken gates.",
-    "recent_terminal_families": [
-      "INTRADAY_PATH_US_TO_JNU_TRUE_G1",
-      "INTRADAY_MOMENTUM_REVERSION_TRUE_JNU_G1",
-      "OVERNIGHT_OVERREACTION_TRUE_JNU_G1",
-      "PRIOR_NIGHT_USDJPY_TO_JNU_DAY_G1",
-      "MACD_4_22_3_POSTPUBLICATION_TRUE_JNU_G1"
+    "status": "PAUSE_NEW_FORMAL_DIRECTIONAL_FAMILY_UNTIL_NEW_DIRECT_EVIDENCE",
+    "checkpoint": "config/jnu_directional_scout_checkpoint_20260903_v1.json",
+    "recent_terminal_additions": [
+      "JPX_N225MINI_FOREIGN_FLOW_SIGN_G1",
+      "JPX_CASH_FOREIGN_FLOW_TOKYO_NAGOYA_SIGN_G1",
+      "OSE_MINI_CASH_BASIS_CHANGE_G1",
+      "NIKKEI_DEKANSHO_BUSHI_POSTPUBLICATION_G1"
     ],
-    "allowed_next": "Only substantively independent direct Nikkei/OSE evidence with pre-outcome specification, or downstream validation of passed risk-information modules."
+    "allowed_next": "Only a substantively independent direct Japan/Nikkei/OSE family that passes the new evidence gate. Otherwise prioritize operational live-shadow validation and pending HAR/BOJ Stage8."
   },
-  "directional_scout_status": "NO_NEW_FORMAL_DIRECTIONAL_FAMILY_OPENED",
+  "directional_scout_status": "NO_NEW_FORMAL_DIRECTIONAL_FAMILY_OPENED_AFTER_20260903_SCREEN",
   "stage4_priority_file": "config/jnu_stage4_risk_translation_priority_v1.json",
   "directional_scout_file": "config/jnu_directional_evidence_scout_v1.json",
   "active_stage4_translation": null,
