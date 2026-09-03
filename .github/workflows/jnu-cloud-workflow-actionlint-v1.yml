@@ -1,0 +1,40 @@
+name: JNU Cloud Workflow Actionlint
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/jnu-cloud-workflow-actionlint-v1.yml"
+      - ".github/workflows/jnu-live-shadow-cloud-forecast-v1.yml"
+      - ".github/workflows/jnu-live-shadow-cloud-request-selftest-v1.yml"
+      - ".github/workflows/jnu-exact-micro-quote-cloud-smoke-v1.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install actionlint
+        shell: bash
+        run: |
+          version=1.7.7
+          curl -fsSL -o actionlint.tar.gz "https://github.com/rhysd/actionlint/releases/download/v${version}/actionlint_${version}_linux_x86_64.tar.gz"
+          tar -xzf actionlint.tar.gz actionlint
+          chmod +x actionlint
+          ./actionlint -version
+
+      - name: Lint JNU cloud workflows
+        shell: bash
+        run: |
+          ./actionlint \
+            .github/workflows/jnu-live-shadow-cloud-forecast-v1.yml \
+            .github/workflows/jnu-live-shadow-cloud-request-selftest-v1.yml \
+            .github/workflows/jnu-exact-micro-quote-cloud-smoke-v1.yml \
+            .github/workflows/jnu-cloud-workflow-actionlint-v1.yml
