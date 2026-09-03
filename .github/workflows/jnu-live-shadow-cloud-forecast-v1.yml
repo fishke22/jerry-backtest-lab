@@ -1,0 +1,240 @@
+name: JNU Live Shadow Cloud Forecast Request
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "live_shadow_requests/*.json"
+  workflow_dispatch:
+    inputs:
+      request_path:
+        description: "Existing immutable request path under live_shadow_requests/"
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: jnu-live-shadow-cloud-forecast
+  cancel-in-progress: false
+
+jobs:
+  register:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+
+    steps:
+      - name: Checkout main with history
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+          persist-credentials: true
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Resolve immutable request
+        id: request
+        shell: bash
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          INPUT_PATH: ${{ github.event.inputs.request_path }}
+          BEFORE_SHA: ${{ github.event.before }}
+          HEAD_SHA: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+
+          if [ "$EVENT_NAME" = "workflow_dispatch" ]; then
+            request_path="$INPUT_PATH"
+          else
+            if [ -z "$BEFORE_SHA" ] || printf '%s' "$BEFORE_SHA" | grep -Eq '^0+$'; then
+              mapfile -t changed < <(git diff-tree --no-commit-id --name-only -r "$HEAD_SHA" -- 'live_shadow_requests/*.json')
+            else
+              mapfile -t changed < <(git diff --name-only "$BEFORE_SHA" "$HEAD_SHA" -- 'live_shadow_requests/*.json')
+            fi
+            if [ "${#changed[@]}" -ne 1 ]; then
+              echo "Exactly one live_shadow_requests/*.json file is required per triggering commit; got ${#changed[@]}" >&2
+              printf '%s\n' "${changed[@]}" >&2
+              exit 1
+            fi
+            request_path="${changed[0]}"
+          fi
+
+          case "$request_path" in
+            live_shadow_requests/*.json) ;;
+            *)
+              echo "request_path must be under live_shadow_requests/ and end in .json" >&2
+              exit 1
+              ;;
+          esac
+
+          test -f "$request_path"
+          git ls-files --error-unmatch "$request_path" >/dev/null
+          test -z "$(git status --porcelain -- "$request_path")"
+
+          python - "$request_path" <<'PY' > request_meta.json
+          import json, pathlib, sys
+          p=pathlib.Path(sys.argv[1])
+          x=json.loads(p.read_text(encoding="utf-8"))
+          rid=str(x.get("request_id",""))
+          if p.name != rid + ".json":
+              raise SystemExit(f"request filename must equal request_id.json: {p.name} vs {rid}.json")
+          symbol=str(x.get("symbol","")).upper()
+          print(json.dumps({"request_path":str(p),"request_id":rid,"symbol":symbol}))
+          PY
+
+          request_id=$(python -c 'import json; print(json.load(open("request_meta.json"))["request_id"])')
+          symbol=$(python -c 'import json; print(json.load(open("request_meta.json"))["symbol"])')
+
+          existing=$(python - "$request_id" <<'PY'
+          import json, pathlib, sys
+          rid=sys.argv[1]
+          hits=[]
+          d=pathlib.Path("live_shadow/forecasts")
+          if d.exists():
+              for p in sorted(d.glob("*.json")):
+                  try:
+                      x=json.loads(p.read_text(encoding="utf-8"))
+                  except Exception:
+                      continue
+                  if x.get("request_id")==rid:
+                      hits.append(x.get("forecast_id",p.stem))
+          if len(hits)>1:
+              raise SystemExit(f"integrity failure: request_id {rid} already maps to multiple forecasts: {hits}")
+          print(hits[0] if hits else "")
+          PY
+          )
+
+          if [ -n "$existing" ]; then
+            already="true"
+          else
+            already="false"
+          fi
+
+          echo "path=$request_path" >> "$GITHUB_OUTPUT"
+          echo "request_id=$request_id" >> "$GITHUB_OUTPUT"
+          echo "symbol=$symbol" >> "$GITHUB_OUTPUT"
+          echo "already_registered=$already" >> "$GITHUB_OUTPUT"
+          echo "existing_forecast_id=$existing" >> "$GITHUB_OUTPUT"
+
+      - name: Idempotent already-registered request
+        if: steps.request.outputs.already_registered == 'true'
+        shell: bash
+        run: |
+          echo "Request ${{ steps.request.outputs.request_id }} already registered as ${{ steps.request.outputs.existing_forecast_id }}."
+          echo "No second forecast will be created."
+
+      - name: Set up Node
+        if: steps.request.outputs.already_registered != 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+
+      - name: Install agent-browser and Chrome
+        if: steps.request.outputs.already_registered != 'true'
+        shell: bash
+        run: |
+          npm install -g agent-browser@0.36.0
+          agent-browser --version
+          agent-browser install --with-deps
+
+      - name: Fetch fresh exact OSE Micro reference
+        if: steps.request.outputs.already_registered != 'true'
+        shell: bash
+        env:
+          SYMBOL: ${{ steps.request.outputs.symbol }}
+        run: |
+          python scripts/fetch_jnu_exact_micro_quote_tradingview_v1.py \
+            --symbol "$SYMBOL" \
+            --max-age-seconds 900 \
+            --max-wait-seconds 60 \
+            --poll-seconds 5 \
+            --output cloud_quote.json
+
+      - name: Build forecast input from immutable request and cloud quote
+        if: steps.request.outputs.already_registered != 'true'
+        shell: bash
+        env:
+          REQUEST_PATH: ${{ steps.request.outputs.path }}
+        run: |
+          python scripts/build_jnu_cloud_forecast_input_v1.py \
+            --request "$REQUEST_PATH" \
+            --quote cloud_quote.json \
+            --output cloud_atomic_input.json
+
+      - name: Rebase read-side state before atomic write
+        if: steps.request.outputs.already_registered != 'true'
+        shell: bash
+        run: |
+          git status --porcelain
+          test -z "$(git diff --cached --name-only)"
+          git pull --ff-only origin main
+
+      - name: Configure Git identity
+        if: steps.request.outputs.already_registered != 'true'
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Register immutable real forecast atomically
+        if: steps.request.outputs.already_registered != 'true'
+        id: register
+        shell: bash
+        run: |
+          python scripts/register_jnu_operational_shadow_forecast_atomic_v1.py \
+            --input cloud_atomic_input.json \
+            --commit-push \
+            > cloud_register_result.json
+          cat cloud_register_result.json
+
+      - name: Verify exactly one real forecast for request
+        if: steps.request.outputs.already_registered != 'true'
+        shell: bash
+        env:
+          REQUEST_ID: ${{ steps.request.outputs.request_id }}
+        run: |
+          git fetch origin main
+          git reset --hard origin/main
+          python - "$REQUEST_ID" <<'PY'
+          import json, pathlib, sys
+          rid=sys.argv[1]
+          hits=[]
+          d=pathlib.Path("live_shadow/forecasts")
+          for p in sorted(d.glob("*.json")):
+              x=json.loads(p.read_text(encoding="utf-8"))
+              if x.get("request_id")==rid:
+                  hits.append((p,x))
+          assert len(hits)==1, f"expected exactly one real forecast for {rid}, got {len(hits)}"
+          p,x=hits[0]
+          assert x["reference_source_metadata"]["source_id"]=="OSE"
+          assert x["reference_source_metadata"]["continuous_contract"] is False
+          assert x["reference_source_metadata"]["freshness_pass"] is True
+          assert float(x["reference_source_metadata"]["freshness_age_seconds"])<=900
+          print(json.dumps({
+              "status":"REAL_FORECAST_ATOMIC_CLOUD_REGISTRATION_VERIFIED",
+              "request_id":rid,
+              "forecast_id":x["forecast_id"],
+              "bias":x["bias"],
+              "confidence":x["confidence"],
+              "reference_price":x["reference_price"],
+              "reference_timestamp":x["reference_timestamp"]
+          },ensure_ascii=False,indent=2))
+          PY
+
+      - name: Upload processing evidence
+        if: always() && steps.request.outputs.already_registered != 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: jnu-cloud-forecast-request-${{ github.run_id }}
+          path: |
+            request_meta.json
+            cloud_quote.json
+            cloud_atomic_input.json
+            cloud_register_result.json
+          if-no-files-found: ignore
+          retention-days: 30
