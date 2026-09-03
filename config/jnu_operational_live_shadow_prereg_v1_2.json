@@ -1,0 +1,33 @@
+{
+  "version": "1.2",
+  "frozen_at": "2026-09-03",
+  "status": "PRE_FIRST_REAL_FORECAST_INTEGRITY_AMENDMENT",
+  "candidate_id": "JNU_OPERATIONAL_FRAMEWORK_LIVE_SHADOW_V1",
+  "supersedes": "config/jnu_operational_live_shadow_prereg_v1_1.json",
+  "authoritative_framework": "config/jnu_operational_framework_current_v1_3.json",
+  "reason": "No real forecast/outcome exists. Align the frozen preregistration with framework v1.3 and implementation v1.2 atomic Git-committed integrity workflow without changing selection, horizon, scoring, thresholds, confidence, or review gates.",
+  "unchanged_rules": [
+    "Every eligible user-facing forecast with exact timestamped JNU/Micro price must be registered before target endpoint",
+    "NEUTRAL_ABSTAIN is registered and counts toward coverage only",
+    "Exact JNU/Micro reference price; no proxy starting price",
+    "Maximum reference age 15 minutes",
+    "Target is next OSE Nikkei 225 Micro regular day-session close",
+    "LOW/MEDIUM confidence only while validated directional modules remain zero",
+    "Minimum 30 non-abstain forecasts for first formal review",
+    "Directional accuracy > 0.50",
+    "Mean signed outcome return > 0",
+    "5-forecast moving-block bootstrap P(mean signed return > 0) >= 0.90",
+    "No cherry-picking, backfill, target-horizon changes, or calibrated probability claims"
+  ],
+  "decision_protocol": "config/jnu_operational_decision_protocol_v1.json",
+  "implementation": "config/jnu_operational_live_shadow_implementation_v1_2.json",
+  "integrity_additions": [
+    "Forecast and outcome records in the real ledger are Git committed and pushed immediately",
+    "Forecast stores current framework/prereg/implementation/protocol SHA256 values",
+    "Scorer recomputes decision trace, bias/confidence, outcome return, signed return and hit before scoring",
+    "Any SHA or arithmetic mismatch fails closed"
+  ],
+  "real_live_shadow_forecasts_existing_at_freeze": 0,
+  "real_live_shadow_outcomes_existing_at_freeze": 0,
+  "directional_outcome_inspected": false
+}

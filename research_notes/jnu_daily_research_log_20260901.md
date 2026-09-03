@@ -214,3 +214,9 @@
 - Licensed N225microf_2026.zip ends at trading date 2026-08-31; SHA256 e6149c02097814f885a1414cb405ff687b2c4be0aeaef561d9a20b7881c58378.
 - ingest_jnu_stage8_forward_local.py check-only returned NO_SOURCE_CHANGE; no derived panel or partial performance was modified/read.
 - No safe authorized downloader/updater exists in the project; wait for legitimate licensed source-package extension, then check-only before --apply.
+
+## Live-shadow atomic Git integrity chain (2026-09-03)
+- Framework v1.3 / prereg v1.2 / implementation v1.2 / decision protocol v1 hash chain frozen before the first real live-shadow forecast.
+- Atomic forecast/outcome tools require immediate Git commit+push for the real ledger; custom temp dirs remain available only for selftest.
+- Integrity scorer independently recomputes decision trace, bias/confidence, outcome return, signed return and hit; SHA/tamper mismatches fail closed.
+- Selftests PASS for normal chain and rejection of manual bias, outcome-return and framework-SHA tampering. Real ledger remains 0 forecasts / 0 outcomes.

@@ -1,0 +1,44 @@
+{
+  "version": "1.2",
+  "frozen_at": "2026-09-03",
+  "status": "ACTIVE_SELFTEST_PASS_PRE_FIRST_REAL_FORECAST",
+  "candidate_id": "JNU_OPERATIONAL_FRAMEWORK_LIVE_SHADOW_V1",
+  "supersedes": "config/jnu_operational_live_shadow_implementation_v1_1.json",
+  "reason": "Real live-shadow ledger is still empty. Harden the operational chain so real forecasts/outcomes are committed to Git immediately and the scorer independently verifies hashes plus decision-trace arithmetic.",
+  "unchanged_scoring_and_selection": [
+    "Exact JNU/Micro price only",
+    "15-minute maximum reference age",
+    "Decision protocol v1 trace required",
+    "Next OSE Micro regular day-session close target",
+    "LOW/MEDIUM confidence only",
+    "30 non-abstain minimum first review",
+    "accuracy / signed return / 5-forecast block-bootstrap gates"
+  ],
+  "real_ledger_requirements": {
+    "atomic_forecast_tool": "scripts/register_jnu_operational_shadow_forecast_atomic_v1.py",
+    "atomic_outcome_tool": "scripts/record_jnu_operational_shadow_outcome_atomic_v1.py",
+    "integrity_scorer": "scripts/score_jnu_operational_live_shadow_v1_1.py",
+    "default_real_forecast_dir": "live_shadow/forecasts",
+    "default_real_outcome_dir": "live_shadow/outcomes",
+    "git_staging_must_be_empty_before_real_write": true,
+    "real_forecast_must_commit_and_push_immediately": true,
+    "real_outcome_must_commit_and_push_immediately": true,
+    "custom_temp_dirs_allowed_for_selftest_without_git_commit": true
+  },
+  "scorer_integrity_requirements": [
+    "Every real forecast and outcome file is Git tracked and clean",
+    "forecast_id equals forecast filename",
+    "outcome filename/id matches an existing forecast",
+    "outcome.forecast_record_sha256 equals the current committed forecast file SHA256",
+    "decision protocol SHA equals current frozen protocol",
+    "decision trace is independently recomputed from its block votes/qualities/risk modifiers",
+    "forecast bias/confidence equal the recomputed decision trace",
+    "outcome return, signed return and directional hit are independently recomputed",
+    "any integrity mismatch fails closed before scoring"
+  ],
+  "real_live_shadow_forecasts_existing_at_freeze": 0,
+  "real_live_shadow_outcomes_existing_at_freeze": 0,
+  "directional_outcome_inspected": false,
+  "selftest": "config/jnu_operational_live_shadow_atomic_integrity_selftest_v1.json",
+  "preregistration": "config/jnu_operational_live_shadow_prereg_v1_2.json"
+}

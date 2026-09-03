@@ -1,0 +1,67 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-03",
+  "status": "JNU_OPERATIONAL_LIVE_SHADOW_ATOMIC_INTEGRITY_SELFTEST_PASS",
+  "real_ledger_forecasts_at_freeze": 0,
+  "real_ledger_outcomes_at_freeze": 0,
+  "final_hash_chain": {
+    "framework_sha256": "13a7d949e5eb65ceb4951437a4029c6c4c08672a6b78fd38c5b31124e1fb1b5a",
+    "prereg_sha256": "e89479b4232b0c885358ab84f828515922a7896ab686544e38d87466ddec51d4",
+    "implementation_sha256": "2e18589648730f685236c2725152806773a96579208f7672f9ea5358926aebd9",
+    "decision_protocol_sha256": "7a9bbee9f5534fc0702eb75000393d6d2d7950aa60db9ceead3e9c25c03c08b0"
+  },
+  "tools": {
+    "atomic_forecast": "scripts/register_jnu_operational_shadow_forecast_atomic_v1.py",
+    "low_level_registrar": "scripts/register_jnu_operational_shadow_forecast_v1_2.py",
+    "atomic_outcome": "scripts/record_jnu_operational_shadow_outcome_atomic_v1.py",
+    "integrity_scorer": "scripts/score_jnu_operational_live_shadow_v1_1.py"
+  },
+  "tests": {
+    "final_atomic_forecast_chain": {
+      "pass": true,
+      "selftest_forecast_id": "JNU_LS_20260903T175000_02f33033884e",
+      "bias": "BEARISH",
+      "confidence": "MEDIUM"
+    },
+    "final_atomic_outcome_chain": {
+      "pass": true,
+      "selftest_outcome_return": -0.01,
+      "directional_hit": true
+    },
+    "integrity_scorer": {
+      "pass": true,
+      "status": "LIVE_SHADOW_ACCUMULATING",
+      "forecasts_verified": 1,
+      "outcomes_verified": 1,
+      "decision_trace_recomputed": true,
+      "outcomes_recomputed": true
+    },
+    "four_sha_values_match_current_files": {
+      "pass": true
+    },
+    "real_registration_without_commit_push_rejected_before_write": {
+      "pass": true,
+      "exit_code": 1
+    },
+    "manual_bias_tamper_rejected": {
+      "pass": true,
+      "error_contains": "top-level bias/confidence mismatch recomputed trace"
+    },
+    "outcome_return_tamper_rejected": {
+      "pass": true,
+      "error_contains": "return mismatch"
+    },
+    "framework_sha_tamper_rejected": {
+      "pass": true,
+      "error_contains": "framework SHA mismatch"
+    },
+    "premature_pass_prevented": {
+      "pass": true,
+      "nonabstain_scored": 1,
+      "minimum_required": 30,
+      "actual_status": "LIVE_SHADOW_ACCUMULATING"
+    }
+  },
+  "selftest_storage": "D:/Temp only; no selftest forecast/outcome is in the real live_shadow ledger.",
+  "next_action": "The first real eligible exact-JNU analysis must use the atomic forecast tool with --commit-push before outcome; the outcome must use the atomic outcome tool with --commit-push; scoring uses the integrity scorer."
+}
