@@ -1,0 +1,143 @@
+{
+  "version": "1.0",
+  "frozen_at": "2026-09-03",
+  "status": "OPERATIONAL_HEURISTIC_DECISION_PROTOCOL_LIVE_SHADOW_PENDING",
+  "purpose": "Make JNU Operational Framework evidence fusion reproducible and prospectively auditable without claiming a validated mechanical directional alpha.",
+  "directional_blocks": [
+    {
+      "id": "EXACT_JNU_PRICE_PATH",
+      "role": "Primary exact-product path/rejection evidence",
+      "eligible_qualities": [
+        "A",
+        "B"
+      ],
+      "examples": [
+        "VWAP reclaim/loss",
+        "higher lows/lower highs",
+        "opening-range acceptance/rejection",
+        "CLV/recovery",
+        "break-and-reclaim of preregistered key level"
+      ],
+      "anti_double_count": "All exact-JNU path observations combine into one block vote only."
+    },
+    {
+      "id": "DYNAMIC_PRICE_DISCOVERY",
+      "role": "Which venue/instrument is currently leading the same risk move",
+      "eligible_qualities": [
+        "A",
+        "B"
+      ],
+      "examples": [
+        "OSE exact JNU/Mini leadership",
+        "synchronized futures/cash response",
+        "CME or other contemporaneous venue only when causally aligned"
+      ],
+      "anti_double_count": "Multiple venues combine into one DPD block; proxy-only evidence cannot receive quality A."
+    },
+    {
+      "id": "CONTEMPORANEOUS_CROSS_MARKET",
+      "role": "Current synchronized global-risk confirmation, not prior-day prediction",
+      "eligible_qualities": [
+        "A",
+        "B"
+      ],
+      "examples": [
+        "Nasdaq/S&P/SOX cluster",
+        "USDJPY/yields/VIX cluster"
+      ],
+      "anti_double_count": "All U.S. equity indices, yields, VIX and FX are one block vote. Failed prior-night USDJPY and US-to-JNU predictor families may not be reused."
+    },
+    {
+      "id": "POSITIONING_DERIVATIVES_CONTEXT",
+      "role": "PIT-corrected current positioning/derivatives context",
+      "eligible_qualities": [
+        "A",
+        "B"
+      ],
+      "examples": [
+        "non-failed strike/OI/SQ positioning structure",
+        "term structure or basis only as context"
+      ],
+      "anti_double_count": "All derivatives/positioning inputs combine into one block. PCR, foreign-flow and failed basis-change families are prohibited."
+    }
+  ],
+  "quality_definition": {
+    "A": "Exact-product or official contemporaneous data with causal timestamp and no unresolved source ambiguity.",
+    "B": "High-quality causally aligned context or proxy with clear timestamp and no material source ambiguity.",
+    "C": "Weak/proxy/stale/ambiguous evidence. Reportable as context but ineligible to cast a directional vote."
+  },
+  "block_vote_enum": [
+    "BULLISH",
+    "BEARISH",
+    "NEUTRAL",
+    "UNAVAILABLE"
+  ],
+  "vote_rule": {
+    "eligible_vote": "Only A/B BULLISH or BEARISH blocks count. NEUTRAL/UNAVAILABLE and all C-quality blocks count zero.",
+    "one_vote_per_block": true,
+    "bullish_score": "+1 per eligible bullish block",
+    "bearish_score": "-1 per eligible bearish block",
+    "minimum_eligible_directional_blocks": 2
+  },
+  "bias_rule": {
+    "insufficient_evidence": "If fewer than 2 eligible directional block votes exist -> NEUTRAL_ABSTAIN.",
+    "conflict": "If absolute net score < 2 -> NEUTRAL_ABSTAIN.",
+    "bullish": "net score >= +2 -> BULLISH.",
+    "bearish": "net score <= -2 -> BEARISH."
+  },
+  "confidence_rule": {
+    "LOW": "Any non-abstain bias that does not meet every MEDIUM condition.",
+    "MEDIUM_conditions": [
+      "absolute net score >= 3",
+      "at least one aligned quality-A block",
+      "no opposing quality-A block",
+      "no HIGH volatility cap",
+      "no UNRESOLVED_HIGH SQ cap",
+      "no PRE_RELEASE_HIGH event force-abstain condition"
+    ],
+    "HIGH": "PROHIBITED while validated directional modules = 0."
+  },
+  "nondirectional_risk_modifiers": {
+    "HAR_RSV_VOLATILITY_STATE": {
+      "role": "risk/exposure only",
+      "HIGH": "Cap MEDIUM directional confidence to LOW. Does not flip direction."
+    },
+    "BOJ_OR_MAJOR_EVENT_STATE": {
+      "role": "event-risk only",
+      "PRE_RELEASE_HIGH": "If the event occurs before the target close and no exact-JNU post-event price-path evidence exists, force NEUTRAL_ABSTAIN for the formally scored forecast.",
+      "POST_EVENT_HIGH": "Cap MEDIUM to LOW until exact-JNU price-path acceptance/rejection is observed."
+    },
+    "DYNAMIC_SQ_RISK": {
+      "role": "settlement/microstructure risk only",
+      "UNRESOLVED_HIGH": "Cap MEDIUM to LOW. SQ bias cannot vote direction by itself."
+    }
+  },
+  "prohibited_directional_inputs": [
+    "PCR 88.7/116.5",
+    "MACD 4/22/3",
+    "prior-night USDJPY sign",
+    "simple US-to-JNU prior-session path",
+    "overnight overreaction",
+    "legacy trend/breakout/drawdown-repair/NDX-relative-strength",
+    "JPX Nikkei 225 mini foreign-flow sign",
+    "JPX Tokyo & Nagoya cash foreign-flow sign",
+    "OSE Mini cash basis-change continuation",
+    "Nikkei Dekansho-bushi Jan-Jun/Jul-Dec rule"
+  ],
+  "output_requirements": [
+    "bias",
+    "confidence",
+    "eligible block count",
+    "net directional block score",
+    "block-level evidence trace",
+    "risk modifiers",
+    "expected path",
+    "key levels",
+    "invalidation conditions",
+    "flip conditions",
+    "event risk",
+    "explicit statement that the bias is operational/shadow-validated-pending rather than calibrated alpha"
+  ],
+  "probability_rule": "Do not transform net score or confidence into a calibrated probability. Scenario weights may be stated only as explicitly non-calibrated judgmental weights.",
+  "live_shadow_rule": "Every scored live-shadow forecast must preserve the decision trace produced by this protocol."
+}

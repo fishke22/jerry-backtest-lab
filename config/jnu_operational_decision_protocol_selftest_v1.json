@@ -1,0 +1,53 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-03",
+  "status": "JNU_OPERATIONAL_DECISION_PROTOCOL_SELFTEST_PASS",
+  "protocol": "config/jnu_operational_decision_protocol_v1.json",
+  "apply_script": "scripts/apply_jnu_operational_decision_protocol_v1.py",
+  "tests": {
+    "four_aligned_blocks": {
+      "pass": true,
+      "expected_bias": "BULLISH",
+      "expected_confidence": "MEDIUM",
+      "actual_bias": "BULLISH",
+      "actual_confidence": "MEDIUM"
+    },
+    "two_aligned_blocks": {
+      "pass": true,
+      "expected_bias": "BULLISH",
+      "expected_confidence": "LOW",
+      "actual_bias": "BULLISH",
+      "actual_confidence": "LOW"
+    },
+    "two_vs_two_conflict": {
+      "pass": true,
+      "expected_bias": "NEUTRAL_ABSTAIN",
+      "actual_bias": "NEUTRAL_ABSTAIN"
+    },
+    "c_quality_ignored": {
+      "pass": true,
+      "eligible_directional_blocks": 1,
+      "actual_bias": "NEUTRAL_ABSTAIN"
+    },
+    "har_high_volatility_cap": {
+      "pass": true,
+      "raw_direction": "BEARISH",
+      "actual_bias": "BEARISH",
+      "actual_confidence": "LOW"
+    },
+    "pre_release_high_event_force_abstain": {
+      "pass": true,
+      "raw_net_score": 3,
+      "actual_bias": "NEUTRAL_ABSTAIN",
+      "event_forced_abstain": true
+    },
+    "duplicate_block_fail_closed": {
+      "pass": true,
+      "exit_code": 1,
+      "error_contains": "duplicate block EXACT_JNU_PRICE_PATH"
+    }
+  },
+  "calibrated_probability": false,
+  "real_live_shadow_forecasts_existing_at_freeze": 0,
+  "next_action": "Commit protocol, then require its immutable decision trace in every real scored live-shadow forecast."
+}
