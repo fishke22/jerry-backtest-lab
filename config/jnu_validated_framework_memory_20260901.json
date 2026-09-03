@@ -21,7 +21,7 @@
     "run_id": 33498323765,
     "artifact_id": 9796634718,
     "usable_days": 251,
-    "mean_gross_daily_strategy_return": -0.000030451509658307074,
+    "mean_gross_daily_strategy_return": -3.0451509658307074e-05,
     "directional_accuracy": 0.492,
     "bootstrap_prob_mean_positive": 0.5504,
     "stage_b_prohibited": true
@@ -208,7 +208,7 @@
   "authoritative_validation_pipeline_checkpoint": "config/jnu_validation_pipeline_checkpoint_20260902_v1.json",
   "validation_pipeline_status": "JNU_VALIDATION_PIPELINE_READY_FORWARD_DATA_PENDING",
   "validation_pipeline_head": "ff322f11dbb23da6be093056ac6ef47f2db10e4a",
-  "next_action": "Execute frozen OSE Mini cash-basis-change Stage A when local licensed-data device reconnects; then audit and either terminally close or proceed to exact-JNU Micro confirmation.",
+  "next_action": "Select and preregister a substantively independent directional mechanism; do not reopen failed basis-change or foreign-flow families.",
   "stage8_forward_local_ingest": {
     "status": "SELFTEST_PASS_NO_SOURCE_CHANGE",
     "script": "scripts/ingest_jnu_stage8_forward_local.py",
@@ -240,14 +240,8 @@
     "third_variant_prohibited": true
   },
   "ose_mini_cash_basis_change_g1": {
-    "status": "STAGE_A_RUNNER_FROZEN_AWAITING_LOCAL_LICENSED_DATA_EXECUTION",
-    "preregistration": "config/jnu_ose_mini_cash_basis_change_g1_prereg.json",
-    "data_gate": "config/jnu_ose_mini_cash_basis_change_data_gate_v1.json",
-    "pending_checkpoint": "config/jnu_ose_mini_cash_basis_change_stage_a_pending_v1.json",
-    "signal_panel_sha256": "f193024c01f4b5ec8351cd845116f056fc20191ab5bfb3673f1267c37470d349",
-    "observations": 2705,
-    "runner_commit": "7e4cfdd00c0a184dbccc482f63743a640e68b854",
-    "directional_outcome_inspected": false,
-    "next_action": "When the authorized local device reconnects, execute the frozen Stage-A runner without changing any preregistration, alignment, roll-window, cost, or signal rule."
+    "status": "TERMINAL_FAIL_NO_RESCUE",
+    "terminal_result": "config/jnu_ose_mini_cash_basis_change_terminal_fail_v1.json",
+    "validated_directional_edge": false
   }
 }

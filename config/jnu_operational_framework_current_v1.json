@@ -147,7 +147,8 @@
     "prior-night USDJPY sign",
     "simple US-to-JNU intraday path",
     "overnight overreaction",
-    "legacy trend/breakout/drawdown-repair/NDX-relative-strength families already rejected"
+    "legacy trend/breakout/drawdown-repair/NDX-relative-strength families already rejected",
+    "OSE Mini cash basis-change continuation G1"
   ],
   "current_directional_status": "NO_VALIDATED_DIRECTIONAL_EDGE",
   "operational_use": "Framework is usable now for probabilistic JNU analysis. Historical/OSE/JNU-confirmed risk-state modules are used at their validated roles while forward certification continues in parallel.",

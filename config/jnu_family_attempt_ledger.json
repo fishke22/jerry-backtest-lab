@@ -1,6 +1,6 @@
 {
   "version": "2.3",
-  "updated_at": "2026-09-02",
+  "updated_at": "2026-09-03",
   "rule": "Permanent family-level attempt ledger. Never delete failed/inconclusive families to improve apparent research success rate.",
   "families": [
     {
@@ -444,6 +444,15 @@
       "data_gate": "config/jnu_jpx_cash_foreign_flow_data_gate_pass_v1.json",
       "terminal_result": "config/jnu_jpx_cash_foreign_flow_terminal_fail_v1.json",
       "reopen_rule": "No sign flip, universe variant, magnitude threshold, horizon change or regime-filter rescue."
+    },
+    {
+      "id": "OSE_MINI_CASH_BASIS_CHANGE_G1",
+      "status": "TERMINAL_FAIL_NO_RESCUE",
+      "mechanism": "OSE Mini minus Nikkei cash same-close daily delta-basis continuation with quarterly roll exclusion",
+      "preregistration": "config/jnu_ose_mini_cash_basis_change_g1_prereg.json",
+      "data_gate": "config/jnu_ose_mini_cash_basis_change_data_gate_v1.json",
+      "terminal_result": "config/jnu_ose_mini_cash_basis_change_terminal_fail_v1.json",
+      "reopen_rule": "No sign flip, basis-level substitution, threshold, roll-window, execution timing or holding-horizon rescue."
     }
   ],
   "conservative_rule": "Unknown legacy multiplicity is treated against promotion, not ignored.",

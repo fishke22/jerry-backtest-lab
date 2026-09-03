@@ -1,0 +1,64 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-03",
+  "candidate_id": "OSE_MINI_CASH_BASIS_CHANGE_G1",
+  "status": "TERMINAL_FAIL_NO_RESCUE",
+  "research_fail": true,
+  "validated_jnu_module": false,
+  "validated_directional_edge": false,
+  "data_gate": "PASS",
+  "observations": 2705,
+  "positions": {
+    "long": 1349,
+    "short": 1356,
+    "flat": 0
+  },
+  "metrics": {
+    "net_cumulative_primary": -0.9408748197959175,
+    "net_cumulative_stress": -0.9842364633768942,
+    "mean_daily_net_primary": -0.0009489849161741849,
+    "annualized_active_day_sharpe_primary": -1.0900577802973648,
+    "bootstrap_prob_mean_positive": 0.0008,
+    "bootstrap_95_lower_mean_daily_net": -0.0015941916119016333,
+    "positive_subperiods": 0,
+    "recent_504_net_cumulative_primary": -0.6296806807847959
+  },
+  "subperiod_net_cumulative_primary": [
+    -0.6015614156769481,
+    -0.1913490783329007,
+    -0.548443446278229,
+    -0.5936148278973534
+  ],
+  "checks": {
+    "minimum_2500_complete_observations": true,
+    "primary_net_cumulative_positive": false,
+    "primary_annualized_sharpe_positive": false,
+    "stress_net_cumulative_positive": false,
+    "bootstrap_95_lower_mean_positive": false,
+    "at_least_3_of_4_subperiods_positive": false
+  },
+  "independent_audit": {
+    "status": "PASS",
+    "row_checks_total": 21640,
+    "row_checks_pass": 21640,
+    "aggregate_checks_all_pass": true,
+    "entry_exit_timestamps_required": 5410,
+    "entry_exit_timestamps_resolved": 5410,
+    "bar_conflicts": 0
+  },
+  "result_sha256": "d6fad04a8d77c5e81cd03ca7a2bdec366f1aa7ed400f6087a115f5547ed88b4b",
+  "signal_panel_sha256": "f193024c01f4b5ec8351cd845116f056fc20191ab5bfb3673f1267c37470d349",
+  "runner_commit": "7e4cfdd00c0a184dbccc482f63743a640e68b854",
+  "prereg_commit": "512df0410792bcc1e6d84263e4e8377d8d0e9628",
+  "data_gate_commit": "f42852917aac458dc3285eac6bf1cfee51954a48",
+  "subperiod_commit": "f9e7c006cf5df728dfcb431696899d671b487ece",
+  "final_execution_cost_commit": "0e9f51d97b3e17e944ada6cdbbba4df888e823af",
+  "retest_prohibited": true,
+  "sign_flip_rescue_prohibited": true,
+  "basis_level_rescue_prohibited": true,
+  "threshold_rescue_prohibited": true,
+  "roll_window_rescue_prohibited": true,
+  "holding_horizon_rescue_prohibited": true,
+  "interpretation": "The preregistered futures-led delta-basis continuation rule fails strongly in every chronological subperiod and under independent audit. The opposite sign or a basis-level variant is not tested because that would be post-outcome rescue.",
+  "next_action": "Move to a substantively independent directional mechanism. Do not reopen this family by sign flip, basis-level substitution, threshold, roll-window, execution-timing or horizon changes."
+}

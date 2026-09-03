@@ -29,7 +29,8 @@
       "prior-night USDJPY sign",
       "simple US-to-JNU intraday path",
       "overnight overreaction",
-      "legacy rejected trend/breakout/drawdown-repair/relative-strength families"
+      "legacy rejected trend/breakout/drawdown-repair/relative-strength families",
+      "OSE Mini cash basis-change continuation G1"
     ]
   },
   "output_contract": [

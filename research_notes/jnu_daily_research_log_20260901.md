@@ -183,3 +183,10 @@
 - 10bps cumulative -26.3243%; 20bps -50.0341%; Sharpe -0.03827; positive subperiods 2/4; recent104 -25.2101%.
 - Standard and Bonferroni bootstrap lower bounds both negative. Independent arithmetic audit 3162/3162 row checks PASS.
 - FOREIGN_INVESTOR_CAPITAL_FLOW broad family is CLOSED after 2/2 sibling tests; no third flow variant permitted.
+
+## OSE Mini cash basis-change Stage A terminal result (2026-09-03)
+- Data Gate PASS: 2,705 complete observations, 0 basis gaps, 0 timestamp conflicts after preregistered roll exclusion.
+- Primary cumulative -94.0875%; stress -98.4236%; Sharpe -1.09006; bootstrap P(mean>0)=0.0008.
+- Four fixed subperiods all negative; recent 504 observations -62.9681%.
+- Independent audit: 21,640/21,640 row checks PASS; 5,410/5,410 timestamps resolved; all aggregate metrics exact.
+- Governance: TERMINAL_FAIL_NO_RESCUE. No sign flip, basis-level, threshold, roll-window or horizon rescue.
