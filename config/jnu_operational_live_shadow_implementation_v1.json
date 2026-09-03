@@ -1,0 +1,44 @@
+{
+  "version": "1.0",
+  "frozen_at": "2026-09-03",
+  "status": "IMPLEMENTATION_SPEC_FROZEN_BEFORE_LIVE_SHADOW_OUTCOMES",
+  "candidate_id": "JNU_OPERATIONAL_FRAMEWORK_LIVE_SHADOW_V1",
+  "exact_product_requirement": "OSE Nikkei 225 Micro Futures (JNU) exact-product price only for scored records.",
+  "reference_freshness": {
+    "maximum_age_minutes_at_registration": 15,
+    "rule": "reference_timestamp must be no later than created_at_taipei and no more than 15 minutes old."
+  },
+  "forecast_record": {
+    "immutable": true,
+    "commit_before_target_endpoint": true,
+    "required_fields": [
+      "created_at_taipei",
+      "reference_price",
+      "reference_timestamp",
+      "reference_source",
+      "exact_product",
+      "target_day_session_date",
+      "bias",
+      "confidence",
+      "expected_path",
+      "key_levels",
+      "invalidation_conditions",
+      "event_risk",
+      "flip_conditions",
+      "evidence_summary"
+    ]
+  },
+  "outcome_record": {
+    "exact_product": true,
+    "target": "OSE Nikkei 225 Micro Futures regular day-session close",
+    "target_close_source_required": true,
+    "target_close_timestamp_required": true
+  },
+  "scoring": {
+    "abstain": "NEUTRAL_ABSTAIN counts in coverage denominator but not directional hit rate or signed-return mean.",
+    "directional_hit": "BULLISH succeeds when outcome return > 0; BEARISH succeeds when outcome return < 0; exact zero is a tie.",
+    "signed_return": "(+1 for BULLISH, -1 for BEARISH) * outcome_return",
+    "formal_gate_min_nonabstain": 30
+  },
+  "no_live_forecasts_exist_at_freeze": true
+}
