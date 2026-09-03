@@ -1,0 +1,139 @@
+name: JNU Exact Micro Quote Cloud Smoke
+
+on:
+  workflow_dispatch:
+    inputs:
+      symbol:
+        description: "Individual OSE Nikkei 225 Micro contract, e.g. NK225MCU2026"
+        required: true
+        default: "NK225MCU2026"
+        type: string
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/jnu-exact-micro-quote-cloud-smoke-v1.yml"
+      - "scripts/fetch_jnu_exact_micro_quote_tradingview_v1.py"
+      - "config/jnu_exact_micro_tradingview_quote_source_v1.json"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: jnu-exact-micro-quote-cloud-smoke
+  cancel-in-progress: false
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    env:
+      SYMBOL: ${{ github.event.inputs.symbol || 'NK225MCU2026' }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+
+      - name: Install agent-browser and Chrome
+        run: |
+          npm install -g agent-browser@0.36.0
+          agent-browser --version
+          agent-browser install --with-deps
+
+      - name: Run exact-Micro source smoke
+        id: quote
+        shell: bash
+        run: |
+          set +e
+          python scripts/fetch_jnu_exact_micro_quote_tradingview_v1.py \
+            --symbol "$SYMBOL" \
+            --max-age-seconds 900 \
+            --output quote.json \
+            > quote.stdout.txt 2> quote.stderr.txt
+          ec=$?
+          set -e
+
+          status=""
+          if [ "$ec" -eq 0 ]; then
+            status="FRESH_PASS"
+          elif grep -q "quote stale:" quote.stderr.txt; then
+            status="SOURCE_REACHABLE_STALE_PASS"
+          else
+            echo "ENGINEERING_OR_SOURCE_IDENTITY_FAILURE"
+            cat quote.stderr.txt
+            exit "$ec"
+          fi
+
+          echo "status=$status" >> "$GITHUB_OUTPUT"
+          echo "exit_code=$ec" >> "$GITHUB_OUTPUT"
+          python - <<'PY'
+          import json, os, pathlib, re
+          status = os.environ["SMOKE_STATUS"]
+          stderr = pathlib.Path("quote.stderr.txt").read_text(encoding="utf-8", errors="replace") if pathlib.Path("quote.stderr.txt").exists() else ""
+          out = {
+              "version": "1.0",
+              "status": status,
+              "symbol": os.environ["SYMBOL"],
+              "formal_forecast_created": False,
+              "real_ledger_modified": False,
+              "maximum_formal_age_seconds": 900,
+              "stderr": stderr[-3000:],
+          }
+          m = re.search(r"quote stale: age=([0-9.]+)s > 900s; source=([^\s]+)", stderr)
+          if m:
+              out["observed_age_seconds"] = float(m.group(1))
+              out["source_timestamp"] = m.group(2)
+          q = pathlib.Path("quote.json")
+          if q.exists():
+              out["quote"] = json.loads(q.read_text(encoding="utf-8"))
+          pathlib.Path("smoke_status.json").write_text(json.dumps(out, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+          PY
+        env:
+          SMOKE_STATUS: ${{ steps.quote.outputs.status }}
+
+      - name: Write job summary
+        if: always()
+        shell: bash
+        run: |
+          echo "## JNU exact-Micro cloud smoke" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Symbol: `$SYMBOL`" >> "$GITHUB_STEP_SUMMARY"
+          if [ -f smoke_status.json ]; then
+            python - <<'PY' >> "$GITHUB_STEP_SUMMARY"
+          import json
+          x=json.load(open("smoke_status.json",encoding="utf-8"))
+          print(f"- Status: **{x['status']}**")
+          print("- Formal forecast created: **false**")
+          print("- Real ledger modified: **false**")
+          if "source_timestamp" in x:
+              print(f"- Source timestamp: `{x['source_timestamp']}`")
+              print(f"- Observed age seconds: `{x['observed_age_seconds']}`")
+          if isinstance(x.get("quote"),dict):
+              q=x["quote"]
+              print(f"- Exact product: `{q.get('tradingview_symbol')}`")
+              print(f"- Source ID: `{q.get('source_id')}`")
+              print(f"- Price: `{q.get('price')}`")
+              print(f"- Freshness age seconds: `{q.get('freshness_age_seconds')}`")
+          PY
+          fi
+
+      - name: Upload smoke artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: jnu-exact-micro-quote-cloud-smoke-${{ github.run_id }}
+          path: |
+            smoke_status.json
+            quote.json
+            quote.stdout.txt
+            quote.stderr.txt
+          if-no-files-found: ignore
+          retention-days: 14
