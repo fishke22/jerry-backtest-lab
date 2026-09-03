@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "as_of_utc": "2026-09-03T09:18:02.655843+00:00",
+  "as_of_utc": "2026-09-03T09:32:08.617071+00:00",
   "framework_status": "FRAMEWORK_INCOMPLETE_PENDING_STAGE8_FORWARD_DATA",
   "major_candidates": {
     "total": 8,
@@ -56,9 +56,9 @@
   "artifact_hashes": {
     "family_attempt_ledger": "ed82ee233d15347971cf7c3edba433e68660b97c73816b64f04780214229cbd8",
     "completion_gap": "564540c8cd4f201f6462d3113e05b198a94574d06d6527fd5744ab6a2be18172",
-    "stage8_readiness": "7d70b221d84c037ef063f96ff6ae125c91b04b9536ab6db9212fcd4a8bcf5640",
+    "stage8_readiness": "433003dfca850177c3919201732a1b4ed38260a9b261c271f6381980265f9e59",
     "stage9_review": "671c640664ef50162f3ec9f83c9cb89df6948178d5ccfe925f7b349e3e806f8b",
-    "validated_framework_memory": "e22f96300e2f326b46009c7f9cd43685537eec3c2a3e37c7c24ffd573448f993"
+    "validated_framework_memory": "6989bc506bf6746ad40938fa48b620c6bc03ccef6fb1dafc43bbef392e850c26"
   },
   "source_state": {
     "ledger_version": "2.3",
