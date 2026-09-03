@@ -48,6 +48,8 @@ jobs:
 
           request={
             "request_id":"JNU_REQ_SELFTEST_20260904_A",
+            "request_created_at_taipei":"2026-09-04T06:40:00+08:00",
+            "request_valid_until_taipei":"2026-09-04T06:50:00+08:00",
             "symbol":"NK225MCU2026",
             "target_day_session_date":"2026-09-04",
             "decision_input":{
@@ -109,6 +111,11 @@ jobs:
           stale["freshness_pass"]=False
           stale["freshness_age_seconds"]=901.0
           (root/"quote_stale.json").write_text(json.dumps(stale,indent=2)+"\n")
+
+          expired=dict(request)
+          expired["request_created_at_taipei"]="2026-09-04T06:20:00+08:00"
+          expired["request_valid_until_taipei"]="2026-09-04T06:30:00+08:00"
+          (root/"request_expired.json").write_text(json.dumps(expired,indent=2)+"\n")
 
           mismatch=dict(quote)
           mismatch["symbol"]="NK225MCV2026"
@@ -196,6 +203,22 @@ jobs:
           grep -q "quote freshness_pass must be true" selftest_tmp/stale.stderr
           test ! -e selftest_tmp/should_not_exist_2.json
 
+      - name: Expired request must fail
+        shell: bash
+        run: |
+          set +e
+          python scripts/build_jnu_cloud_forecast_input_v1.py \
+            --request selftest_tmp/request_expired.json \
+            --quote selftest_tmp/quote.json \
+            --created-at-taipei 2026-09-04T06:46:00+08:00 \
+            --output selftest_tmp/should_not_exist_expired.json \
+            > selftest_tmp/expired.stdout 2> selftest_tmp/expired.stderr
+          ec=$?
+          set -e
+          test "$ec" -ne 0
+          grep -q "cloud forecast request expired" selftest_tmp/expired.stderr
+          test ! -e selftest_tmp/should_not_exist_expired.json
+
       - name: Symbol mismatch must fail
         shell: bash
         run: |
@@ -233,6 +256,7 @@ jobs:
             "real_outcomes_after":int("$o"),
             "manual_price_rejected":True,
             "stale_quote_rejected":True,
+            "expired_request_rejected":True,
             "symbol_mismatch_rejected":True
           },indent=2))
           PY
