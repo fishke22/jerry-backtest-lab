@@ -1,0 +1,67 @@
+{
+  "version": "3.0",
+  "as_of": "2026-09-04",
+  "status": "CLOUD_PIPELINE_READY_FIRST_REAL_FORECAST_PENDING_FRESH_MARKET_AND_EVENT_GATE",
+  "authoritative_framework": "config/jnu_operational_framework_current_v1_4.json",
+  "live_shadow_preregistration": "config/jnu_operational_live_shadow_prereg_v1_3.json",
+  "live_shadow_implementation": "config/jnu_operational_live_shadow_implementation_v1_3.json",
+  "decision_protocol": "config/jnu_operational_decision_protocol_v1.json",
+  "cloud_request_protocol": "config/jnu_cloud_forecast_request_protocol_v1.json",
+  "exact_quote_adapter": "scripts/fetch_jnu_exact_micro_quote_tradingview_v1.py",
+  "cloud_request_builder": "scripts/build_jnu_cloud_forecast_input_v1.py",
+  "cloud_forecast_workflow": ".github/workflows/jnu-live-shadow-cloud-forecast-v1.yml",
+  "cloud_quote_smoke_workflow": ".github/workflows/jnu-exact-micro-quote-cloud-smoke-v1.yml",
+  "cloud_request_selftest_workflow": ".github/workflows/jnu-live-shadow-cloud-request-selftest-v1.yml",
+  "cloud_actionlint_workflow": ".github/workflows/jnu-cloud-workflow-actionlint-v1.yml",
+  "verification": {
+    "exact_quote_cloud_smoke": {
+      "status": "PASS_SOURCE_REACHABLE_STALE_PRE_DAY_OPEN",
+      "run_id": 33817877981,
+      "source_timestamp": "2026-09-04T05:00:00+08:00",
+      "reason": "At smoke time the OSE day session had not opened; the adapter correctly rejected a >900-second night-session close reference.",
+      "real_ledger_modified": false
+    },
+    "request_builder_selftest": {
+      "status": "PASS",
+      "run_id": 33818317282,
+      "checks": [
+        "valid synthetic request registers exactly one temp forecast",
+        "manual reference price rejected",
+        "stale quote rejected",
+        "expired request rejected",
+        "symbol mismatch rejected",
+        "real ledger unchanged"
+      ]
+    },
+    "actionlint": {
+      "status": "PASS_ZERO_ERRORS",
+      "run_id": 33818714736
+    }
+  },
+  "cloud_safety_rules": [
+    "request JSON cannot provide reference price/timestamp/bias/confidence",
+    "request validity window is >0 and <=900 seconds",
+    "exact quote must be individual OSE NK225MC month contract",
+    "quote source_id must be OSE and freshness age <=900 seconds",
+    "one request JSON per triggering commit",
+    "request filename must equal request_id.json",
+    "same request_id can produce at most one real forecast",
+    "rerun after registration is idempotent NOOP",
+    "real forecast commit/push remains atomic"
+  ],
+  "real_ledger": {
+    "forecasts": 0,
+    "outcomes": 0,
+    "status": "EMPTY_AND_READY"
+  },
+  "directional_validation_state": {
+    "validated_directional_modules": 0,
+    "decision_engine": "NO_VALIDATED_DIRECTIONAL_EDGE"
+  },
+  "next_gate": [
+    "OSE day session must produce an individual Micro quote whose source timestamp age is <=900 seconds",
+    "target-horizon event state must be verified under the frozen fail-safe protocol",
+    "a fresh <=900-second immutable decision request must be committed"
+  ],
+  "next_action": "When all three gates are simultaneously satisfied, create one immutable live_shadow_requests/<request_id>.json. The cloud workflow then fetches the exact quote and registers the first real forecast without manual price entry."
+}
