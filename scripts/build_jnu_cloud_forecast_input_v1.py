@@ -22,6 +22,8 @@ FORBIDDEN_REQUEST_FIELDS = {
 
 REQUIRED_REQUEST_FIELDS = [
     "request_id",
+    "request_created_at_taipei",
+    "request_valid_until_taipei",
     "symbol",
     "target_day_session_date",
     "decision_input",
@@ -60,6 +62,15 @@ def validate_request(x: dict) -> None:
     if not isinstance(x["decision_input"], dict):
         raise RuntimeError("decision_input must be an object")
     datetime.fromisoformat(str(x["target_day_session_date"]))
+    req_created = datetime.fromisoformat(str(x["request_created_at_taipei"]))
+    req_until = datetime.fromisoformat(str(x["request_valid_until_taipei"]))
+    if req_created.tzinfo is None or req_until.tzinfo is None:
+        raise RuntimeError("request timestamps must be offset-aware")
+    req_created = req_created.astimezone(TAIPEI)
+    req_until = req_until.astimezone(TAIPEI)
+    lifetime = (req_until - req_created).total_seconds()
+    if lifetime <= 0 or lifetime > 900:
+        raise RuntimeError("request validity window must be >0 and <=900 seconds")
     if not isinstance(x["key_levels"], list) or not x["key_levels"]:
         raise RuntimeError("key_levels must be a non-empty array")
     for k in [
@@ -118,6 +129,12 @@ def main() -> None:
     if created.tzinfo is None:
         raise RuntimeError("created_at_taipei must be offset-aware")
     created = created.astimezone(TAIPEI)
+    req_created = datetime.fromisoformat(str(req["request_created_at_taipei"])).astimezone(TAIPEI)
+    req_until = datetime.fromisoformat(str(req["request_valid_until_taipei"])).astimezone(TAIPEI)
+    if created < req_created:
+        raise RuntimeError("forecast-build time precedes request creation")
+    if created > req_until:
+        raise RuntimeError("cloud forecast request expired before forecast-build time")
     source_ts = datetime.fromisoformat(str(q["source_timestamp"])).astimezone(TAIPEI)
     age = (created - source_ts).total_seconds()
     if age < 0 or age > 900:
@@ -132,6 +149,8 @@ def main() -> None:
 
     envelope = {
         "request_id": req["request_id"],
+        "request_created_at_taipei": req_created.isoformat(),
+        "request_valid_until_taipei": req_until.isoformat(),
         "created_at_taipei": created.isoformat(),
         "reference_price": float(q["price"]),
         "reference_timestamp": source_ts.isoformat(),
