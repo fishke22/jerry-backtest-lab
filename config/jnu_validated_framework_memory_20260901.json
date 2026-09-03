@@ -208,7 +208,7 @@
   "authoritative_validation_pipeline_checkpoint": "config/jnu_validation_pipeline_checkpoint_20260902_v1.json",
   "validation_pipeline_status": "JNU_VALIDATION_PIPELINE_READY_FORWARD_DATA_PENDING",
   "validation_pipeline_head": "ff322f11dbb23da6be093056ac6ef47f2db10e4a",
-  "next_action": "At the next exact-JNU user-facing forecast, register it immutably under the live-shadow protocol before outcome; meanwhile continue HAR/BOJ Stage8 readiness checks and do not open weak new directional families.",
+  "next_action": "Use JNU Operational Framework v1.2 and the frozen decision protocol for all future JNU analyses. Register the first eligible exact-JNU forecast immutably with decision trace before outcome; continue HAR/BOJ Stage8 accumulation.",
   "stage8_forward_local_ingest": {
     "status": "SELFTEST_PASS_NO_SOURCE_CHANGE",
     "script": "scripts/ingest_jnu_stage8_forward_local.py",
@@ -216,8 +216,8 @@
     "download_or_login_automation": false,
     "next_action": "After a manually/authorized updated 225Labo Micro package exists locally, run check-only then --apply; inspect readiness only."
   },
-  "authoritative_operational_framework": "config/jnu_operational_framework_current_v1_1.json",
-  "operational_framework_status": "AUTHORITATIVE_JNU_OPERATIONAL_FRAMEWORK_V1_1",
+  "authoritative_operational_framework": "config/jnu_operational_framework_current_v1_2.json",
+  "operational_framework_status": "AUTHORITATIVE_JNU_OPERATIONAL_FRAMEWORK_V1_2",
   "operational_framework_usage": "Use for all future Osaka Nikkei/JNU analysis unless explicitly superseded by a later committed framework.",
   "jpx_n225mini_foreign_flow_sign_g1": {
     "status": "TERMINAL_FAIL_NO_RESCUE",
@@ -253,11 +253,17 @@
   "directional_research_status": "PAUSE_NEW_FORMAL_DIRECTIONAL_FAMILIES_UNTIL_NEW_DIRECT_EVIDENCE",
   "directional_scout_checkpoint": "config/jnu_directional_scout_checkpoint_20260903_v1.json",
   "live_shadow_validation": {
-    "status": "ACTIVE",
-    "preregistration": "config/jnu_operational_live_shadow_prereg_v1.json",
-    "first_formal_review_min_nonabstain": 30,
-    "selftest_status": "PASS",
-    "selftest_record": "config/jnu_operational_live_shadow_selftest_v1.json",
-    "real_forecasts_registered": 0
+    "status": "ACTIVE_V1_1_DECISION_TRACE_REQUIRED",
+    "preregistration": "config/jnu_operational_live_shadow_prereg_v1_1.json",
+    "implementation": "config/jnu_operational_live_shadow_implementation_v1_1.json",
+    "registrar": "scripts/register_jnu_operational_shadow_forecast_v1_1.py",
+    "integration_selftest": "config/jnu_operational_live_shadow_v1_1_integration_selftest.json",
+    "real_forecasts_registered": 0,
+    "first_formal_review_min_nonabstain": 30
+  },
+  "operational_decision_protocol": {
+    "status": "ACTIVE_SELFTEST_PASS",
+    "spec": "config/jnu_operational_decision_protocol_v1.json",
+    "selftest": "config/jnu_operational_decision_protocol_selftest_v1.json"
   }
 }

@@ -1,0 +1,32 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-03",
+  "status": "JNU_LIVE_SHADOW_V1_1_DECISION_TRACE_INTEGRATION_SELFTEST_PASS",
+  "decision_protocol": "config/jnu_operational_decision_protocol_v1.json",
+  "shadow_prereg": "config/jnu_operational_live_shadow_prereg_v1_1.json",
+  "shadow_implementation": "config/jnu_operational_live_shadow_implementation_v1_1.json",
+  "registrar": "scripts/register_jnu_operational_shadow_forecast_v1_1.py",
+  "tests": {
+    "protocol_generated_trace_registered": {
+      "pass": true,
+      "forecast_id": "JNU_LS_20260903T172500_94d22aa1336c"
+    },
+    "manual_bias_override_rejected": {
+      "pass": true,
+      "exit_code": 1,
+      "error_contains": "forecast bias does not match decision_trace bias"
+    },
+    "protocol_sha_tamper_rejected": {
+      "pass": true,
+      "exit_code": 1,
+      "error_contains": "decision_trace protocol SHA mismatch"
+    },
+    "only_one_selftest_forecast_created": {
+      "pass": true,
+      "count": 1
+    }
+  },
+  "real_live_shadow_forecasts_existing": 0,
+  "selftest_storage": "D:/Temp/jnu_shadow_v12_selftest only; excluded from real ledger.",
+  "next_action": "Use v1.2 + live-shadow v1.1 for the first real exact-JNU forecast."
+}

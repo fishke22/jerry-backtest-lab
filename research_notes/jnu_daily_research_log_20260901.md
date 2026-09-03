@@ -203,3 +203,9 @@
 - Operational Framework v1.1 forbids presenting judgmental scenario weights as calibrated probabilities and keeps formal shadow confidence at LOW/MEDIUM while directional modules remain zero.
 - Live-shadow registrar/outcome/scorer selftest PASS: stale reference rejected, exact-product forecast/outcome accepted, n=1 correctly remains LIVE_SHADOW_ACCUMULATING.
 - Selftest data remain in D:/Temp only and are not part of the real forecast ledger.
+
+## JNU Operational Framework v1.2 decision protocol activation (2026-09-03)
+- Four-block evidence fusion protocol selftest PASS: aligned 4-block MEDIUM, 2-block LOW, conflict/C-quality/event-risk fail-closed behavior confirmed.
+- Live-shadow v1.1 amendment requires protocol-generated decision_trace; manual bias override and protocol-SHA tamper are rejected.
+- No real live-shadow forecast existed before this amendment; all integration selftest records remain D:/Temp only.
+- Framework v1.2 is authoritative; numeric directional probabilities remain uncalibrated/prohibited as model probabilities.

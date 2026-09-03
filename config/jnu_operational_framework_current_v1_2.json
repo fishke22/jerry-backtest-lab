@@ -1,0 +1,201 @@
+{
+  "version": "1.2",
+  "as_of": "2026-09-03",
+  "status": "AUTHORITATIVE_JNU_OPERATIONAL_FRAMEWORK_V1_2",
+  "usage_rule": "Use this framework for all future Osaka Nikkei / JNU analysis unless a later committed framework explicitly supersedes it.",
+  "validation_taxonomy": [
+    "RESEARCH_CANDIDATE",
+    "HISTORICAL_OOS_PASS",
+    "TRUE_JNU_CONFIRMED",
+    "FORWARD_VALIDATION_PENDING",
+    "FORWARD_VALIDATED",
+    "TERMINAL_FAIL"
+  ],
+  "layers": [
+    {
+      "id": 1,
+      "name": "Market Regime",
+      "items": [
+        "HAR-RSV volatility/risk state",
+        "realized volatility expansion/contraction",
+        "risk-on/off",
+        "VIX/US equity volatility",
+        "JPY regime"
+      ],
+      "role": "risk-state; HAR-RSV may not vote direction by itself"
+    },
+    {
+      "id": 2,
+      "name": "Event Risk State",
+      "items": [
+        "BOJ",
+        "Fed",
+        "CPI",
+        "NFP",
+        "SQ",
+        "major policy events"
+      ],
+      "role": "event-risk/volatility-state; not directional alpha"
+    },
+    {
+      "id": 3,
+      "name": "Cross-Market Information",
+      "items": [
+        "Nasdaq",
+        "S&P 500",
+        "SOX",
+        "USDJPY",
+        "US Treasury yields",
+        "VIX",
+        "global Nikkei-related markets"
+      ],
+      "role": "context/evidence only unless a separately validated directional family exists"
+    },
+    {
+      "id": 4,
+      "name": "Dynamic Price Discovery",
+      "items": [
+        "OSE",
+        "CME",
+        "cash Nikkei",
+        "US futures",
+        "FX leadership"
+      ],
+      "role": "identify current price-discovery venue; proxy evidence cannot be mislabeled as validated alpha"
+    },
+    {
+      "id": 5,
+      "name": "Intraday Price Path / Rejection",
+      "items": [
+        "overnight gap",
+        "opening location",
+        "time of intraday high/low",
+        "low-to-close recovery",
+        "high-to-close recovery",
+        "CLV",
+        "VWAP reclaim/loss",
+        "higher lows/lower highs",
+        "volume distribution"
+      ],
+      "role": "path-state evidence"
+    },
+    {
+      "id": 6,
+      "name": "Positioning / Derivatives",
+      "items": [
+        "put/call",
+        "strike OI",
+        "SQ",
+        "basis",
+        "term structure",
+        "investor flows"
+      ],
+      "role": "PIT-corrected positioning/context; failed PCR 88.7/116.5 family is prohibited as directional signal"
+    },
+    {
+      "id": 7,
+      "name": "Dynamic SQ Bias",
+      "items": [
+        "price location",
+        "OI distribution",
+        "gamma/strike concentration",
+        "intraday path",
+        "market response"
+      ],
+      "role": "never assume pull-up or press-down settlement"
+    },
+    {
+      "id": 8,
+      "name": "Evidence Fusion",
+      "items": [
+        "Bullish evidence",
+        "Bearish evidence",
+        "Neutral/risk evidence",
+        "Invalidated signals",
+        "A/B/C evidence quality"
+      ],
+      "role": "synthesize without fake precision"
+    },
+    {
+      "id": 9,
+      "name": "Decision Output",
+      "items": [
+        "directional bias",
+        "confidence",
+        "expected path",
+        "key levels",
+        "invalidation conditions",
+        "event risk",
+        "flip conditions"
+      ],
+      "role": "probabilistic/conditional analysis, not a claim of proven mechanical directional alpha"
+    }
+  ],
+  "current_validated_state_modules": {
+    "HAR_RSV": {
+      "status": "TRUE_JNU_CONFIRMED_FORWARD_VALIDATION_PENDING",
+      "role": "VOLATILITY_RISK_STATE_ONLY"
+    },
+    "BOJ_MPM_EVENT_VOLATILITY": {
+      "status": "TRUE_JNU_CONFIRMED_FORWARD_VALIDATION_PENDING",
+      "role": "EVENT_RISK_STATE_ONLY"
+    }
+  },
+  "prohibited_directional_families": [
+    "PCR 88.7/116.5",
+    "MACD 4/22/3 post-publication",
+    "prior-night USDJPY sign",
+    "simple US-to-JNU intraday path",
+    "overnight overreaction",
+    "legacy trend/breakout/drawdown-repair/NDX-relative-strength families already rejected",
+    "OSE Mini cash basis-change continuation G1",
+    "Nikkei Dekansho-bushi Jan-Jun long / Jul-Dec short postpublication G1"
+  ],
+  "current_directional_status": "NO_VALIDATED_DIRECTIONAL_EDGE",
+  "operational_use": "Framework is usable now for probabilistic JNU analysis. Historical/OSE/JNU-confirmed risk-state modules are used at their validated roles while forward certification continues in parallel.",
+  "research_parallel_track": "HAR/BOJ forward Stage8 certification continues. New formal directional families are paused unless the directional scout evidence gate is met. Operational live-shadow validation starts immediately.",
+  "supersedes": "config/jnu_operational_framework_current_v1_1.json",
+  "prediction_discipline": {
+    "validated_directional_modules": 0,
+    "numeric_probability_rule": "Do not present judgmental directional weights as calibrated model probabilities. If scenario weights are used, explicitly label them non-calibrated.",
+    "formal_shadow_confidence_levels": [
+      "LOW",
+      "MEDIUM"
+    ],
+    "high_confidence_rule": "HIGH is not used in the formal live-shadow ledger until at least one validated directional module or a later preregistered calibration protocol permits it.",
+    "failed_family_rule": "Terminal/rejected families may inform what NOT to rely on; they may not cast directional votes or be recombined as a post-hoc rescue ensemble.",
+    "conditional_output_rule": "Every directional bias must state expected path, invalidation condition, key levels and flip conditions."
+  },
+  "directional_research_gate": {
+    "status": "PAUSE_NEW_FORMAL_DIRECTIONAL_FAMILIES_UNTIL_NEW_DIRECT_EVIDENCE",
+    "checkpoint": "config/jnu_directional_scout_checkpoint_20260903_v1.json",
+    "allowed_reopen": "Only substantively independent direct Japan/Nikkei/OSE external evidence with fixed specification, causal PIT data, rights-clean/free or authorized inputs, and no adjacency to terminal families."
+  },
+  "live_shadow_validation": {
+    "status": "ACTIVE_V1_1_DECISION_TRACE_REQUIRED",
+    "preregistration": "config/jnu_operational_live_shadow_prereg_v1_1.json",
+    "implementation": "config/jnu_operational_live_shadow_implementation_v1_1.json",
+    "decision_trace_required": true,
+    "minimum_nonabstain_for_first_formal_review": 30,
+    "registrar": "scripts/register_jnu_operational_shadow_forecast_v1_1.py",
+    "integration_selftest": "config/jnu_operational_live_shadow_v1_1_integration_selftest.json"
+  },
+  "operational_decision_protocol": {
+    "status": "FROZEN_SELFTEST_PASS_ACTIVE",
+    "spec": "config/jnu_operational_decision_protocol_v1.json",
+    "selftest": "config/jnu_operational_decision_protocol_selftest_v1.json",
+    "apply_script": "scripts/apply_jnu_operational_decision_protocol_v1.py",
+    "directional_blocks": [
+      "EXACT_JNU_PRICE_PATH",
+      "DYNAMIC_PRICE_DISCOVERY",
+      "CONTEMPORANEOUS_CROSS_MARKET",
+      "POSITIONING_DERIVATIVES_CONTEXT"
+    ],
+    "minimum_eligible_directional_blocks": 2,
+    "nonabstain_net_score_threshold": 2,
+    "medium_min_abs_net_score": 3,
+    "high_confidence_prohibited": true,
+    "risk_modules_do_not_cast_directional_votes": true,
+    "integration_selftest": "config/jnu_operational_live_shadow_v1_1_integration_selftest.json"
+  }
+}

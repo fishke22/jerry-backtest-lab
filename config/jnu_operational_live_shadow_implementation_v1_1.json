@@ -1,0 +1,37 @@
+{
+  "version": "1.1",
+  "frozen_at": "2026-09-03",
+  "status": "IMPLEMENTATION_SPEC_FROZEN_BEFORE_FIRST_REAL_LIVE_SHADOW_FORECAST",
+  "candidate_id": "JNU_OPERATIONAL_FRAMEWORK_LIVE_SHADOW_V1",
+  "supersedes": "config/jnu_operational_live_shadow_implementation_v1.json",
+  "authoritative_framework": "config/jnu_operational_framework_current_v1_2.json",
+  "decision_protocol": "config/jnu_operational_decision_protocol_v1.json",
+  "reference_freshness_minutes": 15,
+  "exact_product_requirement": "OSE Nikkei 225 Micro Futures (JNU) exact-product price only for scored records.",
+  "required_fields": [
+    "created_at_taipei",
+    "reference_price",
+    "reference_timestamp",
+    "reference_source",
+    "exact_product",
+    "target_day_session_date",
+    "bias",
+    "confidence",
+    "decision_trace",
+    "expected_path",
+    "key_levels",
+    "invalidation_conditions",
+    "event_risk",
+    "flip_conditions",
+    "evidence_summary"
+  ],
+  "decision_trace_validation": [
+    "decision_trace.protocol_sha256 equals current decision protocol SHA256",
+    "decision_trace.bias equals forecast bias",
+    "decision_trace.confidence equals forecast confidence",
+    "decision_trace.calibrated_probability is false",
+    "decision_trace.blocks contains exactly one trace entry for each frozen directional block",
+    "forecast bias/confidence cannot be manually overridden"
+  ],
+  "real_live_shadow_forecasts_existing_at_freeze": 0
+}

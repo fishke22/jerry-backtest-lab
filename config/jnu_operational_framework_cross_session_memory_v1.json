@@ -3,7 +3,7 @@
   "as_of": "2026-09-02",
   "memory_scope": "CROSS_SESSION_MANDATORY",
   "subject": "JNU Operational Framework",
-  "authoritative_framework": "config/jnu_operational_framework_current_v1_1.json",
+  "authoritative_framework": "config/jnu_operational_framework_current_v1_2.json",
   "usage_rule": "For every future JNU / Osaka Nikkei / Osaka Micro Nikkei analysis in any session, apply this framework by default unless a later committed authoritative framework explicitly supersedes it.",
   "mandatory_layers": [
     "Market Regime",
@@ -46,9 +46,14 @@
   ],
   "parallel_research_rule": "Operational use is allowed now while higher-level forward validation continues. Continue independent preregistered historical OOS/walk-forward/overfit-controlled directional research without waiting for future Stage8 data.",
   "supersession_rule": "Only a later committed authoritative framework file may supersede this memory. Do not silently simplify back to generic technical/fundamental analysis.",
-  "current_framework_version": "1.1",
-  "live_shadow_preregistration": "config/jnu_operational_live_shadow_prereg_v1.json",
+  "current_framework_version": "1.2",
+  "live_shadow_preregistration": "config/jnu_operational_live_shadow_prereg_v1_1.json",
   "directional_research_checkpoint": "config/jnu_directional_scout_checkpoint_20260903_v1.json",
   "live_shadow_selftest": "config/jnu_operational_live_shadow_selftest_v1.json",
-  "real_live_shadow_forecasts_registered": 0
+  "real_live_shadow_forecasts_registered": 0,
+  "operational_decision_protocol": "config/jnu_operational_decision_protocol_v1.json",
+  "operational_decision_protocol_selftest": "config/jnu_operational_decision_protocol_selftest_v1.json",
+  "live_shadow_implementation": "config/jnu_operational_live_shadow_implementation_v1_1.json",
+  "live_shadow_registrar": "scripts/register_jnu_operational_shadow_forecast_v1_1.py",
+  "live_shadow_integration_selftest": "config/jnu_operational_live_shadow_v1_1_integration_selftest.json"
 }

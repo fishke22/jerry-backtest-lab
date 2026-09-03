@@ -1,0 +1,32 @@
+{
+  "version": "1.1",
+  "frozen_at": "2026-09-03",
+  "status": "PRE_OUTCOME_AMENDMENT_BEFORE_FIRST_REAL_LIVE_SHADOW_FORECAST",
+  "candidate_id": "JNU_OPERATIONAL_FRAMEWORK_LIVE_SHADOW_V1",
+  "supersedes": "config/jnu_operational_live_shadow_prereg_v1.json",
+  "reason": "No real live-shadow forecasts exist yet. Add mandatory frozen operational decision trace so the evidence-fusion process itself is prospectively reproducible.",
+  "unchanged_from_v1": [
+    "Exact JNU/Micro reference price requirement",
+    "Next OSE Micro regular day-session close target",
+    "15-minute maximum reference age",
+    "LOW/MEDIUM confidence only",
+    "30 non-abstain minimum first review",
+    "accuracy / signed return / block-bootstrap gates",
+    "no retroactive editing or cherry picking"
+  ],
+  "new_requirement": {
+    "decision_protocol": "config/jnu_operational_decision_protocol_v1.json",
+    "apply_script": "scripts/apply_jnu_operational_decision_protocol_v1.py",
+    "decision_trace_required": true,
+    "bias_must_equal_trace_bias": true,
+    "confidence_must_equal_trace_confidence": true,
+    "protocol_sha256_must_match_current": true,
+    "calibrated_probability_must_be_false": true,
+    "block_level_trace_must_be_preserved": true
+  },
+  "real_live_shadow_forecasts_existing_at_freeze": 0,
+  "directional_outcome_inspected": false,
+  "authoritative_framework": "config/jnu_operational_framework_current_v1_2.json",
+  "decision_protocol": "config/jnu_operational_decision_protocol_v1.json",
+  "integration_selftest": "config/jnu_operational_live_shadow_v1_1_integration_selftest.json"
+}
