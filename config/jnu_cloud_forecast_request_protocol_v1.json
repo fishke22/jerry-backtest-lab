@@ -1,0 +1,54 @@
+{
+  "version": "1.0",
+  "frozen_at": "2026-09-04",
+  "status": "PRE_FIRST_REAL_FORECAST_CLOUD_REQUEST_PROTOCOL",
+  "real_live_shadow_forecasts_existing_at_freeze": 0,
+  "real_live_shadow_outcomes_existing_at_freeze": 0,
+  "purpose": "Make mobile/cloud forecast requests immutable, short-lived, quote-free and idempotent before they can create a real live-shadow record.",
+  "request_directory": "live_shadow_requests",
+  "filename_rule": "<request_id>.json",
+  "request_id_pattern": "^JNU_REQ_[A-Za-z0-9._-]{8,120}$",
+  "required_fields": [
+    "request_id",
+    "request_created_at_taipei",
+    "request_valid_until_taipei",
+    "symbol",
+    "target_day_session_date",
+    "decision_input",
+    "expected_path",
+    "key_levels",
+    "invalidation_conditions",
+    "event_risk",
+    "flip_conditions",
+    "evidence_summary"
+  ],
+  "prohibited_request_fields": [
+    "reference_price",
+    "reference_timestamp",
+    "reference_source",
+    "reference_source_metadata",
+    "bias",
+    "confidence",
+    "decision_trace"
+  ],
+  "request_validity": {
+    "maximum_seconds": 900,
+    "rule": "0 < request_valid_until - request_created_at <= 900 seconds",
+    "registration_rule": "forecast input must be built no later than request_valid_until_taipei"
+  },
+  "exact_quote_rule": {
+    "price_and_timestamp_owner": "cloud quote adapter",
+    "adapter": "scripts/fetch_jnu_exact_micro_quote_tradingview_v1.py",
+    "maximum_quote_age_seconds": 900,
+    "primary_symbol": "individual OSE NK225MC month contract only"
+  },
+  "idempotency": {
+    "same_request_id_max_real_forecasts": 1,
+    "rerun_after_registration": "NOOP; never create a second forecast",
+    "expired_unregistered_request": "terminally unregistered; create a new request after fresh analysis"
+  },
+  "commit_rule": "For push-triggered processing, exactly one new/changed live_shadow_requests/*.json file is allowed per request commit.",
+  "scoring_rules_changed": false,
+  "directional_rules_changed": false,
+  "next_action": "Selftest request expiry and then activate the cloud request-to-forecast workflow."
+}
