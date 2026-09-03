@@ -1,0 +1,16 @@
+{
+  "version": "1.0",
+  "candidate_id": "NIKKEI_DEKANSHO_BUSHI_POSTPUBLICATION_G1",
+  "status": "PRE_OUTCOME_COST_ALIGNMENT_CLARIFICATION",
+  "frozen_at": "2026-09-03",
+  "sample_return_dates": "2014-01-01 through 2026-08-31; only valid Nikkei trading dates with an available prior valid close form daily returns.",
+  "initial_position_rule": "The first eligible 2014 return is LONG. Previous position is FLAT, so the first eligible trading day pays one one-way cost unit.",
+  "half_year_transition_rule": "On the first eligible return date in July, LONG to SHORT costs two one-way units. On the first eligible return date in January, SHORT to LONG costs two one-way units.",
+  "final_sample_rule": "2026-08-31 is a mark-to-market sample endpoint. No artificial terminal liquidation cost is charged because there is no position change in the frozen strategy at the sample boundary.",
+  "cost_allocation": "Subtract the applicable bps cost from that transition day's strategy return before monthly compounding.",
+  "primary_one_way_bps": 10,
+  "stress_one_way_bps": 20,
+  "signal_rule_changed": false,
+  "month_boundaries_changed": false,
+  "directional_outcome_inspected": false
+}
