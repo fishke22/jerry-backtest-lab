@@ -30,7 +30,8 @@
       "simple US-to-JNU intraday path",
       "overnight overreaction",
       "legacy rejected trend/breakout/drawdown-repair/relative-strength families",
-      "OSE Mini cash basis-change continuation G1"
+      "OSE Mini cash basis-change continuation G1",
+      "Nikkei Dekansho-bushi Jan-Jun long / Jul-Dec short postpublication G1"
     ]
   },
   "output_contract": [

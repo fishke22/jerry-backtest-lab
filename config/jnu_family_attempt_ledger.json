@@ -453,6 +453,14 @@
       "data_gate": "config/jnu_ose_mini_cash_basis_change_data_gate_v1.json",
       "terminal_result": "config/jnu_ose_mini_cash_basis_change_terminal_fail_v1.json",
       "reopen_rule": "No sign flip, basis-level substitution, threshold, roll-window, execution timing or holding-horizon rescue."
+    },
+    {
+      "id": "NIKKEI_DEKANSHO_BUSHI_POSTPUBLICATION_G1",
+      "status": "TERMINAL_FAIL_NO_RESCUE",
+      "mechanism": "Published Japanese calendar seasonality: Jan-Jun long / Jul-Dec short, tested only post-publication 2014-2026",
+      "preregistration": "config/jnu_dekansho_bushi_postpublication_g1_prereg.json",
+      "terminal_result": "config/jnu_dekansho_bushi_postpublication_terminal_fail_v1.json",
+      "reopen_rule": "No half-year boundary, long-only/short-only, Sell-in-May, month selection or regime-filter rescue."
     }
   ],
   "conservative_rule": "Unknown legacy multiplicity is treated against promotion, not ignored.",

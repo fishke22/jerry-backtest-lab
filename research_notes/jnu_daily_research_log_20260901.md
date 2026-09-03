@@ -190,3 +190,10 @@
 - Four fixed subperiods all negative; recent 504 observations -62.9681%.
 - Independent audit: 21,640/21,640 row checks PASS; 5,410/5,410 timestamps resolved; all aggregate metrics exact.
 - Governance: TERMINAL_FAIL_NO_RESCUE. No sign flip, basis-level, threshold, roll-window or horizon rescue.
+
+## Dekansho-bushi post-publication terminal result (2026-09-03)
+- Fixed published Jan-Jun long / Jul-Dec short rule tested only on 2014-01 through 2026-08 after the 2013 publication.
+- 10bps cumulative -37.3361%; 20bps -40.4652%; annualized monthly Sharpe -0.11501; positive subperiods 2/4.
+- Bootstrap P(mean>0)=0.3142; 95% lower mean monthly net -1.0325%. Recent 36 months +22.9545% is diagnostic only.
+- Independent audit: 15,465/15,465 daily checks and 456/456 monthly checks PASS; all aggregates exact.
+- Governance: TERMINAL_FAIL_NO_RESCUE; no OSE confirmation and no calendar-boundary or long/short-leg rescue.

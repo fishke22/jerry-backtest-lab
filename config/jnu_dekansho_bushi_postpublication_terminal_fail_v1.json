@@ -1,0 +1,54 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-03",
+  "candidate_id": "NIKKEI_DEKANSHO_BUSHI_POSTPUBLICATION_G1",
+  "status": "TERMINAL_FAIL_NO_RESCUE",
+  "research_fail": true,
+  "validated_jnu_module": false,
+  "validated_directional_edge": false,
+  "literature": "Sakakibara, Yamasaki & Okada (2013), DOI 10.1111/irfi.12003",
+  "original_literature_sample": "1950-2008",
+  "formal_validation_sample": "2014-01 through 2026-08 only",
+  "observations": {
+    "months": 152,
+    "daily_returns": 3093,
+    "long_months": 78,
+    "short_months": 74
+  },
+  "metrics": {
+    "net_cumulative_10bps": -0.37336054309088995,
+    "net_cumulative_20bps": -0.4046523855979185,
+    "mean_monthly_net_10bps": -0.0017237357220398076,
+    "annualized_monthly_sharpe_10bps": -0.11500775963778462,
+    "bootstrap_prob_mean_positive": 0.3142,
+    "bootstrap_95_lower_mean_monthly_net": -0.010325131837584947,
+    "positive_subperiods": 2,
+    "recent_36_month_net_cumulative_10bps": 0.22954509038600235
+  },
+  "subperiod_net_cumulative_10bps": [
+    -0.3877961467353045,
+    -0.21557398911082093,
+    0.04972422743613847,
+    0.243066811898625
+  ],
+  "independent_audit": {
+    "status": "PASS",
+    "daily_row_checks_total": 15465,
+    "daily_row_checks_pass": 15465,
+    "monthly_checks_total": 456,
+    "monthly_checks_pass": 456,
+    "aggregate_checks_all_pass": true
+  },
+  "result_sha256": "fd836f936b4a7f6cfe1de8af492059b2cec51fa9a6a0a76522b82f12d3599d2b",
+  "prereg_commit": "a369ca1e3c9bf7dc78d6c9068da005bc3a3eff5b",
+  "cost_clarification_commit": "1379928c501b05713c2162a819d0a1fa7d0487c6",
+  "alignment_commit": "efbcbec8a2b5f94c3e39fbe2a3cdaa6788efe618",
+  "runner_commit": "e87632b803b58dc973c5d776a6f6b90e2afe0e3b",
+  "ose_confirmation_prohibited": true,
+  "month_boundary_rescue_prohibited": true,
+  "long_only_short_only_rescue_prohibited": true,
+  "sell_in_may_variant_rescue_prohibited": true,
+  "regime_filter_rescue_prohibited": true,
+  "interpretation": "The fixed published Jan-Jun long / Jul-Dec short rule does not replicate in the full post-publication 2014-2026 sample. Recent strength is diagnostic only and cannot rescue the failed family.",
+  "next_action": "Do not proceed to OSE Mini confirmation. Move to a substantively independent directional mechanism."
+}

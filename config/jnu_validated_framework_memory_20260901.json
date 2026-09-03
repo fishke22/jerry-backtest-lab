@@ -208,7 +208,7 @@
   "authoritative_validation_pipeline_checkpoint": "config/jnu_validation_pipeline_checkpoint_20260902_v1.json",
   "validation_pipeline_status": "JNU_VALIDATION_PIPELINE_READY_FORWARD_DATA_PENDING",
   "validation_pipeline_head": "ff322f11dbb23da6be093056ac6ef47f2db10e4a",
-  "next_action": "Select and preregister a substantively independent directional mechanism; do not reopen failed basis-change or foreign-flow families.",
+  "next_action": "Select a substantively independent literature-grounded directional mechanism; do not reopen failed calendar, basis-change, or foreign-flow families.",
   "stage8_forward_local_ingest": {
     "status": "SELFTEST_PASS_NO_SOURCE_CHANGE",
     "script": "scripts/ingest_jnu_stage8_forward_local.py",
@@ -243,5 +243,11 @@
     "status": "TERMINAL_FAIL_NO_RESCUE",
     "terminal_result": "config/jnu_ose_mini_cash_basis_change_terminal_fail_v1.json",
     "validated_directional_edge": false
+  },
+  "nikkei_dekansho_bushi_postpublication_g1": {
+    "status": "TERMINAL_FAIL_NO_RESCUE",
+    "terminal_result": "config/jnu_dekansho_bushi_postpublication_terminal_fail_v1.json",
+    "validated_directional_edge": false,
+    "recent_36_month_strength": "DIAGNOSTIC_ONLY_NOT_RESCUE"
   }
 }
