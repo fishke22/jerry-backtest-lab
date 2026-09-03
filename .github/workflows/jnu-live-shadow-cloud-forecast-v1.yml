@@ -115,11 +115,13 @@ jobs:
             already="false"
           fi
 
-          echo "path=$request_path" >> "$GITHUB_OUTPUT"
-          echo "request_id=$request_id" >> "$GITHUB_OUTPUT"
-          echo "symbol=$symbol" >> "$GITHUB_OUTPUT"
-          echo "already_registered=$already" >> "$GITHUB_OUTPUT"
-          echo "existing_forecast_id=$existing" >> "$GITHUB_OUTPUT"
+          {
+            echo "path=$request_path"
+            echo "request_id=$request_id"
+            echo "symbol=$symbol"
+            echo "already_registered=$already"
+            echo "existing_forecast_id=$existing"
+          } >> "$GITHUB_OUTPUT"
 
       - name: Idempotent already-registered request
         if: steps.request.outputs.already_registered == 'true'
