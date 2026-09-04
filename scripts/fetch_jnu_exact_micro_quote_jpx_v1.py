@@ -9,7 +9,9 @@ JST=timezone(timedelta(hours=9))
 URL="https://port.jpx.co.jp/jpxhp/jcgi/wrap/qjsonp.aspx?F=ctl/future&DISPTYPE=day_through"
 PRODUCT_JA="日経225マイクロ先物"
 PRODUCT_EN="Nikkei 225 micro Futures"
+MONTH_CODES={"F":"Jan","G":"Feb","H":"Mar","J":"Apr","K":"May","M":"Jun","N":"Jul","Q":"Aug","U":"Sep","V":"Oct","X":"Nov","Z":"Dec"}
 
+def month_label_from_symbol(symbol:str)->str:\n    s=symbol.upper()\n    if len(s)!=12 or not s.startswith("NK225MC") or s[7] not in MONTH_CODES or not s[8:].isdigit():\n        raise RuntimeError("symbol must be an individual OSE Nikkei 225 Micro contract such as NK225MCU2026")\n    return f"{MONTH_CODES[s[7]]}.{s[8:]}"\n
 def parse_mmdd_hhmm(mmdd:str, hhmm:str, now:datetime)->datetime:
     month,day=map(int,mmdd.split('/'))
     now_jst=now.astimezone(JST)
@@ -80,15 +82,13 @@ def fetch_once(month_label:str,max_age:int)->dict:
 
 def main():
     ap=argparse.ArgumentParser()
-    ap.add_argument('--month',required=True,help='JPX month label, e.g. Sep.2026')
+    g=ap.add_mutually_exclusive_group(required=True)\n    g.add_argument('--month',help='JPX month label, e.g. Sep.2026')\n    g.add_argument('--symbol',help='Individual OSE Micro symbol, e.g. NK225MCU2026')
     ap.add_argument('--max-age-seconds',type=int,default=900)
     ap.add_argument('--max-wait-seconds',type=int,default=0)
     ap.add_argument('--poll-seconds',type=int,default=5)
     ap.add_argument('--output',type=Path)
     args=ap.parse_args()
-    deadline=time.monotonic()+max(0,args.max_wait_seconds)
-    while True:
-        q=fetch_once(args.month,args.max_age_seconds)
+    month_label=args.month or month_label_from_symbol(args.symbol)\n    deadline=time.monotonic()+max(0,args.max_wait_seconds)\n    while True:\n        q=fetch_once(month_label,args.max_age_seconds)\n        if args.symbol:\n            q["symbol"]=args.symbol.upper()
         if q['freshness_pass']:
             break
         if args.max_wait_seconds<=0 or time.monotonic()>=deadline:
