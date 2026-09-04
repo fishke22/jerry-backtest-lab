@@ -1,9 +1,9 @@
 {
   "version": "1.0",
-  "as_of": "2026-09-02",
+  "as_of": "2026-09-04",
   "memory_scope": "CROSS_SESSION_MANDATORY",
   "subject": "JNU Operational Framework",
-  "authoritative_framework": "config/jnu_operational_framework_current_v1_4.json",
+  "authoritative_framework": "config/jnu_operational_framework_current_v1_5.json",
   "usage_rule": "For every future JNU / Osaka Nikkei / Osaka Micro Nikkei analysis in any session, apply this framework by default unless a later committed authoritative framework explicitly supersedes it.",
   "mandatory_layers": [
     "Market Regime",
@@ -46,25 +46,25 @@
   ],
   "parallel_research_rule": "Operational use is allowed now while higher-level forward validation continues. Continue independent preregistered historical OOS/walk-forward/overfit-controlled directional research without waiting for future Stage8 data.",
   "supersession_rule": "Only a later committed authoritative framework file may supersede this memory. Do not silently simplify back to generic technical/fundamental analysis.",
-  "current_framework_version": "1.4",
-  "live_shadow_preregistration": "config/jnu_operational_live_shadow_prereg_v1_3.json",
+  "current_framework_version": "1.5",
+  "live_shadow_preregistration": "config/jnu_operational_live_shadow_prereg_v1_4.json",
   "directional_research_checkpoint": "config/jnu_directional_scout_checkpoint_20260903_v1.json",
   "live_shadow_selftest": "config/jnu_operational_live_shadow_selftest_v1.json",
   "real_live_shadow_forecasts_registered": 0,
   "operational_decision_protocol": "config/jnu_operational_decision_protocol_v1.json",
   "operational_decision_protocol_selftest": "config/jnu_operational_decision_protocol_selftest_v1.json",
-  "live_shadow_implementation": "config/jnu_operational_live_shadow_implementation_v1_3.json",
-  "live_shadow_registrar": "scripts/register_jnu_operational_shadow_forecast_v1_3.py",
+  "live_shadow_implementation": "config/jnu_operational_live_shadow_implementation_v1_4.json",
+  "live_shadow_registrar": "scripts/register_jnu_operational_shadow_forecast_v1_4.py",
   "live_shadow_integration_selftest": "config/jnu_operational_live_shadow_v1_1_integration_selftest.json",
   "stage8_source_availability_checkpoint": "config/jnu_stage8_source_availability_checkpoint_20260903.json",
   "stage8_micro_source_last_trading_date": "2026-08-31",
   "live_shadow_atomic_forecast_tool": "scripts/register_jnu_operational_shadow_forecast_atomic_v1.py",
   "live_shadow_atomic_outcome_tool": "scripts/record_jnu_operational_shadow_outcome_atomic_v1.py",
-  "live_shadow_integrity_scorer": "scripts/score_jnu_operational_live_shadow_v1_2.py",
+  "live_shadow_integrity_scorer": "scripts/score_jnu_operational_live_shadow_v1_3.py",
   "live_shadow_atomic_integrity_selftest": "config/jnu_operational_live_shadow_atomic_integrity_selftest_v1.json",
   "real_live_shadow_outcomes_registered": 0,
-  "first_real_live_shadow_forecast_readiness": "config/jnu_live_shadow_cloud_readiness_v4.json",
-  "live_shadow_real_ledger_status": "CLOUD_PIPELINE_READY_FAIL_CLOSED_AWAITING_QUALIFYING_INDIVIDUAL_EXACT_MICRO_REFERENCE_0_FORECASTS_0_OUTCOMES",
+  "first_real_live_shadow_forecast_readiness": "config/jnu_live_shadow_cloud_readiness_v5.json",
+  "live_shadow_real_ledger_status": "MULTI_SOURCE_CLOUD_READY_FAIL_CLOSED_AWAITING_QUALIFYING_INDIVIDUAL_EXACT_MICRO_REFERENCE_0_FORECASTS_0_OUTCOMES",
   "exact_micro_quote_adapter": "scripts/fetch_jnu_exact_micro_quote_tradingview_v1.py",
   "exact_micro_source_cross_validation": "config/jnu_exact_micro_source_cross_validation_v1.json",
   "source_metadata_integrity_selftest": "config/jnu_v1_4_source_metadata_integrity_selftest.json",
@@ -74,14 +74,14 @@
   "cloud_quote_smoke_workflow": ".github/workflows/jnu-exact-micro-quote-cloud-smoke-v1.yml",
   "cloud_request_selftest_run": 33818317282,
   "cloud_actionlint_run": 33818714736,
-  "cloud_pipeline_status": "READY_ACTIONLINT_PASS_REAL_LEDGER_EMPTY",
-  "next_action": "Do not create the first scored forecast until a provider-carried <=900-second quote for an individual OSE NK225MC month contract is available and target-horizon event state is verified. TradingView is eligible only when actual lp_time age <=900 seconds; NikkeiRealtime CONT substitution is rejected.",
+  "cloud_pipeline_status": "READY_MULTI_SOURCE_ACTIONLINT_PASS_REAL_LEDGER_EMPTY",
+  "next_action": "Do not create the first scored forecast until either JPX official or TradingView provides an individual OSE NK225MC month-contract Last/source timestamp whose actual age is <=900 seconds and target-horizon event state is verified. NikkeiRealtime CONT remains prohibited as primary.",
   "exact_micro_reference_source_gate": "config/jnu_exact_micro_reference_source_gate_20260904_v1.json",
   "tradingview_exact_micro_transport": {
-    "status": "ENGINEERING_PASS_STRUCTURAL_900S_DELAY",
+    "status": "B_IDENTITY_SOURCE_ALLOWED_ONLY_IF_ACTUAL_LP_TIME_AGE_LE_900",
     "adapter": "scripts/fetch_jnu_exact_micro_quote_tradingview_v1.py",
     "latest_smoke_run": 33821088044,
-    "rule": "Use only if actual lp_time age <=900 seconds; never relax gate."
+    "rule": "Use individual contract lp_time only; never relax the 900-second gate."
   },
   "nikkeirealtime_continuous_micro": {
     "status": "PRIMARY_FALLBACK_REJECTED_CURRENT_SCHEMA",
@@ -89,5 +89,21 @@
     "websocket_probe_run": 33821656082,
     "nrttick_crossmap_run": 33822091131,
     "retest_rule": "Do not retry CONT substitution unless an individual month Micro ID or materially new source protocol becomes available."
+  },
+  "exact_micro_primary_source_hierarchy": "config/jnu_exact_micro_primary_source_hierarchy_v1.json",
+  "jpx_official_exact_micro": {
+    "status": "A_IDENTITY_SOURCE_ALLOWED_ONLY_IF_OBSERVATION_AGE_LE_900",
+    "adapter": "scripts/fetch_jnu_exact_micro_quote_jpx_v1.py",
+    "timestamp_precision": "minute_conservative_second_00",
+    "latest_live_observation": "FAIL_CLOSED_905.6_SECONDS",
+    "rule": "Official delay never waives the <=900-second gate."
+  },
+  "multi_source_cloud_alignment": {
+    "workflow": ".github/workflows/jnu-live-shadow-cloud-forecast-v1.yml",
+    "builder": "scripts/build_jnu_cloud_forecast_input_v1.py",
+    "selection": "JPX official A first, TradingView B second; each observation independently must pass <=900 seconds",
+    "actionlint_run_id": 33876057519,
+    "actionlint_status": "PASS",
+    "synthetic_jpx_builder_atomic_selftest": "PASS"
   }
 }
