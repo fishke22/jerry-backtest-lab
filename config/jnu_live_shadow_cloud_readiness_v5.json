@@ -9,21 +9,36 @@
   "primary_source_hierarchy": "config/jnu_exact_micro_primary_source_hierarchy_v1.json",
   "cloud_workflow": ".github/workflows/jnu-live-shadow-cloud-forecast-v1.yml",
   "verification": {
-    "actionlint": {"status": "PASS", "run_id": 33876057519},
+    "actionlint": {
+      "status": "PASS",
+      "run_id": 33876057519
+    },
     "jpx_cloud_builder_atomic_selftest": "PASS",
     "decision_protocol_regression": "PASS",
     "unknown_state_selftests": "PASS",
-    "real_ledger_integrity": {"status": "PASS", "forecasts": 0, "outcomes": 0},
-    "jpx_latest_live_age_seconds": 905.6,
-    "jpx_latest_live_result": "FAIL_CLOSED_STALE",
-    "tradingview_observed_live_age_seconds": 935.7,
-    "tradingview_observed_live_result": "FAIL_CLOSED_STALE",
-    "nikkeirealtime_primary_role": "REJECTED_CONTINUOUS_ONLY"
+    "real_ledger_integrity": {
+      "status": "PASS",
+      "forecasts": 0,
+      "outcomes": 0
+    },
+    "jpx_latest_live_age_seconds": 949.9,
+    "jpx_latest_live_result": "FAIL_CLOSED_STALE_FINAL_RECHECK",
+    "tradingview_observed_live_age_seconds": 950.6,
+    "tradingview_observed_live_result": "FAIL_CLOSED_STALE_FINAL_RECHECK",
+    "nikkeirealtime_primary_role": "REJECTED_CONTINUOUS_ONLY",
+    "final_real_ledger_scorer": {
+      "status": "PASS",
+      "forecasts_verified": 0,
+      "outcomes_verified": 0
+    }
   },
   "frozen_max_reference_age_seconds": 900,
   "individual_month_contract_required": true,
   "continuous_contract_primary_prohibited": true,
-  "real_ledger": {"forecasts": 0, "outcomes": 0},
+  "real_ledger": {
+    "forecasts": 0,
+    "outcomes": 0
+  },
   "directional_validation": {
     "VALIDATED_JNU_MODULE": 0,
     "validated_directional_modules": 0,
