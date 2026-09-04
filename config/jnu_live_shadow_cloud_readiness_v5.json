@@ -1,0 +1,34 @@
+{
+  "version": "5.0",
+  "as_of": "2026-09-04",
+  "status": "MULTI_SOURCE_CLOUD_READY_AWAITING_FRESH_EXACT_MICRO",
+  "authoritative_framework": "config/jnu_operational_framework_current_v1_5.json",
+  "preregistration": "config/jnu_operational_live_shadow_prereg_v1_4.json",
+  "implementation": "config/jnu_operational_live_shadow_implementation_v1_4.json",
+  "decision_protocol_sha256": "fe10aca973f2038fcd2038ae9564253e58685c6d40f79a88d54f44f828a0d552",
+  "primary_source_hierarchy": "config/jnu_exact_micro_primary_source_hierarchy_v1.json",
+  "cloud_workflow": ".github/workflows/jnu-live-shadow-cloud-forecast-v1.yml",
+  "verification": {
+    "actionlint": {"status": "PASS", "run_id": 33876057519},
+    "jpx_cloud_builder_atomic_selftest": "PASS",
+    "decision_protocol_regression": "PASS",
+    "unknown_state_selftests": "PASS",
+    "real_ledger_integrity": {"status": "PASS", "forecasts": 0, "outcomes": 0},
+    "jpx_latest_live_age_seconds": 905.6,
+    "jpx_latest_live_result": "FAIL_CLOSED_STALE",
+    "tradingview_observed_live_age_seconds": 935.7,
+    "tradingview_observed_live_result": "FAIL_CLOSED_STALE",
+    "nikkeirealtime_primary_role": "REJECTED_CONTINUOUS_ONLY"
+  },
+  "frozen_max_reference_age_seconds": 900,
+  "individual_month_contract_required": true,
+  "continuous_contract_primary_prohibited": true,
+  "real_ledger": {"forecasts": 0, "outcomes": 0},
+  "directional_validation": {
+    "VALIDATED_JNU_MODULE": 0,
+    "validated_directional_modules": 0,
+    "decision_engine": "NO_VALIDATED_DIRECTIONAL_EDGE"
+  },
+  "blocker": "INDIVIDUAL_EXACT_MICRO_REFERENCE_FRESHNESS",
+  "next_action": "Register nothing until JPX A or TradingView B supplies an individual exact-Micro observation whose provider timestamp age is <=900 seconds and the event state is verified."
+}
