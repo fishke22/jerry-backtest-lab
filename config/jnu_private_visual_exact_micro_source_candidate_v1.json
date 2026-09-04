@@ -1,0 +1,42 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-04",
+  "status": "ENGINEERING_CANDIDATE_NOT_ACTIVE_IN_LIVE_SHADOW_PREREG",
+  "purpose": "Prepare a privacy-preserving exact OSE Micro reference path for user-provided/current-conversation screenshots without committing the raw image to the public repository.",
+  "activation_rule": "May be activated only by a later explicit pre-first-forecast preregistration amendment while real forecast/outcome ledger remains 0/0, after engineering selftest PASS.",
+  "non_negotiable_rules": {
+    "exact_product": true,
+    "source_id": "OSE",
+    "individual_month_contract_symbol_regex": "^NK225MC[A-Z][0-9]{4}$",
+    "continuous_contract": false,
+    "maximum_source_age_seconds": 900,
+    "source_timestamp_visible_in_evidence": true,
+    "price_visible_in_evidence": true,
+    "individual_contract_visible_in_evidence": true,
+    "provider_or_application_visible_in_evidence": true,
+    "raw_evidence_public_git_upload_prohibited": true,
+    "reference_price_manual_without_evidence_prohibited": true
+  },
+  "privacy_model": {
+    "raw_image_storage": "private conversation/file context only; never public GitHub",
+    "public_governance_record": [
+      "evidence SHA256",
+      "source/application label",
+      "exact contract symbol",
+      "price",
+      "provider-carried/displayed timestamp",
+      "freshness age",
+      "verification flags",
+      "redaction/privacy review flag"
+    ],
+    "personal_account_identifiers_publication_prohibited": true
+  },
+  "quality_ceiling": "B",
+  "reason_for_quality_ceiling": "Visual extraction is auditable by evidence hash but the raw private image is not redistributed publicly and the source may be a broker/application display rather than an exchange API.",
+  "current_authoritative_source_gate": "config/jnu_exact_micro_reference_source_gate_20260904_v1.json",
+  "real_ledger_at_candidate_freeze": {
+    "forecasts": 0,
+    "outcomes": 0
+  },
+  "next_action": "Run synthetic fail-closed engineering selftest. Do not activate until a real user-provided individual exact-Micro screenshot is available and the preregistration is amended before any forecast."
+}
