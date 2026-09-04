@@ -1,9 +1,9 @@
 {
   "version": "1.0",
   "as_of": "2026-09-04",
-  "status": "ENGINEERING_CANDIDATE_NOT_ACTIVE_IN_LIVE_SHADOW_PREREG",
+  "status": "ENGINEERING_SELFTEST_PASS_NOT_ACTIVE_NO_REAL_EVIDENCE",
   "purpose": "Prepare a privacy-preserving exact OSE Micro reference path for user-provided/current-conversation screenshots without committing the raw image to the public repository.",
-  "activation_rule": "May be activated only by a later explicit pre-first-forecast preregistration amendment while real forecast/outcome ledger remains 0/0, after engineering selftest PASS.",
+  "activation_rule": "May be activated only by a later explicit pre-first-forecast preregistration amendment while the real forecast/outcome ledger remains 0/0, and only when genuine private/current evidence satisfying every visual and freshness requirement exists.",
   "non_negotiable_rules": {
     "exact_product": true,
     "source_id": "OSE",
@@ -38,5 +38,16 @@
     "forecasts": 0,
     "outcomes": 0
   },
-  "next_action": "Run synthetic fail-closed engineering selftest. Do not activate until a real user-provided individual exact-Micro screenshot is available and the preregistration is amended before any forecast."
+  "next_action": "Do not activate from synthetic evidence. Wait for genuine exact individual OSE Micro visual evidence with source/application, contract, price and provider/display timestamp visible and age <=900 seconds; bind it by SHA256 and keep raw evidence out of public Git.",
+  "engineering_selftest": {
+    "status": "PASS",
+    "rerun_at": "2026-09-04",
+    "valid_case": "PASS",
+    "stale_901_3_seconds": "REJECTED",
+    "hash_mismatch": "REJECTED",
+    "continuous_contract": "REJECTED",
+    "invalid_continuous_symbol": "REJECTED",
+    "raw_test_image_persisted": false,
+    "real_forecast_created": false
+  }
 }
