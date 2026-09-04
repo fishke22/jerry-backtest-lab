@@ -208,7 +208,7 @@
   "authoritative_validation_pipeline_checkpoint": "config/jnu_validation_pipeline_checkpoint_20260902_v1.json",
   "validation_pipeline_status": "JNU_VALIDATION_PIPELINE_READY_FORWARD_DATA_PENDING",
   "validation_pipeline_head": "ff322f11dbb23da6be093056ac6ef47f2db10e4a",
-  "next_action": "Use the v1.4 operational framework and cloud pipeline. Do not create a directional sample while event-state evidence is unresolved; exact quote and request freshness remain <=900 seconds. Stage8 remains separate.",
+  "next_action": "Use JNU Operational Framework v1.4. Do not create a scored live-shadow forecast until an individual OSE NK225MC month-contract quote with provider-carried timestamp age <=900 seconds is available and target-horizon event state is verified. Do not relax freshness or substitute NikkeiRealtime CONT. Stage8 remains separate and untouched.",
   "stage8_forward_local_ingest": {
     "status": "SELFTEST_PASS_NO_SOURCE_CHANGE",
     "script": "scripts/ingest_jnu_stage8_forward_local.py",
@@ -278,20 +278,21 @@
     "boj_available_new_events": 0
   },
   "first_real_live_shadow_forecast_readiness": {
-    "status": "CLOUD_PIPELINE_READY_FIRST_REAL_FORECAST_PENDING_FRESH_MARKET_AND_EVENT_GATE",
-    "checkpoint": "config/jnu_live_shadow_cloud_readiness_v3.json",
-    "cloud_request_protocol": "config/jnu_cloud_forecast_request_protocol_v1.json",
-    "cloud_forecast_workflow": ".github/workflows/jnu-live-shadow-cloud-forecast-v1.yml",
-    "request_builder_selftest_run": 33818317282,
-    "actionlint_run": 33818714736,
+    "status": "CLOUD_PIPELINE_READY_AWAITING_QUALIFYING_INDIVIDUAL_EXACT_MICRO_REFERENCE",
+    "checkpoint": "config/jnu_live_shadow_cloud_readiness_v4.json",
+    "source_gate": "config/jnu_exact_micro_reference_source_gate_20260904_v1.json",
     "real_forecasts": 0,
     "real_outcomes": 0
   },
   "exact_micro_reference_source": {
+    "status": "NO_AUTONOMOUS_PRIMARY_CURRENTLY_QUALIFIES_RELIABLY",
     "adapter": "scripts/fetch_jnu_exact_micro_quote_tradingview_v1.py",
     "source_spec": "config/jnu_exact_micro_tradingview_quote_source_v1.json",
-    "cross_validation": "config/jnu_exact_micro_source_cross_validation_v1.json",
+    "source_gate": "config/jnu_exact_micro_reference_source_gate_20260904_v1.json",
     "quality": "B",
-    "primary_reference": "individual OSE Micro contract only"
+    "primary_reference_rule": "individual OSE Micro month contract only",
+    "tradingview": "identity pass; public delayed_streaming_900 is eligible only when actual lp_time age <=900 seconds",
+    "nikkeirealtime_continuous": "fresh public WebSocket data verified but PRIMARY_FALLBACK_REJECTED_CURRENT_SCHEMA because only N225MC.FUT.OSE.CONT is exposed and exact cross-map to Sep individual contract failed",
+    "freshness_gate_seconds": 900
   }
 }
