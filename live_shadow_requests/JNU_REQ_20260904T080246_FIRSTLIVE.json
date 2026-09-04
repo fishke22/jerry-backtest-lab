@@ -1,0 +1,54 @@
+{
+  "request_id": "JNU_REQ_20260904T080246_FIRSTLIVE",
+  "request_created_at_taipei": "2026-09-04T08:02:46+08:00",
+  "request_valid_until_taipei": "2026-09-04T08:17:46+08:00",
+  "symbol": "NK225MCU2026",
+  "target_day_session_date": "2026-09-04",
+  "decision_input": {
+    "blocks": [
+      {
+        "id": "EXACT_JNU_PRICE_PATH",
+        "vote": "UNAVAILABLE",
+        "quality": "C",
+        "reason": "No fresh exact-Micro path/rejection observation is frozen into the request; cloud owns the scored reference quote. Do not infer a directional vote from an unfrozen future quote."
+      },
+      {
+        "id": "DYNAMIC_PRICE_DISCOVERY",
+        "vote": "BULLISH",
+        "quality": "B",
+        "reason": "Pre-day-session OSE Sep Nikkei 225 futures closed the night session about +430 points (+0.66%) versus prior settlement, while CME Nikkei futures also finished above the Osaka day close, indicating synchronized positive price discovery into the Tokyo open."
+      },
+      {
+        "id": "CONTEMPORANEOUS_CROSS_MARKET",
+        "vote": "BULLISH",
+        "quality": "B",
+        "reason": "U.S. cash equities rallied more than 1% and U.S. Treasury yields eased into the handoff, a supportive risk cluster for Japan; the sharply stronger yen is material opposing evidence, so this remains only B-grade and counts as one consolidated cross-market vote."
+      },
+      {
+        "id": "POSITIONING_DERIVATIVES_CONTEXT",
+        "vote": "UNAVAILABLE",
+        "quality": "C",
+        "reason": "No sufficiently fresh PIT positioning/strike-OI evidence is available for this request; terminal-failed PCR/flow/basis families are prohibited from voting."
+      }
+    ],
+    "risk_modifiers": {
+      "volatility_state": "UNKNOWN",
+      "event_state": "NORMAL",
+      "sq_state": "NORMAL",
+      "post_event_exact_jnu_path_available": false
+    }
+  },
+  "expected_path": "Operational bullish/LOW scenario: if the day session accepts above the 64,610-64,660 overnight pivot zone, the first continuation test is around 65,170, with 65,350-65,450 as a higher resistance cluster. Failure to sustain the overnight gap and a break below roughly 64,215 shifts the path to failed-gap / downside-rejection risk.",
+  "key_levels": [
+    64215,
+    64610,
+    64660,
+    65170,
+    65350,
+    65450
+  ],
+  "invalidation_conditions": "Bullish operational bias is invalidated by sustained acceptance below approximately 64,215 or by an exact-JNU failed-gap structure with lower highs after losing the 64,610-64,660 pivot zone.",
+  "event_risk": "Japan household-spending data was scheduled for 08:30 JST and is already past before this request. BOJ has no MPM/policy speech scheduled before the 15:45 JST target close. U.S. payrolls are scheduled for 21:30 JST, after the target close. HAR-RSV current state is unavailable and is therefore UNKNOWN, capping confidence to LOW.",
+  "flip_conditions": "Flip from bullish to NEUTRAL/BEARISH if exact JNU loses 64,610-64,660, fails to reclaim it, and then accepts below 64,215; strengthen bullish path only if exact JNU holds above the pivot and builds higher lows toward 65,170.",
+  "evidence_summary": "Pre-registered operational evidence only. DPD BULLISH(B): OSE night +430 and CME aligned. Cross-market BULLISH(B): U.S. equities >1% higher and yields lower, offset by a materially stronger yen. Exact-JNU path UNAVAILABLE(C) at request freeze. Positioning UNAVAILABLE(C). Volatility UNKNOWN; event NORMAL; SQ NORMAL. No calibrated probability and no validated directional alpha."
+}
