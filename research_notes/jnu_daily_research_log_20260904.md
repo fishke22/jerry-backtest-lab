@@ -25,3 +25,7 @@ The cloud request builder now validates both frozen source classes through the s
 ## Current formal state
 
 Real live-shadow ledger remains 0 forecasts / 0 outcomes. No first real forecast was created because the allowed live observations inspected during this checkpoint failed the frozen freshness gate. `VALIDATED_JNU_MODULE=0`, validated directional modules remain 0, and the decision engine remains `NO_VALIDATED_DIRECTIONAL_EDGE`. No terminal-failed directional family was reopened or retuned.
+
+## Final live-source recheck
+
+After final integrity checks, both frozen primary candidates were retried. JPX official Sep-2026 Micro was rejected at 949.9 seconds age, and TradingView individual `NK225MCU2026` was rejected at 950.6 seconds age. Both exceed the unchanged 900-second gate. The real ledger therefore remains 0/0 and the event-state gate was not advanced because the prerequisite exact-reference freshness gate did not pass.
