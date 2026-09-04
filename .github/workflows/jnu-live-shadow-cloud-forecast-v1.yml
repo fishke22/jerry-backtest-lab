@@ -130,19 +130,6 @@ jobs:
           echo "Request ${{ steps.request.outputs.request_id }} already registered as ${{ steps.request.outputs.existing_forecast_id }}."
           echo "No second forecast will be created."
 
-      - name: Set up Node
-        if: steps.request.outputs.already_registered != 'true'
-        uses: actions/setup-node@v4
-        with:
-          node-version: "24"
-
-      - name: Install agent-browser and Chrome
-        if: steps.request.outputs.already_registered != 'true'
-        shell: bash
-        run: |
-          npm install -g agent-browser@0.36.0
-          agent-browser --version
-          agent-browser install --with-deps
 
       - name: Fetch fresh exact OSE Micro reference
         if: steps.request.outputs.already_registered != 'true'
