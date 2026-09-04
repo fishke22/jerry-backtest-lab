@@ -1,0 +1,82 @@
+{
+  "version": "2.0",
+  "as_of": "2026-09-04",
+  "status": "AUTONOMOUS_FREE_PUBLIC_INDIVIDUAL_EXACT_MICRO_SOURCE_FEASIBILITY_BLOCKED",
+  "real_ledger_at_checkpoint": {
+    "forecasts": 0,
+    "outcomes": 0
+  },
+  "frozen_max_reference_age_seconds": 900,
+  "contract_requirement": "Individual OSE Nikkei 225 Micro month contract; continuous/proxy prohibited.",
+  "findings": {
+    "jpx_official_public": {
+      "identity": "PASS_A",
+      "product": "Nikkei 225 micro Futures Sep.2026",
+      "timestamp_precision": "minute",
+      "official_delay_policy": "minimum 15 minutes delayed",
+      "cadence_probe": {
+        "observed_dppt_before": "22:00",
+        "observed_rollover_local_taipei": "2026-09-04T21:16:02.519448+08:00",
+        "observed_dppt_after": "22:01",
+        "conservative_age_seconds_at_rollover": 902.519
+      },
+      "disposition": "AUTONOMOUS_FRESHNESS_NOT_PROVEN_AND_STRUCTURALLY_UNLIKELY_UNDER_CONSERVATIVE_HHMM00_POLICY",
+      "reopen_rule": "Reopen only if JPX exposes a finer provider timestamp or materially changes its public delay policy/transport."
+    },
+    "tradingview_quote_cache": {
+      "identity": "PASS_B",
+      "symbol": "OSE:NK225MCU2026",
+      "original_name": "OSE_DLY:NK225MCU2026",
+      "provider_id": "ice",
+      "update_mode": "delayed_streaming_900",
+      "lp_time_precision_observed": "minute_aligned",
+      "disposition": "REMAINS_ALLOWLISTED_ONLY_IF_AN_ACTUAL_OBSERVATION_PASSES_<=900; CURRENT_AUTONOMOUS_RELIABILITY_NOT_PROVEN"
+    },
+    "tradingview_anonymous_websocket_seconds": {
+      "exact_symbol_resolution": true,
+      "source_id": "OSE",
+      "provider_id": "ice",
+      "declared_delay_seconds": 900,
+      "bar_source": "trade",
+      "result": "REJECTED_NOT_ENTITLED",
+      "error": "seconds_not_entitled",
+      "retest_rule": "Do not retry anonymous seconds transport unless TradingView entitlement/public-access policy materially changes."
+    },
+    "tradingview_anonymous_websocket_ticks": {
+      "exact_symbol_resolution": true,
+      "tickbars_advertised": true,
+      "result": "REJECTED_NOT_ENTITLED",
+      "error": "ticks_not_entitled",
+      "retest_rule": "Do not retry anonymous tick transport unless TradingView entitlement/public-access policy materially changes."
+    },
+    "nikkeirealtime_continuous": {
+      "result": "REJECTED_AS_PRIMARY",
+      "reason": "Only continuous Micro is publicly exposed and exact individual-contract cross-map already failed."
+    },
+    "third_party_public_search": {
+      "result": "NO_NEW_QUALIFYING_SOURCE_FOUND",
+      "scope": "Exact individual Sep-2026 Micro, OSE identity, free/no-login, provider timestamp suitable for <=900-second proof.",
+      "dominant_exact_sources_found": [
+        "JPX official",
+        "TradingView"
+      ],
+      "broker_login_or_proxy_paths": "NOT_ADMISSIBLE"
+    }
+  },
+  "next_legal_source_path": {
+    "id": "PRIVATE_VISUAL_EXACT_MICRO_B_CANDIDATE",
+    "spec": "config/jnu_private_visual_exact_micro_source_candidate_v1.json",
+    "engineering_selftest": "PASS",
+    "activation_status": "NOT_ACTIVE_NO_REAL_EVIDENCE",
+    "requirements": [
+      "exact individual contract visible",
+      "source/application visible",
+      "price visible",
+      "provider/display timestamp visible",
+      "actual age <=900 seconds",
+      "evidence SHA256 bound",
+      "raw screenshot remains private and is never committed to public Git"
+    ]
+  },
+  "governance": "No freshness relaxation, no broker login, no paid source introduced, no terminal directional family reopened, and no real forecast created."
+}
