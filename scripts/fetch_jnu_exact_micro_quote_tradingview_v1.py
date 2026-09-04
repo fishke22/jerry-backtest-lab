@@ -1,212 +1,232 @@
 from __future__ import annotations
-import argparse, json, re, shutil, subprocess, time
+
+import argparse
+import json
+import re
+import time
+import urllib.parse
+import urllib.request
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
-TAIPEI=timezone(timedelta(hours=8))
-SYMBOL_RE=re.compile(r"^NK225MC[A-Z][0-9]{4}$")
-NUM_RE=re.compile(r"^[+−-]?[0-9][0-9,]*(?:\.[0-9]+)?%?$")
+TAIPEI = timezone(timedelta(hours=8))
+SYMBOL_RE = re.compile(r"^NK225MC[A-Z][0-9]{4}$")
+QUOTE_URL = "https://quotes.tradingview.com/quote_cache_http/snapshot"
+FIELDS = [
+    "current_session",
+    "type",
+    "update_mode",
+    "update_mode_seconds",
+    "original_name",
+    "short_name",
+    "pro_name",
+    "description",
+    "local_description",
+    "exchange",
+    "source_id",
+    "currency_code",
+    "root",
+    "expiration",
+    "contract-date",
+    "symbol_status",
+    "lp",
+    "ch",
+    "chp",
+    "lp_time",
+    "bid",
+    "ask",
+    "rtc",
+    "rch",
+    "rchp",
+]
 
-def agent_command()->list[str]:
-    node=shutil.which("node")
-    npm=shutil.which("npm.cmd") or shutil.which("npm")
-    if not node or not npm:
-        raise RuntimeError("node/npm not found")
-    root=subprocess.run([npm,"root","-g"],check=True,capture_output=True,text=True,encoding="utf-8",errors="replace").stdout.strip()
-    js=Path(root)/"agent-browser"/"bin"/"agent-browser.js"
-    if not js.exists():
-        raise RuntimeError(f"agent-browser JS not found: {js}")
-    return [node,str(js)]
 
-def run_agent(args:list[str],timeout:int=20)->str:
-    cp=subprocess.run([*agent_command(),*args],check=True,capture_output=True,text=True,encoding="utf-8",errors="replace",timeout=timeout)
-    return cp.stdout.strip()
+def snapshot(symbol: str) -> dict:
+    url = QUOTE_URL + "?" + urllib.parse.urlencode({"fields": ",".join(FIELDS)})
+    body = json.dumps([f"OSE:{symbol}"]).encode("utf-8")
+    req = urllib.request.Request(
+        url,
+        data=body,
+        method="POST",
+        headers={
+            "Origin": "https://www.tradingview.com",
+            "Referer": "https://www.tradingview.com/",
+            "Content-Type": "application/json",
+            "User-Agent": "Mozilla/5.0 JNU-exact-micro-quote-adapter/1.3",
+            "Cookie": "sessionid=; sessionid_sign=",
+        },
+    )
+    with urllib.request.urlopen(req, timeout=20) as r:
+        raw = r.read().decode("utf-8", "replace")
+        http_status = int(r.status)
+        response_date = r.headers.get("Date")
 
-def decode_eval_json(stdout:str):
-    x=json.loads(stdout)
-    if isinstance(x,str):
-        return json.loads(x)
-    return x
+    if http_status != 200:
+        raise RuntimeError(f"TradingView quote-cache HTTP status {http_status}")
 
-def open_symbol(symbol:str,session:str,reuse_session:bool=False)->None:
-    url=f"https://www.tradingview.com/symbols/OSE-{symbol}/"
-    if reuse_session:
-        try:
-            current=run_agent(["--session",session,"get","url"],timeout=8).strip()
-            if current.rstrip("/").lower()==url.rstrip("/").lower():
-                return
-        except Exception:
-            pass
-    run_agent(["--session",session,"open",url])
-    run_agent(["--session",session,"wait","450"])
+    x = json.loads(raw)
+    if not isinstance(x, list) or len(x) != 1:
+        raise RuntimeError("unexpected TradingView quote-cache response shape")
 
-def body_identity(symbol:str,session:str)->dict:
-    body=run_agent(["--session",session,"get","text","body"])
-    lines=[x.strip() for x in body.splitlines() if x.strip()]
-    occ=[i for i,x in enumerate(lines) if x==symbol]
-    if not occ:
-        raise RuntimeError(f"symbol {symbol} not found in TradingView page")
-    first=occ[0]
-    window=lines[max(0,(occ[1] if len(occ)>1 else first)-8):(occ[1] if len(occ)>1 else first)+20]
-    if "Osaka Exchange" not in window:
-        raise RuntimeError("Osaka Exchange identity not found near symbol")
-    if not any("Nikkei 225 micro Futures" in x for x in window):
-        raise RuntimeError("Nikkei 225 micro Futures identity not found near symbol")
-    price_text=lines[first+1]
-    currency=lines[first+3]
-    change_text=lines[first+4]
-    change_pct_text=lines[first+5]
-    if currency!="JPY":
-        raise RuntimeError(f"unexpected currency: {currency}")
-    if not NUM_RE.match(price_text) or not NUM_RE.match(change_text) or not NUM_RE.match(change_pct_text):
-        raise RuntimeError("unexpected quote header fields")
-    state=next((x for x in lines if x in {"Market open","Market closed","No trades"}),None)
-    contract_name=next((x for x in window if "contract" in x.lower() and x!="Continuous contract"),None)
+    item = x[0]
+    if not isinstance(item, dict):
+        raise RuntimeError("TradingView quote-cache item is not an object")
+    if item.get("symbol") != f"OSE:{symbol}":
+        raise RuntimeError(f"TradingView quote-cache symbol mismatch: {item.get('symbol')!r}")
+    if item.get("s") != "ok":
+        raise RuntimeError(f"TradingView quote-cache status is not ok: {item.get('s')!r}")
+
+    data = item.get("data")
+    if not isinstance(data, dict):
+        raise RuntimeError("TradingView quote-cache data object missing")
+
     return {
-      "displayed_price":float(price_text.replace(",","")),
-      "displayed_change":float(change_text.replace(",","").replace("−","-")),
-      "displayed_change_pct":float(change_pct_text.replace("%","").replace("−","-")),
-      "market_state":state,
-      "contract_name":contract_name
+        "data": data,
+        "http_status": http_status,
+        "http_response_date": response_date,
     }
 
 
-def atomic_page_state(symbol:str,session:str)->dict:
-    expr=(
-      "(()=>{try{const q=window.getQuoteSessionInstance();"
-      f"const z=(q._symbol_data['OSE:{symbol}']||{{}}).values||{{}};"
-      "const lines=(document.body.innerText||'').split(String.fromCharCode(10)).map(x=>x.replace(String.fromCharCode(13),'').trim()).filter(Boolean).slice(0,80);"
-      "return JSON.stringify({url:location.href,lines,z:{last_price:z.last_price,lp_time:z.lp_time,bid:z.bid,ask:z.ask,"
-      "update_mode:z.update_mode,update_mode_seconds:z.update_mode_seconds,source_id:z.source_id,"
-      "provider_id:z.provider_id,original_name:z.original_name,description:z.description,type:z.type,"
-      "timezone:z.timezone,currency_code:z.currency_code,root:z.root,expiration:z.expiration,"
-      "contract_date:z['contract-date'],subsession_id:z.subsession_id,rt_update_period:z.rt_update_period}});"
-      "}catch(e){return JSON.stringify({error:e.message})}})()"
-    )
-    out=decode_eval_json(run_agent(["--session",session,"eval",expr]))
-    if out.get("error"):
-        raise RuntimeError(f"TradingView atomic snapshot error: {out['error']}")
-    return out
-
-def quote_state(symbol:str,session:str)->dict:
-    expr=(
-      "(()=>{try{const q=window.getQuoteSessionInstance();"
-      f"const z=(q._symbol_data['OSE:{symbol}']||{{}}).values||{{}};"
-      "return JSON.stringify({last_price:z.last_price,lp_time:z.lp_time,bid:z.bid,ask:z.ask,"
-      "update_mode:z.update_mode,update_mode_seconds:z.update_mode_seconds,source_id:z.source_id,"
-      "provider_id:z.provider_id,original_name:z.original_name,description:z.description,type:z.type,"
-      "timezone:z.timezone,currency_code:z.currency_code,root:z.root,expiration:z.expiration,"
-      "contract_date:z['contract-date'],subsession_id:z.subsession_id,rt_update_period:z.rt_update_period});"
-      "}catch(e){return JSON.stringify({error:e.message})}})()"
-    )
-    out=decode_eval_json(run_agent(["--session",session,"eval",expr]))
-    if out.get("error"):
-        raise RuntimeError(f"TradingView quote-session error: {out['error']}")
-    required=["last_price","lp_time","update_mode","source_id","description","type","currency_code"]
-    missing=[k for k in required if out.get(k) is None]
+def validate_and_build(symbol: str, snap: dict, max_age_seconds: int) -> dict:
+    z = snap["data"]
+    required = [
+        "lp",
+        "lp_time",
+        "update_mode",
+        "original_name",
+        "description",
+        "exchange",
+        "source_id",
+        "type",
+        "currency_code",
+        "root",
+    ]
+    missing = [k for k in required if z.get(k) is None]
     if missing:
-        raise RuntimeError(f"TradingView quote-session fields missing: {missing}")
-    if out["source_id"]!="OSE":
-        raise RuntimeError(f"unexpected source_id: {out['source_id']}")
-    if out["type"]!="futures" or "micro" not in str(out["description"]).lower():
-        raise RuntimeError("quote-session does not identify Nikkei 225 Micro futures")
-    if out["currency_code"]!="JPY":
-        raise RuntimeError("unexpected quote-session currency")
-    return out
+        raise RuntimeError(f"TradingView quote-cache fields missing: {missing}")
 
-def fetch_once(symbol:str,session:str,max_age:int,reuse_session:bool=False)->dict:
-    open_symbol(symbol,session,reuse_session=reuse_session)
-    snap=atomic_page_state(symbol,session)
-    z=snap.get("z") or {}
-    required=["last_price","lp_time","update_mode","source_id","description","type","currency_code"]
-    missing=[k for k in required if z.get(k) is None]
-    if missing:
-        raise RuntimeError(f"TradingView atomic snapshot fields missing: {missing}")
-    if z.get("source_id")!="OSE" or z.get("type")!="futures" or "micro" not in str(z.get("description","")).lower() or z.get("currency_code")!="JPY":
-        raise RuntimeError("TradingView atomic snapshot product/source identity invalid")
-    lines=snap.get("lines") or []
-    if symbol not in lines or "Osaka Exchange" not in lines or not any("Nikkei 225 micro Futures" in x for x in lines):
-        raise RuntimeError("TradingView DOM identity invalid")
-    occ=[i for i,x in enumerate(lines) if x==symbol]
-    first=occ[0]
-    price_text=lines[first+1] if first+1<len(lines) else ""
-    displayed_price=float(price_text.replace(",","")) if NUM_RE.match(price_text) else None
-    market_state=next((x for x in lines if x in {"Market open","Market closed","No trades"}),None)
-    contract_name=next((x for x in lines if "contract" in x.lower() and x!="Continuous contract"),None)
-    change=None; change_pct=None
-    if first+5<len(lines):
-        try: change=float(lines[first+4].replace(",","").replace("−","-"))
-        except: pass
-        try: change_pct=float(lines[first+5].replace("%","").replace("−","-"))
-        except: pass
-    now=datetime.now(TAIPEI)
-    source_at=datetime.fromtimestamp(float(z["lp_time"]),timezone.utc).astimezone(TAIPEI)
-    age=(now-source_at).total_seconds()
+    if z["exchange"] != "OSE" or z["source_id"] != "OSE":
+        raise RuntimeError("quote-cache source/exchange identity is not OSE")
+    if z["type"] != "futures":
+        raise RuntimeError("quote-cache instrument type is not futures")
+    if z["currency_code"] != "JPY":
+        raise RuntimeError("quote-cache currency is not JPY")
+    if z["root"] != "NK225MC":
+        raise RuntimeError(f"quote-cache root is not NK225MC: {z['root']!r}")
+    if "micro" not in str(z["description"]).lower():
+        raise RuntimeError("quote-cache description does not identify Nikkei 225 Micro futures")
+    if not str(z["original_name"]).startswith("OSE_DLY:NK225MC"):
+        raise RuntimeError("quote-cache original_name is not an OSE delayed Micro contract")
+
+    update_mode = str(z["update_mode"])
+    if not update_mode.startswith("delayed_streaming"):
+        raise RuntimeError(f"unexpected TradingView update_mode: {update_mode!r}")
+
+    declared_delay = z.get("update_mode_seconds")
+    if declared_delay is None:
+        m = re.search(r"(?:_|-)(\d+)$", update_mode)
+        if m:
+            declared_delay = int(m.group(1))
+    if declared_delay is not None:
+        declared_delay = int(declared_delay)
+
+    source_utc = datetime.fromtimestamp(float(z["lp_time"]), timezone.utc)
+    source_at = source_utc.astimezone(TAIPEI)
+    now = datetime.now(TAIPEI)
+    age = (now - source_at).total_seconds()
+    fresh = 0 <= age <= max_age_seconds
+
+    price = float(z["lp"])
+    if price <= 0:
+        raise RuntimeError("quote-cache price must be positive")
+
     return {
-      "version":"1.2",
-      "provider":"TradingView public symbol page",
-      "data_provider_id":z.get("provider_id"),
-      "source_id":z.get("source_id"),
-      "source_original_name":z.get("original_name"),
-      "symbol":symbol,
-      "tradingview_symbol":f"OSE:{symbol}",
-      "contract_name":contract_name,
-      "contract_date":z.get("contract_date"),
-      "expiration_epoch":z.get("expiration"),
-      "exchange":"Osaka Exchange",
-      "product":"Nikkei 225 micro Futures",
-      "price":float(z["last_price"]),
-      "displayed_price_same_atomic_snapshot":displayed_price,
-      "dom_quote_price_equal":displayed_price is not None and abs(float(z["last_price"])-displayed_price)<=1e-9,
-      "bid":z.get("bid"),
-      "ask":z.get("ask"),
-      "currency":"JPY",
-      "change":change,
-      "change_pct":change_pct,
-      "market_state":market_state,
-      "source_timestamp_epoch":int(z["lp_time"]),
-      "source_timestamp":source_at.isoformat(),
-      "freshness_checked_at":now.isoformat(),
-      "freshness_age_seconds":age,
-      "maximum_allowed_age_seconds":max_age,
-      "freshness_pass":0<=age<=max_age,
-      "exact_product":True,
-      "continuous_contract":False,
-      "update_mode":z.get("update_mode"),
-      "declared_update_mode_seconds":z.get("update_mode_seconds"),
-      "rt_update_period":z.get("rt_update_period"),
-      "subsession_id":z.get("subsession_id"),
-      "url":f"https://www.tradingview.com/symbols/OSE-{symbol}/",
-      "delayed_data":str(z.get("update_mode","")).startswith("delayed"),
-      "adapter_mode":"warm_session_reuse" if reuse_session else "open_and_validate"
+        "version": "1.3",
+        "provider": "TradingView anonymous OSE quote-cache snapshot",
+        "data_provider_id": "tradingview_quote_cache_http",
+        "source_id": z["source_id"],
+        "source_original_name": z["original_name"],
+        "symbol": symbol,
+        "tradingview_symbol": f"OSE:{symbol}",
+        "contract_name": z.get("description"),
+        "contract_date": z.get("contract-date"),
+        "expiration_epoch": z.get("expiration"),
+        "exchange": "Osaka Exchange",
+        "product": "Nikkei 225 micro Futures",
+        "price": price,
+        "displayed_price_same_atomic_snapshot": None,
+        "dom_quote_price_equal": None,
+        "bid": z.get("bid"),
+        "ask": z.get("ask"),
+        "currency": "JPY",
+        "change": float(z["ch"]) if z.get("ch") is not None else None,
+        "change_pct": float(z["chp"]) if z.get("chp") is not None else None,
+        "market_state": z.get("current_session"),
+        "source_timestamp_epoch": int(float(z["lp_time"])),
+        "source_timestamp": source_at.isoformat(),
+        "freshness_checked_at": now.isoformat(),
+        "freshness_age_seconds": age,
+        "maximum_allowed_age_seconds": max_age_seconds,
+        "freshness_pass": fresh,
+        "exact_product": True,
+        "continuous_contract": False,
+        "update_mode": update_mode,
+        "declared_update_mode_seconds": declared_delay,
+        "rt_update_period": None,
+        "subsession_id": z.get("current_session"),
+        "url": f"https://www.tradingview.com/symbols/OSE-{symbol}/",
+        "quote_cache_endpoint": QUOTE_URL,
+        "quote_cache_http_response_date": snap.get("http_response_date"),
+        "delayed_data": True,
+        "adapter_mode": "anonymous_quote_cache_http",
     }
 
-def main():
-    ap=argparse.ArgumentParser()
-    ap.add_argument("--symbol",required=True)
-    ap.add_argument("--session",default="jnu_exact_micro")
-    ap.add_argument("--max-age-seconds",type=int,default=900)
-    ap.add_argument("--max-wait-seconds",type=int,default=0)
-    ap.add_argument("--poll-seconds",type=int,default=5)
-    ap.add_argument("--output",type=Path)
-    ap.add_argument("--reuse-session",action="store_true",help="Reuse the existing exact-symbol browser session when already on the same URL; does not change source or freshness rules.")
-    args=ap.parse_args()
-    symbol=args.symbol.upper()
-    if not SYMBOL_RE.match(symbol):
-        raise RuntimeError("symbol must be an individual OSE Nikkei 225 Micro contract such as NK225MCU2026")
-    deadline=time.monotonic()+max(0,args.max_wait_seconds)
+
+def fetch_once(symbol: str, max_age_seconds: int) -> dict:
+    return validate_and_build(symbol, snapshot(symbol), max_age_seconds)
+
+
+def main() -> None:
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--symbol", required=True)
+    # Kept for CLI compatibility with the prior browser transport.
+    ap.add_argument("--session", default="jnu_exact_micro")
+    ap.add_argument("--reuse-session", action="store_true")
+    ap.add_argument("--max-age-seconds", type=int, default=900)
+    ap.add_argument("--max-wait-seconds", type=int, default=0)
+    ap.add_argument("--poll-seconds", type=int, default=5)
+    ap.add_argument("--output", type=Path)
+    args = ap.parse_args()
+
+    symbol = args.symbol.upper()
+    if not SYMBOL_RE.fullmatch(symbol):
+        raise RuntimeError(
+            "symbol must be an individual OSE Nikkei 225 Micro contract such as NK225MCU2026"
+        )
+    if args.max_age_seconds <= 0:
+        raise RuntimeError("max-age-seconds must be positive")
+
+    deadline = time.monotonic() + max(0, args.max_wait_seconds)
+    last: dict | None = None
+
     while True:
-        q=fetch_once(symbol,args.session,args.max_age_seconds,reuse_session=args.reuse_session)
-        if q["freshness_pass"]:
+        last = fetch_once(symbol, args.max_age_seconds)
+        if last["freshness_pass"]:
             break
-        if args.max_wait_seconds<=0 or time.monotonic()>=deadline:
-            raise RuntimeError(f"quote stale: age={q['freshness_age_seconds']:.1f}s > {args.max_age_seconds}s; source={q['source_timestamp']}")
-        time.sleep(max(1,args.poll_seconds))
-    s=json.dumps(q,ensure_ascii=False,indent=2)
+        if args.max_wait_seconds <= 0 or time.monotonic() >= deadline:
+            raise RuntimeError(
+                "quote stale: "
+                f"age={last['freshness_age_seconds']:.1f}s > {args.max_age_seconds}s; "
+                f"source={last['source_timestamp']}"
+            )
+        time.sleep(max(1, args.poll_seconds))
+
+    s = json.dumps(last, ensure_ascii=False, indent=2)
     if args.output:
-        args.output.parent.mkdir(parents=True,exist_ok=True)
-        args.output.write_text(s+"\n",encoding="utf-8")
+        args.output.parent.mkdir(parents=True, exist_ok=True)
+        args.output.write_text(s + "\n", encoding="utf-8")
     print(s)
 
-if __name__=="__main__":
+
+if __name__ == "__main__":
     main()
