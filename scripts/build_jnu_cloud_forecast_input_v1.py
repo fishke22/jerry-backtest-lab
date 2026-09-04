@@ -5,6 +5,7 @@ import json
 import re
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
+from jnu_exact_micro_source_validation_v1 import validate_reference_source_metadata
 
 TAIPEI = timezone(timedelta(hours=8))
 REQUEST_ID_RE = re.compile(r"^JNU_REQ_[A-Za-z0-9._-]{8,120}$")
@@ -84,14 +85,10 @@ def validate_request(x: dict) -> None:
             raise RuntimeError(f"{k} must be non-empty")
 
 
-def validate_quote(q: dict, request: dict) -> None:
+def validate_quote(q: dict, request: dict) -> str:
     symbol = str(request["symbol"]).upper()
     if q.get("symbol") != symbol:
         raise RuntimeError("quote symbol does not match request symbol")
-    if q.get("tradingview_symbol") != f"OSE:{symbol}":
-        raise RuntimeError("quote TradingView symbol identity mismatch")
-    if q.get("source_id") != "OSE":
-        raise RuntimeError("quote source_id must be OSE")
     if q.get("exact_product") is not True:
         raise RuntimeError("quote exact_product must be true")
     if q.get("continuous_contract") is not False:
@@ -106,6 +103,15 @@ def validate_quote(q: dict, request: dict) -> None:
     ts = datetime.fromisoformat(str(q.get("source_timestamp")))
     if ts.tzinfo is None:
         raise RuntimeError("quote source timestamp must be offset-aware")
+    source_class = validate_reference_source_metadata(
+        q, float(q["price"]), str(q["source_timestamp"])
+    )
+    if source_class not in {
+        "JPX_OSE_OFFICIAL_EXACT_MICRO_A",
+        "TRADINGVIEW_OSE_EXACT_MICRO_B",
+    }:
+        raise RuntimeError("quote source class is not allowed")
+    return source_class
 
 
 def main() -> None:
@@ -119,7 +125,7 @@ def main() -> None:
     req = load(args.request)
     q = load(args.quote)
     validate_request(req)
-    validate_quote(q, req)
+    source_class = validate_quote(q, req)
 
     created = (
         datetime.fromisoformat(args.created_at_taipei)
@@ -154,7 +160,7 @@ def main() -> None:
         "created_at_taipei": created.isoformat(),
         "reference_price": float(q["price"]),
         "reference_timestamp": source_ts.isoformat(),
-        "reference_source": str(q.get("provider") or "TradingView OSE individual Micro quote"),
+        "reference_source": str(q.get("provider") or source_class),
         "reference_source_metadata": meta,
         "exact_product": True,
         "target_day_session_date": req["target_day_session_date"],
@@ -181,6 +187,7 @@ def main() -> None:
                 "reference_price": envelope["reference_price"],
                 "reference_timestamp": envelope["reference_timestamp"],
                 "freshness_age_seconds": age,
+                "reference_source_class": source_class,
                 "output": str(args.output),
             },
             ensure_ascii=False,
