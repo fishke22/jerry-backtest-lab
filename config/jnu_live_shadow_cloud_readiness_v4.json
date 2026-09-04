@@ -1,0 +1,82 @@
+{
+  "version": "4.0",
+  "as_of": "2026-09-04",
+  "status": "CLOUD_PIPELINE_READY_AWAITING_QUALIFYING_INDIVIDUAL_EXACT_MICRO_REFERENCE",
+  "authoritative_framework": "config/jnu_operational_framework_current_v1_4.json",
+  "live_shadow_preregistration": "config/jnu_operational_live_shadow_prereg_v1_3.json",
+  "live_shadow_implementation": "config/jnu_operational_live_shadow_implementation_v1_3.json",
+  "decision_protocol": "config/jnu_operational_decision_protocol_v1.json",
+  "cloud_request_protocol": "config/jnu_cloud_forecast_request_protocol_v1.json",
+  "reference_source_gate": "config/jnu_exact_micro_reference_source_gate_20260904_v1.json",
+  "exact_quote_adapter": "scripts/fetch_jnu_exact_micro_quote_tradingview_v1.py",
+  "cloud_request_builder": "scripts/build_jnu_cloud_forecast_input_v1.py",
+  "cloud_forecast_workflow": ".github/workflows/jnu-live-shadow-cloud-forecast-v1.yml",
+  "verification": {
+    "browserless_tradingview_transport": {
+      "status": "ENGINEERING_PASS",
+      "quote_cache_probe_run_id": 33820769373,
+      "browserless_smoke_run_id": 33821088044,
+      "exact_individual_contract": true,
+      "structural_delay_seconds": 900,
+      "observed_smoke_age_seconds": 914.1,
+      "disposition": "FAIL_CLOSED_IF_ACTUAL_AGE_GT_900"
+    },
+    "cloud_workflow_actionlint": {
+      "status": "PASS_ZERO_ERRORS",
+      "run_id": 33821093720
+    },
+    "cloud_request_builder_selftest": {
+      "status": "PASS",
+      "latest_run_id": 33821119018
+    },
+    "nikkeirealtime_protocol": {
+      "status": "PUBLIC_PROTOCOL_REPRODUCIBLE",
+      "protocol_probe_run_id": 33821753898,
+      "websocket_probe_run_id": 33821656082,
+      "exact_micro_continuous_freshness_pass": true,
+      "individual_month_contract_available": false
+    },
+    "continuous_to_individual_crossmap": {
+      "status": "REJECTED_NOT_EQUIVALENT_OR_EXACTLY_MAPPABLE",
+      "ohlc_run_id": 33821901714,
+      "nrttick_run_id": 33822091131,
+      "nrttick_attempts": 2,
+      "direct_same_timestamp_mismatch_points": 80,
+      "primary_fallback_allowed": false
+    }
+  },
+  "frozen_source_rules": [
+    "reference age <=900 seconds",
+    "individual exact OSE Nikkei 225 Micro month contract only",
+    "continuous contract cannot be substituted",
+    "provider-carried source timestamp required",
+    "no manual relaxation of freshness to compensate for transport delay",
+    "source research must not modify real forecast/outcome ledger"
+  ],
+  "real_ledger": {
+    "forecasts": 0,
+    "outcomes": 0,
+    "status": "EMPTY_FAIL_CLOSED"
+  },
+  "directional_validation_state": {
+    "validated_directional_modules": 0,
+    "decision_engine": "NO_VALIDATED_DIRECTIONAL_EDGE"
+  },
+  "next_gate": [
+    "obtain a provider-carried <=900-second timestamped quote for an individual OSE NK225MC month contract",
+    "verify target-horizon event state under the frozen UNKNOWN fail-safe protocol",
+    "commit a fresh <=900-second immutable request only after both gates are simultaneously satisfied"
+  ],
+  "accepted_paths": [
+    "TradingView individual contract only if actual lp_time age <=900 seconds at build/registration",
+    "another independently verified public/cloud individual exact-Micro source",
+    "user/broker exact-Micro timestamped source if provenance and <=900-second freshness can be verified without changing the frozen scoring rule"
+  ],
+  "rejected_paths": [
+    "relaxing the freshness gate above 900 seconds",
+    "using NikkeiRealtime N225MC.FUT.OSE.CONT as a substitute for the individual Sep contract",
+    "using a proxy Nikkei/Mini/Large/CFD starting price",
+    "manually entering price/timestamp into the cloud request"
+  ],
+  "next_action": "Do not create the first scored forecast until a qualifying individual exact-Micro reference exists. Keep Stage8 and directional research governance unchanged."
+}
