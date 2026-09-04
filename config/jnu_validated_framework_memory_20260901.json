@@ -1,6 +1,6 @@
 {
   "version": "2026-09-01",
-  "as_of": "2026-09-01",
+  "as_of": "2026-09-04",
   "VALIDATED_JNU_MODULE": 0,
   "validated_directional_modules": 0,
   "decision_engine": "NO_VALIDATED_DIRECTIONAL_EDGE",
@@ -208,7 +208,7 @@
   "authoritative_validation_pipeline_checkpoint": "config/jnu_validation_pipeline_checkpoint_20260902_v1.json",
   "validation_pipeline_status": "JNU_VALIDATION_PIPELINE_READY_FORWARD_DATA_PENDING",
   "validation_pipeline_head": "ff322f11dbb23da6be093056ac6ef47f2db10e4a",
-  "next_action": "Use JNU Operational Framework v1.4. Do not create a scored live-shadow forecast until an individual OSE NK225MC month-contract quote with provider-carried timestamp age <=900 seconds is available and target-horizon event state is verified. Do not relax freshness or substitute NikkeiRealtime CONT. Stage8 remains separate and untouched.",
+  "next_action": "Use JNU Operational Framework v1.5. Do not create a scored live-shadow forecast until an allowed individual OSE NK225MC month-contract source (JPX official A or TradingView B) supplies a provider-carried timestamp with actual age <=900 seconds and target-horizon event state is verified. Do not relax freshness or substitute NikkeiRealtime CONT.",
   "stage8_forward_local_ingest": {
     "status": "SELFTEST_PASS_NO_SOURCE_CHANGE",
     "script": "scripts/ingest_jnu_stage8_forward_local.py",
@@ -216,8 +216,8 @@
     "download_or_login_automation": false,
     "next_action": "After a manually/authorized updated 225Labo Micro package exists locally, run check-only then --apply; inspect readiness only."
   },
-  "authoritative_operational_framework": "config/jnu_operational_framework_current_v1_4.json",
-  "operational_framework_status": "AUTHORITATIVE_JNU_OPERATIONAL_FRAMEWORK_V1_4",
+  "authoritative_operational_framework": "config/jnu_operational_framework_current_v1_5.json",
+  "operational_framework_status": "AUTHORITATIVE_JNU_OPERATIONAL_FRAMEWORK_V1_5",
   "operational_framework_usage": "Use for all future Osaka Nikkei/JNU analysis unless explicitly superseded by a later committed framework.",
   "jpx_n225mini_foreign_flow_sign_g1": {
     "status": "TERMINAL_FAIL_NO_RESCUE",
@@ -253,14 +253,14 @@
   "directional_research_status": "PAUSE_NEW_FORMAL_DIRECTIONAL_FAMILIES_UNTIL_NEW_DIRECT_EVIDENCE",
   "directional_scout_checkpoint": "config/jnu_directional_scout_checkpoint_20260903_v1.json",
   "live_shadow_validation": {
-    "status": "ACTIVE_V1_3_SOURCE_METADATA_ATOMIC_INTEGRITY",
-    "preregistration": "config/jnu_operational_live_shadow_prereg_v1_3.json",
-    "implementation": "config/jnu_operational_live_shadow_implementation_v1_3.json",
-    "registrar": "scripts/register_jnu_operational_shadow_forecast_v1_3.py",
+    "status": "ACTIVE_V1_4_MULTI_SOURCE_ALLOWLIST_INTEGRITY",
+    "preregistration": "config/jnu_operational_live_shadow_prereg_v1_4.json",
+    "implementation": "config/jnu_operational_live_shadow_implementation_v1_4.json",
+    "registrar": "scripts/register_jnu_operational_shadow_forecast_v1_4.py",
     "atomic_forecast_tool": "scripts/register_jnu_operational_shadow_forecast_atomic_v1.py",
     "atomic_outcome_tool": "scripts/record_jnu_operational_shadow_outcome_atomic_v1.py",
-    "integrity_scorer": "scripts/score_jnu_operational_live_shadow_v1_2.py",
-    "selftest": "config/jnu_v1_4_source_metadata_integrity_selftest.json",
+    "integrity_scorer": "scripts/score_jnu_operational_live_shadow_v1_3.py",
+    "selftest": "config/jnu_operational_live_shadow_v1_5_multisource_selftest.json",
     "real_forecasts_registered": 0,
     "real_outcomes_registered": 0,
     "first_formal_review_min_nonabstain": 30
@@ -278,21 +278,28 @@
     "boj_available_new_events": 0
   },
   "first_real_live_shadow_forecast_readiness": {
-    "status": "CLOUD_PIPELINE_READY_AWAITING_QUALIFYING_INDIVIDUAL_EXACT_MICRO_REFERENCE",
-    "checkpoint": "config/jnu_live_shadow_cloud_readiness_v4.json",
-    "source_gate": "config/jnu_exact_micro_reference_source_gate_20260904_v1.json",
+    "status": "MULTI_SOURCE_CLOUD_PIPELINE_READY_AWAITING_QUALIFYING_INDIVIDUAL_EXACT_MICRO_REFERENCE",
+    "checkpoint": "config/jnu_live_shadow_cloud_readiness_v5.json",
+    "source_gate": "config/jnu_exact_micro_primary_source_hierarchy_v1.json",
     "real_forecasts": 0,
     "real_outcomes": 0
   },
   "exact_micro_reference_source": {
-    "status": "NO_AUTONOMOUS_PRIMARY_CURRENTLY_QUALIFIES_RELIABLY",
-    "adapter": "scripts/fetch_jnu_exact_micro_quote_tradingview_v1.py",
-    "source_spec": "config/jnu_exact_micro_tradingview_quote_source_v1.json",
-    "source_gate": "config/jnu_exact_micro_reference_source_gate_20260904_v1.json",
-    "quality": "B",
-    "primary_reference_rule": "individual OSE Micro month contract only",
-    "tradingview": "identity pass; public delayed_streaming_900 is eligible only when actual lp_time age <=900 seconds",
-    "nikkeirealtime_continuous": "fresh public WebSocket data verified but PRIMARY_FALLBACK_REJECTED_CURRENT_SCHEMA because only N225MC.FUT.OSE.CONT is exposed and exact cross-map to Sep individual contract failed",
-    "freshness_gate_seconds": 900
+    "status": "MULTI_SOURCE_ALLOWLIST_ACTIVE_BUT_NO_LIVE_OBSERVATION_CURRENTLY_PASSES_FROZEN_FRESHNESS",
+    "hierarchy": "config/jnu_exact_micro_primary_source_hierarchy_v1.json",
+    "shared_validator": "scripts/jnu_exact_micro_source_validation_v1.py",
+    "jpx_official": "A identity/source; individual listed month contract; Last timestamp minute precision; latest live probe failed closed at 905.6 seconds",
+    "tradingview": "B identity/source; individual OSE Micro lp_time; structural delayed_streaming_900; use only if actual age <=900 seconds",
+    "nikkeirealtime_continuous": "B-grade context only; primary substitution rejected because only continuous Micro is exposed and exact individual cross-map failed",
+    "freshness_gate_seconds": 900,
+    "no_fresh_source_behavior": "FAIL_CLOSED_NO_SCORED_FORECAST"
+  },
+  "multi_source_cloud_alignment": {
+    "workflow": ".github/workflows/jnu-live-shadow-cloud-forecast-v1.yml",
+    "builder": "scripts/build_jnu_cloud_forecast_input_v1.py",
+    "actionlint_run_id": 33876057519,
+    "actionlint_status": "PASS",
+    "synthetic_jpx_builder_atomic_selftest": "PASS",
+    "latest_alignment_commit": "f52be4d17b9b00609f07c4b6ef275f014226b33f"
   }
 }
