@@ -154,7 +154,7 @@ def main() -> None:
         "created_at_taipei": created.isoformat(),
         "reference_price": float(q["price"]),
         "reference_timestamp": source_ts.isoformat(),
-        "reference_source": "TradingView public OSE individual Micro quote-session",
+        "reference_source": str(q.get("provider") or "TradingView OSE individual Micro quote"),
         "reference_source_metadata": meta,
         "exact_product": True,
         "target_day_session_date": req["target_day_session_date"],
