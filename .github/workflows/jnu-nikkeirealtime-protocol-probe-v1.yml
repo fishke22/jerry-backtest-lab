@@ -1,0 +1,36 @@
+name: JNU NikkeiRealtime Protocol Probe
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/jnu-nikkeirealtime-protocol-probe-v1.yml"
+      - "scripts/probe_nikkeirealtime_exact_micro_protocol_v1.py"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Probe public NikkeiRealtime frontend protocol
+        run: |
+          python scripts/probe_nikkeirealtime_exact_micro_protocol_v1.py | tee probe.stdout.txt
+      - name: Upload protocol evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: jnu-nikkeirealtime-protocol-probe-${{ github.run_id }}
+          path: |
+            probe.stdout.txt
+            nikkeirealtime_protocol_probe.json
+            nikkeirealtime_protocol_snippets.txt
+          if-no-files-found: error
+          retention-days: 14
