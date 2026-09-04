@@ -1,0 +1,37 @@
+name: JNU nrttick Crossmap Probe
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/jnu-nrttick-crossmap-probe-v1.yml"
+      - "scripts/probe_nikkeirealtime_nrttick_crossmap_v1.py"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install read-only WebSocket client
+        run: python -m pip install --disable-pip-version-check "websockets==15.0.1"
+      - name: Probe nrttick exact timestamp-price mapping
+        run: python scripts/probe_nikkeirealtime_nrttick_crossmap_v1.py | tee nrttick.stdout.txt
+      - name: Upload raw tick evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: jnu-nrttick-crossmap-${{ github.run_id }}
+          path: |
+            nrttick.stdout.txt
+            jnu_nrttick_crossmap_probe.json
+            jnu_nrttick_raw.jsonl
+          if-no-files-found: ignore
+          retention-days: 14
