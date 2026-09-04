@@ -7,14 +7,21 @@ TOKENS=[
     "N225MC.FUT.OSE.CONT",
     "wss://con.nikkeirealtime.com/GIQS",
     "sourceAt",
-    "snapshot",
-    "requestChartHistory",
-    "WebSocket(",
-    "con.nikkeirealtime.com",
+    "lastTickAt",
     "feedSymbol",
+    "sourceType",
+    "8884:",
+    "function ac",
+    "ac=",
+    "aC=",
+    "av=",
+    'rk:"$$symb"',
+    "nrtquot",
+    "JSON.stringify",
+    ".send(",
 ]
 def get(url:str)->str:
-    req=urllib.request.Request(url,headers={"User-Agent":"Mozilla/5.0 JNU-NRT-probe/1.0"})
+    req=urllib.request.Request(url,headers={"User-Agent":"Mozilla/5.0 JNU-NRT-probe/2.0"})
     with urllib.request.urlopen(req,timeout=20) as r:
         return r.read().decode("utf-8","replace")
 
@@ -27,23 +34,23 @@ for m in re.finditer(r'<script[^>]+src=["\']([^"\']+\.js[^"\']*)["\']',page,re.I
 srcs=list(dict.fromkeys(srcs))
 print(json.dumps({"status":"PAGE_FETCHED","script_count":len(srcs),"scripts":srcs},ensure_ascii=False,indent=2))
 
-matches=[]
-# Include inline HTML contexts first.
 sources=[("PAGE_HTML",page)]
 for u in srcs:
     try:
         sources.append((u,get(u)))
     except Exception as e:
         print(json.dumps({"warning":"SCRIPT_FETCH_FAILED","url":u,"error":repr(e)},ensure_ascii=False))
+
+matches=[]
 for name,text in sources:
     for token in TOKENS:
         start=0
         found=0
-        while True:
+        while found<6:
             i=text.find(token,start)
             if i<0: break
             found+=1
-            lo=max(0,i-1800); hi=min(len(text),i+len(token)+3000)
+            lo=max(0,i-3200); hi=min(len(text),i+len(token)+7200)
             matches.append({
                 "source":name,
                 "token":token,
@@ -52,10 +59,15 @@ for name,text in sources:
                 "context":text[lo:hi],
             })
             start=i+len(token)
-            if found>=8: break
 
+# Compact index first, full contexts after it.
+print(json.dumps({
+    "status":"TOKEN_INDEX",
+    "matches":[{"source":m["source"],"token":m["token"],"occurrence":m["occurrence"],"offset":m["offset"]} for m in matches]
+},ensure_ascii=False,indent=2))
 print(json.dumps({"status":"RAW_TOKEN_CONTEXTS","match_count":len(matches),"matches":matches},ensure_ascii=False,indent=2))
-if not any(m["token"]=="N225MC.FUT.OSE.CONT" for m in matches):
-    raise RuntimeError("Micro feed id not found")
-if not any(m["token"]=="wss://con.nikkeirealtime.com/GIQS" for m in matches):
-    raise RuntimeError("WebSocket endpoint not found")
+
+required=["N225MC.FUT.OSE.CONT","wss://con.nikkeirealtime.com/GIQS",'rk:"$$symb"',"nrtquot"]
+missing=[t for t in required if not any(m["token"]==t for m in matches)]
+if missing:
+    raise RuntimeError(f"required transport tokens not found: {missing}")
