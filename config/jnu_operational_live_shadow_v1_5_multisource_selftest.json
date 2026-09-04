@@ -2,7 +2,11 @@
   "version": "1.0",
   "as_of": "2026-09-04",
   "status": "JNU_OPERATIONAL_LIVE_SHADOW_V1_5_MULTISOURCE_SELFTEST_PASS",
-  "real_ledger": {"forecasts": 0, "outcomes": 0, "modified_by_selftest": false},
+  "real_ledger": {
+    "forecasts": 0,
+    "outcomes": 0,
+    "modified_by_selftest": false
+  },
   "hash_chain": {
     "framework_sha256": "797fa0ccb7a5bcf0d05e59e60106dd807073450e992061cc406f39999932ea51",
     "prereg_sha256": "e13dd67e9bcc5a22b43bd13a038d0087e4fdc62f163a3ff38ca9f499faa113f7",
@@ -21,11 +25,21 @@
     "synthetic_jpx_atomic_outcome": "PASS",
     "scorer_recomputes_trace_and_outcome": "PASS",
     "real_empty_ledger_scorer_integrity": "PASS",
-    "cloud_workflow_actionlint": {"status": "PASS", "run_id": 33876057519}
+    "cloud_workflow_actionlint": {
+      "status": "PASS",
+      "run_id": 33876057519
+    },
+    "final_real_empty_ledger_scorer": "PASS"
   },
   "live_source_checks": {
-    "jpx_official": {"latest_age_seconds": 905.6, "result": "FAIL_CLOSED_STALE"},
-    "tradingview_individual": {"observed_age_seconds": 935.7, "result": "FAIL_CLOSED_STALE"},
+    "jpx_official": {
+      "latest_age_seconds": 949.9,
+      "result": "FAIL_CLOSED_STALE_FINAL_RECHECK"
+    },
+    "tradingview_individual": {
+      "observed_age_seconds": 950.6,
+      "result": "FAIL_CLOSED_STALE_FINAL_RECHECK"
+    },
     "nikkeirealtime_continuous": "NOT_ELIGIBLE_AS_PRIMARY"
   },
   "first_real_forecast_created": false,
