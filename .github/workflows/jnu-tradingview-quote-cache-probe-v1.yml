@@ -1,0 +1,32 @@
+name: JNU TradingView Quote Cache Probe
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/jnu-tradingview-quote-cache-probe-v1.yml"
+      - "scripts/probe_tradingview_quote_cache_exact_micro_v1.py"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Probe anonymous exact Micro quote-cache snapshot
+        run: |
+          python scripts/probe_tradingview_quote_cache_exact_micro_v1.py | tee probe.log
+      - name: Upload probe log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: jnu-tv-quote-cache-probe-${{ github.run_id }}
+          path: probe.log
+          retention-days: 7
