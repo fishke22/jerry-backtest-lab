@@ -1,37 +1,54 @@
 {
-  "version": "1.0",
+  "version": "1.1",
   "frozen_at": "2026-09-03",
-  "status": "EXACT_JNU_PUBLIC_QUOTE_SOURCE_ADAPTER_ACTIVE",
-  "provider": "TradingView public symbol page",
+  "status": "EXACT_JNU_PUBLIC_QUOTE_SOURCE_ADAPTER_QUOTE_CACHE_ACTIVE",
+  "provider": "TradingView anonymous quote-cache snapshot carrying OSE exact-Micro metadata",
   "product_requirement": "Individual Osaka Exchange Nikkei 225 micro Futures contract, e.g. OSE:NK225MCU2026. Continuous NK225MC1! may be context only and is not used as the scored reference when an individual front contract is available.",
   "browser_dependency": {
-    "cli": "agent-browser",
-    "version": "0.36.0",
-    "publisher": "Vercel Labs",
-    "license": "Apache-2.0",
-    "local_install": "global npm on KO-HONG-HSUAN"
+    "required": false,
+    "legacy_browser_transport": "Retained only as a diagnostic fallback outside the formal cloud path.",
+    "cloud_primary_transport": "HTTPS POST to TradingView quote_cache_http snapshot endpoint."
   },
   "source_fields_required": [
     "symbol",
-    "contract_name",
     "exchange",
+    "source_id",
+    "source_original_name",
     "price",
     "currency",
     "change",
     "change_pct",
     "market_state",
-    "displayed_asof_time",
-    "displayed_timezone"
+    "source_timestamp",
+    "update_mode",
+    "exact_product",
+    "continuous_contract",
+    "freshness_age_seconds",
+    "freshness_pass"
   ],
   "freshness_rule": {
     "maximum_age_seconds": 900,
-    "conservative_minute_rule": "TradingView displays As-of time to minute precision. Interpret displayed HH:MM as HH:MM:00, not the end of the minute. This makes the age calculation conservative.",
+    "timestamp_rule": "Use TradingView quote-cache lp_time epoch carried with the OSE delayed-streaming quote. Do not substitute browser receive time, HTTP Date, bid/ask time, or page-render time.",
     "fail_closed": true
   },
-  "scored_forecast_rule": "Reference source must be an individual exact OSE Micro contract and freshness_age_seconds <= 900 at registration.",
-  "outcome_rule": "Target day-session close may be sourced from the same individual exact contract only after the displayed quote timestamp reaches or exceeds the frozen OSE 15:45 JST close and the closing value is available.",
+  "scored_forecast_rule": "Reference source must be an individual exact OSE Micro contract from the TradingView quote-cache transport, source_id=OSE, continuous_contract=false, and freshness_age_seconds<=900 at forecast build/registration.",
+  "outcome_rule": "Target day-session close must remain exact-product and independently timestamped; the quote-cache transport may be used only when the target-close timestamp/market-state conditions in the outcome protocol are met.",
   "delayed_data_disclosure": true,
   "no_login_required_in_selftest": true,
   "no_broker_access": true,
-  "no_order_execution": true
+  "no_order_execution": true,
+  "transport_integrity": {
+    "exact_symbol_pattern": "^NK225MC[A-Z][0-9]{4}$",
+    "required_exchange": "OSE",
+    "required_source_id": "OSE",
+    "required_root": "NK225MC",
+    "required_type": "futures",
+    "required_currency": "JPY",
+    "required_original_name_prefix": "OSE_DLY:NK225MC",
+    "observed_update_mode": "delayed_streaming_900",
+    "cloud_probe_run_id": 33820769373,
+    "cloud_probe_status": "PASS",
+    "first_probe_price": 64725,
+    "first_probe_lp_time_epoch": 1788479760
+  }
 }
