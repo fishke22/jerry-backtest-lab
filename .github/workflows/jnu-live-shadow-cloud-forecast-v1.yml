@@ -92,6 +92,8 @@ jobs:
 
           existing=$(python - "$request_id" <<'PY'
           import json, pathlib, sys
+          sys.path.insert(0,"scripts")
+          from jnu_exact_micro_source_validation_v1 import validate_reference_source_metadata
           rid=sys.argv[1]
           hits=[]
           d=pathlib.Path("live_shadow/forecasts")
@@ -137,12 +139,31 @@ jobs:
         env:
           SYMBOL: ${{ steps.request.outputs.symbol }}
         run: |
-          python scripts/fetch_jnu_exact_micro_quote_tradingview_v1.py \
-            --symbol "$SYMBOL" \
-            --max-age-seconds 900 \
-            --max-wait-seconds 600 \
-            --poll-seconds 5 \
-            --output cloud_quote.json
+          set -euo pipefail
+          deadline=$((SECONDS + 600))
+          while (( SECONDS < deadline )); do
+            if python scripts/fetch_jnu_exact_micro_quote_jpx_v1.py \
+              --symbol "$SYMBOL" \
+              --max-age-seconds 900 \
+              --output cloud_quote.jpx.json > jpx_quote_attempt.log 2>&1; then
+              mv cloud_quote.jpx.json cloud_quote.json
+              echo "Selected JPX official exact-Micro source."
+              exit 0
+            fi
+            if python scripts/fetch_jnu_exact_micro_quote_tradingview_v1.py \
+              --symbol "$SYMBOL" \
+              --max-age-seconds 900 \
+              --output cloud_quote.tv.json > tv_quote_attempt.log 2>&1; then
+              mv cloud_quote.tv.json cloud_quote.json
+              echo "Selected TradingView exact-Micro source."
+              exit 0
+            fi
+            sleep 5
+          done
+          echo "No allowed individual exact-Micro source passed the frozen <=900-second gate." >&2
+          cat jpx_quote_attempt.log >&2 || true
+          cat tv_quote_attempt.log >&2 || true
+          exit 1
 
       - name: Build forecast input from immutable request and cloud quote
         if: steps.request.outputs.already_registered != 'true'
@@ -200,10 +221,15 @@ jobs:
                   hits.append((p,x))
           assert len(hits)==1, f"expected exactly one real forecast for {rid}, got {len(hits)}"
           p,x=hits[0]
-          assert x["reference_source_metadata"]["source_id"]=="OSE"
-          assert x["reference_source_metadata"]["continuous_contract"] is False
-          assert x["reference_source_metadata"]["freshness_pass"] is True
-          assert float(x["reference_source_metadata"]["freshness_age_seconds"])<=900
+          meta=x["reference_source_metadata"]
+          source_class=validate_reference_source_metadata(
+              meta,float(x["reference_price"]),str(x["reference_timestamp"])
+          )
+          assert source_class in {"JPX_OSE_OFFICIAL_EXACT_MICRO_A","TRADINGVIEW_OSE_EXACT_MICRO_B"}
+          assert x["reference_source_class"]==source_class
+          assert meta["continuous_contract"] is False
+          assert meta["freshness_pass"] is True
+          assert float(meta["freshness_age_seconds"])<=900
           print(json.dumps({
               "status":"REAL_FORECAST_ATOMIC_CLOUD_REGISTRATION_VERIFIED",
               "request_id":rid,
@@ -225,5 +251,7 @@ jobs:
             cloud_quote.json
             cloud_atomic_input.json
             cloud_register_result.json
+            jpx_quote_attempt.log
+            tv_quote_attempt.log
           if-no-files-found: ignore
           retention-days: 30
