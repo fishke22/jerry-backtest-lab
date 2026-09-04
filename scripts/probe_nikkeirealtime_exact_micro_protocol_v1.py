@@ -87,10 +87,12 @@ def main() -> None:
     }
 
     raw_lines = []
+    micro_tokens = set()
     for u in urls:
         try:
             data, headers = get(u)
             text = data.decode("utf-8", "replace")
+            micro_tokens.update(re.findall(r"N225MC[A-Za-z0-9._:-]*", text))
             rec = {
                 "url": u,
                 "sha256": hashlib.sha256(data).hexdigest(),
@@ -112,6 +114,8 @@ def main() -> None:
         except Exception as e:
             result["scripts"].append({"url": u, "error": repr(e)})
 
+    result["micro_contract_tokens"] = sorted(micro_tokens)
+
     Path("nikkeirealtime_protocol_probe.json").write_text(
         json.dumps(result, ensure_ascii=False, indent=2) + "\n",
         encoding="utf-8",
@@ -124,6 +128,7 @@ def main() -> None:
         "status": result["status"],
         "script_count": result["script_count"],
         "keyword_totals": result["keyword_totals"],
+        "micro_contract_tokens": sorted(micro_tokens),
         "files_with_hits": [
             {"url": x["url"], "sha256": x.get("sha256"), "hits": x.get("hits")}
             for x in result["scripts"] if x.get("hits")
