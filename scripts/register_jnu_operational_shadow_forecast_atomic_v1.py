@@ -4,7 +4,7 @@ from pathlib import Path
 
 ROOT=Path(__file__).resolve().parents[1]
 DECISION=ROOT/"scripts"/"apply_jnu_operational_decision_protocol_v1.py"
-REGISTRAR=ROOT/"scripts"/"register_jnu_operational_shadow_forecast_v1_3.py"
+REGISTRAR=ROOT/"scripts"/"register_jnu_operational_shadow_forecast_v1_4.py"
 DEFAULT_DIR=ROOT/"live_shadow"/"forecasts"
 
 def run(cmd:list[str],cwd:Path=ROOT)->subprocess.CompletedProcess:

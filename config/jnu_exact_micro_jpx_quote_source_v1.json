@@ -1,0 +1,17 @@
+{
+  "version": "1.0",
+  "frozen_at": "2026-09-03",
+  "status": "A_GRADE_JPX_OFFICIAL_EXACT_MICRO_QUOTE_SOURCE",
+  "provider": "Japan Exchange Group / Osaka Exchange",
+  "url": "https://port.jpx.co.jp/jpxhp/main/index.aspx?disptype=day_through&f=e_future",
+  "product": "Nikkei 225 micro Futures",
+  "source_quality": "A",
+  "contract_identity": "Individual listed contract month only; continuous contracts are not accepted.",
+  "timestamp_policy": "Use the timestamp embedded in the Last field for the selected Micro contract. JPX page time is JST. Because display precision is one minute, interpret HH:MM conservatively as HH:MM:00 JST.",
+  "freshness_gate_seconds": 900,
+  "last_price_rule": "Only the Last field may be the scored reference_price. Ask/Bid may be stored as context but may not substitute for Last.",
+  "delayed_page_disclosure": "JPX public quote page may be delayed. Delay is not waived; source timestamp age must still be <=900 seconds.",
+  "no_login": true,
+  "no_broker_access": true,
+  "no_order_execution": true
+}

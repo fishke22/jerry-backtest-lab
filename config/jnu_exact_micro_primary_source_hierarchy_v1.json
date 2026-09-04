@@ -1,0 +1,40 @@
+{
+  "version": "1.0",
+  "frozen_at": "2026-09-03",
+  "status": "PRE_FIRST_REAL_FORECAST_PRIMARY_SOURCE_ALLOWLIST",
+  "real_forecasts_at_freeze": 0,
+  "real_outcomes_at_freeze": 0,
+  "maximum_age_seconds": 900,
+  "primary_sources": [
+    {
+      "priority": 1,
+      "id": "JPX_OSE_OFFICIAL_EXACT_MICRO_A",
+      "adapter": "scripts/fetch_jnu_exact_micro_quote_jpx_v1.py",
+      "quality": "A",
+      "rule": "Allowed only when official JPX Last timestamp age is <=900 seconds. Public delay is never waived."
+    },
+    {
+      "priority": 2,
+      "id": "TRADINGVIEW_OSE_EXACT_MICRO_B",
+      "adapter": "scripts/fetch_jnu_exact_micro_quote_tradingview_v1.py",
+      "quality": "B",
+      "rule": "Allowed only for an individual OSE Micro contract with source_id OSE, lp_time, and age <=900 seconds."
+    }
+  ],  "prohibited_as_sole_primary": [
+    {
+      "id": "NIKKEIREALTIME_EXACT_MARKET_RELAY_B",
+      "reason": "Exact OSE Micro identity and sourceAt are verifiable, but upstream commercial provider is not publicly named. It remains a contemporaneous cross-check/context source only."
+    },
+    {
+      "id": "CONTINUOUS_CONTRACT",
+      "reason": "Continuous contracts are prohibited as scored starting-price references."
+    },
+    {
+      "id": "PROXY_OR_CFD",
+      "reason": "CME/SGX/CFD/cash/proxy levels cannot substitute for exact OSE Micro starting price."
+    }
+  ],
+  "shared_validator": "scripts/jnu_exact_micro_source_validation_v1.py",
+  "selection_rule": "Use the highest-priority allowed source that independently passes the frozen <=900-second freshness gate. If none passes, do not create a scored forecast.",
+  "no_fresh_source_behavior": "FAIL_CLOSED_NO_SCORED_FORECAST"
+}
