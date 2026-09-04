@@ -1,0 +1,122 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-04",
+  "status": "AWAITING_FRESH_INDIVIDUAL_EXACT_MICRO_PRIMARY_SOURCE",
+  "purpose": "Govern the exact-product reference source for the first real JNU live-shadow forecast without weakening the frozen <=900-second freshness or individual-contract requirements.",
+  "frozen_rules": {
+    "maximum_reference_age_seconds": 900,
+    "exact_product_required": true,
+    "individual_month_contract_required": true,
+    "continuous_contract_primary_prohibited": true,
+    "source_timestamp_must_be_provider_carried": true,
+    "browser_receive_time_substitution_prohibited": true,
+    "bid_ask_without_source_timestamp_prohibited": true
+  },
+  "tradingview_individual_micro": {
+    "status": "IDENTITY_PASS_AUTONOMOUS_FRESHNESS_NOT_RELIABLY_QUALIFYING",
+    "symbol": "OSE:NK225MCU2026",
+    "identity": {
+      "exchange": "OSE",
+      "source_id": "OSE",
+      "original_name": "OSE_DLY:NK225MCU2026",
+      "root": "NK225MC",
+      "type": "futures",
+      "currency": "JPY",
+      "contract_date": "202609",
+      "expiration": 20260910
+    },
+    "transport": "TradingView anonymous quote_cache_http snapshot",
+    "update_mode": "delayed_streaming_900",
+    "cloud_probe_run_id": 33820769373,
+    "browserless_smoke_run_id": 33821088044,
+    "browserless_smoke_observation": {
+      "source_timestamp": "2026-09-04T08:01:00+08:00",
+      "observed_age_seconds": 914.1,
+      "result": "FAIL_CLOSED_STALE"
+    },
+    "rule": "May be used only on an observation whose actual lp_time age is <=900 seconds. Do not relax the gate to 915/930 seconds."
+  },
+  "nikkeirealtime_continuous_micro": {
+    "status": "PRIMARY_FALLBACK_REJECTED_CURRENT_SCHEMA",
+    "quality_ceiling": "B",
+    "endpoint": "wss://con.nikkeirealtime.com/GIQS",
+    "symbol": "N225MC.FUT.OSE.CONT",
+    "source_timestamp_semantics": "Production frontend converts quote ut into sourceAt and uses it in freshness ordering/state.",
+    "websocket_probe": {
+      "run_id": 33821656082,
+      "job_id": 100865418749,
+      "artifact_id": 9918464255,
+      "artifact_digest": "sha256:bddb5e37610d28de06bdaa3caddc8bdb568cf368f18f8d1131f7e00e512b85fe",
+      "observed_quote": {
+        "ut": 1788481465,
+        "la": 64670,
+        "received_at_utc": "2026-09-04T00:24:27.301883+00:00",
+        "source_age_seconds_approx": 2.3
+      },
+      "result": "FRESH_EXACT_MICRO_CONTINUOUS_DATA_PASS"
+    },
+    "production_protocol_probe": {
+      "latest_run_id": 33821753898,
+      "production_micro_ids": [
+        "N225MC.FUT.OSE.CONT"
+      ],
+      "individual_month_micro_id_found": false,
+      "websocket_endpoint_verified": true,
+      "nrtquot_verified": true,
+      "nrtohlc_verified": true,
+      "nrttick_verified": true
+    },
+    "crossmap_ohlc_probe": {
+      "run_id": 33821901714,
+      "tradingview_anchor": {
+        "symbol": "OSE:NK225MCU2026",
+        "lp_time": 1788480780,
+        "price": 64420
+      },
+      "same_timestamp_cont_60s_bar": {
+        "timestamp": 1788480780,
+        "close": 64405
+      },
+      "result": "CROSSMAP_NOT_PROVEN"
+    },
+    "crossmap_nrttick_attempt_1": {
+      "run_id": 33822091131,
+      "run_attempt": 1,
+      "job_id": 100866748913,
+      "artifact_id": 9918612437,
+      "artifact_digest": "sha256:fc6ceb9c567aa6ee3bf516d025ad580fa3563d6a4bb95ceaf0719eb3aee53474",
+      "tradingview_anchor": {
+        "timestamp": 1788480900,
+        "price": 64400
+      },
+      "continuous_tick_same_timestamp": {
+        "timestamp": 1788480900,
+        "price": 64480
+      },
+      "difference_points": 80,
+      "result": "EXACT_TIMESTAMP_PRICE_MISMATCH"
+    },
+    "crossmap_nrttick_attempt_2": {
+      "run_id": 33822091131,
+      "run_attempt": 2,
+      "job_id": 100866902305,
+      "artifact_id": 9918630819,
+      "artifact_digest": "sha256:a10083e29df1f90c4a52426f31e98483631a9756386f3086352232537fbccaa2",
+      "tradingview_anchor": {
+        "timestamp": 1788480960,
+        "price": 64485
+      },
+      "exact_continuous_timestamp_present": false,
+      "result": "EXACT_TIMESTAMP_PAIR_NOT_AVAILABLE"
+    },
+    "disposition_reason": "Fresh continuous Micro data cannot be treated as the individual Sep-2026 OSE Micro contract. The exact timestamp mismatch in attempt 1 is direct counterevidence, and production bundles expose no individual month Micro ID.",
+    "retest_policy": "Do not retry the same CONT-to-individual substitution. Reopen only if NikkeiRealtime exposes an individual month Micro ID, its protocol materially changes, or a new independent source provides fresh individual exact-Micro data."
+  },
+  "real_live_shadow_ledger": {
+    "forecasts": 0,
+    "outcomes": 0,
+    "modified_by_source_research": false
+  },
+  "decision_engine": "NO_VALIDATED_DIRECTIONAL_EDGE",
+  "next_action": "Keep the autonomous cloud pipeline fail-closed. Use a fresh individual exact OSE Micro contract only when provider-carried timestamp age <=900 seconds. Otherwise do not register a scored forecast."
+}
