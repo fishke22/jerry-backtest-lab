@@ -63,8 +63,8 @@
   "live_shadow_integrity_scorer": "scripts/score_jnu_operational_live_shadow_v1_2.py",
   "live_shadow_atomic_integrity_selftest": "config/jnu_operational_live_shadow_atomic_integrity_selftest_v1.json",
   "real_live_shadow_outcomes_registered": 0,
-  "first_real_live_shadow_forecast_readiness": "config/jnu_live_shadow_cloud_readiness_v3.json",
-  "live_shadow_real_ledger_status": "CLOUD_PIPELINE_READY_EMPTY_0_FORECASTS_0_OUTCOMES",
+  "first_real_live_shadow_forecast_readiness": "config/jnu_live_shadow_cloud_readiness_v4.json",
+  "live_shadow_real_ledger_status": "CLOUD_PIPELINE_READY_FAIL_CLOSED_AWAITING_QUALIFYING_INDIVIDUAL_EXACT_MICRO_REFERENCE_0_FORECASTS_0_OUTCOMES",
   "exact_micro_quote_adapter": "scripts/fetch_jnu_exact_micro_quote_tradingview_v1.py",
   "exact_micro_source_cross_validation": "config/jnu_exact_micro_source_cross_validation_v1.json",
   "source_metadata_integrity_selftest": "config/jnu_v1_4_source_metadata_integrity_selftest.json",
@@ -75,5 +75,19 @@
   "cloud_request_selftest_run": 33818317282,
   "cloud_actionlint_run": 33818714736,
   "cloud_pipeline_status": "READY_ACTIONLINT_PASS_REAL_LEDGER_EMPTY",
-  "next_action": "At the next simultaneous fresh exact-Micro quote + verified event-state + <=900-second immutable request window, commit one live_shadow_requests/<request_id>.json. Cloud workflow owns price/timestamp and atomically registers at most one real forecast."
+  "next_action": "Do not create the first scored forecast until a provider-carried <=900-second quote for an individual OSE NK225MC month contract is available and target-horizon event state is verified. TradingView is eligible only when actual lp_time age <=900 seconds; NikkeiRealtime CONT substitution is rejected.",
+  "exact_micro_reference_source_gate": "config/jnu_exact_micro_reference_source_gate_20260904_v1.json",
+  "tradingview_exact_micro_transport": {
+    "status": "ENGINEERING_PASS_STRUCTURAL_900S_DELAY",
+    "adapter": "scripts/fetch_jnu_exact_micro_quote_tradingview_v1.py",
+    "latest_smoke_run": 33821088044,
+    "rule": "Use only if actual lp_time age <=900 seconds; never relax gate."
+  },
+  "nikkeirealtime_continuous_micro": {
+    "status": "PRIMARY_FALLBACK_REJECTED_CURRENT_SCHEMA",
+    "source_gate": "config/jnu_exact_micro_reference_source_gate_20260904_v1.json",
+    "websocket_probe_run": 33821656082,
+    "nrttick_crossmap_run": 33822091131,
+    "retest_rule": "Do not retry CONT substitution unless an individual month Micro ID or materially new source protocol becomes available."
+  }
 }
