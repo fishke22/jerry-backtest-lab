@@ -1,0 +1,64 @@
+{
+  "version": "6.0",
+  "as_of": "2026-09-05",
+  "status": "V1_6_GOVERNANCE_SEALED_MULTI_SOURCE_CLOUD_READY_AWAITING_FRESH_EXACT_MICRO",
+  "authoritative_framework": "config/jnu_operational_framework_current_v1_6.json",
+  "preregistration": "config/jnu_operational_live_shadow_prereg_v1_5.json",
+  "implementation": "config/jnu_operational_live_shadow_implementation_v1_5.json",
+  "decision_protocol_sha256": "fe10aca973f2038fcd2038ae9564253e58685c6d40f79a88d54f44f828a0d552",
+  "primary_source_hierarchy": "config/jnu_exact_micro_primary_source_hierarchy_v1.json",
+  "cloud_workflow": ".github/workflows/jnu-live-shadow-cloud-forecast-v1.yml",
+  "verification": {
+    "actionlint": {
+      "status": "PASS",
+      "run_id": 33969428165
+    },
+    "jpx_cloud_builder_atomic_selftest": "PASS",
+    "decision_protocol_regression": "PASS",
+    "unknown_state_selftests": "PASS",
+    "real_ledger_integrity": {
+      "status": "PASS",
+      "forecasts": 0,
+      "outcomes": 0
+    },
+    "jpx_latest_live_age_seconds": 949.9,
+    "jpx_latest_live_result": "FAIL_CLOSED_STALE_FINAL_RECHECK",
+    "tradingview_observed_live_age_seconds": 950.6,
+    "tradingview_observed_live_result": "FAIL_CLOSED_STALE_FINAL_RECHECK",
+    "nikkeirealtime_primary_role": "REJECTED_CONTINUOUS_ONLY",
+    "final_real_ledger_scorer": {
+      "status": "PASS",
+      "forecasts_verified": 0,
+      "outcomes_verified": 0
+    },
+    "cloud_request_v1_6_selftest": {
+      "status": "PASS",
+      "run_id": 33969428203
+    },
+    "cross_platform_eol_integrity": "PASS",
+    "risk_state_evidence_integrity": "PASS"
+  },
+  "frozen_max_reference_age_seconds": 900,
+  "individual_month_contract_required": true,
+  "continuous_contract_primary_prohibited": true,
+  "real_ledger": {
+    "forecasts": 0,
+    "outcomes": 0
+  },
+  "directional_validation": {
+    "VALIDATED_JNU_MODULE": 0,
+    "validated_directional_modules": 0,
+    "decision_engine": "NO_VALIDATED_DIRECTIONAL_EDGE"
+  },
+  "blocker": "INDIVIDUAL_EXACT_MICRO_REFERENCE_FRESHNESS",
+  "next_action": "Register nothing until JPX A or TradingView B supplies an individual exact-Micro observation whose provider timestamp age is <=900 seconds and fresh risk-state evidence verifies the target-horizon event state. Then run preflight and atomic v2 registration.",
+  "integrity_hash_protocol": "config/jnu_integrity_hash_protocol_v1.json",
+  "integrity_hash_method": "SHA256_TEXT_EOL_CRLF_V1",
+  "core_seal_commit": "6334f8477142efccfbf3470b7a45d1bab2e0d3cd",
+  "preflight_gate": "scripts/check_jnu_live_shadow_preflight_v1.py",
+  "atomic_forecast_tool": "scripts/register_jnu_operational_shadow_forecast_atomic_v2.py",
+  "atomic_outcome_tool": "scripts/record_jnu_operational_shadow_outcome_atomic_v2.py",
+  "integrity_scorer": "scripts/score_jnu_operational_live_shadow_v1_4.py",
+  "governance_ready": true,
+  "live_source_gate_ready": false
+}

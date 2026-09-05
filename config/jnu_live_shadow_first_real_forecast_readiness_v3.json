@@ -1,0 +1,38 @@
+{
+  "version": "3.0",
+  "as_of": "2026-09-05",
+  "status": "GOVERNANCE_READY_SOURCE_AND_EVENT_GATE_PENDING",
+  "supersedes": "config/jnu_live_shadow_first_real_forecast_readiness_v2.json",
+  "authoritative_framework": "config/jnu_operational_framework_current_v1_6.json",
+  "preregistration": "config/jnu_operational_live_shadow_prereg_v1_5.json",
+  "implementation": "config/jnu_operational_live_shadow_implementation_v1_5.json",
+  "decision_protocol": "config/jnu_operational_decision_protocol_v1.json",
+  "decision_protocol_sha256": "fe10aca973f2038fcd2038ae9564253e58685c6d40f79a88d54f44f828a0d552",
+  "integrity_hash_protocol": "config/jnu_integrity_hash_protocol_v1.json",
+  "integrity_hash_method": "SHA256_TEXT_EOL_CRLF_V1",
+  "preflight_gate": "scripts/check_jnu_live_shadow_preflight_v1.py",
+  "atomic_forecast_tool": "scripts/register_jnu_operational_shadow_forecast_atomic_v2.py",
+  "atomic_outcome_tool": "scripts/record_jnu_operational_shadow_outcome_atomic_v2.py",
+  "integrity_scorer": "scripts/score_jnu_operational_live_shadow_v1_4.py",
+  "source_hierarchy": "config/jnu_exact_micro_primary_source_hierarchy_v1.json",
+  "real_ledger": {
+    "forecasts": 0,
+    "outcomes": 0
+  },
+  "gates": [
+    "individual OSE Nikkei 225 Micro month contract only",
+    "allowed source class JPX_OSE_OFFICIAL_EXACT_MICRO_A or TRADINGVIEW_OSE_EXACT_MICRO_B",
+    "reference source timestamp age <=900 seconds",
+    "immutable request validity <=900 seconds and forecast creation inside that window",
+    "risk-state evidence age <=900 seconds at both request and forecast creation",
+    "first real registration requires known target-horizon event state",
+    "decision trace generated from frozen protocol",
+    "real write uses atomic v2 --commit-push"
+  ],
+  "ci": {
+    "core_commit": "6334f8477142efccfbf3470b7a45d1bab2e0d3cd",
+    "cloud_selftest_run": 33969428203,
+    "actionlint_run": 33969428165
+  },
+  "current_blocker": "INDIVIDUAL_EXACT_MICRO_REFERENCE_FRESHNESS"
+}
