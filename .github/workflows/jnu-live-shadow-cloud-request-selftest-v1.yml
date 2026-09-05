@@ -6,13 +6,22 @@ on:
     paths:
       - ".github/workflows/jnu-live-shadow-cloud-request-selftest-v1.yml"
       - "scripts/build_jnu_cloud_forecast_input_v1.py"
-      - "scripts/register_jnu_operational_shadow_forecast_atomic_v1.py"
-      - "scripts/register_jnu_operational_shadow_forecast_v1_3.py"
+      - "scripts/check_jnu_live_shadow_preflight_v1.py"
+      - "scripts/jnu_integrity_hash_v1.py"
+      - "scripts/record_jnu_operational_shadow_outcome_atomic_v2.py"
+      - "scripts/record_jnu_operational_shadow_outcome_v1_1.py"
+      - "scripts/selftest_jnu_live_shadow_v16_integrity.py"
+      - "scripts/jnu_risk_state_evidence_validation_v1.py"
+      - "scripts/register_jnu_operational_shadow_forecast_atomic_v2.py"
+      - "scripts/score_jnu_operational_live_shadow_v1_4.py"
+      - "config/jnu_cloud_forecast_request_protocol_v1_1.json"
+      - "config/jnu_integrity_hash_protocol_v1.json"
+      - "scripts/register_jnu_operational_shadow_forecast_v1_5.py"
       - "scripts/apply_jnu_operational_decision_protocol_v1.py"
       - "config/jnu_operational_decision_protocol_v1.json"
-      - "config/jnu_operational_framework_current_v1_4.json"
-      - "config/jnu_operational_live_shadow_prereg_v1_3.json"
-      - "config/jnu_operational_live_shadow_implementation_v1_3.json"
+      - "config/jnu_operational_framework_current_v1_6.json"
+      - "config/jnu_operational_live_shadow_prereg_v1_5.json"
+      - "config/jnu_operational_live_shadow_implementation_v1_5.json"
   workflow_dispatch:
 
 permissions:
@@ -65,6 +74,18 @@ jobs:
                 "sq_state":"UNKNOWN",
                 "post_event_exact_jnu_path_available":False
               }
+            },
+            "risk_state_evidence":{
+              "checked_at_taipei":"2026-09-04T06:39:00+08:00",
+              "target_day_session_date":"2026-09-04",
+              "event_state":"NORMAL",
+              "volatility_state":"UNKNOWN",
+              "sq_state":"UNKNOWN",
+              "event_sources":[{
+                "source":"synthetic official calendar",
+                "reference":"selftest",
+                "checked_at_taipei":"2026-09-04T06:39:00+08:00"
+              }]
             },
             "expected_path":"Synthetic downside test path.",
             "key_levels":[63800,64200],
@@ -134,16 +155,23 @@ jobs:
           echo "outcomes=$o" >> "$GITHUB_OUTPUT"
           echo "baseline forecasts=$f outcomes=$o"
 
-      - name: Valid request builds and registers only in temp ledger
+      - name: Valid request passes preflight, builds and registers only in temp ledger
         shell: bash
         run: |
+          python scripts/check_jnu_live_shadow_preflight_v1.py \
+            --request selftest_tmp/request.json \
+            --quote selftest_tmp/quote.json \
+            --now-taipei 2026-09-04T06:46:00+08:00 \
+            --require-risk-evidence \
+            --output selftest_tmp/preflight.json
+
           python scripts/build_jnu_cloud_forecast_input_v1.py \
             --request selftest_tmp/request.json \
             --quote selftest_tmp/quote.json \
             --created-at-taipei 2026-09-04T06:46:00+08:00 \
             --output selftest_tmp/atomic_input.json
 
-          python scripts/register_jnu_operational_shadow_forecast_atomic_v1.py \
+          python scripts/register_jnu_operational_shadow_forecast_atomic_v2.py \
             --input selftest_tmp/atomic_input.json \
             --output-dir selftest_tmp/forecasts \
             > selftest_tmp/register_result.json
@@ -162,6 +190,9 @@ jobs:
           assert f["bias"]=="BEARISH"
           assert f["confidence"]=="LOW"
           assert f["decision_trace"]["net_directional_score"]==-2
+          assert f["risk_state_evidence"]["event_state"]=="NORMAL"
+          assert f["risk_state_evidence_validation"]["event_state"]=="NORMAL"
+          assert f["risk_state_evidence_validation"]["event_source_count"]==1
           print(json.dumps({
             "status":"VALID_TEMP_REGISTRATION_PASS",
             "forecast_id":f["forecast_id"],
@@ -234,6 +265,11 @@ jobs:
           test "$ec" -ne 0
           grep -q "quote symbol does not match request symbol" selftest_tmp/mismatch.stderr
           test ! -e selftest_tmp/should_not_exist_3.json
+
+      - name: V1.6 cross-platform integrity chain selftest
+        shell: bash
+        run: |
+          python scripts/selftest_jnu_live_shadow_v16_integrity.py
 
       - name: Verify real ledger unchanged
         shell: bash

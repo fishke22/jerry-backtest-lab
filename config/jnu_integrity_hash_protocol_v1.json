@@ -1,0 +1,31 @@
+{
+  "version": "1.0",
+  "frozen_at": "2026-09-05",
+  "status": "PRE_FIRST_REAL_FORECAST_CROSS_PLATFORM_HASH_PROTOCOL",
+  "method_id": "SHA256_TEXT_EOL_CRLF_V1",
+  "purpose": "Prevent false integrity failures when the same committed text is checked out with LF or CRLF on Linux and Windows while preserving the pre-first-forecast Windows frozen protocol SHA identity.",
+  "text_normalization": [
+    "normalize CRLF and CR to logical LF",
+    "serialize every logical line ending as CRLF before SHA256"
+  ],
+  "prohibited_normalization": [
+    "no whitespace trimming",
+    "no JSON reserialization",
+    "no Unicode normalization",
+    "no key reordering",
+    "no numeric normalization"
+  ],
+  "text_scope": [
+    "authoritative framework/preregistration/implementation/protocol files",
+    "immutable live-shadow forecast records",
+    "immutable live-shadow outcome records",
+    "text governance artifacts participating in SHA chains"
+  ],
+  "binary_scope": {
+    "method_id": "SHA256_RAW_BYTES_V1",
+    "rule": "Private visual screenshots and other binary evidence remain raw-byte SHA256; no EOL normalization applies."
+  },
+  "real_live_shadow_forecasts_existing_at_freeze": 0,
+  "real_live_shadow_outcomes_existing_at_freeze": 0,
+  "migration_rule": "V1.6 and later records use this method. Historical pre-v1.6 selftest hashes retain their original recorded semantics and are not rewritten."
+}

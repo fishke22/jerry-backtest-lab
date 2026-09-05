@@ -1,12 +1,13 @@
 from __future__ import annotations
-import argparse, hashlib, json
+import argparse, json
 from pathlib import Path
+from jnu_integrity_hash_v1 import canonical_text_sha256
 
 ROOT=Path(__file__).resolve().parents[1]
 PROTOCOL=ROOT/"config"/"jnu_operational_decision_protocol_v1.json"
 
 def sha(p:Path)->str:
-    return hashlib.sha256(p.read_bytes()).hexdigest()
+    return canonical_text_sha256(p)
 
 def main():
     ap=argparse.ArgumentParser()

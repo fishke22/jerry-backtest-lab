@@ -165,6 +165,18 @@ jobs:
           cat tv_quote_attempt.log >&2 || true
           exit 1
 
+      - name: Run fail-closed registration preflight
+        if: steps.request.outputs.already_registered != 'true'
+        shell: bash
+        env:
+          REQUEST_PATH: ${{ steps.request.outputs.path }}
+        run: |
+          python scripts/check_jnu_live_shadow_preflight_v1.py \
+            --request "$REQUEST_PATH" \
+            --quote cloud_quote.json \
+            --require-risk-evidence \
+            --output cloud_preflight.json
+
       - name: Build forecast input from immutable request and cloud quote
         if: steps.request.outputs.already_registered != 'true'
         shell: bash
@@ -196,7 +208,7 @@ jobs:
         id: register
         shell: bash
         run: |
-          python scripts/register_jnu_operational_shadow_forecast_atomic_v1.py \
+          python scripts/register_jnu_operational_shadow_forecast_atomic_v2.py \
             --input cloud_atomic_input.json \
             --commit-push \
             > cloud_register_result.json
@@ -212,6 +224,10 @@ jobs:
           git reset --hard origin/main
           python - "$REQUEST_ID" <<'PY'
           import json, pathlib, sys
+          sys.path.insert(0,"scripts")
+          from jnu_exact_micro_source_validation_v1 import validate_reference_source_metadata
+          from jnu_risk_state_evidence_validation_v1 import validate_risk_state_evidence
+          from jnu_integrity_hash_v1 import METHOD_ID, canonical_text_sha256
           rid=sys.argv[1]
           hits=[]
           d=pathlib.Path("live_shadow/forecasts")
@@ -227,9 +243,17 @@ jobs:
           )
           assert source_class in {"JPX_OSE_OFFICIAL_EXACT_MICRO_A","TRADINGVIEW_OSE_EXACT_MICRO_B"}
           assert x["reference_source_class"]==source_class
+          assert x["integrity_hash_method"]==METHOD_ID
+          assert x["integrity_hash_protocol_sha256"]==canonical_text_sha256(pathlib.Path("config/jnu_integrity_hash_protocol_v1.json"))
           assert meta["continuous_contract"] is False
           assert meta["freshness_pass"] is True
           assert float(meta["freshness_age_seconds"])<=900
+          rv=validate_risk_state_evidence(
+              x["risk_state_evidence"],x["decision_trace"],x["created_at_taipei"],
+              request_created_at=x.get("request_created_at_taipei"),
+              target_day_session_date=x["target_day_session_date"],
+          )
+          assert x["risk_state_evidence_validation"]==rv
           print(json.dumps({
               "status":"REAL_FORECAST_ATOMIC_CLOUD_REGISTRATION_VERIFIED",
               "request_id":rid,
@@ -249,6 +273,7 @@ jobs:
           path: |
             request_meta.json
             cloud_quote.json
+            cloud_preflight.json
             cloud_atomic_input.json
             cloud_register_result.json
             jpx_quote_attempt.log

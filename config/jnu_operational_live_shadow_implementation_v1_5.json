@@ -1,0 +1,93 @@
+{
+  "version": "1.5",
+  "frozen_at": "2026-09-05",
+  "status": "PRE_FIRST_REAL_FORECAST_PREFLIGHT_RISK_EVIDENCE_INTEGRITY",
+  "candidate_id": "JNU_OPERATIONAL_FRAMEWORK_LIVE_SHADOW_V1",
+  "supersedes": "config/jnu_operational_live_shadow_implementation_v1_4.json",
+  "reason": "Real ledger remains 0/0. Add immutable risk-state evidence validation, a fail-closed first-registration preflight, and cross-platform text SHA normalization without changing directional, scoring, horizon, confidence, freshness or review gates.",
+  "unchanged_scoring_and_selection": [
+    "Exact JNU/Micro price only",
+    "15-minute maximum reference age",
+    "Decision protocol v1 trace required",
+    "Next OSE Micro regular day-session close target",
+    "LOW/MEDIUM confidence only",
+    "30 non-abstain minimum first review",
+    "accuracy / signed return / 5-forecast block-bootstrap gates"
+  ],
+  "real_ledger_requirements": {
+    "atomic_forecast_tool": "scripts/register_jnu_operational_shadow_forecast_atomic_v2.py",
+    "atomic_outcome_tool": "scripts/record_jnu_operational_shadow_outcome_atomic_v2.py",
+    "integrity_scorer": "scripts/score_jnu_operational_live_shadow_v1_4.py",
+    "default_real_forecast_dir": "live_shadow/forecasts",
+    "default_real_outcome_dir": "live_shadow/outcomes",
+    "git_staging_must_be_empty_before_real_write": true,
+    "real_forecast_must_commit_and_push_immediately": true,
+    "real_outcome_must_commit_and_push_immediately": true,
+    "custom_temp_dirs_allowed_for_selftest_without_git_commit": true
+  },
+  "scorer_integrity_requirements": [
+    "Every real forecast and outcome file is Git tracked and clean",
+    "forecast_id equals forecast filename",
+    "outcome filename/id matches an existing forecast",
+    "outcome.forecast_record_sha256 equals the current committed forecast file SHA256 under SHA256_TEXT_EOL_CRLF_V1",
+    "decision protocol SHA equals current frozen protocol",
+    "decision trace is independently recomputed from its block votes/qualities/risk modifiers",
+    "forecast bias/confidence equal the recomputed decision trace",
+    "risk_state_evidence is independently revalidated against the stored decision trace and target date",
+    "outcome return, signed return and directional hit are independently recomputed",
+    "any integrity mismatch fails closed before scoring",
+    "all text SHA chains use SHA256_TEXT_EOL_CRLF_V1 so Linux/Windows EOL conversion cannot create a false tamper failure"
+  ],
+  "real_live_shadow_forecasts_existing_at_freeze": 0,
+  "real_live_shadow_outcomes_existing_at_freeze": 0,
+  "directional_outcome_inspected": false,
+  "selftest": "config/jnu_operational_live_shadow_preflight_integrity_selftest_v1.json",
+  "preregistration": "config/jnu_operational_live_shadow_prereg_v1_5.json",
+  "required_fields": [
+    "request_id",
+    "request_created_at_taipei",
+    "request_valid_until_taipei",
+    "symbol",
+    "created_at_taipei",
+    "reference_price",
+    "reference_timestamp",
+    "reference_source",
+    "reference_source_metadata",
+    "risk_state_evidence",
+    "exact_product",
+    "target_day_session_date",
+    "bias",
+    "confidence",
+    "decision_trace",
+    "expected_path",
+    "key_levels",
+    "invalidation_conditions",
+    "event_risk",
+    "flip_conditions",
+    "evidence_summary"
+  ],
+  "exact_reference_source": {
+    "hierarchy": "config/jnu_exact_micro_primary_source_hierarchy_v1.json",
+    "validator": "scripts/jnu_exact_micro_source_validation_v1.py",
+    "allowed_primary_classes": [
+      "JPX_OSE_OFFICIAL_EXACT_MICRO_A",
+      "TRADINGVIEW_OSE_EXACT_MICRO_B"
+    ],
+    "maximum_age_seconds": 900,
+    "nikkeirealtime_sole_primary_prohibited": true
+  },
+  "preflight": {
+    "script": "scripts/check_jnu_live_shadow_preflight_v1.py",
+    "risk_state_validator": "scripts/jnu_risk_state_evidence_validation_v1.py",
+    "cloud_request_protocol": "config/jnu_cloud_forecast_request_protocol_v1_1.json",
+    "first_real_registration_requires_known_event_state": true,
+    "risk_evidence_max_age_seconds_at_request": 900,
+    "risk_evidence_max_age_seconds_at_forecast": 900
+  },
+  "integrity_hash": {
+    "protocol": "config/jnu_integrity_hash_protocol_v1.json",
+    "helper": "scripts/jnu_integrity_hash_v1.py",
+    "method": "SHA256_TEXT_EOL_CRLF_V1",
+    "binary_method": "SHA256_RAW_BYTES_V1"
+  }
+}

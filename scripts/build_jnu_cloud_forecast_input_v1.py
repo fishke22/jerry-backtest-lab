@@ -28,6 +28,7 @@ REQUIRED_REQUEST_FIELDS = [
     "symbol",
     "target_day_session_date",
     "decision_input",
+    "risk_state_evidence",
     "expected_path",
     "key_levels",
     "invalidation_conditions",
@@ -62,6 +63,8 @@ def validate_request(x: dict) -> None:
         raise RuntimeError("symbol must be an individual OSE Nikkei 225 Micro month contract")
     if not isinstance(x["decision_input"], dict):
         raise RuntimeError("decision_input must be an object")
+    if not isinstance(x["risk_state_evidence"], dict):
+        raise RuntimeError("risk_state_evidence must be an object")
     datetime.fromisoformat(str(x["target_day_session_date"]))
     req_created = datetime.fromisoformat(str(x["request_created_at_taipei"]))
     req_until = datetime.fromisoformat(str(x["request_valid_until_taipei"]))
@@ -157,6 +160,7 @@ def main() -> None:
         "request_id": req["request_id"],
         "request_created_at_taipei": req_created.isoformat(),
         "request_valid_until_taipei": req_until.isoformat(),
+        "symbol": str(req["symbol"]).upper(),
         "created_at_taipei": created.isoformat(),
         "reference_price": float(q["price"]),
         "reference_timestamp": source_ts.isoformat(),
@@ -165,6 +169,7 @@ def main() -> None:
         "exact_product": True,
         "target_day_session_date": req["target_day_session_date"],
         "decision_input": req["decision_input"],
+        "risk_state_evidence": req["risk_state_evidence"],
         "expected_path": req["expected_path"],
         "key_levels": req["key_levels"],
         "invalidation_conditions": req["invalidation_conditions"],

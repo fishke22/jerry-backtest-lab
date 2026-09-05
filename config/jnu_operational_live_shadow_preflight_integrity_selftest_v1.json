@@ -1,0 +1,72 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-05",
+  "status": "JNU_OPERATIONAL_LIVE_SHADOW_PREFLIGHT_INTEGRITY_SELFTEST_PASS",
+  "real_ledger": {
+    "forecasts_before": 0,
+    "outcomes_before": 0,
+    "forecasts_after": 0,
+    "outcomes_after": 0
+  },
+  "authoritative_chain": {
+    "framework": "config/jnu_operational_framework_current_v1_6.json",
+    "framework_sha256": "ab204ea738a55486f0a09f5494082c89947f2f378fb5a895cc3d04bee7277e7a",
+    "preregistration": "config/jnu_operational_live_shadow_prereg_v1_5.json",
+    "preregistration_sha256": "95aaf3fffe6d5a34707be6cd7efa244274ad08006d0120442588305ead22471f",
+    "implementation": "config/jnu_operational_live_shadow_implementation_v1_5.json",
+    "implementation_sha256": "09d2e7fac974b9817ed265f7876267e004af54dac526a9c03cb75c2c6f74bc1a",
+    "decision_protocol_sha256": "fe10aca973f2038fcd2038ae9564253e58685c6d40f79a88d54f44f828a0d552",
+    "request_protocol_sha256": "811c1261381a2d60b9fe4c25274f621fb952b4811925bad7407a53a9721647a1",
+    "integrity_hash_method": "SHA256_TEXT_EOL_CRLF_V1",
+    "integrity_hash_protocol_sha256": "a3a8d2195394f7381e55708f968a81bdc793291e9a89333108159e541e6feed4"
+  },
+  "preflight_tests": {
+    "ready_case": "PASS",
+    "event_unknown_rejected": "PASS",
+    "missing_risk_evidence_rejected": "PASS",
+    "risk_state_mismatch_rejected": "PASS",
+    "stale_exact_source_rejected": "PASS",
+    "symbol_mismatch_rejected": "PASS",
+    "expired_request_rejected": "PASS",
+    "real_ledger_untouched": "PASS"
+  },
+  "full_chain_tests": {
+    "preflight_ready": true,
+    "atomic_v2_risk_evidence_bound": true,
+    "cross_platform_eol_hash_equal": true,
+    "outcome_survives_forecast_eol_conversion": true,
+    "scorer_v1_4_chain": true,
+    "risk_evidence_tamper_rejected": true,
+    "atomic_missing_risk_rejected": true,
+    "atomic_request_window_rejected": true,
+    "atomic_symbol_source_mismatch_rejected": true,
+    "real_ledger_untouched": true
+  },
+  "freshness_rules": {
+    "exact_micro_reference_max_age_seconds": 900,
+    "risk_evidence_max_age_at_request_seconds": 900,
+    "risk_evidence_max_age_at_forecast_seconds": 900,
+    "event_source_max_age_at_request_seconds": 900,
+    "event_source_max_age_at_forecast_seconds": 900
+  },
+  "first_real_registration_policy": {
+    "event_state_unknown": "BLOCK_REGISTRATION",
+    "har_unknown": "ALLOWED_CONFIDENCE_CAP_LOW",
+    "sq_unknown": "ALLOWED_CONFIDENCE_CAP_LOW",
+    "request_window_seconds_max": 900,
+    "atomic_commit_push_required": true
+  },
+  "unchanged_research_rules": {
+    "directional_thresholds_changed": false,
+    "scoring_gates_changed": false,
+    "target_horizon_changed": false,
+    "high_confidence_enabled": false,
+    "terminal_failed_family_reopened": false
+  },
+  "validated_state": {
+    "VALIDATED_JNU_MODULE": 0,
+    "validated_directional_modules": 0,
+    "decision_engine": "NO_VALIDATED_DIRECTIONAL_EDGE"
+  },
+  "next_action": "Commit and push v1.6 governance, require cloud CI/actionlint PASS, then update readiness and cross-session memory. No real forecast until an allowed individual exact-Micro source and all preflight gates pass."
+}
