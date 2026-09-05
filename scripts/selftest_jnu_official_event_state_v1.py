@@ -6,7 +6,7 @@ from fetch_jnu_official_event_state_v1 import (
     TOKYO,EASTERN,TAIPEI,
     event,evaluate_event_state,
     parse_boj,parse_stat_single_release,parse_esri_general,parse_esri_gdp,
-    parse_bea,parse_fed,parse_bls,
+    parse_bea,parse_fed,parse_bls,parse_omb_pfei_bls_table,
 )
 
 TARGET=date(2026,9,7)
@@ -55,6 +55,24 @@ def main():
     <tr><td>Monday, September 7, 2026</td><td>08:30 AM</td><td>Consumer Price Index for August 2026</td></tr></table>'''
     x=parse_bls(bls,TARGET,URL)
     tests["bls_parser"]=check("bls_parser",len(x)==1 and x[0]["impact"]=="HIGH")
+
+    omb_table=[
+      ["DEPT","AGENCY/INDICATORS","JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"],
+      [None,"BUREAU OF LABOR STATISTICS",None,None,None,None,None,None,None,None,None,None,None,None],
+      [None,"The Employment Situation", "9","6","6","3","8","5","2","7","4","2","6","4"],
+      [None,"Producer Price Indexes", "14","12","12","14","13","11","15","13","10","15","13","15"],
+      [None,"Consumer Price Index", "13","11","11","10","12","10","14","12","11","14","10","10"],
+    ]
+    x=parse_omb_pfei_bls_table(omb_table,TARGET,URL)
+    by_title={e["title"]:e for e in x}
+    tests["omb_bls_fallback_parser"]=check(
+        "omb_bls_fallback_parser",
+        len(x)==3
+        and by_title["The Employment Situation"]["event_date"]=="2026-09-04"
+        and by_title["Producer Price Indexes"]["event_date"]=="2026-09-10"
+        and by_title["Consumer Price Index"]["event_date"]=="2026-09-11"
+        and all(e["scheduled_time"]=="08:30" for e in x)
+    )
 
     eval_pre=datetime(2026,9,7,8,0,tzinfo=TAIPEI)
     high_future=[event("X","high",TARGET,time(10,0),TOKYO,"HIGH",URL)]

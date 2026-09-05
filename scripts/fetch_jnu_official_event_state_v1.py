@@ -2,12 +2,14 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import io
 import json
 import re
 from datetime import date, datetime, time
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
+import pdfplumber
 import requests
 from bs4 import BeautifulSoup
 
@@ -17,7 +19,7 @@ EASTERN = ZoneInfo("America/New_York")
 UTC = ZoneInfo("UTC")
 
 ROOT = Path(__file__).resolve().parents[1]
-PROTOCOL = ROOT / "config" / "jnu_official_event_state_protocol_v1.json"
+PROTOCOL = ROOT / "config" / "jnu_official_event_state_protocol_v1_1.json"
 
 MONTHS = {
     "jan": 1, "january": 1, "feb": 2, "february": 2, "mar": 3, "march": 3,
@@ -37,7 +39,7 @@ STATIC_SOURCES = {
 }
 
 def month_url(source_id: str, target: date) -> str:
-    if source_id == "US_BLS_RELEASE_CALENDAR":
+    if source_id == "US_BLS_HIGH_IMPACT_SCHEDULE_COVERAGE":
         return f"https://www.bls.gov/schedule/{target.year}/{target.month:02d}_sched_list.htm"
     if source_id == "FEDERAL_RESERVE_CALENDAR":
         month = target.strftime("%B").lower()
@@ -252,7 +254,7 @@ def parse_bls(html: str, target: date, url: str) -> list[dict]:
         impact="HIGH" if any(k.lower() in joined.lower() for k in [
             "Employment Situation","Consumer Price Index","Producer Price Index"
         ]) else "CONTEXT"
-        out.append(event("US_BLS_RELEASE_CALENDAR",title,d,parse_time_text(joined),EASTERN,impact,url))
+        out.append(event("US_BLS_HIGH_IMPACT_SCHEDULE_COVERAGE",title,d,parse_time_text(joined),EASTERN,impact,url))
     if out:
         return out
     text="\n".join(" ".join(x.split()) for x in soup.stripped_strings)
@@ -267,10 +269,79 @@ def parse_bls(html: str, target: date, url: str) -> list[dict]:
         impact="HIGH" if any(k.lower() in title.lower() for k in [
             "Employment Situation","Consumer Price Index","Producer Price Index"
         ]) else "CONTEXT"
-        out.append(event("US_BLS_RELEASE_CALENDAR",title,d,parse_time_text(m.group(5)),EASTERN,impact,url))
+        out.append(event("US_BLS_HIGH_IMPACT_SCHEDULE_COVERAGE",title,d,parse_time_text(m.group(5)),EASTERN,impact,url))
     if not out:
         raise RuntimeError("BLS release schedule rows not found")
     return out
+
+OMB_PFEI_2026_URL = "https://www.whitehouse.gov/wp-content/uploads/2025/09/pfei_schedule_release_dates_cy2026.pdf"
+BLS_TIME_REFS = {
+    "The Employment Situation": "https://www.bls.gov/schedule/news_release/empsit.htm",
+    "Producer Price Indexes": "https://www.bls.gov/schedule/news_release/ppi.htm",
+    "Consumer Price Index": "https://www.bls.gov/schedule/news_release/cpi.htm",
+}
+
+def _first_day_number(cell: str | None) -> int | None:
+    if cell is None:
+        return None
+    for m in re.finditer(r"(?<!\d)([1-9]|[12]\d|3[01])(?!\d)", str(cell)):
+        return int(m.group(1))
+    return None
+
+def parse_omb_pfei_bls_table(table: list[list], target: date, url: str) -> list[dict]:
+    wanted={
+        "The Employment Situation":"The Employment Situation",
+        "Producer Price Indexes":"Producer Price Indexes",
+        "Consumer Price Index":"Consumer Price Index",
+    }
+    out=[]
+    month_col=1+target.month
+    for row in table:
+        if len(row)<=month_col:
+            continue
+        label=" ".join(str(row[1] or "").split())
+        matched=None
+        for needle,title in wanted.items():
+            if needle in label:
+                matched=title
+                break
+        if matched is None:
+            continue
+        day=_first_day_number(row[month_col])
+        if day is None:
+            raise RuntimeError(f"OMB PFEI date missing for {matched} {target.year}-{target.month:02d}")
+        e=event(
+            "US_BLS_HIGH_IMPACT_SCHEDULE_COVERAGE",
+            matched,
+            date(target.year,target.month,day),
+            time(8,30),
+            EASTERN,
+            "HIGH",
+            url,
+        )
+        e["schedule_date_source"]="OMB_PFEI_2026"
+        e["schedule_time_source"]="BLS_BY_NEWS_RELEASE_FROZEN_08_30_ET"
+        e["schedule_time_reference"]=BLS_TIME_REFS[matched]
+        out.append(e)
+    if len(out)!=3:
+        raise RuntimeError(f"OMB PFEI expected 3 BLS high-impact rows, got {len(out)}")
+    return out
+
+def parse_omb_pfei_bls(pdf_bytes: bytes, target: date, url: str) -> list[dict]:
+    if target.year != 2026:
+        raise RuntimeError("OMB PFEI fallback currently frozen only for calendar year 2026")
+    tables=[]
+    with pdfplumber.open(io.BytesIO(pdf_bytes)) as pdf:
+        for page in pdf.pages:
+            for table in page.extract_tables() or []:
+                if any(
+                    any("BUREAU OF LABOR STATISTICS" in str(cell or "") for cell in row)
+                    for row in table
+                ):
+                    tables.append(table)
+    if not tables:
+        raise RuntimeError("OMB PFEI BLS table not found")
+    return parse_omb_pfei_bls_table(tables[0],target,url)
 
 PARSERS = {
     "BOJ_RELEASE_SCHEDULE": parse_boj,
@@ -279,7 +350,7 @@ PARSERS = {
     "JAPAN_STAT_HOUSEHOLD_SPENDING": lambda h,t,u: parse_stat_single_release(h,t,u,"JAPAN_STAT_HOUSEHOLD_SPENDING","Family Income and Expenditure Survey monthly household spending"),
     "JAPAN_ESRI_GENERAL": parse_esri_general,
     "JAPAN_ESRI_GDP": parse_esri_gdp,
-    "US_BLS_RELEASE_CALENDAR": parse_bls,
+    "US_BLS_HIGH_IMPACT_SCHEDULE_COVERAGE": parse_bls,
     "US_BEA_RELEASE_SCHEDULE": parse_bea,
     "FEDERAL_RESERVE_CALENDAR": parse_fed,
 }
@@ -296,6 +367,65 @@ def fetch_source(session: requests.Session, source_id: str, target: date, timeou
     if r.status_code != 200:
         raise RuntimeError(f"HTTP {r.status_code}")
     return str(r.url),r.status_code,r.content
+
+def fetch_bls_coverage(session: requests.Session, target: date, timeout: int, fixture_dir: Path | None):
+    primary_url=month_url("US_BLS_HIGH_IMPACT_SCHEDULE_COVERAGE",target)
+    primary_error=None
+    try:
+        if fixture_dir is not None:
+            fp=fixture_dir/"US_BLS_HIGH_IMPACT_SCHEDULE_COVERAGE.html"
+            if not fp.exists():
+                raise RuntimeError(f"fixture missing: {fp}")
+            content=fp.read_bytes()
+            final_url=primary_url; status=200
+        else:
+            r=session.get(primary_url,timeout=timeout)
+            if r.status_code != 200:
+                raise RuntimeError(f"HTTP {r.status_code}")
+            content=r.content; final_url=str(r.url); status=r.status_code
+        parsed=parse_bls(content.decode("utf-8",errors="replace"),target,final_url)
+        return {
+            "reference":final_url,
+            "http_status":status,
+            "content":content,
+            "parsed":parsed,
+            "transport_mode":"BLS_DIRECT_MONTHLY",
+            "publisher":"U.S. Bureau of Labor Statistics",
+            "primary_reference":primary_url,
+            "primary_failure":None,
+        }
+    except Exception as exc:
+        primary_error=str(exc)
+
+    if target.year != 2026:
+        raise RuntimeError(f"BLS direct failed ({primary_error}); OMB fallback not frozen for {target.year}")
+    try:
+        if fixture_dir is not None:
+            fp=fixture_dir/"OMB_PFEI_2026.pdf"
+            if not fp.exists():
+                raise RuntimeError(f"fixture missing: {fp}")
+            content=fp.read_bytes()
+            final_url=OMB_PFEI_2026_URL; status=200
+        else:
+            r=session.get(OMB_PFEI_2026_URL,timeout=timeout)
+            if r.status_code != 200:
+                raise RuntimeError(f"OMB HTTP {r.status_code}")
+            if "pdf" not in str(r.headers.get("content-type","")).lower():
+                raise RuntimeError(f"OMB unexpected content-type {r.headers.get('content-type')}")
+            content=r.content; final_url=str(r.url); status=r.status_code
+        parsed=parse_omb_pfei_bls(content,target,final_url)
+        return {
+            "reference":final_url,
+            "http_status":status,
+            "content":content,
+            "parsed":parsed,
+            "transport_mode":"OMB_PFEI_FALLBACK",
+            "publisher":"Executive Office of the President / Office of Management and Budget / OIRA",
+            "primary_reference":primary_url,
+            "primary_failure":primary_error,
+        }
+    except Exception as exc:
+        raise RuntimeError(f"BLS direct failed ({primary_error}); OMB PFEI fallback failed ({exc})")
 
 def evaluate_event_state(events: list[dict], failures: list[dict], evaluated_at: datetime, target: date):
     req_utc=evaluated_at.astimezone(UTC)
@@ -358,9 +488,20 @@ def main():
     for source_id in required:
         url=month_url(source_id,target)
         try:
-            final_url,status,content=fetch_source(session,source_id,target,args.timeout_seconds,args.fixture_dir)
-            text=content.decode("utf-8",errors="replace")
-            parsed=PARSERS[source_id](text,target,final_url)
+            if source_id=="US_BLS_HIGH_IMPACT_SCHEDULE_COVERAGE":
+                info=fetch_bls_coverage(session,target,args.timeout_seconds,args.fixture_dir)
+                final_url=info["reference"]; status=info["http_status"]; content=info["content"]; parsed=info["parsed"]
+                record_extra={
+                    "transport_mode":info["transport_mode"],
+                    "publisher":info["publisher"],
+                    "primary_reference":info["primary_reference"],
+                    "primary_failure":info["primary_failure"],
+                }
+            else:
+                final_url,status,content=fetch_source(session,source_id,target,args.timeout_seconds,args.fixture_dir)
+                text=content.decode("utf-8",errors="replace")
+                parsed=PARSERS[source_id](text,target,final_url)
+                record_extra={"transport_mode":"DIRECT_OFFICIAL_HTTP","publisher":source_id}
             events.extend(parsed)
             source_records.append({
                 "source":source_id,
@@ -369,6 +510,7 @@ def main():
                 "http_status":status,
                 "content_sha256_raw":hashlib.sha256(content).hexdigest(),
                 "parsed_event_count":len(parsed),
+                **record_extra,
             })
         except Exception as exc:
             failures.append({"source_id":source_id,"reference":url,"error":str(exc)})
@@ -386,9 +528,9 @@ def main():
     if state=="UNKNOWN":
         evidence["event_unavailability_reason"]=reason or "UNKNOWN_EVENT_STATE"
     result={
-        "version":"1.0",
+        "version":"1.1",
         "status":"OFFICIAL_EVENT_STATE_READY" if state!="UNKNOWN" else "OFFICIAL_EVENT_STATE_FAIL_CLOSED_UNKNOWN",
-        "protocol":"config/jnu_official_event_state_protocol_v1.json",
+        "protocol":"config/jnu_official_event_state_protocol_v1_1.json",
         "evaluated_at_taipei":evaluated_at.isoformat(),
         "target_day_session_date":target.isoformat(),
         "event_state":state,

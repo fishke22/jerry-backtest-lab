@@ -1,0 +1,85 @@
+{
+  "version": "1.1",
+  "frozen_at": "2026-09-05",
+  "status": "PRE_FIRST_REAL_FORECAST_OFFICIAL_EVENT_STATE_PROTOCOL_OMB_BLS_FALLBACK",
+  "purpose": "Build fresh fail-closed target-horizon event-state evidence from free official calendars without creating directional votes; use OMB PFEI as a federal-official BLS schedule fallback when BLS HTTP transport is blocked.",
+  "supersedes": "config/jnu_official_event_state_protocol_v1.json",
+  "required_sources": [
+    "BOJ_RELEASE_SCHEDULE",
+    "JAPAN_STAT_CPI",
+    "JAPAN_STAT_LABOUR_FORCE",
+    "JAPAN_STAT_HOUSEHOLD_SPENDING",
+    "JAPAN_ESRI_GENERAL",
+    "JAPAN_ESRI_GDP",
+    "US_BLS_HIGH_IMPACT_SCHEDULE_COVERAGE",
+    "US_BEA_RELEASE_SCHEDULE",
+    "FEDERAL_RESERVE_CALENDAR"
+  ],
+  "bls_schedule_transport": {
+    "primary": "https://www.bls.gov/schedule/<year>/<month>_sched_list.htm",
+    "primary_role": "BLS direct monthly schedule when HTTP 200 and parser-valid",
+    "fallback_2026": "https://www.whitehouse.gov/wp-content/uploads/2025/09/pfei_schedule_release_dates_cy2026.pdf",
+    "fallback_publisher": "Executive Office of the President / Office of Management and Budget / Office of Information and Regulatory Affairs",
+    "fallback_role": "Federal-official PFEI date schedule for Employment Situation, Producer Price Indexes, and Consumer Price Index when BLS direct HTTP transport is blocked",
+    "time_rule": "08:30 America/New_York for the three frozen BLS high-impact families; verified from the official BLS by-news-release schedules before the first real forecast",
+    "time_source_references": [
+      "https://www.bls.gov/schedule/news_release/empsit.htm",
+      "https://www.bls.gov/schedule/news_release/ppi.htm",
+      "https://www.bls.gov/schedule/news_release/cpi.htm"
+    ],
+    "fallback_years_supported": [2026],
+    "unsupported_year_rule": "UNKNOWN unless BLS direct transport succeeds"
+  },
+  "source_failure_rule": "If no known high event is already found and any required source is unavailable or parser-invalid, event_state=UNKNOWN.",
+  "known_high_event_rule": "Any fixed high-impact event after request creation and no later than target close forces PRE_RELEASE_HIGH even if another source is unavailable.",
+  "post_event_rule": "A fixed high-impact event with an exact official time earlier on the target day than request creation yields POST_EVENT_HIGH; a date-only event whose before/after status cannot be established forces UNKNOWN.",
+  "target_close": "15:45 Asia/Tokyo on target_day_session_date",
+  "default_other_risk_states": {
+    "volatility_state": "UNKNOWN",
+    "sq_state": "UNKNOWN"
+  },
+  "high_impact_families": {
+    "BOJ": [
+      "Statement on Monetary Policy",
+      "Outlook for Economic Activity and Prices",
+      "Monetary Policy Meeting",
+      "FOMC-style policy press conference equivalent",
+      "Governor/Deputy Governor/Policy Board Member scheduled speech or meeting with local leaders is conservatively HIGH unless the official title explicitly establishes a non-policy administrative topic"
+    ],
+    "JAPAN_STAT": [
+      "National Consumer Price Index",
+      "Labour Force Survey basic tabulation",
+      "Family Income and Expenditure Survey monthly household spending"
+    ],
+    "JAPAN_ESRI": [
+      "Quarterly Estimates of GDP",
+      "Machinery Orders",
+      "Business Outlook Survey"
+    ],
+    "US_BLS": [
+      "Employment Situation",
+      "Consumer Price Index",
+      "Producer Price Index"
+    ],
+    "US_BEA": [
+      "GDP estimates",
+      "Personal Income and Outlays"
+    ],
+    "FEDERAL_RESERVE": [
+      "FOMC Meeting",
+      "FOMC Press Conference",
+      "Chair/Governor/Vice Chair speech explicitly concerning economic outlook, inflation, interest rates, or monetary policy"
+    ]
+  },
+  "medium_or_context_only_examples": [
+    "BOJ routine market-operation/statistical releases",
+    "BOJ Consumption Activity Index",
+    "ESRI Indexes of Business Conditions",
+    "ESRI Consumer Confidence Survey",
+    "Federal Reserve routine statistical releases"
+  ],
+  "no_directional_vote": true,
+  "fresh_evidence_max_age_seconds": 900,
+  "real_live_shadow_forecasts_existing_at_freeze": 0,
+  "real_live_shadow_outcomes_existing_at_freeze": 0
+}
