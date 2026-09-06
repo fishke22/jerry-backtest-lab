@@ -69,6 +69,9 @@ def classify(name: str, script: Path, symbol: str, max_age: int, td: Path) -> di
             rec["source_timestamp"] = m.group(3)
             return rec
 
+    if "JPX exact Micro contract not found:" in stderr:
+        rec["status"] = "CONTRACT_NOT_AVAILABLE_FROM_SOURCE"
+        return rec
     rec["status"] = "ENGINEERING_OR_SOURCE_FAILURE"
     return rec
 
@@ -90,15 +93,23 @@ def main() -> None:
     sources = [jpx, tv]
     fresh = [x for x in sources if x["fresh"]]
     failures = [x for x in sources if x["status"] == "ENGINEERING_OR_SOURCE_FAILURE"]
+    unavailable = [x for x in sources if x["status"] == "CONTRACT_NOT_AVAILABLE_FROM_SOURCE"]
+    stale = [x for x in sources if x["status"] == "SOURCE_REACHABLE_STALE"]
     if fresh:
         status = "FRESH_SOURCE_AVAILABLE"
         blocker = None
     elif failures:
         status = "FAIL_CLOSED_SOURCE_FAILURE"
         blocker = "INDIVIDUAL_EXACT_MICRO_SOURCE_OR_ENGINEERING_FAILURE"
-    else:
+    elif stale:
         status = "WAITING_FOR_FRESH_EXACT_MICRO"
         blocker = "INDIVIDUAL_EXACT_MICRO_REFERENCE_FRESHNESS"
+    elif unavailable and len(unavailable) == len(sources):
+        status = "FAIL_CLOSED_CONTRACT_NOT_DISCOVERABLE"
+        blocker = "INDIVIDUAL_EXACT_MICRO_CONTRACT_NOT_DISCOVERABLE"
+    else:
+        status = "FAIL_CLOSED_SOURCE_CLASSIFICATION"
+        blocker = "INDIVIDUAL_EXACT_MICRO_SOURCE_CLASSIFICATION_UNRESOLVED"
 
     result = {
         "version": "1.0",

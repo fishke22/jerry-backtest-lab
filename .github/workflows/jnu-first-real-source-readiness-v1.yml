@@ -43,13 +43,13 @@ jobs:
           INPUT_SYMBOL: ${{ github.event.inputs.symbol }}
         run: |
           set -euo pipefail
-          default_symbol=$(python - <<'PY'
-          import json
-          x=json.load(open("config/jnu_first_real_launch_protocol_v1.json",encoding="utf-8"))
-          print(x["current_exact_micro_symbol"])
-          PY
-          )
-          symbol="${INPUT_SYMBOL:-$default_symbol}"
+          if [ -n "$INPUT_SYMBOL" ]; then
+            symbol="$INPUT_SYMBOL"
+            echo '{"status":"MANUAL_DIAGNOSTIC_OVERRIDE"}' > resolved_contract.json
+          else
+            python scripts/resolve_jnu_exact_micro_contract_v1.py --output resolved_contract.json > resolved_contract.stdout.txt
+            symbol=$(python -c 'import json; print(json.load(open("resolved_contract.json"))["symbol"])')
+          fi
           symbol=$(python - "$symbol" <<'PY'
           import re,sys
           s=sys.argv[1].upper()
@@ -117,6 +117,12 @@ jobs:
           x=json.loads(p.read_text(encoding="utf-8"))
           print(f"- Status: {x['status']}")
           print(f"- Symbol: {x['symbol']}")
+          r=pathlib.Path("resolved_contract.json")
+          if r.exists():
+              rx=json.loads(r.read_text(encoding="utf-8"))
+              print(f"- Contract resolver: {rx.get('status')}")
+              if rx.get("last_trading_day"):
+                  print(f"- Last trading day: {rx.get('last_trading_day')}")
           print(f"- Fresh source count: {x['fresh_source_count']}")
           print(f"- Blocker: {x.get('blocker')}")
           print("- Formal forecast created: false")
@@ -136,5 +142,7 @@ jobs:
             source_readiness.json
             source_readiness.stdout.txt
             source_readiness.stderr.txt
+            resolved_contract.json
+            resolved_contract.stdout.txt
           if-no-files-found: ignore
           retention-days: 30

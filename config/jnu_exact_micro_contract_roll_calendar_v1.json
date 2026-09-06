@@ -1,0 +1,70 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-06",
+  "status": "FROZEN_NEAR_TERM_FRONT_CONTRACT_ROLL_CALENDAR",
+  "product": "Nikkei 225 micro Futures",
+  "symbol_root": "NK225MC",
+  "timezone": "Asia/Tokyo",
+  "official_contract_specification": "https://www.jpx.co.jp/english/derivatives/products/domestic/225micro-futures/01.html",
+  "official_rules": {
+    "trading_hours_jst": {
+      "day_session": "08:45-15:45",
+      "night_session": "17:00-06:00"
+    },
+    "contract_months": {
+      "quarterly_nearest": 2,
+      "monthly_nearest": 2
+    },
+    "last_trading_day_rule": "Business day preceding the second Friday of each contract month; if the second Friday is a non-business day, move earlier.",
+    "new_contract_rule": "Trading in a new contract month begins on the business day following the last trading day."
+  },
+  "selection_rule": "Use the nearest still-tradable individual Micro contract in this frozen near-term calendar. Switch after the expiring contract's day-session close; never use a continuous contract.",
+  "entries": [
+    {
+      "symbol": "NK225MCU2026",
+      "contract_month": "2026-09",
+      "last_trading_day": "2026-09-10",
+      "active_from_jst": "2026-09-01T00:00:00+09:00",
+      "active_until_jst": "2026-09-10T16:00:00+09:00",
+      "discovery_snapshot_20260906": {
+        "JPX_OSE_OFFICIAL_EXACT_MICRO_A": true,
+        "TRADINGVIEW_OSE_EXACT_MICRO_B": true
+      }
+    },
+    {
+      "symbol": "NK225MCV2026",
+      "contract_month": "2026-10",
+      "last_trading_day": "2026-10-08",
+      "active_from_jst": "2026-09-10T16:00:00+09:00",
+      "active_until_jst": "2026-10-08T16:00:00+09:00",
+      "discovery_snapshot_20260906": {
+        "JPX_OSE_OFFICIAL_EXACT_MICRO_A": true,
+        "TRADINGVIEW_OSE_EXACT_MICRO_B": true
+      }
+    },
+    {
+      "symbol": "NK225MCX2026",
+      "contract_month": "2026-11",
+      "last_trading_day": "2026-11-12",
+      "active_from_jst": "2026-10-08T16:00:00+09:00",
+      "active_until_jst": "2026-11-12T16:00:00+09:00",
+      "discovery_snapshot_20260906": {
+        "JPX_OSE_OFFICIAL_EXACT_MICRO_A": true,
+        "TRADINGVIEW_OSE_EXACT_MICRO_B": true
+      }
+    },
+    {
+      "symbol": "NK225MCZ2026",
+      "contract_month": "2026-12",
+      "last_trading_day": "2026-12-10",
+      "active_from_jst": "2026-11-12T16:00:00+09:00",
+      "active_until_jst": "2026-12-10T16:00:00+09:00",
+      "discovery_snapshot_20260906": {
+        "JPX_OSE_OFFICIAL_EXACT_MICRO_A": false,
+        "TRADINGVIEW_OSE_EXACT_MICRO_B": true
+      }
+    }
+  ],
+  "calendar_exhaustion_behavior": "FAIL_CLOSED_REQUIRES_NEW_FROZEN_ROLL_CALENDAR",
+  "continuous_contract_primary_prohibited": true
+}

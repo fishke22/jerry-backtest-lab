@@ -58,3 +58,32 @@ No broker login or order execution is part of this workflow.
 - decision_engine = NO_VALIDATED_DIRECTIONAL_EDGE
 - real forecasts = 0
 - real outcomes = 0
+
+
+## Contract rollover
+
+The source-readiness workflow must not hard-code a quarterly-only sequence. JPX specifies Nikkei 225 micro Futures with the nearest two quarterly contract months and the nearest two monthly contract months. The frozen near-term resolver is:
+
+`config/jnu_exact_micro_contract_roll_calendar_v1.json`
+
+with executable resolver:
+
+`scripts/resolve_jnu_exact_micro_contract_v1.py`
+
+Near-term front-month boundaries are frozen as:
+
+- Sep 2026 `NK225MCU2026` through 2026-09-10 16:00 JST.
+- Oct 2026 `NK225MCV2026` from 2026-09-10 16:00 JST through 2026-10-08 16:00 JST.
+- Nov 2026 `NK225MCX2026` from 2026-10-08 16:00 JST through 2026-11-12 16:00 JST.
+- Dec 2026 `NK225MCZ2026` from 2026-11-12 16:00 JST through 2026-12-10 16:00 JST.
+
+The resolver chooses the expected individual contract only. It does not assert that every quote transport currently publishes that month. Source discoverability is checked independently by the source-readiness probe.
+
+As of the 2026-09-06 discovery snapshot:
+
+- Sep/Oct/Nov 2026 are discoverable through both JPX A and TradingView B.
+- Dec 2026 is discoverable through TradingView B; the JPX public futures payload used by the adapter does not yet list Dec 2026.
+
+A source-specific missing contract is therefore `CONTRACT_NOT_AVAILABLE_FROM_SOURCE`, not automatically an engineering failure. A fresh quote from another allowed exact-product source can still satisfy the gate.
+
+The frozen calendar exhausts after the Dec 2026 day session. It must fail closed until a new calendar is explicitly frozen; it must never guess a later symbol.

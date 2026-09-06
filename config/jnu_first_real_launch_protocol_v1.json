@@ -4,9 +4,9 @@
   "status": "FIRST_REAL_LAUNCH_ORCHESTRATION_READY",
   "authoritative_framework": "config/jnu_operational_framework_current_v1_8.json",
   "purpose": "Read-only source readiness orchestration for the first real JNU live-shadow forecast. This protocol never creates analysis, requests, forecasts, outcomes, or orders by itself.",
-  "current_exact_micro_symbol": "NK225MCU2026",
-  "current_contract_last_trading_day": "2026-09-10",
-  "symbol_roll_rule": "Before a scheduled probe after the current contract last trading day, update current_exact_micro_symbol to the next eligible individual OSE Nikkei 225 Micro month contract. Continuous contracts remain prohibited.",
+  "current_exact_micro_symbol": "RESOLVE_FROM_FROZEN_ROLL_CALENDAR",
+  "current_contract_last_trading_day": "RESOLVE_FROM_FROZEN_ROLL_CALENDAR",
+  "symbol_roll_rule": "Resolve the nearest still-tradable individual Micro month from the frozen roll calendar at probe time. At or after an expiry-day 16:00 JST boundary, switch to the next frozen individual month. Then independently require source discoverability and the <=900-second freshness gate. Continuous contracts remain prohibited.",
   "maximum_reference_age_seconds": 900,
   "allowed_source_classes": [
     "JPX_OSE_OFFICIAL_EXACT_MICRO_A",
@@ -40,12 +40,15 @@
     "No continuous-contract substitution.",
     "No relaxation of the 900-second quote gate.",
     "No terminal-failed directional family reopening.",
-    "No broker login or order execution."
+    "No broker login or order execution.",
+    "No hard-coded quarterly-only rollover; monthly Micro contracts must be respected."
   ],
   "real_ledger_at_freeze": {
     "forecasts": 0,
     "outcomes": 0
   },
   "validated_directional_modules": 0,
-  "decision_engine": "NO_VALIDATED_DIRECTIONAL_EDGE"
+  "decision_engine": "NO_VALIDATED_DIRECTIONAL_EDGE",
+  "contract_roll_calendar": "config/jnu_exact_micro_contract_roll_calendar_v1.json",
+  "contract_resolver": "scripts/resolve_jnu_exact_micro_contract_v1.py"
 }

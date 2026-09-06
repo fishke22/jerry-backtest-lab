@@ -37,6 +37,11 @@ raise SystemExit(1)
 sys.stderr.write('unexpected source schema failure\\n')
 raise SystemExit(2)
 """)
+        unavailable=td/"unavailable.py"
+        write_script(unavailable, """import sys
+sys.stderr.write('RuntimeError: JPX exact Micro contract not found: Dec.2026\\n')
+raise SystemExit(1)
+""")
         bad_identity=td/"bad_identity.py"
         write_script(bad_identity, """import argparse,json
 from pathlib import Path
@@ -53,6 +58,9 @@ a.output.write_text(json.dumps(q),encoding='utf-8')
 
         r=m.classify("SYNTH_FAILURE",failure,"NK225MCU2026",900,td)
         tests["failure_classified"]=r["status"]=="ENGINEERING_OR_SOURCE_FAILURE" and r["fresh"] is False
+
+        r=m.classify("SYNTH_UNAVAILABLE",unavailable,"NK225MCZ2026",900,td)
+        tests["contract_unavailable_classified"]=r["status"]=="CONTRACT_NOT_AVAILABLE_FROM_SOURCE" and r["fresh"] is False
 
         try:
             m.classify("SYNTH_BAD_IDENTITY",bad_identity,"NK225MCU2026",900,td)
