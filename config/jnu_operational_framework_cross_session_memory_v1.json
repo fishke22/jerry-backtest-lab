@@ -75,7 +75,7 @@
   "cloud_request_selftest_run": 33969428203,
   "cloud_actionlint_run": 34038843503,
   "cloud_pipeline_status": "V1_8_ANALYSIS_FRESH_OFFICIAL_PREPARED_REQUEST_INTEGRITY_CI_PASS_REAL_LEDGER_EMPTY",
-  "next_action": "On the next eligible OSE trading window, create a new analysis draft; do not timestamp-refresh an old analysis. Use the cloud draft-preparation workflow or v1.1 preparer, then require exact individual Micro <=900 seconds before atomic v4.",
+  "next_action": "Wait for a scheduled or manual source-readiness run to show FRESH_SOURCE_AVAILABLE. Only then create a genuinely fresh analysis draft and continue the v1.8 request/preflight/atomic-v4 chain. The readiness probe itself never creates a forecast.",
   "exact_micro_reference_source_gate": "config/jnu_exact_micro_reference_source_gate_20260904_v1.json",
   "tradingview_exact_micro_transport": {
     "status": "B_IDENTITY_SOURCE_ALLOWED_ONLY_IF_ACTUAL_LP_TIME_AGE_LE_900",
@@ -141,5 +141,12 @@
   "analysis_draft_protocol": "config/jnu_cloud_request_draft_protocol_v1.json",
   "cloud_request_preparation_workflow": ".github/workflows/jnu-prepare-cloud-request-v1.yml",
   "v1_8_core_seal_commit": "883d6d71d41a02ca19a713a5b5e2c3469c84cead",
-  "v1_8_integrity_selftest_run": 34038843524
+  "v1_8_integrity_selftest_run": 34038843524,
+  "first_real_launch_protocol": "config/jnu_first_real_launch_protocol_v1.json",
+  "first_real_source_readiness_checkpoint": "config/jnu_first_real_source_readiness_checkpoint_v1.json",
+  "first_real_source_probe": "scripts/probe_jnu_first_real_source_readiness_v1.py",
+  "first_real_source_probe_workflow": ".github/workflows/jnu-first-real-source-readiness-v1.yml",
+  "first_real_source_probe_status": "SCHEDULED_CLOUD_READY_WAITING_FOR_FRESH_EXACT_MICRO",
+  "first_real_source_probe_run": 34039510168,
+  "expanded_cloud_actionlint_run": 34039498873
 }

@@ -37,7 +37,9 @@
     "core_commit": "883d6d71d41a02ca19a713a5b5e2c3469c84cead",
     "v1_8_integrity_selftest_run": 34038843524,
     "actionlint_run": 34038843503,
-    "v1_7_regression_run": 34038843647
+    "v1_7_regression_run": 34038843647,
+    "source_readiness_run": 34039510168,
+    "expanded_actionlint_run": 34039498873
   },
   "current_blocker": "INDIVIDUAL_EXACT_MICRO_REFERENCE_FRESHNESS",
   "weekend_probe": {
@@ -46,5 +48,9 @@
     "both_fail_closed": true
   },
   "analysis_draft_protocol": "config/jnu_cloud_request_draft_protocol_v1.json",
-  "cloud_request_preparation_workflow": ".github/workflows/jnu-prepare-cloud-request-v1.yml"
+  "cloud_request_preparation_workflow": ".github/workflows/jnu-prepare-cloud-request-v1.yml",
+  "first_real_launch_protocol": "config/jnu_first_real_launch_protocol_v1.json",
+  "source_readiness_checkpoint": "config/jnu_first_real_source_readiness_checkpoint_v1.json",
+  "source_readiness_workflow": ".github/workflows/jnu-first-real-source-readiness-v1.yml",
+  "source_readiness_status": "SCHEDULED_READY_WAITING_FOR_FRESH_EXACT_MICRO"
 }

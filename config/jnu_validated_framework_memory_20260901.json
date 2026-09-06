@@ -208,7 +208,7 @@
   "authoritative_validation_pipeline_checkpoint": "config/jnu_validation_pipeline_checkpoint_20260902_v1.json",
   "validation_pipeline_status": "JNU_VALIDATION_PIPELINE_READY_FORWARD_DATA_PENDING",
   "validation_pipeline_head": "ff322f11dbb23da6be093056ac6ef47f2db10e4a",
-  "next_action": "Use JNU Operational Framework v1.8. Require genuine analysis freshness <=900 seconds, fresh official event evidence, and fresh individual OSE NK225MC quote <=900 seconds before any real registration.",
+  "next_action": "Use JNU Operational Framework v1.8. Await FRESH_SOURCE_AVAILABLE from the first-real source-readiness workflow, then create a new <=900-second analysis draft and proceed through official event preparation and atomic v4.",
   "stage8_forward_local_ingest": {
     "status": "SELFTEST_PASS_NO_SOURCE_CHANGE",
     "script": "scripts/ingest_jnu_stage8_forward_local.py",
@@ -349,5 +349,18 @@
       "forecasts": 0,
       "outcomes": 0
     }
+  },
+  "first_real_launch_orchestration": {
+    "status": "READY_WAITING_FOR_FRESH_EXACT_MICRO",
+    "protocol": "config/jnu_first_real_launch_protocol_v1.json",
+    "checkpoint": "config/jnu_first_real_source_readiness_checkpoint_v1.json",
+    "probe": "scripts/probe_jnu_first_real_source_readiness_v1.py",
+    "workflow": ".github/workflows/jnu-first-real-source-readiness-v1.yml",
+    "cloud_probe_run": 34039510168,
+    "actionlint_run": 34039498873,
+    "scheduled_day_probe_jst": "08:50",
+    "scheduled_night_probe_jst": "17:05",
+    "real_forecasts": 0,
+    "real_outcomes": 0
   }
 }

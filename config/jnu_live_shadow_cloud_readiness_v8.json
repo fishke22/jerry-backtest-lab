@@ -96,6 +96,15 @@
     "cloud_mobile_draft_workflow": {
       "actionlint": "PASS",
       "production_draft_run_performed": false
+    },
+    "first_real_source_readiness_cloud": {
+      "status": "PASS_WAITING_FOR_FRESH_EXACT_MICRO",
+      "run_id": 34039510168,
+      "actionlint_run_id": 34039498873,
+      "fresh_source_count": 0,
+      "jpx_age_seconds": 149588.7,
+      "tradingview_age_seconds": 149588.9,
+      "real_ledger_modified": false
     }
   },
   "frozen_max_reference_age_seconds": 900,
@@ -111,7 +120,7 @@
     "decision_engine": "NO_VALIDATED_DIRECTIONAL_EDGE"
   },
   "blocker": "INDIVIDUAL_EXACT_MICRO_REFERENCE_FRESHNESS",
-  "next_action": "At the next eligible OSE trading window, create a genuinely fresh analysis draft with analysis_frozen_at_taipei <=900 seconds old, let the cloud preparer bind fresh 9/9 official event evidence, then require JPX A or TradingView B individual exact-Micro source age <=900 seconds before v1.2 preflight and atomic v4 registration.",
+  "next_action": "Use the scheduled first-real source-readiness probe. When it reports FRESH_SOURCE_AVAILABLE, immediately create a genuinely new <=900-second analysis draft, bind fresh official event evidence, and proceed through v1.2 preflight / atomic v4. Do not pre-create or reuse a stale draft.",
   "integrity_hash_protocol": "config/jnu_integrity_hash_protocol_v1.json",
   "integrity_hash_method": "SHA256_TEXT_EOL_CRLF_V1",
   "core_seal_commit": "883d6d71d41a02ca19a713a5b5e2c3469c84cead",
@@ -131,5 +140,10 @@
   "official_event_preparation_ready": true,
   "analysis_draft_protocol": "config/jnu_cloud_request_draft_protocol_v1.json",
   "cloud_request_preparation_workflow": ".github/workflows/jnu-prepare-cloud-request-v1.yml",
-  "analysis_draft_freshness_ready": true
+  "analysis_draft_freshness_ready": true,
+  "first_real_launch_protocol": "config/jnu_first_real_launch_protocol_v1.json",
+  "first_real_source_readiness_checkpoint": "config/jnu_first_real_source_readiness_checkpoint_v1.json",
+  "first_real_source_probe": "scripts/probe_jnu_first_real_source_readiness_v1.py",
+  "first_real_source_probe_workflow": ".github/workflows/jnu-first-real-source-readiness-v1.yml",
+  "scheduled_source_readiness_ready": true
 }

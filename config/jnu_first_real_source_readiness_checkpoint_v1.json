@@ -1,0 +1,70 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-06",
+  "status": "FIRST_REAL_SOURCE_READINESS_ORCHESTRATION_READY_WAITING_FOR_FRESH_EXACT_MICRO",
+  "authoritative_framework": "config/jnu_operational_framework_current_v1_8.json",
+  "launch_protocol": "config/jnu_first_real_launch_protocol_v1.json",
+  "launch_protocol_sha256": "29b2e117cb71d05478e9a53695aa95f06a2edd42455ac14698f6d43e1ff26a13",
+  "source_probe": "scripts/probe_jnu_first_real_source_readiness_v1.py",
+  "source_probe_sha256": "86d4636023e19aee0d9a4be0d420a8f101c6eb2c482fa47dedc1ddbb8158af8a",
+  "source_probe_workflow": ".github/workflows/jnu-first-real-source-readiness-v1.yml",
+  "source_probe_workflow_sha256": "6cc72a9cbcfe721076782a46ba83b7ebfb606402e1b32287162e800079ee74ce",
+  "actionlint_workflow_sha256": "d276ab90f125c2fe802e20ceb446fc0c4039773ed691dbd8cbc45a18144f947b",
+  "core_commit": "75ea4cab3e43a1e14b9065031bcbf31f15ea7c8d",
+  "cloud_dependency_fix_commit": "ee5d3442d6766c04a3c5d51282d0c9f4507b0258",
+  "cloud_verification": {
+    "first_attempt": {
+      "run_id": 34039345968,
+      "status": "FAIL_CLOSED_ENGINEERING_DEPENDENCY",
+      "cause": "GitHub Python 3.12 runner did not have requests installed; JPX adapter could not start.",
+      "real_ledger_modified": false
+    },
+    "fixed_attempt": {
+      "run_id": 34039510168,
+      "status": "SUCCESS_WAITING_FOR_FRESH_EXACT_MICRO",
+      "checked_at_taipei": "2026-09-06T22:33:07.593939+08:00",
+      "symbol": "NK225MCU2026",
+      "fresh_source_count": 0,
+      "blocker": "INDIVIDUAL_EXACT_MICRO_REFERENCE_FRESHNESS",
+      "jpx": {
+        "status": "SOURCE_REACHABLE_STALE",
+        "age_seconds": 149588.7,
+        "source_timestamp": "2026-09-05T06:00:00+09:00"
+      },
+      "tradingview": {
+        "status": "SOURCE_REACHABLE_STALE",
+        "age_seconds": 149588.9,
+        "source_timestamp": "2026-09-05T05:00:00+08:00"
+      },
+      "formal_forecast_created": false,
+      "real_ledger_modified": false,
+      "directional_analysis_performed": false
+    },
+    "actionlint": {
+      "run_id": 34039498873,
+      "status": "PASS",
+      "coverage": [
+        ".github/workflows/jnu-live-shadow-cloud-forecast-v1.yml",
+        ".github/workflows/jnu-live-shadow-cloud-request-selftest-v1.yml",
+        ".github/workflows/jnu-exact-micro-quote-cloud-smoke-v1.yml",
+        ".github/workflows/jnu-prepare-cloud-request-v1.yml",
+        ".github/workflows/jnu-first-real-source-readiness-v1.yml",
+        ".github/workflows/jnu-live-shadow-v18-integrity-selftest-v1.yml"
+      ]
+    }
+  },
+  "scheduled_probe_policy": {
+    "day_session_probe_jst": "08:50",
+    "night_session_probe_jst": "17:05",
+    "day_cron_utc": "50 23 * * 0-4",
+    "night_cron_utc": "5 8 * * 1-5"
+  },
+  "frozen_max_reference_age_seconds": 900,
+  "current_blocker": "INDIVIDUAL_EXACT_MICRO_REFERENCE_FRESHNESS",
+  "real_ledger": {
+    "forecasts": 0,
+    "outcomes": 0
+  },
+  "validated_directional_modules": 0,
+  "decision_engine": "NO_VALIDATED_DIRECTIONAL_EDGE"
+}

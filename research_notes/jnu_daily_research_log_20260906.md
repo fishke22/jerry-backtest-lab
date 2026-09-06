@@ -135,3 +135,52 @@ Formal state remains:
 - Real live-shadow ledger = 0 forecasts / 0 outcomes.
 - No terminal-failed directional family was reopened or rescued.
 - No directional, scoring, horizon, confidence, quote-freshness, or 30-nonabstain review gate was loosened.
+
+
+## First-real source readiness orchestration
+
+A read-only first-real launch layer was added without changing the sealed v1.8 directional or scoring semantics.
+
+Core orchestration commit:
+
+`75ea4cab3e43a1e14b9065031bcbf31f15ea7c8d`
+
+Cloud dependency/actionlint fix:
+
+`ee5d3442d6766c04a3c5d51282d0c9f4507b0258`
+
+New components:
+
+- `config/jnu_first_real_launch_protocol_v1.json`
+- `scripts/probe_jnu_first_real_source_readiness_v1.py`
+- `.github/workflows/jnu-first-real-source-readiness-v1.yml`
+- `research_notes/jnu_first_real_launch_runbook_v1.md`
+
+The scheduled workflow probes both allowed individual exact-Micro primary source classes:
+
+- JPX/OSE official exact Micro A.
+- TradingView OSE exact Micro B.
+
+It runs five minutes after the official OSE day-session and night-session opening auction times and never creates analysis, an immutable request, a forecast, an outcome, or an order.
+
+Synthetic source-probe selftest: 4/4 PASS, including fresh, stale, engineering failure, and continuous-contract identity rejection.
+
+The first GitHub run `34039345968` correctly failed closed because the stock GitHub Python runner did not contain the `requests` dependency required by the JPX adapter. No ledger mutation occurred. The workflow now installs that dependency explicitly.
+
+The fixed GitHub source-readiness run `34039510168` passed and returned `WAITING_FOR_FRESH_EXACT_MICRO`:
+
+- JPX A: `SOURCE_REACHABLE_STALE`, age 149,588.7 seconds, source `2026-09-05T06:00:00+09:00`.
+- TradingView B: `SOURCE_REACHABLE_STALE`, age 149,588.9 seconds, source `2026-09-05T05:00:00+08:00`.
+- fresh source count: 0.
+- blocker: `INDIVIDUAL_EXACT_MICRO_REFERENCE_FRESHNESS`.
+- formal forecast created: false.
+- real ledger modified: false.
+
+Expanded cloud Actionlint run `34039498873` passed and now covers the first-real source-readiness workflow, request-preparation workflow, v1.8 integrity workflow, and the existing cloud forecast/request/quote workflows.
+
+The source-readiness schedule is frozen to:
+
+- 08:50 JST day-session probe.
+- 17:05 JST night-session probe.
+
+Formal state remains 0 validated directional modules and 0/0 real live-shadow ledger.
