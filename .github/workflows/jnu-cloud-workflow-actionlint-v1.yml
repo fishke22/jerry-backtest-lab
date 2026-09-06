@@ -8,6 +8,9 @@ on:
       - ".github/workflows/jnu-live-shadow-cloud-forecast-v1.yml"
       - ".github/workflows/jnu-live-shadow-cloud-request-selftest-v1.yml"
       - ".github/workflows/jnu-exact-micro-quote-cloud-smoke-v1.yml"
+      - ".github/workflows/jnu-prepare-cloud-request-v1.yml"
+      - ".github/workflows/jnu-first-real-source-readiness-v1.yml"
+      - ".github/workflows/jnu-live-shadow-v18-integrity-selftest-v1.yml"
   workflow_dispatch:
 
 permissions:
@@ -37,4 +40,7 @@ jobs:
             .github/workflows/jnu-live-shadow-cloud-forecast-v1.yml \
             .github/workflows/jnu-live-shadow-cloud-request-selftest-v1.yml \
             .github/workflows/jnu-exact-micro-quote-cloud-smoke-v1.yml \
+            .github/workflows/jnu-prepare-cloud-request-v1.yml \
+            .github/workflows/jnu-first-real-source-readiness-v1.yml \
+            .github/workflows/jnu-live-shadow-v18-integrity-selftest-v1.yml \
             .github/workflows/jnu-cloud-workflow-actionlint-v1.yml
