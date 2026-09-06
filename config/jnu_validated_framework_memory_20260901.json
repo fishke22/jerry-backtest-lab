@@ -208,7 +208,7 @@
   "authoritative_validation_pipeline_checkpoint": "config/jnu_validation_pipeline_checkpoint_20260902_v1.json",
   "validation_pipeline_status": "JNU_VALIDATION_PIPELINE_READY_FORWARD_DATA_PENDING",
   "validation_pipeline_head": "ff322f11dbb23da6be093056ac6ef47f2db10e4a",
-  "next_action": "Use JNU Operational Framework v1.7. Prepare first-real-capable requests only through the official-event preparer, then require a fresh individual OSE NK225MC month-contract quote <=900 seconds before preflight/atomic v3. Do not relax freshness or substitute NikkeiRealtime CONT.",
+  "next_action": "Use JNU Operational Framework v1.8. Require genuine analysis freshness <=900 seconds, fresh official event evidence, and fresh individual OSE NK225MC quote <=900 seconds before any real registration.",
   "stage8_forward_local_ingest": {
     "status": "SELFTEST_PASS_NO_SOURCE_CHANGE",
     "script": "scripts/ingest_jnu_stage8_forward_local.py",
@@ -216,8 +216,8 @@
     "download_or_login_automation": false,
     "next_action": "After a manually/authorized updated 225Labo Micro package exists locally, run check-only then --apply; inspect readiness only."
   },
-  "authoritative_operational_framework": "config/jnu_operational_framework_current_v1_7.json",
-  "operational_framework_status": "AUTHORITATIVE_JNU_OPERATIONAL_FRAMEWORK_V1_7",
+  "authoritative_operational_framework": "config/jnu_operational_framework_current_v1_8.json",
+  "operational_framework_status": "AUTHORITATIVE_JNU_OPERATIONAL_FRAMEWORK_V1_8",
   "operational_framework_usage": "Use for all future Osaka Nikkei/JNU analysis unless explicitly superseded by a later committed framework.",
   "jpx_n225mini_foreign_flow_sign_g1": {
     "status": "TERMINAL_FAIL_NO_RESCUE",
@@ -253,22 +253,21 @@
   "directional_research_status": "PAUSE_NEW_FORMAL_DIRECTIONAL_FAMILIES_UNTIL_NEW_DIRECT_EVIDENCE",
   "directional_scout_checkpoint": "config/jnu_directional_scout_checkpoint_20260903_v1.json",
   "live_shadow_validation": {
-    "status": "ACTIVE_V1_6_OFFICIAL_EVENT_PREPARED_REQUEST_INTEGRITY",
-    "preregistration": "config/jnu_operational_live_shadow_prereg_v1_6.json",
-    "implementation": "config/jnu_operational_live_shadow_implementation_v1_6.json",
-    "registrar": "scripts/register_jnu_operational_shadow_forecast_v1_6.py",
-    "atomic_forecast_tool": "scripts/register_jnu_operational_shadow_forecast_atomic_v3.py",
+    "status": "ACTIVE_V1_8_ANALYSIS_FRESH_OFFICIAL_PREPARED_REQUEST_INTEGRITY",
+    "preregistration": "config/jnu_operational_live_shadow_prereg_v1_7.json",
+    "implementation": "config/jnu_operational_live_shadow_implementation_v1_7.json",
+    "registrar": "scripts/register_jnu_operational_shadow_forecast_v1_7.py",
+    "atomic_forecast_tool": "scripts/register_jnu_operational_shadow_forecast_atomic_v4.py",
     "atomic_outcome_tool": "scripts/record_jnu_operational_shadow_outcome_atomic_v2.py",
-    "integrity_scorer": "scripts/score_jnu_operational_live_shadow_v1_5.py",
-    "preflight": "scripts/check_jnu_live_shadow_preflight_v1_1.py",
-    "request_protocol": "config/jnu_cloud_forecast_request_protocol_v1_2.json",
-    "request_preparation_protocol": "config/jnu_cloud_request_preparation_protocol_v1.json",
-    "request_preparer": "scripts/prepare_jnu_cloud_request_v1.py",
-    "request_preparation_validator": "scripts/jnu_request_preparation_validation_v1.py",
-    "official_event_state_protocol": "config/jnu_official_event_state_protocol_v1_1.json",
-    "official_event_state_producer": "scripts/fetch_jnu_official_event_state_v1.py",
-    "risk_state_validator": "scripts/jnu_risk_state_evidence_validation_v1_1.py",
-    "selftest": "config/jnu_operational_live_shadow_v17_integrity_selftest_v1.json",
+    "integrity_scorer": "scripts/score_jnu_operational_live_shadow_v1_6.py",
+    "preflight": "scripts/check_jnu_live_shadow_preflight_v1_2.py",
+    "request_protocol": "config/jnu_cloud_forecast_request_protocol_v1_3.json",
+    "request_preparation_protocol": "config/jnu_cloud_request_preparation_protocol_v1_1.json",
+    "analysis_draft_protocol": "config/jnu_cloud_request_draft_protocol_v1.json",
+    "request_preparer": "scripts/prepare_jnu_cloud_request_v1_1.py",
+    "request_preparation_validator": "scripts/jnu_request_preparation_validation_v1_1.py",
+    "risk_state_validator": "scripts/jnu_risk_state_evidence_validation_v1_2.py",
+    "selftest": "config/jnu_operational_live_shadow_v18_integrity_selftest_v1.json",
     "real_forecasts_registered": 0,
     "real_outcomes_registered": 0,
     "first_formal_review_min_nonabstain": 30
@@ -286,10 +285,9 @@
     "boj_available_new_events": 0
   },
   "first_real_live_shadow_forecast_readiness": {
-    "status": "V1_7_GOVERNANCE_AND_OFFICIAL_EVENT_PREPARATION_READY_AWAITING_FRESH_EXACT_MICRO",
-    "checkpoint": "config/jnu_live_shadow_cloud_readiness_v7.json",
-    "first_real_readiness": "config/jnu_live_shadow_first_real_forecast_readiness_v4.json",
-    "source_gate": "config/jnu_exact_micro_primary_source_hierarchy_v1.json",
+    "status": "V1_8_ANALYSIS_FRESH_GOVERNANCE_READY_AWAITING_FRESH_EXACT_MICRO",
+    "checkpoint": "config/jnu_live_shadow_cloud_readiness_v8.json",
+    "first_real_readiness": "config/jnu_live_shadow_first_real_forecast_readiness_v5.json",
     "real_forecasts": 0,
     "real_outcomes": 0
   },
@@ -334,6 +332,18 @@
     "actionlint_run": 34037173499,
     "official_event_source_smoke_run": 33970320931,
     "prepared_request_integrity": "PASS",
+    "official_event_source_coverage": "PASS_9_OF_9",
+    "real_ledger": {
+      "forecasts": 0,
+      "outcomes": 0
+    }
+  },
+  "v1_8_governance_seal": {
+    "commit": "883d6d71d41a02ca19a713a5b5e2c3469c84cead",
+    "v1_8_integrity_selftest_run": 34038843524,
+    "actionlint_run": 34038843503,
+    "v1_7_regression_run": 34038843647,
+    "analysis_freshness_integrity": "PASS",
     "official_event_source_coverage": "PASS_9_OF_9",
     "real_ledger": {
       "forecasts": 0,

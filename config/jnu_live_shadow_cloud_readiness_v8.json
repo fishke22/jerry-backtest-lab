@@ -1,0 +1,135 @@
+{
+  "version": "8.0",
+  "as_of": "2026-09-06",
+  "status": "V1_8_ANALYSIS_FRESH_GOVERNANCE_READY_AWAITING_FRESH_EXACT_MICRO",
+  "authoritative_framework": "config/jnu_operational_framework_current_v1_8.json",
+  "preregistration": "config/jnu_operational_live_shadow_prereg_v1_7.json",
+  "implementation": "config/jnu_operational_live_shadow_implementation_v1_7.json",
+  "decision_protocol_sha256": "fe10aca973f2038fcd2038ae9564253e58685c6d40f79a88d54f44f828a0d552",
+  "primary_source_hierarchy": "config/jnu_exact_micro_primary_source_hierarchy_v1.json",
+  "cloud_workflow": ".github/workflows/jnu-live-shadow-cloud-forecast-v1.yml",
+  "verification": {
+    "actionlint": {
+      "status": "PASS",
+      "run_id": 34038843503
+    },
+    "jpx_cloud_builder_atomic_selftest": "PASS",
+    "decision_protocol_regression": "PASS",
+    "unknown_state_selftests": "PASS",
+    "real_ledger_integrity": {
+      "status": "PASS",
+      "forecasts": 0,
+      "outcomes": 0
+    },
+    "jpx_latest_live_age_seconds": 949.9,
+    "jpx_latest_live_result": "FAIL_CLOSED_STALE_FINAL_RECHECK",
+    "tradingview_observed_live_age_seconds": 950.6,
+    "tradingview_observed_live_result": "FAIL_CLOSED_STALE_FINAL_RECHECK",
+    "nikkeirealtime_primary_role": "REJECTED_CONTINUOUS_ONLY",
+    "final_real_ledger_scorer": {
+      "status": "PASS",
+      "forecasts_verified": 0,
+      "outcomes_verified": 0
+    },
+    "cloud_request_v1_6_selftest": {
+      "status": "PASS",
+      "run_id": 33969428203
+    },
+    "cross_platform_eol_integrity": "PASS",
+    "risk_state_evidence_integrity": "PASS",
+    "v1_7_integrity_selftest": {
+      "status": "PASS",
+      "run_id": 34037173518
+    },
+    "official_event_source_smoke": {
+      "status": "PASS",
+      "run_id": 33970320931,
+      "required_source_coverage": 9,
+      "source_failures": 0,
+      "bls_direct_transport": "HTTP_403",
+      "bls_coverage_transport": "OMB_PFEI_FALLBACK",
+      "reference_target_date": "2026-09-07",
+      "reference_event_state": "NORMAL",
+      "rule": "This validates transport/parser feasibility only; event evidence must be freshly regenerated within 900 seconds of each real request."
+    },
+    "request_preparation_chain": "PASS",
+    "prepared_request_tamper_rejection": "PASS",
+    "official_event_protocol_tamper_rejection": "PASS",
+    "official_source_coverage_tamper_rejection": "PASS",
+    "latest_weekend_exact_micro_probe": {
+      "as_of": "2026-09-06",
+      "jpx": {
+        "result": "FAIL_CLOSED_STALE",
+        "age_seconds": 148861.7,
+        "source_timestamp_jst": "2026-09-05T06:00:00+09:00"
+      },
+      "tradingview": {
+        "result": "FAIL_CLOSED_STALE",
+        "age_seconds": 148862.7,
+        "source_timestamp": "2026-09-05T05:00:00+08:00"
+      }
+    },
+    "v1_8_integrity_selftest": {
+      "status": "PASS",
+      "run_id": 34038843524
+    },
+    "v1_7_regression": {
+      "status": "PASS",
+      "run_id": 34038843647
+    },
+    "real_official_event_preparation_smoke": {
+      "status": "PASS",
+      "target_day_session_date": "2026-09-07",
+      "analysis_age_seconds": 6.956558,
+      "event_evidence_age_seconds": 0.219483,
+      "event_source_coverage": 9,
+      "event_state": "NORMAL",
+      "decision_bias": "NEUTRAL_ABSTAIN",
+      "decision_confidence": "LOW",
+      "real_registration_performed": false
+    },
+    "analysis_freshness_fail_closed": {
+      "stale_rejected": true,
+      "future_rejected": true,
+      "timestamp_tamper_rejected": true
+    },
+    "cloud_mobile_draft_workflow": {
+      "actionlint": "PASS",
+      "production_draft_run_performed": false
+    }
+  },
+  "frozen_max_reference_age_seconds": 900,
+  "individual_month_contract_required": true,
+  "continuous_contract_primary_prohibited": true,
+  "real_ledger": {
+    "forecasts": 0,
+    "outcomes": 0
+  },
+  "directional_validation": {
+    "VALIDATED_JNU_MODULE": 0,
+    "validated_directional_modules": 0,
+    "decision_engine": "NO_VALIDATED_DIRECTIONAL_EDGE"
+  },
+  "blocker": "INDIVIDUAL_EXACT_MICRO_REFERENCE_FRESHNESS",
+  "next_action": "At the next eligible OSE trading window, create a genuinely fresh analysis draft with analysis_frozen_at_taipei <=900 seconds old, let the cloud preparer bind fresh 9/9 official event evidence, then require JPX A or TradingView B individual exact-Micro source age <=900 seconds before v1.2 preflight and atomic v4 registration.",
+  "integrity_hash_protocol": "config/jnu_integrity_hash_protocol_v1.json",
+  "integrity_hash_method": "SHA256_TEXT_EOL_CRLF_V1",
+  "core_seal_commit": "883d6d71d41a02ca19a713a5b5e2c3469c84cead",
+  "preflight_gate": "scripts/check_jnu_live_shadow_preflight_v1_2.py",
+  "atomic_forecast_tool": "scripts/register_jnu_operational_shadow_forecast_atomic_v4.py",
+  "atomic_outcome_tool": "scripts/record_jnu_operational_shadow_outcome_atomic_v2.py",
+  "integrity_scorer": "scripts/score_jnu_operational_live_shadow_v1_6.py",
+  "governance_ready": true,
+  "live_source_gate_ready": false,
+  "cloud_request_protocol": "config/jnu_cloud_forecast_request_protocol_v1_3.json",
+  "request_preparation_protocol": "config/jnu_cloud_request_preparation_protocol_v1_1.json",
+  "official_event_state_protocol": "config/jnu_official_event_state_protocol_v1_1.json",
+  "request_preparer": "scripts/prepare_jnu_cloud_request_v1_1.py",
+  "request_preparation_validator": "scripts/jnu_request_preparation_validation_v1_1.py",
+  "risk_state_validator": "scripts/jnu_risk_state_evidence_validation_v1_2.py",
+  "cloud_forecast_builder": "scripts/build_jnu_cloud_forecast_input_v1_2.py",
+  "official_event_preparation_ready": true,
+  "analysis_draft_protocol": "config/jnu_cloud_request_draft_protocol_v1.json",
+  "cloud_request_preparation_workflow": ".github/workflows/jnu-prepare-cloud-request-v1.yml",
+  "analysis_draft_freshness_ready": true
+}

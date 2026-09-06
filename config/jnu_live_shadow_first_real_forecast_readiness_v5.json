@@ -1,0 +1,50 @@
+{
+  "version": "5.0",
+  "as_of": "2026-09-06",
+  "status": "ANALYSIS_FRESH_GOVERNANCE_READY_SOURCE_GATE_PENDING",
+  "supersedes": "config/jnu_live_shadow_first_real_forecast_readiness_v4.json",
+  "authoritative_framework": "config/jnu_operational_framework_current_v1_8.json",
+  "preregistration": "config/jnu_operational_live_shadow_prereg_v1_7.json",
+  "implementation": "config/jnu_operational_live_shadow_implementation_v1_7.json",
+  "decision_protocol": "config/jnu_operational_decision_protocol_v1.json",
+  "decision_protocol_sha256": "fe10aca973f2038fcd2038ae9564253e58685c6d40f79a88d54f44f828a0d552",
+  "cloud_request_protocol": "config/jnu_cloud_forecast_request_protocol_v1_3.json",
+  "request_preparation_protocol": "config/jnu_cloud_request_preparation_protocol_v1_1.json",
+  "request_preparer": "scripts/prepare_jnu_cloud_request_v1_1.py",
+  "official_event_state_protocol": "config/jnu_official_event_state_protocol_v1_1.json",
+  "official_event_state_producer": "scripts/fetch_jnu_official_event_state_v1.py",
+  "preflight_gate": "scripts/check_jnu_live_shadow_preflight_v1_2.py",
+  "atomic_forecast_tool": "scripts/register_jnu_operational_shadow_forecast_atomic_v4.py",
+  "atomic_outcome_tool": "scripts/record_jnu_operational_shadow_outcome_atomic_v2.py",
+  "integrity_scorer": "scripts/score_jnu_operational_live_shadow_v1_6.py",
+  "real_ledger": {
+    "forecasts": 0,
+    "outcomes": 0
+  },
+  "gates": [
+    "analysis draft has unique draft_id and analysis_frozen_at_taipei",
+    "0 <= request_created_at - analysis_frozen_at <= 900 seconds; expired analysis requires a new genuine draft",
+    "official event evidence has frozen 9-source coverage, zero required-source failures, and <=900-second freshness",
+    "immutable request validity is 900 seconds and remains quote-free",
+    "individual OSE Nikkei 225 Micro month contract only",
+    "allowed quote source class JPX_OSE_OFFICIAL_EXACT_MICRO_A or TRADINGVIEW_OSE_EXACT_MICRO_B",
+    "reference source timestamp age <=900 seconds",
+    "forecast creation inside immutable request window",
+    "decision trace generated from frozen decision protocol",
+    "real write uses atomic v4 --commit-push"
+  ],
+  "ci": {
+    "core_commit": "883d6d71d41a02ca19a713a5b5e2c3469c84cead",
+    "v1_8_integrity_selftest_run": 34038843524,
+    "actionlint_run": 34038843503,
+    "v1_7_regression_run": 34038843647
+  },
+  "current_blocker": "INDIVIDUAL_EXACT_MICRO_REFERENCE_FRESHNESS",
+  "weekend_probe": {
+    "jpx_age_seconds": 148861.7,
+    "tradingview_age_seconds": 148862.7,
+    "both_fail_closed": true
+  },
+  "analysis_draft_protocol": "config/jnu_cloud_request_draft_protocol_v1.json",
+  "cloud_request_preparation_workflow": ".github/workflows/jnu-prepare-cloud-request-v1.yml"
+}
