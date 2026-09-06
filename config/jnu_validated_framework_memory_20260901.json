@@ -1,6 +1,6 @@
 {
   "version": "2026-09-01",
-  "as_of": "2026-09-05",
+  "as_of": "2026-09-06",
   "VALIDATED_JNU_MODULE": 0,
   "validated_directional_modules": 0,
   "decision_engine": "NO_VALIDATED_DIRECTIONAL_EDGE",
@@ -208,7 +208,7 @@
   "authoritative_validation_pipeline_checkpoint": "config/jnu_validation_pipeline_checkpoint_20260902_v1.json",
   "validation_pipeline_status": "JNU_VALIDATION_PIPELINE_READY_FORWARD_DATA_PENDING",
   "validation_pipeline_head": "ff322f11dbb23da6be093056ac6ef47f2db10e4a",
-  "next_action": "Use JNU Operational Framework v1.6. Do not create a scored live-shadow forecast until an allowed individual OSE NK225MC month-contract source supplies a provider-carried timestamp age <=900 seconds and fresh target-horizon risk-state evidence passes the v1.6 preflight. Do not relax freshness or substitute NikkeiRealtime CONT.",
+  "next_action": "Use JNU Operational Framework v1.7. Prepare first-real-capable requests only through the official-event preparer, then require a fresh individual OSE NK225MC month-contract quote <=900 seconds before preflight/atomic v3. Do not relax freshness or substitute NikkeiRealtime CONT.",
   "stage8_forward_local_ingest": {
     "status": "SELFTEST_PASS_NO_SOURCE_CHANGE",
     "script": "scripts/ingest_jnu_stage8_forward_local.py",
@@ -216,8 +216,8 @@
     "download_or_login_automation": false,
     "next_action": "After a manually/authorized updated 225Labo Micro package exists locally, run check-only then --apply; inspect readiness only."
   },
-  "authoritative_operational_framework": "config/jnu_operational_framework_current_v1_6.json",
-  "operational_framework_status": "AUTHORITATIVE_JNU_OPERATIONAL_FRAMEWORK_V1_6",
+  "authoritative_operational_framework": "config/jnu_operational_framework_current_v1_7.json",
+  "operational_framework_status": "AUTHORITATIVE_JNU_OPERATIONAL_FRAMEWORK_V1_7",
   "operational_framework_usage": "Use for all future Osaka Nikkei/JNU analysis unless explicitly superseded by a later committed framework.",
   "jpx_n225mini_foreign_flow_sign_g1": {
     "status": "TERMINAL_FAIL_NO_RESCUE",
@@ -253,17 +253,22 @@
   "directional_research_status": "PAUSE_NEW_FORMAL_DIRECTIONAL_FAMILIES_UNTIL_NEW_DIRECT_EVIDENCE",
   "directional_scout_checkpoint": "config/jnu_directional_scout_checkpoint_20260903_v1.json",
   "live_shadow_validation": {
-    "status": "ACTIVE_V1_5_PREFLIGHT_RISK_EVIDENCE_CROSS_PLATFORM_HASH_INTEGRITY",
-    "preregistration": "config/jnu_operational_live_shadow_prereg_v1_5.json",
-    "implementation": "config/jnu_operational_live_shadow_implementation_v1_5.json",
-    "registrar": "scripts/register_jnu_operational_shadow_forecast_v1_5.py",
-    "atomic_forecast_tool": "scripts/register_jnu_operational_shadow_forecast_atomic_v2.py",
+    "status": "ACTIVE_V1_6_OFFICIAL_EVENT_PREPARED_REQUEST_INTEGRITY",
+    "preregistration": "config/jnu_operational_live_shadow_prereg_v1_6.json",
+    "implementation": "config/jnu_operational_live_shadow_implementation_v1_6.json",
+    "registrar": "scripts/register_jnu_operational_shadow_forecast_v1_6.py",
+    "atomic_forecast_tool": "scripts/register_jnu_operational_shadow_forecast_atomic_v3.py",
     "atomic_outcome_tool": "scripts/record_jnu_operational_shadow_outcome_atomic_v2.py",
-    "integrity_scorer": "scripts/score_jnu_operational_live_shadow_v1_4.py",
-    "preflight": "scripts/check_jnu_live_shadow_preflight_v1.py",
-    "selftest": "config/jnu_operational_live_shadow_preflight_integrity_selftest_v1.json",
-    "integrity_hash_protocol": "config/jnu_integrity_hash_protocol_v1.json",
-    "integrity_hash_method": "SHA256_TEXT_EOL_CRLF_V1",
+    "integrity_scorer": "scripts/score_jnu_operational_live_shadow_v1_5.py",
+    "preflight": "scripts/check_jnu_live_shadow_preflight_v1_1.py",
+    "request_protocol": "config/jnu_cloud_forecast_request_protocol_v1_2.json",
+    "request_preparation_protocol": "config/jnu_cloud_request_preparation_protocol_v1.json",
+    "request_preparer": "scripts/prepare_jnu_cloud_request_v1.py",
+    "request_preparation_validator": "scripts/jnu_request_preparation_validation_v1.py",
+    "official_event_state_protocol": "config/jnu_official_event_state_protocol_v1_1.json",
+    "official_event_state_producer": "scripts/fetch_jnu_official_event_state_v1.py",
+    "risk_state_validator": "scripts/jnu_risk_state_evidence_validation_v1_1.py",
+    "selftest": "config/jnu_operational_live_shadow_v17_integrity_selftest_v1.json",
     "real_forecasts_registered": 0,
     "real_outcomes_registered": 0,
     "first_formal_review_min_nonabstain": 30
@@ -281,9 +286,9 @@
     "boj_available_new_events": 0
   },
   "first_real_live_shadow_forecast_readiness": {
-    "status": "V1_6_GOVERNANCE_SEALED_AWAITING_QUALIFYING_INDIVIDUAL_EXACT_MICRO_REFERENCE",
-    "checkpoint": "config/jnu_live_shadow_cloud_readiness_v6.json",
-    "first_real_readiness": "config/jnu_live_shadow_first_real_forecast_readiness_v3.json",
+    "status": "V1_7_GOVERNANCE_AND_OFFICIAL_EVENT_PREPARATION_READY_AWAITING_FRESH_EXACT_MICRO",
+    "checkpoint": "config/jnu_live_shadow_cloud_readiness_v7.json",
+    "first_real_readiness": "config/jnu_live_shadow_first_real_forecast_readiness_v4.json",
     "source_gate": "config/jnu_exact_micro_primary_source_hierarchy_v1.json",
     "real_forecasts": 0,
     "real_outcomes": 0
@@ -301,13 +306,16 @@
   "multi_source_cloud_alignment": {
     "workflow": ".github/workflows/jnu-live-shadow-cloud-forecast-v1.yml",
     "builder": "scripts/build_jnu_cloud_forecast_input_v1.py",
-    "actionlint_run_id": 33969428165,
+    "actionlint_run_id": 34037173499,
     "actionlint_status": "PASS",
     "synthetic_jpx_builder_atomic_selftest": "PASS",
-    "latest_alignment_commit": "6334f8477142efccfbf3470b7a45d1bab2e0d3cd",
+    "latest_alignment_commit": "056d13efdcf9d2b63432a0b852e5c2f8fbd45dac",
     "cloud_request_selftest_run_id": 33969428203,
     "cloud_request_selftest_status": "PASS",
-    "integrity_hash_method": "SHA256_TEXT_EOL_CRLF_V1"
+    "integrity_hash_method": "SHA256_TEXT_EOL_CRLF_V1",
+    "v1_7_integrity_selftest_run_id": 34037173518,
+    "v1_7_integrity_selftest_status": "PASS",
+    "request_preparation_required": true
   },
   "v1_6_governance_seal": {
     "commit": "6334f8477142efccfbf3470b7a45d1bab2e0d3cd",
@@ -315,6 +323,18 @@
     "actionlint_run": 33969428165,
     "cross_platform_eol_integrity": "PASS",
     "risk_state_evidence_integrity": "PASS",
+    "real_ledger": {
+      "forecasts": 0,
+      "outcomes": 0
+    }
+  },
+  "v1_7_governance_seal": {
+    "commit": "056d13efdcf9d2b63432a0b852e5c2f8fbd45dac",
+    "v1_7_integrity_selftest_run": 34037173518,
+    "actionlint_run": 34037173499,
+    "official_event_source_smoke_run": 33970320931,
+    "prepared_request_integrity": "PASS",
+    "official_event_source_coverage": "PASS_9_OF_9",
     "real_ledger": {
       "forecasts": 0,
       "outcomes": 0

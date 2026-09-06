@@ -1,0 +1,47 @@
+{
+  "version": "4.0",
+  "as_of": "2026-09-06",
+  "status": "GOVERNANCE_AND_OFFICIAL_EVENT_PREPARATION_READY_SOURCE_GATE_PENDING",
+  "supersedes": "config/jnu_live_shadow_first_real_forecast_readiness_v3.json",
+  "authoritative_framework": "config/jnu_operational_framework_current_v1_7.json",
+  "preregistration": "config/jnu_operational_live_shadow_prereg_v1_6.json",
+  "implementation": "config/jnu_operational_live_shadow_implementation_v1_6.json",
+  "decision_protocol": "config/jnu_operational_decision_protocol_v1.json",
+  "decision_protocol_sha256": "fe10aca973f2038fcd2038ae9564253e58685c6d40f79a88d54f44f828a0d552",
+  "cloud_request_protocol": "config/jnu_cloud_forecast_request_protocol_v1_2.json",
+  "request_preparation_protocol": "config/jnu_cloud_request_preparation_protocol_v1.json",
+  "request_preparer": "scripts/prepare_jnu_cloud_request_v1.py",
+  "official_event_state_protocol": "config/jnu_official_event_state_protocol_v1_1.json",
+  "official_event_state_producer": "scripts/fetch_jnu_official_event_state_v1.py",
+  "preflight_gate": "scripts/check_jnu_live_shadow_preflight_v1_1.py",
+  "atomic_forecast_tool": "scripts/register_jnu_operational_shadow_forecast_atomic_v3.py",
+  "atomic_outcome_tool": "scripts/record_jnu_operational_shadow_outcome_atomic_v2.py",
+  "integrity_scorer": "scripts/score_jnu_operational_live_shadow_v1_5.py",
+  "real_ledger": {
+    "forecasts": 0,
+    "outcomes": 0
+  },
+  "gates": [
+    "request must be created by the frozen official-event preparation protocol; handcrafted event state is prohibited",
+    "official event source coverage must equal the frozen 9-source set with zero unresolved required-source failures",
+    "official event evidence and every event-source check must be <=900 seconds old at request creation and forecast creation",
+    "individual OSE Nikkei 225 Micro month contract only",
+    "allowed quote source class JPX_OSE_OFFICIAL_EXACT_MICRO_A or TRADINGVIEW_OSE_EXACT_MICRO_B",
+    "reference source timestamp age <=900 seconds",
+    "immutable request validity is exactly 900 seconds and forecast creation must be inside that window",
+    "decision trace generated from the frozen decision protocol",
+    "real write uses atomic v3 --commit-push"
+  ],
+  "ci": {
+    "core_commit": "056d13efdcf9d2b63432a0b852e5c2f8fbd45dac",
+    "v1_7_integrity_selftest_run": 34037173518,
+    "actionlint_run": 34037173499,
+    "official_event_source_smoke_run": 33970320931
+  },
+  "current_blocker": "INDIVIDUAL_EXACT_MICRO_REFERENCE_FRESHNESS",
+  "weekend_probe": {
+    "jpx_age_seconds": 146904.0,
+    "tradingview_age_seconds": 146905.0,
+    "both_fail_closed": true
+  }
+}
