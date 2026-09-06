@@ -1,0 +1,51 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-06",
+  "status": "FIRST_REAL_LAUNCH_ORCHESTRATION_READY",
+  "authoritative_framework": "config/jnu_operational_framework_current_v1_8.json",
+  "purpose": "Read-only source readiness orchestration for the first real JNU live-shadow forecast. This protocol never creates analysis, requests, forecasts, outcomes, or orders by itself.",
+  "current_exact_micro_symbol": "NK225MCU2026",
+  "current_contract_last_trading_day": "2026-09-10",
+  "symbol_roll_rule": "Before a scheduled probe after the current contract last trading day, update current_exact_micro_symbol to the next eligible individual OSE Nikkei 225 Micro month contract. Continuous contracts remain prohibited.",
+  "maximum_reference_age_seconds": 900,
+  "allowed_source_classes": [
+    "JPX_OSE_OFFICIAL_EXACT_MICRO_A",
+    "TRADINGVIEW_OSE_EXACT_MICRO_B"
+  ],
+  "source_probe": "scripts/probe_jnu_first_real_source_readiness_v1.py",
+  "source_probe_workflow": ".github/workflows/jnu-first-real-source-readiness-v1.yml",
+  "cloud_request_preparation_workflow": ".github/workflows/jnu-prepare-cloud-request-v1.yml",
+  "cloud_forecast_workflow": ".github/workflows/jnu-live-shadow-cloud-forecast-v1.yml",
+  "scheduled_probe_policy": {
+    "day_session_probe_jst": "08:50",
+    "night_session_probe_jst": "17:05",
+    "rationale": "Probe five minutes after the official OSE index-futures opening auction times of 08:45 JST and 17:00 JST.",
+    "holiday_behavior": "A stale result on an exchange holiday is WAITING, not a validation failure.",
+    "stale_behavior": "WAITING_FOR_FRESH_EXACT_MICRO",
+    "engineering_or_identity_failure_behavior": "FAIL_CLOSED_SOURCE_FAILURE"
+  },
+  "first_real_sequence": [
+    "Source readiness probe shows at least one allowed individual exact-Micro source with provider timestamp age <=900 seconds.",
+    "Create a genuinely new analysis draft; analysis_frozen_at_taipei must be <=900 seconds old at request creation.",
+    "Cloud request preparer binds fresh 9/9 official event evidence and creates one quote-free immutable request.",
+    "Cloud forecast workflow retrieves a fresh allowed individual exact-Micro quote and passes v1.2 preflight.",
+    "Atomic v4 registers exactly one immutable real forecast with --commit-push.",
+    "Outcome is recorded only after the frozen target horizon is known.",
+    "Scorer v1.6 recomputes integrity; formal review remains blocked until 30 non-abstain forecasts."
+  ],
+  "prohibitions": [
+    "No forecast registration from the source-readiness probe.",
+    "No reuse of an expired analysis draft.",
+    "No timestamp-only refresh of old analysis.",
+    "No continuous-contract substitution.",
+    "No relaxation of the 900-second quote gate.",
+    "No terminal-failed directional family reopening.",
+    "No broker login or order execution."
+  ],
+  "real_ledger_at_freeze": {
+    "forecasts": 0,
+    "outcomes": 0
+  },
+  "validated_directional_modules": 0,
+  "decision_engine": "NO_VALIDATED_DIRECTIONAL_EDGE"
+}

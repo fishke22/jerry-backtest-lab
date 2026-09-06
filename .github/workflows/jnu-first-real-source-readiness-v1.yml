@@ -1,0 +1,137 @@
+name: JNU First Real Source Readiness
+
+on:
+  workflow_dispatch:
+    inputs:
+      symbol:
+        description: "Optional individual OSE Nikkei 225 Micro contract override"
+        required: false
+        type: string
+  schedule:
+    # OSE index-futures opens: 08:45 JST day session, 17:00 JST night session.
+    # Probe five minutes after open. GitHub cron is UTC.
+    - cron: "50 23 * * 0-4"
+    - cron: "5 8 * * 1-5"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: jnu-first-real-source-readiness
+  cancel-in-progress: false
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Resolve symbol
+        id: symbol
+        shell: bash
+        env:
+          INPUT_SYMBOL: ${{ github.event.inputs.symbol }}
+        run: |
+          set -euo pipefail
+          default_symbol=$(python - <<'PY'
+          import json
+          x=json.load(open("config/jnu_first_real_launch_protocol_v1.json",encoding="utf-8"))
+          print(x["current_exact_micro_symbol"])
+          PY
+          )
+          symbol="${INPUT_SYMBOL:-$default_symbol}"
+          symbol=$(python - "$symbol" <<'PY'
+          import re,sys
+          s=sys.argv[1].upper()
+          if not re.fullmatch(r"NK225MC[A-Z][0-9]{4}",s):
+              raise SystemExit("symbol must be an individual OSE Nikkei 225 Micro month contract")
+          print(s)
+          PY
+          )
+          echo "symbol=$symbol" >> "$GITHUB_OUTPUT"
+
+      - name: Probe JPX A and TradingView B
+        id: probe
+        shell: bash
+        env:
+          SYMBOL: ${{ steps.symbol.outputs.symbol }}
+        run: |
+          set +e
+          python scripts/probe_jnu_first_real_source_readiness_v1.py \
+            --symbol "$SYMBOL" \
+            --max-age-seconds 900 \
+            --output source_readiness.json \
+            > source_readiness.stdout.txt 2> source_readiness.stderr.txt
+          ec=$?
+          set -e
+          cat source_readiness.stdout.txt || true
+          cat source_readiness.stderr.txt || true
+          if [ ! -f source_readiness.json ]; then
+            echo "probe produced no readiness artifact" >&2
+            exit 1
+          fi
+          status=$(python -c 'import json; print(json.load(open("source_readiness.json"))["status"])')
+          echo "status=$status" >> "$GITHUB_OUTPUT"
+          echo "exit_code=$ec" >> "$GITHUB_OUTPUT"
+          if [ "$ec" -ne 0 ]; then
+            echo "Fail-closed source/engineering failure: $status" >&2
+            exit "$ec"
+          fi
+
+      - name: Assert probe cannot mutate real ledger
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json, pathlib
+          x=json.load(open("source_readiness.json"))
+          assert x["formal_forecast_created"] is False
+          assert x["real_ledger_modified"] is False
+          assert x["directional_analysis_performed"] is False
+          f=list(pathlib.Path("live_shadow/forecasts").glob("*.json")) if pathlib.Path("live_shadow/forecasts").exists() else []
+          o=list(pathlib.Path("live_shadow/outcomes").glob("*.json")) if pathlib.Path("live_shadow/outcomes").exists() else []
+          assert len(f)==0 and len(o)==0, (len(f),len(o))
+          print("SOURCE_READINESS_PROBE_REAL_LEDGER_UNTOUCHED")
+          PY
+
+      - name: Write job summary
+        if: always()
+        shell: bash
+        run: |
+          python - <<'PY' >> "$GITHUB_STEP_SUMMARY"
+          import json, pathlib
+          print("## JNU first-real source readiness")
+          p=pathlib.Path("source_readiness.json")
+          if not p.exists():
+              print("- Status: NO ARTIFACT / FAIL-CLOSED")
+              raise SystemExit
+          x=json.loads(p.read_text(encoding="utf-8"))
+          print(f"- Status: {x['status']}")
+          print(f"- Symbol: {x['symbol']}")
+          print(f"- Fresh source count: {x['fresh_source_count']}")
+          print(f"- Blocker: {x.get('blocker')}")
+          print("- Formal forecast created: false")
+          print("- Real ledger modified: false")
+          for s in x["sources"]:
+              age=s.get("observed_age_seconds")
+              ts=s.get("source_timestamp")
+              print(f"- {s['source']}: {s['status']}, age={age}, source={ts}")
+          PY
+
+      - name: Upload readiness artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: jnu-first-real-source-readiness-${{ github.run_id }}
+          path: |
+            source_readiness.json
+            source_readiness.stdout.txt
+            source_readiness.stderr.txt
+          if-no-files-found: ignore
+          retention-days: 30
