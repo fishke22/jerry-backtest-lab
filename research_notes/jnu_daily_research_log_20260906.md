@@ -184,3 +184,44 @@ The source-readiness schedule is frozen to:
 - 17:05 JST night-session probe.
 
 Formal state remains 0 validated directional modules and 0/0 real live-shadow ledger.
+
+
+## Exact-Micro rollover guard and resolver-backed source readiness
+
+Core rollover commit:
+
+`a841437f977452048accb85e70a222107198a37d`
+
+The first-real source-readiness workflow no longer hard-codes one Micro month. JPX contract specifications confirm Nikkei 225 micro Futures have the nearest two quarterly contract months plus the nearest two monthly contract months, with the last trading day on the business day preceding the second Friday of the contract month. The operational resolver therefore uses a frozen near-term individual-month calendar rather than a quarterly-only sequence.
+
+Frozen near-term sequence:
+
+- `NK225MCU2026` until 2026-09-10 16:00 JST.
+- `NK225MCV2026` until 2026-10-08 16:00 JST.
+- `NK225MCX2026` until 2026-11-12 16:00 JST.
+- `NK225MCZ2026` until 2026-12-10 16:00 JST.
+- After the calendar exhausts: fail closed until a new frozen calendar is explicitly created.
+
+Discovery snapshot on 2026-09-06:
+
+- Sep/Oct/Nov 2026: exact individual contracts discoverable through both JPX and TradingView adapters.
+- Dec 2026: TradingView exact individual contract discoverable; the current JPX public futures payload used by the adapter does not list Dec 2026.
+
+The source classifier now treats a source-specific absent month as `CONTRACT_NOT_AVAILABLE_FROM_SOURCE`, not automatically as an engineering failure. If another allowed source supplies the exact individual month, it remains eligible subject to the same <=900-second provider-timestamp freshness gate.
+
+Local tests:
+
+- rollover boundaries: 7/7 PASS.
+- calendar exhaustion: fail closed PASS.
+- source classification: 5/5 PASS.
+- v1.8 full-chain regression: 13/13 PASS.
+- real ledger: 0 forecasts / 0 outcomes.
+
+GitHub verification:
+
+- V1.8 Integrity run `34040184857`: PASS, including the new first-real rollover/source-readiness selftest step, full v1.8 chain, and empty-ledger scorer.
+- Actionlint run `34040184886`: PASS.
+- Resolver-backed source-readiness run `34040214890`: PASS. No manual symbol override; resolver selected `NK225MCU2026`, last trading day 2026-09-10, next symbol `NK225MCV2026`. Both live sources remained reachable but stale.
+- Dec-boundary diagnostic run `34040255250`: PASS. JPX classified `CONTRACT_NOT_AVAILABLE_FROM_SOURCE`; TradingView classified `SOURCE_REACHABLE_STALE`; overall result remained `WAITING_FOR_FRESH_EXACT_MICRO`, not engineering failure.
+
+No directional, scoring, horizon, confidence, quote-freshness, or 30-nonabstain review rule changed. No real forecast was created.

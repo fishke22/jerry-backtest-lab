@@ -39,7 +39,11 @@
     "actionlint_run": 34038843503,
     "v1_7_regression_run": 34038843647,
     "source_readiness_run": 34039510168,
-    "expanded_actionlint_run": 34039498873
+    "expanded_actionlint_run": 34039498873,
+    "rollover_v1_8_integrity_run": 34040184857,
+    "rollover_actionlint_run": 34040184886,
+    "resolver_backed_source_run": 34040214890,
+    "december_boundary_source_run": 34040255250
   },
   "current_blocker": "INDIVIDUAL_EXACT_MICRO_REFERENCE_FRESHNESS",
   "weekend_probe": {
@@ -52,5 +56,8 @@
   "first_real_launch_protocol": "config/jnu_first_real_launch_protocol_v1.json",
   "source_readiness_checkpoint": "config/jnu_first_real_source_readiness_checkpoint_v1.json",
   "source_readiness_workflow": ".github/workflows/jnu-first-real-source-readiness-v1.yml",
-  "source_readiness_status": "SCHEDULED_READY_WAITING_FOR_FRESH_EXACT_MICRO"
+  "source_readiness_status": "ROLLOVER_GUARD_READY_WAITING_FOR_FRESH_EXACT_MICRO",
+  "exact_micro_roll_calendar": "config/jnu_exact_micro_contract_roll_calendar_v1.json",
+  "exact_micro_contract_resolver": "scripts/resolve_jnu_exact_micro_contract_v1.py",
+  "exact_micro_rollover_checkpoint": "config/jnu_exact_micro_rollover_checkpoint_v1.json"
 }

@@ -75,7 +75,7 @@
   "cloud_request_selftest_run": 33969428203,
   "cloud_actionlint_run": 34038843503,
   "cloud_pipeline_status": "V1_8_ANALYSIS_FRESH_OFFICIAL_PREPARED_REQUEST_INTEGRITY_CI_PASS_REAL_LEDGER_EMPTY",
-  "next_action": "Wait for a scheduled or manual source-readiness run to show FRESH_SOURCE_AVAILABLE. Only then create a genuinely fresh analysis draft and continue the v1.8 request/preflight/atomic-v4 chain. The readiness probe itself never creates a forecast.",
+  "next_action": "Do not hard-code a symbol. Use the frozen exact-Micro contract resolver first; then require FRESH_SOURCE_AVAILABLE. Current resolved front contract is NK225MCU2026 until the 2026-09-10 16:00 JST boundary, after which the resolver selects NK225MCV2026.",
   "exact_micro_reference_source_gate": "config/jnu_exact_micro_reference_source_gate_20260904_v1.json",
   "tradingview_exact_micro_transport": {
     "status": "B_IDENTITY_SOURCE_ALLOWED_ONLY_IF_ACTUAL_LP_TIME_AGE_LE_900",
@@ -146,7 +146,15 @@
   "first_real_source_readiness_checkpoint": "config/jnu_first_real_source_readiness_checkpoint_v1.json",
   "first_real_source_probe": "scripts/probe_jnu_first_real_source_readiness_v1.py",
   "first_real_source_probe_workflow": ".github/workflows/jnu-first-real-source-readiness-v1.yml",
-  "first_real_source_probe_status": "SCHEDULED_CLOUD_READY_WAITING_FOR_FRESH_EXACT_MICRO",
+  "first_real_source_probe_status": "ROLLOVER_BACKED_SCHEDULED_CLOUD_READY_WAITING_FOR_FRESH_EXACT_MICRO",
   "first_real_source_probe_run": 34039510168,
-  "expanded_cloud_actionlint_run": 34039498873
+  "expanded_cloud_actionlint_run": 34039498873,
+  "exact_micro_roll_calendar": "config/jnu_exact_micro_contract_roll_calendar_v1.json",
+  "exact_micro_contract_resolver": "scripts/resolve_jnu_exact_micro_contract_v1.py",
+  "exact_micro_rollover_checkpoint": "config/jnu_exact_micro_rollover_checkpoint_v1.json",
+  "rollover_core_commit": "a841437f977452048accb85e70a222107198a37d",
+  "rollover_v1_8_integrity_run": 34040184857,
+  "rollover_actionlint_run": 34040184886,
+  "resolver_backed_source_run": 34040214890,
+  "december_boundary_source_run": 34040255250
 }

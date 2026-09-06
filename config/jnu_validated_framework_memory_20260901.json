@@ -208,7 +208,7 @@
   "authoritative_validation_pipeline_checkpoint": "config/jnu_validation_pipeline_checkpoint_20260902_v1.json",
   "validation_pipeline_status": "JNU_VALIDATION_PIPELINE_READY_FORWARD_DATA_PENDING",
   "validation_pipeline_head": "ff322f11dbb23da6be093056ac6ef47f2db10e4a",
-  "next_action": "Use JNU Operational Framework v1.8. Await FRESH_SOURCE_AVAILABLE from the first-real source-readiness workflow, then create a new <=900-second analysis draft and proceed through official event preparation and atomic v4.",
+  "next_action": "Use JNU Operational Framework v1.8 with the frozen individual-Micro resolver. Await FRESH_SOURCE_AVAILABLE, then create a new <=900-second analysis draft and proceed through official event preparation, v1.2 preflight, and atomic v4.",
   "stage8_forward_local_ingest": {
     "status": "SELFTEST_PASS_NO_SOURCE_CHANGE",
     "script": "scripts/ingest_jnu_stage8_forward_local.py",
@@ -360,6 +360,21 @@
     "actionlint_run": 34039498873,
     "scheduled_day_probe_jst": "08:50",
     "scheduled_night_probe_jst": "17:05",
+    "real_forecasts": 0,
+    "real_outcomes": 0
+  },
+  "exact_micro_rollover": {
+    "status": "READY",
+    "calendar": "config/jnu_exact_micro_contract_roll_calendar_v1.json",
+    "resolver": "scripts/resolve_jnu_exact_micro_contract_v1.py",
+    "checkpoint": "config/jnu_exact_micro_rollover_checkpoint_v1.json",
+    "core_commit": "a841437f977452048accb85e70a222107198a37d",
+    "v1_8_integrity_run": 34040184857,
+    "actionlint_run": 34040184886,
+    "scheduled_resolver_run": 34040214890,
+    "december_boundary_run": 34040255250,
+    "current_symbol": "NK225MCU2026",
+    "next_symbol": "NK225MCV2026",
     "real_forecasts": 0,
     "real_outcomes": 0
   }

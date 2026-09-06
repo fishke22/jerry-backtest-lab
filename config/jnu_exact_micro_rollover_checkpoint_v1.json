@@ -1,0 +1,110 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-06",
+  "status": "EXACT_MICRO_ROLLOVER_GUARD_READY",
+  "authoritative_framework": "config/jnu_operational_framework_current_v1_8.json",
+  "roll_calendar": "config/jnu_exact_micro_contract_roll_calendar_v1.json",
+  "roll_calendar_sha256": "a5aa2ec18cde16d3bc673a30a9601c6f4af9df75a63e3404f62aa94894f031d5",
+  "launch_protocol": "config/jnu_first_real_launch_protocol_v1.json",
+  "launch_protocol_sha256": "12555c8a4c21ae9741d8767e2861d9c661b8dfaea1de0fbfcaca60bae436fdf8",
+  "contract_resolver": "scripts/resolve_jnu_exact_micro_contract_v1.py",
+  "contract_resolver_sha256": "96e90cf823ffa1ba8e1261c49491c6238c2c4e51311dc90cc41e22376acfae70",
+  "source_readiness_probe": "scripts/probe_jnu_first_real_source_readiness_v1.py",
+  "source_readiness_probe_sha256": "e7822826a271ccdf2361cc47997154c2ecc82bb5a7a51f1b8a040d079cf9c128",
+  "source_readiness_workflow": ".github/workflows/jnu-first-real-source-readiness-v1.yml",
+  "source_readiness_workflow_sha256": "fab20e89ee5f86c45eded7c98d23df943aecf8d2ffe4e772bf62b8474bd41751",
+  "v1_8_integrity_workflow_sha256": "88ca6c3921c1d89f9914c860502e2bd619f10e59a992382a2cd22ca4f05f4a4f",
+  "core_commit": "a841437f977452048accb85e70a222107198a37d",
+  "official_contract_specification": "https://www.jpx.co.jp/english/derivatives/products/domestic/225micro-futures/01.html",
+  "frozen_near_term_roll_sequence": [
+    {
+      "symbol": "NK225MCU2026",
+      "last_trading_day": "2026-09-10",
+      "active_until_jst": "2026-09-10T16:00:00+09:00"
+    },
+    {
+      "symbol": "NK225MCV2026",
+      "last_trading_day": "2026-10-08",
+      "active_until_jst": "2026-10-08T16:00:00+09:00"
+    },
+    {
+      "symbol": "NK225MCX2026",
+      "last_trading_day": "2026-11-12",
+      "active_until_jst": "2026-11-12T16:00:00+09:00"
+    },
+    {
+      "symbol": "NK225MCZ2026",
+      "last_trading_day": "2026-12-10",
+      "active_until_jst": "2026-12-10T16:00:00+09:00"
+    }
+  ],
+  "local_selftests": {
+    "roll_boundary_cases": "PASS_7_OF_7",
+    "calendar_exhaustion_fail_closed": true,
+    "source_classification": "PASS_5_OF_5",
+    "v1_8_regression": "PASS_13_OF_13",
+    "real_ledger": {
+      "forecasts": 0,
+      "outcomes": 0
+    }
+  },
+  "cloud_verification": {
+    "v1_8_integrity": {
+      "run_id": 34040184857,
+      "status": "PASS",
+      "rollover_source_selftest_step": "PASS",
+      "full_v1_8_chain": "PASS",
+      "empty_ledger": "PASS"
+    },
+    "actionlint": {
+      "run_id": 34040184886,
+      "status": "PASS"
+    },
+    "scheduled_path_resolver": {
+      "run_id": 34040214890,
+      "status": "PASS_WAITING_FOR_FRESH_EXACT_MICRO",
+      "manual_symbol_override": false,
+      "resolved_symbol": "NK225MCU2026",
+      "last_trading_day": "2026-09-10",
+      "next_symbol": "NK225MCV2026",
+      "jpx": {
+        "status": "SOURCE_REACHABLE_STALE",
+        "age_seconds": 150396.1
+      },
+      "tradingview": {
+        "status": "SOURCE_REACHABLE_STALE",
+        "age_seconds": 150396.6
+      },
+      "real_ledger_modified": false
+    },
+    "december_transport_boundary": {
+      "run_id": 34040255250,
+      "status": "PASS_WAITING_FOR_FRESH_EXACT_MICRO",
+      "symbol": "NK225MCZ2026",
+      "jpx": {
+        "status": "CONTRACT_NOT_AVAILABLE_FROM_SOURCE"
+      },
+      "tradingview": {
+        "status": "SOURCE_REACHABLE_STALE",
+        "age_seconds": 150440.1
+      },
+      "real_ledger_modified": false
+    }
+  },
+  "rules": {
+    "nearest_still_tradable_individual_month_required": true,
+    "quarterly_only_roll_prohibited": true,
+    "continuous_contract_primary_prohibited": true,
+    "source_discoverability_checked_after_calendar_resolution": true,
+    "single_source_contract_absence_is_not_engineering_failure": true,
+    "maximum_reference_age_seconds": 900,
+    "calendar_exhaustion": "FAIL_CLOSED_REQUIRES_NEW_FROZEN_ROLL_CALENDAR"
+  },
+  "current_blocker": "INDIVIDUAL_EXACT_MICRO_REFERENCE_FRESHNESS",
+  "validated_directional_modules": 0,
+  "decision_engine": "NO_VALIDATED_DIRECTIONAL_EDGE",
+  "real_ledger": {
+    "forecasts": 0,
+    "outcomes": 0
+  }
+}

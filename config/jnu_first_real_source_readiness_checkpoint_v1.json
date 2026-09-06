@@ -1,16 +1,16 @@
 {
   "version": "1.0",
   "as_of": "2026-09-06",
-  "status": "FIRST_REAL_SOURCE_READINESS_ORCHESTRATION_READY_WAITING_FOR_FRESH_EXACT_MICRO",
+  "status": "FIRST_REAL_SOURCE_READINESS_WITH_ROLLOVER_READY_WAITING_FOR_FRESH_EXACT_MICRO",
   "authoritative_framework": "config/jnu_operational_framework_current_v1_8.json",
   "launch_protocol": "config/jnu_first_real_launch_protocol_v1.json",
-  "launch_protocol_sha256": "29b2e117cb71d05478e9a53695aa95f06a2edd42455ac14698f6d43e1ff26a13",
+  "launch_protocol_sha256": "12555c8a4c21ae9741d8767e2861d9c661b8dfaea1de0fbfcaca60bae436fdf8",
   "source_probe": "scripts/probe_jnu_first_real_source_readiness_v1.py",
-  "source_probe_sha256": "86d4636023e19aee0d9a4be0d420a8f101c6eb2c482fa47dedc1ddbb8158af8a",
+  "source_probe_sha256": "e7822826a271ccdf2361cc47997154c2ecc82bb5a7a51f1b8a040d079cf9c128",
   "source_probe_workflow": ".github/workflows/jnu-first-real-source-readiness-v1.yml",
-  "source_probe_workflow_sha256": "6cc72a9cbcfe721076782a46ba83b7ebfb606402e1b32287162e800079ee74ce",
+  "source_probe_workflow_sha256": "fab20e89ee5f86c45eded7c98d23df943aecf8d2ffe4e772bf62b8474bd41751",
   "actionlint_workflow_sha256": "d276ab90f125c2fe802e20ceb446fc0c4039773ed691dbd8cbc45a18144f947b",
-  "core_commit": "75ea4cab3e43a1e14b9065031bcbf31f15ea7c8d",
+  "core_commit": "a841437f977452048accb85e70a222107198a37d",
   "cloud_dependency_fix_commit": "ee5d3442d6766c04a3c5d51282d0c9f4507b0258",
   "cloud_verification": {
     "first_attempt": {
@@ -51,6 +51,27 @@
         ".github/workflows/jnu-first-real-source-readiness-v1.yml",
         ".github/workflows/jnu-live-shadow-v18-integrity-selftest-v1.yml"
       ]
+    },
+    "scheduled_resolver_run": {
+      "run_id": 34040214890,
+      "status": "SUCCESS",
+      "resolved_symbol": "NK225MCU2026",
+      "manual_override": false
+    },
+    "december_boundary_run": {
+      "run_id": 34040255250,
+      "status": "SUCCESS",
+      "symbol": "NK225MCZ2026",
+      "jpx": "CONTRACT_NOT_AVAILABLE_FROM_SOURCE",
+      "tradingview": "SOURCE_REACHABLE_STALE"
+    },
+    "v1_8_integrity_rollover_run": {
+      "run_id": 34040184857,
+      "status": "PASS"
+    },
+    "expanded_actionlint_run": {
+      "run_id": 34040184886,
+      "status": "PASS"
     }
   },
   "scheduled_probe_policy": {
@@ -66,5 +87,8 @@
     "outcomes": 0
   },
   "validated_directional_modules": 0,
-  "decision_engine": "NO_VALIDATED_DIRECTIONAL_EDGE"
+  "decision_engine": "NO_VALIDATED_DIRECTIONAL_EDGE",
+  "rollover_guard": "config/jnu_exact_micro_rollover_checkpoint_v1.json",
+  "roll_calendar": "config/jnu_exact_micro_contract_roll_calendar_v1.json",
+  "contract_resolver": "scripts/resolve_jnu_exact_micro_contract_v1.py"
 }
