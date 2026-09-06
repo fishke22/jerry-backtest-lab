@@ -1,0 +1,188 @@
+name: JNU Prepare Cloud Request From Analysis Draft
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "live_shadow_request_drafts/*.json"
+  workflow_dispatch:
+    inputs:
+      draft_path:
+        description: "Tracked analysis draft under live_shadow_request_drafts/"
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: jnu-prepare-cloud-request
+  cancel-in-progress: false
+
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - name: Checkout main with history
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+          persist-credentials: true
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install official-event parser dependency
+        run: python -m pip install --disable-pip-version-check pdfplumber
+
+      - name: Resolve one immutable analysis draft
+        id: draft
+        shell: bash
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          INPUT_PATH: ${{ github.event.inputs.draft_path }}
+          BEFORE_SHA: ${{ github.event.before }}
+          HEAD_SHA: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          if [ "$EVENT_NAME" = "workflow_dispatch" ]; then
+            draft_path="$INPUT_PATH"
+          else
+            if [ -z "$BEFORE_SHA" ] || printf '%s' "$BEFORE_SHA" | grep -Eq '^0+$'; then
+              mapfile -t changed < <(git diff-tree --no-commit-id --name-only -r "$HEAD_SHA" -- 'live_shadow_request_drafts/*.json')
+            else
+              mapfile -t changed < <(git diff --name-only "$BEFORE_SHA" "$HEAD_SHA" -- 'live_shadow_request_drafts/*.json')
+            fi
+            if [ "${#changed[@]}" -ne 1 ]; then
+              echo "Exactly one analysis draft is required; got ${#changed[@]}" >&2
+              exit 1
+            fi
+            draft_path="${changed[0]}"
+          fi
+          case "$draft_path" in
+            live_shadow_request_drafts/*.json) ;;
+            *) echo "draft_path must be under live_shadow_request_drafts/" >&2; exit 1 ;;
+          esac
+          test -f "$draft_path"
+          git ls-files --error-unmatch "$draft_path" >/dev/null
+          test -z "$(git status --porcelain -- "$draft_path")"
+
+          python - "$draft_path" <<'PY' > draft_meta.json
+          import json, pathlib, re, sys
+          protocol=json.load(open("config/jnu_cloud_request_draft_protocol_v1.json",encoding="utf-8"))
+          p=pathlib.Path(sys.argv[1]); x=json.loads(p.read_text(encoding="utf-8"))
+          did=str(x.get("draft_id",""))
+          if not re.fullmatch(protocol["draft_id_pattern"],did):
+              raise SystemExit("invalid draft_id")
+          if p.name != did + ".json":
+              raise SystemExit(f"draft filename must equal draft_id.json: {p.name} vs {did}.json")
+          print(json.dumps({"draft_path":str(p),"draft_id":did}))
+          PY
+          draft_id=$(python -c 'import json; print(json.load(open("draft_meta.json"))["draft_id"])')
+          existing=$(python - "$draft_id" <<'PY'
+          import json, pathlib, sys
+          did=sys.argv[1]; hits=[]
+          d=pathlib.Path("live_shadow_requests")
+          if d.exists():
+              for p in d.glob("*.json"):
+                  try: x=json.loads(p.read_text(encoding="utf-8"))
+                  except Exception: continue
+                  if x.get("draft_id")==did: hits.append(str(p))
+          if len(hits)>1:
+              raise SystemExit(f"integrity failure: draft_id maps to multiple requests: {hits}")
+          print(hits[0] if hits else "")
+          PY
+          )
+          {
+            echo "path=$draft_path"
+            echo "draft_id=$draft_id"
+            echo "existing_request=$existing"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Idempotent already-prepared draft
+        if: steps.draft.outputs.existing_request != ''
+        run: |
+          echo "Draft ${{ steps.draft.outputs.draft_id }} already has request ${{ steps.draft.outputs.existing_request }}."
+          echo "No second request will be created."
+
+      - name: Prepare request with fresh official event evidence
+        if: steps.draft.outputs.existing_request == ''
+        id: prepare
+        shell: bash
+        env:
+          DRAFT_PATH: ${{ steps.draft.outputs.path }}
+        run: |
+          set -euo pipefail
+          python scripts/prepare_jnu_cloud_request_v1_1.py --draft "$DRAFT_PATH" > prepare_result.json
+          cat prepare_result.json
+          request_path=$(python -c 'import json; print(json.load(open("prepare_result.json"))["output"])')
+          request_id=$(python -c 'import json; print(json.load(open("prepare_result.json"))["request_id"])')
+          case "$request_path" in
+            */live_shadow_requests/*.json|live_shadow_requests/*.json) ;;
+            *) echo "preparer output path is outside live_shadow_requests: $request_path" >&2; exit 1 ;;
+          esac
+          if [[ "$request_path" = /* ]]; then
+            request_path=$(python - "$request_path" <<'PY'
+          from pathlib import Path
+          import sys
+          print(Path(sys.argv[1]).resolve().relative_to(Path.cwd().resolve()).as_posix())
+          PY
+            )
+          fi
+          test "$request_path" = "live_shadow_requests/$request_id.json"
+          echo "request_path=$request_path" >> "$GITHUB_OUTPUT"
+          echo "request_id=$request_id" >> "$GITHUB_OUTPUT"
+
+      - name: Commit one prepared immutable request
+        if: steps.draft.outputs.existing_request == ''
+        shell: bash
+        env:
+          REQUEST_PATH: ${{ steps.prepare.outputs.request_path }}
+          REQUEST_ID: ${{ steps.prepare.outputs.request_id }}
+          DRAFT_ID: ${{ steps.draft.outputs.draft_id }}
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          test -z "$(git diff --cached --name-only)"
+          git add -- "$REQUEST_PATH"
+          mapfile -t staged < <(git diff --cached --name-only)
+          test "${#staged[@]}" -eq 1
+          test "${staged[0]}" = "$REQUEST_PATH"
+          git commit -m "Prepare JNU cloud request $REQUEST_ID from $DRAFT_ID"
+          git push origin main
+
+      - name: Verify request remains quote-free
+        if: steps.draft.outputs.existing_request == ''
+        shell: bash
+        env:
+          REQUEST_PATH: ${{ steps.prepare.outputs.request_path }}
+        run: |
+          python - "$REQUEST_PATH" <<'PY'
+          import json, pathlib, sys
+          sys.path.insert(0,"scripts")
+          from build_jnu_cloud_forecast_input_v1_2 import validate_request
+          p=pathlib.Path(sys.argv[1]); x=json.loads(p.read_text(encoding="utf-8"))
+          validate_request(x)
+          forbidden={"reference_price","reference_timestamp","reference_source","bias","confidence","decision_trace"}
+          assert not (forbidden & set(x))
+          assert x["request_preparation"]["analysis_age_at_request_seconds"] <= 900
+          assert x["request_preparation"]["real_registration_performed"] is False
+          print(json.dumps({"status":"PREPARED_REQUEST_COMMITTED_QUOTE_FREE",
+                            "draft_id":x["draft_id"],"request_id":x["request_id"]},indent=2))
+          PY
+
+      - name: Upload preparation evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: jnu-request-preparation-${{ github.run_id }}
+          path: |
+            draft_meta.json
+            prepare_result.json
+          if-no-files-found: ignore
+          retention-days: 30

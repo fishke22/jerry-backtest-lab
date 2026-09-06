@@ -1,0 +1,49 @@
+{
+  "version": "1.0",
+  "frozen_at": "2026-09-06",
+  "status": "PRE_FIRST_REAL_FORECAST_ANALYSIS_DRAFT_FRESHNESS_PROTOCOL",
+  "purpose": "Prevent stale directional/context analysis from being paired with fresh event evidence to create a formally valid live-shadow request.",
+  "draft_directory": "live_shadow_request_drafts",
+  "filename_rule": "<draft_id>.json",
+  "draft_id_pattern": "^JNU_DRAFT_[A-Za-z0-9._-]{8,120}$",
+  "required_fields": [
+    "draft_id",
+    "analysis_frozen_at_taipei",
+    "symbol",
+    "target_day_session_date",
+    "decision_input",
+    "expected_path",
+    "key_levels",
+    "invalidation_conditions",
+    "event_risk",
+    "flip_conditions",
+    "evidence_summary"
+  ],
+  "prohibited_fields": [
+    "request_id",
+    "request_created_at_taipei",
+    "request_valid_until_taipei",
+    "risk_state_evidence",
+    "request_preparation",
+    "reference_price",
+    "reference_timestamp",
+    "reference_source",
+    "reference_source_metadata",
+    "bias",
+    "confidence",
+    "decision_trace"
+  ],
+  "analysis_freshness": {
+    "maximum_age_seconds_at_request_creation": 900,
+    "future_timestamp_prohibited": true,
+    "rule": "0 <= request_created_at_taipei - analysis_frozen_at_taipei <= 900 seconds"
+  },
+  "event_state_rule": "decision_input.risk_modifiers.event_state must be AUTO_OFFICIAL or absent; no manual event state is permitted in a first-real-capable draft.",
+  "quote_rule": "Draft remains quote-free. Exact Micro price/timestamp is never supplied by the draft or preparer.",
+  "reuse_rule": "A committed draft may be used only while its analysis_frozen_at_taipei remains within the 900-second gate. After expiry, a new analysis draft is required; do not simply refresh the timestamp.",
+  "cloud_preparation_workflow": ".github/workflows/jnu-prepare-cloud-request-v1.yml",
+  "directional_rules_changed": false,
+  "scoring_rules_changed": false,
+  "real_live_shadow_forecasts_existing_at_freeze": 0,
+  "real_live_shadow_outcomes_existing_at_freeze": 0
+}

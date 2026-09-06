@@ -1,0 +1,68 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-06",
+  "status": "JNU_OPERATIONAL_LIVE_SHADOW_V1_8_INTEGRITY_SELFTEST_PASS",
+  "real_ledger": {"forecasts_before": 0, "outcomes_before": 0, "forecasts_after": 0, "outcomes_after": 0},
+  "authoritative_chain": {
+    "integrity_hash_method": "SHA256_TEXT_EOL_CRLF_V1",
+    "framework": "config/jnu_operational_framework_current_v1_8.json",
+    "framework_sha256": "a9fb31e40ffea3b4f5f5b0eed754b5d6be00ea4fa03142ab014cc99f4ef1c8f1",
+    "preregistration": "config/jnu_operational_live_shadow_prereg_v1_7.json",
+    "preregistration_sha256": "2051458237aa5bb6b0d728681a852ce8e1c16c2f6106dae7461cfc58367e8bd7",
+    "implementation": "config/jnu_operational_live_shadow_implementation_v1_7.json",
+    "implementation_sha256": "32479b019ddab65f783af39e8b91d4cf40f27713eb99f855b9f081fb096a5da9",
+    "decision_protocol": "config/jnu_operational_decision_protocol_v1.json",
+    "decision_protocol_sha256": "fe10aca973f2038fcd2038ae9564253e58685c6d40f79a88d54f44f828a0d552",
+    "cloud_request_protocol": "config/jnu_cloud_forecast_request_protocol_v1_3.json",
+    "cloud_request_protocol_sha256": "24a48d74659abf5a3f3a60d87882424d9b8aa47475f391ad13392cfe745b7b42",
+    "request_preparation_protocol": "config/jnu_cloud_request_preparation_protocol_v1_1.json",
+    "request_preparation_protocol_sha256": "96ac44c922a36227e503f5b1846d469f9108d3541ed519828d74b35470fd6f50",
+    "analysis_draft_protocol": "config/jnu_cloud_request_draft_protocol_v1.json",
+    "analysis_draft_protocol_sha256": "24ed43a061583da065ed25cca40b3379503712437df38626c566151a7180d1ef",
+    "official_event_state_protocol": "config/jnu_official_event_state_protocol_v1_1.json",
+    "official_event_state_protocol_sha256": "9f90303e291f5100b87956b177114d182d116873447a11d00ac82879aeec3dd5",
+    "integrity_hash_protocol": "config/jnu_integrity_hash_protocol_v1.json",
+    "integrity_hash_protocol_sha256": "a3a8d2195394f7381e55708f968a81bdc793291e9a89333108159e541e6feed4"
+  },
+  "full_chain_selftest": {
+    "script": "scripts/selftest_jnu_live_shadow_v18_integrity.py",
+    "status": "PASS",
+    "tests": {
+      "fresh_analysis_prepared": true,
+      "analysis_binding": true,
+      "stale_analysis_rejected": true,
+      "future_analysis_rejected": true,
+      "preflight_v12": true,
+      "builder_v12": true,
+      "atomic_v4": true,
+      "forecast_analysis_bound": true,
+      "scorer_v16": true,
+      "scorer_recomputes_analysis": true,
+      "analysis_timestamp_tamper_rejected": true,
+      "draft_protocol_tamper_rejected": true,
+      "real_ledger_untouched": true
+    }
+  },
+  "real_official_event_preparation_smoke": {
+    "status": "PASS",
+    "target_day_session_date": "2026-09-07",
+    "analysis_age_at_request_seconds": 6.956558,
+    "event_evidence_age_at_request_seconds": 0.219483,
+    "event_source_coverage": 9,
+    "event_state": "NORMAL",
+    "decision_bias": "NEUTRAL_ABSTAIN",
+    "decision_confidence": "LOW",
+    "real_registration_performed": false
+  },
+  "real_empty_ledger_scorer": {
+    "script": "scripts/score_jnu_operational_live_shadow_v1_6.py",
+    "status": "PASS",
+    "forecasts_verified": 0,
+    "outcomes_verified": 0,
+    "analysis_draft_recomputed": true
+  },
+  "directional_or_scoring_rules_changed": false,
+  "quote_freshness_gate_changed": false,
+  "validated_directional_modules": 0,
+  "decision_engine": "NO_VALIDATED_DIRECTIONAL_EDGE"
+}

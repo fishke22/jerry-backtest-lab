@@ -79,7 +79,7 @@ jobs:
           python - "$request_path" <<'PY' > request_meta.json
           import json, pathlib, sys
           sys.path.insert(0,"scripts")
-          from build_jnu_cloud_forecast_input_v1_1 import validate_request
+          from build_jnu_cloud_forecast_input_v1_2 import validate_request
           p=pathlib.Path(sys.argv[1])
           x=json.loads(p.read_text(encoding="utf-8"))
           validate_request(x)
@@ -174,7 +174,7 @@ jobs:
         env:
           REQUEST_PATH: ${{ steps.request.outputs.path }}
         run: |
-          python scripts/check_jnu_live_shadow_preflight_v1_1.py \
+          python scripts/check_jnu_live_shadow_preflight_v1_2.py \
             --request "$REQUEST_PATH" \
             --quote cloud_quote.json \
             --require-risk-evidence \
@@ -186,7 +186,7 @@ jobs:
         env:
           REQUEST_PATH: ${{ steps.request.outputs.path }}
         run: |
-          python scripts/build_jnu_cloud_forecast_input_v1_1.py \
+          python scripts/build_jnu_cloud_forecast_input_v1_2.py \
             --request "$REQUEST_PATH" \
             --quote cloud_quote.json \
             --output cloud_atomic_input.json
@@ -211,7 +211,7 @@ jobs:
         id: register
         shell: bash
         run: |
-          python scripts/register_jnu_operational_shadow_forecast_atomic_v3.py \
+          python scripts/register_jnu_operational_shadow_forecast_atomic_v4.py \
             --input cloud_atomic_input.json \
             --commit-push \
             > cloud_register_result.json
@@ -229,8 +229,8 @@ jobs:
           import json, pathlib, sys
           sys.path.insert(0,"scripts")
           from jnu_exact_micro_source_validation_v1 import validate_reference_source_metadata
-          from jnu_risk_state_evidence_validation_v1_1 import validate_risk_state_evidence
-          from jnu_request_preparation_validation_v1 import validate_prepared_request_binding
+          from jnu_risk_state_evidence_validation_v1_2 import validate_risk_state_evidence
+          from jnu_request_preparation_validation_v1_1 import validate_prepared_request_binding
           from jnu_integrity_hash_v1 import METHOD_ID, canonical_text_sha256
           rid=sys.argv[1]
           hits=[]
@@ -249,9 +249,10 @@ jobs:
           assert x["reference_source_class"]==source_class
           assert x["integrity_hash_method"]==METHOD_ID
           assert x["integrity_hash_protocol_sha256"]==canonical_text_sha256(pathlib.Path("config/jnu_integrity_hash_protocol_v1.json"))
-          assert x["cloud_request_protocol_sha256"]==canonical_text_sha256(pathlib.Path("config/jnu_cloud_forecast_request_protocol_v1_2.json"))
-          assert x["request_preparation_protocol_sha256"]==canonical_text_sha256(pathlib.Path("config/jnu_cloud_request_preparation_protocol_v1.json"))
+          assert x["cloud_request_protocol_sha256"]==canonical_text_sha256(pathlib.Path("config/jnu_cloud_forecast_request_protocol_v1_3.json"))
+          assert x["request_preparation_protocol_sha256"]==canonical_text_sha256(pathlib.Path("config/jnu_cloud_request_preparation_protocol_v1_1.json"))
           assert x["official_event_state_protocol_sha256"]==canonical_text_sha256(pathlib.Path("config/jnu_official_event_state_protocol_v1_1.json"))
+          assert x["analysis_draft_protocol_sha256"]==canonical_text_sha256(pathlib.Path("config/jnu_cloud_request_draft_protocol_v1.json"))
           assert meta["continuous_contract"] is False
           assert meta["freshness_pass"] is True
           assert float(meta["freshness_age_seconds"])<=900

@@ -1,0 +1,69 @@
+name: JNU Live Shadow V1.8 Integrity Selftest
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/jnu-live-shadow-v18-integrity-selftest-v1.yml"
+      - ".github/workflows/jnu-live-shadow-cloud-forecast-v1.yml"
+      - ".github/workflows/jnu-prepare-cloud-request-v1.yml"
+      - "scripts/prepare_jnu_cloud_request_v1_1.py"
+      - "scripts/jnu_request_preparation_validation_v1_1.py"
+      - "scripts/jnu_risk_state_evidence_validation_v1_2.py"
+      - "scripts/build_jnu_cloud_forecast_input_v1_2.py"
+      - "scripts/check_jnu_live_shadow_preflight_v1_2.py"
+      - "scripts/register_jnu_operational_shadow_forecast_v1_7.py"
+      - "scripts/register_jnu_operational_shadow_forecast_atomic_v4.py"
+      - "scripts/score_jnu_operational_live_shadow_v1_6.py"
+      - "scripts/selftest_jnu_live_shadow_v18_integrity.py"
+      - "config/jnu_cloud_request_draft_protocol_v1.json"
+      - "config/jnu_cloud_forecast_request_protocol_v1_3.json"
+      - "config/jnu_cloud_request_preparation_protocol_v1_1.json"
+      - "config/jnu_operational_framework_current_v1_8.json"
+      - "config/jnu_operational_live_shadow_prereg_v1_7.json"
+      - "config/jnu_operational_live_shadow_implementation_v1_7.json"
+      - "config/jnu_operational_live_shadow_v18_integrity_selftest_v1.json"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  integrity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Compile v1.8 tools
+        run: |
+          python -m py_compile             scripts/jnu_risk_state_evidence_validation_v1_2.py             scripts/jnu_request_preparation_validation_v1_1.py             scripts/prepare_jnu_cloud_request_v1_1.py             scripts/build_jnu_cloud_forecast_input_v1_2.py             scripts/check_jnu_live_shadow_preflight_v1_2.py             scripts/register_jnu_operational_shadow_forecast_v1_7.py             scripts/register_jnu_operational_shadow_forecast_atomic_v4.py             scripts/score_jnu_operational_live_shadow_v1_6.py             scripts/selftest_jnu_live_shadow_v18_integrity.py
+
+      - name: Validate v1.8 governance JSON
+        run: |
+          python -m json.tool config/jnu_cloud_request_draft_protocol_v1.json >/dev/null
+          python -m json.tool config/jnu_cloud_forecast_request_protocol_v1_3.json >/dev/null
+          python -m json.tool config/jnu_cloud_request_preparation_protocol_v1_1.json >/dev/null
+          python -m json.tool config/jnu_operational_framework_current_v1_8.json >/dev/null
+          python -m json.tool config/jnu_operational_live_shadow_prereg_v1_7.json >/dev/null
+          python -m json.tool config/jnu_operational_live_shadow_implementation_v1_7.json >/dev/null
+          python -m json.tool config/jnu_operational_live_shadow_v18_integrity_selftest_v1.json >/dev/null
+
+      - name: Full v1.8 analysis-fresh chain selftest
+        run: python scripts/selftest_jnu_live_shadow_v18_integrity.py
+
+      - name: Real empty-ledger scorer integrity
+        run: |
+          python scripts/score_jnu_operational_live_shadow_v1_6.py --output /tmp/v18_empty.json
+          python - <<'PY'
+          import json
+          x=json.load(open("/tmp/v18_empty.json"))
+          assert x["version"]=="1.6"
+          assert x["integrity"]["status"]=="PASS"
+          assert x["integrity"]["analysis_draft_recomputed"] is True
+          assert x["forecast_records"]==0 and x["outcomes_recorded"]==0
+          print(json.dumps({"status":"V1_8_EMPTY_LEDGER_PASS","forecasts":0,"outcomes":0},indent=2))
+          PY
