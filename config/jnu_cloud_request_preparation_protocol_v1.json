@@ -1,0 +1,36 @@
+{
+  "version": "1.0",
+  "frozen_at": "2026-09-06",
+  "status": "PRE_FIRST_REAL_FORECAST_AUTOMATED_REQUEST_PREPARATION_PROTOCOL",
+  "purpose": "Bind a quote-free JNU analysis draft to fresh official target-horizon event evidence before the immutable 900-second cloud request is created.",
+  "request_protocol": "config/jnu_cloud_forecast_request_protocol_v1_2.json",
+  "event_state_protocol": "config/jnu_official_event_state_protocol_v1_1.json",
+  "event_state_producer": "scripts/fetch_jnu_official_event_state_v1.py",
+  "request_preparer": "scripts/prepare_jnu_cloud_request_v1.py",
+  "decision_protocol": "config/jnu_operational_decision_protocol_v1.json",
+  "rules": [
+    "The draft must not contain request_id, request timestamps, risk_state_evidence, quote fields, bias, confidence, or decision_trace.",
+    "decision_input.risk_modifiers.event_state must be AUTO_OFFICIAL or absent; the preparer replaces it with the fresh official event-state result.",
+    "A real immutable request is not created when official event_state is UNKNOWN.",
+    "Known official event-state coverage must have zero required-source failures and complete required-source coverage.",
+    "The request is stamped only after event-source retrieval finishes.",
+    "risk_state_evidence and every event source must be no older than 900 seconds at request creation.",
+    "request_valid_until_taipei is exactly request_created_at_taipei plus 900 seconds.",
+    "The request remains quote-free; exact price and timestamp remain owned by the later cloud quote adapter.",
+    "The preparer never commits, pushes, registers a forecast, records an outcome, or submits an order."
+  ],
+  "provenance_binding": {
+    "event_state_protocol_path_required": true,
+    "event_state_protocol_sha256_required": true,
+    "event_state_producer_required": true,
+    "source_failures_embedded": true,
+    "source_coverage_counts_embedded": true
+  },
+  "selftest_override_rule": "Synthetic event-state input and synthetic request time are accepted only with --selftest; they are prohibited in real preparation mode.",
+  "directional_rules_changed": false,
+  "scoring_rules_changed": false,
+  "freshness_gate_changed": false,
+  "real_live_shadow_forecasts_existing_at_freeze": 0,
+  "real_live_shadow_outcomes_existing_at_freeze": 0,
+  "request_binding_validator": "scripts/jnu_request_preparation_validation_v1.py"
+}

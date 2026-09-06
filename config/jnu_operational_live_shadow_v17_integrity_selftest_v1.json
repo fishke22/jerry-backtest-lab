@@ -1,0 +1,78 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-06",
+  "status": "JNU_OPERATIONAL_LIVE_SHADOW_V1_7_INTEGRITY_SELFTEST_PASS",
+  "real_ledger": {
+    "forecasts_before": 0,
+    "outcomes_before": 0,
+    "forecasts_after": 0,
+    "outcomes_after": 0
+  },
+  "authoritative_chain": {
+    "integrity_hash_method": "SHA256_TEXT_EOL_CRLF_V1",
+    "framework": "config/jnu_operational_framework_current_v1_7.json",
+    "framework_sha256": "2e1a75bc5f63da521d28b1bf669d1a6f234b3eb7d9f94db6d04b2955e7712544",
+    "preregistration": "config/jnu_operational_live_shadow_prereg_v1_6.json",
+    "preregistration_sha256": "0b4556cdbcfa41a201b200ff16e39fefa1a647995636b04f6ba063acc1490516",
+    "implementation": "config/jnu_operational_live_shadow_implementation_v1_6.json",
+    "implementation_sha256": "dda0bb9d125f757928cf4867af7d87449ce98ba652f4bde75bd534d199a6976d",
+    "decision_protocol": "config/jnu_operational_decision_protocol_v1.json",
+    "decision_protocol_sha256": "fe10aca973f2038fcd2038ae9564253e58685c6d40f79a88d54f44f828a0d552",
+    "cloud_request_protocol": "config/jnu_cloud_forecast_request_protocol_v1_2.json",
+    "cloud_request_protocol_sha256": "93225456643873512b1bca9f746fd240089545c3b7da3858f8aa456ca853aff0",
+    "request_preparation_protocol": "config/jnu_cloud_request_preparation_protocol_v1.json",
+    "request_preparation_protocol_sha256": "eedd5f648c6eb7fc8d74061a2b0c45f7c60670ef4f8f95fc8921063c14135b3d",
+    "official_event_state_protocol": "config/jnu_official_event_state_protocol_v1_1.json",
+    "official_event_state_protocol_sha256": "9f90303e291f5100b87956b177114d182d116873447a11d00ac82879aeec3dd5",
+    "integrity_hash_protocol": "config/jnu_integrity_hash_protocol_v1.json",
+    "integrity_hash_protocol_sha256": "a3a8d2195394f7381e55708f968a81bdc793291e9a89333108159e541e6feed4"
+  },
+  "request_preparation_selftest": {
+    "script": "scripts/selftest_jnu_cloud_request_preparation_v1.py",
+    "status": "PASS",
+    "tests": {
+      "prepare_known_event": true,
+      "request_bound_provenance": true,
+      "request_exact_900s_window": true,
+      "preflight_ready": true,
+      "builder_accepts_prepared_request": true,
+      "atomic_temp_registration": true,
+      "unknown_event_rejected": true,
+      "stale_event_rejected": true,
+      "manual_event_state_rejected": true,
+      "handcrafted_risk_evidence_rejected": true,
+      "real_mode_synthetic_override_rejected": true,
+      "real_ledger_untouched": true
+    }
+  },
+  "full_chain_selftest": {
+    "script": "scripts/selftest_jnu_live_shadow_v17_integrity.py",
+    "status": "PASS",
+    "tests": {
+      "prepared_request": true,
+      "preflight_v11_ready": true,
+      "builder_v11": true,
+      "atomic_v3": true,
+      "forecast_preparation_bound": true,
+      "forecast_converted_to_lf": true,
+      "scorer_v15_chain": true,
+      "scorer_recomputes_preparation": true,
+      "preparation_tamper_rejected": true,
+      "event_protocol_tamper_rejected": true,
+      "source_coverage_tamper_rejected": true,
+      "real_ledger_untouched": true
+    }
+  },
+  "real_empty_ledger_scorer": {
+    "script": "scripts/score_jnu_operational_live_shadow_v1_5.py",
+    "status": "PASS",
+    "result_status": "LIVE_SHADOW_ACCUMULATING",
+    "forecasts_verified": 0,
+    "outcomes_verified": 0,
+    "prepared_request_recomputed": true
+  },
+  "directional_or_scoring_rules_changed": false,
+  "quote_freshness_gate_changed": false,
+  "validated_directional_modules": 0,
+  "decision_engine": "NO_VALIDATED_DIRECTIONAL_EDGE"
+}

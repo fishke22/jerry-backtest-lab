@@ -1,0 +1,101 @@
+name: JNU Live Shadow V1.7 Integrity Selftest
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/jnu-live-shadow-v17-integrity-selftest-v1.yml"
+      - ".github/workflows/jnu-live-shadow-cloud-forecast-v1.yml"
+      - "scripts/prepare_jnu_cloud_request_v1.py"
+      - "scripts/jnu_request_preparation_validation_v1.py"
+      - "scripts/jnu_risk_state_evidence_validation_v1_1.py"
+      - "scripts/build_jnu_cloud_forecast_input_v1_1.py"
+      - "scripts/check_jnu_live_shadow_preflight_v1_1.py"
+      - "scripts/register_jnu_operational_shadow_forecast_v1_6.py"
+      - "scripts/register_jnu_operational_shadow_forecast_atomic_v3.py"
+      - "scripts/score_jnu_operational_live_shadow_v1_5.py"
+      - "scripts/selftest_jnu_cloud_request_preparation_v1.py"
+      - "scripts/selftest_jnu_live_shadow_v17_integrity.py"
+      - "config/jnu_cloud_forecast_request_protocol_v1_2.json"
+      - "config/jnu_cloud_request_preparation_protocol_v1.json"
+      - "config/jnu_official_event_state_protocol_v1_1.json"
+      - "config/jnu_operational_framework_current_v1_7.json"
+      - "config/jnu_operational_live_shadow_prereg_v1_6.json"
+      - "config/jnu_operational_live_shadow_implementation_v1_6.json"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  integrity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Record real ledger counts before
+        id: before
+        shell: bash
+        run: |
+          f=0; o=0
+          [ -d live_shadow/forecasts ] && f=$(find live_shadow/forecasts -maxdepth 1 -type f -name '*.json' | wc -l)
+          [ -d live_shadow/outcomes ] && o=$(find live_shadow/outcomes -maxdepth 1 -type f -name '*.json' | wc -l)
+          echo "forecasts=$f" >> "$GITHUB_OUTPUT"
+          echo "outcomes=$o" >> "$GITHUB_OUTPUT"
+
+      - name: Compile v1.7 integrity tools
+        run: |
+          python -m py_compile             scripts/jnu_request_preparation_validation_v1.py             scripts/jnu_risk_state_evidence_validation_v1_1.py             scripts/prepare_jnu_cloud_request_v1.py             scripts/build_jnu_cloud_forecast_input_v1_1.py             scripts/check_jnu_live_shadow_preflight_v1_1.py             scripts/register_jnu_operational_shadow_forecast_v1_6.py             scripts/register_jnu_operational_shadow_forecast_atomic_v3.py             scripts/score_jnu_operational_live_shadow_v1_5.py             scripts/selftest_jnu_cloud_request_preparation_v1.py             scripts/selftest_jnu_live_shadow_v17_integrity.py
+
+      - name: Validate v1.7 governance JSON
+        run: |
+          python -m json.tool config/jnu_cloud_forecast_request_protocol_v1_2.json >/dev/null
+          python -m json.tool config/jnu_cloud_request_preparation_protocol_v1.json >/dev/null
+          python -m json.tool config/jnu_official_event_state_protocol_v1_1.json >/dev/null
+          python -m json.tool config/jnu_operational_framework_current_v1_7.json >/dev/null
+          python -m json.tool config/jnu_operational_live_shadow_prereg_v1_6.json >/dev/null
+          python -m json.tool config/jnu_operational_live_shadow_implementation_v1_6.json >/dev/null
+
+      - name: Request preparation chain selftest
+        run: python scripts/selftest_jnu_cloud_request_preparation_v1.py
+
+      - name: Full v1.7 forecast outcome scorer integrity selftest
+        run: python scripts/selftest_jnu_live_shadow_v17_integrity.py
+
+      - name: Real empty-ledger scorer integrity
+        run: |
+          python scripts/score_jnu_operational_live_shadow_v1_5.py             --output /tmp/jnu_live_shadow_v17_empty_score.json
+          python - <<'PY'
+          import json
+          x=json.load(open("/tmp/jnu_live_shadow_v17_empty_score.json"))
+          assert x["version"]=="1.5"
+          assert x["integrity"]["status"]=="PASS"
+          assert x["integrity"]["prepared_request_recomputed"] is True
+          assert x["forecast_records"]==0
+          assert x["outcomes_recorded"]==0
+          print(json.dumps({
+            "status":"V1_7_REAL_EMPTY_LEDGER_SCORER_PASS",
+            "forecast_records":x["forecast_records"],
+            "outcomes_recorded":x["outcomes_recorded"]
+          },indent=2))
+          PY
+
+      - name: Verify real ledger unchanged
+        shell: bash
+        env:
+          BEFORE_F: ${{ steps.before.outputs.forecasts }}
+          BEFORE_O: ${{ steps.before.outputs.outcomes }}
+        run: |
+          f=0; o=0
+          [ -d live_shadow/forecasts ] && f=$(find live_shadow/forecasts -maxdepth 1 -type f -name '*.json' | wc -l)
+          [ -d live_shadow/outcomes ] && o=$(find live_shadow/outcomes -maxdepth 1 -type f -name '*.json' | wc -l)
+          test "$f" = "$BEFORE_F"
+          test "$o" = "$BEFORE_O"
+          echo "V1.7 integrity selftest left real ledger unchanged: $f/$o"

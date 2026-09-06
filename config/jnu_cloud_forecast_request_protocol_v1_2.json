@@ -1,0 +1,70 @@
+{
+  "version": "1.2",
+  "frozen_at": "2026-09-06",
+  "status": "PRE_FIRST_REAL_FORECAST_OFFICIAL_PREPARED_CLOUD_REQUEST_PROTOCOL",
+  "real_live_shadow_forecasts_existing_at_freeze": 0,
+  "real_live_shadow_outcomes_existing_at_freeze": 0,
+  "purpose": "Require every first-real-capable immutable cloud request to be created by the official event-evidence preparer, while preserving the frozen quote-free 900-second request semantics.",
+  "request_directory": "live_shadow_requests",
+  "filename_rule": "<request_id>.json",
+  "request_id_pattern": "^JNU_REQ_[A-Za-z0-9._-]{8,120}$",
+  "required_fields": [
+    "request_id",
+    "request_created_at_taipei",
+    "request_valid_until_taipei",
+    "symbol",
+    "target_day_session_date",
+    "decision_input",
+    "risk_state_evidence",
+    "request_preparation",
+    "expected_path",
+    "key_levels",
+    "invalidation_conditions",
+    "event_risk",
+    "flip_conditions",
+    "evidence_summary"
+  ],
+  "prohibited_request_fields": [
+    "reference_price",
+    "reference_timestamp",
+    "reference_source",
+    "reference_source_metadata",
+    "bias",
+    "confidence",
+    "decision_trace"
+  ],
+  "request_validity": {
+    "maximum_seconds": 900,
+    "rule": "0 < request_valid_until - request_created_at <= 900 seconds",
+    "registration_rule": "forecast input must be built no later than request_valid_until_taipei"
+  },
+  "exact_quote_rule": {
+    "price_and_timestamp_owner": "cloud quote adapter",
+    "source_hierarchy": "config/jnu_exact_micro_primary_source_hierarchy_v1.json",
+    "shared_validator": "scripts/jnu_exact_micro_source_validation_v1.py",
+    "maximum_quote_age_seconds": 900,
+    "primary_symbol": "individual OSE NK225MC month contract only"
+  },
+  "idempotency": {
+    "same_request_id_max_real_forecasts": 1,
+    "rerun_after_registration": "NOOP; never create a second forecast",
+    "expired_unregistered_request": "terminally unregistered; create a new request after fresh analysis"
+  },
+  "commit_rule": "For push-triggered processing, exactly one new/changed live_shadow_requests/*.json file is allowed per request commit.",
+  "scoring_rules_changed": false,
+  "directional_rules_changed": false,
+  "preflight": "scripts/check_jnu_live_shadow_preflight_v1.py",
+  "integrity_hash_protocol": "config/jnu_integrity_hash_protocol_v1.json",
+  "integrity_hash_method": "SHA256_TEXT_EOL_CRLF_V1",
+  "risk_state_validator": "scripts/jnu_risk_state_evidence_validation_v1_1.py",
+  "risk_evidence_rule": "risk_state_evidence must be frozen before request creation, be no older than 900 seconds both at request creation and at forecast creation, match decision_input risk modifiers and target date, and carry at least one equally fresh event source when event_state is known.",
+  "first_real_registration_event_rule": "event_state UNKNOWN is not preparable for the first real request; HAR/SQ UNKNOWN remain allowed and cap confidence through the frozen decision protocol.",
+  "next_action": "Create immutable requests only through scripts/prepare_jnu_cloud_request_v1.py, then run v1.1 preflight and v3 atomic registration without relaxing any 900-second gate.",
+  "supersedes": "config/jnu_cloud_forecast_request_protocol_v1_1.json",
+  "request_preparation_protocol": "config/jnu_cloud_request_preparation_protocol_v1.json",
+  "request_preparer": "scripts/prepare_jnu_cloud_request_v1.py",
+  "request_preparation_validator": "scripts/jnu_request_preparation_validation_v1.py",
+  "official_event_state_protocol": "config/jnu_official_event_state_protocol_v1_1.json",
+  "official_event_state_producer": "scripts/fetch_jnu_official_event_state_v1.py",
+  "prepared_request_rule": "request_preparation and risk_state_evidence provenance must cryptographically bind the request to the frozen official event-state and preparation protocols; handcrafted or stale event state is fail-closed."
+}
