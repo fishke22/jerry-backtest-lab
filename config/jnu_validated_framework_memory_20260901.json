@@ -208,7 +208,7 @@
   "authoritative_validation_pipeline_checkpoint": "config/jnu_validation_pipeline_checkpoint_20260902_v1.json",
   "validation_pipeline_status": "JNU_VALIDATION_PIPELINE_READY_FORWARD_DATA_PENDING",
   "validation_pipeline_head": "ff322f11dbb23da6be093056ac6ef47f2db10e4a",
-  "next_action": "Keep JNU Operational Framework v1.8 active but first-real registration fail-closed. The current blocker is FREE_PUBLIC_EXACT_MICRO_SUB900_SOURCE_NOT_FOUND; do not relax 900 seconds or substitute continuous contracts.",
+  "next_action": "Keep JNU Operational Framework v1.8 active and first-real fail-closed. Reliable sub-900 exact individual OSE Micro now requires an entitled read-only realtime source. Prefer OSE free-trial/provider onboarding if eligible; otherwise a licensed vendor. Broker-auth feeds remain prohibited unless governance is explicitly amended.",
   "stage8_forward_local_ingest": {
     "status": "SELFTEST_PASS_NO_SOURCE_CHANGE",
     "script": "scripts/ingest_jnu_stage8_forward_local.py",
@@ -351,7 +351,7 @@
     }
   },
   "first_real_launch_orchestration": {
-    "status": "SOURCE_FEASIBILITY_BLOCKED",
+    "status": "REALTIME_ENTITLEMENT_REQUIRED",
     "protocol": "config/jnu_first_real_launch_protocol_v1.json",
     "checkpoint": "config/jnu_first_real_source_readiness_checkpoint_v1.json",
     "probe": "scripts/probe_jnu_first_real_source_readiness_v1.py",
@@ -372,7 +372,14 @@
       "run_id": 34131621161,
       "jpx_age_seconds": 959.6,
       "tradingview_age_seconds": 960
-    }
+    },
+    "entitlement_resolution": "config/jnu_exact_micro_realtime_entitlement_resolution_v1.json",
+    "entitled_source_adapter_contract": "config/jnu_exact_micro_entitled_source_adapter_contract_v1.json",
+    "entitled_source_validator": "scripts/validate_jnu_entitled_exact_micro_evidence_v1.py",
+    "entitlement_core_commit": "7c424986e491e92dd8a8cc66acc0881e2263ea76",
+    "entitlement_v1_8_integrity_run": 34170351493,
+    "entitlement_actionlint_run": 34170351466,
+    "entitlement_validator_selftest": "PASS_10_OF_10"
   },
   "exact_micro_rollover": {
     "status": "READY",

@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "as_of": "2026-09-08",
-  "status": "FREE_PUBLIC_EXACT_MICRO_SUB900_SOURCE_NOT_FOUND",
+  "status": "ANONYMOUS_PUBLIC_SUB900_NOT_FOUND_LICENSED_ENTITLEMENT_PATH_REQUIRED",
   "purpose": "Determine whether a free, public, cloud-fetchable, broker-auth-free exact individual OSE Nikkei 225 Micro source can satisfy the frozen provider-timestamp age <=900 seconds with positive operational margin.",
   "frozen_requirements": {
     "exact_individual_ose_micro_month_contract": true,
@@ -118,17 +118,20 @@
     }
   ],
   "conclusion": {
-    "blocker": "FREE_PUBLIC_EXACT_MICRO_SUB900_SOURCE_NOT_FOUND",
+    "blocker": "LICENSED_REALTIME_ENTITLEMENT_REQUIRED_FOR_RELIABLE_SUB900_PATH",
     "scheduled_probe_role": "DETECTOR_ONLY_NOT_FIRST_REAL_GUARANTEE",
     "workflow_success_is_not_fresh_source": true,
     "hard_900_second_gate_unchanged": true,
     "first_real_registration_allowed": false,
-    "reopen_condition": "Only reopen first-real launch when a materially new source demonstrates exact individual OSE Micro month identity, provider timestamp age <900 seconds with positive operational margin, stable cloud transport, and no broker login/trading permission requirement."
+    "reopen_condition": "Reopen first-real only after an entitled read-only source passes the frozen adapter validator with actual provider timestamp age <=900 seconds. Broker login and trading permission remain prohibited under current governance."
   },
   "real_ledger": {
     "forecasts": 0,
     "outcomes": 0
   },
   "validated_directional_modules": 0,
-  "decision_engine": "NO_VALIDATED_DIRECTIONAL_EDGE"
+  "decision_engine": "NO_VALIDATED_DIRECTIONAL_EDGE",
+  "entitlement_resolution": "config/jnu_exact_micro_realtime_entitlement_resolution_v1.json",
+  "entitled_source_adapter_contract": "config/jnu_exact_micro_entitled_source_adapter_contract_v1.json",
+  "entitled_source_validator": "scripts/validate_jnu_entitled_exact_micro_evidence_v1.py"
 }

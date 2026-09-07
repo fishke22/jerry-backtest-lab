@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "as_of": "2026-09-08",
-  "status": "SOURCE_FEASIBILITY_AUDITED_NO_FREE_PUBLIC_SUB900_EXACT_MICRO",
+  "status": "SOURCE_FEASIBILITY_AUDITED_LICENSED_REALTIME_ENTITLEMENT_REQUIRED",
   "authoritative_framework": "config/jnu_operational_framework_current_v1_8.json",
   "launch_protocol": "config/jnu_first_real_launch_protocol_v1.json",
   "launch_protocol_sha256": "12555c8a4c21ae9741d8767e2861d9c661b8dfaea1de0fbfcaca60bae436fdf8",
@@ -92,6 +92,13 @@
       "tradingview_age_seconds": 960,
       "jpx_margin_seconds": -59.6,
       "tradingview_margin_seconds": -60
+    },
+    "entitlement_contract": {
+      "core_commit": "7c424986e491e92dd8a8cc66acc0881e2263ea76",
+      "v1_8_integrity_run": 34170351493,
+      "actionlint_run": 34170351466,
+      "selftest": "PASS_10_OF_10",
+      "real_ledger_modified": false
     }
   },
   "scheduled_probe_policy": {
@@ -102,7 +109,7 @@
     "role": "DETECTOR_ONLY_NOT_FIRST_REAL_GUARANTEE"
   },
   "frozen_max_reference_age_seconds": 900,
-  "current_blocker": "FREE_PUBLIC_EXACT_MICRO_SUB900_SOURCE_NOT_FOUND",
+  "current_blocker": "LICENSED_REALTIME_ENTITLEMENT_REQUIRED_FOR_RELIABLE_SUB900_PATH",
   "real_ledger": {
     "forecasts": 0,
     "outcomes": 0
@@ -112,5 +119,8 @@
   "rollover_guard": "config/jnu_exact_micro_rollover_checkpoint_v1.json",
   "roll_calendar": "config/jnu_exact_micro_contract_roll_calendar_v1.json",
   "contract_resolver": "scripts/resolve_jnu_exact_micro_contract_v1.py",
-  "sub900_source_audit": "config/jnu_exact_micro_sub900_source_audit_v1.json"
+  "sub900_source_audit": "config/jnu_exact_micro_sub900_source_audit_v1.json",
+  "entitlement_resolution": "config/jnu_exact_micro_realtime_entitlement_resolution_v1.json",
+  "entitled_source_adapter_contract": "config/jnu_exact_micro_entitled_source_adapter_contract_v1.json",
+  "entitled_source_validator": "scripts/validate_jnu_entitled_exact_micro_evidence_v1.py"
 }

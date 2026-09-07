@@ -1,7 +1,7 @@
 {
   "version": "8.0",
   "as_of": "2026-09-08",
-  "status": "V1_8_GOVERNANCE_READY_FREE_PUBLIC_SUB900_EXACT_MICRO_BLOCKED",
+  "status": "V1_8_GOVERNANCE_READY_REALTIME_ENTITLEMENT_BLOCKED",
   "authoritative_framework": "config/jnu_operational_framework_current_v1_8.json",
   "preregistration": "config/jnu_operational_live_shadow_prereg_v1_7.json",
   "implementation": "config/jnu_operational_live_shadow_implementation_v1_7.json",
@@ -133,6 +133,22 @@
         "tradingview_age_seconds": 960
       },
       "conclusion": "Both allowed free public exact sources remained outside the frozen <=900-second gate."
+    },
+    "entitled_source_contract": {
+      "status": "PASS_10_OF_10",
+      "core_commit": "7c424986e491e92dd8a8cc66acc0881e2263ea76",
+      "v1_8_integrity_run": 34170351493,
+      "actionlint_run": 34170351466,
+      "broker_auth_rejected": true,
+      "trading_permission_rejected": true,
+      "continuous_rejected": true,
+      "stale_rejected": true,
+      "future_timestamp_rejected": true,
+      "secret_field_rejected": true,
+      "real_ledger": {
+        "forecasts": 0,
+        "outcomes": 0
+      }
     }
   },
   "frozen_max_reference_age_seconds": 900,
@@ -147,8 +163,8 @@
     "validated_directional_modules": 0,
     "decision_engine": "NO_VALIDATED_DIRECTIONAL_EDGE"
   },
-  "blocker": "FREE_PUBLIC_EXACT_MICRO_SUB900_SOURCE_NOT_FOUND",
-  "next_action": "Do not pre-create a real analysis draft and do not relax 900 seconds. Keep scheduled source readiness as detector-only. Reopen first-real launch only after a materially new free/public/broker-auth-free exact individual OSE Micro source demonstrates provider-timestamp age <900 seconds with positive operational margin; otherwise remain fail-closed.",
+  "blocker": "LICENSED_REALTIME_ENTITLEMENT_REQUIRED_FOR_RELIABLE_SUB900_PATH",
+  "next_action": "Keep first-real fail-closed. Preferred zero-data-fee candidate is an OSE-approved free-trial/provider arrangement if eligible; otherwise use a licensed read-only realtime vendor. Any future source must pass the entitled-source validator. Broker authentication remains prohibited and the 900-second gate remains unchanged.",
   "integrity_hash_protocol": "config/jnu_integrity_hash_protocol_v1.json",
   "integrity_hash_method": "SHA256_TEXT_EOL_CRLF_V1",
   "core_seal_commit": "883d6d71d41a02ca19a713a5b5e2c3469c84cead",
@@ -178,5 +194,8 @@
   "exact_micro_contract_resolver": "scripts/resolve_jnu_exact_micro_contract_v1.py",
   "exact_micro_rollover_checkpoint": "config/jnu_exact_micro_rollover_checkpoint_v1.json",
   "rollover_guard_ready": true,
-  "sub900_source_audit": "config/jnu_exact_micro_sub900_source_audit_v1.json"
+  "sub900_source_audit": "config/jnu_exact_micro_sub900_source_audit_v1.json",
+  "entitlement_resolution": "config/jnu_exact_micro_realtime_entitlement_resolution_v1.json",
+  "entitled_source_adapter_contract": "config/jnu_exact_micro_entitled_source_adapter_contract_v1.json",
+  "entitled_source_validator": "scripts/validate_jnu_entitled_exact_micro_evidence_v1.py"
 }

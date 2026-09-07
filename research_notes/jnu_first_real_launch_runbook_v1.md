@@ -101,3 +101,19 @@ Authoritative audit: `config/jnu_exact_micro_sub900_source_audit_v1.json`.
 Current blocker: `FREE_PUBLIC_EXACT_MICRO_SUB900_SOURCE_NOT_FOUND`.
 
 Do not compensate by loosening the 900-second gate, timestamp-adjusting a delayed feed, or substituting a continuous contract. Reopen first-real launch only when a materially new exact individual-month source demonstrates provider age below 900 seconds with positive operational margin.
+
+## Entitled source contract — sealed 2026-09-08
+
+Core commit: `7c424986e491e92dd8a8cc66acc0881e2263ea76`.
+
+Cloud verification:
+
+- V1.8 Integrity run `34170351493`: PASS.
+- Actionlint run `34170351466`: PASS.
+- Entitled exact-Micro evidence selftest: **10/10 PASS**.
+- Full v1.8 analysis-fresh chain: PASS.
+- Empty-ledger scorer: PASS, 0 forecasts / 0 outcomes.
+
+The entitlement layer is now implemented, but no entitled production source exists yet. The validator allows only `OSE_FREE_TRIAL` and `LICENSED_REALTIME_VENDOR` under current governance. Broker-authenticated evidence remains rejected.
+
+The validator is source-only infrastructure: it cannot create a forecast, cannot modify the real ledger, cannot relax the 900-second freshness rule, and cannot substitute a continuous contract.

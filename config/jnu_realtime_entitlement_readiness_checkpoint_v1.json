@@ -1,0 +1,26 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-08",
+  "status": "REALTIME_ENTITLEMENT_LAYER_READY_FIRST_REAL_STILL_BLOCKED",
+  "authoritative_framework": "config/jnu_operational_framework_current_v1_8.json",
+  "blocker": "LICENSED_REALTIME_ENTITLEMENT_REQUIRED_FOR_RELIABLE_SUB900_PATH",
+  "entitlement_resolution": "config/jnu_exact_micro_realtime_entitlement_resolution_v1.json",
+  "adapter_contract": "config/jnu_exact_micro_entitled_source_adapter_contract_v1.json",
+  "validator": "scripts/validate_jnu_entitled_exact_micro_evidence_v1.py",
+  "validator_selftest": "scripts/selftest_jnu_entitled_exact_micro_evidence_v1.py",
+  "core_commit": "7c424986e491e92dd8a8cc66acc0881e2263ea76",
+  "cloud_verification": {
+    "v1_8_integrity_run": 34170351493,
+    "actionlint_run": 34170351466,
+    "entitled_evidence_selftest": "PASS_10_OF_10",
+    "full_v1_8_chain": "PASS",
+    "empty_ledger_scorer": "PASS"
+  },
+  "current_allowed_entitlement_modes": ["OSE_FREE_TRIAL", "LICENSED_REALTIME_VENDOR"],
+  "broker_feed_status": "PROHIBITED_UNTIL_EXPLICIT_GOVERNANCE_AMENDMENT",
+  "hard_900_second_gate_unchanged": true,
+  "continuous_contract_primary_prohibited": true,
+  "real_ledger": {"forecasts": 0, "outcomes": 0},
+  "validated_directional_modules": 0,
+  "decision_engine": "NO_VALIDATED_DIRECTIONAL_EDGE"
+}
