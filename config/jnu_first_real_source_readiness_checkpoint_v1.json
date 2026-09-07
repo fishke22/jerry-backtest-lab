@@ -1,8 +1,8 @@
 {
   "version": "1.0",
   "as_of": "2026-09-08",
-  "status": "SOURCE_FEASIBILITY_AUDITED_LICENSED_REALTIME_ENTITLEMENT_REQUIRED",
-  "authoritative_framework": "config/jnu_operational_framework_current_v1_8.json",
+  "status": "V1_9_SOURCE_GOVERNANCE_MEMORY_READY_ENTITLEMENT_REQUIRED",
+  "authoritative_framework": "config/jnu_operational_framework_current_v1_9.json",
   "launch_protocol": "config/jnu_first_real_launch_protocol_v1.json",
   "launch_protocol_sha256": "12555c8a4c21ae9741d8767e2861d9c661b8dfaea1de0fbfcaca60bae436fdf8",
   "source_probe": "scripts/probe_jnu_first_real_source_readiness_v1.py",

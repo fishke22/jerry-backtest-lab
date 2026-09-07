@@ -20,6 +20,8 @@ on:
       - "config/jnu_cloud_forecast_request_protocol_v1_3.json"
       - "config/jnu_cloud_request_preparation_protocol_v1_1.json"
       - "config/jnu_operational_framework_current_v1_8.json"
+      - "config/jnu_operational_framework_current_v1_9.json"
+      - "scripts/selftest_jnu_framework_v19_supersession.py"
       - "config/jnu_operational_live_shadow_prereg_v1_7.json"
       - "config/jnu_operational_live_shadow_implementation_v1_7.json"
       - "config/jnu_operational_live_shadow_v18_integrity_selftest_v1.json"
@@ -59,6 +61,7 @@ jobs:
           python -m json.tool config/jnu_cloud_forecast_request_protocol_v1_3.json >/dev/null
           python -m json.tool config/jnu_cloud_request_preparation_protocol_v1_1.json >/dev/null
           python -m json.tool config/jnu_operational_framework_current_v1_8.json >/dev/null
+          python -m json.tool config/jnu_operational_framework_current_v1_9.json >/dev/null
           python -m json.tool config/jnu_operational_live_shadow_prereg_v1_7.json >/dev/null
           python -m json.tool config/jnu_operational_live_shadow_implementation_v1_7.json >/dev/null
           python -m json.tool config/jnu_operational_live_shadow_v18_integrity_selftest_v1.json >/dev/null
@@ -72,6 +75,11 @@ jobs:
           python -m py_compile             scripts/resolve_jnu_exact_micro_contract_v1.py             scripts/selftest_jnu_exact_micro_contract_roll_v1.py             scripts/probe_jnu_first_real_source_readiness_v1.py             scripts/selftest_jnu_first_real_source_readiness_v1.py
           python scripts/selftest_jnu_exact_micro_contract_roll_v1.py
           python scripts/selftest_jnu_first_real_source_readiness_v1.py
+
+      - name: JNU v1.9 framework supersession selftest
+        run: |
+          python -m py_compile scripts/selftest_jnu_framework_v19_supersession.py
+          python scripts/selftest_jnu_framework_v19_supersession.py
 
       - name: Entitled exact-Micro evidence contract selftest
         run: |

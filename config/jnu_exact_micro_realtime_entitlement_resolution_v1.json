@@ -1,8 +1,8 @@
 {
   "version": "1.0",
   "as_of": "2026-09-08",
-  "status": "LICENSED_REALTIME_ENTITLEMENT_REQUIRED_FOR_RELIABLE_SUB900_PATH",
-  "authoritative_framework": "config/jnu_operational_framework_current_v1_8.json",
+  "status": "V1_9_LICENSED_REALTIME_ENTITLEMENT_REQUIRED_FOR_RELIABLE_SUB900_PATH",
+  "authoritative_framework": "config/jnu_operational_framework_current_v1_9.json",
   "source_feasibility_audit": "config/jnu_exact_micro_sub900_source_audit_v1.json",
   "structural_finding": {
     "ose_realtime_market_data_is_paid_service": true,
@@ -27,7 +27,13 @@
     {
       "id": "LICENSED_REALTIME_VENDOR",
       "rank": 2,
-      "examples": ["CQG OSE market data", "QUICK APIs", "TradingView OSE realtime exchange data", "LSEG/Refinitiv", "Bloomberg"],
+      "examples": [
+        "CQG OSE market data",
+        "QUICK APIs",
+        "TradingView OSE realtime exchange data",
+        "LSEG/Refinitiv",
+        "Bloomberg"
+      ],
       "broker_login_required": false,
       "trading_permission_required": false,
       "external_onboarding_required": true,
@@ -38,7 +44,9 @@
     {
       "id": "AUTHORIZED_READ_ONLY_BROKER_FEED",
       "rank": 3,
-      "examples": ["kabu Station API NK225micro"],
+      "examples": [
+        "kabu Station API NK225micro"
+      ],
       "technical_feasibility": "EXACT_MONTH_AND_REALTIME_POSSIBLE",
       "broker_auth_required": true,
       "trading_permission_must_be_disabled": true,
@@ -57,7 +65,10 @@
   "validator": "scripts/validate_jnu_entitled_exact_micro_evidence_v1.py",
   "validator_selftest": "scripts/selftest_jnu_entitled_exact_micro_evidence_v1.py",
   "reopen_rule": "First-real launch may reopen only after an entitled read-only source produces exact individual OSE Nikkei 225 Micro evidence that passes the adapter validator with actual provider timestamp age <=900 seconds and positive margin demonstrated, without broker login under current governance.",
-  "real_ledger": {"forecasts": 0, "outcomes": 0},
+  "real_ledger": {
+    "forecasts": 0,
+    "outcomes": 0
+  },
   "validated_directional_modules": 0,
   "decision_engine": "NO_VALIDATED_DIRECTIONAL_EDGE"
 }

@@ -3,8 +3,8 @@
   "as_of": "2026-09-08",
   "memory_scope": "CROSS_SESSION_MANDATORY",
   "subject": "JNU Operational Framework",
-  "authoritative_framework": "config/jnu_operational_framework_current_v1_8.json",
-  "usage_rule": "For every future JNU / Osaka Nikkei / Osaka Micro Nikkei analysis in any session, apply this framework by default unless a later committed authoritative framework explicitly supersedes it.",
+  "authoritative_framework": "config/jnu_operational_framework_current_v1_9.json",
+  "usage_rule": "For every future JNU / Osaka Nikkei / Osaka Micro Nikkei analysis in any session, apply config/jnu_operational_framework_current_v1_9.json by default unless a later committed authoritative framework explicitly supersedes it.",
   "mandatory_layers": [
     "Market Regime",
     "Event Risk State",
@@ -46,7 +46,7 @@
   ],
   "parallel_research_rule": "Operational use is allowed now while higher-level forward validation continues. Continue independent preregistered historical OOS/walk-forward/overfit-controlled directional research without waiting for future Stage8 data.",
   "supersession_rule": "Only a later committed authoritative framework file may supersede this memory. Do not silently simplify back to generic technical/fundamental analysis.",
-  "current_framework_version": "1.8",
+  "current_framework_version": "1.9",
   "live_shadow_preregistration": "config/jnu_operational_live_shadow_prereg_v1_7.json",
   "directional_research_checkpoint": "config/jnu_directional_scout_checkpoint_20260903_v1.json",
   "live_shadow_selftest": "config/jnu_operational_live_shadow_selftest_v1.json",
@@ -75,7 +75,7 @@
   "cloud_request_selftest_run": 33969428203,
   "cloud_actionlint_run": 34038843503,
   "cloud_pipeline_status": "V1_8_ANALYSIS_FRESH_OFFICIAL_PREPARED_REQUEST_INTEGRITY_CI_PASS_REAL_LEDGER_EMPTY",
-  "next_action": "Current blocker is LICENSED_REALTIME_ENTITLEMENT_REQUIRED_FOR_RELIABLE_SUB900_PATH. Prefer OSE free-trial/provider onboarding if eligible, otherwise a licensed read-only realtime vendor. Any provider must pass the frozen entitled-source validator. Broker login/trading permissions and 900-second relaxation remain prohibited.",
+  "next_action": "Use JNU Operational Framework v1.9. Current first-real blocker is LICENSED_REALTIME_ENTITLEMENT_REQUIRED_FOR_RELIABLE_SUB900_PATH. Continue OSE free-trial/provider onboarding feasibility; do not alter directional/scoring semantics, 900-second freshness, continuous prohibition, or no-broker-auth rule.",
   "exact_micro_reference_source_gate": "config/jnu_exact_micro_reference_source_gate_20260904_v1.json",
   "tradingview_exact_micro_transport": {
     "status": "B_IDENTITY_SOURCE_ALLOWED_ONLY_IF_ACTUAL_LP_TIME_AGE_LE_900",
@@ -178,5 +178,8 @@
   "entitlement_core_commit": "7c424986e491e92dd8a8cc66acc0881e2263ea76",
   "entitlement_v1_8_integrity_run": 34170351493,
   "entitlement_actionlint_run": 34170351466,
-  "entitlement_validator_selftest": "PASS_10_OF_10"
+  "entitlement_validator_selftest": "PASS_10_OF_10",
+  "v1_9_framework_file": "config/jnu_operational_framework_current_v1_9.json",
+  "v1_9_supersedes_v1_8_without_directional_semantic_change": true,
+  "v1_9_supersession_selftest": "scripts/selftest_jnu_framework_v19_supersession.py"
 }

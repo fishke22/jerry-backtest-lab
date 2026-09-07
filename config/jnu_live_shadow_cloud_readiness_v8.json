@@ -1,8 +1,8 @@
 {
   "version": "8.0",
   "as_of": "2026-09-08",
-  "status": "V1_8_GOVERNANCE_READY_REALTIME_ENTITLEMENT_BLOCKED",
-  "authoritative_framework": "config/jnu_operational_framework_current_v1_8.json",
+  "status": "V1_9_FRAMEWORK_ACTIVE_REALTIME_ENTITLEMENT_BLOCKED",
+  "authoritative_framework": "config/jnu_operational_framework_current_v1_9.json",
   "preregistration": "config/jnu_operational_live_shadow_prereg_v1_7.json",
   "implementation": "config/jnu_operational_live_shadow_implementation_v1_7.json",
   "decision_protocol_sha256": "fe10aca973f2038fcd2038ae9564253e58685c6d40f79a88d54f44f828a0d552",

@@ -208,7 +208,7 @@
   "authoritative_validation_pipeline_checkpoint": "config/jnu_validation_pipeline_checkpoint_20260902_v1.json",
   "validation_pipeline_status": "JNU_VALIDATION_PIPELINE_READY_FORWARD_DATA_PENDING",
   "validation_pipeline_head": "ff322f11dbb23da6be093056ac6ef47f2db10e4a",
-  "next_action": "Keep JNU Operational Framework v1.8 active and first-real fail-closed. Reliable sub-900 exact individual OSE Micro now requires an entitled read-only realtime source. Prefer OSE free-trial/provider onboarding if eligible; otherwise a licensed vendor. Broker-auth feeds remain prohibited unless governance is explicitly amended.",
+  "next_action": "Use JNU Operational Framework v1.9 and continue OSE free-trial/provider onboarding feasibility. First-real remains fail-closed until an entitled read-only exact individual OSE Micro source passes the frozen validator.",
   "stage8_forward_local_ingest": {
     "status": "SELFTEST_PASS_NO_SOURCE_CHANGE",
     "script": "scripts/ingest_jnu_stage8_forward_local.py",
@@ -216,9 +216,9 @@
     "download_or_login_automation": false,
     "next_action": "After a manually/authorized updated 225Labo Micro package exists locally, run check-only then --apply; inspect readiness only."
   },
-  "authoritative_operational_framework": "config/jnu_operational_framework_current_v1_8.json",
-  "operational_framework_status": "AUTHORITATIVE_JNU_OPERATIONAL_FRAMEWORK_V1_8",
-  "operational_framework_usage": "Use for all future Osaka Nikkei/JNU analysis unless explicitly superseded by a later committed framework.",
+  "authoritative_operational_framework": "config/jnu_operational_framework_current_v1_9.json",
+  "operational_framework_status": "AUTHORITATIVE_JNU_OPERATIONAL_FRAMEWORK_V1_9",
+  "operational_framework_usage": "Use v1.9 for all future Osaka Nikkei/JNU analysis unless explicitly superseded by a later committed framework.",
   "jpx_n225mini_foreign_flow_sign_g1": {
     "status": "TERMINAL_FAIL_NO_RESCUE",
     "terminal_result": "config/jnu_jpx_n225mini_foreign_flow_terminal_fail_v1.json",
@@ -395,5 +395,13 @@
     "next_symbol": "NK225MCV2026",
     "real_forecasts": 0,
     "real_outcomes": 0
+  },
+  "v1_9_supersession": {
+    "status": "PENDING_CI",
+    "framework": "config/jnu_operational_framework_current_v1_9.json",
+    "supersedes": "config/jnu_operational_framework_current_v1_8.json",
+    "directional_semantics_unchanged": true,
+    "source_governance_added": true,
+    "current_blocker": "LICENSED_REALTIME_ENTITLEMENT_REQUIRED_FOR_RELIABLE_SUB900_PATH"
   }
 }
