@@ -1,7 +1,7 @@
 {
   "version": "8.0",
-  "as_of": "2026-09-06",
-  "status": "V1_8_ANALYSIS_FRESH_GOVERNANCE_READY_AWAITING_FRESH_EXACT_MICRO",
+  "as_of": "2026-09-08",
+  "status": "V1_8_GOVERNANCE_READY_FREE_PUBLIC_SUB900_EXACT_MICRO_BLOCKED",
   "authoritative_framework": "config/jnu_operational_framework_current_v1_8.json",
   "preregistration": "config/jnu_operational_live_shadow_prereg_v1_7.json",
   "implementation": "config/jnu_operational_live_shadow_implementation_v1_7.json",
@@ -119,6 +119,20 @@
         "forecasts": 0,
         "outcomes": 0
       }
+    },
+    "scheduled_source_feasibility_20260907": {
+      "status": "NO_FRESH_SOURCE",
+      "day_run_id": 34072676355,
+      "night_run_id": 34131621161,
+      "day": {
+        "jpx_age_seconds": 909.1,
+        "tradingview_age_seconds": 909.8
+      },
+      "night": {
+        "jpx_age_seconds": 959.6,
+        "tradingview_age_seconds": 960
+      },
+      "conclusion": "Both allowed free public exact sources remained outside the frozen <=900-second gate."
     }
   },
   "frozen_max_reference_age_seconds": 900,
@@ -133,8 +147,8 @@
     "validated_directional_modules": 0,
     "decision_engine": "NO_VALIDATED_DIRECTIONAL_EDGE"
   },
-  "blocker": "INDIVIDUAL_EXACT_MICRO_REFERENCE_FRESHNESS",
-  "next_action": "Await FRESH_SOURCE_AVAILABLE from the resolver-backed scheduled probe. The resolver currently selects NK225MCU2026 and will switch to NK225MCV2026 after the 2026-09-10 day-session boundary. Only after a fresh allowed exact-Micro source appears should a genuinely new <=900-second analysis draft be created.",
+  "blocker": "FREE_PUBLIC_EXACT_MICRO_SUB900_SOURCE_NOT_FOUND",
+  "next_action": "Do not pre-create a real analysis draft and do not relax 900 seconds. Keep scheduled source readiness as detector-only. Reopen first-real launch only after a materially new free/public/broker-auth-free exact individual OSE Micro source demonstrates provider-timestamp age <900 seconds with positive operational margin; otherwise remain fail-closed.",
   "integrity_hash_protocol": "config/jnu_integrity_hash_protocol_v1.json",
   "integrity_hash_method": "SHA256_TEXT_EOL_CRLF_V1",
   "core_seal_commit": "883d6d71d41a02ca19a713a5b5e2c3469c84cead",
@@ -163,5 +177,6 @@
   "exact_micro_roll_calendar": "config/jnu_exact_micro_contract_roll_calendar_v1.json",
   "exact_micro_contract_resolver": "scripts/resolve_jnu_exact_micro_contract_v1.py",
   "exact_micro_rollover_checkpoint": "config/jnu_exact_micro_rollover_checkpoint_v1.json",
-  "rollover_guard_ready": true
+  "rollover_guard_ready": true,
+  "sub900_source_audit": "config/jnu_exact_micro_sub900_source_audit_v1.json"
 }

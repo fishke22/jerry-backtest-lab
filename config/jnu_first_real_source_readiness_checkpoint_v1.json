@@ -1,7 +1,7 @@
 {
   "version": "1.0",
-  "as_of": "2026-09-06",
-  "status": "FIRST_REAL_SOURCE_READINESS_WITH_ROLLOVER_READY_WAITING_FOR_FRESH_EXACT_MICRO",
+  "as_of": "2026-09-08",
+  "status": "SOURCE_FEASIBILITY_AUDITED_NO_FREE_PUBLIC_SUB900_EXACT_MICRO",
   "authoritative_framework": "config/jnu_operational_framework_current_v1_8.json",
   "launch_protocol": "config/jnu_first_real_launch_protocol_v1.json",
   "launch_protocol_sha256": "12555c8a4c21ae9741d8767e2861d9c661b8dfaea1de0fbfcaca60bae436fdf8",
@@ -72,16 +72,37 @@
     "expanded_actionlint_run": {
       "run_id": 34040184886,
       "status": "PASS"
+    },
+    "scheduled_20260907_day": {
+      "run_id": 34072676355,
+      "status": "WAITING_FOR_FRESH_EXACT_MICRO",
+      "symbol": "NK225MCU2026",
+      "fresh_source_count": 0,
+      "jpx_age_seconds": 909.1,
+      "tradingview_age_seconds": 909.8,
+      "jpx_margin_seconds": -9.1,
+      "tradingview_margin_seconds": -9.8
+    },
+    "scheduled_20260907_night": {
+      "run_id": 34131621161,
+      "status": "WAITING_FOR_FRESH_EXACT_MICRO",
+      "symbol": "NK225MCU2026",
+      "fresh_source_count": 0,
+      "jpx_age_seconds": 959.6,
+      "tradingview_age_seconds": 960,
+      "jpx_margin_seconds": -59.6,
+      "tradingview_margin_seconds": -60
     }
   },
   "scheduled_probe_policy": {
     "day_session_probe_jst": "08:50",
     "night_session_probe_jst": "17:05",
     "day_cron_utc": "50 23 * * 0-4",
-    "night_cron_utc": "5 8 * * 1-5"
+    "night_cron_utc": "5 8 * * 1-5",
+    "role": "DETECTOR_ONLY_NOT_FIRST_REAL_GUARANTEE"
   },
   "frozen_max_reference_age_seconds": 900,
-  "current_blocker": "INDIVIDUAL_EXACT_MICRO_REFERENCE_FRESHNESS",
+  "current_blocker": "FREE_PUBLIC_EXACT_MICRO_SUB900_SOURCE_NOT_FOUND",
   "real_ledger": {
     "forecasts": 0,
     "outcomes": 0
@@ -90,5 +111,6 @@
   "decision_engine": "NO_VALIDATED_DIRECTIONAL_EDGE",
   "rollover_guard": "config/jnu_exact_micro_rollover_checkpoint_v1.json",
   "roll_calendar": "config/jnu_exact_micro_contract_roll_calendar_v1.json",
-  "contract_resolver": "scripts/resolve_jnu_exact_micro_contract_v1.py"
+  "contract_resolver": "scripts/resolve_jnu_exact_micro_contract_v1.py",
+  "sub900_source_audit": "config/jnu_exact_micro_sub900_source_audit_v1.json"
 }

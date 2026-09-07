@@ -1,6 +1,6 @@
 {
   "version": "2026-09-01",
-  "as_of": "2026-09-06",
+  "as_of": "2026-09-08",
   "VALIDATED_JNU_MODULE": 0,
   "validated_directional_modules": 0,
   "decision_engine": "NO_VALIDATED_DIRECTIONAL_EDGE",
@@ -21,7 +21,7 @@
     "run_id": 33498323765,
     "artifact_id": 9796634718,
     "usable_days": 251,
-    "mean_gross_daily_strategy_return": -3.0451509658307074e-05,
+    "mean_gross_daily_strategy_return": -0.000030451509658307074,
     "directional_accuracy": 0.492,
     "bootstrap_prob_mean_positive": 0.5504,
     "stage_b_prohibited": true
@@ -208,7 +208,7 @@
   "authoritative_validation_pipeline_checkpoint": "config/jnu_validation_pipeline_checkpoint_20260902_v1.json",
   "validation_pipeline_status": "JNU_VALIDATION_PIPELINE_READY_FORWARD_DATA_PENDING",
   "validation_pipeline_head": "ff322f11dbb23da6be093056ac6ef47f2db10e4a",
-  "next_action": "Use JNU Operational Framework v1.8 with the frozen individual-Micro resolver. Await FRESH_SOURCE_AVAILABLE, then create a new <=900-second analysis draft and proceed through official event preparation, v1.2 preflight, and atomic v4.",
+  "next_action": "Keep JNU Operational Framework v1.8 active but first-real registration fail-closed. The current blocker is FREE_PUBLIC_EXACT_MICRO_SUB900_SOURCE_NOT_FOUND; do not relax 900 seconds or substitute continuous contracts.",
   "stage8_forward_local_ingest": {
     "status": "SELFTEST_PASS_NO_SOURCE_CHANGE",
     "script": "scripts/ingest_jnu_stage8_forward_local.py",
@@ -351,7 +351,7 @@
     }
   },
   "first_real_launch_orchestration": {
-    "status": "READY_WAITING_FOR_FRESH_EXACT_MICRO",
+    "status": "SOURCE_FEASIBILITY_BLOCKED",
     "protocol": "config/jnu_first_real_launch_protocol_v1.json",
     "checkpoint": "config/jnu_first_real_source_readiness_checkpoint_v1.json",
     "probe": "scripts/probe_jnu_first_real_source_readiness_v1.py",
@@ -361,7 +361,18 @@
     "scheduled_day_probe_jst": "08:50",
     "scheduled_night_probe_jst": "17:05",
     "real_forecasts": 0,
-    "real_outcomes": 0
+    "real_outcomes": 0,
+    "sub900_source_audit": "config/jnu_exact_micro_sub900_source_audit_v1.json",
+    "scheduled_day_20260907": {
+      "run_id": 34072676355,
+      "jpx_age_seconds": 909.1,
+      "tradingview_age_seconds": 909.8
+    },
+    "scheduled_night_20260907": {
+      "run_id": 34131621161,
+      "jpx_age_seconds": 959.6,
+      "tradingview_age_seconds": 960
+    }
   },
   "exact_micro_rollover": {
     "status": "READY",

@@ -87,3 +87,17 @@ As of the 2026-09-06 discovery snapshot:
 A source-specific missing contract is therefore `CONTRACT_NOT_AVAILABLE_FROM_SOURCE`, not automatically an engineering failure. A fresh quote from another allowed exact-product source can still satisfy the gate.
 
 The frozen calendar exhausts after the Dec 2026 day session. It must fail closed until a new calendar is explicitly frozen; it must never guess a later symbol.
+
+## Sub-900 source feasibility audit — 2026-09-08
+
+The scheduled source-readiness workflow is diagnostic only. A successful workflow conclusion must never be interpreted as `FRESH_SOURCE_AVAILABLE`.
+
+Real scheduled runs on 2026-09-07 returned exact-source ages of 909.1/909.8 seconds (day probe) and 959.6/960.0 seconds (night probe). Both failed the frozen <=900-second source gate.
+
+JPX documents public futures prices as delayed by at least 15 minutes, and TradingView documents free OSE futures data as delayed 15 minutes. Other free/public candidates audited so far either have greater delay, lack Japanese futures API coverage, require authenticated broker service for real-time data, or expose only a continuous Micro instrument.
+
+Authoritative audit: `config/jnu_exact_micro_sub900_source_audit_v1.json`.
+
+Current blocker: `FREE_PUBLIC_EXACT_MICRO_SUB900_SOURCE_NOT_FOUND`.
+
+Do not compensate by loosening the 900-second gate, timestamp-adjusting a delayed feed, or substituting a continuous contract. Reopen first-real launch only when a materially new exact individual-month source demonstrates provider age below 900 seconds with positive operational margin.

@@ -1,0 +1,134 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-08",
+  "status": "FREE_PUBLIC_EXACT_MICRO_SUB900_SOURCE_NOT_FOUND",
+  "purpose": "Determine whether a free, public, cloud-fetchable, broker-auth-free exact individual OSE Nikkei 225 Micro source can satisfy the frozen provider-timestamp age <=900 seconds with positive operational margin.",
+  "frozen_requirements": {
+    "exact_individual_ose_micro_month_contract": true,
+    "continuous_contract_primary_prohibited": true,
+    "maximum_reference_age_seconds": 900,
+    "provider_timestamp_required": true,
+    "public_cloud_fetchable": true,
+    "broker_login_prohibited": true,
+    "trading_permission_prohibited": true,
+    "free_source_preferred": true,
+    "gate_relaxation_prohibited": true
+  },
+  "observed_scheduled_runs": [
+    {
+      "run_id": 34072676355,
+      "event": "schedule",
+      "github_created_at_utc": "2026-09-07T01:20:00Z",
+      "symbol": "NK225MCU2026",
+      "status": "WAITING_FOR_FRESH_EXACT_MICRO",
+      "fresh_source_count": 0,
+      "sources": {
+        "JPX_OSE_OFFICIAL_EXACT_MICRO_A": {
+          "age_seconds": 909.1,
+          "margin_to_900_seconds": -9.1,
+          "source_timestamp": "2026-09-07T10:05:00+09:00",
+          "classification": "SOURCE_REACHABLE_STALE"
+        },
+        "TRADINGVIEW_OSE_EXACT_MICRO_B": {
+          "age_seconds": 909.8,
+          "margin_to_900_seconds": -9.8,
+          "source_timestamp": "2026-09-07T09:05:00+08:00",
+          "classification": "SOURCE_REACHABLE_STALE"
+        }
+      }
+    },
+    {
+      "run_id": 34131621161,
+      "event": "schedule",
+      "github_created_at_utc": "2026-09-07T14:11:51Z",
+      "symbol": "NK225MCU2026",
+      "status": "WAITING_FOR_FRESH_EXACT_MICRO",
+      "fresh_source_count": 0,
+      "sources": {
+        "JPX_OSE_OFFICIAL_EXACT_MICRO_A": {
+          "age_seconds": 959.6,
+          "margin_to_900_seconds": -59.6,
+          "source_timestamp": "2026-09-07T22:56:00+09:00",
+          "classification": "SOURCE_REACHABLE_STALE"
+        },
+        "TRADINGVIEW_OSE_EXACT_MICRO_B": {
+          "age_seconds": 960,
+          "margin_to_900_seconds": -60,
+          "source_timestamp": "2026-09-07T21:56:00+08:00",
+          "classification": "SOURCE_REACHABLE_STALE"
+        }
+      }
+    }
+  ],
+  "source_audit": [
+    {
+      "source": "JPX public futures price information",
+      "exact_individual_micro_identity": true,
+      "public_free": true,
+      "observed_or_documented_delay": "at least 15 minutes",
+      "sub900_positive_margin_demonstrated": false,
+      "disposition": "NOT_CURRENTLY_ADMISSIBLE_FOR_FIRST_REAL",
+      "evidence_url": "https://www.jpx.co.jp/english/quick-disclaimer/"
+    },
+    {
+      "source": "TradingView free OSE futures data",
+      "exact_individual_micro_identity": true,
+      "public_free": true,
+      "observed_or_documented_delay": "15 minutes",
+      "realtime_option": "paid exchange data",
+      "sub900_positive_margin_demonstrated": false,
+      "disposition": "FREE_TIER_NOT_CURRENTLY_ADMISSIBLE_FOR_FIRST_REAL",
+      "evidence_url": "https://www.tradingview.com/data-coverage/"
+    },
+    {
+      "source": "Tiger Brokers public futures pages",
+      "exact_individual_micro_identity": true,
+      "public_page": true,
+      "transport_mode_observed": "delayed endpoint mode (delay:true)",
+      "sub900_positive_margin_demonstrated": false,
+      "disposition": "NO_ADMISSIBLE_SUB900_PUBLIC_TRANSPORT_DEMONSTRATED",
+      "evidence_url": "https://www.itiger.com/futures/NK225MC2609"
+    },
+    {
+      "source": "Moomoo public Japan futures pages / OpenAPI",
+      "exact_micro_public_identity_evidence": "public Japan futures pages show delayed quotes; OpenAPI Japanese futures unsupported",
+      "public_quote_delay": "20 minutes on Japan futures examples",
+      "api_japanese_futures_supported": false,
+      "sub900_positive_margin_demonstrated": false,
+      "disposition": "NOT_ADMISSIBLE",
+      "evidence_urls": [
+        "https://www.moomoo.com/stock/NK225M2712-JP/related-futures",
+        "https://openapi.moomoo.com/moomoo-api-doc/en/intro/authority.html"
+      ]
+    },
+    {
+      "source": "Rakuten iSPEED unauthenticated/public display",
+      "public_or_unauthenticated_delay": "15-20 minutes on documented widget/public rates",
+      "realtime_requires_authenticated_service": true,
+      "broker_login_prohibited_by_jnu_governance": true,
+      "disposition": "NOT_ADMISSIBLE_UNDER_CURRENT_GOVERNANCE",
+      "evidence_url": "https://www.rakuten-sec.co.jp/smartphone/ispeed/help/android/widget.html"
+    },
+    {
+      "source": "NikkeiRealtime public transport",
+      "realtime_capability": true,
+      "exact_individual_month_identifier_available": false,
+      "observed_schema": "continuous N225MC.FUT.OSE.CONT only in prior protocol probe",
+      "disposition": "REJECTED_CONTINUOUS_ONLY"
+    }
+  ],
+  "conclusion": {
+    "blocker": "FREE_PUBLIC_EXACT_MICRO_SUB900_SOURCE_NOT_FOUND",
+    "scheduled_probe_role": "DETECTOR_ONLY_NOT_FIRST_REAL_GUARANTEE",
+    "workflow_success_is_not_fresh_source": true,
+    "hard_900_second_gate_unchanged": true,
+    "first_real_registration_allowed": false,
+    "reopen_condition": "Only reopen first-real launch when a materially new source demonstrates exact individual OSE Micro month identity, provider timestamp age <900 seconds with positive operational margin, stable cloud transport, and no broker login/trading permission requirement."
+  },
+  "real_ledger": {
+    "forecasts": 0,
+    "outcomes": 0
+  },
+  "validated_directional_modules": 0,
+  "decision_engine": "NO_VALIDATED_DIRECTIONAL_EDGE"
+}

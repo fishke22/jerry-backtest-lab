@@ -1,7 +1,7 @@
 {
   "version": "5.0",
-  "as_of": "2026-09-06",
-  "status": "ANALYSIS_FRESH_GOVERNANCE_READY_SOURCE_GATE_PENDING",
+  "as_of": "2026-09-08",
+  "status": "GOVERNANCE_READY_SOURCE_FEASIBILITY_BLOCKED",
   "supersedes": "config/jnu_live_shadow_first_real_forecast_readiness_v4.json",
   "authoritative_framework": "config/jnu_operational_framework_current_v1_8.json",
   "preregistration": "config/jnu_operational_live_shadow_prereg_v1_7.json",
@@ -31,7 +31,8 @@
     "reference source timestamp age <=900 seconds",
     "forecast creation inside immutable request window",
     "decision trace generated from frozen decision protocol",
-    "real write uses atomic v4 --commit-push"
+    "real write uses atomic v4 --commit-push",
+    "workflow success is not equivalent to FRESH_SOURCE_AVAILABLE; first real remains prohibited unless provider timestamp age is actually <=900 seconds"
   ],
   "ci": {
     "core_commit": "883d6d71d41a02ca19a713a5b5e2c3469c84cead",
@@ -43,9 +44,11 @@
     "rollover_v1_8_integrity_run": 34040184857,
     "rollover_actionlint_run": 34040184886,
     "resolver_backed_source_run": 34040214890,
-    "december_boundary_source_run": 34040255250
+    "december_boundary_source_run": 34040255250,
+    "scheduled_day_20260907": 34072676355,
+    "scheduled_night_20260907": 34131621161
   },
-  "current_blocker": "INDIVIDUAL_EXACT_MICRO_REFERENCE_FRESHNESS",
+  "current_blocker": "FREE_PUBLIC_EXACT_MICRO_SUB900_SOURCE_NOT_FOUND",
   "weekend_probe": {
     "jpx_age_seconds": 148861.7,
     "tradingview_age_seconds": 148862.7,
@@ -56,8 +59,9 @@
   "first_real_launch_protocol": "config/jnu_first_real_launch_protocol_v1.json",
   "source_readiness_checkpoint": "config/jnu_first_real_source_readiness_checkpoint_v1.json",
   "source_readiness_workflow": ".github/workflows/jnu-first-real-source-readiness-v1.yml",
-  "source_readiness_status": "ROLLOVER_GUARD_READY_WAITING_FOR_FRESH_EXACT_MICRO",
+  "source_readiness_status": "DETECTOR_ONLY_NO_ADMISSIBLE_FREE_PUBLIC_SUB900_SOURCE",
   "exact_micro_roll_calendar": "config/jnu_exact_micro_contract_roll_calendar_v1.json",
   "exact_micro_contract_resolver": "scripts/resolve_jnu_exact_micro_contract_v1.py",
-  "exact_micro_rollover_checkpoint": "config/jnu_exact_micro_rollover_checkpoint_v1.json"
+  "exact_micro_rollover_checkpoint": "config/jnu_exact_micro_rollover_checkpoint_v1.json",
+  "sub900_source_audit": "config/jnu_exact_micro_sub900_source_audit_v1.json"
 }

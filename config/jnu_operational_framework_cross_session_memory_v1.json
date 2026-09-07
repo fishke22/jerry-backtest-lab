@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "as_of": "2026-09-06",
+  "as_of": "2026-09-08",
   "memory_scope": "CROSS_SESSION_MANDATORY",
   "subject": "JNU Operational Framework",
   "authoritative_framework": "config/jnu_operational_framework_current_v1_8.json",
@@ -64,7 +64,7 @@
   "live_shadow_atomic_integrity_selftest": "config/jnu_operational_live_shadow_v18_integrity_selftest_v1.json",
   "real_live_shadow_outcomes_registered": 0,
   "first_real_live_shadow_forecast_readiness": "config/jnu_live_shadow_cloud_readiness_v8.json",
-  "live_shadow_real_ledger_status": "V1_8_GOVERNANCE_READY_FAIL_CLOSED_AWAITING_FRESH_INDIVIDUAL_EXACT_MICRO_0_FORECASTS_0_OUTCOMES",
+  "live_shadow_real_ledger_status": "V1_8_GOVERNANCE_READY_FAIL_CLOSED_FREE_PUBLIC_SUB900_EXACT_MICRO_SOURCE_NOT_FOUND_0_FORECASTS_0_OUTCOMES",
   "exact_micro_quote_adapter": "scripts/fetch_jnu_exact_micro_quote_tradingview_v1.py",
   "exact_micro_source_cross_validation": "config/jnu_exact_micro_source_cross_validation_v1.json",
   "source_metadata_integrity_selftest": "config/jnu_v1_4_source_metadata_integrity_selftest.json",
@@ -75,7 +75,7 @@
   "cloud_request_selftest_run": 33969428203,
   "cloud_actionlint_run": 34038843503,
   "cloud_pipeline_status": "V1_8_ANALYSIS_FRESH_OFFICIAL_PREPARED_REQUEST_INTEGRITY_CI_PASS_REAL_LEDGER_EMPTY",
-  "next_action": "Do not hard-code a symbol. Use the frozen exact-Micro contract resolver first; then require FRESH_SOURCE_AVAILABLE. Current resolved front contract is NK225MCU2026 until the 2026-09-10 16:00 JST boundary, after which the resolver selects NK225MCV2026.",
+  "next_action": "Do not treat scheduled workflow success as source freshness and do not relax the 900-second gate. Current blocker is FREE_PUBLIC_EXACT_MICRO_SUB900_SOURCE_NOT_FOUND. Reopen first-real launch only after a materially new exact individual OSE Micro source proves <900-second provider-timestamp age with positive margin, public/cloud transport, and no broker login/trading permission.",
   "exact_micro_reference_source_gate": "config/jnu_exact_micro_reference_source_gate_20260904_v1.json",
   "tradingview_exact_micro_transport": {
     "status": "B_IDENTITY_SOURCE_ALLOWED_ONLY_IF_ACTUAL_LP_TIME_AGE_LE_900",
@@ -146,7 +146,7 @@
   "first_real_source_readiness_checkpoint": "config/jnu_first_real_source_readiness_checkpoint_v1.json",
   "first_real_source_probe": "scripts/probe_jnu_first_real_source_readiness_v1.py",
   "first_real_source_probe_workflow": ".github/workflows/jnu-first-real-source-readiness-v1.yml",
-  "first_real_source_probe_status": "ROLLOVER_BACKED_SCHEDULED_CLOUD_READY_WAITING_FOR_FRESH_EXACT_MICRO",
+  "first_real_source_probe_status": "DETECTOR_ONLY_FREE_PUBLIC_SUB900_EXACT_MICRO_SOURCE_NOT_FOUND",
   "first_real_source_probe_run": 34039510168,
   "expanded_cloud_actionlint_run": 34039498873,
   "exact_micro_roll_calendar": "config/jnu_exact_micro_contract_roll_calendar_v1.json",
@@ -156,5 +156,20 @@
   "rollover_v1_8_integrity_run": 34040184857,
   "rollover_actionlint_run": 34040184886,
   "resolver_backed_source_run": 34040214890,
-  "december_boundary_source_run": 34040255250
+  "december_boundary_source_run": 34040255250,
+  "sub900_exact_micro_source_audit": "config/jnu_exact_micro_sub900_source_audit_v1.json",
+  "latest_scheduled_source_runs": {
+    "day_20260907": {
+      "run_id": 34072676355,
+      "jpx_age_seconds": 909.1,
+      "tradingview_age_seconds": 909.8,
+      "fresh_source_count": 0
+    },
+    "night_20260907": {
+      "run_id": 34131621161,
+      "jpx_age_seconds": 959.6,
+      "tradingview_age_seconds": 960,
+      "fresh_source_count": 0
+    }
+  }
 }
