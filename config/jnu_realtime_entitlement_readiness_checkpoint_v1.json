@@ -28,5 +28,12 @@
     "outcomes": 0
   },
   "validated_directional_modules": 0,
-  "decision_engine": "NO_VALIDATED_DIRECTIONAL_EDGE"
+  "decision_engine": "NO_VALIDATED_DIRECTIONAL_EDGE",
+  "v1_9_framework_supersession": {
+    "status": "PASS_17_OF_17",
+    "core_commit": "80b733f92bb73473632d57aeaa3d3b27251a728a",
+    "integrity_run": 34170631172,
+    "actionlint_run": 34170631122,
+    "framework_status_run": 34170631282
+  }
 }

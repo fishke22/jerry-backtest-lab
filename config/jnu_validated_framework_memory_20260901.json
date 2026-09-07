@@ -397,11 +397,15 @@
     "real_outcomes": 0
   },
   "v1_9_supersession": {
-    "status": "PENDING_CI",
+    "status": "PASS_17_OF_17",
     "framework": "config/jnu_operational_framework_current_v1_9.json",
     "supersedes": "config/jnu_operational_framework_current_v1_8.json",
     "directional_semantics_unchanged": true,
     "source_governance_added": true,
-    "current_blocker": "LICENSED_REALTIME_ENTITLEMENT_REQUIRED_FOR_RELIABLE_SUB900_PATH"
+    "current_blocker": "LICENSED_REALTIME_ENTITLEMENT_REQUIRED_FOR_RELIABLE_SUB900_PATH",
+    "core_commit": "80b733f92bb73473632d57aeaa3d3b27251a728a",
+    "integrity_run": 34170631172,
+    "actionlint_run": 34170631122,
+    "framework_status_run": 34170631282
   }
 }

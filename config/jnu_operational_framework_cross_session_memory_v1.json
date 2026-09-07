@@ -181,5 +181,11 @@
   "entitlement_validator_selftest": "PASS_10_OF_10",
   "v1_9_framework_file": "config/jnu_operational_framework_current_v1_9.json",
   "v1_9_supersedes_v1_8_without_directional_semantic_change": true,
-  "v1_9_supersession_selftest": "scripts/selftest_jnu_framework_v19_supersession.py"
+  "v1_9_supersession_selftest": "scripts/selftest_jnu_framework_v19_supersession.py",
+  "v1_9_core_commit": "80b733f92bb73473632d57aeaa3d3b27251a728a",
+  "v1_9_integrity_run": 34170631172,
+  "v1_9_actionlint_run": 34170631122,
+  "v1_9_framework_status_run": 34170631282,
+  "v1_9_supersession_selftest_status": "PASS_17_OF_17",
+  "cross_session_authoritative_state": "JNU_OPERATIONAL_FRAMEWORK_V1_9_ACTIVE"
 }
