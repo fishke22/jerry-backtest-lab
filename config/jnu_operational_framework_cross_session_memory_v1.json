@@ -64,7 +64,7 @@
   "live_shadow_atomic_integrity_selftest": "config/jnu_operational_live_shadow_v18_integrity_selftest_v1.json",
   "real_live_shadow_outcomes_registered": 0,
   "first_real_live_shadow_forecast_readiness": "config/jnu_live_shadow_cloud_readiness_v8.json",
-  "live_shadow_real_ledger_status": "V1_8_GOVERNANCE_READY_FAIL_CLOSED_LICENSED_REALTIME_ENTITLEMENT_REQUIRED_0_FORECASTS_0_OUTCOMES",
+  "live_shadow_real_ledger_status": "V1_9_GOVERNANCE_READY_FAIL_CLOSED_ENTITLEMENT_AND_PRIVATE_DISTRIBUTION_PERMISSIONS_PENDING_0_FORECASTS_0_OUTCOMES",
   "exact_micro_quote_adapter": "scripts/fetch_jnu_exact_micro_quote_tradingview_v1.py",
   "exact_micro_source_cross_validation": "config/jnu_exact_micro_source_cross_validation_v1.json",
   "source_metadata_integrity_selftest": "config/jnu_v1_4_source_metadata_integrity_selftest.json",
@@ -75,7 +75,7 @@
   "cloud_request_selftest_run": 33969428203,
   "cloud_actionlint_run": 34038843503,
   "cloud_pipeline_status": "V1_8_ANALYSIS_FRESH_OFFICIAL_PREPARED_REQUEST_INTEGRITY_CI_PASS_REAL_LEDGER_EMPTY",
-  "next_action": "Use JNU Operational Framework v1.9. Current first-real blocker is LICENSED_REALTIME_ENTITLEMENT_REQUIRED_FOR_RELIABLE_SUB900_PATH. Continue OSE free-trial/provider onboarding feasibility; do not alter directional/scoring semantics, 900-second freshness, continuous prohibition, or no-broker-auth rule.",
+  "next_action": "Use JNU Operational Framework v1.9. OSE Free Trial is only conditionally feasible: public process is company-oriented, Micro product selection/provider/cloud/publication rights need confirmation, and raw entitled quotes must remain private. Do not use current public atomic-v4 raw-evidence path. Continue provider/onboarding confirmation; do not send the prepared OSE inquiry without explicit user authorization.",
   "exact_micro_reference_source_gate": "config/jnu_exact_micro_reference_source_gate_20260904_v1.json",
   "tradingview_exact_micro_transport": {
     "status": "B_IDENTITY_SOURCE_ALLOWED_ONLY_IF_ACTUAL_LP_TIME_AGE_LE_900",
@@ -178,7 +178,7 @@
   "entitlement_core_commit": "7c424986e491e92dd8a8cc66acc0881e2263ea76",
   "entitlement_v1_8_integrity_run": 34170351493,
   "entitlement_actionlint_run": 34170351466,
-  "entitlement_validator_selftest": "PASS_10_OF_10",
+  "entitlement_validator_selftest": "PASS_13_OF_13",
   "v1_9_framework_file": "config/jnu_operational_framework_current_v1_9.json",
   "v1_9_supersedes_v1_8_without_directional_semantic_change": true,
   "v1_9_supersession_selftest": "scripts/selftest_jnu_framework_v19_supersession.py",
@@ -187,5 +187,12 @@
   "v1_9_actionlint_run": 34170631122,
   "v1_9_framework_status_run": 34170631282,
   "v1_9_supersession_selftest_status": "PASS_17_OF_17",
-  "cross_session_authoritative_state": "JNU_OPERATIONAL_FRAMEWORK_V1_9_ACTIVE"
+  "cross_session_authoritative_state": "JNU_OPERATIONAL_FRAMEWORK_V1_9_ACTIVE",
+  "ose_free_trial_onboarding_feasibility": "config/jnu_ose_free_trial_onboarding_feasibility_v1.json",
+  "entitled_market_data_private_boundary": "config/jnu_entitled_market_data_storage_boundary_v1.json",
+  "ose_free_trial_stage_checkpoint": "config/jnu_ose_free_trial_onboarding_checkpoint_v1.json",
+  "private_boundary_core_commit": "a810f6f57735721aad88c40d0be089b2e574df70",
+  "private_boundary_integrity_run": 34170986493,
+  "private_boundary_actionlint_run": 34170986562,
+  "private_boundary_selftest": "PASS_9_OF_9"
 }

@@ -1,7 +1,7 @@
 {
   "version": "8.0",
   "as_of": "2026-09-08",
-  "status": "V1_9_FRAMEWORK_ACTIVE_REALTIME_ENTITLEMENT_BLOCKED",
+  "status": "V1_9_FRAMEWORK_ACTIVE_ENTITLEMENT_PRIVATE_BOUNDARY_BLOCKED",
   "authoritative_framework": "config/jnu_operational_framework_current_v1_9.json",
   "preregistration": "config/jnu_operational_live_shadow_prereg_v1_7.json",
   "implementation": "config/jnu_operational_live_shadow_implementation_v1_7.json",
@@ -161,6 +161,22 @@
         "forecasts": 0,
         "outcomes": 0
       }
+    },
+    "ose_free_trial_private_boundary": {
+      "status": "PASS",
+      "core_commit": "a810f6f57735721aad88c40d0be089b2e574df70",
+      "integrity_run": 34170986493,
+      "actionlint_run": 34170986562,
+      "entitled_quote_evidence_selftest": "PASS_13_OF_13",
+      "storage_boundary_selftest": "PASS_9_OF_9",
+      "public_raw_evidence_rejected": true,
+      "unapproved_cloud_processing_rejected": true,
+      "unapproved_public_hash_rejected": true,
+      "reconstructive_public_derived_rejected": true,
+      "real_ledger": {
+        "forecasts": 0,
+        "outcomes": 0
+      }
     }
   },
   "frozen_max_reference_age_seconds": 900,
@@ -176,7 +192,7 @@
     "decision_engine": "NO_VALIDATED_DIRECTIONAL_EDGE"
   },
   "blocker": "LICENSED_REALTIME_ENTITLEMENT_REQUIRED_FOR_RELIABLE_SUB900_PATH",
-  "next_action": "Keep first-real fail-closed. Preferred zero-data-fee candidate is an OSE-approved free-trial/provider arrangement if eligible; otherwise use a licensed read-only realtime vendor. Any future source must pass the entitled-source validator. Broker authentication remains prohibited and the 900-second gate remains unchanged.",
+  "next_action": "First-real remains blocked. Obtain/confirm a legal realtime entitlement, but also require a private raw-evidence path and explicit OSE/provider approval for third-party cloud processing and any public hash/derived forecast. Current public atomic-v4 raw-evidence commit path is incompatible with OSE Free Trial.",
   "integrity_hash_protocol": "config/jnu_integrity_hash_protocol_v1.json",
   "integrity_hash_method": "SHA256_TEXT_EOL_CRLF_V1",
   "core_seal_commit": "883d6d71d41a02ca19a713a5b5e2c3469c84cead",
@@ -209,5 +225,7 @@
   "sub900_source_audit": "config/jnu_exact_micro_sub900_source_audit_v1.json",
   "entitlement_resolution": "config/jnu_exact_micro_realtime_entitlement_resolution_v1.json",
   "entitled_source_adapter_contract": "config/jnu_exact_micro_entitled_source_adapter_contract_v1.json",
-  "entitled_source_validator": "scripts/validate_jnu_entitled_exact_micro_evidence_v1.py"
+  "entitled_source_validator": "scripts/validate_jnu_entitled_exact_micro_evidence_v1.py",
+  "entitled_market_data_private_boundary": "config/jnu_entitled_market_data_storage_boundary_v1.json",
+  "ose_free_trial_onboarding_feasibility": "config/jnu_ose_free_trial_onboarding_feasibility_v1.json"
 }

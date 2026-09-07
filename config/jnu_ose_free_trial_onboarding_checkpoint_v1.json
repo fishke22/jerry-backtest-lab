@@ -1,0 +1,47 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-08",
+  "status": "OSE_FREE_TRIAL_ONBOARDING_FEASIBILITY_AND_PRIVATE_BOUNDARY_READY_EXTERNAL_CONFIRMATION_PENDING",
+  "authoritative_framework": "config/jnu_operational_framework_current_v1_9.json",
+  "core_commit": "a810f6f57735721aad88c40d0be089b2e574df70",
+  "onboarding_feasibility": "config/jnu_ose_free_trial_onboarding_feasibility_v1.json",
+  "private_storage_boundary": "config/jnu_entitled_market_data_storage_boundary_v1.json",
+  "quote_evidence_contract": "config/jnu_exact_micro_entitled_source_adapter_contract_v1.json",
+  "quote_validator": "scripts/validate_jnu_entitled_exact_micro_evidence_v1.py",
+  "storage_validator": "scripts/validate_jnu_entitled_market_data_storage_boundary_v1.py",
+  "inquiry_draft": "research_notes/jnu_ose_free_trial_inquiry_draft_20260908.md",
+  "cloud_verification": {
+    "integrity_run": 34170986493,
+    "actionlint_run": 34170986562,
+    "v1_9_supersession": "PASS_17_OF_17",
+    "entitled_quote_evidence": "PASS_13_OF_13",
+    "private_storage_boundary": "PASS_9_OF_9",
+    "full_v1_8_chain": "PASS",
+    "empty_ledger_scorer": "PASS"
+  },
+  "established_constraints": {
+    "public_repository_visibility": "PUBLIC",
+    "raw_entitled_market_data_publication": "PROHIBITED",
+    "third_party_cloud_processing": "EXPLICIT_PERMISSION_REQUIRED",
+    "public_hash_or_derived_forecast": "EXPLICIT_PERMISSION_REQUIRED",
+    "current_public_atomic_v4_path": "NOT_COMPATIBLE_WITH_OSE_FREE_TRIAL_RAW_EVIDENCE",
+    "direct_ose_connectivity": "NOT_PREFERRED_MULTI_MONTH_ONBOARDING",
+    "preferred_trial_delivery": "INDIRECT_VIA_OSE_APPROVED_DIRECT_USER_PROVIDER",
+    "individual_eligibility": "UNCONFIRMED_COMPANY_ORIENTED_PUBLIC_PROCESS",
+    "nikkei_225_micro_on_current_form": "NOT_EXPLICITLY_LISTED_CONFIRM_REQUIRED"
+  },
+  "current_primary_blocker": "LICENSED_REALTIME_ENTITLEMENT_REQUIRED_FOR_RELIABLE_SUB900_PATH",
+  "secondary_blockers": [
+    "OSE_FREE_TRIAL_APPLICANT_ELIGIBILITY_UNCONFIRMED",
+    "NIKKEI_225_MICRO_TRIAL_PRODUCT_SELECTION_UNCONFIRMED",
+    "INDIRECT_PROVIDER_AND_TRANSPORT_UNCONFIRMED",
+    "THIRD_PARTY_PRIVATE_CLOUD_PERMISSION_UNCONFIRMED",
+    "PUBLIC_HASH_OR_DERIVED_FORECAST_PERMISSION_UNCONFIRMED"
+  ],
+  "real_ledger": {
+    "forecasts": 0,
+    "outcomes": 0
+  },
+  "validated_directional_modules": 0,
+  "decision_engine": "NO_VALIDATED_DIRECTIONAL_EDGE"
+}

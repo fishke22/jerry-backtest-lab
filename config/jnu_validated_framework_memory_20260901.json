@@ -208,7 +208,7 @@
   "authoritative_validation_pipeline_checkpoint": "config/jnu_validation_pipeline_checkpoint_20260902_v1.json",
   "validation_pipeline_status": "JNU_VALIDATION_PIPELINE_READY_FORWARD_DATA_PENDING",
   "validation_pipeline_head": "ff322f11dbb23da6be093056ac6ef47f2db10e4a",
-  "next_action": "Use JNU Operational Framework v1.9 and continue OSE free-trial/provider onboarding feasibility. First-real remains fail-closed until an entitled read-only exact individual OSE Micro source passes the frozen validator.",
+  "next_action": "Use JNU Operational Framework v1.9. Continue OSE Free Trial/provider feasibility, with raw entitled market data private-only and all public derived/hash publication fail-closed until explicit permission. Existing public atomic-v4 quote evidence path is not usable for Free Trial raw data.",
   "stage8_forward_local_ingest": {
     "status": "SELFTEST_PASS_NO_SOURCE_CHANGE",
     "script": "scripts/ingest_jnu_stage8_forward_local.py",
@@ -407,5 +407,19 @@
     "integrity_run": 34170631172,
     "actionlint_run": 34170631122,
     "framework_status_run": 34170631282
+  },
+  "ose_free_trial_onboarding": {
+    "status": "CONDITIONALLY_FEASIBLE_EXTERNAL_CONFIRMATION_REQUIRED",
+    "checkpoint": "config/jnu_ose_free_trial_onboarding_checkpoint_v1.json",
+    "feasibility": "config/jnu_ose_free_trial_onboarding_feasibility_v1.json",
+    "private_boundary": "config/jnu_entitled_market_data_storage_boundary_v1.json",
+    "core_commit": "a810f6f57735721aad88c40d0be089b2e574df70",
+    "integrity_run": 34170986493,
+    "actionlint_run": 34170986562,
+    "quote_evidence_selftest": "PASS_13_OF_13",
+    "storage_boundary_selftest": "PASS_9_OF_9",
+    "public_repo_raw_trial_data_prohibited": true,
+    "real_forecasts": 0,
+    "real_outcomes": 0
   }
 }

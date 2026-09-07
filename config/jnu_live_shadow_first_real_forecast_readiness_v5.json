@@ -1,7 +1,7 @@
 {
   "version": "5.0",
   "as_of": "2026-09-08",
-  "status": "V1_9_FRAMEWORK_ACTIVE_REALTIME_ENTITLEMENT_REQUIRED",
+  "status": "V1_9_FRAMEWORK_ACTIVE_ENTITLEMENT_AND_PRIVATE_DISTRIBUTION_PENDING",
   "supersedes": "config/jnu_live_shadow_first_real_forecast_readiness_v4.json",
   "authoritative_framework": "config/jnu_operational_framework_current_v1_9.json",
   "preregistration": "config/jnu_operational_live_shadow_prereg_v1_7.json",
@@ -32,7 +32,11 @@
     "forecast creation inside immutable request window",
     "decision trace generated from frozen decision protocol",
     "real write uses atomic v4 --commit-push",
-    "workflow success is not equivalent to FRESH_SOURCE_AVAILABLE; first real remains prohibited unless provider timestamp age is actually <=900 seconds"
+    "workflow success is not equivalent to FRESH_SOURCE_AVAILABLE; first real remains prohibited unless provider timestamp age is actually <=900 seconds",
+    "entitled raw market-data evidence is PRIVATE_INTERNAL_ONLY and cannot be committed to the public repository",
+    "third-party cloud processing requires explicit OSE/provider permission",
+    "public hash/attestation or derived forecast requires explicit publication permission; permission is not inferred from Derived Data policy",
+    "OSE Free Trial applicant eligibility, Micro product selection, indirect provider/delivery route, and publication rights must be confirmed before use"
   ],
   "ci": {
     "core_commit": "883d6d71d41a02ca19a713a5b5e2c3469c84cead",
@@ -50,7 +54,12 @@
     "entitlement_core_commit": "7c424986e491e92dd8a8cc66acc0881e2263ea76",
     "entitlement_v1_8_integrity_run": 34170351493,
     "entitlement_actionlint_run": 34170351466,
-    "entitlement_validator_selftest": "PASS_10_OF_10"
+    "entitlement_validator_selftest": "PASS_10_OF_10",
+    "private_boundary_core_commit": "a810f6f57735721aad88c40d0be089b2e574df70",
+    "private_boundary_integrity_run": 34170986493,
+    "private_boundary_actionlint_run": 34170986562,
+    "entitled_quote_evidence_selftest": "PASS_13_OF_13",
+    "private_storage_boundary_selftest": "PASS_9_OF_9"
   },
   "current_blocker": "LICENSED_REALTIME_ENTITLEMENT_REQUIRED_FOR_RELIABLE_SUB900_PATH",
   "weekend_probe": {
@@ -70,5 +79,8 @@
   "sub900_source_audit": "config/jnu_exact_micro_sub900_source_audit_v1.json",
   "entitlement_resolution": "config/jnu_exact_micro_realtime_entitlement_resolution_v1.json",
   "entitled_source_adapter_contract": "config/jnu_exact_micro_entitled_source_adapter_contract_v1.json",
-  "entitled_source_validator": "scripts/validate_jnu_entitled_exact_micro_evidence_v1.py"
+  "entitled_source_validator": "scripts/validate_jnu_entitled_exact_micro_evidence_v1.py",
+  "ose_free_trial_onboarding_feasibility": "config/jnu_ose_free_trial_onboarding_feasibility_v1.json",
+  "entitled_market_data_private_boundary": "config/jnu_entitled_market_data_storage_boundary_v1.json",
+  "ose_free_trial_stage_checkpoint": "config/jnu_ose_free_trial_onboarding_checkpoint_v1.json"
 }

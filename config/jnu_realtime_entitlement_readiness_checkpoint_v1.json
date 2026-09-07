@@ -1,9 +1,9 @@
 {
   "version": "1.0",
   "as_of": "2026-09-08",
-  "status": "V1_9_REALTIME_ENTITLEMENT_LAYER_READY_FIRST_REAL_STILL_BLOCKED",
+  "status": "V1_9_ENTITLEMENT_AND_PRIVATE_EVIDENCE_LAYER_READY_EXTERNAL_ONBOARDING_PENDING",
   "authoritative_framework": "config/jnu_operational_framework_current_v1_9.json",
-  "blocker": "LICENSED_REALTIME_ENTITLEMENT_REQUIRED_FOR_RELIABLE_SUB900_PATH",
+  "blocker": "LICENSED_REALTIME_ENTITLEMENT_REQUIRED_FOR_RELIABLE_SUB900_PATH_PLUS_PRIVATE_CLOUD_AND_PUBLICATION_PERMISSION",
   "entitlement_resolution": "config/jnu_exact_micro_realtime_entitlement_resolution_v1.json",
   "adapter_contract": "config/jnu_exact_micro_entitled_source_adapter_contract_v1.json",
   "validator": "scripts/validate_jnu_entitled_exact_micro_evidence_v1.py",
@@ -12,9 +12,13 @@
   "cloud_verification": {
     "v1_8_integrity_run": 34170351493,
     "actionlint_run": 34170351466,
-    "entitled_evidence_selftest": "PASS_10_OF_10",
+    "entitled_evidence_selftest": "PASS_13_OF_13",
     "full_v1_8_chain": "PASS",
-    "empty_ledger_scorer": "PASS"
+    "empty_ledger_scorer": "PASS",
+    "private_boundary_core_commit": "a810f6f57735721aad88c40d0be089b2e574df70",
+    "private_boundary_integrity_run": 34170986493,
+    "private_boundary_actionlint_run": 34170986562,
+    "private_storage_boundary_selftest": "PASS_9_OF_9"
   },
   "current_allowed_entitlement_modes": [
     "OSE_FREE_TRIAL",
@@ -35,5 +39,8 @@
     "integrity_run": 34170631172,
     "actionlint_run": 34170631122,
     "framework_status_run": 34170631282
-  }
+  },
+  "private_storage_boundary": "config/jnu_entitled_market_data_storage_boundary_v1.json",
+  "ose_free_trial_onboarding_feasibility": "config/jnu_ose_free_trial_onboarding_feasibility_v1.json",
+  "ose_free_trial_stage_checkpoint": "config/jnu_ose_free_trial_onboarding_checkpoint_v1.json"
 }
