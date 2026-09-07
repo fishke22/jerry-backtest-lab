@@ -1,0 +1,46 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-08",
+  "status": "FROZEN_ENTITLED_EXACT_MICRO_EVIDENCE_CONTRACT",
+  "maximum_reference_age_seconds": 900,
+  "currently_allowed_entitlement_modes": ["OSE_FREE_TRIAL", "LICENSED_REALTIME_VENDOR"],
+  "conditional_entitlement_modes": {
+    "AUTHORIZED_READ_ONLY_BROKER_FEED": "PROHIBITED_UNTIL_EXPLICIT_GOVERNANCE_AMENDMENT"
+  },
+  "required_fields": [
+    "entitlement_mode","provider_name","entitlement_reference","transport_qualification_id",
+    "positive_margin_demonstrated","canonical_symbol","exchange","product","contract_month",
+    "price","tick_size","provider_timestamp","observed_at_taipei","exact_product",
+    "continuous_contract","broker_login_used","trading_permission_used","order_capable_session_used",
+    "identity_evidence"
+  ],
+  "identity_rules": {
+    "exchange": "OSE",
+    "product": "Nikkei 225 micro Futures",
+    "canonical_symbol_regex": "^NK225MC[A-Z][0-9]{4}$",
+    "frozen_roll_calendar": "config/jnu_exact_micro_contract_roll_calendar_v1.json",
+    "tick_size_points": 5,
+    "exact_product_required": true,
+    "continuous_contract_required": false
+  },
+  "access_rules": {
+    "broker_login_used": false,
+    "trading_permission_used": false,
+    "order_capable_session_used": false,
+    "secret_like_fields_prohibited": true,
+    "entitlement_reference_must_be_opaque_nonsecret": true
+  },
+  "freshness_rules": {
+    "provider_timestamp_offset_aware": true,
+    "observed_at_taipei_offset_aware": true,
+    "future_provider_timestamp_prohibited": true,
+    "age_seconds_minimum": 0,
+    "age_seconds_maximum": 900,
+    "positive_margin_demonstrated_required": true
+  },
+  "output_rules": {
+    "validator_may_write_only_diagnostic_result": true,
+    "formal_forecast_created": false,
+    "real_ledger_modified": false
+  }
+}

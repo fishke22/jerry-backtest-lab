@@ -1,0 +1,63 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-08",
+  "status": "LICENSED_REALTIME_ENTITLEMENT_REQUIRED_FOR_RELIABLE_SUB900_PATH",
+  "authoritative_framework": "config/jnu_operational_framework_current_v1_8.json",
+  "source_feasibility_audit": "config/jnu_exact_micro_sub900_source_audit_v1.json",
+  "structural_finding": {
+    "ose_realtime_market_data_is_paid_service": true,
+    "direct_or_indirect_entitlement_path_required": true,
+    "anonymous_public_realtime_api_identified": false,
+    "public_jpx_and_free_tradingview_have_no_positive_margin_inside_900_seconds": true,
+    "first_real_registration_allowed": false
+  },
+  "technical_resolution_paths": [
+    {
+      "id": "OSE_FREE_TRIAL_VIA_APPROVED_DIRECT_USER",
+      "rank": 1,
+      "data_fee_during_trial": "ZERO_IN_PRINCIPLE",
+      "broker_login_required": false,
+      "trading_permission_required": false,
+      "external_onboarding_required": true,
+      "anonymous_public_api": false,
+      "individual_user_eligibility": "UNCONFIRMED",
+      "automation_status": "BLOCKED_PENDING_OSE_APPROVAL_AND_PROVIDER_ARRANGEMENT",
+      "current_governance_compatibility": "COMPATIBLE_IF_APPROVED_AND_READ_ONLY"
+    },
+    {
+      "id": "LICENSED_REALTIME_VENDOR",
+      "rank": 2,
+      "examples": ["CQG OSE market data", "QUICK APIs", "TradingView OSE realtime exchange data", "LSEG/Refinitiv", "Bloomberg"],
+      "broker_login_required": false,
+      "trading_permission_required": false,
+      "external_onboarding_required": true,
+      "likely_cost": "PAID_OR_CONTRACTUAL",
+      "automation_status": "ADAPTER_READY_AFTER_ENTITLEMENT",
+      "current_governance_compatibility": "COMPATIBLE_READ_ONLY"
+    },
+    {
+      "id": "AUTHORIZED_READ_ONLY_BROKER_FEED",
+      "rank": 3,
+      "examples": ["kabu Station API NK225micro"],
+      "technical_feasibility": "EXACT_MONTH_AND_REALTIME_POSSIBLE",
+      "broker_auth_required": true,
+      "trading_permission_must_be_disabled": true,
+      "current_governance_compatibility": "PROHIBITED_UNTIL_EXPLICIT_GOVERNANCE_AMENDMENT",
+      "automation_status": "DO_NOT_IMPLEMENT_CURRENTLY"
+    }
+  ],
+  "permanently_prohibited_paths": [
+    "RELAX_900_SECOND_GATE",
+    "BACKDATE_OR_ADJUST_PROVIDER_TIMESTAMP",
+    "CONTINUOUS_TO_INDIVIDUAL_SUBSTITUTION",
+    "USE_ORDER_CAPABLE_OR_TRADING_PERMISSION_SESSION_AS_QUOTE_EVIDENCE",
+    "STORE_API_KEYS_PASSWORDS_TOKENS_OR_SECRETS_IN_QUOTE_EVIDENCE"
+  ],
+  "adapter_contract": "config/jnu_exact_micro_entitled_source_adapter_contract_v1.json",
+  "validator": "scripts/validate_jnu_entitled_exact_micro_evidence_v1.py",
+  "validator_selftest": "scripts/selftest_jnu_entitled_exact_micro_evidence_v1.py",
+  "reopen_rule": "First-real launch may reopen only after an entitled read-only source produces exact individual OSE Nikkei 225 Micro evidence that passes the adapter validator with actual provider timestamp age <=900 seconds and positive margin demonstrated, without broker login under current governance.",
+  "real_ledger": {"forecasts": 0, "outcomes": 0},
+  "validated_directional_modules": 0,
+  "decision_engine": "NO_VALIDATED_DIRECTIONAL_EDGE"
+}
