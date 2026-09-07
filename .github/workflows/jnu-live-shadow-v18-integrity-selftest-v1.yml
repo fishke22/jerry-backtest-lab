@@ -36,6 +36,10 @@ on:
       - "config/jnu_exact_micro_entitled_source_adapter_contract_v1.json"
       - "scripts/validate_jnu_entitled_exact_micro_evidence_v1.py"
       - "scripts/selftest_jnu_entitled_exact_micro_evidence_v1.py"
+      - "config/jnu_ose_free_trial_onboarding_feasibility_v1.json"
+      - "config/jnu_entitled_market_data_storage_boundary_v1.json"
+      - "scripts/validate_jnu_entitled_market_data_storage_boundary_v1.py"
+      - "scripts/selftest_jnu_entitled_market_data_storage_boundary_v1.py"
   workflow_dispatch:
 
 permissions:
@@ -69,6 +73,8 @@ jobs:
           python -m json.tool config/jnu_first_real_launch_protocol_v1.json >/dev/null
           python -m json.tool config/jnu_exact_micro_realtime_entitlement_resolution_v1.json >/dev/null
           python -m json.tool config/jnu_exact_micro_entitled_source_adapter_contract_v1.json >/dev/null
+          python -m json.tool config/jnu_ose_free_trial_onboarding_feasibility_v1.json >/dev/null
+          python -m json.tool config/jnu_entitled_market_data_storage_boundary_v1.json >/dev/null
 
       - name: First-real rollover and source readiness selftests
         run: |
@@ -85,6 +91,11 @@ jobs:
         run: |
           python -m py_compile scripts/validate_jnu_entitled_exact_micro_evidence_v1.py scripts/selftest_jnu_entitled_exact_micro_evidence_v1.py
           python scripts/selftest_jnu_entitled_exact_micro_evidence_v1.py
+
+      - name: Entitled market-data private boundary selftest
+        run: |
+          python -m py_compile scripts/validate_jnu_entitled_market_data_storage_boundary_v1.py scripts/selftest_jnu_entitled_market_data_storage_boundary_v1.py
+          python scripts/selftest_jnu_entitled_market_data_storage_boundary_v1.py
 
       - name: Full v1.8 analysis-fresh chain selftest
         run: python scripts/selftest_jnu_live_shadow_v18_integrity.py

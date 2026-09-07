@@ -263,7 +263,10 @@
     ],
     "authorized_read_only_broker_feed": "PROHIBITED_UNTIL_EXPLICIT_GOVERNANCE_AMENDMENT",
     "nikkeirealtime_role": "B-grade cross-check/context only; prohibited as sole primary scored reference because public transport exposes continuous Micro without admissible individual-month identity",
-    "no_fresh_or_entitled_source_behavior": "FAIL_CLOSED_NO_SCORED_FORECAST"
+    "no_fresh_or_entitled_source_behavior": "FAIL_CLOSED_NO_SCORED_FORECAST",
+    "entitled_market_data_storage_boundary": "config/jnu_entitled_market_data_storage_boundary_v1.json",
+    "storage_boundary_validator": "scripts/validate_jnu_entitled_market_data_storage_boundary_v1.py",
+    "ose_free_trial_onboarding_feasibility": "config/jnu_ose_free_trial_onboarding_feasibility_v1.json"
   },
   "directional_semantics_unchanged_from_v1_8": true,
   "source_governance": {
@@ -281,12 +284,18 @@
       "LICENSED_REALTIME_VENDOR_READ_ONLY",
       "AUTHORIZED_READ_ONLY_BROKER_FEED_ONLY_AFTER_EXPLICIT_GOVERNANCE_AMENDMENT"
     ],
-    "reopen_condition": "First-real launch may reopen only when an entitled read-only exact individual OSE Micro source passes the frozen entitled-source validator with actual provider timestamp age <=900 seconds and positive operational margin.",
+    "reopen_condition": "First-real launch may reopen only after an entitled read-only exact individual OSE Micro source passes the quote validator AND its storage/deployment plan passes the private evidence boundary. OSE Free Trial additionally requires eligibility, Micro-product, provider/delivery, cloud-processing, and public-output permissions to be resolved.",
     "validated_directional_modules": 0,
     "decision_engine": "NO_VALIDATED_DIRECTIONAL_EDGE",
     "real_ledger": {
       "forecasts": 0,
       "outcomes": 0
-    }
+    },
+    "entitled_market_data_storage_boundary": "config/jnu_entitled_market_data_storage_boundary_v1.json",
+    "ose_free_trial_onboarding_feasibility": "config/jnu_ose_free_trial_onboarding_feasibility_v1.json",
+    "public_repository_raw_entitled_market_data_prohibited": true,
+    "third_party_cloud_processing_requires_explicit_permission": true,
+    "public_hash_or_derived_forecast_permission_status": "UNCONFIRMED_FAIL_CLOSED",
+    "current_public_atomic_path_status": "INCOMPATIBLE_WITH_OSE_FREE_TRIAL_RAW_EVIDENCE_UNTIL_PRIVATE_LEDGER_AND_PUBLICATION_RIGHTS_RESOLVED"
   }
 }

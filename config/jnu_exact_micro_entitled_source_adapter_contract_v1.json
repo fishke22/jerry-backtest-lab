@@ -1,18 +1,41 @@
 {
-  "version": "1.0",
+  "version": "1.1",
   "as_of": "2026-09-08",
-  "status": "FROZEN_ENTITLED_EXACT_MICRO_EVIDENCE_CONTRACT",
+  "status": "FROZEN_ENTITLED_EXACT_MICRO_EVIDENCE_CONTRACT_PRIVATE_BOUNDARY",
   "maximum_reference_age_seconds": 900,
-  "currently_allowed_entitlement_modes": ["OSE_FREE_TRIAL", "LICENSED_REALTIME_VENDOR"],
+  "currently_allowed_entitlement_modes": [
+    "OSE_FREE_TRIAL",
+    "LICENSED_REALTIME_VENDOR"
+  ],
   "conditional_entitlement_modes": {
     "AUTHORIZED_READ_ONLY_BROKER_FEED": "PROHIBITED_UNTIL_EXPLICIT_GOVERNANCE_AMENDMENT"
   },
   "required_fields": [
-    "entitlement_mode","provider_name","entitlement_reference","transport_qualification_id",
-    "positive_margin_demonstrated","canonical_symbol","exchange","product","contract_month",
-    "price","tick_size","provider_timestamp","observed_at_taipei","exact_product",
-    "continuous_contract","broker_login_used","trading_permission_used","order_capable_session_used",
-    "identity_evidence"
+    "entitlement_mode",
+    "provider_name",
+    "entitlement_reference",
+    "transport_qualification_id",
+    "positive_margin_demonstrated",
+    "canonical_symbol",
+    "exchange",
+    "product",
+    "contract_month",
+    "price",
+    "tick_size",
+    "provider_timestamp",
+    "observed_at_taipei",
+    "exact_product",
+    "continuous_contract",
+    "broker_login_used",
+    "trading_permission_used",
+    "order_capable_session_used",
+    "identity_evidence",
+    "storage_scope",
+    "evidence_destination_class",
+    "raw_public_distribution_permitted",
+    "public_derived_permission_status",
+    "third_party_cloud_processing_used",
+    "third_party_cloud_permission_status"
   ],
   "identity_rules": {
     "exchange": "OSE",
@@ -42,5 +65,15 @@
     "validator_may_write_only_diagnostic_result": true,
     "formal_forecast_created": false,
     "real_ledger_modified": false
+  },
+  "storage_rules": {
+    "required_storage_scope": "PRIVATE_INTERNAL_ONLY",
+    "required_evidence_destination_class": "PRIVATE_INTERNAL_STORE",
+    "raw_public_distribution_permitted": false,
+    "public_repository_raw_evidence_prohibited": true,
+    "third_party_cloud_processing": "REQUIRES_EXPLICIT_OSE_OR_PROVIDER_APPROVAL",
+    "public_hash_or_derived_output": "REQUIRES_EXPLICIT_OSE_AND_PROVIDER_PERMISSION_AND_SEPARATE_BOUNDARY_VALIDATION",
+    "boundary_contract": "config/jnu_entitled_market_data_storage_boundary_v1.json",
+    "boundary_validator": "scripts/validate_jnu_entitled_market_data_storage_boundary_v1.py"
   }
 }

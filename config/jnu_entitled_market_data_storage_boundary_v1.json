@@ -1,0 +1,61 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-08",
+  "status": "FROZEN_ENTITLED_MARKET_DATA_PRIVATE_EVIDENCE_BOUNDARY",
+  "authoritative_framework": "config/jnu_operational_framework_current_v1_9.json",
+  "repository_at_freeze": {
+    "repository": "fishke22/jerry-backtest-lab",
+    "visibility": "PUBLIC"
+  },
+  "purpose": "Prevent entitled OSE realtime market data from being redistributed through the public JNU repository and fail closed on unapproved cloud processing or public derived outputs.",
+  "raw_market_data_rules": {
+    "storage_scope_required": "PRIVATE_INTERNAL_ONLY",
+    "evidence_destination_class_required": "PRIVATE_INTERNAL_STORE",
+    "public_repository_raw_market_data_prohibited": true,
+    "public_fields_prohibited_by_default": [
+      "price",
+      "bid",
+      "ask",
+      "last",
+      "provider_timestamp",
+      "volume",
+      "open_interest",
+      "order_book",
+      "trade_ticks"
+    ],
+    "public_raw_distribution_permitted": false
+  },
+  "entitlement_mode_defaults": {
+    "OSE_FREE_TRIAL": {
+      "raw_storage": "PRIVATE_INTERNAL_ONLY",
+      "public_raw_distribution": "PROHIBITED",
+      "third_party_cloud_processing_permission": "UNCONFIRMED_REQUIRES_OSE_OR_PROVIDER_CONFIRMATION",
+      "public_hash_attestation_permission": "UNCONFIRMED_REQUIRES_OSE_OR_PROVIDER_CONFIRMATION",
+      "public_derived_forecast_permission": "UNCONFIRMED_REQUIRES_OSE_OR_PROVIDER_CONFIRMATION",
+      "existing_public_atomic_v4_path": "INCOMPATIBLE_UNTIL_PRIVATE_LEDGER_AND_PUBLICATION_RIGHTS_ARE_RESOLVED"
+    },
+    "LICENSED_REALTIME_VENDOR": {
+      "raw_storage": "PRIVATE_INTERNAL_ONLY_BY_DEFAULT",
+      "public_raw_distribution": "PROHIBITED_UNLESS_EXPLICIT_REDISTRIBUTION_RIGHT",
+      "third_party_cloud_processing_permission": "CONTRACT_SPECIFIC_EXPLICIT_APPROVAL_REQUIRED",
+      "public_hash_attestation_permission": "CONTRACT_SPECIFIC",
+      "public_derived_forecast_permission": "CONTRACT_SPECIFIC",
+      "existing_public_atomic_v4_path": "BLOCKED_UNTIL_LICENSE_RIGHTS_ARE_DOCUMENTED"
+    }
+  },
+  "public_output_gate": {
+    "default": "FAIL_CLOSED",
+    "required_permission_status": "EXPLICITLY_APPROVED",
+    "reconstructive_market_data_fields_allowed": false,
+    "hash_only_output": "NOT_ASSUMED_PERMITTED",
+    "derived_forecast_output": "NOT_ASSUMED_PERMITTED",
+    "note": "OSE Policies define approved Derived Data narrowly and require difficulty of reconstructing original information plus specific expertise; the project must not self-classify a public forecast/hash as licensed Derived Data."
+  },
+  "cloud_processing_gate": {
+    "default": "FAIL_CLOSED_IF_THIRD_PARTY_CLOUD_USED_WITHOUT_EXPLICIT_PERMISSION",
+    "note": "Private storage alone does not prove cloud processing is permitted under a specific entitlement or Free Trial. OSE/provider confirmation is required before entitled raw data is processed by a third-party cloud service."
+  },
+  "first_real_consequence": "An OSE_FREE_TRIAL or licensed feed cannot use the current public raw-evidence/atomic-commit path until a private evidence ledger exists and public-output rights are explicitly resolved.",
+  "validator": "scripts/validate_jnu_entitled_market_data_storage_boundary_v1.py",
+  "selftest": "scripts/selftest_jnu_entitled_market_data_storage_boundary_v1.py"
+}

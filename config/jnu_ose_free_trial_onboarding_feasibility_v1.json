@@ -1,0 +1,63 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-08",
+  "status": "CONDITIONALLY_FEASIBLE_EXTERNAL_CONFIRMATION_REQUIRED",
+  "authoritative_framework": "config/jnu_operational_framework_current_v1_9.json",
+  "candidate": "OSE_FREE_TRIAL_VIA_APPROVED_DIRECT_USER",
+  "official_sources": {
+    "free_trial_page": "https://www.jpx.co.jp/english/markets/paid-info-derivatives/realtime/04.html",
+    "operational_process_pdf": "https://www.jpx.co.jp/english/markets/paid-info-derivatives/realtime/b5b4pj0000016f0f-att/01E.pdf",
+    "current_application_doc": "https://www.jpx.co.jp/english/markets/paid-info-derivatives/realtime/b5b4pj0000016f0f-att/application_OSETrial.doc",
+    "application_page": "https://www.jpx.co.jp/english/markets/paid-info-derivatives/realtime/02.html",
+    "market_information_providers": "https://www.jpx.co.jp/english/markets/paid-info-derivatives/realtime/03.html",
+    "current_usage_policy": "https://www.jpx.co.jp/english/markets/paid-info-derivatives/realtime/tvdivq0000002nuz-att/Policies_E.pdf"
+  },
+  "established_facts": {
+    "trial_period": "ONE_MONTH_IN_PRINCIPLE",
+    "exchange_data_charge_during_trial": "FREE_OF_CHARGE_IN_PRINCIPLE",
+    "purpose": "INTERNAL_USE_ONLY_FOR_EVALUATING_MARKET_ENTRY_TRADING_METHODOLOGY_SYSTEM_CONFIGURATION_OR_DATA_USEFULNESS",
+    "approval": "OSE_DISCRETIONARY_APPROVAL_REQUIRED",
+    "direct_user_approval_if_indirect_delivery": true,
+    "public_process_applicant_language": "COMPANY_ORIENTED",
+    "individual_natural_person_eligibility": "NOT_PUBLICLY_CONFIRMED",
+    "direct_connection_requirements": "MARKET_DATA_USER_ID_NETWORK_AND_TMI_CONNECTION_ID_WITH_MULTI_MONTH_LEAD_TIMES",
+    "preferred_project_delivery": "INDIRECT_VIA_OSE_CONTRACTED_PROVIDER_IF_APPROVED",
+    "provider_transport_fees": "NOT_STATED_AS_WAIVED_BY_OSE_FREE_TRIAL",
+    "current_application_form_micro_listing": "NIKKEI_225_MICRO_NOT_EXPLICITLY_LISTED",
+    "current_application_form_other_product_field": true,
+    "micro_selection_rule": "MUST_CONFIRM_WITH_OSE_DO_NOT_ASSUME_OTHER_FIELD_IS_SUFFICIENT",
+    "current_public_repo_compatibility": "RAW_TRIAL_DATA_INCOMPATIBLE_WITH_PUBLIC_REPOSITORY",
+    "third_party_cloud_processing": "PERMISSION_UNCONFIRMED",
+    "public_hash_or_forecast": "PERMISSION_UNCONFIRMED"
+  },
+  "direct_path_assessment": {
+    "status": "NOT_PREFERRED_FOR_IMMEDIATE_JNU_FIRST_REAL",
+    "reasons": [
+      "Information Provision Agreement process requires legal-entity documentation/LEI and network diagram.",
+      "Direct connection requires Market Data User ID, network setup and TMI connection ID.",
+      "Published lead times are approximately one month for Market Data User ID, two months for network connection (four to six for 10G), and one month for TMI connection ID."
+    ]
+  },
+  "indirect_path_assessment": {
+    "status": "PREFERRED_IF_OSE_APPROVES",
+    "rationale": "The Free Trial process explicitly supports receiving information from a Direct User and requires that Direct User's approval.",
+    "provider_list_source": "https://www.jpx.co.jp/english/markets/paid-info-derivatives/realtime/03.html",
+    "next_required_fact": "Identify a provider willing to deliver exact Nikkei 225 Micro individual-month realtime data over an internal read-only internet/API transport under the OSE-approved trial."
+  },
+  "unresolved_questions": [
+    "Is the OSE Free Trial available to an individual natural person or sole proprietor in Taiwan, given the public process is written for a company applicant?",
+    "Can Nikkei 225 micro Futures be selected under the current Free Trial although the linked application form does not explicitly list Micro; should Other be used?",
+    "Which OSE Direct User/provider can deliver exact individual Nikkei 225 Micro realtime data via ordinary Internet/API/WebSocket without direct J-GATE connectivity?",
+    "Does the OSE Free Trial waive only OSE market-data charges, with provider/transport fees separate?",
+    "May approved Free Trial data be processed in a private third-party cloud workload as internal use, and does that require Service Facilitator or other approval?",
+    "May a non-reconstructive hash/attestation or a forecast derived from trial data be published publicly, or is separate OSE/provider Derived Data/redistribution permission required?",
+    "Which exact data package/provider symbol should be used for individual Nikkei 225 Micro contract last price and provider timestamp?"
+  ],
+  "contact": {
+    "email": "md@jpx.co.jp",
+    "phone": "+81-50-3377-8650"
+  },
+  "inquiry_draft": "research_notes/jnu_ose_free_trial_inquiry_draft_20260908.md",
+  "current_disposition": "DO_NOT_APPLY_OR_SEND_WITHOUT_USER_AUTHORIZATION",
+  "first_real_status": "BLOCKED_PENDING_ELIGIBILITY_PRODUCT_PROVIDER_CLOUD_AND_PUBLICATION_CONFIRMATION"
+}

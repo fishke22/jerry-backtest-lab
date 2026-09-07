@@ -57,7 +57,14 @@ def validate(e:dict,contract:dict,roll:dict)->dict:
     if age>maxage: raise RuntimeError(f"quote stale: age={age:.3f}s > {maxage}s")
     if not str(e["provider_name"]).strip() or not str(e["entitlement_reference"]).strip() or not str(e["transport_qualification_id"]).strip(): raise RuntimeError("provider/entitlement/qualification reference required")
     reqbool(e,"positive_margin_demonstrated",True)
-    return {"version":"1.0","status":"PASS","canonical_symbol":symbol,"contract_month":e["contract_month"],"entitlement_mode":mode,"provider_name":e["provider_name"],"freshness_age_seconds":round(age,6),"freshness_margin_seconds":round(maxage-age,6),"maximum_reference_age_seconds":maxage,"exact_product":True,"continuous_contract":False,"broker_login_used":False,"trading_permission_used":False,"order_capable_session_used":False,"secret_like_fields_present":False,"real_forecast_created":False,"real_ledger_modified":False}
+    if e["storage_scope"]!="PRIVATE_INTERNAL_ONLY": raise RuntimeError("storage_scope must be PRIVATE_INTERNAL_ONLY")
+    if e["evidence_destination_class"]!="PRIVATE_INTERNAL_STORE": raise RuntimeError("evidence_destination_class must be PRIVATE_INTERNAL_STORE")
+    reqbool(e,"raw_public_distribution_permitted",False)
+    if e["third_party_cloud_processing_used"] is True and e["third_party_cloud_permission_status"]!="EXPLICITLY_APPROVED":
+        raise RuntimeError("third-party cloud processing requires explicit approval")
+    if e["public_derived_permission_status"] not in {"UNCONFIRMED","EXPLICITLY_APPROVED","PROHIBITED"}:
+        raise RuntimeError("invalid public_derived_permission_status")
+    return {"version":"1.0","status":"PASS","canonical_symbol":symbol,"contract_month":e["contract_month"],"entitlement_mode":mode,"provider_name":e["provider_name"],"freshness_age_seconds":round(age,6),"freshness_margin_seconds":round(maxage-age,6),"maximum_reference_age_seconds":maxage,"exact_product":True,"continuous_contract":False,"broker_login_used":False,"trading_permission_used":False,"order_capable_session_used":False,"secret_like_fields_present":False,"storage_scope":"PRIVATE_INTERNAL_ONLY","raw_public_distribution_permitted":False,"real_forecast_created":False,"real_ledger_modified":False}
 
 def main():
     ap=argparse.ArgumentParser(); ap.add_argument("--evidence",type=Path,required=True); ap.add_argument("--output",type=Path); a=ap.parse_args()
