@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "as_of": "2026-09-08",
-  "status": "PRIVATE_CONCURRENCY_DR_STATE_MACHINE_SYNTHETIC_ONLY_PENDING_CI",
+  "status": "PRIVATE_CONCURRENCY_DR_STATE_SYNTHETIC_ONLY_LOCK_HIERARCHY_FIX_PENDING_CI",
   "authoritative_framework": "config/jnu_operational_framework_current_v1_9.json",
   "purpose": "Add lease-based cross-process locking, launch-state reconciliation, portable checksum-manifest private backup sets, disaster-recovery import with full revalidation, and interrupted-state resume to the private entitled live-shadow architecture.",
   "components": {
@@ -26,7 +26,15 @@
     "active_lock": "WAIT_THEN_FAIL_LOCK_BUSY",
     "expired_lock": "FAIL_CLOSED_UNTIL_EXPLICIT_RECOVERY_OR_BREAK_STALE",
     "stale_lock_recovery": "QUARANTINE_THEN_RETRY",
-    "same_request_concurrent_launch": "EXACTLY_ONE_RECORD_SECOND_CALL_IDEMPOTENT"
+    "same_request_concurrent_launch": "EXACTLY_ONE_RECORD_SECOND_CALL_IDEMPOTENT",
+    "global_mutation_lock": "ledger-mutation",
+    "global_mutation_lock_covers": [
+      "forecast_write",
+      "outcome_write",
+      "recovery_apply",
+      "retention_apply",
+      "backup_export"
+    ]
   },
   "state_machine": {
     "states": [
@@ -59,7 +67,10 @@
     "current_framework_sha_required": true,
     "import_runs_recovery_scan": true,
     "import_runs_private_scorer_revalidation": true,
-    "public_repository_destination_prohibited": true
+    "public_repository_destination_prohibited": true,
+    "authoritative_payload": "FORECASTS_OUTCOMES_AND_RECOVERY_BACKUPS_ONLY",
+    "results_policy": "RECOMPUTE_ON_IMPORT",
+    "launch_state_policy": "RECONSTRUCT_FROM_PRIVATE_ARTIFACTS_AFTER_IMPORT"
   },
   "real_entitlement_connected": false,
   "public_output": false

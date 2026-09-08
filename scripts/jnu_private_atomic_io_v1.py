@@ -58,20 +58,21 @@ def write_immutable_json(root:Path,target:Path,obj:Any)->dict:
     require_external(root,"private ledger root");require_external(target,"immutable target")
     root=root.resolve();target=target.resolve()
     data=json_bytes(obj);digest=sha256_bytes(data)
-    with acquire_private_lock(root,"immutable:"+str(target),lease_seconds=120,wait_seconds=5,break_stale=False):
-        if target.exists():
-            if sha256_file(target)==digest and verify_backup(root,target).get("status")=="PASS":
-                return {"status":"ALREADY_PRESENT","sha256":digest,"backup":str(backup_path(root,target))}
-            raise FileExistsError(str(target))
-        b=backup_path(root,target);s=checksum_path(b)
-        if b.exists() or s.exists():
-            if not b.exists() or not s.exists():raise RuntimeError("partial private backup metadata detected; run recovery")
-            if s.read_text(encoding="utf-8").strip()!=sha256_file(b):raise RuntimeError("private backup checksum invalid; run recovery")
-            if sha256_file(b)!=digest:raise RuntimeError("existing private backup conflicts with intended immutable record")
-        else:
-            _atomic_bytes(b,data,replace=False);_atomic_bytes(s,(digest+"\n").encode(),replace=False)
-        _atomic_bytes(target,data,replace=False)
-        return {"status":"WRITTEN","sha256":digest,"backup":str(b)}
+    with acquire_private_lock(root,"ledger-mutation",lease_seconds=120,wait_seconds=5,break_stale=False):
+      with acquire_private_lock(root,"immutable:"+str(target),lease_seconds=120,wait_seconds=5,break_stale=False):
+          if target.exists():
+              if sha256_file(target)==digest and verify_backup(root,target).get("status")=="PASS":
+                  return {"status":"ALREADY_PRESENT","sha256":digest,"backup":str(backup_path(root,target))}
+              raise FileExistsError(str(target))
+          b=backup_path(root,target);s=checksum_path(b)
+          if b.exists() or s.exists():
+              if not b.exists() or not s.exists():raise RuntimeError("partial private backup metadata detected; run recovery")
+              if s.read_text(encoding="utf-8").strip()!=sha256_file(b):raise RuntimeError("private backup checksum invalid; run recovery")
+              if sha256_file(b)!=digest:raise RuntimeError("existing private backup conflicts with intended immutable record")
+          else:
+              _atomic_bytes(b,data,replace=False);_atomic_bytes(s,(digest+"\n").encode(),replace=False)
+          _atomic_bytes(target,data,replace=False)
+          return {"status":"WRITTEN","sha256":digest,"backup":str(b)}
 
 def write_replace_json(path:Path,obj:Any)->str:
     require_external(path,"private replace target");data=json_bytes(obj);_atomic_bytes(path.resolve(),data,replace=True);return sha256_bytes(data)

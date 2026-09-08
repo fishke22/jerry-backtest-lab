@@ -8,7 +8,7 @@ from jnu_private_lock_v1 import acquire_private_lock
 from recover_jnu_private_entitled_ledger_v1 import scan
 from validate_jnu_private_launch_manifest_v1 import load as load_manifest,validate as validate_manifest
 ROOT=Path(__file__).resolve().parents[1];FRAMEWORK=ROOT/"config"/"jnu_operational_framework_current_v1_9.json"
-INCLUDE={"forecasts","outcomes","recovery","results","launch_states","retention_quarantine"}
+INCLUDE=["forecasts","outcomes","recovery/backups"]
 def safe_rel(p:Path,root:Path)->str:
     rel=p.resolve().relative_to(root.resolve())
     if rel.is_absolute() or ".." in rel.parts:raise RuntimeError("unsafe backup relative path")
@@ -21,17 +21,16 @@ def main():
     if root==destroot or root in destroot.parents or destroot in root.parents:raise RuntimeError("backup destination must be separate from ledger root")
     bid=a.backupset_id or ("JNU_PRIV_BACKUP_"+uuid.uuid4().hex);out=destroot/bid
     if out.exists():raise RuntimeError("backup set destination already exists")
-    with acquire_private_lock(root,"backupset-export",lease_seconds=300,wait_seconds=5):
-        rs=scan(root,False)
+    with acquire_private_lock(root,"ledger-mutation",lease_seconds=300,wait_seconds=5) as lm:
+        rs=scan(root,False,ignore_owner_token=lm["owner_token"])
         if rs["status"]!="PASS":raise RuntimeError("ledger recovery scan must PASS before backup export")
         files=[]
         for top in INCLUDE:
-            base=root/top
+            base=root/Path(top)
             if not base.exists():continue
             for p in sorted(base.rglob("*")):
                 if not p.is_file():continue
                 rel=safe_rel(p,root)
-                if "/quarantine/temp/" in ("/"+rel+"/"):continue
                 files.append((rel,p))
         tmp=destroot/("."+bid+".tmp-"+uuid.uuid4().hex);payload=tmp/"payload";payload.mkdir(parents=True)
         try:
