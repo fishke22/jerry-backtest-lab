@@ -119,6 +119,10 @@ on:
       - "scripts/manage_jnu_private_vendor_pair_authorization_lifecycle_v1.py"
       - "scripts/selftest_jnu_private_vendor_pair_authorization_lifecycle_v1.py"
       - "research_notes/jnu_private_vendor_pair_authorization_lifecycle_20260908.md"
+      - "config/jnu_private_selection_decision_lifecycle_integration_protocol_v1.json"
+      - "scripts/decide_jnu_private_selection_with_lifecycle_current_auth_v1.py"
+      - "scripts/selftest_jnu_private_selection_lifecycle_integration_v1.py"
+      - "research_notes/jnu_private_selection_lifecycle_integration_20260908.md"
   workflow_dispatch:
 
 permissions:
@@ -176,6 +180,7 @@ jobs:
           python -m json.tool config/jnu_private_composite_evidence_review_dual_control_protocol_v1.json >/dev/null
           python -m json.tool config/jnu_private_vendor_pair_selection_authorization_protocol_v1.json >/dev/null
           python -m json.tool config/jnu_private_vendor_pair_selection_authorization_lifecycle_protocol_v1.json >/dev/null
+          python -m json.tool config/jnu_private_selection_decision_lifecycle_integration_protocol_v1.json >/dev/null
 
       - name: Install private backup crypto dependency
         run: python -m pip install "cryptography>=42"
@@ -279,6 +284,11 @@ jobs:
         run: |
           python -m py_compile scripts/manage_jnu_private_vendor_pair_authorization_lifecycle_v1.py scripts/selftest_jnu_private_vendor_pair_authorization_lifecycle_v1.py
           python scripts/selftest_jnu_private_vendor_pair_authorization_lifecycle_v1.py
+
+      - name: Private selection decision lifecycle-current-authorization integration selftest
+        run: |
+          python -m py_compile scripts/decide_jnu_private_selection_with_lifecycle_current_auth_v1.py scripts/selftest_jnu_private_selection_lifecycle_integration_v1.py
+          python scripts/selftest_jnu_private_selection_lifecycle_integration_v1.py
 
       - name: Full v1.8 analysis-fresh chain selftest
         run: python scripts/selftest_jnu_live_shadow_v18_integrity.py
