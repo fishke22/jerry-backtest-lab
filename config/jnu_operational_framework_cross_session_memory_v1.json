@@ -75,7 +75,7 @@
   "cloud_request_selftest_run": 33969428203,
   "cloud_actionlint_run": 34038843503,
   "cloud_pipeline_status": "V1_8_ANALYSIS_FRESH_OFFICIAL_PREPARED_REQUEST_INTEGRITY_CI_PASS_REAL_LEDGER_EMPTY",
-  "next_action": "Build a repo-external synthetic authorization lifecycle and change-control audit chain for vendor-pair selection. Add immutable authorization issue/revoke/supersede records, parent-hash lineage, one-current-authorization semantics, explicit revocation reason/state, no silent pair substitution, stale/superseded authorization rejection, and replay/tamper protection. Emit only redacted lifecycle receipts and keep all authorizations disabled, providers/KMS UNSELECTED, production profiles unchanged, and real activation prohibited. Do not contact providers, connect credentials/accounts, create KMS keys, mutate selection/production state, or generate a real activation manifest without explicit user authorization.",
+  "next_action": "Integrate the repo-external authorization lifecycle audit chain into the synthetic vendor-pair selection decision gate. Require the decision request's authorization ID and SHA-256 to be the usable current authorization derived from the fully verified ISSUE/SUPERSEDE/REVOKE chain at decision time, and fail closed on revoked, superseded, expired, tampered, missing, or forked lifecycle state. Preserve exact receipt/pair bindings, immutable decision replay, and production-state checks. Keep authorization disabled, selection writes prohibited, providers/KMS UNSELECTED, production profiles unchanged, and real activation prohibited.",
   "exact_micro_reference_source_gate": "config/jnu_exact_micro_reference_source_gate_20260904_v1.json",
   "tradingview_exact_micro_transport": {
     "status": "B_IDENTITY_SOURCE_ALLOWED_ONLY_IF_ACTUAL_LP_TIME_AGE_LE_900",
@@ -333,5 +333,13 @@
   "private_vendor_pair_selection_authorization_integrity_run": 34224340047,
   "private_vendor_pair_selection_authorization_actionlint_run": 34224339861,
   "private_vendor_pair_selection_authorization_selftest": "PASS_53_OF_53",
-  "private_vendor_pair_selection_authorization_status": "CI_PASS_SELECTION_AUTHORIZATION_GATE_SYNTHETIC_DISABLED_NO_SELECTION"
+  "private_vendor_pair_selection_authorization_status": "CI_PASS_SELECTION_AUTHORIZATION_GATE_SYNTHETIC_DISABLED_NO_SELECTION",
+  "private_vendor_pair_authorization_lifecycle_protocol": "config/jnu_private_vendor_pair_selection_authorization_lifecycle_protocol_v1.json",
+  "private_vendor_pair_authorization_lifecycle_manager": "scripts/manage_jnu_private_vendor_pair_authorization_lifecycle_v1.py",
+  "private_vendor_pair_authorization_lifecycle_checkpoint": "config/jnu_private_vendor_pair_authorization_lifecycle_checkpoint_v1.json",
+  "private_vendor_pair_authorization_lifecycle_core_commit": "18a7c20b3ac4cac877fafa2415acaf8621d01e83",
+  "private_vendor_pair_authorization_lifecycle_integrity_run": 34225172423,
+  "private_vendor_pair_authorization_lifecycle_actionlint_run": 34225172485,
+  "private_vendor_pair_authorization_lifecycle_selftest": "PASS_40_OF_40",
+  "private_vendor_pair_authorization_lifecycle_status": "CI_PASS_AUTHORIZATION_LIFECYCLE_CHAIN_SYNTHETIC_CURRENT_STATE_DERIVED_NO_SELECTION"
 }
