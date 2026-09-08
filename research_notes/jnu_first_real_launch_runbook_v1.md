@@ -2,7 +2,7 @@
 
 Status: pre-first-real, governance-complete, source-freshness-gated.
 
-Authoritative framework: `config/jnu_operational_framework_current_v1_8.json`.
+Authoritative framework: `config/jnu_operational_framework_current_v1_9.json`.
 
 ## Read-only source readiness
 
@@ -117,3 +117,14 @@ Cloud verification:
 The entitlement layer is now implemented, but no entitled production source exists yet. The validator allows only `OSE_FREE_TRIAL` and `LICENSED_REALTIME_VENDOR` under current governance. Broker-authenticated evidence remains rejected.
 
 The validator is source-only infrastructure: it cannot create a forecast, cannot modify the real ledger, cannot relax the 900-second freshness rule, and cannot substitute a continuous contract.
+
+
+## Public/private runtime boundary alignment — 2026-09-08
+
+Runtime preflight, registrar, and scorer now hash the authoritative v1.9 framework. Frozen preregistration/implementation v1.7 remain unchanged because their directional/scoring semantics are historical and v1.9 explicitly preserves them.
+
+The default real ledger under `live_shadow/forecasts` is a public Git repository path. `scripts/register_jnu_operational_shadow_forecast_atomic_v4.py` therefore invokes `scripts/validate_jnu_public_live_shadow_boundary_v1.py` before any real write. Any OSE Free Trial, licensed realtime vendor, authorized broker-feed entitlement marker, private-raw marker, or secret-like field is rejected from this public path.
+
+The cloud forecast workflow also runs `scripts/check_jnu_public_artifact_safety_v1.py` before uploading diagnostic artifacts. Unsafe entitled/private artifacts are not uploaded.
+
+This does not make entitled data production-ready. It prevents accidental public leakage while a future private evidence bridge is designed and while OSE/provider cloud/publication permissions remain unresolved.

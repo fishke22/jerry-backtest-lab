@@ -277,8 +277,23 @@ jobs:
           },ensure_ascii=False,indent=2))
           PY
 
-      - name: Upload processing evidence
+      - name: Validate public processing artifact safety
         if: always() && steps.request.outputs.already_registered != 'true'
+        id: artifact_safety
+        shell: bash
+        run: |
+          python scripts/check_jnu_public_artifact_safety_v1.py \
+            --path request_meta.json \
+            --path cloud_quote.json \
+            --path cloud_preflight.json \
+            --path cloud_atomic_input.json \
+            --path cloud_register_result.json \
+            --path jpx_quote_attempt.log \
+            --path tv_quote_attempt.log \
+            --output public_artifact_safety.json
+
+      - name: Upload processing evidence
+        if: always() && steps.request.outputs.already_registered != 'true' && steps.artifact_safety.outcome == 'success'
         uses: actions/upload-artifact@v4
         with:
           name: jnu-cloud-forecast-request-${{ github.run_id }}
@@ -290,5 +305,6 @@ jobs:
             cloud_register_result.json
             jpx_quote_attempt.log
             tv_quote_attempt.log
+            public_artifact_safety.json
           if-no-files-found: ignore
           retention-days: 30

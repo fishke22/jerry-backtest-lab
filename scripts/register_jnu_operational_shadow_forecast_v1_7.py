@@ -8,7 +8,7 @@ from jnu_request_preparation_validation_v1_1 import validate_prepared_request_bi
 from jnu_integrity_hash_v1 import METHOD_ID, canonical_text_sha256
 
 ROOT=Path(__file__).resolve().parents[1]
-FRAMEWORK=ROOT/"config"/"jnu_operational_framework_current_v1_8.json"
+FRAMEWORK=ROOT/"config"/"jnu_operational_framework_current_v1_9.json"
 PREREG=ROOT/"config"/"jnu_operational_live_shadow_prereg_v1_7.json"
 IMPL=ROOT/"config"/"jnu_operational_live_shadow_implementation_v1_7.json"
 PROTOCOL=ROOT/"config"/"jnu_operational_decision_protocol_v1.json"

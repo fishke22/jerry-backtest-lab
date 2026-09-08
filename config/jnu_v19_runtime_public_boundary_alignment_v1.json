@@ -1,0 +1,36 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-08",
+  "status": "V1_9_RUNTIME_PROVENANCE_AND_PUBLIC_BOUNDARY_CORE_PENDING_CI",
+  "authoritative_framework": "config/jnu_operational_framework_current_v1_9.json",
+  "frozen_directional_semantics": {
+    "preregistration": "config/jnu_operational_live_shadow_prereg_v1_7.json",
+    "implementation": "config/jnu_operational_live_shadow_implementation_v1_7.json",
+    "decision_protocol": "config/jnu_operational_decision_protocol_v1.json",
+    "changed": false
+  },
+  "runtime_framework_alignment": {
+    "preflight": "scripts/check_jnu_live_shadow_preflight_v1_2.py",
+    "registrar": "scripts/register_jnu_operational_shadow_forecast_v1_7.py",
+    "scorer": "scripts/score_jnu_operational_live_shadow_v1_6.py",
+    "framework": "config/jnu_operational_framework_current_v1_9.json"
+  },
+  "public_boundary": {
+    "real_atomic_tool": "scripts/register_jnu_operational_shadow_forecast_atomic_v4.py",
+    "guard": "scripts/validate_jnu_public_live_shadow_boundary_v1.py",
+    "artifact_guard": "scripts/check_jnu_public_artifact_safety_v1.py",
+    "entitled_source_to_public_real_ledger": "FAIL_CLOSED",
+    "secret_like_fields_to_public_real_ledger": "FAIL_CLOSED",
+    "unsafe_processing_artifact_upload": "FAIL_CLOSED"
+  },
+  "entitlement_behavior": {
+    "private_bridge_implemented": false,
+    "entitled_production_source_implemented": false,
+    "public_raw_entitled_evidence_allowed": false,
+    "next_stage": "DESIGN_PRIVATE_EVIDENCE_BRIDGE_WITH_NO_PUBLIC_RAW_QUOTE_AND_NO_PUBLICATION_UNTIL_PERMISSION"
+  },
+  "real_ledger": {
+    "forecasts": 0,
+    "outcomes": 0
+  }
+}

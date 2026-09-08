@@ -40,6 +40,10 @@ on:
       - "config/jnu_entitled_market_data_storage_boundary_v1.json"
       - "scripts/validate_jnu_entitled_market_data_storage_boundary_v1.py"
       - "scripts/selftest_jnu_entitled_market_data_storage_boundary_v1.py"
+      - "scripts/validate_jnu_public_live_shadow_boundary_v1.py"
+      - "scripts/selftest_jnu_public_live_shadow_boundary_v1.py"
+      - "scripts/check_jnu_public_artifact_safety_v1.py"
+      - "scripts/selftest_jnu_public_artifact_safety_v1.py"
   workflow_dispatch:
 
 permissions:
@@ -96,6 +100,12 @@ jobs:
         run: |
           python -m py_compile scripts/validate_jnu_entitled_market_data_storage_boundary_v1.py scripts/selftest_jnu_entitled_market_data_storage_boundary_v1.py
           python scripts/selftest_jnu_entitled_market_data_storage_boundary_v1.py
+
+      - name: Public live-shadow boundary selftests
+        run: |
+          python -m py_compile scripts/validate_jnu_public_live_shadow_boundary_v1.py scripts/selftest_jnu_public_live_shadow_boundary_v1.py scripts/check_jnu_public_artifact_safety_v1.py scripts/selftest_jnu_public_artifact_safety_v1.py
+          python scripts/selftest_jnu_public_live_shadow_boundary_v1.py
+          python scripts/selftest_jnu_public_artifact_safety_v1.py
 
       - name: Full v1.8 analysis-fresh chain selftest
         run: python scripts/selftest_jnu_live_shadow_v18_integrity.py

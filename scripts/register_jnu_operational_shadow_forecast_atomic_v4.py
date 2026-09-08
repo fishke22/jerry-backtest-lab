@@ -1,6 +1,7 @@
 from __future__ import annotations
 import argparse, json, shutil, subprocess, sys, tempfile
 from pathlib import Path
+from validate_jnu_public_live_shadow_boundary_v1 import validate_public_live_shadow_boundary
 
 ROOT=Path(__file__).resolve().parents[1]
 DECISION=ROOT/"scripts"/"apply_jnu_operational_decision_protocol_v1.py"
@@ -32,6 +33,8 @@ def main():
     real=args.output_dir.resolve()==DEFAULT_DIR.resolve()
     if real and not args.commit_push:
         raise RuntimeError("real ledger registration requires --commit-push")
+    if real:
+        validate_public_live_shadow_boundary(x)
     if real and not git_staging_empty():
         raise RuntimeError("Git staging area must be empty before real forecast registration")
 
