@@ -75,7 +75,7 @@
   "cloud_request_selftest_run": 33969428203,
   "cloud_actionlint_run": 34038843503,
   "cloud_pipeline_status": "V1_8_ANALYSIS_FRESH_OFFICIAL_PREPARED_REQUEST_INTEGRITY_CI_PASS_REAL_LEDGER_EMPTY",
-  "next_action": "Build a synthetic repo-external composite pre-activation evidence gate that joins a redacted provider/OSE term attestation with a redacted KMS deployment-control attestation, verifies shortlist identity and evidence lineage, evaluates all six market-data-provider × KMS candidate combinations without ranking or selecting them, and emits only blocker/readiness dossiers. Do not connect real provider/KMS accounts, ingest real confidential documents, select any vendor pair, create keys, connect credentials, or generate a real activation manifest without explicit user authorization.",
+  "next_action": "Build a repo-external synthetic composite-evidence review and dual-control approval workflow over the six pre-activation dossiers. Require independent reviewer roles, immutable dossier SHA-256 binding, explicit approve/reject/needs-evidence dispositions, expiry/revalidation timestamps, conflict and replay handling, and a redacted approval receipt that never selects a provider/KMS pair or authorizes real activation. Do not ingest real confidential terms, contact providers, connect credentials/accounts, create KMS keys, mutate production profiles, or generate a real activation manifest without explicit user authorization.",
   "exact_micro_reference_source_gate": "config/jnu_exact_micro_reference_source_gate_20260904_v1.json",
   "tradingview_exact_micro_transport": {
     "status": "B_IDENTITY_SOURCE_ALLOWED_ONLY_IF_ACTUAL_LP_TIME_AGE_LE_900",
@@ -309,5 +309,13 @@
   "private_kms_deployment_evidence_integrity_run": 34222961071,
   "private_kms_deployment_evidence_actionlint_run": 34222961092,
   "private_kms_deployment_evidence_selftest": "PASS_31_OF_31",
-  "private_kms_deployment_evidence_status": "CI_PASS_KMS_DEPLOYMENT_CONTROL_ATTESTATION_SYNTHETIC_READY_REAL_KMS_BLOCKED"
+  "private_kms_deployment_evidence_status": "CI_PASS_KMS_DEPLOYMENT_CONTROL_ATTESTATION_SYNTHETIC_READY_REAL_KMS_BLOCKED",
+  "private_composite_production_readiness_protocol": "config/jnu_private_composite_production_readiness_join_protocol_v1.json",
+  "private_composite_production_readiness_evaluator": "scripts/evaluate_jnu_private_composite_production_readiness_v1.py",
+  "private_composite_production_readiness_checkpoint": "config/jnu_private_composite_production_readiness_checkpoint_v1.json",
+  "private_composite_production_readiness_core_commit": "84ec7fafd538479e9256409d3d8ec6b725d25548",
+  "private_composite_production_readiness_integrity_run": 34223343588,
+  "private_composite_production_readiness_actionlint_run": 34223343544,
+  "private_composite_production_readiness_selftest": "PASS_34_OF_34",
+  "private_composite_production_readiness_status": "CI_PASS_COMPOSITE_SIX_PAIR_DOSSIERS_SYNTHETIC_READY_REAL_ACTIVATION_BLOCKED"
 }
