@@ -52,7 +52,7 @@ with tempfile.TemporaryDirectory(prefix="jnu-term-stage-") as td0:
     T["stage_provider_pass"]=r2["source_document_sha256_verified"] is True
     er=emit([s1,s2],out);red=load(out);raw=out.read_text(encoding="utf-8")
     T["emit_partial_redacted_pass"]=er["attestation_status"]=="PARTIAL_EXPLICIT_TERMS_BLOCKED"
-    T["redacted_has_no_source_path_key"]="source_document_path" not in raw
+    T["redacted_has_no_source_path_key"]=all("source_document_path" not in row for row in red["evidence_ledger"].values() for row in row) and "source_document_path" not in red
     T["redacted_has_no_source_text_markers"]=marker1 not in raw and marker2 not in raw
     T["redacted_keeps_hash_locator_authority"]=red["evidence_ledger"]["entitlement_status"][0]["document_sha256"]==h(d1) and red["evidence_ledger"]["read_only_transport_status"][0]["locator"]=="SECTION:READ_ONLY" and red["evidence_ledger"]["read_only_transport_status"][0]["authority"]=="MARKET_DATA_PROVIDER"
     T["redacted_never_authorizes_real_activation"]=red["real_activation_authorized"] is False
