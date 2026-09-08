@@ -1,0 +1,46 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-08",
+  "status": "PRIVATE_LIFECYCLE_HARDENING_READY_SYNTHETIC_ONLY",
+  "authoritative_framework": "config/jnu_operational_framework_current_v1_9.json",
+  "stable_framework_sha256": "e9a464b95b01ac6e37dfb758b0805e894b5a4972ec29081430ba89eea0a27a13",
+  "lifecycle_protocol": "config/jnu_private_lifecycle_protocol_v1.json",
+  "launch_manifest_protocol": "config/jnu_private_launch_manifest_protocol_v1.json",
+  "atomic_io": "scripts/jnu_private_atomic_io_v1.py",
+  "launch_wrapper": "scripts/launch_jnu_private_entitled_forecast_v1.py",
+  "recovery_tool": "scripts/recover_jnu_private_entitled_ledger_v1.py",
+  "retention_tool": "scripts/retain_jnu_private_entitled_ledger_v1.py",
+  "core_commit": "6a345b5ec91df8329e3fa0f50eac2ab4a93737e8",
+  "fixture_fix_commit": "3cc91fbb8bf137d048b6420fc69d19a53aaab59b",
+  "cloud_verification": {
+    "integrity_run": 34186994655,
+    "actionlint_run": 34186927021,
+    "lifecycle_selftest": "PASS_19_OF_19",
+    "public_real_ledger": {
+      "forecasts": 0,
+      "outcomes": 0
+    }
+  },
+  "guarantees": {
+    "one_request_one_private_forecast": true,
+    "exact_forecast_replay_idempotent": true,
+    "different_quote_same_request_conflict": true,
+    "exact_outcome_replay_idempotent": true,
+    "different_close_same_forecast_conflict": true,
+    "atomic_fsync_write": true,
+    "checksum_verified_private_backup": true,
+    "missing_or_corrupt_primary_recovery": true,
+    "scorer_checkpoint": true,
+    "synthetic_retention_quarantine": true,
+    "permanent_purge": false
+  },
+  "hard_blocks": [
+    "REAL_ENTITLEMENT_NOT_CONNECTED",
+    "REAL_RETENTION_TERMS_UNCONFIRMED",
+    "PERMANENT_PURGE_PROHIBITED",
+    "NO_PUBLIC_RAW_OR_DERIVED_ENTITLED_OUTPUT",
+    "NO_BROKER_AUTH",
+    "NO_900_SECOND_RELAXATION"
+  ],
+  "next_stage": "PRIVATE_CONCURRENCY_BACKUPSET_DISASTER_RECOVERY_LAUNCH_STATE_MACHINE_SYNTHETIC_ONLY"
+}

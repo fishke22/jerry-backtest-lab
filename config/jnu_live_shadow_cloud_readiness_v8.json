@@ -216,6 +216,20 @@
       "real_entitlement_connected": false,
       "public_real_forecasts": 0,
       "public_real_outcomes": 0
+    },
+    "private_lifecycle": {
+      "status": "SYNTHETIC_CI_PASS_REAL_ENTITLEMENT_NOT_CONNECTED",
+      "protocol": "config/jnu_private_lifecycle_protocol_v1.json",
+      "launch_manifest_protocol": "config/jnu_private_launch_manifest_protocol_v1.json",
+      "core_commit": "6a345b5ec91df8329e3fa0f50eac2ab4a93737e8",
+      "fixture_fix_commit": "3cc91fbb8bf137d048b6420fc69d19a53aaab59b",
+      "integrity_run": 34186994655,
+      "actionlint_run": 34186927021,
+      "selftest": "PASS_19_OF_19",
+      "stable_framework_sha256": "e9a464b95b01ac6e37dfb758b0805e894b5a4972ec29081430ba89eea0a27a13",
+      "permanent_purge": false,
+      "public_real_forecasts": 0,
+      "public_real_outcomes": 0
     }
   },
   "frozen_max_reference_age_seconds": 900,
@@ -231,7 +245,7 @@
     "decision_engine": "NO_VALIDATED_DIRECTIONAL_EDGE"
   },
   "blocker": "LICENSED_REALTIME_ENTITLEMENT_REQUIRED_FOR_RELIABLE_SUB900_PATH",
-  "next_action": "Private entitled forecast/outcome/scorer are synthetic-ready outside the public repository. Continue synthetic-only lifecycle hardening (idempotency, recovery, retention, launch manifest). No real entitled cloud processing/publication until explicit permission exists.",
+  "next_action": "Continue synthetic-only private durability hardening: concurrency lock semantics, portable encrypted-or-private backup-set design, disaster-recovery import/export validation, and launch-state machine. No real entitled processing or permanent deletion until external terms are explicit.",
   "integrity_hash_protocol": "config/jnu_integrity_hash_protocol_v1.json",
   "integrity_hash_method": "SHA256_TEXT_EOL_CRLF_V1",
   "core_seal_commit": "883d6d71d41a02ca19a713a5b5e2c3469c84cead",

@@ -460,5 +460,19 @@
     "real_entitlement_connected": false,
     "public_real_forecasts": 0,
     "public_real_outcomes": 0
+  },
+  "private_lifecycle": {
+    "status": "SYNTHETIC_CI_PASS_REAL_ENTITLEMENT_NOT_CONNECTED",
+    "protocol": "config/jnu_private_lifecycle_protocol_v1.json",
+    "launch_manifest_protocol": "config/jnu_private_launch_manifest_protocol_v1.json",
+    "core_commit": "6a345b5ec91df8329e3fa0f50eac2ab4a93737e8",
+    "fixture_fix_commit": "3cc91fbb8bf137d048b6420fc69d19a53aaab59b",
+    "integrity_run": 34186994655,
+    "actionlint_run": 34186927021,
+    "selftest": "PASS_19_OF_19",
+    "stable_framework_sha256": "e9a464b95b01ac6e37dfb758b0805e894b5a4972ec29081430ba89eea0a27a13",
+    "permanent_purge": false,
+    "public_real_forecasts": 0,
+    "public_real_outcomes": 0
   }
 }
