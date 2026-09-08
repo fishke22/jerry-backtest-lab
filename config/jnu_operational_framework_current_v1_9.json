@@ -220,7 +220,10 @@
     "private_encrypted_backup_importer": "scripts/import_jnu_private_encrypted_backupset_v1.py",
     "private_restore_authorization": "config/jnu_private_restore_authorization_protocol_v1.json",
     "private_backup_rotation": "scripts/rotate_jnu_private_encrypted_backups_v1.py",
-    "private_encrypted_dr_drill": "scripts/run_jnu_private_encrypted_dr_drill_v1.py"
+    "private_encrypted_dr_drill": "scripts/run_jnu_private_encrypted_dr_drill_v1.py",
+    "production_key_custody_matrix": "config/jnu_production_key_custody_decision_matrix_v1.json",
+    "provider_term_readiness_protocol": "config/jnu_provider_term_readiness_protocol_v1.json",
+    "production_backup_readiness_evaluator": "scripts/evaluate_jnu_production_key_custody_provider_readiness_v1.py"
   },
   "operational_decision_protocol": {
     "status": "FROZEN_UNKNOWN_FAILSAFE_SELFTEST_PASS_ACTIVE",
@@ -365,6 +368,16 @@
       "restore_authorization_time_bounded": true,
       "restore_authorization_single_use": true,
       "plaintext_hash_in_manifest": false
+    },
+    "production_encrypted_backup_gate": {
+      "status": "PENDING_CI_CURRENTLY_BLOCKED",
+      "preferred_key_custody_class": "MANAGED_HSM_BACKED_KMS",
+      "dedicated_hsm_escalation": "ONLY_IF_CONTRACT_OR_INTERNAL_POLICY_REQUIRES",
+      "key_custody_profile": "config/jnu_production_key_custody_current_v1.json",
+      "provider_terms": "config/jnu_provider_term_readiness_current_v1.json",
+      "evaluator": "scripts/evaluate_jnu_production_key_custody_provider_readiness_v1.py",
+      "real_backup_activation": "REQUIRES_BOTH_KEY_CUSTODY_AND_PROVIDER_TERM_PASS",
+      "public_output": false
     }
   }
 }

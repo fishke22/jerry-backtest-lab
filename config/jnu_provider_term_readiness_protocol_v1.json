@@ -1,0 +1,61 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-08",
+  "status": "FROZEN_PROVIDER_TERM_READINESS_PROTOCOL",
+  "purpose": "Require explicit OSE/provider contractual approval before real entitled encrypted backup, restore, or DR processing is activated.",
+  "required_fields": [
+    "version",
+    "evidence_as_of",
+    "entitlement_status",
+    "applicant_eligibility_status",
+    "exact_micro_product_status",
+    "provider_selected_status",
+    "read_only_transport_status",
+    "broker_auth_used",
+    "trading_permission_used",
+    "ose_third_party_cloud_processing_status",
+    "provider_third_party_cloud_processing_status",
+    "service_facilitator_required",
+    "service_facilitator_approval_status",
+    "encrypted_backup_creation_status",
+    "encrypted_backup_storage_status",
+    "backup_region_status",
+    "backup_retention_terms_status",
+    "backup_deletion_terms_status",
+    "restore_permission_status",
+    "dr_drill_permission_status",
+    "kms_hsm_key_custody_status",
+    "incident_reporting_terms_status",
+    "audit_cooperation_terms_status",
+    "public_output_requested"
+  ],
+  "ready_values": {
+    "entitlement_status": "EXPLICITLY_APPROVED",
+    "applicant_eligibility_status": "EXPLICITLY_APPROVED",
+    "exact_micro_product_status": "EXPLICITLY_APPROVED",
+    "provider_selected_status": "EXPLICITLY_APPROVED",
+    "read_only_transport_status": "EXPLICITLY_APPROVED",
+    "ose_third_party_cloud_processing_status": "EXPLICITLY_APPROVED",
+    "provider_third_party_cloud_processing_status": "EXPLICITLY_APPROVED",
+    "encrypted_backup_creation_status": "EXPLICITLY_APPROVED",
+    "encrypted_backup_storage_status": "EXPLICITLY_APPROVED",
+    "backup_region_status": "EXPLICITLY_APPROVED",
+    "backup_retention_terms_status": "EXPLICITLY_CONFIRMED",
+    "backup_deletion_terms_status": "EXPLICITLY_CONFIRMED",
+    "restore_permission_status": "EXPLICITLY_APPROVED",
+    "dr_drill_permission_status": "EXPLICITLY_APPROVED",
+    "kms_hsm_key_custody_status": "EXPLICITLY_APPROVED",
+    "incident_reporting_terms_status": "EXPLICITLY_CONFIRMED",
+    "audit_cooperation_terms_status": "EXPLICITLY_CONFIRMED"
+  },
+  "service_facilitator_rule": "If required=true, approval_status must be EXPLICITLY_APPROVED; if not required, approval_status must be NOT_REQUIRED.",
+  "public_output_rule": "This gate only authorizes private encrypted backup/restore. public_output_requested must be false; public publication/Derived Data permission is governed separately.",
+  "hard_prohibitions": {
+    "broker_auth_used": false,
+    "trading_permission_used": false,
+    "inferred_permission": false
+  },
+  "official_evidence": [
+    "https://www.jpx.co.jp/english/markets/paid-info-derivatives/realtime/tvdivq0000002nuz-att/Policies_E.pdf"
+  ]
+}

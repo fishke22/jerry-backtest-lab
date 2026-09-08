@@ -1,0 +1,73 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-08",
+  "status": "PRODUCTION_KEY_CUSTODY_CONTROL_CLASS_SELECTED_VENDOR_NOT_SELECTED",
+  "authoritative_framework": "config/jnu_operational_framework_current_v1_9.json",
+  "purpose": "Define the production key-custody control class required before any real entitled encrypted backup can be enabled.",
+  "preferred_control_class": "MANAGED_HSM_BACKED_KMS",
+  "escalation_control_class": "DEDICATED_HSM_OR_CUSTOM_KEY_STORE",
+  "escalation_trigger": "Use dedicated/customer-controlled HSM only if OSE/provider contract, internal risk policy, or residency/control requirements demand subscriber-controlled HSM custody.",
+  "prohibited_production_classes": [
+    "SYNTHETIC_FILE_KEYRING",
+    "PLAINTEXT_FILE_KEK",
+    "ENVIRONMENT_VARIABLE_KEK",
+    "GITHUB_ACTIONS_SECRET_KEK",
+    "EXPORTABLE_SOFTWARE_KEK",
+    "SHARED_HUMAN_CREDENTIAL_KEK"
+  ],
+  "hard_requirements": {
+    "hsm_backed": true,
+    "minimum_fips_security_level": 3,
+    "kek_non_exportable": true,
+    "symmetric_kek": true,
+    "envelope_encryption": true,
+    "per_backup_random_dek": true,
+    "kek_wraps_dek_only": true,
+    "plaintext_kek_never_exposed_to_application": true,
+    "provider_audit_logging": true,
+    "key_rotation_supported": true,
+    "previous_key_versions_retained_for_authorized_decrypt": true,
+    "iam_role_separation": true,
+    "key_admin_separate_from_crypto_user": true,
+    "restore_approver_separate_from_crypto_user": true,
+    "deletion_protection_or_delayed_destruction": true,
+    "explicit_region_and_residency_configuration": true,
+    "private_network_path_or_equivalent_restriction": true,
+    "no_key_material_in_repository": true,
+    "no_key_material_in_backup_manifest": true,
+    "no_key_material_in_stdout": true
+  },
+  "candidate_classes": [
+    {
+      "id": "AWS_KMS_STANDARD_HSM",
+      "control_class": "MANAGED_HSM_BACKED_KMS",
+      "technical_disposition": "QUALIFIES_IF_DEPLOYMENT_PROFILE_PASSES",
+      "notes": "AWS KMS standard key store uses HSM-protected non-exportable key material; customer-managed symmetric keys support rotation and CloudTrail audit."
+    },
+    {
+      "id": "GOOGLE_CLOUD_HSM",
+      "control_class": "MANAGED_HSM_BACKED_KMS",
+      "technical_disposition": "QUALIFIES_IF_DEPLOYMENT_PROFILE_PASSES",
+      "notes": "Cloud HSM provides HSM-backed keys through Cloud KMS with Level-3-certified HSMs and key rotation controls."
+    },
+    {
+      "id": "DEDICATED_HSM_CUSTOM_KEY_STORE",
+      "control_class": "DEDICATED_HSM_OR_CUSTOM_KEY_STORE",
+      "technical_disposition": "QUALIFIES_IF_CONTRACT_REQUIRES_AND_DEPLOYMENT_PROFILE_PASSES",
+      "notes": "Higher operational burden; reserved for explicit dedicated/subscriber-controlled custody requirements."
+    }
+  ],
+  "current_selection": {
+    "vendor": "UNSELECTED",
+    "region": "UNSELECTED",
+    "key_id": "UNASSIGNED",
+    "production_enabled": false
+  },
+  "official_evidence": [
+    "https://docs.aws.amazon.com/kms/latest/developerguide/key-store-overview.html",
+    "https://docs.aws.amazon.com/kms/latest/developerguide/logging-using-cloudtrail.html",
+    "https://docs.aws.amazon.com/kms/latest/developerguide/rotate-keys.html",
+    "https://cloud.google.com/kms/docs/hsm",
+    "https://cloud.google.com/kms/docs/key-rotation"
+  ]
+}

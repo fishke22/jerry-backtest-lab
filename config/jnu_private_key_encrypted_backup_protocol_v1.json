@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "as_of": "2026-09-08",
-  "status": "PRIVATE_KEY_ENCRYPTED_BACKUP_SINGLE_USE_ENFORCEMENT_PENDING_CI",
+  "status": "PRIVATE_ENCRYPTED_BACKUP_SYNTHETIC_READY_PRODUCTION_ACTIVATION_GATE_PENDING_CI",
   "authoritative_framework": "config/jnu_operational_framework_current_v1_9.json",
   "purpose": "Add external private key lifecycle, AES-256-GCM encrypted synthetic backup sets, restore authorization, backup generation rotation by quarantine, and private DR drill governance.",
   "cryptography": {
@@ -108,5 +108,16 @@
     "json_newline_fix": "e0e49b639516e6602c471a7fb237334caea9ef0e",
     "selftest_import_fix": "e2e112f8273f6f447cf7d1a7f58648efc0c9434a",
     "strengthened_selftest": "2b4d2ac48d2dd4121521d1f1fafa78abae9376b1"
+  },
+  "production_activation_gate": {
+    "status": "KMS_HSM_AND_PROVIDER_TERM_READINESS_REQUIRED",
+    "key_custody_matrix": "config/jnu_production_key_custody_decision_matrix_v1.json",
+    "provider_term_protocol": "config/jnu_provider_term_readiness_protocol_v1.json",
+    "evaluator": "scripts/evaluate_jnu_production_key_custody_provider_readiness_v1.py",
+    "current_key_profile": "config/jnu_production_key_custody_current_v1.json",
+    "current_provider_terms": "config/jnu_provider_term_readiness_current_v1.json",
+    "default_control_class": "MANAGED_HSM_BACKED_KMS",
+    "dedicated_hsm_escalation": "ONLY_IF_CONTRACT_OR_INTERNAL_POLICY_REQUIRES",
+    "real_backup_status": "BLOCKED_UNTIL_BOTH_KEY_AND_TERM_GATES_PASS"
   }
 }
