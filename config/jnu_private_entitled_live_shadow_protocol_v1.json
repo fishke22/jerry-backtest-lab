@@ -1,0 +1,50 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-08",
+  "status": "PRIVATE_ENTITLED_LIVE_SHADOW_SYNTHETIC_ARCHITECTURE_PENDING_CI",
+  "authoritative_framework": "config/jnu_operational_framework_current_v1_9.json",
+  "purpose": "Maintain a fully private immutable live-shadow forecast/outcome/scoring ledger for entitled exact-Micro data without publishing raw quotes, derived forecast outputs, outcomes, hashes, or performance metrics.",
+  "execution_rules": {
+    "request_may_be_quote_free_public": true,
+    "private_quote_bundle_must_be_external_to_public_repo": true,
+    "private_ledger_root_must_be_external_to_public_repo": true,
+    "private_forecast_contains_entitled_raw_reference": true,
+    "private_outcome_contains_entitled_raw_close": true,
+    "public_git_commit": false,
+    "github_artifact_upload": false,
+    "stdout_raw_quote_prohibited": true,
+    "stdout_bias_confidence_prohibited": true,
+    "stdout_target_close_return_hit_prohibited": true,
+    "stdout_performance_metrics_prohibited": true,
+    "real_entitled_github_actions": "PROHIBITED_UNTIL_EXPLICIT_OSE_PROVIDER_CLOUD_APPROVAL",
+    "synthetic_ci_allowed": true
+  },
+  "forecast_registrar": "scripts/register_jnu_private_entitled_forecast_v1.py",
+  "outcome_recorder": "scripts/record_jnu_private_entitled_outcome_v1.py",
+  "scorer": "scripts/score_jnu_private_entitled_live_shadow_v1.py",
+  "selftest": "scripts/selftest_jnu_private_entitled_live_shadow_v1.py",
+  "dependencies": [
+    "config/jnu_private_entitled_quote_bridge_protocol_v1.json",
+    "config/jnu_exact_micro_entitled_source_adapter_contract_v1.json",
+    "config/jnu_entitled_market_data_storage_boundary_v1.json",
+    "config/jnu_operational_decision_protocol_v1.json",
+    "config/jnu_operational_framework_current_v1_9.json"
+  ],
+  "private_ledger_layout": {
+    "forecasts": "<PRIVATE_LEDGER_ROOT>/forecasts/<forecast_id>.json",
+    "outcomes": "<PRIVATE_LEDGER_ROOT>/outcomes/<forecast_id>.json",
+    "results": "<PRIVATE_LEDGER_ROOT>/results/private_live_shadow_current_v1.json",
+    "file_mode_posix": "0600"
+  },
+  "integrity_rules": [
+    "Forecast revalidates immutable request, private entitled quote evidence, <=900-second quote age at forecast creation, decision trace, request-preparation binding, risk-state evidence, and v1.9 framework provenance.",
+    "Outcome revalidates exact entitled close evidence, symbol/date/timestamp ordering, and binds to the canonical private forecast hash.",
+    "Scorer revalidates quote evidence, decision trace, request/risk provenance, private forecast hash, close evidence, returns, signed returns, and directional hits.",
+    "Private result may contain performance metrics; stdout and public repository may not."
+  ],
+  "public_export_status": "PROHIBITED_UNTIL_EXPLICIT_OSE_PROVIDER_PUBLICATION_PERMISSION",
+  "real_entitlement_connected": false,
+  "public_raw_market_data_written": false,
+  "public_derived_result_written": false,
+  "public_hash_written": false
+}

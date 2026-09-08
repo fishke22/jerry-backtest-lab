@@ -47,6 +47,11 @@ on:
       - "config/jnu_private_entitled_quote_bridge_protocol_v1.json"
       - "scripts/build_jnu_private_entitled_quote_bundle_v1.py"
       - "scripts/selftest_jnu_private_entitled_quote_bridge_v1.py"
+      - "config/jnu_private_entitled_live_shadow_protocol_v1.json"
+      - "scripts/register_jnu_private_entitled_forecast_v1.py"
+      - "scripts/record_jnu_private_entitled_outcome_v1.py"
+      - "scripts/score_jnu_private_entitled_live_shadow_v1.py"
+      - "scripts/selftest_jnu_private_entitled_live_shadow_v1.py"
   workflow_dispatch:
 
 permissions:
@@ -83,6 +88,7 @@ jobs:
           python -m json.tool config/jnu_ose_free_trial_onboarding_feasibility_v1.json >/dev/null
           python -m json.tool config/jnu_entitled_market_data_storage_boundary_v1.json >/dev/null
           python -m json.tool config/jnu_private_entitled_quote_bridge_protocol_v1.json >/dev/null
+          python -m json.tool config/jnu_private_entitled_live_shadow_protocol_v1.json >/dev/null
 
       - name: First-real rollover and source readiness selftests
         run: |
@@ -115,6 +121,11 @@ jobs:
         run: |
           python -m py_compile scripts/build_jnu_private_entitled_quote_bundle_v1.py scripts/selftest_jnu_private_entitled_quote_bridge_v1.py
           python scripts/selftest_jnu_private_entitled_quote_bridge_v1.py
+
+      - name: Private entitled live-shadow synthetic selftest
+        run: |
+          python -m py_compile scripts/register_jnu_private_entitled_forecast_v1.py scripts/record_jnu_private_entitled_outcome_v1.py scripts/score_jnu_private_entitled_live_shadow_v1.py scripts/selftest_jnu_private_entitled_live_shadow_v1.py
+          python scripts/selftest_jnu_private_entitled_live_shadow_v1.py
 
       - name: Full v1.8 analysis-fresh chain selftest
         run: python scripts/selftest_jnu_live_shadow_v18_integrity.py

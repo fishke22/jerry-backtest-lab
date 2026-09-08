@@ -201,7 +201,11 @@
     "v1_9_supersession_selftest": "scripts/selftest_jnu_framework_v19_supersession.py",
     "realtime_entitlement_resolution": "config/jnu_exact_micro_realtime_entitlement_resolution_v1.json",
     "entitled_source_adapter_contract": "config/jnu_exact_micro_entitled_source_adapter_contract_v1.json",
-    "entitled_source_validator": "scripts/validate_jnu_entitled_exact_micro_evidence_v1.py"
+    "entitled_source_validator": "scripts/validate_jnu_entitled_exact_micro_evidence_v1.py",
+    "private_entitled_live_shadow_protocol": "config/jnu_private_entitled_live_shadow_protocol_v1.json",
+    "private_entitled_forecast_registrar": "scripts/register_jnu_private_entitled_forecast_v1.py",
+    "private_entitled_outcome_recorder": "scripts/record_jnu_private_entitled_outcome_v1.py",
+    "private_entitled_scorer": "scripts/score_jnu_private_entitled_live_shadow_v1.py"
   },
   "operational_decision_protocol": {
     "status": "FROZEN_UNKNOWN_FAILSAFE_SELFTEST_PASS_ACTIVE",
@@ -300,6 +304,15 @@
     "runtime_public_boundary_alignment": "config/jnu_v19_runtime_public_boundary_alignment_v1.json",
     "public_atomic_entitlement_guard": "PASS_CI",
     "github_artifact_entitlement_guard": "PASS_CI",
-    "runtime_framework_hash_rule": "Framework SHA is external provenance only; never store this file's own hash inside the framework because that would be self-referential."
+    "runtime_framework_hash_rule": "Framework SHA is external provenance only; never store this file's own hash inside the framework because that would be self-referential.",
+    "private_entitled_live_shadow": {
+      "status": "SYNTHETIC_ARCHITECTURE_PENDING_CI",
+      "protocol": "config/jnu_private_entitled_live_shadow_protocol_v1.json",
+      "storage": "OUTSIDE_PUBLIC_REPOSITORY_PRIVATE_INTERNAL_ONLY",
+      "public_git_commit": false,
+      "public_artifact_upload": false,
+      "public_derived_output": false,
+      "real_entitlement_connected": false
+    }
   }
 }
