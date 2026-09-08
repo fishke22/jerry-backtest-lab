@@ -2,6 +2,9 @@ from __future__ import annotations
 import copy,hashlib,json,subprocess,sys,tempfile
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1];PY=sys.executable
+import importlib.util
+spec=importlib.util.spec_from_file_location("actgen",ROOT/"scripts"/"generate_jnu_real_backup_activation_manifest_v1.py")
+actgen=importlib.util.module_from_spec(spec);spec.loader.exec_module(actgen)
 AT=ROOT/"scripts"/"attest_jnu_provider_term_evidence_v1.py";GEN=ROOT/"scripts"/"generate_jnu_real_backup_activation_manifest_v1.py";EVAL=ROOT/"scripts"/"evaluate_jnu_provider_selection_shortlist_v1.py"
 def w(p,x):p.write_text(json.dumps(x,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
 def h(p):return hashlib.sha256(p.read_bytes()).hexdigest()
@@ -42,4 +45,5 @@ with tempfile.TemporaryDirectory(prefix="jnu_terms_ext_") as td0:
  cp=subprocess.run([PY,str(GEN),"--key-profile",str(currentk),"--term-attestation",str(ca),"--selection",str(sp),"--mode","REAL"],cwd=ROOT,capture_output=True,text=True);T["current_real_activation_blocked"]=cp.returncode!=0
  cp=subprocess.run([PY,str(EVAL)],cwd=ROOT,capture_output=True,text=True);sr=json.loads(cp.stdout);T["shortlist_has_no_selection"]=cp.returncode==0 and sr["real_provider_selection_performed"] is False
  T["shortlist_currently_not_selection_ready"]=all(x["status"]!="SELECTION_READY" for x in sr["market_data"]) and all(x["status"]!="SELECTION_READY" for x in sr["key_custody"])
+T["secret_scanner_rejects_real_secret_keys"]=bool(actgen.secret_walk({"api_key":"x","nested":{"access_token":"y","contains_credentials":False}})) and not actgen.secret_walk({"contains_credentials":False,"contains_key_material":False})
 status="PASS" if all(T.values()) else "FAIL";print(json.dumps({"status":status,"tests":T,"passed":sum(T.values()),"total":len(T)},indent=2));raise SystemExit(0 if status=="PASS" else 1)
