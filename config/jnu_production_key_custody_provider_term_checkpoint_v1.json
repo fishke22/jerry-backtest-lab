@@ -1,0 +1,50 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-08",
+  "status": "PRODUCTION_KEY_CUSTODY_PROVIDER_TERM_GATE_READY_CURRENT_REAL_STATE_BLOCKED",
+  "authoritative_framework": "config/jnu_operational_framework_current_v1_9.json",
+  "stable_framework_sha256": "57b94457bff146271e8c48e410bd5e16178c0050fc271c808d67abf4af418928",
+  "key_custody_matrix": "config/jnu_production_key_custody_decision_matrix_v1.json",
+  "provider_term_protocol": "config/jnu_provider_term_readiness_protocol_v1.json",
+  "current_key_profile": "config/jnu_production_key_custody_current_v1.json",
+  "current_provider_terms": "config/jnu_provider_term_readiness_current_v1.json",
+  "evaluator": "scripts/evaluate_jnu_production_key_custody_provider_readiness_v1.py",
+  "core_commit": "a123a902b72bfcca4d56cf572c495d4ecefbea9e",
+  "cloud_verification": {
+    "integrity_run": 34206608446,
+    "actionlint_run": 34206608455,
+    "readiness_selftest": "PASS_30_OF_30",
+    "prior_encrypted_backup_selftest": "PASS_30_OF_30",
+    "full_public_chain": "PASS",
+    "public_real_ledger": {
+      "forecasts": 0,
+      "outcomes": 0
+    }
+  },
+  "decision": {
+    "preferred_control_class": "MANAGED_HSM_BACKED_KMS",
+    "escalation_control_class": "DEDICATED_HSM_OR_CUSTOM_KEY_STORE",
+    "escalation_rule": "ONLY_IF_CONTRACT_OR_INTERNAL_POLICY_REQUIRES",
+    "vendor": "UNSELECTED",
+    "region": "UNSELECTED",
+    "production_key_id": "UNASSIGNED"
+  },
+  "current_gate": {
+    "status": "BLOCKED",
+    "reason": "KMS/HSM vendor-region-key profile unselected and all real OSE/provider term evidence remains unresolved",
+    "real_entitled_backup_activation_permitted": false,
+    "public_output_authorized": false
+  },
+  "hard_blocks": [
+    "LICENSED_REALTIME_ENTITLEMENT_REQUIRED_FOR_RELIABLE_SUB900_PATH",
+    "PRODUCTION_KMS_HSM_VENDOR_REGION_UNSELECTED",
+    "OSE_PROVIDER_TERM_EVIDENCE_UNRESOLVED",
+    "SERVICE_FACILITATOR_APPROVAL_UNRESOLVED",
+    "BACKUP_RETENTION_DELETION_TERMS_UNRESOLVED",
+    "REAL_RESTORE_DR_DRILL_PERMISSION_UNRESOLVED",
+    "NO_PUBLIC_RAW_OR_DERIVED_ENTITLED_OUTPUT",
+    "NO_BROKER_AUTH",
+    "NO_900_SECOND_RELAXATION"
+  ],
+  "next_stage": "PROVIDER_SELECTION_TERM_EVIDENCE_INGESTION_ACTIVATION_MANIFEST_NO_REAL_DATA"
+}

@@ -1,9 +1,9 @@
 {
   "version": "1.0",
   "as_of": "2026-09-08",
-  "status": "PRIVATE_ENCRYPTED_BACKUP_KEY_ROTATION_DR_DRILL_READY_SYNTHETIC_ONLY",
+  "status": "PRIVATE_ENCRYPTED_BACKUP_SYNTHETIC_READY_PRODUCTION_KEY_PROVIDER_TERM_GATE_BLOCKED",
   "authoritative_framework": "config/jnu_operational_framework_current_v1_9.json",
-  "stable_framework_sha256": "dec203b8e92511cf1bacc69606a9acf0d194aa2214ad6f0b786e2bc0da1dd2e7",
+  "stable_framework_sha256": "57b94457bff146271e8c48e410bd5e16178c0050fc271c808d67abf4af418928",
   "protocol": "config/jnu_private_key_encrypted_backup_protocol_v1.json",
   "restore_authorization_protocol": "config/jnu_private_restore_authorization_protocol_v1.json",
   "keyring": "scripts/jnu_private_keyring_v1.py",
@@ -60,5 +60,17 @@
     "NO_BROKER_AUTH",
     "NO_900_SECOND_RELAXATION"
   ],
-  "next_stage": "PRODUCTION_KEY_CUSTODY_KMS_HSM_PROVIDER_TERM_READINESS_GATE_NO_REAL_DATA"
+  "next_stage": "PROVIDER_SELECTION_TERM_EVIDENCE_INGESTION_ACTIVATION_MANIFEST_NO_REAL_DATA",
+  "production_key_custody_provider_term_gate": {
+    "checkpoint": "config/jnu_production_key_custody_provider_term_checkpoint_v1.json",
+    "core_commit": "a123a902b72bfcca4d56cf572c495d4ecefbea9e",
+    "integrity_run": 34206608446,
+    "actionlint_run": 34206608455,
+    "selftest": "PASS_30_OF_30",
+    "preferred_control_class": "MANAGED_HSM_BACKED_KMS",
+    "current_vendor": "UNSELECTED",
+    "current_region": "UNSELECTED",
+    "current_provider_terms": "UNRESOLVED",
+    "real_backup_activation": false
+  }
 }

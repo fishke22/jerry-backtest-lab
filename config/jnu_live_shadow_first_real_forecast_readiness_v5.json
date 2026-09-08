@@ -1,7 +1,7 @@
 {
   "version": "5.0",
   "as_of": "2026-09-08",
-  "status": "V1_9_FRAMEWORK_ACTIVE_ENTITLEMENT_AND_PRIVATE_DISTRIBUTION_PENDING",
+  "status": "V1_9_FRAMEWORK_ACTIVE_PRODUCTION_KEY_PROVIDER_TERM_GATE_BLOCKED",
   "supersedes": "config/jnu_live_shadow_first_real_forecast_readiness_v4.json",
   "authoritative_framework": "config/jnu_operational_framework_current_v1_9.json",
   "preregistration": "config/jnu_operational_live_shadow_prereg_v1_7.json",
@@ -39,7 +39,9 @@
     "OSE Free Trial applicant eligibility, Micro product selection, indirect provider/delivery route, and publication rights must be confirmed before use",
     "real entitled backup export/restore remains prohibited until OSE/provider backup-retention terms are explicitly resolved",
     "production KEK custody must use an explicitly selected private KMS/HSM or equivalent approved control; synthetic file-keyring is not production authorization",
-    "encrypted restore requires backupset/key-id/key-version/destination/time-window/single-use authorization binding"
+    "encrypted restore requires backupset/key-id/key-version/destination/time-window/single-use authorization binding",
+    "production encrypted backup requires a managed HSM-backed KMS profile (or dedicated HSM only if explicitly required) satisfying all hard key-custody controls",
+    "real encrypted backup activation requires every frozen OSE/provider term field to be explicitly approved/confirmed; inferred permission is prohibited"
   ],
   "ci": {
     "core_commit": "883d6d71d41a02ca19a713a5b5e2c3469c84cead",
@@ -88,7 +90,11 @@
     "private_concurrency_dr_selftest": "PASS_18_OF_18",
     "private_encrypted_backup_integrity_run": 34205335207,
     "private_encrypted_backup_actionlint_run": 34204715568,
-    "private_encrypted_backup_selftest": "PASS_28_OF_28"
+    "private_encrypted_backup_selftest": "PASS_28_OF_28",
+    "production_key_provider_term_core_commit": "a123a902b72bfcca4d56cf572c495d4ecefbea9e",
+    "production_key_provider_term_integrity_run": 34206608446,
+    "production_key_provider_term_actionlint_run": 34206608455,
+    "production_key_provider_term_selftest": "PASS_30_OF_30"
   },
   "current_blocker": "LICENSED_REALTIME_ENTITLEMENT_REQUIRED_FOR_RELIABLE_SUB900_PATH",
   "weekend_probe": {
@@ -113,10 +119,13 @@
   "entitled_market_data_private_boundary": "config/jnu_entitled_market_data_storage_boundary_v1.json",
   "ose_free_trial_stage_checkpoint": "config/jnu_ose_free_trial_onboarding_checkpoint_v1.json",
   "private_entitled_quote_bridge": "config/jnu_private_entitled_quote_bridge_protocol_v1.json",
-  "stable_v1_9_framework_sha256": "dec203b8e92511cf1bacc69606a9acf0d194aa2214ad6f0b786e2bc0da1dd2e7",
+  "stable_v1_9_framework_sha256": "57b94457bff146271e8c48e410bd5e16178c0050fc271c808d67abf4af418928",
   "private_entitled_live_shadow_protocol": "config/jnu_private_entitled_live_shadow_protocol_v1.json",
   "private_lifecycle_protocol": "config/jnu_private_lifecycle_protocol_v1.json",
   "private_concurrency_dr_state_protocol": "config/jnu_private_concurrency_dr_state_protocol_v1.json",
   "private_key_encrypted_backup_protocol": "config/jnu_private_key_encrypted_backup_protocol_v1.json",
-  "private_restore_authorization_protocol": "config/jnu_private_restore_authorization_protocol_v1.json"
+  "private_restore_authorization_protocol": "config/jnu_private_restore_authorization_protocol_v1.json",
+  "production_key_custody_matrix": "config/jnu_production_key_custody_decision_matrix_v1.json",
+  "provider_term_readiness_protocol": "config/jnu_provider_term_readiness_protocol_v1.json",
+  "production_backup_readiness_evaluator": "scripts/evaluate_jnu_production_key_custody_provider_readiness_v1.py"
 }

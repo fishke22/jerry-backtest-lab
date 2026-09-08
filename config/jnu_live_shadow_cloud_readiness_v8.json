@@ -1,7 +1,7 @@
 {
   "version": "8.0",
   "as_of": "2026-09-08",
-  "status": "V1_9_FRAMEWORK_ACTIVE_ENTITLEMENT_PRIVATE_BOUNDARY_BLOCKED",
+  "status": "V1_9_FRAMEWORK_ACTIVE_PRODUCTION_KEY_PROVIDER_TERM_GATE_BLOCKED",
   "authoritative_framework": "config/jnu_operational_framework_current_v1_9.json",
   "preregistration": "config/jnu_operational_live_shadow_prereg_v1_7.json",
   "implementation": "config/jnu_operational_live_shadow_implementation_v1_7.json",
@@ -265,6 +265,23 @@
       "real_entitlement_connected": false,
       "public_real_forecasts": 0,
       "public_real_outcomes": 0
+    },
+    "production_key_custody_provider_term_gate": {
+      "status": "CI_PASS_CURRENT_REAL_STATE_BLOCKED",
+      "key_custody_matrix": "config/jnu_production_key_custody_decision_matrix_v1.json",
+      "provider_term_protocol": "config/jnu_provider_term_readiness_protocol_v1.json",
+      "current_key_profile": "config/jnu_production_key_custody_current_v1.json",
+      "current_provider_terms": "config/jnu_provider_term_readiness_current_v1.json",
+      "evaluator": "scripts/evaluate_jnu_production_key_custody_provider_readiness_v1.py",
+      "preferred_control_class": "MANAGED_HSM_BACKED_KMS",
+      "dedicated_hsm_escalation": "ONLY_IF_CONTRACT_OR_INTERNAL_POLICY_REQUIRES",
+      "core_commit": "a123a902b72bfcca4d56cf572c495d4ecefbea9e",
+      "integrity_run": 34206608446,
+      "actionlint_run": 34206608455,
+      "selftest": "PASS_30_OF_30",
+      "stable_framework_sha256": "57b94457bff146271e8c48e410bd5e16178c0050fc271c808d67abf4af418928",
+      "current_status": "BLOCKED",
+      "real_entitled_backup_activation_permitted": false
     }
   },
   "frozen_max_reference_age_seconds": 900,
@@ -280,7 +297,7 @@
     "decision_engine": "NO_VALIDATED_DIRECTIONAL_EDGE"
   },
   "blocker": "LICENSED_REALTIME_ENTITLEMENT_REQUIRED_FOR_RELIABLE_SUB900_PATH",
-  "next_action": "Synthetic encrypted DR is ready. Do not enable real backup export. Resolve production key custody/KMS-HSM and OSE/provider backup-retention/cloud terms first.",
+  "next_action": "Do not enable real backup. Select a production KMS/HSM vendor+region only after provider/cloud constraints are known, and ingest explicit OSE/provider term evidence into the frozen readiness protocol.",
   "integrity_hash_protocol": "config/jnu_integrity_hash_protocol_v1.json",
   "integrity_hash_method": "SHA256_TEXT_EOL_CRLF_V1",
   "core_seal_commit": "883d6d71d41a02ca19a713a5b5e2c3469c84cead",

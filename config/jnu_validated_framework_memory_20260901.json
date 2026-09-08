@@ -208,7 +208,7 @@
   "authoritative_validation_pipeline_checkpoint": "config/jnu_validation_pipeline_checkpoint_20260902_v1.json",
   "validation_pipeline_status": "JNU_VALIDATION_PIPELINE_READY_FORWARD_DATA_PENDING",
   "validation_pipeline_head": "ff322f11dbb23da6be093056ac6ef47f2db10e4a",
-  "next_action": "Continue production-readiness governance only: choose/validate KMS-HSM/key-custody architecture and resolve OSE/provider backup, retention, cloud-processing, and restore terms. Real encrypted backup remains prohibited.",
+  "next_action": "Continue production-readiness governance only: shortlist a compliant managed HSM-backed KMS deployment and ingest explicit OSE/provider evidence for cloud processing, backup, region, retention/deletion, restore, DR drills, key custody, incident reporting and audit cooperation. Real encrypted backup remains prohibited.",
   "stage8_forward_local_ingest": {
     "status": "SELFTEST_PASS_NO_SOURCE_CHANGE",
     "script": "scripts/ingest_jnu_stage8_forward_local.py",
@@ -509,5 +509,22 @@
     "real_entitlement_connected": false,
     "public_real_forecasts": 0,
     "public_real_outcomes": 0
+  },
+  "production_key_custody_provider_term_gate": {
+    "status": "CI_PASS_CURRENT_REAL_STATE_BLOCKED",
+    "key_custody_matrix": "config/jnu_production_key_custody_decision_matrix_v1.json",
+    "provider_term_protocol": "config/jnu_provider_term_readiness_protocol_v1.json",
+    "current_key_profile": "config/jnu_production_key_custody_current_v1.json",
+    "current_provider_terms": "config/jnu_provider_term_readiness_current_v1.json",
+    "evaluator": "scripts/evaluate_jnu_production_key_custody_provider_readiness_v1.py",
+    "preferred_control_class": "MANAGED_HSM_BACKED_KMS",
+    "dedicated_hsm_escalation": "ONLY_IF_CONTRACT_OR_INTERNAL_POLICY_REQUIRES",
+    "core_commit": "a123a902b72bfcca4d56cf572c495d4ecefbea9e",
+    "integrity_run": 34206608446,
+    "actionlint_run": 34206608455,
+    "selftest": "PASS_30_OF_30",
+    "stable_framework_sha256": "57b94457bff146271e8c48e410bd5e16178c0050fc271c808d67abf4af418928",
+    "current_status": "BLOCKED",
+    "real_entitled_backup_activation_permitted": false
   }
 }

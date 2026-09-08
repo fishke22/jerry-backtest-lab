@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "as_of": "2026-09-08",
-  "status": "PRIVATE_ENCRYPTED_BACKUP_SYNTHETIC_READY_PRODUCTION_ACTIVATION_GATE_PENDING_CI",
+  "status": "PRIVATE_ENCRYPTED_BACKUP_SYNTHETIC_READY_PRODUCTION_ACTIVATION_GATE_CI_PASS_CURRENT_REAL_STATE_BLOCKED",
   "authoritative_framework": "config/jnu_operational_framework_current_v1_9.json",
   "purpose": "Add external private key lifecycle, AES-256-GCM encrypted synthetic backup sets, restore authorization, backup generation rotation by quarantine, and private DR drill governance.",
   "cryptography": {
@@ -83,8 +83,8 @@
   "public_output": false,
   "real_entitlement_connected": false,
   "cloud_verification": {
-    "integrity_run": 34205335207,
-    "actionlint_run": 34204715568,
+    "integrity_run": 34206608446,
+    "actionlint_run": 34206608455,
     "encrypted_backup_selftest": "PASS_28_OF_28",
     "concurrency_dr_state_regression": "PASS_18_OF_18",
     "lifecycle_regression": "PASS_19_OF_19",
@@ -100,7 +100,8 @@
       "forecasts": 0,
       "outcomes": 0
     },
-    "stable_framework_sha256": "dec203b8e92511cf1bacc69606a9acf0d194aa2214ad6f0b786e2bc0da1dd2e7"
+    "stable_framework_sha256": "57b94457bff146271e8c48e410bd5e16178c0050fc271c808d67abf4af418928",
+    "production_key_custody_provider_term_gate": "PASS_30_OF_30"
   },
   "implementation_commits": {
     "parallel_initial": "2aff1aecc8f9463999e14933da57de9f9807f803",
@@ -110,14 +111,19 @@
     "strengthened_selftest": "2b4d2ac48d2dd4121521d1f1fafa78abae9376b1"
   },
   "production_activation_gate": {
-    "status": "KMS_HSM_AND_PROVIDER_TERM_READINESS_REQUIRED",
+    "status": "CI_PASS_CURRENT_MANIFEST_BLOCKED",
     "key_custody_matrix": "config/jnu_production_key_custody_decision_matrix_v1.json",
     "provider_term_protocol": "config/jnu_provider_term_readiness_protocol_v1.json",
     "evaluator": "scripts/evaluate_jnu_production_key_custody_provider_readiness_v1.py",
     "current_key_profile": "config/jnu_production_key_custody_current_v1.json",
-    "current_provider_terms": "config/jnu_provider_term_readiness_current_v1.json",
+    "current_provider_terms": "UNRESOLVED",
     "default_control_class": "MANAGED_HSM_BACKED_KMS",
     "dedicated_hsm_escalation": "ONLY_IF_CONTRACT_OR_INTERNAL_POLICY_REQUIRES",
-    "real_backup_status": "BLOCKED_UNTIL_BOTH_KEY_AND_TERM_GATES_PASS"
+    "real_backup_status": "BLOCKED_UNTIL_BOTH_KEY_AND_TERM_GATES_PASS",
+    "integrity_run": 34206608446,
+    "actionlint_run": 34206608455,
+    "selftest": "PASS_30_OF_30",
+    "current_evaluation": "BLOCKED",
+    "current_key_custody": "UNSELECTED"
   }
 }
