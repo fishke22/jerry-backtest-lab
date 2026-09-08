@@ -2,6 +2,7 @@ from __future__ import annotations
 import argparse,json,os,shutil
 from pathlib import Path
 from jnu_private_atomic_io_v1 import backup_path,checksum_path,require_external,restore_from_backup,verify_backup
+from jnu_private_lock_v1 import is_stale,read_lock,quarantine_stale
 from validate_jnu_private_launch_manifest_v1 import load as load_manifest,validate as validate_manifest
 
 def scan(root:Path,apply:bool)->dict:
@@ -26,13 +27,25 @@ def scan(root:Path,apply:bool)->dict:
     orphan=sorted(oids-fids)
     if orphan:fatal.append((root/"outcomes","ORPHAN_OUTCOME"))
     pending=len(fids-oids)
+    stale_locks=[];active_locks=[]
+    ld=root/".locks"
+    for lp in sorted(ld.glob("*.json")) if ld.exists() else []:
+        meta=read_lock(lp)
+        if is_stale(meta):stale_locks.append(lp)
+        else:active_locks.append(lp)
+    if active_locks:fatal.append((ld,"ACTIVE_PRIVATE_LOCK_PRESENT"))
+    for lp in stale_locks:recoverable.append((lp,"STALE_PRIVATE_LOCK"))
     if apply and fatal:raise RuntimeError("private recovery cannot apply while fatal corruption exists")
     if apply:
         seen=set()
-        for p,_ in recoverable:
+        for p,reason in recoverable:
             key=str(p.resolve())
             if key in seen:continue
-            seen.add(key);restore_from_backup(root,p);restored+=1
+            seen.add(key)
+            if reason=="STALE_PRIVATE_LOCK":
+                if p.exists():quarantine_stale(root,p)
+            else:
+                restore_from_backup(root,p);restored+=1
         q=root/"recovery"/"quarantine"/"temp";q.mkdir(parents=True,exist_ok=True)
         for p in list(root.rglob(".*.tmp-*")):
             if q in p.parents:continue
@@ -40,7 +53,7 @@ def scan(root:Path,apply:bool)->dict:
             if dest.exists():dest=q/(p.name+"-"+str(quarantined_tmp))
             os.replace(p,dest);quarantined_tmp+=1
     status="FATAL_CORRUPTION" if fatal else ("RECOVERY_REQUIRED" if recoverable and not apply else "PASS")
-    return {"status":status,"recoverable_count":len({str(x[0]) for x in recoverable}),"fatal_count":len(fatal),"restored_count":restored,"pending_outcome_count":pending,"temp_quarantined_count":quarantined_tmp}
+    return {"status":status,"recoverable_count":len({str(x[0]) for x in recoverable}),"fatal_count":len(fatal),"restored_count":restored,"pending_outcome_count":pending,"temp_quarantined_count":quarantined_tmp,"stale_lock_count":len(stale_locks),"active_lock_count":len(active_locks)}
 def main():
     ap=argparse.ArgumentParser();ap.add_argument("--manifest",type=Path,required=True);ap.add_argument("--apply",action="store_true");a=ap.parse_args()
     m=load_manifest(a.manifest);v=validate_manifest(m)

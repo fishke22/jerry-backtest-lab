@@ -60,6 +60,12 @@ on:
       - "scripts/recover_jnu_private_entitled_ledger_v1.py"
       - "scripts/retain_jnu_private_entitled_ledger_v1.py"
       - "scripts/selftest_jnu_private_lifecycle_v1.py"
+      - "config/jnu_private_concurrency_dr_state_protocol_v1.json"
+      - "scripts/jnu_private_lock_v1.py"
+      - "scripts/jnu_private_launch_state_v1.py"
+      - "scripts/export_jnu_private_backupset_v1.py"
+      - "scripts/import_jnu_private_backupset_v1.py"
+      - "scripts/selftest_jnu_private_concurrency_dr_state_v1.py"
   workflow_dispatch:
 
 permissions:
@@ -99,6 +105,7 @@ jobs:
           python -m json.tool config/jnu_private_entitled_live_shadow_protocol_v1.json >/dev/null
           python -m json.tool config/jnu_private_lifecycle_protocol_v1.json >/dev/null
           python -m json.tool config/jnu_private_launch_manifest_protocol_v1.json >/dev/null
+          python -m json.tool config/jnu_private_concurrency_dr_state_protocol_v1.json >/dev/null
 
       - name: First-real rollover and source readiness selftests
         run: |
@@ -141,6 +148,11 @@ jobs:
         run: |
           python -m py_compile scripts/jnu_private_atomic_io_v1.py scripts/validate_jnu_private_launch_manifest_v1.py scripts/launch_jnu_private_entitled_forecast_v1.py scripts/recover_jnu_private_entitled_ledger_v1.py scripts/retain_jnu_private_entitled_ledger_v1.py scripts/selftest_jnu_private_lifecycle_v1.py
           python scripts/selftest_jnu_private_lifecycle_v1.py
+
+      - name: Private concurrency DR state-machine selftest
+        run: |
+          python -m py_compile scripts/jnu_private_lock_v1.py scripts/jnu_private_launch_state_v1.py scripts/export_jnu_private_backupset_v1.py scripts/import_jnu_private_backupset_v1.py scripts/selftest_jnu_private_concurrency_dr_state_v1.py
+          python scripts/selftest_jnu_private_concurrency_dr_state_v1.py
 
       - name: Full v1.8 analysis-fresh chain selftest
         run: python scripts/selftest_jnu_live_shadow_v18_integrity.py

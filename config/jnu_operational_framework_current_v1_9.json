@@ -209,7 +209,11 @@
     "private_lifecycle_protocol": "config/jnu_private_lifecycle_protocol_v1.json",
     "private_launch_manifest_protocol": "config/jnu_private_launch_manifest_protocol_v1.json",
     "private_recovery_tool": "scripts/recover_jnu_private_entitled_ledger_v1.py",
-    "private_retention_tool": "scripts/retain_jnu_private_entitled_ledger_v1.py"
+    "private_retention_tool": "scripts/retain_jnu_private_entitled_ledger_v1.py",
+    "private_concurrency_dr_state_protocol": "config/jnu_private_concurrency_dr_state_protocol_v1.json",
+    "private_backup_export": "scripts/export_jnu_private_backupset_v1.py",
+    "private_backup_import": "scripts/import_jnu_private_backupset_v1.py",
+    "private_launch_state_machine": "scripts/jnu_private_launch_state_v1.py"
   },
   "operational_decision_protocol": {
     "status": "FROZEN_UNKNOWN_FAILSAFE_SELFTEST_PASS_ACTIVE",
@@ -327,6 +331,17 @@
       "real_retention_terms": "UNCONFIRMED",
       "permanent_purge": "PROHIBITED_UNTIL_EXPLICIT_TERMS",
       "public_output": false
+    },
+    "private_concurrency_dr_state": {
+      "status": "SYNTHETIC_ONLY_PENDING_CI",
+      "cross_process_lock": true,
+      "stale_lock_recovery": true,
+      "portable_private_backupset": true,
+      "backupset_encryption": "NOT_IMPLEMENTED_REAL_EXPORT_PROHIBITED",
+      "disaster_recovery_full_revalidation": true,
+      "launch_state_machine": true,
+      "public_output": false,
+      "real_entitlement_connected": false
     }
   }
 }

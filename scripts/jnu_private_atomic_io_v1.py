@@ -54,16 +54,15 @@ def verify_backup(root:Path,target:Path)->dict:
     return {"status":"PRIMARY_MISSING_BACKUP_VALID","backup":str(b),"sha256":expected}
 
 def write_immutable_json(root:Path,target:Path,obj:Any)->dict:
+    from jnu_private_lock_v1 import acquire_private_lock
     require_external(root,"private ledger root");require_external(target,"immutable target")
     root=root.resolve();target=target.resolve()
     data=json_bytes(obj);digest=sha256_bytes(data)
-    lockdir=root/".locks";lockdir.mkdir(parents=True,exist_ok=True)
-    lock=lockdir/(hashlib.sha256(str(target).encode()).hexdigest()+".lock")
-    try:
-        fd=os.open(str(lock),os.O_CREAT|os.O_EXCL|os.O_WRONLY,0o600);os.close(fd)
-    except FileExistsError:raise RuntimeError("private immutable record lock already exists; run recovery before retry")
-    try:
-        if target.exists():raise FileExistsError(str(target))
+    with acquire_private_lock(root,"immutable:"+str(target),lease_seconds=120,wait_seconds=5,break_stale=False):
+        if target.exists():
+            if sha256_file(target)==digest and verify_backup(root,target).get("status")=="PASS":
+                return {"status":"ALREADY_PRESENT","sha256":digest,"backup":str(backup_path(root,target))}
+            raise FileExistsError(str(target))
         b=backup_path(root,target);s=checksum_path(b)
         if b.exists() or s.exists():
             if not b.exists() or not s.exists():raise RuntimeError("partial private backup metadata detected; run recovery")
@@ -73,9 +72,6 @@ def write_immutable_json(root:Path,target:Path,obj:Any)->dict:
             _atomic_bytes(b,data,replace=False);_atomic_bytes(s,(digest+"\n").encode(),replace=False)
         _atomic_bytes(target,data,replace=False)
         return {"status":"WRITTEN","sha256":digest,"backup":str(b)}
-    finally:
-        try:lock.unlink();_fsync_dir(lockdir)
-        except OSError:pass
 
 def write_replace_json(path:Path,obj:Any)->str:
     require_external(path,"private replace target");data=json_bytes(obj);_atomic_bytes(path.resolve(),data,replace=True);return sha256_bytes(data)

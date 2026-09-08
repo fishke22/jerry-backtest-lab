@@ -1,0 +1,66 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-08",
+  "status": "PRIVATE_CONCURRENCY_DR_STATE_MACHINE_SYNTHETIC_ONLY_PENDING_CI",
+  "authoritative_framework": "config/jnu_operational_framework_current_v1_9.json",
+  "purpose": "Add lease-based cross-process locking, launch-state reconciliation, portable checksum-manifest private backup sets, disaster-recovery import with full revalidation, and interrupted-state resume to the private entitled live-shadow architecture.",
+  "components": {
+    "lock": "scripts/jnu_private_lock_v1.py",
+    "launch_state": "scripts/jnu_private_launch_state_v1.py",
+    "backup_export": "scripts/export_jnu_private_backupset_v1.py",
+    "backup_import": "scripts/import_jnu_private_backupset_v1.py",
+    "selftest": "scripts/selftest_jnu_private_concurrency_dr_state_v1.py"
+  },
+  "concurrency": {
+    "lock_scope": "PRIVATE_LEDGER_EXTERNAL_ONLY",
+    "lock_metadata": [
+      "owner_token",
+      "pid",
+      "hostname",
+      "acquired_at_utc",
+      "lease_expires_at_utc",
+      "key_sha256"
+    ],
+    "default_lease_seconds": 120,
+    "default_wait_seconds": 5,
+    "active_lock": "WAIT_THEN_FAIL_LOCK_BUSY",
+    "expired_lock": "FAIL_CLOSED_UNTIL_EXPLICIT_RECOVERY_OR_BREAK_STALE",
+    "stale_lock_recovery": "QUARANTINE_THEN_RETRY",
+    "same_request_concurrent_launch": "EXACTLY_ONE_RECORD_SECOND_CALL_IDEMPOTENT"
+  },
+  "state_machine": {
+    "states": [
+      "PREPARED",
+      "QUOTE_BOUND",
+      "FORECASTED",
+      "OUTCOME_PENDING",
+      "OUTCOME_RECORDED",
+      "SCORED"
+    ],
+    "monotonic": true,
+    "canonical_current_after_forecast_without_outcome": "OUTCOME_PENDING",
+    "impossible_or_regressive_state": "FAIL_CLOSED",
+    "state_storage": "<PRIVATE_LEDGER_ROOT>/launch_states/<launch_id>.json",
+    "disaster_reconstruction_from_private_artifacts": true,
+    "public_state_output": false
+  },
+  "backup_set": {
+    "format": "PRIVATE_DIRECTORY_V1",
+    "encrypted": false,
+    "real_export_status": "PROHIBITED_UNTIL_PRIVATE_BACKUP_ENCRYPTION_KEY_MANAGEMENT_AND_PROVIDER_TERMS_ARE_RESOLVED",
+    "synthetic_export_allowed": true,
+    "manifest": "manifest.json",
+    "payload": "payload/",
+    "per_file_sha256": true,
+    "relative_paths_only": true,
+    "path_traversal_rejected": true,
+    "source_ledger_lock_required": true,
+    "import_destination_must_be_empty": true,
+    "current_framework_sha_required": true,
+    "import_runs_recovery_scan": true,
+    "import_runs_private_scorer_revalidation": true,
+    "public_repository_destination_prohibited": true
+  },
+  "real_entitlement_connected": false,
+  "public_output": false
+}
