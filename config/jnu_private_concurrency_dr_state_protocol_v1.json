@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "as_of": "2026-09-08",
-  "status": "PRIVATE_CONCURRENCY_DR_STATE_SYNTHETIC_ONLY_LOCK_HIERARCHY_FIX_PENDING_CI",
+  "status": "PRIVATE_CONCURRENCY_DR_STATE_SYNTHETIC_CI_PASS_REAL_ENTITLEMENT_NOT_CONNECTED",
   "authoritative_framework": "config/jnu_operational_framework_current_v1_9.json",
   "purpose": "Add lease-based cross-process locking, launch-state reconciliation, portable checksum-manifest private backup sets, disaster-recovery import with full revalidation, and interrupted-state resume to the private entitled live-shadow architecture.",
   "components": {
@@ -73,5 +73,28 @@
     "launch_state_policy": "RECONSTRUCT_FROM_PRIVATE_ARTIFACTS_AFTER_IMPORT"
   },
   "real_entitlement_connected": false,
-  "public_output": false
+  "public_output": false,
+  "core_commit": "560e9019a3bef113fb5a59d1438d29407c1edb05",
+  "lock_hierarchy_fix_commit": "1a0b1e56b6337453c007132740a9ef614d89835d",
+  "retention_indent_fix_commit": "3da3876c0fade6bbf61913231c255c7a7fb1f6f4",
+  "state_reconstruction_fixture_fix_commit": "b84bf573540d3db91ad651b9d0684d17135a6bde",
+  "cloud_verification": {
+    "integrity_run": 34202481036,
+    "actionlint_run": 34202144782,
+    "concurrency_dr_state_selftest": "PASS_18_OF_18",
+    "lifecycle_selftest": "PASS_19_OF_19",
+    "private_live_shadow_selftest": "PASS_16_OF_16",
+    "private_quote_bridge_selftest": "PASS_10_OF_10",
+    "entitled_quote_evidence_selftest": "PASS_13_OF_13",
+    "private_storage_boundary_selftest": "PASS_9_OF_9",
+    "public_boundary_selftest": "PASS_8_OF_8",
+    "public_artifact_safety_selftest": "PASS_4_OF_4",
+    "v1_9_supersession": "PASS_17_OF_17",
+    "full_public_chain": "PASS",
+    "public_real_ledger": {
+      "forecasts": 0,
+      "outcomes": 0
+    },
+    "stable_framework_sha256": "7f8ce80aef0a3e776f4faeaf11c58e53dd30f60c46c691402ac4fe88816ddb46"
+  }
 }

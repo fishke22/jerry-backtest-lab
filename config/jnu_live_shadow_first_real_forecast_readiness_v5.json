@@ -78,7 +78,11 @@
     "private_lifecycle_fixture_fix_commit": "3cc91fbb8bf137d048b6420fc69d19a53aaab59b",
     "private_lifecycle_integrity_run": 34186994655,
     "private_lifecycle_actionlint_run": 34186927021,
-    "private_lifecycle_selftest": "PASS_19_OF_19"
+    "private_lifecycle_selftest": "PASS_19_OF_19",
+    "private_concurrency_dr_core_commit": "560e9019a3bef113fb5a59d1438d29407c1edb05",
+    "private_concurrency_dr_integrity_run": 34202481036,
+    "private_concurrency_dr_actionlint_run": 34202144782,
+    "private_concurrency_dr_selftest": "PASS_18_OF_18"
   },
   "current_blocker": "LICENSED_REALTIME_ENTITLEMENT_REQUIRED_FOR_RELIABLE_SUB900_PATH",
   "weekend_probe": {
@@ -103,7 +107,8 @@
   "entitled_market_data_private_boundary": "config/jnu_entitled_market_data_storage_boundary_v1.json",
   "ose_free_trial_stage_checkpoint": "config/jnu_ose_free_trial_onboarding_checkpoint_v1.json",
   "private_entitled_quote_bridge": "config/jnu_private_entitled_quote_bridge_protocol_v1.json",
-  "stable_v1_9_framework_sha256": "e9a464b95b01ac6e37dfb758b0805e894b5a4972ec29081430ba89eea0a27a13",
+  "stable_v1_9_framework_sha256": "7f8ce80aef0a3e776f4faeaf11c58e53dd30f60c46c691402ac4fe88816ddb46",
   "private_entitled_live_shadow_protocol": "config/jnu_private_entitled_live_shadow_protocol_v1.json",
-  "private_lifecycle_protocol": "config/jnu_private_lifecycle_protocol_v1.json"
+  "private_lifecycle_protocol": "config/jnu_private_lifecycle_protocol_v1.json",
+  "private_concurrency_dr_state_protocol": "config/jnu_private_concurrency_dr_state_protocol_v1.json"
 }

@@ -3,7 +3,7 @@
   "as_of": "2026-09-08",
   "status": "PRIVATE_ENTITLED_LIVE_SHADOW_ARCHITECTURE_READY_SYNTHETIC_ONLY",
   "authoritative_framework": "config/jnu_operational_framework_current_v1_9.json",
-  "stable_framework_sha256": "e9a464b95b01ac6e37dfb758b0805e894b5a4972ec29081430ba89eea0a27a13",
+  "stable_framework_sha256": "7f8ce80aef0a3e776f4faeaf11c58e53dd30f60c46c691402ac4fe88816ddb46",
   "framework_hash_method": "SHA256_TEXT_EOL_CRLF_V1",
   "protocol": "config/jnu_private_entitled_live_shadow_protocol_v1.json",
   "quote_bridge": "config/jnu_private_entitled_quote_bridge_protocol_v1.json",
@@ -33,8 +33,10 @@
     "NO_BROKER_AUTH_UNDER_CURRENT_GOVERNANCE",
     "NO_900_SECOND_GATE_RELAXATION"
   ],
-  "next_stage": "PRIVATE_CONCURRENCY_BACKUPSET_DISASTER_RECOVERY_LAUNCH_STATE_MACHINE_SYNTHETIC_ONLY",
+  "next_stage": "PRIVATE_KEY_MANAGEMENT_ENCRYPTED_BACKUP_ROTATION_DR_DRILL_GOVERNANCE_SYNTHETIC_ONLY",
   "lifecycle_protocol": "config/jnu_private_lifecycle_protocol_v1.json",
   "lifecycle_selftest": "PASS_19_OF_19",
-  "lifecycle_integrity_run": 34186994655
+  "lifecycle_integrity_run": 34186994655,
+  "concurrency_dr_state_protocol": "config/jnu_private_concurrency_dr_state_protocol_v1.json",
+  "concurrency_dr_state_selftest": "PASS_18_OF_18"
 }

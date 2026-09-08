@@ -474,5 +474,19 @@
     "permanent_purge": false,
     "public_real_forecasts": 0,
     "public_real_outcomes": 0
+  },
+  "private_concurrency_dr_state": {
+    "status": "SYNTHETIC_CI_PASS_REAL_ENTITLEMENT_NOT_CONNECTED",
+    "protocol": "config/jnu_private_concurrency_dr_state_protocol_v1.json",
+    "core_commit": "560e9019a3bef113fb5a59d1438d29407c1edb05",
+    "lock_hierarchy_fix_commit": "1a0b1e56b6337453c007132740a9ef614d89835d",
+    "final_fixture_fix_commit": "b84bf573540d3db91ad651b9d0684d17135a6bde",
+    "integrity_run": 34202481036,
+    "actionlint_run": 34202144782,
+    "selftest": "PASS_18_OF_18",
+    "stable_framework_sha256": "7f8ce80aef0a3e776f4faeaf11c58e53dd30f60c46c691402ac4fe88816ddb46",
+    "real_entitlement_connected": false,
+    "public_real_forecasts": 0,
+    "public_real_outcomes": 0
   }
 }
