@@ -1,0 +1,754 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-08",
+  "status": "DRAFT_PROVIDER_EVIDENCE_INTAKE_PACKS_UNSENT_UNSELECTED",
+  "protocol": "config/jnu_provider_evidence_intake_protocol_v1.json",
+  "market_data_provider_packs": [
+    {
+      "candidate_id": "BROadridge_CQG_OSE",
+      "legal_or_brand_name": "Broadridge Trading and Connectivity Solutions Japan K.K. / CQG",
+      "shortlist_disposition": "SHORTLIST_TIER_A_TECHNICAL_TRANSPORT_EVIDENCE_PARTIAL",
+      "contact_status": "UNCONTACTED_DRAFT_UNSENT",
+      "outreach_authorized": false,
+      "provider_selected": false,
+      "candidate_specific_context": [
+        "General CQG API transport is already publicly evidenced; exact Nikkei 225 Micro individual-month coverage remains unresolved.",
+        "Read-only data-only credential separation from order-capable transport must be explicitly confirmed."
+      ],
+      "questionnaire": [
+        {
+          "id": "MD01",
+          "target_field": "exact_micro_product_status",
+          "prompt": "Can you explicitly confirm realtime OSE Nikkei 225 Micro Futures data for an exact individual contract month, including the instrument identifier and provider timestamp semantics?",
+          "evidence_requested": "Written product/specification confirmation",
+          "status": "UNRESOLVED"
+        },
+        {
+          "id": "MD02",
+          "target_field": "read_only_transport_status",
+          "prompt": "Can the service be provisioned as a data-only read-only session that cannot place, amend, or cancel orders, and is it separated from any broker authentication or trading permission?",
+          "evidence_requested": "Written transport/permission architecture confirmation",
+          "status": "UNRESOLVED"
+        },
+        {
+          "id": "MD03",
+          "target_field": "provider_third_party_cloud_processing_status",
+          "prompt": "May entitled OSE data be processed in a private third-party cloud workload used only by the entitled subscriber, with no public redistribution?",
+          "evidence_requested": "Written contractual or policy permission",
+          "status": "UNRESOLVED"
+        },
+        {
+          "id": "MD04",
+          "target_field": "encrypted_backup_creation_status",
+          "prompt": "May the subscriber create encrypted backups of entitled quote, forecast, and outcome evidence for private internal recovery?",
+          "evidence_requested": "Written contractual or policy permission",
+          "status": "UNRESOLVED"
+        },
+        {
+          "id": "MD05",
+          "target_field": "encrypted_backup_storage_status",
+          "prompt": "May those encrypted backups be stored in a private cloud storage service under subscriber-controlled access?",
+          "evidence_requested": "Written contractual or policy permission",
+          "status": "UNRESOLVED"
+        },
+        {
+          "id": "MD06",
+          "target_field": "backup_region_status",
+          "prompt": "Are there geographic or residency restrictions on backup storage or DR processing, and is Tokyo-region storage acceptable?",
+          "evidence_requested": "Written region/residency terms",
+          "status": "UNRESOLVED"
+        },
+        {
+          "id": "MD07",
+          "target_field": "backup_retention_terms_status",
+          "prompt": "What retention period or maximum retention limits apply to encrypted backup copies containing entitled data?",
+          "evidence_requested": "Written retention terms",
+          "status": "UNRESOLVED"
+        },
+        {
+          "id": "MD08",
+          "target_field": "backup_deletion_terms_status",
+          "prompt": "What deletion, expiry, or end-of-entitlement destruction obligations apply to backup copies?",
+          "evidence_requested": "Written deletion/destruction terms",
+          "status": "UNRESOLVED"
+        },
+        {
+          "id": "MD09",
+          "target_field": "restore_permission_status",
+          "prompt": "May encrypted backup copies be restored into a private recovery environment for service recovery?",
+          "evidence_requested": "Written restore permission",
+          "status": "UNRESOLVED"
+        },
+        {
+          "id": "MD10",
+          "target_field": "dr_drill_permission_status",
+          "prompt": "May periodic disaster-recovery drills restore a private copy solely to verify integrity, scorer revalidation, and state reconstruction?",
+          "evidence_requested": "Written DR-test permission",
+          "status": "UNRESOLVED"
+        },
+        {
+          "id": "MD11",
+          "target_field": "kms_hsm_key_custody_status",
+          "prompt": "Is envelope encryption with a managed HSM-backed KMS acceptable for backup key custody, with the KEK non-exportable and only a per-backup DEK wrapped?",
+          "evidence_requested": "Written cryptographic-control acceptance or restrictions",
+          "status": "UNRESOLVED"
+        },
+        {
+          "id": "MD12",
+          "target_field": "incident_reporting_terms_status",
+          "prompt": "What incident-notification obligations and timelines apply to entitled data held in private cloud processing or encrypted backups?",
+          "evidence_requested": "Written incident-reporting terms",
+          "status": "UNRESOLVED"
+        },
+        {
+          "id": "MD13",
+          "target_field": "audit_cooperation_terms_status",
+          "prompt": "What audit, inspection, evidence-retention, or cooperation duties apply to this private cloud and encrypted-backup use?",
+          "evidence_requested": "Written audit/cooperation terms",
+          "status": "UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "candidate_id": "QUICK_OSE",
+      "legal_or_brand_name": "QUICK Corp.",
+      "shortlist_disposition": "SHORTLIST_TIER_B_OSE_PROVIDER_ONLY",
+      "contact_status": "UNCONTACTED_DRAFT_UNSENT",
+      "outreach_authorized": false,
+      "provider_selected": false,
+      "candidate_specific_context": [
+        "OSE provider status is evidenced; programmatic realtime transport for this exact use case remains unresolved.",
+        "Exact individual-month Micro delivery and read-only transport must be explicitly confirmed."
+      ],
+      "questionnaire": [
+        {
+          "id": "MD01",
+          "target_field": "exact_micro_product_status",
+          "prompt": "Can you explicitly confirm realtime OSE Nikkei 225 Micro Futures data for an exact individual contract month, including the instrument identifier and provider timestamp semantics?",
+          "evidence_requested": "Written product/specification confirmation",
+          "status": "UNRESOLVED"
+        },
+        {
+          "id": "MD02",
+          "target_field": "read_only_transport_status",
+          "prompt": "Can the service be provisioned as a data-only read-only session that cannot place, amend, or cancel orders, and is it separated from any broker authentication or trading permission?",
+          "evidence_requested": "Written transport/permission architecture confirmation",
+          "status": "UNRESOLVED"
+        },
+        {
+          "id": "MD03",
+          "target_field": "provider_third_party_cloud_processing_status",
+          "prompt": "May entitled OSE data be processed in a private third-party cloud workload used only by the entitled subscriber, with no public redistribution?",
+          "evidence_requested": "Written contractual or policy permission",
+          "status": "UNRESOLVED"
+        },
+        {
+          "id": "MD04",
+          "target_field": "encrypted_backup_creation_status",
+          "prompt": "May the subscriber create encrypted backups of entitled quote, forecast, and outcome evidence for private internal recovery?",
+          "evidence_requested": "Written contractual or policy permission",
+          "status": "UNRESOLVED"
+        },
+        {
+          "id": "MD05",
+          "target_field": "encrypted_backup_storage_status",
+          "prompt": "May those encrypted backups be stored in a private cloud storage service under subscriber-controlled access?",
+          "evidence_requested": "Written contractual or policy permission",
+          "status": "UNRESOLVED"
+        },
+        {
+          "id": "MD06",
+          "target_field": "backup_region_status",
+          "prompt": "Are there geographic or residency restrictions on backup storage or DR processing, and is Tokyo-region storage acceptable?",
+          "evidence_requested": "Written region/residency terms",
+          "status": "UNRESOLVED"
+        },
+        {
+          "id": "MD07",
+          "target_field": "backup_retention_terms_status",
+          "prompt": "What retention period or maximum retention limits apply to encrypted backup copies containing entitled data?",
+          "evidence_requested": "Written retention terms",
+          "status": "UNRESOLVED"
+        },
+        {
+          "id": "MD08",
+          "target_field": "backup_deletion_terms_status",
+          "prompt": "What deletion, expiry, or end-of-entitlement destruction obligations apply to backup copies?",
+          "evidence_requested": "Written deletion/destruction terms",
+          "status": "UNRESOLVED"
+        },
+        {
+          "id": "MD09",
+          "target_field": "restore_permission_status",
+          "prompt": "May encrypted backup copies be restored into a private recovery environment for service recovery?",
+          "evidence_requested": "Written restore permission",
+          "status": "UNRESOLVED"
+        },
+        {
+          "id": "MD10",
+          "target_field": "dr_drill_permission_status",
+          "prompt": "May periodic disaster-recovery drills restore a private copy solely to verify integrity, scorer revalidation, and state reconstruction?",
+          "evidence_requested": "Written DR-test permission",
+          "status": "UNRESOLVED"
+        },
+        {
+          "id": "MD11",
+          "target_field": "kms_hsm_key_custody_status",
+          "prompt": "Is envelope encryption with a managed HSM-backed KMS acceptable for backup key custody, with the KEK non-exportable and only a per-backup DEK wrapped?",
+          "evidence_requested": "Written cryptographic-control acceptance or restrictions",
+          "status": "UNRESOLVED"
+        },
+        {
+          "id": "MD12",
+          "target_field": "incident_reporting_terms_status",
+          "prompt": "What incident-notification obligations and timelines apply to entitled data held in private cloud processing or encrypted backups?",
+          "evidence_requested": "Written incident-reporting terms",
+          "status": "UNRESOLVED"
+        },
+        {
+          "id": "MD13",
+          "target_field": "audit_cooperation_terms_status",
+          "prompt": "What audit, inspection, evidence-retention, or cooperation duties apply to this private cloud and encrypted-backup use?",
+          "evidence_requested": "Written audit/cooperation terms",
+          "status": "UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "candidate_id": "REFINITIV_LSEG_OSE",
+      "legal_or_brand_name": "Refinitiv / LSEG",
+      "shortlist_disposition": "SHORTLIST_TIER_B_OSE_PROVIDER_ONLY",
+      "contact_status": "UNCONTACTED_DRAFT_UNSENT",
+      "outreach_authorized": false,
+      "provider_selected": false,
+      "candidate_specific_context": [
+        "OSE provider status is evidenced; programmatic realtime transport for this exact use case remains unresolved.",
+        "Exact individual-month Micro delivery and read-only transport must be explicitly confirmed."
+      ],
+      "questionnaire": [
+        {
+          "id": "MD01",
+          "target_field": "exact_micro_product_status",
+          "prompt": "Can you explicitly confirm realtime OSE Nikkei 225 Micro Futures data for an exact individual contract month, including the instrument identifier and provider timestamp semantics?",
+          "evidence_requested": "Written product/specification confirmation",
+          "status": "UNRESOLVED"
+        },
+        {
+          "id": "MD02",
+          "target_field": "read_only_transport_status",
+          "prompt": "Can the service be provisioned as a data-only read-only session that cannot place, amend, or cancel orders, and is it separated from any broker authentication or trading permission?",
+          "evidence_requested": "Written transport/permission architecture confirmation",
+          "status": "UNRESOLVED"
+        },
+        {
+          "id": "MD03",
+          "target_field": "provider_third_party_cloud_processing_status",
+          "prompt": "May entitled OSE data be processed in a private third-party cloud workload used only by the entitled subscriber, with no public redistribution?",
+          "evidence_requested": "Written contractual or policy permission",
+          "status": "UNRESOLVED"
+        },
+        {
+          "id": "MD04",
+          "target_field": "encrypted_backup_creation_status",
+          "prompt": "May the subscriber create encrypted backups of entitled quote, forecast, and outcome evidence for private internal recovery?",
+          "evidence_requested": "Written contractual or policy permission",
+          "status": "UNRESOLVED"
+        },
+        {
+          "id": "MD05",
+          "target_field": "encrypted_backup_storage_status",
+          "prompt": "May those encrypted backups be stored in a private cloud storage service under subscriber-controlled access?",
+          "evidence_requested": "Written contractual or policy permission",
+          "status": "UNRESOLVED"
+        },
+        {
+          "id": "MD06",
+          "target_field": "backup_region_status",
+          "prompt": "Are there geographic or residency restrictions on backup storage or DR processing, and is Tokyo-region storage acceptable?",
+          "evidence_requested": "Written region/residency terms",
+          "status": "UNRESOLVED"
+        },
+        {
+          "id": "MD07",
+          "target_field": "backup_retention_terms_status",
+          "prompt": "What retention period or maximum retention limits apply to encrypted backup copies containing entitled data?",
+          "evidence_requested": "Written retention terms",
+          "status": "UNRESOLVED"
+        },
+        {
+          "id": "MD08",
+          "target_field": "backup_deletion_terms_status",
+          "prompt": "What deletion, expiry, or end-of-entitlement destruction obligations apply to backup copies?",
+          "evidence_requested": "Written deletion/destruction terms",
+          "status": "UNRESOLVED"
+        },
+        {
+          "id": "MD09",
+          "target_field": "restore_permission_status",
+          "prompt": "May encrypted backup copies be restored into a private recovery environment for service recovery?",
+          "evidence_requested": "Written restore permission",
+          "status": "UNRESOLVED"
+        },
+        {
+          "id": "MD10",
+          "target_field": "dr_drill_permission_status",
+          "prompt": "May periodic disaster-recovery drills restore a private copy solely to verify integrity, scorer revalidation, and state reconstruction?",
+          "evidence_requested": "Written DR-test permission",
+          "status": "UNRESOLVED"
+        },
+        {
+          "id": "MD11",
+          "target_field": "kms_hsm_key_custody_status",
+          "prompt": "Is envelope encryption with a managed HSM-backed KMS acceptable for backup key custody, with the KEK non-exportable and only a per-backup DEK wrapped?",
+          "evidence_requested": "Written cryptographic-control acceptance or restrictions",
+          "status": "UNRESOLVED"
+        },
+        {
+          "id": "MD12",
+          "target_field": "incident_reporting_terms_status",
+          "prompt": "What incident-notification obligations and timelines apply to entitled data held in private cloud processing or encrypted backups?",
+          "evidence_requested": "Written incident-reporting terms",
+          "status": "UNRESOLVED"
+        },
+        {
+          "id": "MD13",
+          "target_field": "audit_cooperation_terms_status",
+          "prompt": "What audit, inspection, evidence-retention, or cooperation duties apply to this private cloud and encrypted-backup use?",
+          "evidence_requested": "Written audit/cooperation terms",
+          "status": "UNRESOLVED"
+        }
+      ]
+    }
+  ],
+  "ose_authority_pack": {
+    "authority": "OSE",
+    "contact_status": "UNCONTACTED_DRAFT_UNSENT",
+    "outreach_authorized": false,
+    "questionnaire": [
+      {
+        "id": "OSE01",
+        "target_field": "entitlement_status",
+        "prompt": "Can OSE explicitly confirm the entitlement path applicable to this proposed read-only exact-Micro use case?",
+        "evidence_requested": "Explicit OSE written confirmation or contract/policy locator",
+        "status": "UNRESOLVED"
+      },
+      {
+        "id": "OSE02",
+        "target_field": "applicant_eligibility_status",
+        "prompt": "Can OSE explicitly confirm applicant eligibility for the proposed entitlement or trial path?",
+        "evidence_requested": "Explicit OSE written confirmation or contract/policy locator",
+        "status": "UNRESOLVED"
+      },
+      {
+        "id": "OSE03",
+        "target_field": "exact_micro_product_status",
+        "prompt": "Can OSE explicitly confirm Nikkei 225 Micro Futures exact individual contract-month coverage under the proposed entitlement?",
+        "evidence_requested": "Explicit OSE written confirmation or contract/policy locator",
+        "status": "UNRESOLVED"
+      },
+      {
+        "id": "OSE04",
+        "target_field": "ose_third_party_cloud_processing_status",
+        "prompt": "Does OSE permit private third-party cloud processing by the entitled subscriber for this use case?",
+        "evidence_requested": "Explicit OSE written confirmation or contract/policy locator",
+        "status": "UNRESOLVED"
+      },
+      {
+        "id": "OSE05",
+        "target_field": "service_facilitator_required",
+        "prompt": "Is a service facilitator/provider required for this entitlement and delivery path?",
+        "evidence_requested": "Explicit OSE written confirmation or contract/policy locator",
+        "status": "UNRESOLVED"
+      },
+      {
+        "id": "OSE06",
+        "target_field": "service_facilitator_approval_status",
+        "prompt": "If a service facilitator is required, what explicit OSE approval or registration status is required?",
+        "evidence_requested": "Explicit OSE written confirmation or contract/policy locator",
+        "status": "UNRESOLVED"
+      },
+      {
+        "id": "OSE07",
+        "target_field": "encrypted_backup_creation_status",
+        "prompt": "Does OSE permit creation of private encrypted backup copies containing entitled evidence?",
+        "evidence_requested": "Explicit OSE written confirmation or contract/policy locator",
+        "status": "UNRESOLVED"
+      },
+      {
+        "id": "OSE08",
+        "target_field": "encrypted_backup_storage_status",
+        "prompt": "Does OSE permit storage of those encrypted backups in a subscriber-controlled private cloud account?",
+        "evidence_requested": "Explicit OSE written confirmation or contract/policy locator",
+        "status": "UNRESOLVED"
+      },
+      {
+        "id": "OSE09",
+        "target_field": "backup_region_status",
+        "prompt": "Does OSE impose region/residency restrictions on backup or DR processing?",
+        "evidence_requested": "Explicit OSE written confirmation or contract/policy locator",
+        "status": "UNRESOLVED"
+      },
+      {
+        "id": "OSE10",
+        "target_field": "backup_retention_terms_status",
+        "prompt": "What OSE retention limits apply to encrypted backup copies containing entitled data?",
+        "evidence_requested": "Explicit OSE written confirmation or contract/policy locator",
+        "status": "UNRESOLVED"
+      },
+      {
+        "id": "OSE11",
+        "target_field": "backup_deletion_terms_status",
+        "prompt": "What OSE deletion/destruction obligations apply to encrypted backup copies?",
+        "evidence_requested": "Explicit OSE written confirmation or contract/policy locator",
+        "status": "UNRESOLVED"
+      },
+      {
+        "id": "OSE12",
+        "target_field": "restore_permission_status",
+        "prompt": "Does OSE permit restoring a private encrypted backup for recovery?",
+        "evidence_requested": "Explicit OSE written confirmation or contract/policy locator",
+        "status": "UNRESOLVED"
+      },
+      {
+        "id": "OSE13",
+        "target_field": "dr_drill_permission_status",
+        "prompt": "Does OSE permit periodic private DR restore drills?",
+        "evidence_requested": "Explicit OSE written confirmation or contract/policy locator",
+        "status": "UNRESOLVED"
+      },
+      {
+        "id": "OSE14",
+        "target_field": "kms_hsm_key_custody_status",
+        "prompt": "Does OSE impose requirements or restrictions on managed HSM-backed KMS key custody for encrypted backups?",
+        "evidence_requested": "Explicit OSE written confirmation or contract/policy locator",
+        "status": "UNRESOLVED"
+      },
+      {
+        "id": "OSE15",
+        "target_field": "incident_reporting_terms_status",
+        "prompt": "What OSE incident reporting obligations apply to private cloud processing/backups?",
+        "evidence_requested": "Explicit OSE written confirmation or contract/policy locator",
+        "status": "UNRESOLVED"
+      },
+      {
+        "id": "OSE16",
+        "target_field": "audit_cooperation_terms_status",
+        "prompt": "What OSE audit/cooperation obligations apply to this use case?",
+        "evidence_requested": "Explicit OSE written confirmation or contract/policy locator",
+        "status": "UNRESOLVED"
+      }
+    ]
+  },
+  "key_custody_deployment_packs": [
+    {
+      "candidate_id": "AWS_KMS_TOKYO",
+      "vendor": "AWS",
+      "proposed_region": "ap-northeast-1",
+      "provider_selected": false,
+      "deployment_profile_status": "DRAFT_UNATTESTED",
+      "evidence_baseline": {
+        "control_class": "MANAGED_HSM_BACKED_KMS",
+        "public_evidence": [
+          "FIPS 140-3 Level 3 HSM status evidenced in shortlist",
+          "Non-exportable HSM key status evidenced in shortlist",
+          "Rotation and audit logging evidenced in shortlist"
+        ],
+        "deployment_specific_controls_remain_unattested": true
+      },
+      "deployment_attestation": [
+        {
+          "id": "KMS01",
+          "field": "control_class",
+          "status": "UNATTESTED",
+          "attestation_value": null,
+          "evidence_id": null,
+          "reviewer_attestation": null
+        },
+        {
+          "id": "KMS02",
+          "field": "vendor",
+          "status": "UNATTESTED",
+          "attestation_value": null,
+          "evidence_id": null,
+          "reviewer_attestation": null
+        },
+        {
+          "id": "KMS03",
+          "field": "region",
+          "status": "UNATTESTED",
+          "attestation_value": null,
+          "evidence_id": null,
+          "reviewer_attestation": null
+        },
+        {
+          "id": "KMS04",
+          "field": "hsm_backed",
+          "status": "UNATTESTED",
+          "attestation_value": null,
+          "evidence_id": null,
+          "reviewer_attestation": null
+        },
+        {
+          "id": "KMS05",
+          "field": "fips_security_level",
+          "status": "UNATTESTED",
+          "attestation_value": null,
+          "evidence_id": null,
+          "reviewer_attestation": null
+        },
+        {
+          "id": "KMS06",
+          "field": "kek_non_exportable",
+          "status": "UNATTESTED",
+          "attestation_value": null,
+          "evidence_id": null,
+          "reviewer_attestation": null
+        },
+        {
+          "id": "KMS07",
+          "field": "symmetric_kek",
+          "status": "UNATTESTED",
+          "attestation_value": null,
+          "evidence_id": null,
+          "reviewer_attestation": null
+        },
+        {
+          "id": "KMS08",
+          "field": "plaintext_kek_never_exposed_to_application",
+          "status": "UNATTESTED",
+          "attestation_value": null,
+          "evidence_id": null,
+          "reviewer_attestation": null
+        },
+        {
+          "id": "KMS09",
+          "field": "provider_audit_logging",
+          "status": "UNATTESTED",
+          "attestation_value": null,
+          "evidence_id": null,
+          "reviewer_attestation": null
+        },
+        {
+          "id": "KMS10",
+          "field": "key_rotation_supported",
+          "status": "UNATTESTED",
+          "attestation_value": null,
+          "evidence_id": null,
+          "reviewer_attestation": null
+        },
+        {
+          "id": "KMS11",
+          "field": "previous_key_versions_retained_for_authorized_decrypt",
+          "status": "UNATTESTED",
+          "attestation_value": null,
+          "evidence_id": null,
+          "reviewer_attestation": null
+        },
+        {
+          "id": "KMS12",
+          "field": "iam_role_separation",
+          "status": "UNATTESTED",
+          "attestation_value": null,
+          "evidence_id": null,
+          "reviewer_attestation": null
+        },
+        {
+          "id": "KMS13",
+          "field": "key_admin_separate_from_crypto_user",
+          "status": "UNATTESTED",
+          "attestation_value": null,
+          "evidence_id": null,
+          "reviewer_attestation": null
+        },
+        {
+          "id": "KMS14",
+          "field": "restore_approver_separate_from_crypto_user",
+          "status": "UNATTESTED",
+          "attestation_value": null,
+          "evidence_id": null,
+          "reviewer_attestation": null
+        },
+        {
+          "id": "KMS15",
+          "field": "deletion_protection_or_delayed_destruction",
+          "status": "UNATTESTED",
+          "attestation_value": null,
+          "evidence_id": null,
+          "reviewer_attestation": null
+        },
+        {
+          "id": "KMS16",
+          "field": "explicit_region_and_residency_configuration",
+          "status": "UNATTESTED",
+          "attestation_value": null,
+          "evidence_id": null,
+          "reviewer_attestation": null
+        },
+        {
+          "id": "KMS17",
+          "field": "private_network_path_or_equivalent_restriction",
+          "status": "UNATTESTED",
+          "attestation_value": null,
+          "evidence_id": null,
+          "reviewer_attestation": null
+        }
+      ]
+    },
+    {
+      "candidate_id": "GCP_CLOUD_HSM_TOKYO",
+      "vendor": "Google Cloud",
+      "proposed_region": "asia-northeast1",
+      "provider_selected": false,
+      "deployment_profile_status": "DRAFT_UNATTESTED",
+      "evidence_baseline": {
+        "control_class": "MANAGED_HSM_BACKED_KMS",
+        "public_evidence": [
+          "FIPS 140-2 Level 3 HSM status evidenced in shortlist",
+          "HSM location, rotation, and audit logging evidenced in shortlist"
+        ],
+        "deployment_specific_controls_remain_unattested": true
+      },
+      "deployment_attestation": [
+        {
+          "id": "KMS01",
+          "field": "control_class",
+          "status": "UNATTESTED",
+          "attestation_value": null,
+          "evidence_id": null,
+          "reviewer_attestation": null
+        },
+        {
+          "id": "KMS02",
+          "field": "vendor",
+          "status": "UNATTESTED",
+          "attestation_value": null,
+          "evidence_id": null,
+          "reviewer_attestation": null
+        },
+        {
+          "id": "KMS03",
+          "field": "region",
+          "status": "UNATTESTED",
+          "attestation_value": null,
+          "evidence_id": null,
+          "reviewer_attestation": null
+        },
+        {
+          "id": "KMS04",
+          "field": "hsm_backed",
+          "status": "UNATTESTED",
+          "attestation_value": null,
+          "evidence_id": null,
+          "reviewer_attestation": null
+        },
+        {
+          "id": "KMS05",
+          "field": "fips_security_level",
+          "status": "UNATTESTED",
+          "attestation_value": null,
+          "evidence_id": null,
+          "reviewer_attestation": null
+        },
+        {
+          "id": "KMS06",
+          "field": "kek_non_exportable",
+          "status": "UNATTESTED",
+          "attestation_value": null,
+          "evidence_id": null,
+          "reviewer_attestation": null
+        },
+        {
+          "id": "KMS07",
+          "field": "symmetric_kek",
+          "status": "UNATTESTED",
+          "attestation_value": null,
+          "evidence_id": null,
+          "reviewer_attestation": null
+        },
+        {
+          "id": "KMS08",
+          "field": "plaintext_kek_never_exposed_to_application",
+          "status": "UNATTESTED",
+          "attestation_value": null,
+          "evidence_id": null,
+          "reviewer_attestation": null
+        },
+        {
+          "id": "KMS09",
+          "field": "provider_audit_logging",
+          "status": "UNATTESTED",
+          "attestation_value": null,
+          "evidence_id": null,
+          "reviewer_attestation": null
+        },
+        {
+          "id": "KMS10",
+          "field": "key_rotation_supported",
+          "status": "UNATTESTED",
+          "attestation_value": null,
+          "evidence_id": null,
+          "reviewer_attestation": null
+        },
+        {
+          "id": "KMS11",
+          "field": "previous_key_versions_retained_for_authorized_decrypt",
+          "status": "UNATTESTED",
+          "attestation_value": null,
+          "evidence_id": null,
+          "reviewer_attestation": null
+        },
+        {
+          "id": "KMS12",
+          "field": "iam_role_separation",
+          "status": "UNATTESTED",
+          "attestation_value": null,
+          "evidence_id": null,
+          "reviewer_attestation": null
+        },
+        {
+          "id": "KMS13",
+          "field": "key_admin_separate_from_crypto_user",
+          "status": "UNATTESTED",
+          "attestation_value": null,
+          "evidence_id": null,
+          "reviewer_attestation": null
+        },
+        {
+          "id": "KMS14",
+          "field": "restore_approver_separate_from_crypto_user",
+          "status": "UNATTESTED",
+          "attestation_value": null,
+          "evidence_id": null,
+          "reviewer_attestation": null
+        },
+        {
+          "id": "KMS15",
+          "field": "deletion_protection_or_delayed_destruction",
+          "status": "UNATTESTED",
+          "attestation_value": null,
+          "evidence_id": null,
+          "reviewer_attestation": null
+        },
+        {
+          "id": "KMS16",
+          "field": "explicit_region_and_residency_configuration",
+          "status": "UNATTESTED",
+          "attestation_value": null,
+          "evidence_id": null,
+          "reviewer_attestation": null
+        },
+        {
+          "id": "KMS17",
+          "field": "private_network_path_or_equivalent_restriction",
+          "status": "UNATTESTED",
+          "attestation_value": null,
+          "evidence_id": null,
+          "reviewer_attestation": null
+        }
+      ]
+    }
+  ],
+  "real_activation_manifest_generated": false,
+  "selected_market_data_provider": "UNSELECTED",
+  "selected_key_custody_provider": "UNSELECTED"
+}

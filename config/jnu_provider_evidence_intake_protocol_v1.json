@@ -1,0 +1,102 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-08",
+  "status": "FROZEN_PROVIDER_EVIDENCE_INTAKE_AND_DEPLOYMENT_ATTESTATION_PROTOCOL_SYNTHETIC_ONLY",
+  "authoritative_framework": "config/jnu_operational_framework_current_v1_9.json",
+  "purpose": "Prepare machine-verifiable evidence-intake templates, candidate-specific deployment attestations, and contact-ready questionnaires without selecting a vendor, sending outreach, connecting credentials, or ingesting real entitled market data.",
+  "upstream": {
+    "shortlist": "config/jnu_provider_selection_shortlist_v1.json",
+    "term_attestation_protocol": "config/jnu_term_evidence_attestation_protocol_v1.json",
+    "provider_term_readiness_protocol": "config/jnu_provider_term_readiness_protocol_v1.json",
+    "key_custody_profile": "config/jnu_production_key_custody_current_v1.json",
+    "real_activation_protocol": "config/jnu_real_backup_activation_manifest_protocol_v1.json"
+  },
+  "governance": {
+    "synthetic_only": true,
+    "outreach_authorized": false,
+    "vendor_selection_permitted": false,
+    "credential_collection_permitted": false,
+    "real_entitled_data_permitted": false,
+    "public_repo_source_document_storage_permitted": false,
+    "private_or_confidential_source_documents_must_remain_external": true,
+    "public_templates_may_store_only_questions_metadata_statuses_and_nonsecret_evidence_references": true,
+    "url_only_evidence_never_promotes_readiness": true,
+    "inferred_permission_prohibited": true,
+    "questionnaire_completion_does_not_equal_contract_approval": true,
+    "real_activation_manifest_generation_prohibited_in_this_stage": true
+  },
+  "market_data_required_target_fields": [
+    "exact_micro_product_status",
+    "read_only_transport_status",
+    "provider_third_party_cloud_processing_status",
+    "encrypted_backup_creation_status",
+    "encrypted_backup_storage_status",
+    "backup_region_status",
+    "backup_retention_terms_status",
+    "backup_deletion_terms_status",
+    "restore_permission_status",
+    "dr_drill_permission_status",
+    "kms_hsm_key_custody_status",
+    "incident_reporting_terms_status",
+    "audit_cooperation_terms_status"
+  ],
+  "ose_required_target_fields": [
+    "entitlement_status",
+    "applicant_eligibility_status",
+    "exact_micro_product_status",
+    "ose_third_party_cloud_processing_status",
+    "service_facilitator_required",
+    "service_facilitator_approval_status",
+    "encrypted_backup_creation_status",
+    "encrypted_backup_storage_status",
+    "backup_region_status",
+    "backup_retention_terms_status",
+    "backup_deletion_terms_status",
+    "restore_permission_status",
+    "dr_drill_permission_status",
+    "kms_hsm_key_custody_status",
+    "incident_reporting_terms_status",
+    "audit_cooperation_terms_status"
+  ],
+  "kms_required_deployment_fields": [
+    "control_class",
+    "vendor",
+    "region",
+    "hsm_backed",
+    "fips_security_level",
+    "kek_non_exportable",
+    "symmetric_kek",
+    "plaintext_kek_never_exposed_to_application",
+    "provider_audit_logging",
+    "key_rotation_supported",
+    "previous_key_versions_retained_for_authorized_decrypt",
+    "iam_role_separation",
+    "key_admin_separate_from_crypto_user",
+    "restore_approver_separate_from_crypto_user",
+    "deletion_protection_or_delayed_destruction",
+    "explicit_region_and_residency_configuration",
+    "private_network_path_or_equivalent_restriction"
+  ],
+  "allowed_contact_statuses": [
+    "UNCONTACTED_DRAFT_UNSENT",
+    "RESPONSE_PENDING_NOT_SENT_BY_AUTOMATION"
+  ],
+  "allowed_attestation_statuses": [
+    "UNATTESTED",
+    "EVIDENCE_PENDING"
+  ],
+  "prohibited_secret_keys": [
+    "api_key",
+    "access_token",
+    "password",
+    "secret",
+    "client_secret",
+    "private_key",
+    "material_b64",
+    "token"
+  ],
+  "output_statuses": [
+    "PASS_DRAFT_PACK_READY_UNSENT",
+    "FAIL_CLOSED"
+  ]
+}
