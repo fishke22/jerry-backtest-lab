@@ -1,0 +1,69 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-08",
+  "status": "PRIVATE_KEY_ENCRYPTED_BACKUP_DR_DRILL_SYNTHETIC_ONLY_PENDING_CI",
+  "authoritative_framework": "config/jnu_operational_framework_current_v1_9.json",
+  "purpose": "Add external private key lifecycle, AES-256-GCM encrypted synthetic backup sets, restore authorization, backup generation rotation by quarantine, and private DR drill governance.",
+  "cryptography": {
+    "algorithm": "AES-256-GCM",
+    "implementation": "Python cryptography AESGCM",
+    "key_bytes": 32,
+    "nonce_bytes": 12,
+    "per_file_nonce_unique": true,
+    "aad_binding": [
+      "backupset_id",
+      "relative_path",
+      "framework_sha256",
+      "key_id",
+      "key_version"
+    ],
+    "ciphertext_authentication": true
+  },
+  "key_management": {
+    "keyring": "REPO_EXTERNAL_PRIVATE_FILE_ONLY",
+    "key_material_in_repository": false,
+    "key_material_in_backup_manifest": false,
+    "key_material_in_stdout": false,
+    "posix_keyring_mode": "0600",
+    "active_key_exactly_one": true,
+    "rotation": "NEW_ACTIVE_PREVIOUS_ACTIVE_TO_RETIRED",
+    "retired_key_auto_delete": false,
+    "old_backup_restore_requires_retired_key": true,
+    "real_kms_hsm_status": "UNRESOLVED"
+  },
+  "encrypted_backup": {
+    "exporter": "scripts/export_jnu_private_encrypted_backupset_v1.py",
+    "importer": "scripts/import_jnu_private_encrypted_backupset_v1.py",
+    "manifest_private": true,
+    "payload_ciphertext_only": true,
+    "plaintext_transient_backup_directory": false,
+    "real_entitled_export": "PROHIBITED_UNTIL_PROVIDER_TERMS_AND_PRODUCTION_KEY_CUSTODY_APPROVED"
+  },
+  "restore_authorization": {
+    "protocol": "config/jnu_private_restore_authorization_protocol_v1.json",
+    "validator": "scripts/validate_jnu_private_restore_authorization_v1.py",
+    "synthetic_status": "EXPLICITLY_APPROVED_SYNTHETIC_REQUIRED",
+    "real_status": "EXPLICITLY_APPROVED_REAL_PLUS_EXTERNAL_ENTITLEMENT_GOVERNANCE_REQUIRED",
+    "destination_must_match_authorization": true,
+    "backupset_id_must_match_authorization": true,
+    "key_id_must_match_authorization": true
+  },
+  "rotation": {
+    "tool": "scripts/rotate_jnu_private_encrypted_backups_v1.py",
+    "synthetic_keep_generations_default": 3,
+    "old_generation_action": "MOVE_TO_PRIVATE_ROTATION_QUARANTINE",
+    "permanent_delete": false
+  },
+  "dr_drill": {
+    "tool": "scripts/run_jnu_private_encrypted_dr_drill_v1.py",
+    "report": "PRIVATE_EXTERNAL_ONLY",
+    "synthetic_rto_objective_seconds": 60,
+    "synthetic_backup_age_objective_seconds": 86400,
+    "integrity_required": true,
+    "wrong_key_rejection_required": true,
+    "ciphertext_tamper_rejection_required": true,
+    "production_rpo_rto_status": "UNRESOLVED"
+  },
+  "public_output": false,
+  "real_entitlement_connected": false
+}

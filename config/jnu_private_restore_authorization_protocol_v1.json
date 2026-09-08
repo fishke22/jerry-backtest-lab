@@ -1,0 +1,28 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-08",
+  "status": "FROZEN_PRIVATE_RESTORE_AUTHORIZATION_PROTOCOL",
+  "required_fields": [
+    "version",
+    "restore_id",
+    "mode",
+    "authorization_status",
+    "backupset_id",
+    "authorized_key_id",
+    "destination_ledger_root",
+    "public_output_requested",
+    "cloud_processing_used",
+    "cloud_permission_status",
+    "real_entitlement_connected"
+  ],
+  "synthetic_authorization_status": "EXPLICITLY_APPROVED_SYNTHETIC",
+  "real_authorization_status": "EXPLICITLY_APPROVED_REAL",
+  "rules": {
+    "destination_must_be_external_to_public_repo": true,
+    "public_output_requested": false,
+    "synthetic_real_entitlement_connected": false,
+    "real_real_entitlement_connected": true,
+    "cloud_processing_requires_explicit_permission": true,
+    "real_restore_requires_external_governance_not_implemented": true
+  }
+}

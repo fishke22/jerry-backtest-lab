@@ -66,6 +66,15 @@ on:
       - "scripts/export_jnu_private_backupset_v1.py"
       - "scripts/import_jnu_private_backupset_v1.py"
       - "scripts/selftest_jnu_private_concurrency_dr_state_v1.py"
+      - "config/jnu_private_key_encrypted_backup_protocol_v1.json"
+      - "config/jnu_private_restore_authorization_protocol_v1.json"
+      - "scripts/jnu_private_keyring_v1.py"
+      - "scripts/validate_jnu_private_restore_authorization_v1.py"
+      - "scripts/export_jnu_private_encrypted_backupset_v1.py"
+      - "scripts/import_jnu_private_encrypted_backupset_v1.py"
+      - "scripts/rotate_jnu_private_encrypted_backups_v1.py"
+      - "scripts/run_jnu_private_encrypted_dr_drill_v1.py"
+      - "scripts/selftest_jnu_private_encrypted_backup_v1.py"
   workflow_dispatch:
 
 permissions:
@@ -106,6 +115,11 @@ jobs:
           python -m json.tool config/jnu_private_lifecycle_protocol_v1.json >/dev/null
           python -m json.tool config/jnu_private_launch_manifest_protocol_v1.json >/dev/null
           python -m json.tool config/jnu_private_concurrency_dr_state_protocol_v1.json >/dev/null
+          python -m json.tool config/jnu_private_key_encrypted_backup_protocol_v1.json >/dev/null
+          python -m json.tool config/jnu_private_restore_authorization_protocol_v1.json >/dev/null
+
+      - name: Install private backup crypto dependency
+        run: python -m pip install "cryptography>=42"
 
       - name: First-real rollover and source readiness selftests
         run: |
@@ -153,6 +167,11 @@ jobs:
         run: |
           python -m py_compile scripts/jnu_private_lock_v1.py scripts/jnu_private_launch_state_v1.py scripts/export_jnu_private_backupset_v1.py scripts/import_jnu_private_backupset_v1.py scripts/selftest_jnu_private_concurrency_dr_state_v1.py
           python scripts/selftest_jnu_private_concurrency_dr_state_v1.py
+
+      - name: Private encrypted backup key-rotation DR-drill selftest
+        run: |
+          python -m py_compile scripts/jnu_private_keyring_v1.py scripts/validate_jnu_private_restore_authorization_v1.py scripts/export_jnu_private_encrypted_backupset_v1.py scripts/import_jnu_private_encrypted_backupset_v1.py scripts/rotate_jnu_private_encrypted_backups_v1.py scripts/run_jnu_private_encrypted_dr_drill_v1.py scripts/selftest_jnu_private_encrypted_backup_v1.py
+          python scripts/selftest_jnu_private_encrypted_backup_v1.py
 
       - name: Full v1.8 analysis-fresh chain selftest
         run: python scripts/selftest_jnu_live_shadow_v18_integrity.py
