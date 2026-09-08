@@ -208,7 +208,7 @@
   "authoritative_validation_pipeline_checkpoint": "config/jnu_validation_pipeline_checkpoint_20260902_v1.json",
   "validation_pipeline_status": "JNU_VALIDATION_PIPELINE_READY_FORWARD_DATA_PENDING",
   "validation_pipeline_head": "ff322f11dbb23da6be093056ac6ef47f2db10e4a",
-  "next_action": "Continue production-readiness governance only: shortlist a compliant managed HSM-backed KMS deployment and ingest explicit OSE/provider evidence for cloud processing, backup, region, retention/deletion, restore, DR drills, key custody, incident reporting and audit cooperation. Real encrypted backup remains prohibited.",
+  "next_action": "Build a repo-external private evidence staging/ingestion workflow that verifies source-document SHA-256, source class and authority, claim locators and confidentiality metadata, then emits only redacted/non-secret field-level attestations compatible with the existing term-evidence protocol. Synthetic CI only: do not contact providers/OSE, ingest real confidential contracts, select vendors, connect credentials, or generate a real activation manifest without explicit user authorization.",
   "stage8_forward_local_ingest": {
     "status": "SELFTEST_PASS_NO_SOURCE_CHANGE",
     "script": "scripts/ingest_jnu_stage8_forward_local.py",
@@ -543,5 +543,32 @@
     "key_custody_provider_selected": false,
     "real_activation_manifest_generated": false,
     "real_entitled_backup_activation_permitted": false
+  },
+  "provider_evidence_intake": {
+    "status": "CI_PASS_DRAFT_PACK_READY_UNSENT_REAL_STATE_BLOCKED",
+    "protocol": "config/jnu_provider_evidence_intake_protocol_v1.json",
+    "templates": "config/jnu_provider_evidence_intake_pack_templates_v1.json",
+    "validator": "scripts/validate_jnu_provider_evidence_intake_pack_v1.py",
+    "selftest_script": "scripts/selftest_jnu_provider_evidence_intake_v1.py",
+    "contact_questionnaire": "research_notes/jnu_provider_contact_questionnaire_pack_20260908.md",
+    "checkpoint": "config/jnu_provider_evidence_intake_checkpoint_v1.json",
+    "core_commit": "94ee25ac0048c259837da51e11fe65ce01197419",
+    "integrity_run": 34221443629,
+    "actionlint_run": 34221443621,
+    "selftest": "PASS_16_OF_16",
+    "stable_framework_sha256": "2e0be163baccd8c42065b088116e313f9e34c39745bbdf509553063d500b1c85",
+    "market_data_candidates_covered": 3,
+    "key_custody_candidates_covered": 2,
+    "ose_authority_pack": true,
+    "outreach_sent": false,
+    "market_data_provider_selected": false,
+    "key_custody_provider_selected": false,
+    "credential_collection": false,
+    "real_entitled_data_ingested": false,
+    "real_activation_manifest_generated": false,
+    "real_entitlement_connected": false,
+    "public_real_forecasts": 0,
+    "public_real_outcomes": 0,
+    "next_stage": "PRIVATE_EXTERNAL_PROVIDER_TERM_EVIDENCE_STAGING_ATTESTATION_PIPELINE_SYNTHETIC_ONLY"
   }
 }

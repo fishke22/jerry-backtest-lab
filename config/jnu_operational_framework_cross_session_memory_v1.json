@@ -75,7 +75,7 @@
   "cloud_request_selftest_run": 33969428203,
   "cloud_actionlint_run": 34038843503,
   "cloud_pipeline_status": "V1_8_ANALYSIS_FRESH_OFFICIAL_PREPARED_REQUEST_INTEGRITY_CI_PASS_REAL_LEDGER_EMPTY",
-  "next_action": "Use JNU v1.9. Provider shortlist and explicit term-evidence attestation/activation generator are CI-ready, but no provider or KMS has been selected and current real terms remain unresolved. Next stage: create provider evidence-intake pack templates, candidate-specific deployment-profile attestations, and contact-ready questionnaires; do not send outreach or connect credentials without explicit user authorization.",
+  "next_action": "Build a repo-external private evidence staging/ingestion workflow that verifies source-document SHA-256, source class and authority, claim locators and confidentiality metadata, then emits only redacted/non-secret field-level attestations compatible with the existing term-evidence protocol. Synthetic CI only: do not contact providers/OSE, ingest real confidential contracts, select vendors, connect credentials, or generate a real activation manifest without explicit user authorization.",
   "exact_micro_reference_source_gate": "config/jnu_exact_micro_reference_source_gate_20260904_v1.json",
   "tradingview_exact_micro_transport": {
     "status": "B_IDENTITY_SOURCE_ALLOWED_ONLY_IF_ACTUAL_LP_TIME_AGE_LE_900",
@@ -279,5 +279,16 @@
   "provider_shortlist_term_activation_selftest": "PASS_11_OF_11",
   "current_market_data_provider_selection": "UNSELECTED",
   "current_key_custody_provider_selection": "UNSELECTED",
-  "current_real_activation_manifest_status": "NOT_GENERATED_BLOCKED"
+  "current_real_activation_manifest_status": "NOT_GENERATED_BLOCKED",
+  "provider_evidence_intake_protocol": "config/jnu_provider_evidence_intake_protocol_v1.json",
+  "provider_evidence_intake_templates": "config/jnu_provider_evidence_intake_pack_templates_v1.json",
+  "provider_evidence_intake_validator": "scripts/validate_jnu_provider_evidence_intake_pack_v1.py",
+  "provider_contact_questionnaire_pack": "research_notes/jnu_provider_contact_questionnaire_pack_20260908.md",
+  "provider_evidence_intake_checkpoint": "config/jnu_provider_evidence_intake_checkpoint_v1.json",
+  "provider_evidence_intake_core_commit": "94ee25ac0048c259837da51e11fe65ce01197419",
+  "provider_evidence_intake_integrity_run": 34221443629,
+  "provider_evidence_intake_actionlint_run": 34221443621,
+  "provider_evidence_intake_selftest": "PASS_16_OF_16",
+  "provider_evidence_intake_status": "CI_PASS_DRAFT_PACK_READY_UNSENT_REAL_STATE_BLOCKED",
+  "provider_evidence_intake_outreach": "DRAFT_UNSENT"
 }

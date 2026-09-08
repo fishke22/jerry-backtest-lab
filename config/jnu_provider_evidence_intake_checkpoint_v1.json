@@ -1,0 +1,58 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-08",
+  "status": "CI_PASS_DRAFT_PACK_READY_UNSENT_REAL_STATE_BLOCKED",
+  "authoritative_framework": "config/jnu_operational_framework_current_v1_9.json",
+  "stable_framework_sha256": "2e0be163baccd8c42065b088116e313f9e34c39745bbdf509553063d500b1c85",
+  "requested_stale_stage_detected_as_already_completed": "PRIVATE_KEY_MANAGEMENT_ENCRYPTED_BACKUP_ROTATION_DR_DRILL_GOVERNANCE_SYNTHETIC_ONLY",
+  "continuation_basis": "CURRENT_MAIN_AND_CROSS_SESSION_MEMORY_NEXT_ACTION",
+  "core_commit": "94ee25ac0048c259837da51e11fe65ce01197419",
+  "cloud_verification": {
+    "integrity_run": 34221443629,
+    "actionlint_run": 34221443621,
+    "provider_evidence_intake_selftest": "PASS_16_OF_16",
+    "v1_9_supersession": "PASS_17_OF_17",
+    "entitled_quote_evidence": "PASS_13_OF_13",
+    "private_storage_boundary": "PASS_9_OF_9",
+    "public_live_shadow_boundary": "PASS_8_OF_8",
+    "public_artifact_safety": "PASS_4_OF_4",
+    "private_quote_bridge": "PASS_10_OF_10",
+    "private_entitled_live_shadow": "PASS_16_OF_16",
+    "private_lifecycle": "PASS_19_OF_19",
+    "private_concurrency_dr_state": "PASS_18_OF_18",
+    "private_encrypted_backup_current_regression": "PASS_30_OF_30",
+    "production_key_custody_provider_term": "PASS_30_OF_30",
+    "provider_shortlist_term_activation": "PASS_11_OF_11",
+    "public_real_ledger": {
+      "forecasts": 0,
+      "outcomes": 0
+    }
+  },
+  "created_or_modified": [
+    "config/jnu_provider_evidence_intake_protocol_v1.json",
+    "config/jnu_provider_evidence_intake_pack_templates_v1.json",
+    "scripts/validate_jnu_provider_evidence_intake_pack_v1.py",
+    "scripts/selftest_jnu_provider_evidence_intake_v1.py",
+    "research_notes/jnu_provider_contact_questionnaire_pack_20260908.md",
+    ".github/workflows/jnu-live-shadow-v18-integrity-selftest-v1.yml"
+  ],
+  "invariants": {
+    "outreach_sent": false,
+    "provider_selected": false,
+    "key_custody_provider_selected": false,
+    "credentials_connected": false,
+    "real_entitled_data_ingested": false,
+    "real_activation_manifest_generated": false,
+    "real_entitlement_connected": false,
+    "permanent_deletion_enabled": false,
+    "public_raw_entitled_output": false,
+    "public_derived_entitled_output": false,
+    "exact_individual_month_required": true,
+    "freshness_gate_seconds": 900,
+    "continuous_contract_primary_prohibited": true,
+    "broker_auth_used": false,
+    "trading_permission_used": false
+  },
+  "next_stage": "PRIVATE_EXTERNAL_PROVIDER_TERM_EVIDENCE_STAGING_ATTESTATION_PIPELINE_SYNTHETIC_ONLY",
+  "next_action": "Build a repo-external private evidence staging/ingestion workflow that verifies source-document SHA-256, source class and authority, claim locators and confidentiality metadata, then emits only redacted/non-secret field-level attestations compatible with the existing term-evidence protocol. Synthetic CI only: do not contact providers/OSE, ingest real confidential contracts, select vendors, connect credentials, or generate a real activation manifest without explicit user authorization."
+}
