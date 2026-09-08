@@ -6,7 +6,7 @@ from evaluate_jnu_production_key_custody_provider_readiness_v1 import evaluate
 ROOT=Path(__file__).resolve().parents[1]
 SHORTLIST=ROOT/"config"/"jnu_provider_selection_shortlist_v1.json"
 FRAMEWORK=ROOT/"config"/"jnu_operational_framework_current_v1_9.json"
-SECRET_RE=re.compile(r"(secret|password|api[_-]?key|access[_-]?token|credential|private[_-]?key)",re.I)
+SECRET_KEYS={"password","passwd","api_key","apikey","secret","client_secret","access_token","refresh_token","authorization","credential","credentials","private_key","privatekey","token"}
 
 def load(p:Path)->dict:
     x=json.loads(p.read_text(encoding="utf-8"))
@@ -16,7 +16,8 @@ def secret_walk(x,path="$"):
     hits=[]
     if isinstance(x,dict):
         for k,v in x.items():
-            if SECRET_RE.search(str(k)):hits.append(path+"."+str(k))
+            norm=str(k).lower().replace("-","_")
+            if norm in SECRET_KEYS:hits.append(path+"."+str(k))
             hits.extend(secret_walk(v,path+"."+str(k)))
     elif isinstance(x,list):
         for i,v in enumerate(x):hits.extend(secret_walk(v,f"{path}[{i}]"))
