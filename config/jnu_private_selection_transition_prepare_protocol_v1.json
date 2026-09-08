@@ -1,0 +1,133 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-08",
+  "status": "FROZEN_PRIVATE_SELECTION_TRANSITION_CHANGESET_PREPARE_ONLY_DRY_RUN_SYNTHETIC_ONLY",
+  "authoritative_framework": "config/jnu_operational_framework_current_v1_9.json",
+  "purpose": "Produce an immutable repo-external PREPARE-only dry-run changeset for a future vendor-pair selection transition. Bind a valid lifecycle-integrated decision record, lifecycle head/count, exact pair, and compare-and-swap SHA-256 snapshots of all authoritative production-state files that a future selection could touch. This protocol has no COMMIT/APPLY capability.",
+  "upstream": {
+    "lifecycle_integrated_decision_protocol": "config/jnu_private_selection_decision_lifecycle_integration_protocol_v1.json",
+    "lifecycle_integrated_decision_gate": "scripts/decide_jnu_private_selection_with_lifecycle_current_auth_v1.py",
+    "shortlist": "config/jnu_provider_selection_shortlist_v1.json",
+    "production_key_profile": "config/jnu_production_key_custody_current_v1.json",
+    "provider_terms": "config/jnu_provider_term_readiness_current_v1.json",
+    "private_atomic_io": "scripts/jnu_private_atomic_io_v1.py"
+  },
+  "mode": {
+    "current": "SYNTHETIC_ONLY",
+    "required_operation": "PREPARE_ONLY",
+    "commit_capability": false,
+    "apply_capability": false,
+    "repository_mutation_capability": false,
+    "real_selection_authorized": false,
+    "real_activation_authorized": false
+  },
+  "decision_contract": {
+    "artifact_class": "JNU_SYNTHETIC_SELECTION_DECISION_LIFECYCLE_CURRENT_AUTH_RECORD",
+    "status": "SYNTHETIC_LIFECYCLE_CURRENT_AUTH_VALIDATED_NO_SELECTION",
+    "storage_scope": "PRIVATE_INTERNAL_ONLY",
+    "public_distribution_permitted": false,
+    "mode": "SYNTHETIC",
+    "selection_transition_permitted": false,
+    "selection_written": false,
+    "selected_combination_id": "UNSELECTED",
+    "selected_market_data_provider": "UNSELECTED",
+    "selected_key_custody_provider": "UNSELECTED",
+    "production_state_mutated": false,
+    "real_activation_authorized": false,
+    "lifecycle_full_chain_validated": true,
+    "lifecycle_event_backups_validated": true,
+    "lifecycle_current_authorization_validated": true,
+    "decision_backup_checksum_required": true
+  },
+  "production_state_surface": {
+    "exact_snapshot_ids": [
+      "PROVIDER_SELECTION_SHORTLIST",
+      "PRODUCTION_KEY_CUSTODY_CURRENT",
+      "PROVIDER_TERM_READINESS_CURRENT"
+    ],
+    "paths": {
+      "PROVIDER_SELECTION_SHORTLIST": "config/jnu_provider_selection_shortlist_v1.json",
+      "PRODUCTION_KEY_CUSTODY_CURRENT": "config/jnu_production_key_custody_current_v1.json",
+      "PROVIDER_TERM_READINESS_CURRENT": "config/jnu_provider_term_readiness_current_v1.json"
+    },
+    "sha256_compare_and_swap_required": true,
+    "all_snapshots_required": true,
+    "stale_snapshot_rejected": true
+  },
+  "production_preconditions": {
+    "selected_market_data_provider": "UNSELECTED",
+    "selected_key_custody_provider": "UNSELECTED",
+    "production_key_enabled": false,
+    "production_key_vendor": "UNSELECTED",
+    "production_key_region": "UNSELECTED",
+    "broker_auth_used": false,
+    "trading_permission_used": false,
+    "public_output_requested": false
+  },
+  "dry_run_changeset": {
+    "intended_mutations_are_preview_only": true,
+    "shortlist_preview_sets_requested_provider": true,
+    "shortlist_preview_sets_requested_kms": true,
+    "key_profile_preview_uses_selected_kms_vendor_region_control_class": true,
+    "key_profile_preview_keeps_production_enabled_false": true,
+    "provider_terms_requires_separate_real_evidence_revalidation_before_future_commit": true,
+    "no_current_file_write": true,
+    "no_credentials": true,
+    "no_kms_resource_creation": true,
+    "no_key_creation": true,
+    "no_activation_manifest": true
+  },
+  "rollback_recovery": {
+    "preimage_sha256_for_every_state_file": true,
+    "compare_and_swap_required_before_any_future_commit": true,
+    "future_commit_must_create_private_preimage_backup": true,
+    "rollback_source": "PREIMAGE_BACKUP_PLUS_BOUND_SHA256",
+    "prepare_stage_creates_no_production_backup_because_it_writes_no_production_state": true
+  },
+  "output_contract": {
+    "artifact_class": "JNU_SYNTHETIC_SELECTION_TRANSITION_PREPARE_CHANGESET",
+    "status": "SYNTHETIC_PREPARE_ONLY_CHANGESET_READY_NOT_COMMITTABLE",
+    "storage_scope": "PRIVATE_INTERNAL_ONLY",
+    "public_distribution_permitted": false,
+    "commit_capability": false,
+    "apply_capability": false,
+    "selection_written": false,
+    "production_state_mutated": false,
+    "selected_combination_id": "UNSELECTED",
+    "real_activation_authorized": false
+  },
+  "replay": {
+    "immutable_prepare_store": true,
+    "path_pattern": "selection_transition_prepares/<prepare_id>.json",
+    "exact_replay_idempotent": true,
+    "same_prepare_id_different_content_rejected": true,
+    "immutable_backup_required": true
+  },
+  "prohibited_keys": [
+    "source_document_path",
+    "source_text",
+    "raw_text",
+    "document_text",
+    "quoted_text",
+    "credential",
+    "credentials",
+    "api_key",
+    "access_token",
+    "password",
+    "secret",
+    "client_secret",
+    "private_key",
+    "material_b64",
+    "token",
+    "account_id",
+    "project_id",
+    "subscription_id",
+    "tenant_id",
+    "key_id",
+    "key_arn",
+    "resource_name",
+    "service_account",
+    "role_arn",
+    "principal"
+  ]
+}
