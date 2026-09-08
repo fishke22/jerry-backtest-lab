@@ -45,11 +45,14 @@
   "ose_free_trial_stage_checkpoint": "config/jnu_ose_free_trial_onboarding_checkpoint_v1.json",
   "private_entitled_quote_bridge": "config/jnu_private_entitled_quote_bridge_protocol_v1.json",
   "private_entitled_quote_bridge_status": "SYNTHETIC_CI_PASS_REAL_ENTITLEMENT_NOT_CONNECTED",
-  "stable_v1_9_framework_sha256": "7f8ce80aef0a3e776f4faeaf11c58e53dd30f60c46c691402ac4fe88816ddb46",
+  "stable_v1_9_framework_sha256": "dec203b8e92511cf1bacc69606a9acf0d194aa2214ad6f0b786e2bc0da1dd2e7",
   "private_entitled_live_shadow_protocol": "config/jnu_private_entitled_live_shadow_protocol_v1.json",
   "private_entitled_live_shadow_status": "SYNTHETIC_CI_PASS_REAL_ENTITLEMENT_NOT_CONNECTED",
   "private_lifecycle_protocol": "config/jnu_private_lifecycle_protocol_v1.json",
   "private_lifecycle_status": "SYNTHETIC_CI_PASS_REAL_ENTITLEMENT_NOT_CONNECTED",
   "private_concurrency_dr_state_protocol": "config/jnu_private_concurrency_dr_state_protocol_v1.json",
-  "private_concurrency_dr_state_status": "SYNTHETIC_CI_PASS_REAL_ENTITLEMENT_NOT_CONNECTED"
+  "private_concurrency_dr_state_status": "SYNTHETIC_CI_PASS_REAL_ENTITLEMENT_NOT_CONNECTED",
+  "private_key_encrypted_backup_protocol": "config/jnu_private_key_encrypted_backup_protocol_v1.json",
+  "private_key_encrypted_backup_status": "SYNTHETIC_CI_PASS_REAL_BACKUP_BLOCKED",
+  "private_encrypted_backup_selftest": "PASS_28_OF_28"
 }

@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "as_of": "2026-09-08",
-  "status": "PRIVATE_KEY_ENCRYPTED_BACKUP_DR_DRILL_ENVELOPE_UPGRADE_PENDING_CI",
+  "status": "PRIVATE_KEY_ENCRYPTED_BACKUP_DR_DRILL_ENVELOPE_SYNTHETIC_CI_PASS_REAL_BACKUP_BLOCKED",
   "authoritative_framework": "config/jnu_operational_framework_current_v1_9.json",
   "purpose": "Add external private key lifecycle, AES-256-GCM encrypted synthetic backup sets, restore authorization, backup generation rotation by quarantine, and private DR drill governance.",
   "cryptography": {
@@ -78,5 +78,32 @@
     "production_rpo_rto_status": "UNRESOLVED"
   },
   "public_output": false,
-  "real_entitlement_connected": false
+  "real_entitlement_connected": false,
+  "cloud_verification": {
+    "integrity_run": 34205335207,
+    "actionlint_run": 34204715568,
+    "encrypted_backup_selftest": "PASS_28_OF_28",
+    "concurrency_dr_state_regression": "PASS_18_OF_18",
+    "lifecycle_regression": "PASS_19_OF_19",
+    "private_live_shadow_regression": "PASS_16_OF_16",
+    "private_quote_bridge_regression": "PASS_10_OF_10",
+    "entitled_quote_evidence_regression": "PASS_13_OF_13",
+    "private_storage_boundary_regression": "PASS_9_OF_9",
+    "public_boundary_regression": "PASS_8_OF_8",
+    "public_artifact_safety_regression": "PASS_4_OF_4",
+    "v1_9_supersession": "PASS_17_OF_17",
+    "full_public_chain": "PASS",
+    "public_real_ledger": {
+      "forecasts": 0,
+      "outcomes": 0
+    },
+    "stable_framework_sha256": "dec203b8e92511cf1bacc69606a9acf0d194aa2214ad6f0b786e2bc0da1dd2e7"
+  },
+  "implementation_commits": {
+    "parallel_initial": "2aff1aecc8f9463999e14933da57de9f9807f803",
+    "envelope_upgrade": "e708ff712ad9816510f9926beb5dd790c0703b3f",
+    "json_newline_fix": "e0e49b639516e6602c471a7fb237334caea9ef0e",
+    "selftest_import_fix": "e2e112f8273f6f447cf7d1a7f58648efc0c9434a",
+    "strengthened_selftest": "2b4d2ac48d2dd4121521d1f1fafa78abae9376b1"
+  }
 }

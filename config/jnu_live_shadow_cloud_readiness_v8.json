@@ -244,6 +244,27 @@
       "real_entitlement_connected": false,
       "public_real_forecasts": 0,
       "public_real_outcomes": 0
+    },
+    "private_key_encrypted_backup": {
+      "status": "SYNTHETIC_CI_PASS_REAL_BACKUP_BLOCKED",
+      "protocol": "config/jnu_private_key_encrypted_backup_protocol_v1.json",
+      "restore_authorization_protocol": "config/jnu_private_restore_authorization_protocol_v1.json",
+      "envelope_upgrade_commit": "e708ff712ad9816510f9926beb5dd790c0703b3f",
+      "final_selftest_commit": "2b4d2ac48d2dd4121521d1f1fafa78abae9376b1",
+      "integrity_run": 34205335207,
+      "actionlint_run": 34204715568,
+      "selftest": "PASS_28_OF_28",
+      "algorithm": "AES-256-GCM",
+      "envelope": true,
+      "per_backup_random_dek": true,
+      "keyring_metadata_contains_key_material": false,
+      "restore_authorization_time_bounded": true,
+      "restore_authorization_single_use": true,
+      "permanent_backup_purge": false,
+      "stable_framework_sha256": "dec203b8e92511cf1bacc69606a9acf0d194aa2214ad6f0b786e2bc0da1dd2e7",
+      "real_entitlement_connected": false,
+      "public_real_forecasts": 0,
+      "public_real_outcomes": 0
     }
   },
   "frozen_max_reference_age_seconds": 900,
@@ -259,7 +280,7 @@
     "decision_engine": "NO_VALIDATED_DIRECTIONAL_EDGE"
   },
   "blocker": "LICENSED_REALTIME_ENTITLEMENT_REQUIRED_FOR_RELIABLE_SUB900_PATH",
-  "next_action": "Continue synthetic-only private durability: key-management/encrypted backup-set design, restore authorization, backup generation rotation, and DR drill governance. Real backup export remains blocked.",
+  "next_action": "Synthetic encrypted DR is ready. Do not enable real backup export. Resolve production key custody/KMS-HSM and OSE/provider backup-retention/cloud terms first.",
   "integrity_hash_protocol": "config/jnu_integrity_hash_protocol_v1.json",
   "integrity_hash_method": "SHA256_TEXT_EOL_CRLF_V1",
   "core_seal_commit": "883d6d71d41a02ca19a713a5b5e2c3469c84cead",

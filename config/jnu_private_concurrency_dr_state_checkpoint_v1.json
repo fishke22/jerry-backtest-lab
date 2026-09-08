@@ -3,7 +3,7 @@
   "as_of": "2026-09-08",
   "status": "PRIVATE_CONCURRENCY_DR_STATE_READY_SYNTHETIC_ONLY",
   "authoritative_framework": "config/jnu_operational_framework_current_v1_9.json",
-  "stable_framework_sha256": "7f8ce80aef0a3e776f4faeaf11c58e53dd30f60c46c691402ac4fe88816ddb46",
+  "stable_framework_sha256": "dec203b8e92511cf1bacc69606a9acf0d194aa2214ad6f0b786e2bc0da1dd2e7",
   "protocol": "config/jnu_private_concurrency_dr_state_protocol_v1.json",
   "lock": "scripts/jnu_private_lock_v1.py",
   "state_machine": "scripts/jnu_private_launch_state_v1.py",
@@ -47,5 +47,7 @@
     "NO_BROKER_AUTH",
     "NO_900_SECOND_RELAXATION"
   ],
-  "next_stage": "PRIVATE_KEY_MANAGEMENT_ENCRYPTED_BACKUP_ROTATION_DR_DRILL_GOVERNANCE_SYNTHETIC_ONLY"
+  "next_stage": "PRODUCTION_KEY_CUSTODY_KMS_HSM_PROVIDER_TERM_READINESS_GATE_NO_REAL_DATA",
+  "encrypted_backup_protocol": "config/jnu_private_key_encrypted_backup_protocol_v1.json",
+  "encrypted_backup_selftest": "PASS_28_OF_28"
 }

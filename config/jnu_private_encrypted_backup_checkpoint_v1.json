@@ -1,0 +1,64 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-08",
+  "status": "PRIVATE_ENCRYPTED_BACKUP_KEY_ROTATION_DR_DRILL_READY_SYNTHETIC_ONLY",
+  "authoritative_framework": "config/jnu_operational_framework_current_v1_9.json",
+  "stable_framework_sha256": "dec203b8e92511cf1bacc69606a9acf0d194aa2214ad6f0b786e2bc0da1dd2e7",
+  "protocol": "config/jnu_private_key_encrypted_backup_protocol_v1.json",
+  "restore_authorization_protocol": "config/jnu_private_restore_authorization_protocol_v1.json",
+  "keyring": "scripts/jnu_private_keyring_v1.py",
+  "encrypted_exporter": "scripts/export_jnu_private_encrypted_backupset_v1.py",
+  "encrypted_importer": "scripts/import_jnu_private_encrypted_backupset_v1.py",
+  "backup_rotation": "scripts/rotate_jnu_private_encrypted_backups_v1.py",
+  "dr_drill": "scripts/run_jnu_private_encrypted_dr_drill_v1.py",
+  "implementation_commits": {
+    "parallel_initial": "2aff1aecc8f9463999e14933da57de9f9807f803",
+    "envelope_upgrade": "e708ff712ad9816510f9926beb5dd790c0703b3f",
+    "json_newline_fix": "e0e49b639516e6602c471a7fb237334caea9ef0e",
+    "selftest_import_fix": "e2e112f8273f6f447cf7d1a7f58648efc0c9434a",
+    "strengthened_selftest": "2b4d2ac48d2dd4121521d1f1fafa78abae9376b1"
+  },
+  "cloud_verification": {
+    "integrity_run": 34205335207,
+    "actionlint_run": 34204715568,
+    "encrypted_backup_selftest": "PASS_28_OF_28",
+    "prior_concurrency_dr_state": "PASS_18_OF_18",
+    "prior_lifecycle": "PASS_19_OF_19",
+    "public_real_ledger": {
+      "forecasts": 0,
+      "outcomes": 0
+    }
+  },
+  "guarantees": {
+    "true_aes_256_gcm_envelope": true,
+    "random_dek_per_backupset": true,
+    "kek_only_wraps_dek": true,
+    "unique_nonce_per_payload": true,
+    "manifest_authenticated": true,
+    "key_material_not_in_manifest": true,
+    "plaintext_hash_not_in_manifest": true,
+    "keyring_metadata_contains_no_key_material": true,
+    "raw_key_material_external_private_files": true,
+    "wrong_key_rejected": true,
+    "ciphertext_tamper_rejected": true,
+    "manifest_tamper_rejected": true,
+    "expired_restore_authorization_rejected": true,
+    "key_version_authorization_mismatch_rejected": true,
+    "non_single_use_authorization_rejected": true,
+    "old_key_decrypt_only_after_rotation": true,
+    "old_backup_restorable_with_retired_key": true,
+    "old_generations_quarantined_not_deleted": true,
+    "private_drill_rpo_rto_measured": true
+  },
+  "hard_blocks": [
+    "REAL_ENTITLEMENT_NOT_CONNECTED",
+    "REAL_ENCRYPTED_BACKUP_EXPORT_RESTORE_PROHIBITED",
+    "PRODUCTION_KMS_HSM_KEY_CUSTODY_UNRESOLVED",
+    "OSE_PROVIDER_BACKUP_RETENTION_TERMS_UNRESOLVED",
+    "THIRD_PARTY_PRIVATE_CLOUD_PROCESSING_PERMISSION_UNRESOLVED",
+    "NO_PUBLIC_RAW_OR_DERIVED_ENTITLED_OUTPUT",
+    "NO_BROKER_AUTH",
+    "NO_900_SECOND_RELAXATION"
+  ],
+  "next_stage": "PRODUCTION_KEY_CUSTODY_KMS_HSM_PROVIDER_TERM_READINESS_GATE_NO_REAL_DATA"
+}
