@@ -170,7 +170,7 @@ jobs:
 
       - name: Private encrypted backup key-rotation DR-drill selftest
         run: |
-          python -m py_compile scripts/jnu_private_keyring_v1.py scripts/validate_jnu_private_restore_authorization_v1.py scripts/export_jnu_private_encrypted_backupset_v1.py scripts/import_jnu_private_encrypted_backupset_v1.py scripts/rotate_jnu_private_encrypted_backups_v1.py scripts/run_jnu_private_encrypted_dr_drill_v1.py scripts/selftest_jnu_private_encrypted_backup_v1.py
+          python -m py_compile scripts/jnu_private_keyring_v1.py scripts/jnu_private_backup_crypto_v1.py scripts/validate_jnu_private_restore_authorization_v1.py scripts/export_jnu_private_encrypted_backupset_v1.py scripts/import_jnu_private_encrypted_backupset_v1.py scripts/rotate_jnu_private_encrypted_backups_v1.py scripts/run_jnu_private_encrypted_dr_drill_v1.py scripts/selftest_jnu_private_encrypted_backup_v1.py
           python scripts/selftest_jnu_private_encrypted_backup_v1.py
 
       - name: Full v1.8 analysis-fresh chain selftest

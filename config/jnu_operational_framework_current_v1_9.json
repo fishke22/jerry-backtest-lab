@@ -217,7 +217,10 @@
     "private_key_encrypted_backup_protocol": "config/jnu_private_key_encrypted_backup_protocol_v1.json",
     "private_keyring_tool": "scripts/jnu_private_keyring_v1.py",
     "private_encrypted_backup_exporter": "scripts/export_jnu_private_encrypted_backupset_v1.py",
-    "private_encrypted_backup_importer": "scripts/import_jnu_private_encrypted_backupset_v1.py"
+    "private_encrypted_backup_importer": "scripts/import_jnu_private_encrypted_backupset_v1.py",
+    "private_restore_authorization": "config/jnu_private_restore_authorization_protocol_v1.json",
+    "private_backup_rotation": "scripts/rotate_jnu_private_encrypted_backups_v1.py",
+    "private_encrypted_dr_drill": "scripts/run_jnu_private_encrypted_dr_drill_v1.py"
   },
   "operational_decision_protocol": {
     "status": "FROZEN_UNKNOWN_FAILSAFE_SELFTEST_PASS_ACTIVE",
@@ -348,14 +351,20 @@
       "real_entitlement_connected": false
     },
     "private_key_encrypted_backup": {
-      "status": "SYNTHETIC_ONLY_PENDING_CI",
+      "status": "ENVELOPE_UPGRADE_PENDING_CI",
       "algorithm": "AES-256-GCM",
       "key_material_repo_prohibited": true,
       "key_material_stdout_prohibited": true,
       "real_backup_export": "PROHIBITED_UNTIL_PROVIDER_TERMS_AND_PRODUCTION_KEY_CUSTODY_APPROVED",
       "rotation_quarantine_only": true,
       "dr_drill_private_only": true,
-      "public_output": false
+      "public_output": false,
+      "envelope": true,
+      "per_backup_random_dek": true,
+      "keyring_metadata_contains_key_material": false,
+      "restore_authorization_time_bounded": true,
+      "restore_authorization_single_use": true,
+      "plaintext_hash_in_manifest": false
     }
   }
-}
+}\n

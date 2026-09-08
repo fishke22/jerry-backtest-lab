@@ -1,7 +1,7 @@
 {
-  "version": "1.0",
+  "version": "1.1",
   "as_of": "2026-09-08",
-  "status": "FROZEN_PRIVATE_RESTORE_AUTHORIZATION_PROTOCOL",
+  "status": "FROZEN_PRIVATE_RESTORE_AUTHORIZATION_PROTOCOL_V1_1",
   "required_fields": [
     "version",
     "restore_id",
@@ -9,7 +9,12 @@
     "authorization_status",
     "backupset_id",
     "authorized_key_id",
+    "authorized_key_version",
     "destination_ledger_root",
+    "authorized_at_utc",
+    "expires_at_utc",
+    "single_use",
+    "restore_purpose",
     "public_output_requested",
     "cloud_processing_used",
     "cloud_permission_status",
@@ -17,12 +22,19 @@
   ],
   "synthetic_authorization_status": "EXPLICITLY_APPROVED_SYNTHETIC",
   "real_authorization_status": "EXPLICITLY_APPROVED_REAL",
+  "allowed_synthetic_purposes": [
+    "SYNTHETIC_DR_RESTORE",
+    "SYNTHETIC_DR_DRILL"
+  ],
   "rules": {
     "destination_must_be_external_to_public_repo": true,
     "public_output_requested": false,
     "synthetic_real_entitlement_connected": false,
     "real_real_entitlement_connected": true,
     "cloud_processing_requires_explicit_permission": true,
+    "backupset_id_key_id_key_version_destination_bound": true,
+    "time_bounded": true,
+    "single_use_required": true,
     "real_restore_requires_external_governance_not_implemented": true
   }
-}
+}\n

@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "as_of": "2026-09-08",
-  "status": "PRIVATE_KEY_ENCRYPTED_BACKUP_DR_DRILL_SYNTHETIC_ONLY_PENDING_CI",
+  "status": "PRIVATE_KEY_ENCRYPTED_BACKUP_DR_DRILL_ENVELOPE_UPGRADE_PENDING_CI",
   "authoritative_framework": "config/jnu_operational_framework_current_v1_9.json",
   "purpose": "Add external private key lifecycle, AES-256-GCM encrypted synthetic backup sets, restore authorization, backup generation rotation by quarantine, and private DR drill governance.",
   "cryptography": {
@@ -17,7 +17,13 @@
       "key_id",
       "key_version"
     ],
-    "ciphertext_authentication": true
+    "ciphertext_authentication": true,
+    "envelope": true,
+    "kek_bytes": 32,
+    "dek_bytes": 32,
+    "per_backup_random_dek": true,
+    "manifest_authenticated": true,
+    "plaintext_hash_in_manifest": false
   },
   "key_management": {
     "keyring": "REPO_EXTERNAL_PRIVATE_FILE_ONLY",
@@ -29,7 +35,11 @@
     "rotation": "NEW_ACTIVE_PREVIOUS_ACTIVE_TO_RETIRED",
     "retired_key_auto_delete": false,
     "old_backup_restore_requires_retired_key": true,
-    "real_kms_hsm_status": "UNRESOLVED"
+    "real_kms_hsm_status": "UNRESOLVED",
+    "metadata_contains_key_material": false,
+    "key_material_separate_external_files": true,
+    "active_status": "ACTIVE_ENCRYPT_DECRYPT",
+    "retired_status": "RETIRED_DECRYPT_ONLY"
   },
   "encrypted_backup": {
     "exporter": "scripts/export_jnu_private_encrypted_backupset_v1.py",
@@ -46,7 +56,10 @@
     "real_status": "EXPLICITLY_APPROVED_REAL_PLUS_EXTERNAL_ENTITLEMENT_GOVERNANCE_REQUIRED",
     "destination_must_match_authorization": true,
     "backupset_id_must_match_authorization": true,
-    "key_id_must_match_authorization": true
+    "key_id_must_match_authorization": true,
+    "key_version_must_match_authorization": true,
+    "time_bounded": true,
+    "single_use": true
   },
   "rotation": {
     "tool": "scripts/rotate_jnu_private_encrypted_backups_v1.py",
@@ -66,4 +79,4 @@
   },
   "public_output": false,
   "real_entitlement_connected": false
-}
+}\n

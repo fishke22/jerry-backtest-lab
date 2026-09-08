@@ -1,5 +1,5 @@
 from __future__ import annotations
-import json,os,shutil,subprocess,sys,tempfile
+import base64,json,os,shutil,subprocess,sys,tempfile\nfrom datetime import datetime,timezone,timedelta
 from pathlib import Path
 
 ROOT=Path(__file__).resolve().parents[1];PY=sys.executable
@@ -39,13 +39,14 @@ with tempfile.TemporaryDirectory(prefix="jnu_encbackup_ext_") as td0:
  T["manifest_has_no_key_material"]=bm["key_material_present"] is False and "material_b64" not in (bs/"manifest.json").read_text()
  payload=list((bs/"payload").glob("*.bin"));T["payload_ciphertext_only"]=len(payload)>0 and not list((bs/"payload").rglob("*.json"))
 
- auth=td/"restore.json";restore1=td/"restore1";A={"version":"1.0","restore_id":"JNU_PRIV_RESTORE_SYNTH_0001","mode":"SYNTHETIC","authorization_status":"EXPLICITLY_APPROVED_SYNTHETIC","backupset_id":"JNU_PRIV_EBACKUP_SYNTH_001","authorized_key_id":"JNU_KEY_SYNTH_V1","destination_ledger_root":str(restore1),"public_output_requested":False,"cloud_processing_used":False,"cloud_permission_status":"NOT_APPLICABLE","real_entitlement_connected":False};w(auth,A)
- cp=subprocess.run([PY,str(EIMP),"--backupset",str(bs),"--keyring",str(keyring),"--authorization",str(auth)],cwd=ROOT,capture_output=True,text=True);T["encrypted_import_pass"]=cp.returncode==0 and (restore1/"results"/"dr_revalidated_v1.json").exists()
+ auth=td/"restore.json";restore1=td/"restore1";now=datetime.now(timezone.utc);A={"version":"1.1","restore_id":"JNU_PRIV_RESTORE_SYNTH_0001","mode":"SYNTHETIC","authorization_status":"EXPLICITLY_APPROVED_SYNTHETIC","backupset_id":"JNU_PRIV_EBACKUP_SYNTH_001","authorized_key_id":"JNU_KEY_SYNTH_V1","authorized_key_version":1,"destination_ledger_root":str(restore1),"authorized_at_utc":(now-timedelta(minutes=1)).isoformat(),"expires_at_utc":(now+timedelta(minutes=30)).isoformat(),"single_use":True,"restore_purpose":"SYNTHETIC_DR_RESTORE","public_output_requested":False,"cloud_processing_used":False,"cloud_permission_status":"NOT_APPLICABLE","real_entitlement_connected":False};w(auth,A)
+ cp=subprocess.run([PY,str(EIMP),"--backupset",str(bs),"--keyring",str(keyring),"--authorization",str(auth)],cwd=ROOT,capture_output=True,text=True);T["encrypted_import_pass"]=cp.returncode==0 and (restore1/"results"/"dr_revalidated_v1.json").exists() and (restore1/"recovery"/"restore_authorization_receipt.json").exists()
 
  wrongring=td/"keys"/"wrong.json";cp=subprocess.run([PY,str(KEY),"init","--keyring",str(wrongring),"--key-id","JNU_KEY_SYNTH_V1"],cwd=ROOT,capture_output=True,text=True);wrongdest=td/"wrongdest";Aw=dict(A);Aw["restore_id"]="JNU_PRIV_RESTORE_SYNTH_0002";Aw["destination_ledger_root"]=str(wrongdest);aw=td/"wrongauth.json";w(aw,Aw);cp=subprocess.run([PY,str(EIMP),"--backupset",str(bs),"--keyring",str(wrongring),"--authorization",str(aw)],cwd=ROOT,capture_output=True,text=True);T["wrong_key_rejected"]=cp.returncode!=0 and not wrongdest.exists()
 
  tam=td/"tampered";shutil.copytree(bs,tam);pf=next((tam/"payload").glob("*.bin"));raw=bytearray(pf.read_bytes());raw[0]^=1;pf.write_bytes(bytes(raw));tdest=td/"tamdest";At=dict(A);At["restore_id"]="JNU_PRIV_RESTORE_SYNTH_0003";At["destination_ledger_root"]=str(tdest);ta=td/"tamauth.json";w(ta,At);cp=subprocess.run([PY,str(EIMP),"--backupset",str(tam),"--keyring",str(keyring),"--authorization",str(ta)],cwd=ROOT,capture_output=True,text=True);T["ciphertext_tamper_rejected"]=cp.returncode!=0 and not tdest.exists()
 
+ expired=td/"expired_auth.json";xe=dict(A);xe["restore_id"]="JNU_PRIV_RESTORE_SYNTH_EXPIRED";xe["destination_ledger_root"]=str(td/"expired_dest");xe["authorized_at_utc"]=(now-timedelta(hours=2)).isoformat();xe["expires_at_utc"]=(now-timedelta(hours=1)).isoformat();w(expired,xe);cp=subprocess.run([PY,str(EIMP),"--backupset",str(bs),"--keyring",str(keyring),"--authorization",str(expired)],cwd=ROOT,capture_output=True,text=True);T["expired_authorization_rejected"]=cp.returncode!=0
  cp=subprocess.run([PY,str(KEY),"rotate","--keyring",str(keyring),"--new-key-id","JNU_KEY_SYNTH_V2"],cwd=ROOT,capture_output=True,text=True);T["key_rotation_pass"]=cp.returncode==0 and "material_b64" not in cp.stdout
  cp=subprocess.run([PY,str(EEXP),"--manifest",str(launch),"--keyring",str(keyring),"--destination-root",str(backuproot),"--backupset-id","JNU_PRIV_EBACKUP_SYNTH_002"],cwd=ROOT,capture_output=True,text=True);T["new_backup_uses_rotated_key"]=cp.returncode==0 and json.loads((backuproot/"JNU_PRIV_EBACKUP_SYNTH_002"/"manifest.json").read_text())["key_id"]=="JNU_KEY_SYNTH_V2"
  olddest=td/"old_after_rotation";Ao=dict(A);Ao["restore_id"]="JNU_PRIV_RESTORE_SYNTH_0004";Ao["destination_ledger_root"]=str(olddest);ao=td/"oldauth.json";w(ao,Ao);cp=subprocess.run([PY,str(EIMP),"--backupset",str(bs),"--keyring",str(keyring),"--authorization",str(ao)],cwd=ROOT,capture_output=True,text=True);T["retired_key_restores_old_backup"]=cp.returncode==0
@@ -57,7 +58,7 @@ with tempfile.TemporaryDirectory(prefix="jnu_encbackup_ext_") as td0:
  drill_auth=td/"drillauth.json";Ad=dict(A);Ad["restore_id"]="JNU_PRIV_RESTORE_SYNTH_DRILL";Ad["backupset_id"]="JNU_PRIV_EBACKUP_SYNTH_004";Ad["authorized_key_id"]="JNU_KEY_SYNTH_V2";Ad["destination_ledger_root"]=str(td/"placeholder");w(drill_auth,Ad)
  report=td/"drill_report.json";cp=subprocess.run([PY,str(DRILL),"--backupset",str(backuproot/"JNU_PRIV_EBACKUP_SYNTH_004"),"--keyring",str(keyring),"--authorization",str(drill_auth),"--drill-root",str(td/"drillroot"),"--report",str(report)],cwd=ROOT,capture_output=True,text=True);T["dr_drill_pass"]=cp.returncode==0 and report.exists()
  if report.exists():
-  rr=json.loads(report.read_text());T["dr_objectives_measured"]=rr["integrity_status"]=="PASS" and rr["rto_objective_met"] is True and rr["backup_age_objective_met"] is True
+  rr=json.loads(report.read_text());T["dr_objectives_measured"]=rr["overall_pass"] is True and rr["rto_objective_met"] is True and rr["rpo_objective_met"] is True
  else:T["dr_objectives_measured"]=False
 after=counts();T["public_ledger_untouched"]=before==after==(0,0)
 status="PASS" if all(T.values()) else "FAIL";print(json.dumps({"status":status,"tests":T,"passed":sum(T.values()),"total":len(T),"public_ledger_before":before,"public_ledger_after":after},indent=2));raise SystemExit(0 if status=="PASS" else 1)
