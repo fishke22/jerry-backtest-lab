@@ -1,0 +1,178 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-08",
+  "status": "FROZEN_PRIVATE_KMS_DEPLOYMENT_EVIDENCE_STAGING_CONTROL_ATTESTATION_SYNTHETIC_ONLY",
+  "authoritative_framework": "config/jnu_operational_framework_current_v1_9.json",
+  "purpose": "Stage synthetic repo-external deployment-control evidence for shortlisted KMS candidates and emit redacted candidate control attestations without connecting cloud accounts, credentials, projects, keys, KMS APIs, or selecting a production vendor.",
+  "upstream": {
+    "key_custody_decision_matrix": "config/jnu_production_key_custody_decision_matrix_v1.json",
+    "provider_shortlist": "config/jnu_provider_selection_shortlist_v1.json",
+    "production_key_profile": "config/jnu_production_key_custody_current_v1.json",
+    "provider_evidence_intake_templates": "config/jnu_provider_evidence_intake_pack_templates_v1.json",
+    "private_atomic_io": "scripts/jnu_private_atomic_io_v1.py"
+  },
+  "mode": {
+    "current": "SYNTHETIC_ONLY",
+    "required_input_mode": "SYNTHETIC",
+    "synthetic_fixture_flag_required": true,
+    "real_cloud_connection_permitted": false,
+    "credential_collection_permitted": false,
+    "project_or_account_identifier_collection_permitted": false,
+    "key_identifier_collection_permitted": false,
+    "kms_api_call_permitted": false,
+    "key_creation_permitted": false,
+    "vendor_selection_permitted": false,
+    "production_enablement_permitted": false
+  },
+  "candidates": {
+    "AWS_KMS_TOKYO": {
+      "vendor": "AWS",
+      "region": "ap-northeast-1",
+      "control_class": "MANAGED_HSM_BACKED_KMS"
+    },
+    "GCP_CLOUD_HSM_TOKYO": {
+      "vendor": "Google Cloud",
+      "region": "asia-northeast1",
+      "control_class": "MANAGED_HSM_BACKED_KMS"
+    }
+  },
+  "required_controls": {
+    "control_class": {
+      "type": "string",
+      "required_value": "MANAGED_HSM_BACKED_KMS"
+    },
+    "vendor": {
+      "type": "candidate_vendor"
+    },
+    "region": {
+      "type": "candidate_region"
+    },
+    "hsm_backed": {
+      "type": "boolean",
+      "required_value": true
+    },
+    "fips_security_level": {
+      "type": "integer_min",
+      "minimum": 3
+    },
+    "kek_non_exportable": {
+      "type": "boolean",
+      "required_value": true
+    },
+    "symmetric_kek": {
+      "type": "boolean",
+      "required_value": true
+    },
+    "plaintext_kek_never_exposed_to_application": {
+      "type": "boolean",
+      "required_value": true
+    },
+    "provider_audit_logging": {
+      "type": "boolean",
+      "required_value": true
+    },
+    "key_rotation_supported": {
+      "type": "boolean",
+      "required_value": true
+    },
+    "previous_key_versions_retained_for_authorized_decrypt": {
+      "type": "boolean",
+      "required_value": true
+    },
+    "iam_role_separation": {
+      "type": "boolean",
+      "required_value": true
+    },
+    "key_admin_separate_from_crypto_user": {
+      "type": "boolean",
+      "required_value": true
+    },
+    "restore_approver_separate_from_crypto_user": {
+      "type": "boolean",
+      "required_value": true
+    },
+    "deletion_protection_or_delayed_destruction": {
+      "type": "boolean",
+      "required_value": true
+    },
+    "explicit_region_and_residency_configuration": {
+      "type": "boolean",
+      "required_value": true
+    },
+    "private_network_path_or_equivalent_restriction": {
+      "type": "boolean",
+      "required_value": true
+    }
+  },
+  "evidence_rules": {
+    "source_document_must_be_repo_external": true,
+    "intake_metadata_must_be_repo_external": true,
+    "stage_record_must_be_repo_external": true,
+    "redacted_output_must_be_repo_external_current_stage": true,
+    "source_document_sha256_required": true,
+    "source_document_sha256_reverified_before_emit": true,
+    "allowed_source_roles": [
+      "CAPABILITY_BASELINE",
+      "DEPLOYMENT_CONTROL"
+    ],
+    "allowed_source_classes": [
+      "KMS_VENDOR_OFFICIAL_SNAPSHOT",
+      "INTERNAL_DEPLOYMENT_ATTESTATION"
+    ],
+    "allowed_authorities": [
+      "KMS_VENDOR",
+      "INTERNAL_CONTROL_OWNER"
+    ],
+    "deployment_control_promoting_authority": "INTERNAL_CONTROL_OWNER",
+    "deployment_control_promoting_source_class": "INTERNAL_DEPLOYMENT_ATTESTATION",
+    "vendor_capability_baseline_never_promotes_deployment_control": true,
+    "explicitness_required": "EXPLICIT_TEXT",
+    "reviewer_attestation_required": "EXPLICIT_TEXT_CONFIRMED",
+    "locator_prefixes": [
+      "PAGE:",
+      "SECTION:",
+      "CLAUSE:",
+      "CONTROL:",
+      "CONFIG:",
+      "POLICY:"
+    ],
+    "locator_max_chars": 240,
+    "conflicting_control_claims_fail_closed": true
+  },
+  "prohibited_keys": [
+    "credential",
+    "credentials",
+    "api_key",
+    "access_token",
+    "password",
+    "secret",
+    "client_secret",
+    "private_key",
+    "material_b64",
+    "token",
+    "account_id",
+    "project_id",
+    "subscription_id",
+    "tenant_id",
+    "key_id",
+    "key_arn",
+    "resource_name",
+    "service_account",
+    "role_arn",
+    "principal"
+  ],
+  "redacted_output": {
+    "source_document_path_emitted": false,
+    "source_document_text_emitted": false,
+    "cloud_resource_identifiers_emitted": false,
+    "credentials_emitted": false,
+    "key_material_emitted": false,
+    "selected_vendor_emitted": false,
+    "production_enabled": false,
+    "real_activation_authorized": false
+  },
+  "output_statuses": [
+    "COMPLETE_SYNTHETIC_CONTROL_ATTESTATION",
+    "PARTIAL_SYNTHETIC_CONTROL_ATTESTATION_BLOCKED"
+  ]
+}
