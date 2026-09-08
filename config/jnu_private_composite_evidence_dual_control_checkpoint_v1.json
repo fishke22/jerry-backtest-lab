@@ -1,0 +1,123 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-08",
+  "status": "CI_PASS_DUAL_CONTROL_REVIEW_SYNTHETIC_READY_REAL_SELECTION_BLOCKED",
+  "authoritative_framework": "config/jnu_operational_framework_current_v1_9.json",
+  "stable_framework_sha256": "2e0be163baccd8c42065b088116e313f9e34c39745bbdf509553063d500b1c85",
+  "continuation_basis": "CURRENT_MAIN_AND_CROSS_SESSION_MEMORY_NEXT_ACTION",
+  "stage": "PRIVATE_COMPOSITE_EVIDENCE_REVIEW_APPROVAL_DUAL_CONTROL_SYNTHETIC_ONLY",
+  "implementation": {
+    "core_commit": "0b683a2dbb89c5ee0b8cc9182361363469ee5fd2",
+    "integrity_run": 34223789604,
+    "actionlint_run": 34223789593,
+    "selftest": "PASS_41_OF_41",
+    "fix_commit": null,
+    "core_ci_first_pass": true
+  },
+  "review_contract": {
+    "combination_count": 6,
+    "reviews_per_combination": 2,
+    "total_reviews": 12,
+    "required_roles": [
+      "EVIDENCE_REVIEWER",
+      "CONTROL_REVIEWER"
+    ],
+    "independent_reviewer_ids_required": true,
+    "allowed_dispositions": [
+      "APPROVE",
+      "REJECT",
+      "NEEDS_EVIDENCE"
+    ],
+    "composite_file_sha256_bound": true,
+    "individual_dossier_canonical_sha256_bound": true,
+    "reviewer_attestation_required": "EXPLICIT_TEXT_CONFIRMED",
+    "revalidation_due_enforced": true,
+    "expiry_enforced": true
+  },
+  "outcome_behavior": {
+    "dual_approve": "SYNTHETIC_DUAL_CONTROL_APPROVED_NOT_ACTIVATABLE",
+    "dual_reject": "SYNTHETIC_DUAL_CONTROL_REJECTED",
+    "dual_needs_evidence": "SYNTHETIC_DUAL_CONTROL_NEEDS_EVIDENCE",
+    "disposition_mismatch": "SYNTHETIC_DUAL_CONTROL_CONFLICT_BLOCKED",
+    "stale_or_expired": "SYNTHETIC_DUAL_CONTROL_REVALIDATION_REQUIRED",
+    "underlying_evidence_blocked_overrides_approve": true
+  },
+  "replay_and_receipt": {
+    "repo_external_immutable_store": true,
+    "exact_replay_idempotent": true,
+    "same_batch_id_different_content_rejected": true,
+    "immutable_backup_written": true,
+    "reviewer_ids_redacted": true,
+    "reviewer_reference_sha256_retained": true
+  },
+  "cloud_verification": {
+    "v1_9_supersession": "PASS_17_OF_17",
+    "entitled_quote_evidence": "PASS_13_OF_13",
+    "private_storage_boundary": "PASS_9_OF_9",
+    "public_live_shadow_boundary": "PASS_8_OF_8",
+    "public_artifact_safety": "PASS_4_OF_4",
+    "private_quote_bridge": "PASS_10_OF_10",
+    "private_entitled_live_shadow": "PASS_16_OF_16",
+    "private_lifecycle": "PASS_19_OF_19",
+    "private_concurrency_dr_state": "PASS_18_OF_18",
+    "private_encrypted_backup": "PASS_30_OF_30",
+    "production_key_custody_provider_term": "PASS_30_OF_30",
+    "provider_shortlist_term_activation": "PASS_11_OF_11",
+    "provider_evidence_intake": "PASS_16_OF_16",
+    "provider_term_private_staging": "PASS_24_OF_24",
+    "kms_deployment_evidence_staging": "PASS_31_OF_31",
+    "composite_production_readiness_join": "PASS_34_OF_34",
+    "composite_evidence_dual_control": "PASS_41_OF_41",
+    "public_real_ledger": {
+      "forecasts": 0,
+      "outcomes": 0
+    }
+  },
+  "guarantees": {
+    "wrong_composite_sha_rejected": true,
+    "wrong_dossier_sha_rejected": true,
+    "duplicate_review_id_rejected": true,
+    "same_reviewer_dual_role_rejected": true,
+    "missing_review_rejected": true,
+    "invalid_role_rejected": true,
+    "invalid_disposition_rejected": true,
+    "inferred_review_rejected": true,
+    "naive_timestamp_rejected": true,
+    "invalid_revalidation_order_rejected": true,
+    "invalid_expiry_order_rejected": true,
+    "evaluation_before_review_rejected": true,
+    "revalidation_due_blocks": true,
+    "expired_review_blocks": true,
+    "disposition_conflict_blocks": true,
+    "secret_fields_rejected": true,
+    "cloud_resource_identifiers_rejected": true,
+    "ranked_composite_rejected": true,
+    "selected_dossier_rejected": true,
+    "activation_authorized_composite_rejected": true,
+    "missing_or_duplicate_combination_rejected": true,
+    "no_ranking": true,
+    "no_recommendation": true,
+    "no_selection": true,
+    "real_activation_authorized": false
+  },
+  "invariants": {
+    "real_entitlement_connected": false,
+    "provider_selected": false,
+    "key_custody_provider_selected": false,
+    "credentials_connected": false,
+    "real_cloud_account_connected": false,
+    "kms_api_called": false,
+    "real_key_created": false,
+    "production_key_enabled": false,
+    "real_activation_manifest_generated": false,
+    "exact_individual_month_required": true,
+    "freshness_gate_seconds": 900,
+    "continuous_contract_primary_prohibited": true,
+    "broker_auth_used": false,
+    "trading_permission_used": false,
+    "public_raw_entitled_output": false,
+    "public_derived_entitled_output": false
+  },
+  "next_stage": "PRIVATE_VENDOR_PAIR_SELECTION_AUTHORIZATION_DECISION_GATE_SYNTHETIC_ONLY",
+  "next_action": "Build a repo-external synthetic vendor-pair selection authorization and decision-record gate that consumes a valid non-expired dual-control review receipt, verifies receipt/dossier lineage and six-pair coverage, and requires an explicit separate user-authorization artifact before any candidate pair could ever transition from UNSELECTED. In this stage, authorization must remain synthetic/disabled and no selection may be written. Test missing/expired/conflicting authorization, unauthorized pair substitution, replay, receipt tamper, and production-state mutation fail-closed. Do not select a real market-data provider or KMS vendor, contact providers, connect credentials/accounts, create keys, mutate production profiles, or generate a real activation manifest without explicit user authorization."
+}
