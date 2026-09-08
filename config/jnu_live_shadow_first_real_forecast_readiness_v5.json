@@ -59,7 +59,13 @@
     "private_boundary_integrity_run": 34170986493,
     "private_boundary_actionlint_run": 34170986562,
     "entitled_quote_evidence_selftest": "PASS_13_OF_13",
-    "private_storage_boundary_selftest": "PASS_9_OF_9"
+    "private_storage_boundary_selftest": "PASS_9_OF_9",
+    "runtime_public_boundary_core_commit": "1d9b9855387eea678bb029455cf7ed278964d577",
+    "runtime_public_boundary_integrity_run": 34172618359,
+    "runtime_public_boundary_actionlint_run": 34172618355,
+    "runtime_public_boundary_v17_regression_run": 34172618424,
+    "public_ledger_guard": "PASS_8_OF_8",
+    "public_artifact_guard": "PASS_4_OF_4"
   },
   "current_blocker": "LICENSED_REALTIME_ENTITLEMENT_REQUIRED_FOR_RELIABLE_SUB900_PATH",
   "weekend_probe": {

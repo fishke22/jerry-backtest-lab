@@ -296,6 +296,10 @@
     "public_repository_raw_entitled_market_data_prohibited": true,
     "third_party_cloud_processing_requires_explicit_permission": true,
     "public_hash_or_derived_forecast_permission_status": "UNCONFIRMED_FAIL_CLOSED",
-    "current_public_atomic_path_status": "INCOMPATIBLE_WITH_OSE_FREE_TRIAL_RAW_EVIDENCE_UNTIL_PRIVATE_LEDGER_AND_PUBLICATION_RIGHTS_RESOLVED"
+    "current_public_atomic_path_status": "INCOMPATIBLE_WITH_OSE_FREE_TRIAL_RAW_EVIDENCE_UNTIL_PRIVATE_LEDGER_AND_PUBLICATION_RIGHTS_RESOLVED",
+    "runtime_public_boundary_alignment": "config/jnu_v19_runtime_public_boundary_alignment_v1.json",
+    "runtime_framework_sha256": "01c37847362f7dbdc898d5956562780a67442e493d4ad65617a82bab7fb6ba34",
+    "public_atomic_entitlement_guard": "PASS_CI",
+    "github_artifact_entitlement_guard": "PASS_CI"
   }
 }

@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "as_of": "2026-09-08",
-  "status": "V1_9_RUNTIME_PROVENANCE_AND_PUBLIC_BOUNDARY_CORE_PENDING_CI",
+  "status": "V1_9_RUNTIME_PROVENANCE_AND_PUBLIC_BOUNDARY_CI_PASS",
   "authoritative_framework": "config/jnu_operational_framework_current_v1_9.json",
   "frozen_directional_semantics": {
     "preregistration": "config/jnu_operational_live_shadow_prereg_v1_7.json",
@@ -32,5 +32,19 @@
   "real_ledger": {
     "forecasts": 0,
     "outcomes": 0
+  },
+  "core_commit": "1d9b9855387eea678bb029455cf7ed278964d577",
+  "cloud_verification": {
+    "v1_7_integrity_run": 34172618424,
+    "v1_8_integrity_run": 34172618359,
+    "actionlint_run": 34172618355,
+    "v1_9_supersession": "PASS_17_OF_17",
+    "entitled_quote_evidence": "PASS_13_OF_13",
+    "private_storage_boundary": "PASS_9_OF_9",
+    "public_live_shadow_boundary": "PASS_8_OF_8",
+    "public_artifact_safety": "PASS_4_OF_4",
+    "full_v1_8_chain": "PASS",
+    "empty_ledger_scorer": "PASS",
+    "runtime_framework_sha256": "01c37847362f7dbdc898d5956562780a67442e493d4ad65617a82bab7fb6ba34"
   }
 }

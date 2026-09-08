@@ -75,7 +75,7 @@
   "cloud_request_selftest_run": 33969428203,
   "cloud_actionlint_run": 34038843503,
   "cloud_pipeline_status": "V1_8_ANALYSIS_FRESH_OFFICIAL_PREPARED_REQUEST_INTEGRITY_CI_PASS_REAL_LEDGER_EMPTY",
-  "next_action": "Use JNU Operational Framework v1.9. OSE Free Trial is only conditionally feasible: public process is company-oriented, Micro product selection/provider/cloud/publication rights need confirmation, and raw entitled quotes must remain private. Do not use current public atomic-v4 raw-evidence path. Continue provider/onboarding confirmation; do not send the prepared OSE inquiry without explicit user authorization.",
+  "next_action": "Use JNU v1.9. Runtime preflight/registrar/scorer are v1.9-aligned; public atomic and GitHub artifacts reject entitled/private evidence. Continue synthetic-only construction of a private entitled quote bridge that cannot read/write raw entitled market data inside the public repository and cannot publish any derived result without explicit permission.",
   "exact_micro_reference_source_gate": "config/jnu_exact_micro_reference_source_gate_20260904_v1.json",
   "tradingview_exact_micro_transport": {
     "status": "B_IDENTITY_SOURCE_ALLOWED_ONLY_IF_ACTUAL_LP_TIME_AGE_LE_900",
@@ -194,5 +194,13 @@
   "private_boundary_core_commit": "a810f6f57735721aad88c40d0be089b2e574df70",
   "private_boundary_integrity_run": 34170986493,
   "private_boundary_actionlint_run": 34170986562,
-  "private_boundary_selftest": "PASS_9_OF_9"
+  "private_boundary_selftest": "PASS_9_OF_9",
+  "runtime_public_boundary_alignment": "config/jnu_v19_runtime_public_boundary_alignment_v1.json",
+  "runtime_public_boundary_core_commit": "1d9b9855387eea678bb029455cf7ed278964d577",
+  "runtime_public_boundary_integrity_run": 34172618359,
+  "runtime_public_boundary_actionlint_run": 34172618355,
+  "runtime_public_boundary_v17_regression_run": 34172618424,
+  "public_live_shadow_boundary_selftest": "PASS_8_OF_8",
+  "public_artifact_safety_selftest": "PASS_4_OF_4",
+  "runtime_framework_sha256": "01c37847362f7dbdc898d5956562780a67442e493d4ad65617a82bab7fb6ba34"
 }

@@ -177,6 +177,17 @@
         "forecasts": 0,
         "outcomes": 0
       }
+    },
+    "v1_9_runtime_public_boundary": {
+      "status": "PASS",
+      "checkpoint": "config/jnu_v19_runtime_public_boundary_alignment_v1.json",
+      "core_commit": "1d9b9855387eea678bb029455cf7ed278964d577",
+      "v1_8_integrity_run": 34172618359,
+      "actionlint_run": 34172618355,
+      "v1_7_regression_run": 34172618424,
+      "public_ledger_guard": "PASS_8_OF_8",
+      "public_artifact_guard": "PASS_4_OF_4",
+      "runtime_framework_sha256": "01c37847362f7dbdc898d5956562780a67442e493d4ad65617a82bab7fb6ba34"
     }
   },
   "frozen_max_reference_age_seconds": 900,
@@ -192,7 +203,7 @@
     "decision_engine": "NO_VALIDATED_DIRECTIONAL_EDGE"
   },
   "blocker": "LICENSED_REALTIME_ENTITLEMENT_REQUIRED_FOR_RELIABLE_SUB900_PATH",
-  "next_action": "First-real remains blocked. Obtain/confirm a legal realtime entitlement, but also require a private raw-evidence path and explicit OSE/provider approval for third-party cloud processing and any public hash/derived forecast. Current public atomic-v4 raw-evidence commit path is incompatible with OSE Free Trial.",
+  "next_action": "Build and selftest a private entitled quote bridge outside the public repository. No real entitlement data, credentials, public hashes, forecasts, or GitHub-hosted raw processing until external permission is resolved.",
   "integrity_hash_protocol": "config/jnu_integrity_hash_protocol_v1.json",
   "integrity_hash_method": "SHA256_TEXT_EOL_CRLF_V1",
   "core_seal_commit": "883d6d71d41a02ca19a713a5b5e2c3469c84cead",

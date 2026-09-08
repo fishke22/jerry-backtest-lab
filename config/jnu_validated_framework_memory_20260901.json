@@ -421,5 +421,16 @@
     "public_repo_raw_trial_data_prohibited": true,
     "real_forecasts": 0,
     "real_outcomes": 0
+  },
+  "v1_9_runtime_public_boundary": {
+    "status": "PASS",
+    "checkpoint": "config/jnu_v19_runtime_public_boundary_alignment_v1.json",
+    "core_commit": "1d9b9855387eea678bb029455cf7ed278964d577",
+    "v1_8_integrity_run": 34172618359,
+    "actionlint_run": 34172618355,
+    "v1_7_regression_run": 34172618424,
+    "public_ledger_guard": "PASS_8_OF_8",
+    "public_artifact_guard": "PASS_4_OF_4",
+    "runtime_framework_sha256": "01c37847362f7dbdc898d5956562780a67442e493d4ad65617a82bab7fb6ba34"
   }
 }
