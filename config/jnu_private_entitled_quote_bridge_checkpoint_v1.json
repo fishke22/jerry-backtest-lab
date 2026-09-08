@@ -1,0 +1,30 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-08",
+  "status": "PRIVATE_ENTITLED_QUOTE_BRIDGE_READY_SYNTHETIC_ONLY",
+  "authoritative_framework": "config/jnu_operational_framework_current_v1_9.json",
+  "stable_framework_sha256": "e6157cc6378c1cb07c254fdb9895d0171ac3cc8ebbbc00392f68ef2daaa3ed47",
+  "framework_hash_method": "SHA256_TEXT_EOL_CRLF_V1",
+  "framework_hash_self_reference_prohibited": true,
+  "private_bridge_protocol": "config/jnu_private_entitled_quote_bridge_protocol_v1.json",
+  "builder": "scripts/build_jnu_private_entitled_quote_bundle_v1.py",
+  "core_commit": "b061aae17b5e1276104205f7e24736b130734c6a",
+  "cloud_verification": {
+    "integrity_run": 34172856992,
+    "actionlint_run": 34172856975,
+    "bridge_selftest": "PASS_10_OF_10",
+    "full_chain": "PASS",
+    "real_ledger": {
+      "forecasts": 0,
+      "outcomes": 0
+    }
+  },
+  "hard_blocks": [
+    "NO_REAL_ENTITLED_DATA_IN_GITHUB_ACTIONS_WITHOUT_EXPLICIT_CLOUD_PERMISSION",
+    "NO_RAW_ENTITLED_QUOTE_IN_PUBLIC_REPOSITORY_OR_ARTIFACTS",
+    "NO_PUBLIC_HASH_OR_DERIVED_FORECAST_WITHOUT_EXPLICIT_PUBLICATION_PERMISSION",
+    "NO_BROKER_AUTH_UNDER_CURRENT_GOVERNANCE",
+    "NO_900_SECOND_GATE_RELAXATION"
+  ],
+  "next_stage": "PRIVATE_FORECAST_AND_LEDGER_ARCHITECTURE_SYNTHETIC_ONLY"
+}

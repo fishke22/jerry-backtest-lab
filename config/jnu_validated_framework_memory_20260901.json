@@ -432,5 +432,18 @@
     "public_ledger_guard": "PASS_8_OF_8",
     "public_artifact_guard": "PASS_4_OF_4",
     "runtime_framework_sha256": "01c37847362f7dbdc898d5956562780a67442e493d4ad65617a82bab7fb6ba34"
+  },
+  "private_entitled_quote_bridge": {
+    "status": "SYNTHETIC_CI_PASS_REAL_ENTITLEMENT_NOT_CONNECTED",
+    "protocol": "config/jnu_private_entitled_quote_bridge_protocol_v1.json",
+    "builder": "scripts/build_jnu_private_entitled_quote_bundle_v1.py",
+    "core_commit": "b061aae17b5e1276104205f7e24736b130734c6a",
+    "integrity_run": 34172856992,
+    "actionlint_run": 34172856975,
+    "selftest": "PASS_10_OF_10",
+    "stable_framework_sha256": "e6157cc6378c1cb07c254fdb9895d0171ac3cc8ebbbc00392f68ef2daaa3ed47",
+    "real_entitlement_connected": false,
+    "real_forecasts": 0,
+    "real_outcomes": 0
   }
 }

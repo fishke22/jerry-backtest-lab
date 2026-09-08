@@ -46,5 +46,9 @@
     "full_v1_8_chain": "PASS",
     "empty_ledger_scorer": "PASS",
     "runtime_framework_sha256": "01c37847362f7dbdc898d5956562780a67442e493d4ad65617a82bab7fb6ba34"
-  }
+  },
+  "stable_framework_sha256": "e6157cc6378c1cb07c254fdb9895d0171ac3cc8ebbbc00392f68ef2daaa3ed47",
+  "framework_self_hash_storage": "EXTERNAL_CHECKPOINT_ONLY",
+  "framework_hash_self_reference_correction_commit": "c97637cae0870920a4fb5941cc4da4abbe9ebdc7",
+  "private_entitled_quote_bridge": "config/jnu_private_entitled_quote_bridge_protocol_v1.json"
 }

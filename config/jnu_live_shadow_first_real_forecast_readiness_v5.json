@@ -65,7 +65,11 @@
     "runtime_public_boundary_actionlint_run": 34172618355,
     "runtime_public_boundary_v17_regression_run": 34172618424,
     "public_ledger_guard": "PASS_8_OF_8",
-    "public_artifact_guard": "PASS_4_OF_4"
+    "public_artifact_guard": "PASS_4_OF_4",
+    "private_entitled_quote_bridge_core_commit": "b061aae17b5e1276104205f7e24736b130734c6a",
+    "private_entitled_quote_bridge_integrity_run": 34172856992,
+    "private_entitled_quote_bridge_actionlint_run": 34172856975,
+    "private_entitled_quote_bridge_selftest": "PASS_10_OF_10"
   },
   "current_blocker": "LICENSED_REALTIME_ENTITLEMENT_REQUIRED_FOR_RELIABLE_SUB900_PATH",
   "weekend_probe": {
@@ -88,5 +92,7 @@
   "entitled_source_validator": "scripts/validate_jnu_entitled_exact_micro_evidence_v1.py",
   "ose_free_trial_onboarding_feasibility": "config/jnu_ose_free_trial_onboarding_feasibility_v1.json",
   "entitled_market_data_private_boundary": "config/jnu_entitled_market_data_storage_boundary_v1.json",
-  "ose_free_trial_stage_checkpoint": "config/jnu_ose_free_trial_onboarding_checkpoint_v1.json"
+  "ose_free_trial_stage_checkpoint": "config/jnu_ose_free_trial_onboarding_checkpoint_v1.json",
+  "private_entitled_quote_bridge": "config/jnu_private_entitled_quote_bridge_protocol_v1.json",
+  "stable_v1_9_framework_sha256": "e6157cc6378c1cb07c254fdb9895d0171ac3cc8ebbbc00392f68ef2daaa3ed47"
 }

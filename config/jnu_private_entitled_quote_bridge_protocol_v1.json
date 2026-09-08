@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "as_of": "2026-09-08",
-  "status": "PRIVATE_ENTITLED_QUOTE_BRIDGE_PROTOCOL_SYNTHETIC_READY_PENDING_CI",
+  "status": "PRIVATE_ENTITLED_QUOTE_BRIDGE_SYNTHETIC_CI_PASS_REAL_ENTITLEMENT_NOT_CONNECTED",
   "authoritative_framework": "config/jnu_operational_framework_current_v1_9.json",
   "purpose": "Create a private-only validated raw quote bundle from entitled exact-Micro evidence without placing raw market data in the public repository, GitHub artifacts, or live-shadow ledger.",
   "execution_rules": {
@@ -42,5 +42,19 @@
       "real_ledger_modified"
     ]
   },
-  "next_stage": "After legal/provider/cloud permissions exist, implement a private forecast execution/ledger path; do not bridge raw entitled quote fields into the public atomic ledger."
+  "next_stage": "After legal/provider/cloud permissions exist, implement a private forecast execution/ledger path; do not bridge raw entitled quote fields into the public atomic ledger.",
+  "core_commit": "b061aae17b5e1276104205f7e24736b130734c6a",
+  "cloud_verification": {
+    "integrity_run": 34172856992,
+    "actionlint_run": 34172856975,
+    "synthetic_bridge_selftest": "PASS_10_OF_10",
+    "v1_9_supersession": "PASS_17_OF_17",
+    "entitled_quote_evidence": "PASS_13_OF_13",
+    "private_storage_boundary": "PASS_9_OF_9",
+    "public_live_shadow_boundary": "PASS_8_OF_8",
+    "public_artifact_safety": "PASS_4_OF_4",
+    "full_v1_8_chain": "PASS",
+    "empty_ledger_scorer": "PASS",
+    "stable_framework_sha256": "e6157cc6378c1cb07c254fdb9895d0171ac3cc8ebbbc00392f68ef2daaa3ed47"
+  }
 }

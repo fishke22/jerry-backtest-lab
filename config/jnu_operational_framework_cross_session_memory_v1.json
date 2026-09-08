@@ -75,7 +75,7 @@
   "cloud_request_selftest_run": 33969428203,
   "cloud_actionlint_run": 34038843503,
   "cloud_pipeline_status": "V1_8_ANALYSIS_FRESH_OFFICIAL_PREPARED_REQUEST_INTEGRITY_CI_PASS_REAL_LEDGER_EMPTY",
-  "next_action": "Use JNU v1.9. Runtime preflight/registrar/scorer are v1.9-aligned; public atomic and GitHub artifacts reject entitled/private evidence. Continue synthetic-only construction of a private entitled quote bridge that cannot read/write raw entitled market data inside the public repository and cannot publish any derived result without explicit permission.",
+  "next_action": "Use JNU v1.9. Private entitled quote bridge scaffold is synthetic-CI ready and enforces repo-external private paths with no raw stdout/public output. Do not connect real entitlement data until OSE/provider confirms applicant/product/provider route, private third-party cloud permission, and publication/derived-data rights. The next engineering stage is a private forecast/ledger architecture, synthetic-only, with zero public raw quote fields.",
   "exact_micro_reference_source_gate": "config/jnu_exact_micro_reference_source_gate_20260904_v1.json",
   "tradingview_exact_micro_transport": {
     "status": "B_IDENTITY_SOURCE_ALLOWED_ONLY_IF_ACTUAL_LP_TIME_AGE_LE_900",
@@ -202,5 +202,14 @@
   "runtime_public_boundary_v17_regression_run": 34172618424,
   "public_live_shadow_boundary_selftest": "PASS_8_OF_8",
   "public_artifact_safety_selftest": "PASS_4_OF_4",
-  "runtime_framework_sha256": "01c37847362f7dbdc898d5956562780a67442e493d4ad65617a82bab7fb6ba34"
+  "runtime_framework_sha256": "01c37847362f7dbdc898d5956562780a67442e493d4ad65617a82bab7fb6ba34",
+  "stable_v1_9_framework_sha256": "e6157cc6378c1cb07c254fdb9895d0171ac3cc8ebbbc00392f68ef2daaa3ed47",
+  "framework_hash_self_reference_corrected": true,
+  "framework_hash_self_reference_correction_commit": "c97637cae0870920a4fb5941cc4da4abbe9ebdc7",
+  "private_entitled_quote_bridge_protocol": "config/jnu_private_entitled_quote_bridge_protocol_v1.json",
+  "private_entitled_quote_bridge_builder": "scripts/build_jnu_private_entitled_quote_bundle_v1.py",
+  "private_entitled_quote_bridge_selftest": "PASS_10_OF_10",
+  "private_entitled_quote_bridge_core_commit": "b061aae17b5e1276104205f7e24736b130734c6a",
+  "private_entitled_quote_bridge_integrity_run": 34172856992,
+  "private_entitled_quote_bridge_actionlint_run": 34172856975
 }
