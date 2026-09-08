@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "as_of": "2026-09-08",
-  "status": "PRIVATE_KEY_ENCRYPTED_BACKUP_DR_DRILL_ENVELOPE_SYNTHETIC_CI_PASS_REAL_BACKUP_BLOCKED",
+  "status": "PRIVATE_KEY_ENCRYPTED_BACKUP_SINGLE_USE_ENFORCEMENT_PENDING_CI",
   "authoritative_framework": "config/jnu_operational_framework_current_v1_9.json",
   "purpose": "Add external private key lifecycle, AES-256-GCM encrypted synthetic backup sets, restore authorization, backup generation rotation by quarantine, and private DR drill governance.",
   "cryptography": {
@@ -59,7 +59,10 @@
     "key_id_must_match_authorization": true,
     "key_version_must_match_authorization": true,
     "time_bounded": true,
-    "single_use": true
+    "single_use": true,
+    "single_use_enforcement": "SUCCESSFUL_RESTORE_CONSUMES_ADJACENT_PRIVATE_USAGE_RECEIPT",
+    "failed_restore_consumes_authorization": false,
+    "successful_restore_reuse": "FAIL_CLOSED"
   },
   "rotation": {
     "tool": "scripts/rotate_jnu_private_encrypted_backups_v1.py",

@@ -155,6 +155,11 @@ with tempfile.TemporaryDirectory(prefix="jnu_encbackup_ext_") as td0:
     w(auth,A)
     cp=subprocess.run([PY,str(EIMP),"--backupset",str(bs),"--keyring",str(keyring),"--authorization",str(auth)],cwd=ROOT,capture_output=True,text=True)
     T["encrypted_import_pass"]=cp.returncode==0 and (restore1/"results"/"dr_revalidated_v1.json").exists() and (restore1/"recovery"/"restore_authorization_receipt.json").exists()
+    usage_receipt=auth.parent/".restore_authorization_usage"/"used"/f"{A['restore_id']}.json"
+    T["authorization_usage_receipt_created"]=usage_receipt.exists() and json.loads(usage_receipt.read_text()).get("status")=="SUCCESSFULLY_CONSUMED"
+    shutil.rmtree(restore1)
+    cp=subprocess.run([PY,str(EIMP),"--backupset",str(bs),"--keyring",str(keyring),"--authorization",str(auth)],cwd=ROOT,capture_output=True,text=True)
+    T["successful_authorization_reuse_rejected"]=cp.returncode!=0 and "RESTORE_AUTHORIZATION_ALREADY_USED" in cp.stderr and not restore1.exists()
 
     wrongring=td/"keys"/"wrong.json"
     subprocess.run([PY,str(KEY),"init","--keyring",str(wrongring),"--key-id","JNU_KEY_SYNTH_V1"],cwd=ROOT,capture_output=True,text=True)

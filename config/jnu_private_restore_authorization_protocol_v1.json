@@ -1,7 +1,7 @@
 {
-  "version": "1.1",
+  "version": "1.2",
   "as_of": "2026-09-08",
-  "status": "FROZEN_PRIVATE_RESTORE_AUTHORIZATION_PROTOCOL_V1_1",
+  "status": "FROZEN_PRIVATE_RESTORE_AUTHORIZATION_PROTOCOL_V1_2_SINGLE_USE_ENFORCED",
   "required_fields": [
     "version",
     "restore_id",
@@ -35,6 +35,10 @@
     "backupset_id_key_id_key_version_destination_bound": true,
     "time_bounded": true,
     "single_use_required": true,
-    "real_restore_requires_external_governance_not_implemented": true
+    "real_restore_requires_external_governance_not_implemented": true,
+    "successful_restore_consumes_authorization": true,
+    "authorization_usage_registry": "ADJACENT_PRIVATE_EXTERNAL_REGISTRY",
+    "successful_restore_reuse": "FAIL_CLOSED_RESTORE_AUTHORIZATION_ALREADY_USED",
+    "failed_restore_consumes_authorization": false
   }
 }
