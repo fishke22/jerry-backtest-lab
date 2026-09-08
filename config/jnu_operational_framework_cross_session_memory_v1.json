@@ -75,7 +75,7 @@
   "cloud_request_selftest_run": 33969428203,
   "cloud_actionlint_run": 34038843503,
   "cloud_pipeline_status": "V1_8_ANALYSIS_FRESH_OFFICIAL_PREPARED_REQUEST_INTEGRITY_CI_PASS_REAL_LEDGER_EMPTY",
-  "next_action": "Build a repo-external synthetic transaction-executor NOOP dry-run protocol that consumes a valid immutable commit-authorization ceremony receipt and PREPARE lineage, revalidates ceremony/changeset/decision hashes plus all three production-state CAS hashes, and models the exact future transaction ordering: lock acquisition, CAS verification, private preimage backup, mutation set, post-write verification, rollback on partial failure, and final transaction receipt. Because the current ceremony requires commit_authorized=false, apply_authorized=false, and execution_capability=false, this stage must always return EXECUTION_BLOCKED_DISABLED_AUTHORIZATION and perform zero writes/backups to production state. Reject any enabled authorization, stale state, tamper, replay conflict, or mutation attempt. Do not modify shortlist, provider terms, key profile, credentials, KMS resources, or activation state.",
+  "next_action": "Build a repo-external synthetic shadow-state transaction simulator that exercises the frozen seven-step selection transaction sequence against disposable copies only: lock, CAS, private preimage backup, mutation set, post-write verification, rollback on injected partial failure, and final receipt. Support deterministic fault injection at each transactional step, prove rollback restores every shadow-state file byte-for-byte and hash-for-hash, detect stale CAS and corrupted backups, and keep real production files read-only and unchanged. The simulator must not consume enabled authorization, must not create production locks/backups, and must not expose COMMIT/APPLY capability for real state. Do not mutate shortlist, provider terms, key profile, credentials, KMS resources, or activation state.",
   "exact_micro_reference_source_gate": "config/jnu_exact_micro_reference_source_gate_20260904_v1.json",
   "tradingview_exact_micro_transport": {
     "status": "B_IDENTITY_SOURCE_ALLOWED_ONLY_IF_ACTUAL_LP_TIME_AGE_LE_900",
@@ -373,5 +373,13 @@
   "private_selection_transition_commit_authorization_integrity_run": 34284422527,
   "private_selection_transition_commit_authorization_actionlint_run": 34284422498,
   "private_selection_transition_commit_authorization_selftest": "PASS_44_OF_44",
-  "private_selection_transition_commit_authorization_status": "CI_PASS_COMMIT_AUTHORIZATION_CEREMONY_SYNTHETIC_DISABLED_NO_EXECUTION"
+  "private_selection_transition_commit_authorization_status": "CI_PASS_COMMIT_AUTHORIZATION_CEREMONY_SYNTHETIC_DISABLED_NO_EXECUTION",
+  "private_selection_transaction_executor_noop_protocol": "config/jnu_private_selection_transaction_executor_noop_protocol_v1.json",
+  "private_selection_transaction_executor_noop": "scripts/execute_jnu_private_selection_transaction_noop_v1.py",
+  "private_selection_transaction_executor_noop_checkpoint": "config/jnu_private_selection_transaction_executor_noop_checkpoint_v1.json",
+  "private_selection_transaction_executor_noop_core_commit": "f4673ad86d392aa4144f5eedf187d45acdd25701",
+  "private_selection_transaction_executor_noop_integrity_run": 34284958685,
+  "private_selection_transaction_executor_noop_actionlint_run": 34284958589,
+  "private_selection_transaction_executor_noop_selftest": "PASS_39_OF_39",
+  "private_selection_transaction_executor_noop_status": "CI_PASS_TRANSACTION_EXECUTOR_NOOP_BLOCKED_DISABLED_AUTHORIZATION"
 }
