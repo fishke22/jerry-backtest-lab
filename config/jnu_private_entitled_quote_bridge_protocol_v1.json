@@ -1,0 +1,46 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-08",
+  "status": "PRIVATE_ENTITLED_QUOTE_BRIDGE_PROTOCOL_SYNTHETIC_READY_PENDING_CI",
+  "authoritative_framework": "config/jnu_operational_framework_current_v1_9.json",
+  "purpose": "Create a private-only validated raw quote bundle from entitled exact-Micro evidence without placing raw market data in the public repository, GitHub artifacts, or live-shadow ledger.",
+  "execution_rules": {
+    "real_entitled_execution_location": "PRIVATE_APPROVED_RUNTIME_ONLY",
+    "github_actions_real_entitled_processing": "PROHIBITED_UNTIL_EXPLICIT_OSE_PROVIDER_CLOUD_APPROVAL",
+    "synthetic_ci_allowed": true,
+    "evidence_input_must_resolve_outside_public_repo": true,
+    "permission_manifest_must_resolve_outside_public_repo": true,
+    "private_store_root_must_resolve_outside_public_repo": true,
+    "raw_bundle_must_resolve_outside_public_repo": true,
+    "public_output_requested_must_be_false": true,
+    "decision_engine_invoked": false,
+    "formal_forecast_created": false,
+    "real_ledger_modified": false
+  },
+  "validators": [
+    "scripts/validate_jnu_entitled_exact_micro_evidence_v1.py",
+    "scripts/validate_jnu_entitled_market_data_storage_boundary_v1.py"
+  ],
+  "builder": "scripts/build_jnu_private_entitled_quote_bundle_v1.py",
+  "selftest": "scripts/selftest_jnu_private_entitled_quote_bridge_v1.py",
+  "private_bundle_schema": {
+    "artifact_class": "JNU_PRIVATE_ENTITLED_QUOTE_BUNDLE",
+    "contains_raw_market_data": true,
+    "public_distribution": false,
+    "public_hash_attestation": false,
+    "public_derived_forecast": false
+  },
+  "stdout_contract": {
+    "raw_price_prohibited": true,
+    "provider_timestamp_prohibited": true,
+    "raw_evidence_prohibited": true,
+    "allowed_fields": [
+      "status",
+      "receipt_id",
+      "raw_evidence_not_printed",
+      "formal_forecast_created",
+      "real_ledger_modified"
+    ]
+  },
+  "next_stage": "After legal/provider/cloud permissions exist, implement a private forecast execution/ledger path; do not bridge raw entitled quote fields into the public atomic ledger."
+}
