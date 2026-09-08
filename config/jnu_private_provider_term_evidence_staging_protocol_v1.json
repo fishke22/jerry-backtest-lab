@@ -1,0 +1,97 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-08",
+  "status": "FROZEN_PRIVATE_EXTERNAL_PROVIDER_TERM_EVIDENCE_STAGING_SYNTHETIC_ONLY",
+  "authoritative_framework": "config/jnu_operational_framework_current_v1_9.json",
+  "purpose": "Stage synthetic provider/OSE/KMS term-evidence fixtures outside the public repository, verify document integrity and field-level evidence governance, and emit only redacted non-secret attestations compatible with the existing JNU term-evidence protocol.",
+  "upstream": {
+    "evidence_intake_protocol": "config/jnu_provider_evidence_intake_protocol_v1.json",
+    "evidence_intake_templates": "config/jnu_provider_evidence_intake_pack_templates_v1.json",
+    "term_attestation_protocol": "config/jnu_term_evidence_attestation_protocol_v1.json",
+    "provider_term_readiness_protocol": "config/jnu_provider_term_readiness_protocol_v1.json",
+    "attestor": "scripts/attest_jnu_provider_term_evidence_v1.py"
+  },
+  "mode": {
+    "current": "SYNTHETIC_ONLY",
+    "required_input_mode": "SYNTHETIC",
+    "synthetic_fixture_flag_required": true,
+    "real_document_ingestion_permitted": false,
+    "confidential_contract_ingestion_permitted": false,
+    "outreach_permitted": false,
+    "credential_collection_permitted": false,
+    "provider_selection_permitted": false,
+    "real_activation_manifest_permitted": false
+  },
+  "private_staging": {
+    "source_document_must_be_repo_external": true,
+    "intake_metadata_must_be_repo_external": true,
+    "staging_record_must_be_repo_external": true,
+    "source_document_path_must_be_absolute": true,
+    "source_document_sha256_required": true,
+    "reverify_source_sha_at_emit": true,
+    "source_text_copy_prohibited": true,
+    "extra_schema_fields_prohibited": true,
+    "allowed_confidentiality": [
+      "SYNTHETIC_PRIVATE",
+      "SYNTHETIC_RESTRICTED",
+      "SYNTHETIC_PUBLIC_FIXTURE"
+    ],
+    "synthetic_source_uri_prefix": "urn:jnu:synthetic:",
+    "locator_prefixes": [
+      "PAGE:",
+      "SECTION:",
+      "CLAUSE:",
+      "PARAGRAPH:",
+      "EMAIL:",
+      "CONTROL:"
+    ],
+    "locator_max_chars": 240
+  },
+  "redacted_output": {
+    "output_must_be_repo_external_in_this_stage": true,
+    "retain": [
+      "pack_id",
+      "evidence_as_of",
+      "provider_terms",
+      "evidence_id",
+      "authority",
+      "source_class",
+      "source_uri",
+      "document_sha256",
+      "locator",
+      "claim_value",
+      "status"
+    ],
+    "prohibit_keys": [
+      "source_document_path",
+      "source_text",
+      "raw_text",
+      "document_text",
+      "quoted_text",
+      "credential",
+      "credentials",
+      "api_key",
+      "access_token",
+      "password",
+      "secret",
+      "client_secret",
+      "private_key",
+      "material_b64",
+      "token"
+    ],
+    "source_document_paths_emitted": false,
+    "confidential_source_text_emitted": false,
+    "inferred_permission_used": false,
+    "partial_attestation_allowed": true,
+    "partial_attestation_does_not_activate_real_backup": true
+  },
+  "integrity": {
+    "hash_algorithm": "SHA-256",
+    "source_class_and_authority_must_match_existing_term_protocol": true,
+    "claim_field_authority_must_match_existing_term_protocol": true,
+    "explicitness_required": "EXPLICIT_TEXT",
+    "reviewer_attestation_required": "EXPLICIT_TEXT_CONFIRMED",
+    "url_only_evidence_never_promotes_readiness": true,
+    "conflicting_claims_fail_closed": true
+  }
+}

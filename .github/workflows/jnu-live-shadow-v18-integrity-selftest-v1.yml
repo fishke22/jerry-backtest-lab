@@ -93,6 +93,11 @@ on:
       - "scripts/validate_jnu_provider_evidence_intake_pack_v1.py"
       - "scripts/selftest_jnu_provider_evidence_intake_v1.py"
       - "research_notes/jnu_provider_contact_questionnaire_pack_20260908.md"
+      - "config/jnu_private_provider_term_evidence_staging_protocol_v1.json"
+      - "scripts/stage_jnu_private_provider_term_evidence_v1.py"
+      - "scripts/emit_jnu_redacted_provider_term_attestation_v1.py"
+      - "scripts/selftest_jnu_private_provider_term_evidence_staging_v1.py"
+      - "research_notes/jnu_private_provider_term_evidence_staging_pipeline_20260908.md"
   workflow_dispatch:
 
 permissions:
@@ -144,6 +149,7 @@ jobs:
           python -m json.tool config/jnu_real_backup_activation_manifest_protocol_v1.json >/dev/null
           python -m json.tool config/jnu_provider_evidence_intake_protocol_v1.json >/dev/null
           python -m json.tool config/jnu_provider_evidence_intake_pack_templates_v1.json >/dev/null
+          python -m json.tool config/jnu_private_provider_term_evidence_staging_protocol_v1.json >/dev/null
 
       - name: Install private backup crypto dependency
         run: python -m pip install "cryptography>=42"
@@ -217,6 +223,11 @@ jobs:
           python -m py_compile scripts/validate_jnu_provider_evidence_intake_pack_v1.py scripts/selftest_jnu_provider_evidence_intake_v1.py
           python scripts/selftest_jnu_provider_evidence_intake_v1.py
           python scripts/validate_jnu_provider_evidence_intake_pack_v1.py
+
+      - name: Private external provider-term evidence staging selftest
+        run: |
+          python -m py_compile scripts/stage_jnu_private_provider_term_evidence_v1.py scripts/emit_jnu_redacted_provider_term_attestation_v1.py scripts/selftest_jnu_private_provider_term_evidence_staging_v1.py
+          python scripts/selftest_jnu_private_provider_term_evidence_staging_v1.py
 
       - name: Full v1.8 analysis-fresh chain selftest
         run: python scripts/selftest_jnu_live_shadow_v18_integrity.py
