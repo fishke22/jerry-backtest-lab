@@ -1,0 +1,144 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-09",
+  "status": "FROZEN_PRIVATE_SELECTION_TRANSITION_PREPARE_CHANGESET_DUAL_CONTROL_REVIEW_SYNTHETIC_ONLY",
+  "authoritative_framework": "config/jnu_operational_framework_current_v1_9.json",
+  "purpose": "Apply independent dual-control review to an immutable PREPARE-only selection-transition changeset. Revalidate changeset and lifecycle-integrated decision lineage, exact pair binding, review freshness, and all production-state CAS hashes at evaluation time. Even dual APPROVE remains NOT_COMMITTABLE.",
+  "upstream": {
+    "prepare_protocol": "config/jnu_private_selection_transition_prepare_protocol_v1.json",
+    "prepare_builder": "scripts/prepare_jnu_private_selection_transition_changeset_v1.py",
+    "lifecycle_integrated_decision_protocol": "config/jnu_private_selection_decision_lifecycle_integration_protocol_v1.json",
+    "shortlist": "config/jnu_provider_selection_shortlist_v1.json",
+    "production_key_profile": "config/jnu_production_key_custody_current_v1.json",
+    "provider_terms": "config/jnu_provider_term_readiness_current_v1.json",
+    "private_atomic_io": "scripts/jnu_private_atomic_io_v1.py"
+  },
+  "mode": {
+    "current": "SYNTHETIC_ONLY",
+    "commit_capability": false,
+    "apply_capability": false,
+    "real_selection_authorized": false,
+    "real_activation_authorized": false,
+    "production_mutation_permitted": false
+  },
+  "changeset_contract": {
+    "artifact_class": "JNU_SYNTHETIC_SELECTION_TRANSITION_PREPARE_CHANGESET",
+    "status": "SYNTHETIC_PREPARE_ONLY_CHANGESET_READY_NOT_COMMITTABLE",
+    "storage_scope": "PRIVATE_INTERNAL_ONLY",
+    "public_distribution_permitted": false,
+    "mode": "SYNTHETIC",
+    "operation": "PREPARE_ONLY",
+    "commit_capability": false,
+    "apply_capability": false,
+    "selection_transition_permitted": false,
+    "selection_written": false,
+    "selected_combination_id": "UNSELECTED",
+    "production_state_mutated": false,
+    "real_activation_authorized": false,
+    "immutable_backup_checksum_required": true
+  },
+  "decision_lineage_contract": {
+    "artifact_class": "JNU_SYNTHETIC_SELECTION_DECISION_LIFECYCLE_CURRENT_AUTH_RECORD",
+    "status": "SYNTHETIC_LIFECYCLE_CURRENT_AUTH_VALIDATED_NO_SELECTION",
+    "storage_scope": "PRIVATE_INTERNAL_ONLY",
+    "public_distribution_permitted": false,
+    "mode": "SYNTHETIC",
+    "selection_transition_permitted": false,
+    "selection_written": false,
+    "selected_combination_id": "UNSELECTED",
+    "production_state_mutated": false,
+    "real_activation_authorized": false,
+    "lifecycle_full_chain_validated": true,
+    "lifecycle_event_backups_validated": true,
+    "lifecycle_current_authorization_validated": true,
+    "immutable_backup_checksum_required": true
+  },
+  "review_contract": {
+    "exact_review_count": 2,
+    "required_roles": [
+      "CHANGE_REVIEWER",
+      "CONTROL_REVIEWER"
+    ],
+    "allowed_dispositions": [
+      "APPROVE",
+      "REJECT",
+      "NEEDS_EVIDENCE"
+    ],
+    "reviewer_attestation_required": "EXPLICIT_TEXT_CONFIRMED",
+    "independent_reviewer_ids_required": true,
+    "review_ids_unique": true,
+    "reviewed_at_timezone_aware": true,
+    "review_revalidation_due_timezone_aware": true,
+    "review_expiry_timezone_aware": true,
+    "chronology": "reviewed_at < revalidation_due <= expires_at",
+    "evaluation_must_not_precede_review": true,
+    "stale_if_evaluation_at_or_after_revalidation_due": true,
+    "expired_if_evaluation_after_expiry": true
+  },
+  "cas_revalidation": {
+    "exact_snapshot_ids": [
+      "PROVIDER_SELECTION_SHORTLIST",
+      "PRODUCTION_KEY_CUSTODY_CURRENT",
+      "PROVIDER_TERM_READINESS_CURRENT"
+    ],
+    "recheck_actual_file_sha256_at_review_evaluation": true,
+    "stale_state_blocks_approval": true,
+    "compare_and_swap_required": true
+  },
+  "outcome_rules": {
+    "dual_approve": "SYNTHETIC_DUAL_CONTROL_APPROVED_PREPARE_NOT_COMMITTABLE",
+    "dual_reject": "SYNTHETIC_DUAL_CONTROL_REJECTED_PREPARE",
+    "dual_needs_evidence": "SYNTHETIC_DUAL_CONTROL_NEEDS_EVIDENCE_PREPARE",
+    "conflict": "SYNTHETIC_DUAL_CONTROL_CONFLICT_BLOCKED_PREPARE",
+    "stale_or_expired": "SYNTHETIC_DUAL_CONTROL_REVALIDATION_REQUIRED_PREPARE",
+    "stale_production_state": "SYNTHETIC_DUAL_CONTROL_STALE_STATE_BLOCKED_PREPARE"
+  },
+  "output_contract": {
+    "artifact_class": "JNU_REDACTED_SYNTHETIC_PREPARE_DUAL_CONTROL_REVIEW_RECEIPT",
+    "storage_scope": "PRIVATE_INTERNAL_ONLY",
+    "public_distribution_permitted": false,
+    "reviewer_ids_emitted": false,
+    "reviewer_ref_sha256_emitted": true,
+    "commit_capability": false,
+    "apply_capability": false,
+    "selection_transition_permitted": false,
+    "selection_written": false,
+    "selected_combination_id": "UNSELECTED",
+    "production_state_mutated": false,
+    "real_activation_authorized": false
+  },
+  "replay": {
+    "immutable_review_store": true,
+    "path_pattern": "prepare_review_receipts/<review_batch_id>.json",
+    "exact_replay_idempotent": true,
+    "same_review_batch_id_different_content_rejected": true,
+    "immutable_backup_required": true
+  },
+  "prohibited_keys": [
+    "source_document_path",
+    "source_text",
+    "raw_text",
+    "document_text",
+    "quoted_text",
+    "credential",
+    "credentials",
+    "api_key",
+    "access_token",
+    "password",
+    "secret",
+    "client_secret",
+    "private_key",
+    "material_b64",
+    "token",
+    "account_id",
+    "project_id",
+    "subscription_id",
+    "tenant_id",
+    "key_id",
+    "key_arn",
+    "resource_name",
+    "service_account",
+    "role_arn",
+    "principal"
+  ]
+}
