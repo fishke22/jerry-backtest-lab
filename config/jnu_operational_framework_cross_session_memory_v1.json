@@ -75,7 +75,7 @@
   "cloud_request_selftest_run": 33969428203,
   "cloud_actionlint_run": 34038843503,
   "cloud_pipeline_status": "V1_8_ANALYSIS_FRESH_OFFICIAL_PREPARED_REQUEST_INTEGRITY_CI_PASS_REAL_LEDGER_EMPTY",
-  "next_action": "Build a repo-external private evidence staging/ingestion workflow that verifies source-document SHA-256, source class and authority, claim locators and confidentiality metadata, then emits only redacted/non-secret field-level attestations compatible with the existing term-evidence protocol. Synthetic CI only: do not contact providers/OSE, ingest real confidential contracts, select vendors, connect credentials, or generate a real activation manifest without explicit user authorization.",
+  "next_action": "Build a repo-external synthetic KMS deployment-evidence staging and control-attestation workflow for the AWS KMS Tokyo and Google Cloud HSM Tokyo candidates. Verify actual-control evidence structure for region, HSM backing, non-exportable symmetric KEK, plaintext-KEK non-exposure, audit logging, rotation/old-version decrypt retention, IAM/admin/restore separation, deletion protection, residency, and private-network restriction; emit only redacted non-secret control attestations. Do not connect real cloud accounts, credentials, projects, keys, KMS APIs, or select a production vendor without explicit user authorization.",
   "exact_micro_reference_source_gate": "config/jnu_exact_micro_reference_source_gate_20260904_v1.json",
   "tradingview_exact_micro_transport": {
     "status": "B_IDENTITY_SOURCE_ALLOWED_ONLY_IF_ACTUAL_LP_TIME_AGE_LE_900",
@@ -290,5 +290,15 @@
   "provider_evidence_intake_actionlint_run": 34221443621,
   "provider_evidence_intake_selftest": "PASS_16_OF_16",
   "provider_evidence_intake_status": "CI_PASS_DRAFT_PACK_READY_UNSENT_REAL_STATE_BLOCKED",
-  "provider_evidence_intake_outreach": "DRAFT_UNSENT"
+  "provider_evidence_intake_outreach": "DRAFT_UNSENT",
+  "private_provider_term_evidence_staging_protocol": "config/jnu_private_provider_term_evidence_staging_protocol_v1.json",
+  "private_provider_term_evidence_stager": "scripts/stage_jnu_private_provider_term_evidence_v1.py",
+  "private_provider_term_redacted_emitter": "scripts/emit_jnu_redacted_provider_term_attestation_v1.py",
+  "private_provider_term_evidence_staging_checkpoint": "config/jnu_private_provider_term_evidence_staging_checkpoint_v1.json",
+  "private_provider_term_evidence_staging_core_commit": "2ecb7ecc62db80224f8985ee853639bed204e7bd",
+  "private_provider_term_evidence_staging_fix_commit": "a188f27387addcd9c6c6bde21f0e1435b2fdbea6",
+  "private_provider_term_evidence_staging_integrity_run": 34222506066,
+  "private_provider_term_evidence_staging_actionlint_run": 34222419797,
+  "private_provider_term_evidence_staging_selftest": "PASS_24_OF_24",
+  "private_provider_term_evidence_staging_status": "CI_PASS_PRIVATE_EXTERNAL_STAGING_SYNTHETIC_READY_REAL_EVIDENCE_BLOCKED"
 }
