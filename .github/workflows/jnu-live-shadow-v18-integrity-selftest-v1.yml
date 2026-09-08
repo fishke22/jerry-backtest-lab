@@ -131,6 +131,10 @@ on:
       - "scripts/review_jnu_private_selection_transition_prepare_v1.py"
       - "scripts/selftest_jnu_private_selection_transition_prepare_review_v1.py"
       - "research_notes/jnu_private_selection_transition_prepare_review_20260909.md"
+      - "config/jnu_private_selection_transition_commit_authorization_protocol_v1.json"
+      - "scripts/validate_jnu_private_selection_commit_authorization_v1.py"
+      - "scripts/selftest_jnu_private_selection_commit_authorization_v1.py"
+      - "research_notes/jnu_private_selection_commit_authorization_20260909.md"
   workflow_dispatch:
 
 permissions:
@@ -191,6 +195,7 @@ jobs:
           python -m json.tool config/jnu_private_selection_decision_lifecycle_integration_protocol_v1.json >/dev/null
           python -m json.tool config/jnu_private_selection_transition_prepare_protocol_v1.json >/dev/null
           python -m json.tool config/jnu_private_selection_transition_prepare_review_protocol_v1.json >/dev/null
+          python -m json.tool config/jnu_private_selection_transition_commit_authorization_protocol_v1.json >/dev/null
 
       - name: Install private backup crypto dependency
         run: python -m pip install "cryptography>=42"
@@ -309,6 +314,11 @@ jobs:
         run: |
           python -m py_compile scripts/review_jnu_private_selection_transition_prepare_v1.py scripts/selftest_jnu_private_selection_transition_prepare_review_v1.py
           python scripts/selftest_jnu_private_selection_transition_prepare_review_v1.py
+
+      - name: Private selection-transition commit-authorization ceremony selftest
+        run: |
+          python -m py_compile scripts/validate_jnu_private_selection_commit_authorization_v1.py scripts/selftest_jnu_private_selection_commit_authorization_v1.py
+          python scripts/selftest_jnu_private_selection_commit_authorization_v1.py
 
       - name: Full v1.8 analysis-fresh chain selftest
         run: python scripts/selftest_jnu_live_shadow_v18_integrity.py
