@@ -1,0 +1,39 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-08",
+  "status": "FROZEN_PRIVATE_LAUNCH_MANIFEST_PROTOCOL",
+  "required_fields": [
+    "version",
+    "launch_id",
+    "mode",
+    "synthetic_data_only",
+    "real_entitlement_connected",
+    "private_ledger_root",
+    "private_quote_store_root",
+    "public_output_requested",
+    "cloud_processing_used",
+    "cloud_permission_status",
+    "publication_permission_status",
+    "retention_terms_status",
+    "retention_policy_status",
+    "retention_days",
+    "recovery_apply_allowed",
+    "retention_quarantine_enabled",
+    "permanent_purge_allowed"
+  ],
+  "modes": [
+    "SYNTHETIC",
+    "REAL_ENTITLED"
+  ],
+  "rules": {
+    "roots_must_resolve_outside_public_repo": true,
+    "public_output_requested": false,
+    "synthetic_mode_requires_synthetic_data_only": true,
+    "real_mode_requires_real_entitlement_connected": true,
+    "real_mode_entitlement_approval_field": "entitlement_status=EXPLICITLY_APPROVED",
+    "third_party_cloud_requires": "cloud_permission_status=EXPLICITLY_APPROVED",
+    "real_mode_retention_requires": "retention_terms_status=EXPLICITLY_CONFIRMED",
+    "permanent_purge_requires_explicit_retention_terms": true,
+    "current_real_launch_status": "BLOCKED_EXTERNALLY"
+  }
+}

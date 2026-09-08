@@ -52,6 +52,14 @@ on:
       - "scripts/record_jnu_private_entitled_outcome_v1.py"
       - "scripts/score_jnu_private_entitled_live_shadow_v1.py"
       - "scripts/selftest_jnu_private_entitled_live_shadow_v1.py"
+      - "config/jnu_private_lifecycle_protocol_v1.json"
+      - "config/jnu_private_launch_manifest_protocol_v1.json"
+      - "scripts/jnu_private_atomic_io_v1.py"
+      - "scripts/validate_jnu_private_launch_manifest_v1.py"
+      - "scripts/launch_jnu_private_entitled_forecast_v1.py"
+      - "scripts/recover_jnu_private_entitled_ledger_v1.py"
+      - "scripts/retain_jnu_private_entitled_ledger_v1.py"
+      - "scripts/selftest_jnu_private_lifecycle_v1.py"
   workflow_dispatch:
 
 permissions:
@@ -89,6 +97,8 @@ jobs:
           python -m json.tool config/jnu_entitled_market_data_storage_boundary_v1.json >/dev/null
           python -m json.tool config/jnu_private_entitled_quote_bridge_protocol_v1.json >/dev/null
           python -m json.tool config/jnu_private_entitled_live_shadow_protocol_v1.json >/dev/null
+          python -m json.tool config/jnu_private_lifecycle_protocol_v1.json >/dev/null
+          python -m json.tool config/jnu_private_launch_manifest_protocol_v1.json >/dev/null
 
       - name: First-real rollover and source readiness selftests
         run: |
@@ -126,6 +136,11 @@ jobs:
         run: |
           python -m py_compile scripts/register_jnu_private_entitled_forecast_v1.py scripts/record_jnu_private_entitled_outcome_v1.py scripts/score_jnu_private_entitled_live_shadow_v1.py scripts/selftest_jnu_private_entitled_live_shadow_v1.py
           python scripts/selftest_jnu_private_entitled_live_shadow_v1.py
+
+      - name: Private lifecycle idempotency recovery retention selftest
+        run: |
+          python -m py_compile scripts/jnu_private_atomic_io_v1.py scripts/validate_jnu_private_launch_manifest_v1.py scripts/launch_jnu_private_entitled_forecast_v1.py scripts/recover_jnu_private_entitled_ledger_v1.py scripts/retain_jnu_private_entitled_ledger_v1.py scripts/selftest_jnu_private_lifecycle_v1.py
+          python scripts/selftest_jnu_private_lifecycle_v1.py
 
       - name: Full v1.8 analysis-fresh chain selftest
         run: python scripts/selftest_jnu_live_shadow_v18_integrity.py

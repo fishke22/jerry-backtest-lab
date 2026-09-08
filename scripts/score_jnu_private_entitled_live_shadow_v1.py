@@ -1,6 +1,7 @@
 from __future__ import annotations
 import argparse, json, os, statistics
 from pathlib import Path
+from jnu_private_atomic_io_v1 import require_external,verify_backup,write_replace_json,sha256_file
 from jnu_integrity_hash_v1 import canonical_text_sha256
 from jnu_request_preparation_validation_v1_1 import validate_prepared_request_binding
 from jnu_risk_state_evidence_validation_v1_2 import validate_risk_state_evidence
@@ -16,9 +17,7 @@ CONTRACT=ROOT/"config"/"jnu_exact_micro_entitled_source_adapter_contract_v1.json
 ROLL=ROOT/"config"/"jnu_exact_micro_contract_roll_calendar_v1.json"
 
 def load(p:Path)->dict:return json.loads(p.read_text(encoding="utf-8"))
-def outside(p:Path,label:str):
-    rp=p.resolve();rr=ROOT.resolve()
-    if rp==rr or rr in rp.parents:raise RuntimeError(f"{label} must resolve outside the public repository")
+def outside(p:Path,label:str): require_external(p,label)
 def close(a,b,tol=1e-14):return abs(float(a)-float(b))<=tol
 
 def main():
@@ -28,6 +27,7 @@ def main():
     protocol=load(PROTOCOL);forecasts={};fps={}
     fd=a.private_ledger_root.resolve()/"forecasts";od=a.private_ledger_root.resolve()/"outcomes"
     for p in sorted(fd.glob("*.json")) if fd.exists() else []:
+        if verify_backup(a.private_ledger_root,p).get("status")!="PASS":raise RuntimeError(f"private forecast backup integrity invalid: {p.name}")
         f=load(p);fid=f.get("forecast_id")
         if fid!=p.stem:raise RuntimeError("private forecast id/filename mismatch")
         if f.get("artifact_class")!="JNU_PRIVATE_ENTITLED_FORECAST" or f.get("storage_scope")!="PRIVATE_INTERNAL_ONLY":raise RuntimeError(f"private forecast {fid} class/storage invalid")
@@ -47,6 +47,7 @@ def main():
         forecasts[fid]=f;fps[fid]=p
     rows=[]
     for p in sorted(od.glob("*.json")) if od.exists() else []:
+        if verify_backup(a.private_ledger_root,p).get("status")!="PASS":raise RuntimeError(f"private outcome backup integrity invalid: {p.name}")
         o=load(p);fid=o.get("forecast_id")
         if fid!=p.stem or fid not in forecasts:raise RuntimeError("private outcome id/forecast mismatch")
         if o.get("artifact_class")!="JNU_PRIVATE_ENTITLED_OUTCOME" or o.get("storage_scope")!="PRIVATE_INTERNAL_ONLY":raise RuntimeError(f"private outcome {fid} class/storage invalid")
@@ -72,8 +73,8 @@ def main():
       "integrity":{"status":"PASS","forecasts_verified":len(forecasts),"outcomes_verified":len(rows),"decision_trace_recomputed":True,"risk_state_evidence_recomputed":True,"request_preparation_recomputed":True,"entitled_quote_recomputed":True,"outcome_recomputed":True},
       "framework_sha256":canonical_text_sha256(FRAMEWORK),"forecast_records":len(forecasts),"outcomes_recorded":len(rows),"nonabstain_scored":n,
       "directional_accuracy":acc,"mean_signed_return":statistics.fmean(signed) if signed else None,"bootstrap":b,"first_review_gate":gate,"rows":rows}
-    out.parent.mkdir(parents=True,exist_ok=True);out.write_text(json.dumps(result,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
-    try:os.chmod(out,0o600)
-    except OSError:pass
+    out.parent.mkdir(parents=True,exist_ok=True);score_sha=write_replace_json(out,result)
+    checkpoint={"version":"1.0","artifact_class":"JNU_PRIVATE_ENTITLED_SCORER_CHECKPOINT","storage_scope":"PRIVATE_INTERNAL_ONLY","public_distribution_permitted":False,"score_record_sha256":score_sha,"forecast_records":len(forecasts),"outcomes_recorded":len(rows),"integrity_status":"PASS"}
+    write_replace_json(out.parent/"private_live_shadow_checkpoint_v1.json",checkpoint)
     print(json.dumps({"status":"PRIVATE_ENTITLED_SCORER_COMPLETED","private_result_written":True,"raw_and_derived_metrics_not_printed":True,"public_output_created":False},indent=2))
 if __name__=="__main__":main()

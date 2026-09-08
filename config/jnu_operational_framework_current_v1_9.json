@@ -205,7 +205,11 @@
     "private_entitled_live_shadow_protocol": "config/jnu_private_entitled_live_shadow_protocol_v1.json",
     "private_entitled_forecast_registrar": "scripts/register_jnu_private_entitled_forecast_v1.py",
     "private_entitled_outcome_recorder": "scripts/record_jnu_private_entitled_outcome_v1.py",
-    "private_entitled_scorer": "scripts/score_jnu_private_entitled_live_shadow_v1.py"
+    "private_entitled_scorer": "scripts/score_jnu_private_entitled_live_shadow_v1.py",
+    "private_lifecycle_protocol": "config/jnu_private_lifecycle_protocol_v1.json",
+    "private_launch_manifest_protocol": "config/jnu_private_launch_manifest_protocol_v1.json",
+    "private_recovery_tool": "scripts/recover_jnu_private_entitled_ledger_v1.py",
+    "private_retention_tool": "scripts/retain_jnu_private_entitled_ledger_v1.py"
   },
   "operational_decision_protocol": {
     "status": "FROZEN_UNKNOWN_FAILSAFE_SELFTEST_PASS_ACTIVE",
@@ -313,6 +317,16 @@
       "public_artifact_upload": false,
       "public_derived_output": false,
       "real_entitlement_connected": false
+    },
+    "private_lifecycle": {
+      "status": "SYNTHETIC_ONLY_PENDING_CI",
+      "deterministic_idempotency": true,
+      "atomic_fsync_write": true,
+      "checksum_verified_private_backup": true,
+      "recovery_fail_closed": true,
+      "real_retention_terms": "UNCONFIRMED",
+      "permanent_purge": "PROHIBITED_UNTIL_EXPLICIT_TERMS",
+      "public_output": false
     }
   }
 }

@@ -1,0 +1,47 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-08",
+  "status": "PRIVATE_LIFECYCLE_SYNTHETIC_ONLY_PENDING_CI",
+  "authoritative_framework": "config/jnu_operational_framework_current_v1_9.json",
+  "purpose": "Add deterministic idempotency, atomic immutable writes, backup/checksum recovery, scorer checkpoints, and retention quarantine to the private entitled live-shadow architecture.",
+  "launch_manifest_protocol": "config/jnu_private_launch_manifest_protocol_v1.json",
+  "launch_manifest_validator": "scripts/validate_jnu_private_launch_manifest_v1.py",
+  "launch_wrapper": "scripts/launch_jnu_private_entitled_forecast_v1.py",
+  "atomic_io": "scripts/jnu_private_atomic_io_v1.py",
+  "recovery_tool": "scripts/recover_jnu_private_entitled_ledger_v1.py",
+  "retention_tool": "scripts/retain_jnu_private_entitled_ledger_v1.py",
+  "lifecycle_selftest": "scripts/selftest_jnu_private_lifecycle_v1.py",
+  "idempotency": {
+    "forecast_id_rule": "JNU_PRIV_LS_<first24hex_sha256(request_id)>",
+    "one_private_forecast_per_request": true,
+    "exact_replay": "RETURN_ALREADY_REGISTERED",
+    "same_request_different_quote_receipt": "FAIL_CLOSED_CONFLICT",
+    "outcome_exact_replay": "RETURN_ALREADY_RECORDED",
+    "same_forecast_different_close_evidence": "FAIL_CLOSED_CONFLICT"
+  },
+  "atomicity": {
+    "sibling_temp_file": true,
+    "fsync_file": true,
+    "atomic_replace": true,
+    "fsync_parent_directory": true,
+    "immutable_private_records_have_backup": true,
+    "backup_checksum_sha256": true,
+    "posix_mode": "0600"
+  },
+  "recovery": {
+    "missing_or_corrupt_primary_restorable_only_from_checksum_verified_private_backup": true,
+    "orphan_outcome": "FATAL_FAIL_CLOSED",
+    "missing_backup_for_primary": "FATAL_FAIL_CLOSED",
+    "stale_temp_files": "QUARANTINE_ON_EXPLICIT_APPLY",
+    "valid_immutable_records_never_rewritten_during_scan": true
+  },
+  "retention": {
+    "real_entitlement_terms_status": "UNCONFIRMED",
+    "permanent_purge_before_terms_confirmed": "PROHIBITED",
+    "synthetic_completed_pairs_may_be_quarantined": true,
+    "pending_forecasts_are_not_quarantined": true,
+    "backup_and_checksum_follow_quarantined_pair": true
+  },
+  "public_output": false,
+  "real_entitlement_connected": false
+}
