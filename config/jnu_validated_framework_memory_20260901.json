@@ -526,5 +526,22 @@
     "stable_framework_sha256": "57b94457bff146271e8c48e410bd5e16178c0050fc271c808d67abf4af418928",
     "current_status": "BLOCKED",
     "real_entitled_backup_activation_permitted": false
+  },
+  "provider_shortlist_term_activation": {
+    "status": "CI_PASS_CURRENT_REAL_STATE_BLOCKED",
+    "checkpoint": "config/jnu_provider_selection_term_activation_checkpoint_v1.json",
+    "shortlist": "config/jnu_provider_selection_shortlist_v1.json",
+    "term_evidence_protocol": "config/jnu_term_evidence_attestation_protocol_v1.json",
+    "activation_manifest_protocol": "config/jnu_real_backup_activation_manifest_protocol_v1.json",
+    "core_commit": "3014441f5d40d059236c9cc07cbc75e057b35cd3",
+    "secret_scanner_fix_commit": "a542c6ce41dd67f762a02ecdcd84f16ea48c8af3",
+    "integrity_run": 34209023361,
+    "actionlint_run": 34208841628,
+    "selftest": "PASS_11_OF_11",
+    "stable_framework_sha256": "2e0be163baccd8c42065b088116e313f9e34c39745bbdf509553063d500b1c85",
+    "market_data_provider_selected": false,
+    "key_custody_provider_selected": false,
+    "real_activation_manifest_generated": false,
+    "real_entitled_backup_activation_permitted": false
   }
 }

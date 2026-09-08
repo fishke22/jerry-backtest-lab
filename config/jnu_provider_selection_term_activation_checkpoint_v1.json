@@ -1,0 +1,79 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-08",
+  "status": "PROVIDER_SHORTLIST_TERM_ATTESTATION_ACTIVATION_GATE_READY_CURRENT_REAL_BLOCKED",
+  "authoritative_framework": "config/jnu_operational_framework_current_v1_9.json",
+  "stable_framework_sha256": "2e0be163baccd8c42065b088116e313f9e34c39745bbdf509553063d500b1c85",
+  "shortlist": "config/jnu_provider_selection_shortlist_v1.json",
+  "term_evidence_protocol": "config/jnu_term_evidence_attestation_protocol_v1.json",
+  "activation_manifest_protocol": "config/jnu_real_backup_activation_manifest_protocol_v1.json",
+  "shortlist_evaluator": "scripts/evaluate_jnu_provider_selection_shortlist_v1.py",
+  "term_attestor": "scripts/attest_jnu_provider_term_evidence_v1.py",
+  "activation_generator": "scripts/generate_jnu_real_backup_activation_manifest_v1.py",
+  "implementation": {
+    "core_commit": "3014441f5d40d059236c9cc07cbc75e057b35cd3",
+    "secret_scanner_fix_commit": "a542c6ce41dd67f762a02ecdcd84f16ea48c8af3",
+    "strengthened_selftest_commit": "0f88eacfcff1f7ea8abd9d66e2534d92818ab778"
+  },
+  "cloud_verification": {
+    "integrity_run": 34209023361,
+    "actionlint_run": 34208841628,
+    "provider_shortlist_term_activation_selftest": "PASS_11_OF_11",
+    "production_key_provider_term_regression": "PASS_30_OF_30",
+    "encrypted_backup_regression": "PASS",
+    "concurrency_dr_regression": "PASS_18_OF_18",
+    "lifecycle_regression": "PASS_19_OF_19",
+    "private_live_shadow_regression": "PASS_16_OF_16",
+    "public_real_ledger": {
+      "forecasts": 0,
+      "outcomes": 0
+    }
+  },
+  "shortlist_state": {
+    "selected_market_data_provider": "UNSELECTED",
+    "selected_key_custody_provider": "UNSELECTED",
+    "market_data_candidates": [
+      {
+        "id": "BROadridge_CQG_OSE",
+        "disposition": "SHORTLIST_TIER_A_TECHNICAL_TRANSPORT_EVIDENCE_PARTIAL"
+      },
+      {
+        "id": "QUICK_OSE",
+        "disposition": "SHORTLIST_TIER_B_OSE_PROVIDER_ONLY"
+      },
+      {
+        "id": "REFINITIV_LSEG_OSE",
+        "disposition": "SHORTLIST_TIER_B_OSE_PROVIDER_ONLY"
+      }
+    ],
+    "key_custody_candidates": [
+      {
+        "id": "AWS_KMS_TOKYO",
+        "disposition": "TECHNICAL_CANDIDATE_DEPLOYMENT_PROFILE_INCOMPLETE"
+      },
+      {
+        "id": "GCP_CLOUD_HSM_TOKYO",
+        "disposition": "TECHNICAL_CANDIDATE_DEPLOYMENT_PROFILE_INCOMPLETE"
+      }
+    ]
+  },
+  "evidence_rules": {
+    "url_only_cannot_promote_term_readiness": true,
+    "repo_external_snapshot_required": true,
+    "sha256_required": true,
+    "field_locator_required": true,
+    "explicit_text_required": true,
+    "reviewer_attestation_required": true,
+    "inferred_permission_prohibited": true,
+    "conflicting_claims_fail_closed": true,
+    "confidential_text_not_copied_to_attestation": true
+  },
+  "current_real_state": {
+    "production_key_vendor": "UNSELECTED",
+    "production_key_region": "UNSELECTED",
+    "provider_term_statuses_resolved": 0,
+    "real_activation_manifest_generated": false,
+    "real_entitled_backup_activation_permitted": false
+  },
+  "next_stage": "PROVIDER_EVIDENCE_INTAKE_PACK_TEMPLATES_DEPLOYMENT_PROFILE_ATTESTATION_AND_OUTREACH_QUESTIONNAIRE_SYNTHETIC_ONLY"
+}

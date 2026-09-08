@@ -1,7 +1,7 @@
 {
   "version": "5.0",
   "as_of": "2026-09-08",
-  "status": "V1_9_FRAMEWORK_ACTIVE_PRODUCTION_KEY_PROVIDER_TERM_GATE_BLOCKED",
+  "status": "V1_9_FRAMEWORK_ACTIVE_PROVIDER_SELECTION_TERM_EVIDENCE_ACTIVATION_BLOCKED",
   "supersedes": "config/jnu_live_shadow_first_real_forecast_readiness_v4.json",
   "authoritative_framework": "config/jnu_operational_framework_current_v1_9.json",
   "preregistration": "config/jnu_operational_live_shadow_prereg_v1_7.json",
@@ -94,7 +94,11 @@
     "production_key_provider_term_core_commit": "a123a902b72bfcca4d56cf572c495d4ecefbea9e",
     "production_key_provider_term_integrity_run": 34206608446,
     "production_key_provider_term_actionlint_run": 34206608455,
-    "production_key_provider_term_selftest": "PASS_30_OF_30"
+    "production_key_provider_term_selftest": "PASS_30_OF_30",
+    "provider_shortlist_term_activation_core_commit": "3014441f5d40d059236c9cc07cbc75e057b35cd3",
+    "provider_shortlist_term_activation_integrity_run": 34209023361,
+    "provider_shortlist_term_activation_actionlint_run": 34208841628,
+    "provider_shortlist_term_activation_selftest": "PASS_11_OF_11"
   },
   "current_blocker": "LICENSED_REALTIME_ENTITLEMENT_REQUIRED_FOR_RELIABLE_SUB900_PATH",
   "weekend_probe": {
@@ -119,7 +123,7 @@
   "entitled_market_data_private_boundary": "config/jnu_entitled_market_data_storage_boundary_v1.json",
   "ose_free_trial_stage_checkpoint": "config/jnu_ose_free_trial_onboarding_checkpoint_v1.json",
   "private_entitled_quote_bridge": "config/jnu_private_entitled_quote_bridge_protocol_v1.json",
-  "stable_v1_9_framework_sha256": "57b94457bff146271e8c48e410bd5e16178c0050fc271c808d67abf4af418928",
+  "stable_v1_9_framework_sha256": "2e0be163baccd8c42065b088116e313f9e34c39745bbdf509553063d500b1c85",
   "private_entitled_live_shadow_protocol": "config/jnu_private_entitled_live_shadow_protocol_v1.json",
   "private_lifecycle_protocol": "config/jnu_private_lifecycle_protocol_v1.json",
   "private_concurrency_dr_state_protocol": "config/jnu_private_concurrency_dr_state_protocol_v1.json",
@@ -127,5 +131,8 @@
   "private_restore_authorization_protocol": "config/jnu_private_restore_authorization_protocol_v1.json",
   "production_key_custody_matrix": "config/jnu_production_key_custody_decision_matrix_v1.json",
   "provider_term_readiness_protocol": "config/jnu_provider_term_readiness_protocol_v1.json",
-  "production_backup_readiness_evaluator": "scripts/evaluate_jnu_production_key_custody_provider_readiness_v1.py"
+  "production_backup_readiness_evaluator": "scripts/evaluate_jnu_production_key_custody_provider_readiness_v1.py",
+  "provider_selection_shortlist": "config/jnu_provider_selection_shortlist_v1.json",
+  "term_evidence_attestation_protocol": "config/jnu_term_evidence_attestation_protocol_v1.json",
+  "real_backup_activation_manifest_protocol": "config/jnu_real_backup_activation_manifest_protocol_v1.json"
 }

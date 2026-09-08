@@ -75,7 +75,7 @@
   "cloud_request_selftest_run": 33969428203,
   "cloud_actionlint_run": 34038843503,
   "cloud_pipeline_status": "V1_8_ANALYSIS_FRESH_OFFICIAL_PREPARED_REQUEST_INTEGRITY_CI_PASS_REAL_LEDGER_EMPTY",
-  "next_action": "Use JNU v1.9. Production key-custody control class is fixed to managed HSM-backed KMS by default, with dedicated HSM/custom key store only when contract/internal policy requires it. The machine readiness gate is CI-ready but current vendor/region/key profile and OSE/provider terms remain unresolved, so real encrypted backup stays blocked. Next stage: provider selection shortlist plus structured term-evidence ingestion/attestation and activation-manifest generation; no real market data and no real KMS credentials.",
+  "next_action": "Use JNU v1.9. Provider shortlist and explicit term-evidence attestation/activation generator are CI-ready, but no provider or KMS has been selected and current real terms remain unresolved. Next stage: create provider evidence-intake pack templates, candidate-specific deployment-profile attestations, and contact-ready questionnaires; do not send outreach or connect credentials without explicit user authorization.",
   "exact_micro_reference_source_gate": "config/jnu_exact_micro_reference_source_gate_20260904_v1.json",
   "tradingview_exact_micro_transport": {
     "status": "B_IDENTITY_SOURCE_ALLOWED_ONLY_IF_ACTUAL_LP_TIME_AGE_LE_900",
@@ -203,7 +203,7 @@
   "public_live_shadow_boundary_selftest": "PASS_8_OF_8",
   "public_artifact_safety_selftest": "PASS_4_OF_4",
   "runtime_framework_sha256": "01c37847362f7dbdc898d5956562780a67442e493d4ad65617a82bab7fb6ba34",
-  "stable_v1_9_framework_sha256": "57b94457bff146271e8c48e410bd5e16178c0050fc271c808d67abf4af418928",
+  "stable_v1_9_framework_sha256": "2e0be163baccd8c42065b088116e313f9e34c39745bbdf509553063d500b1c85",
   "framework_hash_self_reference_corrected": true,
   "framework_hash_self_reference_correction_commit": "c97637cae0870920a4fb5941cc4da4abbe9ebdc7",
   "private_entitled_quote_bridge_protocol": "config/jnu_private_entitled_quote_bridge_protocol_v1.json",
@@ -268,5 +268,16 @@
   "production_key_custody_control_class": "MANAGED_HSM_BACKED_KMS_PREFERRED_DEDICATED_HSM_ONLY_IF_REQUIRED",
   "production_key_custody_vendor": "UNSELECTED",
   "production_key_custody_region": "UNSELECTED",
-  "provider_term_gate_current_status": "BLOCKED_ALL_REAL_TERM_EVIDENCE_UNRESOLVED"
+  "provider_term_gate_current_status": "BLOCKED_ALL_REAL_TERM_EVIDENCE_UNRESOLVED",
+  "provider_selection_shortlist": "config/jnu_provider_selection_shortlist_v1.json",
+  "term_evidence_attestation_protocol": "config/jnu_term_evidence_attestation_protocol_v1.json",
+  "real_backup_activation_manifest_protocol": "config/jnu_real_backup_activation_manifest_protocol_v1.json",
+  "provider_shortlist_term_activation_checkpoint": "config/jnu_provider_selection_term_activation_checkpoint_v1.json",
+  "provider_shortlist_term_activation_core_commit": "3014441f5d40d059236c9cc07cbc75e057b35cd3",
+  "provider_shortlist_term_activation_integrity_run": 34209023361,
+  "provider_shortlist_term_activation_actionlint_run": 34208841628,
+  "provider_shortlist_term_activation_selftest": "PASS_11_OF_11",
+  "current_market_data_provider_selection": "UNSELECTED",
+  "current_key_custody_provider_selection": "UNSELECTED",
+  "current_real_activation_manifest_status": "NOT_GENERATED_BLOCKED"
 }

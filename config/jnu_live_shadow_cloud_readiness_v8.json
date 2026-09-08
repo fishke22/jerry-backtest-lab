@@ -1,7 +1,7 @@
 {
   "version": "8.0",
   "as_of": "2026-09-08",
-  "status": "V1_9_FRAMEWORK_ACTIVE_PRODUCTION_KEY_PROVIDER_TERM_GATE_BLOCKED",
+  "status": "V1_9_FRAMEWORK_ACTIVE_PROVIDER_SELECTION_AND_EXPLICIT_TERM_EVIDENCE_BLOCKED",
   "authoritative_framework": "config/jnu_operational_framework_current_v1_9.json",
   "preregistration": "config/jnu_operational_live_shadow_prereg_v1_7.json",
   "implementation": "config/jnu_operational_live_shadow_implementation_v1_7.json",
@@ -282,6 +282,23 @@
       "stable_framework_sha256": "57b94457bff146271e8c48e410bd5e16178c0050fc271c808d67abf4af418928",
       "current_status": "BLOCKED",
       "real_entitled_backup_activation_permitted": false
+    },
+    "provider_shortlist_term_activation": {
+      "status": "CI_PASS_CURRENT_REAL_STATE_BLOCKED",
+      "checkpoint": "config/jnu_provider_selection_term_activation_checkpoint_v1.json",
+      "shortlist": "config/jnu_provider_selection_shortlist_v1.json",
+      "term_evidence_protocol": "config/jnu_term_evidence_attestation_protocol_v1.json",
+      "activation_manifest_protocol": "config/jnu_real_backup_activation_manifest_protocol_v1.json",
+      "core_commit": "3014441f5d40d059236c9cc07cbc75e057b35cd3",
+      "secret_scanner_fix_commit": "a542c6ce41dd67f762a02ecdcd84f16ea48c8af3",
+      "integrity_run": 34209023361,
+      "actionlint_run": 34208841628,
+      "selftest": "PASS_11_OF_11",
+      "stable_framework_sha256": "2e0be163baccd8c42065b088116e313f9e34c39745bbdf509553063d500b1c85",
+      "market_data_provider_selected": false,
+      "key_custody_provider_selected": false,
+      "real_activation_manifest_generated": false,
+      "real_entitled_backup_activation_permitted": false
     }
   },
   "frozen_max_reference_age_seconds": 900,
@@ -297,7 +314,7 @@
     "decision_engine": "NO_VALIDATED_DIRECTIONAL_EDGE"
   },
   "blocker": "LICENSED_REALTIME_ENTITLEMENT_REQUIRED_FOR_RELIABLE_SUB900_PATH",
-  "next_action": "Do not enable real backup. Select a production KMS/HSM vendor+region only after provider/cloud constraints are known, and ingest explicit OSE/provider term evidence into the frozen readiness protocol.",
+  "next_action": "Build candidate-specific evidence intake/deployment-profile attestations and contact-ready questionnaires. No real KMS credentials, no real market data, and no outbound provider/OSE contact without explicit user authorization.",
   "integrity_hash_protocol": "config/jnu_integrity_hash_protocol_v1.json",
   "integrity_hash_method": "SHA256_TEXT_EOL_CRLF_V1",
   "core_seal_commit": "883d6d71d41a02ca19a713a5b5e2c3469c84cead",

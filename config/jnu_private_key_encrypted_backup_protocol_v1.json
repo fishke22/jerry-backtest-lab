@@ -124,6 +124,13 @@
     "actionlint_run": 34206608455,
     "selftest": "PASS_30_OF_30",
     "current_evaluation": "BLOCKED",
-    "current_key_custody": "UNSELECTED"
+    "current_key_custody": "UNSELECTED",
+    "provider_selection_shortlist": "config/jnu_provider_selection_shortlist_v1.json",
+    "term_evidence_attestation_protocol": "config/jnu_term_evidence_attestation_protocol_v1.json",
+    "activation_manifest_protocol": "config/jnu_real_backup_activation_manifest_protocol_v1.json",
+    "current_selection": "UNSELECTED",
+    "current_real_activation_manifest": "NOT_GENERATED_BLOCKED",
+    "provider_shortlist_term_activation_integrity_run": 34209023361,
+    "provider_shortlist_term_activation_selftest": "PASS_11_OF_11"
   }
 }
