@@ -208,7 +208,7 @@
   "authoritative_validation_pipeline_checkpoint": "config/jnu_validation_pipeline_checkpoint_20260902_v1.json",
   "validation_pipeline_status": "JNU_VALIDATION_PIPELINE_READY_FORWARD_DATA_PENDING",
   "validation_pipeline_head": "ff322f11dbb23da6be093056ac6ef47f2db10e4a",
-  "next_action": "Build a repo-external synthetic KMS deployment-evidence staging and control-attestation workflow for the AWS KMS Tokyo and Google Cloud HSM Tokyo candidates. Verify actual-control evidence structure for region, HSM backing, non-exportable symmetric KEK, plaintext-KEK non-exposure, audit logging, rotation/old-version decrypt retention, IAM/admin/restore separation, deletion protection, residency, and private-network restriction; emit only redacted non-secret control attestations. Do not connect real cloud accounts, credentials, projects, keys, KMS APIs, or select a production vendor without explicit user authorization.",
+  "next_action": "Build a synthetic repo-external composite pre-activation evidence gate that joins a redacted provider/OSE term attestation with a redacted KMS deployment-control attestation, verifies shortlist identity and evidence lineage, evaluates all six market-data-provider × KMS candidate combinations without ranking or selecting them, and emits only blocker/readiness dossiers. Do not connect real provider/KMS accounts, ingest real confidential documents, select any vendor pair, create keys, connect credentials, or generate a real activation manifest without explicit user authorization.",
   "stage8_forward_local_ingest": {
     "status": "SELFTEST_PASS_NO_SOURCE_CHANGE",
     "script": "scripts/ingest_jnu_stage8_forward_local.py",
@@ -608,5 +608,43 @@
     "public_real_forecasts": 0,
     "public_real_outcomes": 0,
     "next_stage": "PRIVATE_KMS_DEPLOYMENT_EVIDENCE_STAGING_CONTROL_ATTESTATION_PIPELINE_SYNTHETIC_ONLY"
+  },
+  "private_kms_deployment_evidence": {
+    "status": "CI_PASS_KMS_DEPLOYMENT_CONTROL_ATTESTATION_SYNTHETIC_READY_REAL_KMS_BLOCKED",
+    "stage_name": "PRIVATE_KMS_DEPLOYMENT_EVIDENCE_STAGING_CONTROL_ATTESTATION_PIPELINE_SYNTHETIC_ONLY",
+    "protocol": "config/jnu_private_kms_deployment_evidence_staging_protocol_v1.json",
+    "stager": "scripts/stage_jnu_private_kms_deployment_evidence_v1.py",
+    "redacted_emitter": "scripts/emit_jnu_redacted_kms_deployment_control_attestation_v1.py",
+    "selftest_script": "scripts/selftest_jnu_private_kms_deployment_evidence_v1.py",
+    "design_note": "research_notes/jnu_private_kms_deployment_evidence_pipeline_20260908.md",
+    "checkpoint": "config/jnu_private_kms_deployment_evidence_checkpoint_v1.json",
+    "core_commit": "9b3e12fe2a1b9e241370a2184c25c49d6932947f",
+    "integrity_run": 34222961071,
+    "actionlint_run": 34222961092,
+    "selftest": "PASS_31_OF_31",
+    "stable_framework_sha256": "2e0be163baccd8c42065b088116e313f9e34c39745bbdf509553063d500b1c85",
+    "candidates_covered": [
+      "AWS_KMS_TOKYO",
+      "GCP_CLOUD_HSM_TOKYO"
+    ],
+    "required_control_count": 17,
+    "vendor_capability_baseline_does_not_promote_deployment_control": true,
+    "deployment_promoting_authority": "INTERNAL_CONTROL_OWNER",
+    "deployment_promoting_source_class": "INTERNAL_DEPLOYMENT_ATTESTATION",
+    "source_sha256_reverified_before_emit": true,
+    "fips_minimum_level": 3,
+    "source_document_path_emitted": false,
+    "source_document_text_emitted": false,
+    "credentials_emitted": false,
+    "cloud_resource_identifiers_emitted": false,
+    "vendor_selection_performed": false,
+    "production_profile_modified": false,
+    "kms_api_called": false,
+    "key_created": false,
+    "real_activation_authorized": false,
+    "real_entitlement_connected": false,
+    "public_real_forecasts": 0,
+    "public_real_outcomes": 0,
+    "next_stage": "PRIVATE_COMPOSITE_PRODUCTION_READINESS_EVIDENCE_JOIN_GATE_SYNTHETIC_ONLY"
   }
 }

@@ -75,7 +75,7 @@
   "cloud_request_selftest_run": 33969428203,
   "cloud_actionlint_run": 34038843503,
   "cloud_pipeline_status": "V1_8_ANALYSIS_FRESH_OFFICIAL_PREPARED_REQUEST_INTEGRITY_CI_PASS_REAL_LEDGER_EMPTY",
-  "next_action": "Build a repo-external synthetic KMS deployment-evidence staging and control-attestation workflow for the AWS KMS Tokyo and Google Cloud HSM Tokyo candidates. Verify actual-control evidence structure for region, HSM backing, non-exportable symmetric KEK, plaintext-KEK non-exposure, audit logging, rotation/old-version decrypt retention, IAM/admin/restore separation, deletion protection, residency, and private-network restriction; emit only redacted non-secret control attestations. Do not connect real cloud accounts, credentials, projects, keys, KMS APIs, or select a production vendor without explicit user authorization.",
+  "next_action": "Build a synthetic repo-external composite pre-activation evidence gate that joins a redacted provider/OSE term attestation with a redacted KMS deployment-control attestation, verifies shortlist identity and evidence lineage, evaluates all six market-data-provider × KMS candidate combinations without ranking or selecting them, and emits only blocker/readiness dossiers. Do not connect real provider/KMS accounts, ingest real confidential documents, select any vendor pair, create keys, connect credentials, or generate a real activation manifest without explicit user authorization.",
   "exact_micro_reference_source_gate": "config/jnu_exact_micro_reference_source_gate_20260904_v1.json",
   "tradingview_exact_micro_transport": {
     "status": "B_IDENTITY_SOURCE_ALLOWED_ONLY_IF_ACTUAL_LP_TIME_AGE_LE_900",
@@ -300,5 +300,14 @@
   "private_provider_term_evidence_staging_integrity_run": 34222506066,
   "private_provider_term_evidence_staging_actionlint_run": 34222419797,
   "private_provider_term_evidence_staging_selftest": "PASS_24_OF_24",
-  "private_provider_term_evidence_staging_status": "CI_PASS_PRIVATE_EXTERNAL_STAGING_SYNTHETIC_READY_REAL_EVIDENCE_BLOCKED"
+  "private_provider_term_evidence_staging_status": "CI_PASS_PRIVATE_EXTERNAL_STAGING_SYNTHETIC_READY_REAL_EVIDENCE_BLOCKED",
+  "private_kms_deployment_evidence_protocol": "config/jnu_private_kms_deployment_evidence_staging_protocol_v1.json",
+  "private_kms_deployment_evidence_stager": "scripts/stage_jnu_private_kms_deployment_evidence_v1.py",
+  "private_kms_redacted_control_attestation_emitter": "scripts/emit_jnu_redacted_kms_deployment_control_attestation_v1.py",
+  "private_kms_deployment_evidence_checkpoint": "config/jnu_private_kms_deployment_evidence_checkpoint_v1.json",
+  "private_kms_deployment_evidence_core_commit": "9b3e12fe2a1b9e241370a2184c25c49d6932947f",
+  "private_kms_deployment_evidence_integrity_run": 34222961071,
+  "private_kms_deployment_evidence_actionlint_run": 34222961092,
+  "private_kms_deployment_evidence_selftest": "PASS_31_OF_31",
+  "private_kms_deployment_evidence_status": "CI_PASS_KMS_DEPLOYMENT_CONTROL_ATTESTATION_SYNTHETIC_READY_REAL_KMS_BLOCKED"
 }
