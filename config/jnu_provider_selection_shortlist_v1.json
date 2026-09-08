@@ -1,0 +1,109 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-08",
+  "status": "SHORTLIST_ONLY_NO_VENDOR_SELECTED",
+  "authoritative_framework": "config/jnu_operational_framework_current_v1_9.json",
+  "rules": {
+    "shortlist_is_not_selection": true,
+    "technical_evidence_is_not_contract_permission": true,
+    "exact_micro_and_read_only_transport_must_be_explicit_before_selection": true,
+    "cloud_backup_restore_rights_are_never_inferred_from_api_capability": true,
+    "cost_not_scored_in_this_stage": true
+  },
+  "market_data_candidates": [
+    {
+      "id": "BROadridge_CQG_OSE",
+      "legal_or_brand_name": "Broadridge Trading and Connectivity Solutions Japan K.K. / CQG",
+      "ose_direct_market_information_provider_status": "EVIDENCED",
+      "official_ose_provider_source": "https://www.jpx.co.jp/english/markets/paid-info-derivatives/realtime/03.html",
+      "programmatic_realtime_transport_status": "EVIDENCED_GENERAL",
+      "transport_evidence": [
+        "https://partners.cqg.com/api-resources/web-api",
+        "https://www.cqg.com/products/cqg-apis/client-apis"
+      ],
+      "realtime_market_data_capability": "EVIDENCED_GENERAL",
+      "exact_nikkei_225_micro_individual_contract_status": "UNRESOLVED",
+      "data_only_read_only_credential_status": "UNRESOLVED",
+      "order_capable_transport_separation_status": "UNRESOLVED",
+      "ose_free_trial_delivery_status": "UNRESOLVED",
+      "third_party_cloud_processing_permission": "UNRESOLVED",
+      "encrypted_backup_permission": "UNRESOLVED",
+      "retention_deletion_restore_dr_terms": "UNRESOLVED",
+      "disposition": "SHORTLIST_TIER_A_TECHNICAL_TRANSPORT_EVIDENCE_PARTIAL"
+    },
+    {
+      "id": "QUICK_OSE",
+      "legal_or_brand_name": "QUICK Corp.",
+      "ose_direct_market_information_provider_status": "EVIDENCED",
+      "official_ose_provider_source": "https://www.jpx.co.jp/english/markets/paid-info-derivatives/realtime/03.html",
+      "programmatic_realtime_transport_status": "UNRESOLVED",
+      "exact_nikkei_225_micro_individual_contract_status": "UNRESOLVED",
+      "data_only_read_only_credential_status": "UNRESOLVED",
+      "ose_free_trial_delivery_status": "UNRESOLVED",
+      "third_party_cloud_processing_permission": "UNRESOLVED",
+      "encrypted_backup_permission": "UNRESOLVED",
+      "retention_deletion_restore_dr_terms": "UNRESOLVED",
+      "disposition": "SHORTLIST_TIER_B_OSE_PROVIDER_ONLY"
+    },
+    {
+      "id": "REFINITIV_LSEG_OSE",
+      "legal_or_brand_name": "Refinitiv / LSEG",
+      "ose_direct_market_information_provider_status": "EVIDENCED",
+      "official_ose_provider_source": "https://www.jpx.co.jp/english/markets/paid-info-derivatives/realtime/03.html",
+      "programmatic_realtime_transport_status": "UNRESOLVED_FOR_THIS_EXACT_USE_CASE",
+      "exact_nikkei_225_micro_individual_contract_status": "UNRESOLVED",
+      "data_only_read_only_credential_status": "UNRESOLVED",
+      "ose_free_trial_delivery_status": "UNRESOLVED",
+      "third_party_cloud_processing_permission": "UNRESOLVED",
+      "encrypted_backup_permission": "UNRESOLVED",
+      "retention_deletion_restore_dr_terms": "UNRESOLVED",
+      "disposition": "SHORTLIST_TIER_B_OSE_PROVIDER_ONLY"
+    }
+  ],
+  "key_custody_candidates": [
+    {
+      "id": "AWS_KMS_TOKYO",
+      "vendor": "AWS",
+      "control_class": "MANAGED_HSM_BACKED_KMS",
+      "proposed_region": "ap-northeast-1",
+      "region_name": "Asia Pacific (Tokyo)",
+      "hsm_fips_level_3_status": "EVIDENCED_FIPS_140_3_LEVEL_3",
+      "non_exportable_hsm_key_status": "EVIDENCED",
+      "rotation_status": "EVIDENCED",
+      "audit_logging_status": "EVIDENCED",
+      "private_network_path_status": "UNRESOLVED_FOR_DEPLOYMENT_PROFILE",
+      "iam_role_separation_status": "UNRESOLVED_FOR_DEPLOYMENT_PROFILE",
+      "deletion_protection_status": "UNRESOLVED_FOR_DEPLOYMENT_PROFILE",
+      "evidence": [
+        "https://docs.aws.amazon.com/kms/latest/developerguide/key-store-overview.html",
+        "https://docs.aws.amazon.com/kms/latest/developerguide/rotate-keys.html",
+        "https://docs.aws.amazon.com/kms/latest/developerguide/logging-using-cloudtrail.html",
+        "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html"
+      ],
+      "disposition": "TECHNICAL_CANDIDATE_DEPLOYMENT_PROFILE_INCOMPLETE"
+    },
+    {
+      "id": "GCP_CLOUD_HSM_TOKYO",
+      "vendor": "Google Cloud",
+      "control_class": "MANAGED_HSM_BACKED_KMS",
+      "proposed_region": "asia-northeast1",
+      "region_name": "Tokyo",
+      "hsm_fips_level_3_status": "EVIDENCED_FIPS_140_2_LEVEL_3",
+      "rotation_status": "EVIDENCED",
+      "audit_logging_status": "EVIDENCED",
+      "hsm_region_status": "EVIDENCED_MULTI_TENANT_HSM_AVAILABLE",
+      "private_network_path_status": "UNRESOLVED_FOR_DEPLOYMENT_PROFILE",
+      "iam_role_separation_status": "UNRESOLVED_FOR_DEPLOYMENT_PROFILE",
+      "deletion_protection_status": "UNRESOLVED_FOR_DEPLOYMENT_PROFILE",
+      "evidence": [
+        "https://docs.cloud.google.com/kms/docs/hsm",
+        "https://docs.cloud.google.com/kms/docs/key-rotation",
+        "https://docs.cloud.google.com/kms/docs/audit-logging",
+        "https://docs.cloud.google.com/kms/docs/locations"
+      ],
+      "disposition": "TECHNICAL_CANDIDATE_DEPLOYMENT_PROFILE_INCOMPLETE"
+    }
+  ],
+  "selected_market_data_provider": "UNSELECTED",
+  "selected_key_custody_provider": "UNSELECTED"
+}

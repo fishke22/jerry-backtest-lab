@@ -81,6 +81,13 @@ on:
       - "config/jnu_provider_term_readiness_current_v1.json"
       - "scripts/evaluate_jnu_production_key_custody_provider_readiness_v1.py"
       - "scripts/selftest_jnu_production_key_custody_provider_readiness_v1.py"
+      - "config/jnu_provider_selection_shortlist_v1.json"
+      - "config/jnu_term_evidence_attestation_protocol_v1.json"
+      - "config/jnu_real_backup_activation_manifest_protocol_v1.json"
+      - "scripts/evaluate_jnu_provider_selection_shortlist_v1.py"
+      - "scripts/attest_jnu_provider_term_evidence_v1.py"
+      - "scripts/generate_jnu_real_backup_activation_manifest_v1.py"
+      - "scripts/selftest_jnu_provider_selection_term_activation_v1.py"
   workflow_dispatch:
 
 permissions:
@@ -127,6 +134,9 @@ jobs:
           python -m json.tool config/jnu_provider_term_readiness_protocol_v1.json >/dev/null
           python -m json.tool config/jnu_production_key_custody_current_v1.json >/dev/null
           python -m json.tool config/jnu_provider_term_readiness_current_v1.json >/dev/null
+          python -m json.tool config/jnu_provider_selection_shortlist_v1.json >/dev/null
+          python -m json.tool config/jnu_term_evidence_attestation_protocol_v1.json >/dev/null
+          python -m json.tool config/jnu_real_backup_activation_manifest_protocol_v1.json >/dev/null
 
       - name: Install private backup crypto dependency
         run: python -m pip install "cryptography>=42"
@@ -188,6 +198,12 @@ jobs:
           python -m py_compile scripts/evaluate_jnu_production_key_custody_provider_readiness_v1.py scripts/selftest_jnu_production_key_custody_provider_readiness_v1.py
           python scripts/selftest_jnu_production_key_custody_provider_readiness_v1.py
           python scripts/evaluate_jnu_production_key_custody_provider_readiness_v1.py --key-profile config/jnu_production_key_custody_current_v1.json --provider-terms config/jnu_provider_term_readiness_current_v1.json --report-only
+
+      - name: Provider shortlist term-attestation activation selftest
+        run: |
+          python -m py_compile scripts/evaluate_jnu_provider_selection_shortlist_v1.py scripts/attest_jnu_provider_term_evidence_v1.py scripts/generate_jnu_real_backup_activation_manifest_v1.py scripts/selftest_jnu_provider_selection_term_activation_v1.py
+          python scripts/selftest_jnu_provider_selection_term_activation_v1.py
+          python scripts/evaluate_jnu_provider_selection_shortlist_v1.py
 
       - name: Full v1.8 analysis-fresh chain selftest
         run: python scripts/selftest_jnu_live_shadow_v18_integrity.py

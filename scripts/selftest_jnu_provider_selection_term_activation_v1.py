@@ -1,0 +1,45 @@
+from __future__ import annotations
+import copy,hashlib,json,subprocess,sys,tempfile
+from pathlib import Path
+ROOT=Path(__file__).resolve().parents[1];PY=sys.executable
+AT=ROOT/"scripts"/"attest_jnu_provider_term_evidence_v1.py";GEN=ROOT/"scripts"/"generate_jnu_real_backup_activation_manifest_v1.py";EVAL=ROOT/"scripts"/"evaluate_jnu_provider_selection_shortlist_v1.py"
+def w(p,x):p.write_text(json.dumps(x,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+def h(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+K={"version":"1.0","status":"READY","control_class":"MANAGED_HSM_BACKED_KMS","vendor":"SYNTH_KMS","region":"SYNTH_REGION","hsm_backed":True,"fips_security_level":3,"kek_non_exportable":True,"symmetric_kek":True,"envelope_encryption":True,"per_backup_random_dek":True,"kek_wraps_dek_only":True,"plaintext_kek_never_exposed_to_application":True,"provider_audit_logging":True,"key_rotation_supported":True,"previous_key_versions_retained_for_authorized_decrypt":True,"iam_role_separation":True,"key_admin_separate_from_crypto_user":True,"restore_approver_separate_from_crypto_user":True,"deletion_protection_or_delayed_destruction":True,"explicit_region_and_residency_configuration":True,"private_network_path_or_equivalent_restriction":True,"no_key_material_in_repository":True,"no_key_material_in_backup_manifest":True,"no_key_material_in_stdout":True,"production_enabled":True}
+TREADY={"entitlement_status":"EXPLICITLY_APPROVED","applicant_eligibility_status":"EXPLICITLY_APPROVED","exact_micro_product_status":"EXPLICITLY_APPROVED","provider_selected_status":"EXPLICITLY_APPROVED","read_only_transport_status":"EXPLICITLY_APPROVED","ose_third_party_cloud_processing_status":"EXPLICITLY_APPROVED","provider_third_party_cloud_processing_status":"EXPLICITLY_APPROVED","service_facilitator_approval_status":"EXPLICITLY_APPROVED","encrypted_backup_creation_status":"EXPLICITLY_APPROVED","encrypted_backup_storage_status":"EXPLICITLY_APPROVED","backup_region_status":"EXPLICITLY_APPROVED","backup_retention_terms_status":"EXPLICITLY_CONFIRMED","backup_deletion_terms_status":"EXPLICITLY_CONFIRMED","restore_permission_status":"EXPLICITLY_APPROVED","dr_drill_permission_status":"EXPLICITLY_APPROVED","kms_hsm_key_custody_status":"EXPLICITLY_APPROVED","incident_reporting_terms_status":"EXPLICITLY_CONFIRMED","audit_cooperation_terms_status":"EXPLICITLY_CONFIRMED"}
+AUTH={"entitlement_status":"OSE","applicant_eligibility_status":"OSE","exact_micro_product_status":"OSE","provider_selected_status":"MARKET_DATA_PROVIDER","read_only_transport_status":"MARKET_DATA_PROVIDER","ose_third_party_cloud_processing_status":"OSE","provider_third_party_cloud_processing_status":"MARKET_DATA_PROVIDER","service_facilitator_approval_status":"OSE","encrypted_backup_creation_status":"MARKET_DATA_PROVIDER","encrypted_backup_storage_status":"MARKET_DATA_PROVIDER","backup_region_status":"MARKET_DATA_PROVIDER","backup_retention_terms_status":"MARKET_DATA_PROVIDER","backup_deletion_terms_status":"MARKET_DATA_PROVIDER","restore_permission_status":"MARKET_DATA_PROVIDER","dr_drill_permission_status":"MARKET_DATA_PROVIDER","kms_hsm_key_custody_status":"MARKET_DATA_PROVIDER","incident_reporting_terms_status":"MARKET_DATA_PROVIDER","audit_cooperation_terms_status":"MARKET_DATA_PROVIDER"}
+T={}
+with tempfile.TemporaryDirectory(prefix="jnu_terms_ext_") as td0:
+ td=Path(td0)
+ ose=td/"ose.txt";provider=td/"provider.txt";internal=td/"internal.txt";ose.write_text("synthetic explicit OSE approvals\n");provider.write_text("synthetic explicit provider approvals\n");internal.write_text("synthetic internal controls\n")
+ sources=[
+  {"evidence_id":"E_OSE","source_class":"OSE_WRITTEN_CONFIRMATION","authority":"OSE","source_uri":"synthetic://ose","source_document_path":str(ose),"document_sha256":h(ose),"captured_at_utc":"2026-09-08T09:00:00+00:00","confidentiality":"PRIVATE_SYNTHETIC"},
+  {"evidence_id":"E_PROVIDER","source_class":"PROVIDER_WRITTEN_CONFIRMATION","authority":"MARKET_DATA_PROVIDER","source_uri":"synthetic://provider","source_document_path":str(provider),"document_sha256":h(provider),"captured_at_utc":"2026-09-08T09:00:00+00:00","confidentiality":"PRIVATE_SYNTHETIC"},
+  {"evidence_id":"E_INTERNAL","source_class":"INTERNAL_DEPLOYMENT_ATTESTATION","authority":"INTERNAL_CONTROL_OWNER","source_uri":"synthetic://internal","source_document_path":str(internal),"document_sha256":h(internal),"captured_at_utc":"2026-09-08T09:00:00+00:00","confidentiality":"PRIVATE_SYNTHETIC"}
+ ]
+ claims=[]
+ for f,v in TREADY.items():
+  eid="E_OSE" if AUTH[f]=="OSE" else "E_PROVIDER"
+  claims.append({"field":f,"value":v,"evidence_ids":[eid],"locator":"synthetic-section","explicitness":"EXPLICIT_TEXT","reviewer_attestation":"EXPLICIT_TEXT_CONFIRMED"})
+ claims+= [
+  {"field":"service_facilitator_required","value":True,"evidence_ids":["E_OSE"],"locator":"synthetic-section","explicitness":"EXPLICIT_TEXT","reviewer_attestation":"EXPLICIT_TEXT_CONFIRMED"},
+  {"field":"broker_auth_used","value":False,"evidence_ids":["E_INTERNAL"],"locator":"control","explicitness":"EXPLICIT_TEXT","reviewer_attestation":"EXPLICIT_TEXT_CONFIRMED"},
+  {"field":"trading_permission_used","value":False,"evidence_ids":["E_INTERNAL"],"locator":"control","explicitness":"EXPLICIT_TEXT","reviewer_attestation":"EXPLICIT_TEXT_CONFIRMED"},
+  {"field":"public_output_requested","value":False,"evidence_ids":["E_INTERNAL"],"locator":"control","explicitness":"EXPLICIT_TEXT","reviewer_attestation":"EXPLICIT_TEXT_CONFIRMED"}
+ ]
+ pack={"version":"1.0","pack_id":"JNU_TERM_PACK_SYNTH_COMPLETE","evidence_as_of":"2026-09-08","sources":sources,"claims":claims}
+ pp=td/"pack.json";att=td/"att.json";w(pp,pack)
+ cp=subprocess.run([PY,str(AT),"--evidence-pack",str(pp),"--output",str(att)],cwd=ROOT,capture_output=True,text=True);T["complete_explicit_attestation_pass"]=cp.returncode==0 and json.loads(att.read_text())["status"]=="COMPLETE_EXPLICIT_TERMS"
+ T["attestation_no_source_text"]="synthetic explicit OSE approvals" not in att.read_text()
+ bad=copy.deepcopy(pack);bad["claims"][0]["explicitness"]="INFERRED";bp=td/"bad.json";w(bp,bad);cp=subprocess.run([PY,str(AT),"--evidence-pack",str(bp)],cwd=ROOT,capture_output=True,text=True);T["inferred_claim_rejected"]=cp.returncode!=0
+ bad=copy.deepcopy(pack);bad["claims"].append({"field":"entitlement_status","value":"EXPLICITLY_CONFIRMED","evidence_ids":["E_OSE"],"locator":"x","explicitness":"EXPLICIT_TEXT","reviewer_attestation":"EXPLICIT_TEXT_CONFIRMED"});bp=td/"conflict.json";w(bp,bad);cp=subprocess.run([PY,str(AT),"--evidence-pack",str(bp)],cwd=ROOT,capture_output=True,text=True);T["conflicting_claim_rejected"]=cp.returncode!=0
+ bad=copy.deepcopy(pack);bad["sources"][0]["document_sha256"]="0"*64;bp=td/"sha.json";w(bp,bad);cp=subprocess.run([PY,str(AT),"--evidence-pack",str(bp)],cwd=ROOT,capture_output=True,text=True);T["source_sha_mismatch_rejected"]=cp.returncode!=0
+ partial=copy.deepcopy(pack);partial["claims"]=[c for c in partial["claims"] if c["field"]!="restore_permission_status"];bp=td/"partial.json";pa=td/"partial_att.json";w(bp,partial);cp=subprocess.run([PY,str(AT),"--evidence-pack",str(bp),"--output",str(pa)],cwd=ROOT,capture_output=True,text=True);T["partial_terms_blocked"]=cp.returncode==4 and json.loads(pa.read_text())["status"]=="PARTIAL_EXPLICIT_TERMS_BLOCKED"
+ kp=td/"key.json";sp=td/"sel.json";out=td/"activation.json";w(kp,K);w(sp,{"market_data_selection_status":"EXPLICITLY_SELECTED","key_custody_selection_status":"EXPLICITLY_SELECTED","market_data_provider_id":"SYNTH_MARKET","key_custody_provider_id":"SYNTH_KMS_ID"})
+ cp=subprocess.run([PY,str(GEN),"--key-profile",str(kp),"--term-attestation",str(att),"--selection",str(sp),"--mode","SYNTHETIC_DRY_RUN","--output",str(out)],cwd=ROOT,capture_output=True,text=True);T["synthetic_activation_dry_run_pass"]=cp.returncode==0 and json.loads(out.read_text())["contains_key_material"] is False
+ currentk=ROOT/"config"/"jnu_production_key_custody_current_v1.json";currentt=ROOT/"config"/"jnu_provider_term_readiness_current_v1.json"
+ ca=td/"current_att.json";ct=json.loads(currentt.read_text());w(ca,{"version":"1.0","status":"PARTIAL_EXPLICIT_TERMS_BLOCKED","evidence_as_of":"2026-09-08","pack_id":"CURRENT","provider_terms":ct,"evidence_ledger":{}})
+ cp=subprocess.run([PY,str(GEN),"--key-profile",str(currentk),"--term-attestation",str(ca),"--selection",str(sp),"--mode","REAL"],cwd=ROOT,capture_output=True,text=True);T["current_real_activation_blocked"]=cp.returncode!=0
+ cp=subprocess.run([PY,str(EVAL)],cwd=ROOT,capture_output=True,text=True);sr=json.loads(cp.stdout);T["shortlist_has_no_selection"]=cp.returncode==0 and sr["real_provider_selection_performed"] is False
+ T["shortlist_currently_not_selection_ready"]=all(x["status"]!="SELECTION_READY" for x in sr["market_data"]) and all(x["status"]!="SELECTION_READY" for x in sr["key_custody"])
+status="PASS" if all(T.values()) else "FAIL";print(json.dumps({"status":status,"tests":T,"passed":sum(T.values()),"total":len(T)},indent=2));raise SystemExit(0 if status=="PASS" else 1)

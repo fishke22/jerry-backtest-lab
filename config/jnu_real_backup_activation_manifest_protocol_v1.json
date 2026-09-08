@@ -1,0 +1,26 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-08",
+  "status": "FROZEN_REAL_BACKUP_ACTIVATION_MANIFEST_PROTOCOL",
+  "purpose": "Generate a production activation manifest only when key-custody controls, explicit provider-term attestation, and provider/KMS selection all pass. Current repository state remains blocked.",
+  "required_inputs": [
+    "production_key_profile",
+    "provider_term_attestation",
+    "provider_selection",
+    "provider_shortlist"
+  ],
+  "real_rules": {
+    "readiness_evaluator_status": "READY_FOR_REAL_ENCRYPTED_BACKUP_PRIVATE_ONLY",
+    "term_attestation_status": "COMPLETE_EXPLICIT_TERMS",
+    "market_data_provider_must_be_in_shortlist": true,
+    "key_custody_provider_must_be_in_shortlist": true,
+    "selected_kms_vendor_region_must_match_key_profile": true,
+    "provider_selection_status": "EXPLICITLY_SELECTED",
+    "key_selection_status": "EXPLICITLY_SELECTED",
+    "public_output_authorized": false,
+    "activation_manifest_contains_no_credentials_or_key_material": true,
+    "activation_manifest_is_authorization_record_not_credential": true
+  },
+  "current_real_activation_status": "BLOCKED",
+  "synthetic_dry_run_allowed": true
+}

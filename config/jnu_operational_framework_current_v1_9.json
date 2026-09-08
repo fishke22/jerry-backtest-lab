@@ -378,6 +378,20 @@
       "evaluator": "scripts/evaluate_jnu_production_key_custody_provider_readiness_v1.py",
       "real_backup_activation": "REQUIRES_BOTH_KEY_CUSTODY_AND_PROVIDER_TERM_PASS",
       "public_output": false
+    },
+    "provider_selection_term_attestation_activation": {
+      "status": "SYNTHETIC_ONLY_PENDING_CI",
+      "shortlist": "config/jnu_provider_selection_shortlist_v1.json",
+      "term_evidence_protocol": "config/jnu_term_evidence_attestation_protocol_v1.json",
+      "activation_manifest_protocol": "config/jnu_real_backup_activation_manifest_protocol_v1.json",
+      "shortlist_evaluator": "scripts/evaluate_jnu_provider_selection_shortlist_v1.py",
+      "term_attestor": "scripts/attest_jnu_provider_term_evidence_v1.py",
+      "activation_generator": "scripts/generate_jnu_real_backup_activation_manifest_v1.py",
+      "provider_selected": false,
+      "key_vendor_selected": false,
+      "real_activation_manifest_generated": false,
+      "url_only_term_evidence_prohibited": true,
+      "inferred_permission_prohibited": true
     }
   }
 }

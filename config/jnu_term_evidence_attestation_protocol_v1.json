@@ -1,0 +1,145 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-08",
+  "status": "FROZEN_STRUCTURED_TERM_EVIDENCE_ATTESTATION_PROTOCOL",
+  "purpose": "Convert field-level explicit OSE/provider/KMS term evidence into a machine-verifiable provider-term readiness record without inferring permissions or copying confidential source text into the public repository.",
+  "source_classes": [
+    "OSE_WRITTEN_CONFIRMATION",
+    "PROVIDER_WRITTEN_CONFIRMATION",
+    "PRIVATE_CONTRACT",
+    "PUBLIC_OFFICIAL_SNAPSHOT",
+    "KMS_VENDOR_OFFICIAL_SNAPSHOT",
+    "INTERNAL_DEPLOYMENT_ATTESTATION"
+  ],
+  "allowed_authorities": [
+    "OSE",
+    "MARKET_DATA_PROVIDER",
+    "KMS_VENDOR",
+    "INTERNAL_CONTROL_OWNER"
+  ],
+  "required_source_fields": [
+    "evidence_id",
+    "source_class",
+    "authority",
+    "source_uri",
+    "source_document_path",
+    "document_sha256",
+    "captured_at_utc",
+    "confidentiality"
+  ],
+  "required_claim_fields": [
+    "field",
+    "value",
+    "evidence_ids",
+    "locator",
+    "explicitness",
+    "reviewer_attestation"
+  ],
+  "claim_rules": {
+    "explicitness_required": "EXPLICIT_TEXT",
+    "reviewer_attestation_required": "EXPLICIT_TEXT_CONFIRMED",
+    "source_document_path_must_be_external_to_public_repo": true,
+    "source_document_sha256_must_match": true,
+    "url_only_evidence_never_promotes_readiness": true,
+    "conflicting_claims_fail_closed": true,
+    "claims_may_only_target_provider_term_protocol_fields": true,
+    "confidential_source_text_not_copied_to_attestation": true,
+    "attestation_retains_only_source_hash_uri_locator_and_claim_value": true
+  },
+  "authority_requirements": {
+    "entitlement_status": [
+      "OSE"
+    ],
+    "applicant_eligibility_status": [
+      "OSE"
+    ],
+    "exact_micro_product_status": [
+      "OSE",
+      "MARKET_DATA_PROVIDER"
+    ],
+    "provider_selected_status": [
+      "MARKET_DATA_PROVIDER",
+      "INTERNAL_CONTROL_OWNER"
+    ],
+    "read_only_transport_status": [
+      "MARKET_DATA_PROVIDER"
+    ],
+    "ose_third_party_cloud_processing_status": [
+      "OSE"
+    ],
+    "provider_third_party_cloud_processing_status": [
+      "MARKET_DATA_PROVIDER"
+    ],
+    "service_facilitator_required": [
+      "OSE"
+    ],
+    "service_facilitator_approval_status": [
+      "OSE"
+    ],
+    "encrypted_backup_creation_status": [
+      "OSE",
+      "MARKET_DATA_PROVIDER"
+    ],
+    "encrypted_backup_storage_status": [
+      "OSE",
+      "MARKET_DATA_PROVIDER"
+    ],
+    "backup_region_status": [
+      "OSE",
+      "MARKET_DATA_PROVIDER"
+    ],
+    "backup_retention_terms_status": [
+      "OSE",
+      "MARKET_DATA_PROVIDER"
+    ],
+    "backup_deletion_terms_status": [
+      "OSE",
+      "MARKET_DATA_PROVIDER"
+    ],
+    "restore_permission_status": [
+      "OSE",
+      "MARKET_DATA_PROVIDER"
+    ],
+    "dr_drill_permission_status": [
+      "OSE",
+      "MARKET_DATA_PROVIDER"
+    ],
+    "kms_hsm_key_custody_status": [
+      "OSE",
+      "MARKET_DATA_PROVIDER"
+    ],
+    "incident_reporting_terms_status": [
+      "OSE",
+      "MARKET_DATA_PROVIDER"
+    ],
+    "audit_cooperation_terms_status": [
+      "OSE",
+      "MARKET_DATA_PROVIDER"
+    ],
+    "broker_auth_used": [
+      "INTERNAL_CONTROL_OWNER",
+      "MARKET_DATA_PROVIDER"
+    ],
+    "trading_permission_used": [
+      "INTERNAL_CONTROL_OWNER",
+      "MARKET_DATA_PROVIDER"
+    ],
+    "public_output_requested": [
+      "INTERNAL_CONTROL_OWNER"
+    ]
+  },
+  "ready_status_values": [
+    "EXPLICITLY_APPROVED",
+    "EXPLICITLY_CONFIRMED",
+    "NOT_REQUIRED"
+  ],
+  "hard_boolean_values": {
+    "broker_auth_used": false,
+    "trading_permission_used": false,
+    "public_output_requested": false
+  },
+  "output_statuses": [
+    "COMPLETE_EXPLICIT_TERMS",
+    "PARTIAL_EXPLICIT_TERMS_BLOCKED"
+  ]
+}
