@@ -45,5 +45,7 @@
   "ose_free_trial_stage_checkpoint": "config/jnu_ose_free_trial_onboarding_checkpoint_v1.json",
   "private_entitled_quote_bridge": "config/jnu_private_entitled_quote_bridge_protocol_v1.json",
   "private_entitled_quote_bridge_status": "SYNTHETIC_CI_PASS_REAL_ENTITLEMENT_NOT_CONNECTED",
-  "stable_v1_9_framework_sha256": "e6157cc6378c1cb07c254fdb9895d0171ac3cc8ebbbc00392f68ef2daaa3ed47"
+  "stable_v1_9_framework_sha256": "d16c3fcf3216d2e7a994bb32ec0860a1cfe7dc15f204f343a17a1e8108ab3324",
+  "private_entitled_live_shadow_protocol": "config/jnu_private_entitled_live_shadow_protocol_v1.json",
+  "private_entitled_live_shadow_status": "SYNTHETIC_CI_PASS_REAL_ENTITLEMENT_NOT_CONNECTED"
 }

@@ -64,7 +64,7 @@
   "live_shadow_atomic_integrity_selftest": "config/jnu_operational_live_shadow_v18_integrity_selftest_v1.json",
   "real_live_shadow_outcomes_registered": 0,
   "first_real_live_shadow_forecast_readiness": "config/jnu_live_shadow_cloud_readiness_v8.json",
-  "live_shadow_real_ledger_status": "V1_9_GOVERNANCE_READY_FAIL_CLOSED_ENTITLEMENT_AND_PRIVATE_DISTRIBUTION_PERMISSIONS_PENDING_0_FORECASTS_0_OUTCOMES",
+  "live_shadow_real_ledger_status": "V1_9_PUBLIC_LEDGER_0_0_PRIVATE_ENTITLED_ARCHITECTURE_SYNTHETIC_READY_REAL_ENTITLEMENT_NOT_CONNECTED",
   "exact_micro_quote_adapter": "scripts/fetch_jnu_exact_micro_quote_tradingview_v1.py",
   "exact_micro_source_cross_validation": "config/jnu_exact_micro_source_cross_validation_v1.json",
   "source_metadata_integrity_selftest": "config/jnu_v1_4_source_metadata_integrity_selftest.json",
@@ -75,7 +75,7 @@
   "cloud_request_selftest_run": 33969428203,
   "cloud_actionlint_run": 34038843503,
   "cloud_pipeline_status": "V1_8_ANALYSIS_FRESH_OFFICIAL_PREPARED_REQUEST_INTEGRITY_CI_PASS_REAL_LEDGER_EMPTY",
-  "next_action": "Use JNU v1.9. Private entitled quote bridge scaffold is synthetic-CI ready and enforces repo-external private paths with no raw stdout/public output. Do not connect real entitlement data until OSE/provider confirms applicant/product/provider route, private third-party cloud permission, and publication/derived-data rights. The next engineering stage is a private forecast/ledger architecture, synthetic-only, with zero public raw quote fields.",
+  "next_action": "Use JNU v1.9. The private entitled forecast/outcome/scorer architecture is synthetic-CI ready and public ledger remains 0/0. Do not connect real OSE/provider data until entitlement, applicant/product/provider route, third-party cloud processing, and publication rights are explicitly resolved. Next engineering stage: private launch manifest + idempotency/recovery/retention lifecycle, synthetic-only.",
   "exact_micro_reference_source_gate": "config/jnu_exact_micro_reference_source_gate_20260904_v1.json",
   "tradingview_exact_micro_transport": {
     "status": "B_IDENTITY_SOURCE_ALLOWED_ONLY_IF_ACTUAL_LP_TIME_AGE_LE_900",
@@ -203,7 +203,7 @@
   "public_live_shadow_boundary_selftest": "PASS_8_OF_8",
   "public_artifact_safety_selftest": "PASS_4_OF_4",
   "runtime_framework_sha256": "01c37847362f7dbdc898d5956562780a67442e493d4ad65617a82bab7fb6ba34",
-  "stable_v1_9_framework_sha256": "e6157cc6378c1cb07c254fdb9895d0171ac3cc8ebbbc00392f68ef2daaa3ed47",
+  "stable_v1_9_framework_sha256": "d16c3fcf3216d2e7a994bb32ec0860a1cfe7dc15f204f343a17a1e8108ab3324",
   "framework_hash_self_reference_corrected": true,
   "framework_hash_self_reference_correction_commit": "c97637cae0870920a4fb5941cc4da4abbe9ebdc7",
   "private_entitled_quote_bridge_protocol": "config/jnu_private_entitled_quote_bridge_protocol_v1.json",
@@ -211,5 +211,13 @@
   "private_entitled_quote_bridge_selftest": "PASS_10_OF_10",
   "private_entitled_quote_bridge_core_commit": "b061aae17b5e1276104205f7e24736b130734c6a",
   "private_entitled_quote_bridge_integrity_run": 34172856992,
-  "private_entitled_quote_bridge_actionlint_run": 34172856975
+  "private_entitled_quote_bridge_actionlint_run": 34172856975,
+  "private_entitled_live_shadow_protocol": "config/jnu_private_entitled_live_shadow_protocol_v1.json",
+  "private_entitled_forecast_registrar": "scripts/register_jnu_private_entitled_forecast_v1.py",
+  "private_entitled_outcome_recorder": "scripts/record_jnu_private_entitled_outcome_v1.py",
+  "private_entitled_scorer": "scripts/score_jnu_private_entitled_live_shadow_v1.py",
+  "private_entitled_live_shadow_core_commit": "f36ec8bc885ae5743b747b295b2b6d793eabf2d8",
+  "private_entitled_live_shadow_integrity_run": 34173622041,
+  "private_entitled_live_shadow_actionlint_run": 34173622030,
+  "private_entitled_live_shadow_selftest": "PASS_16_OF_16"
 }

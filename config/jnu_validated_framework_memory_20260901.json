@@ -445,5 +445,20 @@
     "real_entitlement_connected": false,
     "real_forecasts": 0,
     "real_outcomes": 0
+  },
+  "private_entitled_live_shadow": {
+    "status": "SYNTHETIC_CI_PASS_REAL_ENTITLEMENT_NOT_CONNECTED",
+    "protocol": "config/jnu_private_entitled_live_shadow_protocol_v1.json",
+    "forecast_registrar": "scripts/register_jnu_private_entitled_forecast_v1.py",
+    "outcome_recorder": "scripts/record_jnu_private_entitled_outcome_v1.py",
+    "scorer": "scripts/score_jnu_private_entitled_live_shadow_v1.py",
+    "core_commit": "f36ec8bc885ae5743b747b295b2b6d793eabf2d8",
+    "integrity_run": 34173622041,
+    "actionlint_run": 34173622030,
+    "selftest": "PASS_16_OF_16",
+    "stable_framework_sha256": "d16c3fcf3216d2e7a994bb32ec0860a1cfe7dc15f204f343a17a1e8108ab3324",
+    "real_entitlement_connected": false,
+    "public_real_forecasts": 0,
+    "public_real_outcomes": 0
   }
 }
