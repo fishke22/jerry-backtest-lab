@@ -107,6 +107,10 @@ on:
       - "scripts/evaluate_jnu_private_composite_production_readiness_v1.py"
       - "scripts/selftest_jnu_private_composite_production_readiness_v1.py"
       - "research_notes/jnu_private_composite_production_readiness_join_20260908.md"
+      - "config/jnu_private_composite_evidence_review_dual_control_protocol_v1.json"
+      - "scripts/review_jnu_private_composite_evidence_dual_control_v1.py"
+      - "scripts/selftest_jnu_private_composite_evidence_dual_control_v1.py"
+      - "research_notes/jnu_private_composite_evidence_dual_control_20260908.md"
   workflow_dispatch:
 
 permissions:
@@ -161,6 +165,7 @@ jobs:
           python -m json.tool config/jnu_private_provider_term_evidence_staging_protocol_v1.json >/dev/null
           python -m json.tool config/jnu_private_kms_deployment_evidence_staging_protocol_v1.json >/dev/null
           python -m json.tool config/jnu_private_composite_production_readiness_join_protocol_v1.json >/dev/null
+          python -m json.tool config/jnu_private_composite_evidence_review_dual_control_protocol_v1.json >/dev/null
 
       - name: Install private backup crypto dependency
         run: python -m pip install "cryptography>=42"
@@ -249,6 +254,11 @@ jobs:
         run: |
           python -m py_compile scripts/evaluate_jnu_private_composite_production_readiness_v1.py scripts/selftest_jnu_private_composite_production_readiness_v1.py
           python scripts/selftest_jnu_private_composite_production_readiness_v1.py
+
+      - name: Private composite evidence dual-control review selftest
+        run: |
+          python -m py_compile scripts/review_jnu_private_composite_evidence_dual_control_v1.py scripts/selftest_jnu_private_composite_evidence_dual_control_v1.py
+          python scripts/selftest_jnu_private_composite_evidence_dual_control_v1.py
 
       - name: Full v1.8 analysis-fresh chain selftest
         run: python scripts/selftest_jnu_live_shadow_v18_integrity.py

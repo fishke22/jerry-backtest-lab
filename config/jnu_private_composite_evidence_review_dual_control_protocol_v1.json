@@ -1,0 +1,121 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-08",
+  "status": "FROZEN_PRIVATE_COMPOSITE_EVIDENCE_REVIEW_DUAL_CONTROL_SYNTHETIC_ONLY",
+  "authoritative_framework": "config/jnu_operational_framework_current_v1_9.json",
+  "purpose": "Apply independent dual-control review to all six synthetic composite pre-activation dossiers with immutable dossier/file SHA-256 binding, explicit dispositions, expiry/revalidation, conflict handling, and immutable replay-safe redacted receipts without selecting a provider/KMS pair or authorizing real activation.",
+  "upstream": {
+    "composite_join_protocol": "config/jnu_private_composite_production_readiness_join_protocol_v1.json",
+    "composite_evaluator": "scripts/evaluate_jnu_private_composite_production_readiness_v1.py",
+    "shortlist": "config/jnu_provider_selection_shortlist_v1.json",
+    "production_key_profile": "config/jnu_production_key_custody_current_v1.json",
+    "provider_term_current": "config/jnu_provider_term_readiness_current_v1.json",
+    "private_atomic_io": "scripts/jnu_private_atomic_io_v1.py"
+  },
+  "mode": {
+    "current": "SYNTHETIC_ONLY",
+    "required_manifest_mode": "SYNTHETIC",
+    "real_confidential_terms_permitted": false,
+    "provider_contact_permitted": false,
+    "account_connection_permitted": false,
+    "credential_collection_permitted": false,
+    "kms_api_call_permitted": false,
+    "key_creation_permitted": false,
+    "production_profile_mutation_permitted": false,
+    "provider_selection_permitted": false,
+    "kms_selection_permitted": false,
+    "pair_selection_permitted": false,
+    "real_activation_manifest_permitted": false
+  },
+  "review_contract": {
+    "exact_combination_count": 6,
+    "exact_reviews_per_combination": 2,
+    "exact_total_review_count": 12,
+    "required_roles": [
+      "EVIDENCE_REVIEWER",
+      "CONTROL_REVIEWER"
+    ],
+    "independent_reviewer_ids_required": true,
+    "unique_review_ids_required": true,
+    "allowed_dispositions": [
+      "APPROVE",
+      "REJECT",
+      "NEEDS_EVIDENCE"
+    ],
+    "dossier_canonical_hash_algorithm": "SHA-256-CANONICAL-JSON-V1",
+    "composite_file_sha256_required": true,
+    "dossier_sha256_required": true,
+    "reviewer_attestation_required": "EXPLICIT_TEXT_CONFIRMED",
+    "review_time_must_be_timezone_aware": true,
+    "revalidation_due_after_review": true,
+    "expiry_after_or_equal_revalidation_due": true,
+    "evaluation_at_or_after_review": true
+  },
+  "outcome_rules": {
+    "approve_status": "SYNTHETIC_DUAL_CONTROL_APPROVED_NOT_ACTIVATABLE",
+    "reject_status": "SYNTHETIC_DUAL_CONTROL_REJECTED",
+    "needs_evidence_status": "SYNTHETIC_DUAL_CONTROL_NEEDS_EVIDENCE",
+    "conflict_status": "SYNTHETIC_DUAL_CONTROL_CONFLICT_BLOCKED",
+    "revalidation_status": "SYNTHETIC_DUAL_CONTROL_REVALIDATION_REQUIRED",
+    "underlying_blocked_status": "SYNTHETIC_DUAL_CONTROL_NEEDS_EVIDENCE",
+    "any_disposition_mismatch_is_conflict": true,
+    "both_approve_requires_underlying_synthetic_evidence_complete": true,
+    "evaluation_at_or_after_revalidation_due_requires_revalidation": true,
+    "evaluation_after_expiry_requires_revalidation": true
+  },
+  "replay": {
+    "immutable_receipt_store_required": true,
+    "review_store_root_must_be_repo_external": true,
+    "receipt_path_pattern": "review_receipts/<review_batch_id>.json",
+    "exact_replay_idempotent": true,
+    "same_batch_id_different_receipt_rejected": true,
+    "immutable_receipt_backup_required": true
+  },
+  "redaction": {
+    "reviewer_id_not_emitted": true,
+    "reviewer_reference_hash_emitted": true,
+    "source_document_paths_emitted": false,
+    "raw_source_text_emitted": false,
+    "credentials_emitted": false,
+    "cloud_resource_identifiers_emitted": false,
+    "ranking_emitted": false,
+    "recommendation_emitted": false,
+    "selection_emitted": false,
+    "real_activation_authorized": false
+  },
+  "invariant_activation_blockers": [
+    "SYNTHETIC_ONLY_REVIEW",
+    "MARKET_DATA_PROVIDER_NOT_SELECTED",
+    "KMS_PROVIDER_NOT_SELECTED",
+    "PRODUCTION_KEY_PROFILE_DISABLED",
+    "REAL_CREDENTIALS_NOT_CONNECTED",
+    "REAL_ACTIVATION_MANIFEST_NOT_GENERATED"
+  ],
+  "prohibited_keys": [
+    "source_document_path",
+    "source_text",
+    "raw_text",
+    "document_text",
+    "quoted_text",
+    "credential",
+    "credentials",
+    "api_key",
+    "access_token",
+    "password",
+    "secret",
+    "client_secret",
+    "private_key",
+    "material_b64",
+    "token",
+    "account_id",
+    "project_id",
+    "subscription_id",
+    "tenant_id",
+    "key_id",
+    "key_arn",
+    "resource_name",
+    "service_account",
+    "role_arn",
+    "principal"
+  ]
+}
