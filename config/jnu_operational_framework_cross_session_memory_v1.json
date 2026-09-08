@@ -75,7 +75,7 @@
   "cloud_request_selftest_run": 33969428203,
   "cloud_actionlint_run": 34038843503,
   "cloud_pipeline_status": "V1_8_ANALYSIS_FRESH_OFFICIAL_PREPARED_REQUEST_INTEGRITY_CI_PASS_REAL_LEDGER_EMPTY",
-  "next_action": "Build a repo-external synthetic dual-control review gate over an immutable PREPARE-only selection-transition changeset. Require two independent reviewer roles, changeset SHA-256 binding, lifecycle-integrated decision lineage, exact provider/KMS pair binding, revalidation/expiry timestamps, and re-check of all three production-state CAS hashes at review evaluation time. Emit only a redacted review receipt with APPROVE/REJECT/NEEDS_EVIDENCE outcomes; even dual APPROVE must remain NOT_COMMITTABLE with commit_capability=false and apply_capability=false. Reject stale state, expired reviews, reviewer-role conflicts, replay conflicts, pair substitution, tampered changesets, and any attempt to authorize COMMIT/APPLY. Do not mutate shortlist, provider terms, key profile, credentials, KMS resources, or activation state.",
+  "next_action": "Build a repo-external synthetic commit-authorization ceremony over a valid non-expired PREPARE dual-control review receipt. Bind the review receipt SHA-256, PREPARE changeset SHA-256, lifecycle-integrated decision SHA-256, lifecycle head/count, exact provider/KMS pair, and all three production-state CAS hashes. Require a distinct explicit USER_PRINCIPAL commit-authorization artifact, but in this stage accept only SYNTHETIC_DISABLED with commit_authorized=false, apply_authorized=false, and no execution capability. Revalidate review freshness and CAS state at ceremony evaluation time. Reject stale/expired review receipts, stale production state, pair substitution, tamper, replay conflict, inferred authorization, or any artifact claiming COMMIT/APPLY enabled. Do not mutate shortlist, provider terms, key profile, credentials, KMS resources, or activation state.",
   "exact_micro_reference_source_gate": "config/jnu_exact_micro_reference_source_gate_20260904_v1.json",
   "tradingview_exact_micro_transport": {
     "status": "B_IDENTITY_SOURCE_ALLOWED_ONLY_IF_ACTUAL_LP_TIME_AGE_LE_900",
@@ -357,5 +357,13 @@
   "private_selection_transition_prepare_integrity_run": 34231305690,
   "private_selection_transition_prepare_actionlint_run": 34231305657,
   "private_selection_transition_prepare_selftest": "PASS_40_OF_40",
-  "private_selection_transition_prepare_status": "CI_PASS_SELECTION_TRANSITION_PREPARE_DRY_RUN_NOT_COMMITTABLE"
+  "private_selection_transition_prepare_status": "CI_PASS_SELECTION_TRANSITION_PREPARE_DRY_RUN_NOT_COMMITTABLE",
+  "private_selection_transition_prepare_review_protocol": "config/jnu_private_selection_transition_prepare_review_protocol_v1.json",
+  "private_selection_transition_prepare_reviewer": "scripts/review_jnu_private_selection_transition_prepare_v1.py",
+  "private_selection_transition_prepare_review_checkpoint": "config/jnu_private_selection_transition_prepare_review_checkpoint_v1.json",
+  "private_selection_transition_prepare_review_core_commit": "58f2d3ed6b4c4be4e31665e399025b394ff8642a",
+  "private_selection_transition_prepare_review_integrity_run": 34284041237,
+  "private_selection_transition_prepare_review_actionlint_run": 34284041211,
+  "private_selection_transition_prepare_review_selftest": "PASS_47_OF_47",
+  "private_selection_transition_prepare_review_status": "CI_PASS_PREPARE_CHANGESET_DUAL_CONTROL_REVIEW_NOT_COMMITTABLE"
 }
