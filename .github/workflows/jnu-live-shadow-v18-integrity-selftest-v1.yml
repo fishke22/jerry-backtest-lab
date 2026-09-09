@@ -139,6 +139,10 @@ on:
       - "scripts/execute_jnu_private_selection_transaction_noop_v1.py"
       - "scripts/selftest_jnu_private_selection_transaction_noop_v1.py"
       - "research_notes/jnu_private_selection_transaction_noop_20260909.md"
+      - "config/jnu_private_selection_shadow_fault_simulation_protocol_v1.json"
+      - "scripts/simulate_jnu_private_selection_shadow_transaction_v1.py"
+      - "scripts/selftest_jnu_private_selection_shadow_transaction_v1.py"
+      - "research_notes/jnu_private_selection_shadow_fault_simulation_20260909.md"
   workflow_dispatch:
 
 permissions:
@@ -201,6 +205,7 @@ jobs:
           python -m json.tool config/jnu_private_selection_transition_prepare_review_protocol_v1.json >/dev/null
           python -m json.tool config/jnu_private_selection_transition_commit_authorization_protocol_v1.json >/dev/null
           python -m json.tool config/jnu_private_selection_transaction_executor_noop_protocol_v1.json >/dev/null
+          python -m json.tool config/jnu_private_selection_shadow_fault_simulation_protocol_v1.json >/dev/null
 
       - name: Install private backup crypto dependency
         run: python -m pip install "cryptography>=42"
@@ -329,6 +334,11 @@ jobs:
         run: |
           python -m py_compile scripts/execute_jnu_private_selection_transaction_noop_v1.py scripts/selftest_jnu_private_selection_transaction_noop_v1.py
           python scripts/selftest_jnu_private_selection_transaction_noop_v1.py
+
+      - name: Private selection shadow atomicity rollback fault-injection selftest
+        run: |
+          python -m py_compile scripts/simulate_jnu_private_selection_shadow_transaction_v1.py scripts/selftest_jnu_private_selection_shadow_transaction_v1.py
+          python scripts/selftest_jnu_private_selection_shadow_transaction_v1.py
 
       - name: Full v1.8 analysis-fresh chain selftest
         run: python scripts/selftest_jnu_live_shadow_v18_integrity.py

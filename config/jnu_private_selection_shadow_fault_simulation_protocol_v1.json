@@ -1,0 +1,154 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-09",
+  "status": "FROZEN_PRIVATE_SELECTION_TRANSACTION_ATOMICITY_ROLLBACK_FAULT_INJECTION_SHADOW_SIMULATION_SYNTHETIC_ONLY",
+  "authoritative_framework": "config/jnu_operational_framework_current_v1_9.json",
+  "purpose": "Exercise the frozen seven-step selection transaction sequence against repo-external disposable shadow copies only. Perform real shadow locking, CAS, shadow preimage backup, shadow mutation, verification and rollback under deterministic fault injection while proving authoritative production state remains byte-for-byte unchanged.",
+  "upstream": {
+    "noop_executor_protocol": "config/jnu_private_selection_transaction_executor_noop_protocol_v1.json",
+    "noop_executor": "scripts/execute_jnu_private_selection_transaction_noop_v1.py",
+    "prepare_protocol": "config/jnu_private_selection_transition_prepare_protocol_v1.json",
+    "lifecycle_integrated_decision_protocol": "config/jnu_private_selection_decision_lifecycle_integration_protocol_v1.json",
+    "shortlist": "config/jnu_provider_selection_shortlist_v1.json",
+    "production_key_profile": "config/jnu_production_key_custody_current_v1.json",
+    "provider_terms": "config/jnu_provider_term_readiness_current_v1.json",
+    "private_atomic_io": "scripts/jnu_private_atomic_io_v1.py"
+  },
+  "mode": {
+    "current": "SYNTHETIC_SHADOW_ONLY",
+    "operation": "SHADOW_FAULT_SIMULATION",
+    "shadow_mutation_enabled": true,
+    "production_mutation_enabled": false,
+    "production_lock_enabled": false,
+    "production_backup_enabled": false,
+    "real_commit_enabled": false,
+    "real_apply_enabled": false,
+    "real_activation_enabled": false
+  },
+  "input_contract": {
+    "noop_receipt_artifact_class": "JNU_SYNTHETIC_SELECTION_TRANSACTION_NOOP_RECEIPT",
+    "noop_receipt_status": "EXECUTION_BLOCKED_DISABLED_AUTHORIZATION",
+    "noop_commit_authorized": false,
+    "noop_apply_authorized": false,
+    "noop_execution_capability": false,
+    "noop_production_state_mutated": false,
+    "immutable_noop_backup_required": true,
+    "immutable_changeset_backup_required": true,
+    "immutable_decision_backup_required": true
+  },
+  "transaction_sequence": [
+    "LOCK_ACQUISITION",
+    "CAS_VERIFICATION",
+    "PRIVATE_PREIMAGE_BACKUP",
+    "MUTATION_SET",
+    "POST_WRITE_VERIFICATION",
+    "ROLLBACK_ON_PARTIAL_FAILURE",
+    "FINAL_TRANSACTION_RECEIPT"
+  ],
+  "fault_injection": {
+    "allowed_fault_points": [
+      "NONE",
+      "LOCK_ACQUISITION",
+      "CAS_VERIFICATION",
+      "PRIVATE_PREIMAGE_BACKUP",
+      "MUTATION_SET",
+      "POST_WRITE_VERIFICATION",
+      "ROLLBACK_ON_PARTIAL_FAILURE",
+      "FINAL_TRANSACTION_RECEIPT"
+    ],
+    "deterministic": true,
+    "mutation_fault_after_first_shadow_write": true,
+    "rollback_fault_simulates_interruption_then_resume": true,
+    "final_receipt_fault_requires_rollback_before_receipt_retry": true
+  },
+  "test_conditions": {
+    "allowed": [
+      "NONE",
+      "STALE_SHADOW_CAS",
+      "CORRUPT_PREIMAGE_BACKUP"
+    ],
+    "stale_shadow_cas_blocks_before_backup": true,
+    "corrupt_backup_blocks_before_mutation": true
+  },
+  "shadow_boundary": {
+    "shadow_root_repo_external": true,
+    "shadow_root_disposable": true,
+    "shadow_root_must_be_empty_or_absent": true,
+    "exact_shadow_state_ids": [
+      "PROVIDER_SELECTION_SHORTLIST",
+      "PRODUCTION_KEY_CUSTODY_CURRENT",
+      "PROVIDER_TERM_READINESS_CURRENT"
+    ],
+    "production_files_read_only": true,
+    "production_sha256_before_after_required": true,
+    "production_bytes_must_remain_identical": true
+  },
+  "backup_rollback": {
+    "shadow_preimage_backup_required_before_shadow_mutation": true,
+    "backup_sha256_sidecar_required": true,
+    "backup_checksum_verified_before_mutation": true,
+    "rollback_restores_all_shadow_files": true,
+    "rollback_byte_for_byte_required": true,
+    "rollback_hash_for_hash_required": true,
+    "rollback_resume_after_simulated_interruption": true
+  },
+  "shadow_mutation_preview": {
+    "shortlist_sets_requested_provider_and_kms": true,
+    "key_profile_sets_requested_kms_vendor_region_control_class": true,
+    "key_profile_production_enabled_remains_false": true,
+    "provider_term_selected_status": "SYNTHETIC_SHADOW_SELECTED_NOT_PRODUCTION",
+    "credentials_connected": false,
+    "kms_api_called": false,
+    "real_key_created": false,
+    "real_activation_authorized": false
+  },
+  "output_contract": {
+    "artifact_class": "JNU_SYNTHETIC_SELECTION_TRANSACTION_SHADOW_SIMULATION_RECEIPT",
+    "storage_scope": "PRIVATE_INTERNAL_ONLY",
+    "public_distribution_permitted": false,
+    "real_commit_capability": false,
+    "real_apply_capability": false,
+    "production_lock_acquired": false,
+    "production_backup_created": false,
+    "production_state_mutated": false,
+    "real_activation_authorized": false
+  },
+  "statuses": {
+    "success": "SHADOW_TRANSACTION_SIMULATED_SUCCESS_PRODUCTION_UNCHANGED",
+    "fault_no_mutation": "SHADOW_FAULT_INJECTED_NO_PRODUCTION_EFFECT",
+    "fault_rolled_back": "SHADOW_FAULT_INJECTED_ROLLED_BACK_PRODUCTION_UNCHANGED",
+    "stale_shadow_cas": "SHADOW_STALE_CAS_BLOCKED_PRODUCTION_UNCHANGED",
+    "corrupt_backup": "SHADOW_CORRUPT_PREIMAGE_BACKUP_BLOCKED_PRODUCTION_UNCHANGED"
+  },
+  "replay": {
+    "immutable_receipt_store": true,
+    "path_pattern": "selection_shadow_simulation_receipts/<simulation_id>.json",
+    "exact_replay_idempotent": true,
+    "same_simulation_id_different_request_rejected": true,
+    "immutable_backup_required": true
+  },
+  "prohibited_keys": [
+    "credential",
+    "credentials",
+    "api_key",
+    "access_token",
+    "password",
+    "secret",
+    "client_secret",
+    "private_key",
+    "material_b64",
+    "token",
+    "account_id",
+    "project_id",
+    "subscription_id",
+    "tenant_id",
+    "key_id",
+    "key_arn",
+    "resource_name",
+    "service_account",
+    "role_arn",
+    "principal",
+    "real_commit_token",
+    "production_write_token"
+  ]
+}
