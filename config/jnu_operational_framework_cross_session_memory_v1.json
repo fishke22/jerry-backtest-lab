@@ -75,7 +75,7 @@
   "cloud_request_selftest_run": 33969428203,
   "cloud_actionlint_run": 34038843503,
   "cloud_pipeline_status": "V1_8_ANALYSIS_FRESH_OFFICIAL_PREPARED_REQUEST_INTEGRITY_CI_PASS_REAL_LEDGER_EMPTY",
-  "next_action": "Build a repo-external synthetic shadow-state transaction simulator that exercises the frozen seven-step selection transaction sequence against disposable copies only: lock, CAS, private preimage backup, mutation set, post-write verification, rollback on injected partial failure, and final receipt. Support deterministic fault injection at each transactional step, prove rollback restores every shadow-state file byte-for-byte and hash-for-hash, detect stale CAS and corrupted backups, and keep real production files read-only and unchanged. The simulator must not consume enabled authorization, must not create production locks/backups, and must not expose COMMIT/APPLY capability for real state. Do not mutate shortlist, provider terms, key profile, credentials, KMS resources, or activation state.",
+  "next_action": "Build a repo-external synthetic crash-recovery journal and replay layer over the disposable shadow transaction simulator. Persist an append-only step journal before/after each shadow transaction phase, simulate process crash at every boundary, and on recovery deterministically decide whether to resume forward, rollback from checksum-verified preimages, or finalize an already-complete transaction. Enforce one transaction ID/one lineage, monotonic journal sequence, parent-hash chaining, exactly-once final receipt semantics, stale-lock recovery rules, and replay/tamper detection. Prove every crash-recovery path leaves either a fully verified shadow-success state or an exact preimage-restored state, while authoritative production files remain byte-for-byte unchanged. Keep authorization disabled and expose no real COMMIT/APPLY capability.",
   "exact_micro_reference_source_gate": "config/jnu_exact_micro_reference_source_gate_20260904_v1.json",
   "tradingview_exact_micro_transport": {
     "status": "B_IDENTITY_SOURCE_ALLOWED_ONLY_IF_ACTUAL_LP_TIME_AGE_LE_900",
@@ -381,5 +381,13 @@
   "private_selection_transaction_executor_noop_integrity_run": 34284958685,
   "private_selection_transaction_executor_noop_actionlint_run": 34284958589,
   "private_selection_transaction_executor_noop_selftest": "PASS_39_OF_39",
-  "private_selection_transaction_executor_noop_status": "CI_PASS_TRANSACTION_EXECUTOR_NOOP_BLOCKED_DISABLED_AUTHORIZATION"
+  "private_selection_transaction_executor_noop_status": "CI_PASS_TRANSACTION_EXECUTOR_NOOP_BLOCKED_DISABLED_AUTHORIZATION",
+  "private_selection_shadow_fault_simulation_protocol": "config/jnu_private_selection_shadow_fault_simulation_protocol_v1.json",
+  "private_selection_shadow_fault_simulator": "scripts/simulate_jnu_private_selection_shadow_transaction_v1.py",
+  "private_selection_shadow_fault_simulation_checkpoint": "config/jnu_private_selection_shadow_fault_simulation_checkpoint_v1.json",
+  "private_selection_shadow_fault_simulation_core_commit": "4bf025cbfeca1ff2b5d0f16754a9013a86ef6faa",
+  "private_selection_shadow_fault_simulation_integrity_run": 34321924756,
+  "private_selection_shadow_fault_simulation_actionlint_run": 34321924830,
+  "private_selection_shadow_fault_simulation_selftest": "PASS_46_OF_46",
+  "private_selection_shadow_fault_simulation_status": "CI_PASS_SHADOW_TRANSACTION_FAULT_INJECTION_ATOMICITY_ROLLBACK_PRODUCTION_UNCHANGED"
 }
