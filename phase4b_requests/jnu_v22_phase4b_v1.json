@@ -31,7 +31,7 @@
     }
   },
   "control_plane_retrigger": {
-    "nonce": 1,
-    "reason": "Re-trigger GitHub Actions after adding fail-closed diagnostics; research parameters unchanged."
+    "nonce": 7,
+    "reason": "Clean rerun with adaptive split only for failing GDELT chunks; research specification unchanged."
   }
 }
