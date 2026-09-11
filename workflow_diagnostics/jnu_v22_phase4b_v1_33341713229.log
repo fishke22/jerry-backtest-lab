@@ -1,0 +1,60 @@
+phase4b GDELT chunk ready: TimelineTone 20230104->20240101
+phase4b GDELT chunk ready: TimelineTone 20231231->20250101
+phase4b GDELT chunk ready: TimelineTone 20241231->20260101
+phase4b GDELT chunk ready: TimelineTone 20251231->20260829
+phase4b GDELT chunk ready: TimelineVol 20230104->20240101
+phase4b GDELT chunk ready: TimelineVol 20231231->20250101
+phase4b GDELT chunk ready: TimelineVol 20241231->20260101
+phase4b GDELT chunk ready: TimelineVol 20251231->20260829
+phase4b news data ready: JAPAN_BOJ_MACRO
+phase4b GDELT chunk ready: TimelineTone 20230104->20240101
+phase4b GDELT chunk ready: TimelineTone 20231231->20250101
+phase4b GDELT chunk ready: TimelineTone 20241231->20260101
+phase4b GDELT chunk ready: TimelineTone 20251231->20260829
+phase4b GDELT chunk ready: TimelineVol 20230104->20240101
+phase4b GDELT chunk ready: TimelineVol 20231231->20250101
+phase4b GDELT chunk ready: TimelineVol 20241231->20260101
+phase4b GDELT chunk ready: TimelineVol 20251231->20260829
+phase4b news data ready: US_FED_MACRO
+phase4b GDELT chunk ready: TimelineTone 20230104->20240101
+phase4b GDELT chunk ready: TimelineTone 20231231->20250101
+phase4b GDELT chunk ready: TimelineTone 20241231->20260101
+phase4b GDELT chunk ready: TimelineTone 20251231->20260829
+phase4b GDELT chunk ready: TimelineVol 20230104->20240101
+phase4b GDELT chunk ready: TimelineVol 20231231->20250101
+phase4b GDELT chunk ready: TimelineVol 20241231->20260101
+phase4b GDELT chunk ready: TimelineVol 20251231->20260829
+phase4b news data ready: JPY_FX
+phase4b GDELT chunk ready: TimelineTone 20230104->20240101
+phase4b GDELT chunk ready: TimelineTone 20231231->20250101
+phase4b GDELT chunk ready: TimelineTone 20241231->20260101
+phase4b GDELT chunk ready: TimelineTone 20251231->20260829
+phase4b GDELT chunk ready: TimelineVol 20230104->20240101
+phase4b GDELT chunk ready: TimelineVol 20231231->20250101
+phase4b GDELT chunk ready: TimelineVol 20241231->20260101
+phase4b GDELT chunk ready: TimelineVol 20251231->20260829
+phase4b news data ready: US_TECH_SEMICONDUCTOR
+phase4b GDELT chunk ready: TimelineTone 20230104->20240101
+phase4b GDELT chunk ready: TimelineTone 20231231->20250101
+phase4b GDELT adaptive split depth=1: TimelineTone 20241231->20250702 + 20250702->20260101 after RuntimeError
+phase4b GDELT adaptive split depth=2: TimelineTone 20250702->20251001 + 20251001->20260101 after RuntimeError
+phase4b GDELT adaptive split depth=3: TimelineTone 20250702->20250817 + 20250817->20251001 after RuntimeError
+phase4b GDELT chunk ready: TimelineTone 20241231->20260101
+phase4b GDELT chunk ready: TimelineTone 20251231->20260829
+phase4b GDELT chunk ready: TimelineVol 20230104->20240101
+phase4b GDELT chunk ready: TimelineVol 20231231->20250101
+phase4b GDELT chunk ready: TimelineVol 20241231->20260101
+phase4b GDELT chunk ready: TimelineVol 20251231->20260829
+phase4b news data ready: JAPAN_EQUITY_NIKKEI
+phase4b GDELT chunk ready: TimelineTone 20230104->20240101
+phase4b GDELT chunk ready: TimelineTone 20231231->20250101
+phase4b GDELT chunk ready: TimelineTone 20241231->20260101
+phase4b GDELT chunk ready: TimelineTone 20251231->20260829
+phase4b GDELT chunk ready: TimelineVol 20230104->20240101
+phase4b GDELT adaptive split depth=1: TimelineVol 20231231->20240701 + 20240701->20250101 after RuntimeError
+phase4b GDELT adaptive split depth=2: TimelineVol 20240701->20241001 + 20241001->20250101 after RuntimeError
+phase4b GDELT adaptive split depth=3: TimelineVol 20241001->20241116 + 20241116->20250101 after RuntimeError
+phase4b GDELT chunk ready: TimelineVol 20231231->20250101
+phase4b GDELT chunk ready: TimelineVol 20241231->20260101
+phase4b GDELT chunk ready: TimelineVol 20251231->20260829
+phase4b news data ready: GEOPOLITICAL_RISK
