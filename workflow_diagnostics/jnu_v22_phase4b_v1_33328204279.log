@@ -1,0 +1,79 @@
+phase4b GDELT chunk ready: TimelineTone 20230104->20240101
+phase4b GDELT chunk ready: TimelineTone 20230104->20240101
+phase4b GDELT chunk ready: TimelineTone 20230104->20240101
+phase4b GDELT chunk ready: TimelineTone 20231231->20250101
+phase4b GDELT chunk ready: TimelineTone 20241231->20260101
+phase4b GDELT chunk ready: TimelineTone 20231231->20250101
+phase4b GDELT chunk ready: TimelineTone 20231231->20250101
+phase4b GDELT chunk ready: TimelineTone 20241231->20260101
+phase4b GDELT chunk ready: TimelineTone 20251231->20260829
+phase4b GDELT chunk ready: TimelineVol 20230104->20240101
+phase4b GDELT chunk ready: TimelineTone 20241231->20260101
+phase4b GDELT chunk ready: TimelineTone 20251231->20260829
+phase4b GDELT chunk ready: TimelineTone 20251231->20260829
+phase4b GDELT chunk ready: TimelineVol 20231231->20250101
+phase4b GDELT chunk ready: TimelineVol 20241231->20260101
+phase4b GDELT chunk ready: TimelineVol 20230104->20240101
+phase4b GDELT chunk ready: TimelineVol 20231231->20250101
+phase4b GDELT chunk ready: TimelineVol 20230104->20240101
+phase4b GDELT chunk ready: TimelineVol 20251231->20260829
+phase4b news data ready: JAPAN_BOJ_MACRO
+phase4b GDELT chunk ready: TimelineVol 20231231->20250101
+phase4b GDELT chunk ready: TimelineVol 20241231->20260101
+phase4b GDELT chunk ready: TimelineVol 20241231->20260101
+phase4b GDELT chunk ready: TimelineVol 20251231->20260829
+phase4b news data ready: JPY_FX
+phase4b GDELT chunk ready: TimelineVol 20251231->20260829
+phase4b news data ready: US_FED_MACRO
+phase4b GDELT chunk ready: TimelineTone 20230104->20240101
+phase4b GDELT chunk ready: TimelineTone 20230104->20240101
+phase4b GDELT chunk ready: TimelineTone 20231231->20250101
+phase4b GDELT chunk ready: TimelineTone 20230104->20240101
+phase4b GDELT chunk ready: TimelineTone 20241231->20260101
+phase4b GDELT chunk ready: TimelineTone 20231231->20250101
+phase4b GDELT chunk ready: TimelineTone 20231231->20250101
+phase4b GDELT chunk ready: TimelineTone 20251231->20260829
+phase4b GDELT chunk ready: TimelineTone 20241231->20260101
+phase4b GDELT chunk ready: TimelineTone 20241231->20260101
+phase4b GDELT chunk ready: TimelineTone 20251231->20260829
+phase4b GDELT chunk ready: TimelineVol 20230104->20240101
+phase4b GDELT chunk ready: TimelineVol 20230104->20240101
+phase4b GDELT chunk ready: TimelineVol 20231231->20250101
+phase4b GDELT chunk ready: TimelineVol 20231231->20250101
+phase4b GDELT chunk ready: TimelineVol 20241231->20260101
+phase4b GDELT chunk ready: TimelineVol 20241231->20260101
+phase4b GDELT chunk ready: TimelineTone 20251231->20260829
+phase4b GDELT chunk ready: TimelineVol 20251231->20260829
+phase4b news data ready: JAPAN_EQUITY_NIKKEI
+phase4b GDELT chunk ready: TimelineVol 20251231->20260829
+phase4b news data ready: GEOPOLITICAL_RISK
+Traceback (most recent call last):
+  File "/home/runner/work/jerry-backtest-lab/jerry-backtest-lab/scripts/process_phase4b_evidence.py", line 516, in main
+    process(p)
+  File "/home/runner/work/jerry-backtest-lab/jerry-backtest-lab/scripts/process_phase4b_evidence.py", line 502, in process
+    "news": test_news(close, req),
+            ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/jerry-backtest-lab/jerry-backtest-lab/scripts/process_phase4b_evidence.py", line 387, in test_news
+    feature_map[key] = fut.result()
+                       ^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.14/x64/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.14/x64/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/opt/hostedtoolcache/Python/3.12.14/x64/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/jerry-backtest-lab/jerry-backtest-lab/scripts/process_phase4b_evidence.py", line 343, in news_features
+    vol = gdelt_timeline(query, "TimelineVol", start, end, f"gdelt_{key}_vol.json", force)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/jerry-backtest-lab/jerry-backtest-lab/scripts/process_phase4b_evidence.py", line 251, in gdelt_timeline
+    part = _gdelt_timeline_one(query, mode, chunk_start, chunk_end, chunk_name, force)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/jerry-backtest-lab/jerry-backtest-lab/scripts/process_phase4b_evidence.py", line 202, in _gdelt_timeline_one
+    raw = fetch(url, cache_name, force, timeout=120)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/jerry-backtest-lab/jerry-backtest-lab/scripts/process_phase4b_evidence.py", line 51, in fetch
+    raise RuntimeError(f"fetch failed {cache_name}: {last}")
+RuntimeError: fetch failed gdelt_US_TECH_SEMICONDUCTOR_vol_chunk1_20230104_20240101.json: <urlopen error timed out>
+{"failures": [["jnu_v22_phase4b_v1.json", "fetch failed gdelt_US_TECH_SEMICONDUCTOR_vol_chunk1_20230104_20240101.json: <urlopen error timed out>"]]}
