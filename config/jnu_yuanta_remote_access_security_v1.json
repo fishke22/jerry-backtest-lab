@@ -1,0 +1,87 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-26",
+  "status": "DESIGN_READY_NOT_REMOTE_ACTIVATED",
+  "system": "JNU Research",
+  "objective": "Allow mobile ChatGPT analysis to consume fresh Yuanta JNU data without storing broker credentials in GitHub repository content.",
+  "hard_rules": [
+    "Broker account/password/certificate private key/PFX password must never be committed to GitHub, even in a private repository.",
+    "Password hashes are not usable for Yuanta Login(account,password) and therefore cannot replace the original secret.",
+    "Do not store reversible encrypted broker credentials in the repository together with the decryption key.",
+    "GitHub may store code and deployment configuration; the executable secret must live in a secret manager or OS credential store on the runtime host.",
+    "Quote-only bridge only; order placement/modification/cancellation remains prohibited."
+  ],
+  "github_role": {
+    "allowed": [
+      "source code",
+      "deployment manifests",
+      "read-only API schema",
+      "CI tests",
+      "GitHub Actions workflow definitions",
+      "references to secret names only"
+    ],
+    "secret_options": [
+      "GitHub Actions repository/environment secrets for bounded workflow jobs",
+      "external secret manager such as Azure Key Vault",
+      "Windows Credential Manager on a trusted Windows runtime"
+    ],
+    "prohibited": [
+      "plaintext credentials",
+      "password hashes presented as reusable login credentials",
+      "PFX/private keys",
+      "certificate passwords",
+      "secret decryption keys committed beside encrypted blobs"
+    ]
+  },
+  "runtime_options": [
+    {
+      "id": "HOME_PC_SELF_HOSTED",
+      "feasibility": "TECHNICALLY_FEASIBLE",
+      "mobile_value": "LIMITED",
+      "requirement": "Home PC must remain powered on, online, and Yuanta runtime healthy.",
+      "note": "A GitHub self-hosted runner does not solve the user's offline-home-PC case."
+    },
+    {
+      "id": "GITHUB_HOSTED_WINDOWS_ACTION",
+      "feasibility": "NOT_SUITABLE_FOR_CONTINUOUS_REALTIME_FEED",
+      "reason": [
+        "GitHub-hosted runners are ephemeral per job.",
+        "Yuanta DLL/runtime/package must be installed every run or restored securely.",
+        "Continuous market-data streaming is not an appropriate always-on Actions workload.",
+        "Yuanta cloud-host login/network entitlement has not been proven."
+      ],
+      "allowed_future_use": "Bounded read-only probe only after vendor/runtime feasibility is proven."
+    },
+    {
+      "id": "PERSISTENT_WINDOWS_CLOUD_VM",
+      "feasibility": "PREFERRED_REMOTE_ARCHITECTURE_IF_YUANTA_ALLOWS_RUNTIME",
+      "requirements": [
+        "Windows x64 VM",
+        "Yuanta SPARK runtime installed legally",
+        "Yuanta quote entitlement verified from that VM",
+        "secrets stored in Windows Credential Manager or cloud secret vault",
+        "private read-only HTTPS/MCP endpoint",
+        "strong authentication, IP/rate controls and audit logs",
+        "no order API surface"
+      ],
+      "mobile_value": "HIGH",
+      "status": "NOT_YET_VALIDATED_WITH_REAL_YUANTA_LOGIN"
+    }
+  ],
+  "preferred_architecture": {
+    "code": "GitHub",
+    "broker_runtime": "persistent trusted Windows VM",
+    "credentials": "Windows Credential Manager or cloud secret vault",
+    "output": "redacted quote-only JNU JSON",
+    "chatgpt_access": "private read-only plugin/MCP endpoint",
+    "github_actions": "deployment/health checks only, not the live quote stream"
+  },
+  "activation_gate": [
+    "Verify Yuanta terms permit the intended remote/cloud runtime.",
+    "Verify SPARK DLL runs on the target Windows VM.",
+    "Verify login callback MsgCode=0001 from the VM without exposing credentials.",
+    "Verify exact OSE JNU contract callbacks and freshness.",
+    "Verify no order method is exposed.",
+    "Only then mark REMOTE_YUANTA_EXACT_FEED_ACTIVE."
+  ]
+}
