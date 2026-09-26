@@ -1,0 +1,74 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-26",
+  "status": "FROZEN_PRIVATE_SELECTION_TRANSACTION_SHADOW_CRASH_RECOVERY_JOURNAL_REPLAY_SYNTHETIC_ONLY",
+  "authoritative_framework": "config/jnu_operational_framework_current_v1_9.json",
+  "upstream": {
+    "protocol": "config/jnu_private_selection_shadow_fault_simulation_protocol_v1.json",
+    "simulator": "scripts/simulate_jnu_private_selection_shadow_transaction_v1.py",
+    "checkpoint": "config/jnu_private_selection_shadow_fault_simulation_checkpoint_v1.json"
+  },
+  "purpose": "Add a repo-external append-only, parent-hash-chained crash-recovery journal and deterministic replay/recovery layer over disposable synthetic selection-transaction shadow state. Production state remains read-only and byte-for-byte unchanged.",
+  "transaction_sequence": [
+    "LOCK_ACQUISITION",
+    "CAS_VERIFICATION",
+    "PRIVATE_PREIMAGE_BACKUP",
+    "MUTATION_SET",
+    "POST_WRITE_VERIFICATION",
+    "ROLLBACK_ON_PARTIAL_FAILURE",
+    "FINAL_TRANSACTION_RECEIPT"
+  ],
+  "journal": {
+    "storage": "REPO_EXTERNAL_PRIVATE_SYNTHETIC_ONLY",
+    "format": "ONE_IMMUTABLE_JSON_ENTRY_PER_SEQUENCE",
+    "sequence": "STRICT_MONOTONIC_CONTIGUOUS_FROM_1",
+    "parent_hash": "SHA256_CANONICAL_JSON_CHAIN",
+    "transaction_binding": [
+      "transaction_id",
+      "lineage_id"
+    ],
+    "tamper_behavior": "FAIL_CLOSED",
+    "replay_behavior": "EXACT_REPLAY_ONLY",
+    "prohibited": [
+      "overwrite_existing_entry",
+      "sequence_gap",
+      "parent_hash_mismatch",
+      "mixed_transaction_id",
+      "mixed_lineage_id"
+    ]
+  },
+  "recovery_decisions": {
+    "RESUME_FORWARD": "No shadow mutation is present; rebuild/verify preimage backup if necessary, execute the synthetic shadow mutation, verify it, then finalize exactly once.",
+    "ROLLBACK_TO_PREIMAGE": "Partial or unverified shadow mutation is present; require checksum-verified preimages and restore every shadow-state file byte-for-byte before final recovery receipt.",
+    "FINALIZE_ALREADY_COMPLETE": "Verified post-write state or an already-created immutable final receipt exists; finalize/replay receipt without a second mutation."
+  },
+  "stale_lock": {
+    "same_transaction_same_lineage": "RECOVERY_MAY_REMOVE_AFTER_VALID_JOURNAL_SCAN",
+    "foreign_transaction_or_lineage": "FAIL_CLOSED"
+  },
+  "final_receipt": {
+    "semantics": "EXACTLY_ONCE_IMMUTABLE",
+    "same_content_replay": "ALLOWED",
+    "conflicting_content": "REJECT"
+  },
+  "boundaries": {
+    "crash_simulation": "AFTER_PRE_AND_AFTER_POST_FOR_EVERY_FROZEN_TRANSACTION_PHASE",
+    "partial_mutation_fixture": "REQUIRED",
+    "journal_tamper_fixture": "REQUIRED",
+    "stale_lock_fixture": "REQUIRED"
+  },
+  "hard_safety": {
+    "mode": "SYNTHETIC_ONLY",
+    "production_write_capability": false,
+    "commit_capability": false,
+    "apply_capability": false,
+    "trading_permission_used": false,
+    "broker_login_used": false,
+    "credentials_connected": false,
+    "kms_api_called": false,
+    "real_key_created": false,
+    "real_entitlement_connected": false,
+    "public_raw_entitled_output": false,
+    "public_derived_entitled_output": false
+  }
+}
