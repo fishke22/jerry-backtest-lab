@@ -1,0 +1,41 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-26",
+  "status": "JNU_RESEARCH_CURRENT_SCOPE_COMPLETE",
+  "repository": "fishke22/jerry-backtest-lab",
+  "authoritative_entrypoint": "config/jnu_operational_framework_cross_session_memory_v1.json",
+  "authoritative_framework": "config/jnu_operational_framework_current_v1_9.json",
+  "current_scope_complete": true,
+  "unresolved_software_construction_items": 0,
+  "deferred_optional_items": [
+    {
+      "id": "PERSISTENT_WINDOWS_CLOUD_YUANTA_BRIDGE",
+      "status": "DEFERRED_BY_USER",
+      "reason": "No persistent Windows cloud host currently exists.",
+      "counts_as_incomplete": false,
+      "resume_trigger": "Explicit user request after a suitable Windows cloud host becomes available."
+    }
+  ],
+  "empirical_future_work": [
+    "Observe/validate continuous Yuanta best-five callback during an eligible OSE session.",
+    "Accumulate forward-validation observations.",
+    "Run true OSE historical OOS only if authorized data becomes available.",
+    "Run PIT-safe macro-surprise history only if rights-clean consensus data becomes available."
+  ],
+  "prohibited_misstatements": [
+    "Do not claim validated directional alpha; validated directional modules remain 0.",
+    "Do not claim live production trading capability.",
+    "Do not claim L2/order-flow when no fresh depth callback is available.",
+    "Do not treat proxy prices as exact JNU."
+  ],
+  "operational_rule": "For future JNU requests, use the finished JNU Research architecture and data fallback ladder. Reopen construction only for a concrete defect, new safety requirement, newly authorized capability, or explicit user request.",
+  "verification": {
+    "prior_integrity_run": 36227070647,
+    "prior_integrity_status": "SUCCESS",
+    "prior_actionlint_run": 36226756171,
+    "prior_actionlint_status": "SUCCESS",
+    "crash_recovery": "PASS_88_OF_88",
+    "pending_repo_search_results": 0,
+    "todo_fixme_search_results": 0
+  }
+}
