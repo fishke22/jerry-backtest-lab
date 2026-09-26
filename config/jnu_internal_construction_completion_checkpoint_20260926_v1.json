@@ -1,0 +1,75 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-26",
+  "status": "INTERNAL_SYNTHETIC_CONSTRUCTION_COMPLETE_EXTERNAL_EVIDENCE_AND_VALIDATION_GATES_REMAIN",
+  "repository": "fishke22/jerry-backtest-lab",
+  "authoritative_framework": "config/jnu_operational_framework_current_v1_9.json",
+  "framework_semantics": "UNCHANGED_NO_NEW_VALIDATED_DIRECTIONAL_ALPHA",
+  "construction_scope": "All currently specified internal synthetic/read-only governance, integrity, private-boundary, DR, key/backup, selection-lifecycle, shadow atomicity, and crash-recovery implementation stages have been completed through the latest recorded next_action.",
+  "latest_closed_stage": "PRIVATE_SELECTION_TRANSACTION_SHADOW_CRASH_RECOVERY_JOURNAL_REPLAY_SYNTHETIC_ONLY",
+  "latest_stage_checkpoint": "config/jnu_private_selection_shadow_crash_recovery_checkpoint_v1.json",
+  "precision_analysis_memory": "config/jnu_cross_session_precision_analysis_memory_v1.json",
+  "precision_research_preregistration": "config/jnu_precision_feature_research_prereg_v1.json",
+  "verified_ci": {
+    "implementation_integrity_run": 36222853289,
+    "implementation_integrity_status": "SUCCESS",
+    "actionlint_run": 36222853302,
+    "actionlint_status": "SUCCESS",
+    "crash_recovery_selftest": "PASS_88_OF_88"
+  },
+  "formal_directional_state": {
+    "validated_directional_modules": 0,
+    "decision_engine": "NO_VALIDATED_DIRECTIONAL_EDGE",
+    "high_confidence": "PROHIBITED",
+    "terminal_failed_families": "REMAIN_PROHIBITED_NO_PARAMETER_RESCUE"
+  },
+  "production_and_live_state": {
+    "public_real_forecasts": 0,
+    "public_real_outcomes": 0,
+    "real_entitlement_connected": false,
+    "production_state_mutated": false,
+    "market_data_provider_selected": false,
+    "key_custody_provider_selected": false,
+    "real_activation_manifest_generated": false
+  },
+  "remaining_external_or_empirical_gates": [
+    {
+      "id": "EXACT_MICRO_REALTIME_ENTITLEMENT",
+      "type": "EXTERNAL_DATA_RIGHTS",
+      "status": "BLOCKED",
+      "reason": "Reliable exact individual-month OSE Micro source with <=900-second provider-timestamp age requires authorized/licensed entitlement; anonymous delayed public sources do not provide operational margin."
+    },
+    {
+      "id": "PROVIDER_TERMS_AND_KEY_CUSTODY_SELECTION",
+      "type": "EXTERNAL_LEGAL_CONTROL_EVIDENCE",
+      "status": "BLOCKED",
+      "reason": "Real provider terms, processing/publication/backup permissions and production KMS/key-custody evidence remain unconfirmed; synthetic evidence cannot activate production."
+    },
+    {
+      "id": "TRUE_OSE_HISTORICAL_OOS",
+      "type": "EXTERNAL_HISTORICAL_DATA",
+      "status": "BLOCKED_OR_CONDITIONAL",
+      "reason": "True individual-contract OSE minute/tick/order-book history for lower-wick, session-liquidity and order-flow OOS requires authorized historical data; full JPX history is a charged product and trial access is conditional."
+    },
+    {
+      "id": "PIT_SAFE_MACRO_CONSENSUS_HISTORY",
+      "type": "EXTERNAL_HISTORICAL_DATA_RIGHTS",
+      "status": "BLOCKED",
+      "reason": "Actual releases are public but historically correct pre-release consensus snapshots require a rights-clean PIT-safe source."
+    },
+    {
+      "id": "FORWARD_VALIDATION",
+      "type": "TIME_AND_OBSERVATION",
+      "status": "PENDING",
+      "reason": "Formal validation requires future eligible observations and the frozen review gates; synthetic records may not substitute for them."
+    }
+  ],
+  "available_research_tracks_now": [
+    "Official Nikkei breadth/concentration as operational context.",
+    "Nikkei 225 VI as local volatility/risk context with official daily data availability.",
+    "MOF JGB curve as event/cross-market context with official historical data availability.",
+    "MOF confirmed FX-intervention regime as an event-risk modifier.",
+    "Preregistered precision-feature research without adding directional votes."
+  ],
+  "completion_rule": "Do not report the repository as live-production complete. Report internal synthetic/read-only construction as complete; further progress requires external evidence/data rights or real forward validation. Reopen construction only for a concrete implementation defect, new safety requirement, or a deliberately authorized production capability."
+}
