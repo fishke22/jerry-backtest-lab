@@ -445,7 +445,7 @@
       "大阪微型日經如何操作",
       "JNU如何操作"
     ],
-    "required_action": "Load this cross-session memory, the current authoritative JNU framework, the precision-analysis memory, the precision research preregistration, the mandatory JNU Research output protocol, and the exact-data feed contract/capability evidence before producing the analysis.",
+    "required_action": "Load this cross-session memory, the current authoritative JNU framework, precision-analysis memory, K-line market-structure extension, precision research preregistration, data-source fallback protocol, and mandatory JNU Research output protocol before producing the analysis.",
     "user_facing_goal": "Determine the best-supported most likely JNU path and provide a practical conditional operation plan while clearly separating observed evidence, research inference and unvalidated judgment.",
     "current_or_future_analysis": "Must retrieve fresh public/official market information when the request is time-sensitive.",
     "unavailable_evidence": "UNKNOWN_OR_UNAVAILABLE_NEVER_GUESSED",
@@ -499,5 +499,12 @@
   },
   "yuanta_remote_access_security": "config/jnu_yuanta_remote_access_security_v1.json",
   "remote_mobile_exact_feed_rule": "GitHub may store code/deployment configuration but never broker credentials. Password hashes cannot authenticate. Mobile-independent exact Yuanta requires a separately validated persistent trusted Windows runtime plus private read-only endpoint.",
-  "yuanta_remote_access_status": "DEFERRED_BY_USER_NO_WINDOWS_CLOUD_HOST_NOT_CURRENT_GAP"
+  "yuanta_remote_access_status": "DEFERRED_BY_USER_NO_WINDOWS_CLOUD_HOST_NOT_CURRENT_GAP",
+  "kline_market_structure_extension": "config/jnu_kline_market_structure_extension_v1.json",
+  "kline_analysis_rule": {
+    "status": "MANDATORY",
+    "rule": "For every JNU analysis, evaluate trend/box structure, acceptance/rejection, opening-range state and normalized multi-timeframe bars when data permit. Named candlestick patterns are descriptive only and never cast a directional vote by themselves.",
+    "profile_rule": "POC/VAH/VAL/HVN/LVN require true volume-at-price data; OHLC-derived substitutes must be labeled PROXY_PROFILE.",
+    "acceptance_rule": "Touch != Break != Acceptance; a break becomes structurally meaningful only with preregistered persistence/participation evidence."
+  }
 }
