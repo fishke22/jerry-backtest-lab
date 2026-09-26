@@ -1,5 +1,5 @@
 {
-  "version": "1.0",
+  "version": "1.1",
   "as_of": "2026-09-26",
   "status": "MANDATORY_JNU_DATA_SOURCE_DEGRADATION_LADDER",
   "system": "JNU Research",
@@ -147,5 +147,14 @@
     "jpx_public_futures": "DELAYED_REFERENCE_ONLY",
     "ose_trial": "CONDITIONAL_ONE_MONTH_TRIAL_NOT_PERMANENT_FREE",
     "conclusion": "Existing Yuanta entitlement through MARKET_AI_HUB is the best candidate for exact live JNU/tick/depth data; cloud fallback remains proxy/context unless an approved exact individual-contract source passes freshness."
+  },
+  "free_data_automation": "config/jnu_free_data_acquisition_automation_v1.json",
+  "paid_data_policy": "PROHIBITED_UNLESS_USER_EXPLICITLY_REVERSES_DECISION",
+  "source_policy": "Use existing authorized Yuanta quote entitlement and free official/plugin sources only. Do not purchase or silently recommend paid JPX/OSE tick/L2 as a fallback.",
+  "local_monitoring": {
+    "watchdog_task": "MARKET_AI_HUB_JNU_Capture_Watchdog",
+    "watchdog_interval_minutes": 5,
+    "external_condition_watch": "JNU 資料擷取監控",
+    "behavior": "If local host is online, automatically ensure the recorder is running; if offline, use free cloud fallback."
   }
 }
