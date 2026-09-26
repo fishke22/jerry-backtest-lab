@@ -1,0 +1,53 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-26",
+  "system_name": "JNU Research",
+  "repository_path": "fishke22/jerry-backtest-lab",
+  "repository_path_note": "The GitHub repository path is retained for history/compatibility; the system design identity and research scope are now JNU Research.",
+  "primary_subject": "Osaka Exchange Nikkei 225 Micro Futures (JNU) and directly relevant Nikkei 225 futures-market evidence",
+  "scope": {
+    "primary": [
+      "JNU / Osaka Nikkei Micro directional and path analysis",
+      "JNU market-regime, event-risk, cross-market, price-discovery, intraday-path, positioning, liquidity and volatility research",
+      "backtests, OOS validation, forward validation and source-governance supporting JNU analysis"
+    ],
+    "secondary": [
+      "Nikkei 225 mini/futures and cash Nikkei only as explicitly labeled proxy/cross-check/source-of-mechanism evidence",
+      "TOPIX, USDJPY, U.S. equities/rates, Nikkei 225 VI, JGB, BOJ/MOF/macroeconomic data only when they inform JNU analysis"
+    ],
+    "out_of_scope": [
+      "generic unrelated stock backtests as a system goal",
+      "MARKET_AI_HUB construction",
+      "live trading/order execution unless separately and explicitly authorized under a later governance amendment"
+    ]
+  },
+  "trigger_phrases": [
+    "分析大阪微型日經期貨",
+    "分析大阪日經",
+    "分析 JNU",
+    "分析JNU",
+    "分析禮拜一的 JNU",
+    "分析禮拜一的JNU",
+    "分析週一的 JNU",
+    "分析週一的JNU",
+    "今晚大阪微型日經怎麼走",
+    "大阪微型日經如何操作",
+    "JNU如何操作"
+  ],
+  "mandatory_behavior_on_trigger": [
+    "Read config/jnu_operational_framework_cross_session_memory_v1.json first.",
+    "Read config/jnu_operational_framework_current_v1_9.json unless a later authoritative framework is explicitly named by cross-session memory.",
+    "Read config/jnu_cross_session_precision_analysis_memory_v1.json.",
+    "Read config/jnu_precision_feature_research_prereg_v1.json and respect validation status/prohibited-family rules.",
+    "Use current web/official data when the requested analysis is current or future-looking.",
+    "Distinguish exact JNU evidence from Nikkei mini/cash/proxy evidence.",
+    "Apply all nine authoritative framework layers and all mandatory precision checks whose data are available.",
+    "Do not guess unavailable inputs; mark them UNKNOWN/UNAVAILABLE.",
+    "Produce the most likely directional bias as a conditional, non-calibrated market judgment unless a validated probability model exists.",
+    "Always include expected path, key levels, invalidation, flip conditions, event risks, and a concrete operation plan with entry trigger, stop/invalidation, targets or exit logic, and no-trade conditions.",
+    "Do not promote research candidates or terminal-failed families to directional votes."
+  ],
+  "operating_objective": "Improve the practical accuracy and consistency of JNU analysis while preserving fail-closed evidence governance. The output should help the user decide how to trade, but must distinguish judgment from validated statistical edge.",
+  "downstream_note": "Validated JNU findings may later be optionally integrated into MARKET_AI_HUB; MARKET_AI_HUB is not the subject of this repository.",
+  "authoritative_entrypoint": "config/jnu_operational_framework_cross_session_memory_v1.json"
+}
