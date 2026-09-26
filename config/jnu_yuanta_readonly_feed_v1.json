@@ -1,7 +1,7 @@
 {
   "version": "1.1",
   "as_of": "2026-09-26",
-  "status": "MARKET_AI_HUB_REUSE_REQUIRED_PARTIAL_REAL_TICK_EVIDENCE_L2_UNVERIFIED",
+  "status": "MARKET_AI_HUB_REUSE_EXACT_LIVE_QUOTE_AND_CURRENT_DAY_TICK_VERIFIED_L2_STREAMING_UNVERIFIED",
   "system": "JNU Research",
   "purpose": "Use the user's existing MARKET_AI_HUB Yuanta implementation as the read-only exact JNU data bridge. Do not create a duplicate broker login or credential path in JNU Research.",
   "source_priority": [
@@ -98,11 +98,12 @@
     "market_no": 207,
     "exact_contract_example": "JNU2612",
     "spark_securities_login": "VERIFIED MsgCode=0001",
-    "spark_ose_subscription": "ACCEPTED_NO_CALLBACK_CONTINUOUS_ENTITLEMENT_UNPROVEN",
+    "spark_ose_subscription": "LIVE_CALLBACK_VERIFIED_2026_09_24_JNUPM2612_8_MATCHING_CALLBACKS",
     "exact_tick_detail": "ONE_AUTHORIZED_REAL_GetStkTickDetail_BATCH_CAPTURED_2026_09_25",
-    "l2_depth": "UNVERIFIED_UNTIL_REAL_DEPTH_CALLBACK",
+    "l2_depth": "UNVERIFIED_ACCOUNT_CALLBACK",
     "futures_quote_com_auth": "VERIFIED",
-    "futures_quote_registration": "UNRESOLVED"
+    "futures_quote_registration": "UNRESOLVED",
+    "streaming_stock_tick": "UNVERIFIED_ACCOUNT_CALLBACK"
   },
   "fallback_protocol": "config/jnu_data_source_fallback_v1.json"
 }
