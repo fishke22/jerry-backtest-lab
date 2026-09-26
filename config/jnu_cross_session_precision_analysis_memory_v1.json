@@ -113,6 +113,20 @@
       "rationale": "The same wick, breakout or order-flow signal has different information value across session and liquidity regimes.",
       "source": "OSE market structure plus internally validated intraday seasonality",
       "directional_vote": false
+    },
+    {
+      "id": "US_EPU_LIQUIDITY_REGIME",
+      "priority": "MEDIUM_HIGH",
+      "role": "LIQUIDITY_RISK_AND_EVIDENCE_QUALITY",
+      "mandatory_checks": [
+        "U.S. Economic Policy Uncertainty level/change when a current rights-clean source is available",
+        "whether policy-uncertainty regime coincides with thinner Nikkei futures liquidity, wider spreads or stronger common-market moves",
+        "trade/tariff and FX-policy uncertainty when specifically elevated"
+      ],
+      "rationale": "JPX/OSE published a two-part 2026 report specifically on U.S. economic policy uncertainty and Nikkei 225 futures liquidity. Related Japanese research finds higher policy uncertainty is associated with lower liquidity and stronger market-wide stock co-movement. Treat this as a liquidity/evidence-quality regime, not directional alpha.",
+      "source": "JPX Futures & Options Report 2026 Aug/Sep; KAKEN/JSRI economic-policy-uncertainty research",
+      "availability_rule": "Use only when a current/reproducible EPU measure or clearly sourced policy-uncertainty evidence is available; otherwise UNKNOWN.",
+      "directional_vote": false
     }
   ],
   "lower_wick_research_candidate": {
@@ -152,7 +166,8 @@
     "State official FX-intervention regime when relevant.",
     "State session/liquidity regime and normalize intraday signals accordingly.",
     "State order-flow/liquidity evidence only when authorized data exists; otherwise mark unavailable.",
-    "Treat long-lower-wick patterns as path evidence only; do not infer bullish edge without confirmation and validation."
+    "Treat long-lower-wick patterns as path evidence only; do not infer bullish edge without confirmation and validation.",
+    "State U.S./Japan policy-uncertainty and liquidity regime when materially elevated and supported by current evidence."
   ],
   "source_references": [
     "https://indexes.nikkei.co.jp/en/nkave/archives/summary",
@@ -161,7 +176,10 @@
     "https://www.fsa.go.jp/en/about/fsaanalyticalnotes/20241121/20241121.html",
     "https://www.fsa.go.jp/en/about/fsaanalyticalnotes/20250115/20250115.html",
     "https://www.tandfonline.com/doi/abs/10.1080/00036840902881819",
-    "https://www.mof.go.jp/english/policy/international_policy/reference/feio/index.html"
+    "https://www.mof.go.jp/english/policy/international_policy/reference/feio/index.html",
+    "https://www.jpx.co.jp/derivatives/market-report/futures-options-report/archives/2026.html",
+    "https://kaken.nii.ac.jp/ja/grant/KAKENHI-PROJECT-20H01499/"
   ],
-  "downstream_system_note": "MARKET_AI_HUB is not the research subject. Only mature, separately validated JNU findings may later be considered for optional downstream integration."
+  "downstream_system_note": "MARKET_AI_HUB is not the research subject. Only mature, separately validated JNU findings may later be considered for optional downstream integration.",
+  "system_identity": "config/jnu_research_system_identity_v1.json"
 }
