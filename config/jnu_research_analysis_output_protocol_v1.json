@@ -1,5 +1,5 @@
 {
-  "version": "1.0",
+  "version": "1.1",
   "as_of": "2026-09-26",
   "status": "MANDATORY_JNU_RESEARCH_ANALYSIS_OUTPUT_PROTOCOL",
   "applies_when": [
@@ -14,9 +14,20 @@
     "precision-analysis memory",
     "current official/public market information for time-sensitive analysis",
     "exact JNU evidence when available",
-    "proxy evidence only when clearly labeled"
+    "proxy evidence only when clearly labeled",
+    "data-source fallback mode selected before analysis"
   ],
   "mandatory_sections": [
+    {
+      "id": "DATA_MODE",
+      "content": [
+        "A_LOCAL_EXACT_FULL / B_LOCAL_EXACT_TICK_ONLY / C_MOBILE_MANUAL_EXACT_ANCHOR / D_MOBILE_CLOUD_PROXY_ONLY / E_INSUFFICIENT_DATA_ABSTAIN",
+        "exact JNU source and freshness",
+        "L2/order-flow availability",
+        "critical unavailable fields",
+        "confidence cap caused by the selected mode"
+      ]
+    },
     {
       "id": "CURRENT_STATE",
       "content": [
@@ -100,5 +111,7 @@
     }
   ],
   "user_facing_goal": "Give the user the best-supported practical view of the most likely JNU path and a conditional operation plan while showing exactly what would make the view wrong.",
-  "prohibition": "Do not claim guaranteed profit, certain direction, or calibrated win probability without validated calibration."
+  "prohibition": "Do not claim guaranteed profit, certain direction, or calibrated win probability without validated calibration.",
+  "mobile_behavior": "If the local PC/MARKET_AI_HUB is unavailable, continue automatically with the highest eligible mobile/cloud fallback mode. Do not require local reconnection before answering.",
+  "false_precision_rule": "When exact current JNU price is unavailable, operation levels must be relative/conditional or explicitly labeled proxy-derived; never present proxy levels as exact live JNU execution levels."
 }
