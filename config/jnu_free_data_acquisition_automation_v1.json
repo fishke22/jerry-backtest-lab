@@ -1,0 +1,64 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-26",
+  "status": "ACTIVE_FREE_ONLY_AUTOMATED_ACQUISITION",
+  "system": "JNU Research",
+  "user_policy": {
+    "paid_market_data": "PROHIBITED_UNLESS_USER_EXPLICITLY_REVERSES_DECISION",
+    "paid_jpx_tick_l2": "DO_NOT_PURCHASE_OR_RECOMMEND_AS_DEFAULT",
+    "free_public_data": "ALLOWED",
+    "existing_broker_entitlement": "ALLOWED_READ_ONLY_IF_NO_ADDITIONAL_DATA_FEE"
+  },
+  "acquisition_priority": [
+    "Existing Yuanta SPARK entitlement through MARKET_AI_HUB, quote-only and exact individual-month JNU.",
+    "Free official/public sources for context or delayed reference.",
+    "Connected free/plugin sources for cross-market/event context.",
+    "No paid data fallback."
+  ],
+  "local_automation": {
+    "host": "KO-HONG-HSUAN",
+    "root": "D:\\MARKET_AI_HUB",
+    "watchdog_task": "MARKET_AI_HUB_JNU_Capture_Watchdog",
+    "watchdog_interval_minutes": 5,
+    "ensure_script": "D:\\MARKET_AI_HUB\\scripts\\ensure_jnu_data_capture.ps1",
+    "recorder": "D:\\MARKET_AI_HUB\\src\\market_ai_hub\\integrations\\yuanta\\live_quote_recorder.py",
+    "credential_store": "Windows Credential Manager",
+    "single_owner": true,
+    "order_api": false,
+    "weekends": "IDLE",
+    "weekdays": "AUTO_START_OR_KEEP_EXISTING_OWNER"
+  },
+  "yuanta_microstructure": {
+    "exact_contracts_observed": [
+      "JNU2612",
+      "JNU2703"
+    ],
+    "market_no": 207,
+    "stock_tick_subscription_requested": true,
+    "five_tick_subscription_requested": true,
+    "subscription_request_errors": null,
+    "live_stock_tick_callback_status": "PENDING_NEXT_OSE_SESSION",
+    "live_five_tick_callback_status": "PENDING_NEXT_OSE_SESSION",
+    "persistence": "Existing durable spool + normalized Parquet",
+    "fail_soft": "If StockTick/FiveTick is unavailable, retain Watchlist/tick-detail/cloud fallback and do not stop the recorder."
+  },
+  "external_monitoring": {
+    "title": "JNU 資料擷取監控",
+    "cadence": "HOURLY_WEEKDAYS_CONDITION_WATCH",
+    "behavior": "When the authorized PC is online, ensure the recorder is running and inspect exact JNU StockTick/FiveTick callbacks. Notify only on first capability verification or actionable failure during an OSE session.",
+    "paid_sources": false
+  },
+  "fallback": {
+    "local_pc_offline": "Use free cloud/plugin/official JNU fallback; do not block analysis.",
+    "public_exact_micro": "Delayed/reference only unless an independently free source passes exact-contract identity and freshness.",
+    "l2_without_yuanta_callback": "UNAVAILABLE",
+    "orderflow_without_tick_or_l2": "UNAVAILABLE"
+  },
+  "validation_rule": "StockTick or FiveTick capability is not considered live-verified until a real callback is observed during an eligible OSE trading session.",
+  "security": [
+    "No broker password/account/certificate material in GitHub.",
+    "No order placement/modification/cancellation surface.",
+    "No second Yuanta login owner.",
+    "No paid-data auto-upgrade."
+  ]
+}
