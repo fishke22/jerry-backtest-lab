@@ -1,12 +1,12 @@
 ---
 name: mobile-research-orchestrator
-description: Coordinate repeatable research from mobile ChatGPT through connected apps and GitHub. Use for backtests, JNU/Nikkei research, Taiwan-stock research, news or sentiment research, scheduled data refreshes, result retrieval, and other workflows that should run in the cloud without a local PC.
+description: Coordinate JNU Research from mobile ChatGPT through connected apps and GitHub. Use for Osaka Nikkei Micro/JNU analysis, JNU backtests, JNU/Nikkei evidence research, JNU-relevant news/event/liquidity research, scheduled data refreshes, validation, and result retrieval without a local PC.
 compatibility: Designed for ChatGPT/Codex environments with GitHub access and optional external data or workflow apps.
 metadata:
-  version: "0.1.0"
+  version: "0.2.0"
 ---
 
-# Mobile Research Orchestrator
+# JNU Research Mobile Orchestrator
 
 Use ChatGPT as the control plane and cloud workers as the execution plane.
 
@@ -25,9 +25,9 @@ Use ChatGPT as the control plane and cloud workers as the execution plane.
 
 - JNU/Nikkei daily-proxy candidate research -> use the JNU V2.2 daily proxy suite.
 - One-off strategy sanity checks -> use the Phase 1 backtest worker.
-- News/sentiment research -> route to a dedicated news/sentiment workflow when installed.
-- Taiwan-stock research -> route to the Taiwan-stock research workflow when installed.
-- Unknown/new domain -> create a scoped workflow specification before adding automation.
+- JNU-relevant news/sentiment/event research -> route to a dedicated JNU event/news workflow when installed.
+- JNU precision-factor research -> use the frozen precision research preregistration and validation gates.
+- Non-JNU research -> do not treat it as part of JNU Research; route elsewhere if an appropriate external workflow exists.
 
 ## JNU candidate gate
 
@@ -97,10 +97,10 @@ Treat the following as persistent cross-session operating rules.
 
 3. **Use Skills for reusable reasoning/routing**
    - Skills should hold stable workflow rules, validation logic, routing, evidence standards, and output conventions.
-   - Use the mobile research orchestrator as the default router for recurring research tasks.
+   - Use the JNU Research mobile orchestrator as the default router for recurring JNU research tasks.
 
 4. **Use MCP for structured, repeatable data access**
-   - Jerry Market Research MCP: J-Quants / FinMind / EODHD / market-research data exposed by the cloud MCP.
+   - Jerry Market Research MCP: use J-Quants/EODHD/other exposed market-research data only when relevant to JNU/Nikkei evidence; unrelated Taiwan-stock research is outside JNU Research scope.
    - Use MCP when structured data should be queried repeatedly from ChatGPT without relying on the local PC.
    - Prefer read-only tools and fail closed when a required endpoint/schema is unavailable.
 
