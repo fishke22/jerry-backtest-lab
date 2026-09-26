@@ -36,6 +36,18 @@
     "prior_actionlint_status": "SUCCESS",
     "crash_recovery": "PASS_88_OF_88",
     "pending_repo_search_results": 0,
-    "todo_fixme_search_results": 0
-  }
+    "todo_fixme_search_results": 0,
+    "latest_integrity_run": 36227681087,
+    "latest_integrity_status": "SUCCESS",
+    "latest_actionlint_run": 36227681077,
+    "latest_actionlint_status": "SUCCESS"
+  },
+  "kline_market_structure_extension": "config/jnu_kline_market_structure_extension_v1.json",
+  "kline_extension_status": "MANDATORY_COMPANION_EXTENSION_INTEGRATED",
+  "kline_extension_modules": [
+    "AUCTION_PROFILE_ACCEPTANCE_STRUCTURE",
+    "OPENING_RANGE_INITIAL_BALANCE",
+    "MULTITIMEFRAME_NORMALIZED_BAR_STATE",
+    "SIGNED_SEMIVARIANCE_JUMP_RISK"
+  ]
 }
