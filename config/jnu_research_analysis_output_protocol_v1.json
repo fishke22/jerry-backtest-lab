@@ -1,5 +1,5 @@
 {
-  "version": "1.1",
+  "version": "1.2",
   "as_of": "2026-09-26",
   "status": "MANDATORY_JNU_RESEARCH_ANALYSIS_OUTPUT_PROTOCOL",
   "applies_when": [
@@ -15,7 +15,8 @@
     "current official/public market information for time-sensitive analysis",
     "exact JNU evidence when available",
     "proxy evidence only when clearly labeled",
-    "data-source fallback mode selected before analysis"
+    "data-source fallback mode selected before analysis",
+    "K-line market-structure extension"
   ],
   "mandatory_sections": [
     {
@@ -42,6 +43,17 @@
         "BULLISH/BEARISH/NEUTRAL_CONDITIONAL bias",
         "LOW or MEDIUM confidence only under current governance",
         "plain-language reason hierarchy"
+      ]
+    },
+    {
+      "id": "KLINE_MARKET_STRUCTURE",
+      "content": [
+        "trend versus box/balance regime",
+        "Touch / Break / Acceptance / Rejection state at key levels",
+        "POC/VAH/VAL/HVN/LVN only with true volume-at-price evidence; otherwise PROXY_PROFILE or UNAVAILABLE",
+        "opening range / initial balance and first-break acceptance/re-entry",
+        "5m/15m/60m/session/daily normalized bar agreement/conflict",
+        "signed semivariance/jump risk when intraday data permit"
       ]
     },
     {
@@ -113,5 +125,6 @@
   "user_facing_goal": "Give the user the best-supported practical view of the most likely JNU path and a conditional operation plan while showing exactly what would make the view wrong.",
   "prohibition": "Do not claim guaranteed profit, certain direction, or calibrated win probability without validated calibration.",
   "mobile_behavior": "If the local PC/MARKET_AI_HUB is unavailable, continue automatically with the highest eligible mobile/cloud fallback mode. Do not require local reconnection before answering.",
-  "false_precision_rule": "When exact current JNU price is unavailable, operation levels must be relative/conditional or explicitly labeled proxy-derived; never present proxy levels as exact live JNU execution levels."
+  "false_precision_rule": "When exact current JNU price is unavailable, operation levels must be relative/conditional or explicitly labeled proxy-derived; never present proxy levels as exact live JNU execution levels.",
+  "candlestick_rule": "Named candlestick patterns (hammer/doji/engulfing/etc.) are auxiliary descriptions only. Directional conclusions must come from normalized structure, location, regime, participation and validated evidence."
 }
