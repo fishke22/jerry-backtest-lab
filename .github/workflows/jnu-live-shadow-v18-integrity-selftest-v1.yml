@@ -170,6 +170,7 @@ on:
       - "scripts/selftest_jnu_yuanta_data_source_contract_v1.py"
       - "research_notes/jnu_data_source_fallback_yuanta_20260926.md"
       - "config/jnu_data_source_fallback_v1.json"
+      - "config/jnu_free_data_acquisition_automation_v1.json"
       - "skills/jnu-data-source-fallback/SKILL.md"
       - "README.md"
       - "config/jnu_cross_session_precision_analysis_memory_v1.json"
@@ -254,6 +255,7 @@ jobs:
           python -m json.tool config/jnu_research_final_completion_seal_20260926_v1.json >/dev/null
           python -m json.tool config/jnu_yuanta_feed_capability_evidence_20260926_v1.json >/dev/null
           python -m json.tool config/jnu_data_source_fallback_v1.json >/dev/null
+          python -m json.tool config/jnu_free_data_acquisition_automation_v1.json >/dev/null
 
       - name: Install private backup crypto dependency
         run: python -m pip install "cryptography>=42"
