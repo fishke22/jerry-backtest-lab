@@ -1,0 +1,197 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-26",
+  "status": "PASS_FULL_ORIGINAL_FRAMEWORK_COVERAGE_IN_JNU_RESEARCH",
+  "system_identity": "config/jnu_research_system_identity_v1.json",
+  "audited_framework_lineage": [
+    "config/jnu_operational_framework_current_v1.json",
+    "config/jnu_operational_framework_current_v1_1.json",
+    "config/jnu_operational_framework_current_v1_2.json",
+    "config/jnu_operational_framework_current_v1_3.json",
+    "config/jnu_operational_framework_current_v1_4.json",
+    "config/jnu_operational_framework_current_v1_5.json",
+    "config/jnu_operational_framework_current_v1_6.json",
+    "config/jnu_operational_framework_current_v1_7.json",
+    "config/jnu_operational_framework_current_v1_8.json",
+    "config/jnu_operational_framework_current_v1_9.json"
+  ],
+  "authoritative_framework": "config/jnu_operational_framework_current_v1_9.json",
+  "audit_method": [
+    "Compare every historical layer name and layer item from v1.0 through v1.9 against v1.9.",
+    "Compare every historical top-level framework key from v1.0 through v1.9 against v1.9.",
+    "Map all additional precision features to the nine authoritative layers without adding directional votes.",
+    "Confirm the mandatory future-analysis output includes direction, expected path, levels, invalidation, flip conditions and operation plan."
+  ],
+  "results": {
+    "historical_layer_count": 9,
+    "missing_historical_layer_names": [],
+    "missing_historical_layer_items": [],
+    "missing_historical_top_level_keys": [],
+    "original_framework_fully_retained": true,
+    "authoritative_directional_semantics_unchanged": true,
+    "validated_directional_modules": 0,
+    "high_confidence_prohibited": true
+  },
+  "authoritative_layers": [
+    {
+      "id": 1,
+      "name": "Market Regime",
+      "retained_items": [
+        "HAR-RSV volatility/risk state",
+        "realized volatility expansion/contraction",
+        "risk-on/off",
+        "VIX/US equity volatility",
+        "JPY regime"
+      ],
+      "precision_extensions": [
+        "NIKKEI_225_VI_LOCAL_VOLATILITY",
+        "US_EPU_LIQUIDITY_REGIME",
+        "SESSION_LIQUIDITY_SEASONALITY"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Event Risk State",
+      "retained_items": [
+        "BOJ",
+        "Fed",
+        "CPI",
+        "NFP",
+        "SQ",
+        "major policy events"
+      ],
+      "precision_extensions": [
+        "JGB_CURVE_BOJ_SURPRISE",
+        "MACRO_SURPRISE_MAGNITUDE",
+        "MOF_FX_INTERVENTION_REGIME",
+        "US_EPU_LIQUIDITY_REGIME"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Cross-Market Information",
+      "retained_items": [
+        "Nasdaq",
+        "S&P 500",
+        "SOX",
+        "USDJPY",
+        "US Treasury yields",
+        "VIX",
+        "global Nikkei-related markets"
+      ],
+      "precision_extensions": [
+        "JGB_CURVE_BOJ_SURPRISE",
+        "NIKKEI_BREADTH_CONCENTRATION",
+        "NIKKEI_225_VI_LOCAL_VOLATILITY"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Dynamic Price Discovery",
+      "retained_items": [
+        "OSE",
+        "CME",
+        "cash Nikkei",
+        "US futures",
+        "FX leadership"
+      ],
+      "precision_extensions": [
+        "ORDER_FLOW_MICROPRICE_LIQUIDITY",
+        "NIKKEI_BREADTH_CONCENTRATION",
+        "SESSION_LIQUIDITY_SEASONALITY"
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Intraday Price Path / Rejection",
+      "retained_items": [
+        "overnight gap",
+        "opening location",
+        "time of intraday high/low",
+        "low-to-close recovery",
+        "high-to-close recovery",
+        "CLV",
+        "VWAP reclaim/loss",
+        "higher lows/lower highs",
+        "volume distribution"
+      ],
+      "precision_extensions": [
+        "ORDER_FLOW_MICROPRICE_LIQUIDITY",
+        "SESSION_LIQUIDITY_SEASONALITY",
+        "LOWER_WICK_FAILED_BREAKDOWN_RECLAIM_CONFIRMATION_RESEARCH_ONLY"
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Positioning / Derivatives",
+      "retained_items": [
+        "put/call",
+        "strike OI",
+        "SQ",
+        "basis",
+        "term structure",
+        "investor flows"
+      ],
+      "precision_extensions": [
+        "NIKKEI_225_VI_LOCAL_VOLATILITY"
+      ]
+    },
+    {
+      "id": 7,
+      "name": "Dynamic SQ Bias",
+      "retained_items": [
+        "price location",
+        "OI distribution",
+        "gamma/strike concentration",
+        "intraday path",
+        "market response"
+      ],
+      "precision_extensions": [
+        "SESSION_LIQUIDITY_SEASONALITY",
+        "ORDER_FLOW_MICROPRICE_LIQUIDITY"
+      ]
+    },
+    {
+      "id": 8,
+      "name": "Evidence Fusion",
+      "retained_items": [
+        "Bullish evidence",
+        "Bearish evidence",
+        "Neutral/risk evidence",
+        "Invalidated signals",
+        "A/B/C evidence quality"
+      ],
+      "precision_extensions": [
+        "ALL_PRECISION_FEATURES_AS_CONTEXT_RISK_OR_PATH_EVIDENCE_ONLY_UNLESS_SEPARATELY_VALIDATED"
+      ]
+    },
+    {
+      "id": 9,
+      "name": "Decision Output",
+      "retained_items": [
+        "directional bias",
+        "confidence",
+        "expected path",
+        "key levels",
+        "invalidation conditions",
+        "event risk",
+        "flip conditions"
+      ],
+      "precision_extensions": [
+        "MANDATORY_OPERATION_PLAN_ENTRY_TRIGGER_STOP_TARGET_EXIT_NO_TRADE_CONDITIONS"
+      ]
+    }
+  ],
+  "mandatory_precision_features": [
+    "NIKKEI_BREADTH_CONCENTRATION",
+    "NIKKEI_225_VI_LOCAL_VOLATILITY",
+    "JGB_CURVE_BOJ_SURPRISE",
+    "MACRO_SURPRISE_MAGNITUDE",
+    "ORDER_FLOW_MICROPRICE_LIQUIDITY",
+    "MOF_FX_INTERVENTION_REGIME",
+    "SESSION_LIQUIDITY_SEASONALITY",
+    "US_EPU_LIQUIDITY_REGIME"
+  ],
+  "research_only_candidate": "LOWER_WICK_FAILED_BREAKDOWN_RECLAIM_CONFIRMATION",
+  "conclusion": "The original JNU operational analysis architecture is fully retained in JNU Research. Precision additions extend context/risk/path analysis and do not replace or silently remove any original layer."
+}
