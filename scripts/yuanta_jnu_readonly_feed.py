@@ -255,7 +255,55 @@ def _load_yuanta():
         "StockTick": StockTick,
     }
 
-def run_live(stock_code: str, seconds: int, jsonl: Optional[str]) -> int:
+def _read_json_file(path: Path) -> dict:
+    obj = json.loads(path.read_text(encoding="utf-8"))
+    if not isinstance(obj, dict):
+        raise RuntimeError(f"expected JSON object: {path}")
+    return obj
+
+
+def run_hub_status(hub_dir: str) -> int:
+    root = Path(hub_dir).expanduser().resolve()
+    status_path = root / "status.json"
+    latest_path = root / "latest.json"
+    if not status_path.is_file():
+        raise RuntimeError(f"hub status not found: {status_path}")
+    status = _read_json_file(status_path)
+    latest = _read_json_file(latest_path) if latest_path.is_file() else {}
+    quotes = latest.get("quotes", {})
+    if not isinstance(quotes, (dict, list)):
+        quotes = {}
+    out = {
+        "mode": "EXISTING_SINGLE_OWNER_READ_ONLY",
+        "hub_dir": str(root),
+        "status": status.get("status"),
+        "startup_stage": status.get("startup_stage"),
+        "provider": status.get("provider"),
+        "login_msg_code": status.get("login_msg_code"),
+        "subscriptions": status.get("subscriptions"),
+        "last_quote_at": status.get("last_quote_at"),
+        "quote_age_seconds": status.get("quote_age_seconds"),
+        "health_reasons": status.get("health_reasons", []),
+        "runtime_build_id": status.get("runtime_build_id"),
+        "tick_detail_measurements_runtime_enabled": status.get("tick_detail_measurements_runtime_enabled"),
+        "latest_updated_at": latest.get("updated_at"),
+        "latest_quote_container_size": len(quotes),
+        "broker_mutation_performed": False,
+        "trading_capability_exposed": False,
+    }
+    print(json.dumps(out, ensure_ascii=False, indent=2))
+    return 0
+
+
+def run_live(stock_code: str, seconds: int, jsonl: Optional[str], allow_standalone_login: bool = False, existing_hub_status: Optional[str] = None) -> int:
+    if existing_hub_status:
+        p = Path(existing_hub_status).expanduser().resolve()
+        if p.is_file():
+            hub = _read_json_file(p)
+            if hub.get("startup_stage") == "RUNNING" and hub.get("status") in {"RUNNING", "DEGRADED"}:
+                raise RuntimeError("existing Yuanta quote owner is active; standalone broker login refused")
+    if not allow_standalone_login:
+        raise RuntimeError("standalone broker login is disabled by default; use hub-status or explicit --allow-standalone-login during an approved maintenance probe")
     account = os.environ.get("YUANTA_ACCOUNT")
     password = os.environ.get("YUANTA_PASSWORD")
     if not account or not password:
@@ -406,14 +454,20 @@ def main() -> int:
     ap = argparse.ArgumentParser(description="Read-only JNU market-data adapter for Yuanta SPARK API")
     sub = ap.add_subparsers(dest="cmd", required=True)
     sub.add_parser("selftest")
+    hub = sub.add_parser("hub-status")
+    hub.add_argument("--hub-dir", required=True)
     live = sub.add_parser("live-probe")
     live.add_argument("--stock-code", required=True)
     live.add_argument("--seconds", type=int, default=20)
     live.add_argument("--jsonl")
+    live.add_argument("--allow-standalone-login", action="store_true")
+    live.add_argument("--existing-hub-status")
     args = ap.parse_args()
     if args.cmd == "selftest":
         return selftest()
-    return run_live(args.stock_code, args.seconds, args.jsonl)
+    if args.cmd == "hub-status":
+        return run_hub_status(args.hub_dir)
+    return run_live(args.stock_code, args.seconds, args.jsonl, args.allow_standalone_login, args.existing_hub_status)
 
 if __name__ == "__main__":
     raise SystemExit(main())
