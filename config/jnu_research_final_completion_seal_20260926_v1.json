@@ -28,7 +28,7 @@
     "Do not claim L2/order-flow when no fresh depth callback is available.",
     "Do not treat proxy prices as exact JNU."
   ],
-  "operational_rule": "For future JNU requests, use the finished JNU Research architecture and data fallback ladder. Reopen construction only for a concrete defect, new safety requirement, newly authorized capability, or explicit user request.",
+  "operational_rule": "For future JNU requests, use the finished JNU Research architecture, mandatory K-line market-structure extension, free-only data acquisition automation and fallback ladder. Paid market data is prohibited unless the user explicitly changes that decision.",
   "verification": {
     "prior_integrity_run": 36227070647,
     "prior_integrity_status": "SUCCESS",
@@ -49,5 +49,28 @@
     "OPENING_RANGE_INITIAL_BALANCE",
     "MULTITIMEFRAME_NORMALIZED_BAR_STATE",
     "SIGNED_SEMIVARIANCE_JUMP_RISK"
-  ]
+  ],
+  "free_data_acquisition_automation": "config/jnu_free_data_acquisition_automation_v1.json",
+  "market_data_cost_policy": "FREE_ONLY_NO_PAID_MARKET_DATA_UNLESS_USER_EXPLICITLY_REVERSES",
+  "local_yuanta_capture": {
+    "status": "AUTOMATED_WAITING_LIVE_OSE_CALLBACK_VERIFICATION",
+    "bridge": "D:\\MARKET_AI_HUB",
+    "market_ai_hub_commit": "23504cf",
+    "watchdog_task": "MARKET_AI_HUB_JNU_Capture_Watchdog",
+    "watchdog_interval_minutes": 5,
+    "exact_contracts_observed": [
+      "JNU2612",
+      "JNU2703"
+    ],
+    "stock_tick_subscription_requested": true,
+    "five_tick_subscription_requested": true,
+    "subscription_request_errors": null,
+    "live_callback_verification": "PENDING_NEXT_ELIGIBLE_OSE_SESSION",
+    "broker_order_actions": false
+  },
+  "external_capture_monitor": {
+    "title": "JNU 資料擷取監控",
+    "cadence": "HOURLY_WEEKDAYS_CONDITION_WATCH",
+    "purpose": "Detect local PC/data capture availability, verify first real StockTick/FiveTick callback, and report actionable failures without paid-data fallback."
+  }
 }
