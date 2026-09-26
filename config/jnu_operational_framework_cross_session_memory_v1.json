@@ -445,7 +445,7 @@
       "大阪微型日經如何操作",
       "JNU如何操作"
     ],
-    "required_action": "Load this cross-session memory, the current authoritative JNU framework, precision-analysis memory, precision research preregistration, data-source fallback protocol, and mandatory JNU Research output protocol before producing the analysis.",
+    "required_action": "Load this cross-session memory, the current authoritative JNU framework, the precision-analysis memory, the precision research preregistration, the mandatory JNU Research output protocol, and the exact-data feed contract/capability evidence before producing the analysis.",
     "user_facing_goal": "Determine the best-supported most likely JNU path and provide a practical conditional operation plan while clearly separating observed evidence, research inference and unvalidated judgment.",
     "current_or_future_analysis": "Must retrieve fresh public/official market information when the request is time-sensitive.",
     "unavailable_evidence": "UNKNOWN_OR_UNAVAILABLE_NEVER_GUESSED",
@@ -475,5 +475,26 @@
     "no_double_login": true,
     "no_l2_without_live_depth_callback": true,
     "mobile_cloud_fallback": true
+  },
+  "exact_jnu_market_data_source": {
+    "status": "EXACT_LIVE_QUOTE_VERIFIED_CURRENT_DAY_TICK_DETAIL_VERIFIED_L2_STREAMING_UNVERIFIED",
+    "feed_contract": "config/jnu_yuanta_readonly_feed_v1.json",
+    "capability_evidence": "config/jnu_yuanta_feed_capability_evidence_20260926_v1.json",
+    "skill": "skills/jnu-yuanta-readonly-feed/SKILL.md",
+    "preferred_runtime_path": "EXISTING_SINGLE_OWNER_YUANTA_SPARK_QUOTE_HUB_READ_ONLY",
+    "verified": [
+      "OSE market 207 exact Nikkei 225 Micro individual-contract live quote via Yuanta SPARK",
+      "exact JNU current-day tick-detail return via GetStkTickDetail"
+    ],
+    "still_unverified": [
+      "SubscribeFiveTickA exact-contract live depth callback",
+      "SubscribeStockTick exact-contract streaming tick callback"
+    ],
+    "mandatory_rules": [
+      "Use exact authorized Yuanta JNU evidence before public delayed/proxy data when it is fresh and contract/session identity matches.",
+      "Never create a second Yuanta broker owner when an existing verified owner is RUNNING/DEGRADED with startup_stage RUNNING.",
+      "Until FiveTickA is live-verified, label L2/microprice/book-imbalance evidence UNAVAILABLE rather than inferring it from L1.",
+      "Do not treat current-day tick retrieval as historical OSE tick/L2 availability."
+    ]
   }
 }
