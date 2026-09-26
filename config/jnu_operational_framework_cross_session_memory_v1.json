@@ -75,7 +75,7 @@
   "cloud_request_selftest_run": 33969428203,
   "cloud_actionlint_run": 34038843503,
   "cloud_pipeline_status": "V1_8_ANALYSIS_FRESH_OFFICIAL_PREPARED_REQUEST_INTEGRITY_CI_PASS_REAL_LEDGER_EMPTY",
-  "next_action": "INTERNAL_SYNTHETIC_CONSTRUCTION_COMPLETE. Do not invent further synthetic construction stages merely to extend the chain. Continue only through external evidence/data-rights gates, the preregistered JNU precision-feature research track, true OSE individual-contract OOS when authorized data exists, and real forward validation when eligible observations exist. Reopen implementation work only for a concrete defect, new safety requirement, or explicitly authorized production capability.",
+  "next_action": "NO_CURRENT_CONSTRUCTION_ACTION. Use JNU Research for analysis. Continue only evidence-driven research/forward validation. Optional persistent-Windows remote Yuanta deployment is DEFERRED_BY_USER and must not be treated as an unfinished task unless the user explicitly resumes it.",
   "exact_micro_reference_source_gate": "config/jnu_exact_micro_reference_source_gate_20260904_v1.json",
   "tradingview_exact_micro_transport": {
     "status": "B_IDENTITY_SOURCE_ALLOWED_ONLY_IF_ACTUAL_LP_TIME_AGE_LE_900",
@@ -425,7 +425,7 @@
     "public_real_outcomes": 0
   },
   "precision_feature_research_preregistration": "config/jnu_precision_feature_research_prereg_v1.json",
-  "construction_status": "INTERNAL_SYNTHETIC_CONSTRUCTION_COMPLETE_EXTERNAL_EVIDENCE_AND_VALIDATION_GATES_REMAIN",
+  "construction_status": "CURRENT_SCOPE_CONSTRUCTION_COMPLETE_JNU_RESEARCH_READY",
   "system_name": "JNU Research",
   "system_identity": "config/jnu_research_system_identity_v1.json",
   "framework_coverage_audit": "config/jnu_research_framework_coverage_audit_20260926_v1.json",
@@ -498,5 +498,6 @@
     ]
   },
   "yuanta_remote_access_security": "config/jnu_yuanta_remote_access_security_v1.json",
-  "remote_mobile_exact_feed_rule": "GitHub may store code/deployment configuration but never broker credentials. Password hashes cannot authenticate. Mobile-independent exact Yuanta requires a separately validated persistent trusted Windows runtime plus private read-only endpoint."
+  "remote_mobile_exact_feed_rule": "GitHub may store code/deployment configuration but never broker credentials. Password hashes cannot authenticate. Mobile-independent exact Yuanta requires a separately validated persistent trusted Windows runtime plus private read-only endpoint.",
+  "yuanta_remote_access_status": "DEFERRED_BY_USER_NO_WINDOWS_CLOUD_HOST_NOT_CURRENT_GAP"
 }
