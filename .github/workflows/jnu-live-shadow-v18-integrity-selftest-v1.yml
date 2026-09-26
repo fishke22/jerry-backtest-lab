@@ -155,6 +155,8 @@ on:
       - "config/jnu_research_system_identity_v1.json"
       - "config/jnu_research_framework_coverage_audit_20260926_v1.json"
       - "config/jnu_research_analysis_output_protocol_v1.json"
+      - "config/jnu_kline_market_structure_extension_v1.json"
+      - "research_notes/jnu_kline_market_structure_research_20260926.md"
       - "research_notes/jnu_epu_nikkei_futures_liquidity_20260926.md"
       - "skills/mobile-research-orchestrator/SKILL.md"
       - "skills/jnu-yuanta-readonly-feed/SKILL.md"
@@ -244,6 +246,7 @@ jobs:
           python -m json.tool config/jnu_research_system_identity_v1.json >/dev/null
           python -m json.tool config/jnu_research_framework_coverage_audit_20260926_v1.json >/dev/null
           python -m json.tool config/jnu_research_analysis_output_protocol_v1.json >/dev/null
+          python -m json.tool config/jnu_kline_market_structure_extension_v1.json >/dev/null
           python -m json.tool config/jnu_yuanta_readonly_feed_v1.json >/dev/null
           python -m json.tool config/jnu_yuanta_remote_access_security_v1.json >/dev/null
           python -m json.tool config/jnu_research_final_completion_seal_20260926_v1.json >/dev/null
