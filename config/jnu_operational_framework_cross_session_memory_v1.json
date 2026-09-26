@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "as_of": "2026-09-08",
+  "as_of": "2026-09-26",
   "memory_scope": "CROSS_SESSION_MANDATORY",
   "subject": "JNU Operational Framework",
   "authoritative_framework": "config/jnu_operational_framework_current_v1_9.json",
@@ -389,5 +389,17 @@
   "private_selection_shadow_fault_simulation_integrity_run": 34321924756,
   "private_selection_shadow_fault_simulation_actionlint_run": 34321924830,
   "private_selection_shadow_fault_simulation_selftest": "PASS_46_OF_46",
-  "private_selection_shadow_fault_simulation_status": "CI_PASS_SHADOW_TRANSACTION_FAULT_INJECTION_ATOMICITY_ROLLBACK_PRODUCTION_UNCHANGED"
+  "private_selection_shadow_fault_simulation_status": "CI_PASS_SHADOW_TRANSACTION_FAULT_INJECTION_ATOMICITY_ROLLBACK_PRODUCTION_UNCHANGED",
+  "precision_analysis_memory": "config/jnu_cross_session_precision_analysis_memory_v1.json",
+  "precision_analysis_usage_rule": "Mandatory companion memory for every future JNU / Osaka Nikkei / Osaka Micro Nikkei analysis. Apply after the authoritative framework; it refines context/risk/path evidence but does not add directional votes or override terminal-failed-family governance.",
+  "precision_analysis_mandatory_checks": [
+    "Nikkei breadth/concentration and top-component contribution",
+    "Nikkei 225 VI local implied-volatility state",
+    "JGB curve / BOJ surprise regime when relevant",
+    "PIT-safe macro surprise magnitude when available",
+    "MOF FX-intervention regime",
+    "session/time-of-day liquidity normalization",
+    "authorized order-flow/microprice/liquidity evidence when available; otherwise UNAVAILABLE",
+    "long-lower-wick is path evidence only; failed-breakdown/reclaim confirmation remains RESEARCH_CANDIDATE pending direct OSE OOS validation"
+  ]
 }
