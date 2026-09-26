@@ -514,5 +514,14 @@
     "chatgpt_condition_watch": "JNU 資料擷取監控 hourly on weekdays",
     "exact_jnu_microstructure": "Yuanta StockTick + FiveTickA requested for exact JNU contracts; capability remains PENDING until a real OSE-session callback is observed.",
     "local_offline": "Automatically fall back to free cloud/official sources; do not block JNU analysis."
+  },
+  "free_data_collection_policy": "config/jnu_free_data_collection_policy_v1.json",
+  "paid_data_policy": "PAID_JNU_OSE_MARKET_DATA_DECLINED_BY_USER_UNLESS_EXPLICITLY_REVERSED",
+  "local_collection_automation": {
+    "status": "ACTIVE_WHEN_LOCAL_WINDOWS_USER_SESSION_AVAILABLE",
+    "scheduled_task": "MARKET_AI_HUB Yuanta Recorder Watchdog",
+    "cadence": "10_MINUTES",
+    "exact_tick_and_depth": "AUTO_CAPTURE_IF_YUANTA_CALLBACKS_ARE_ENTITLED_AND_RECEIVED",
+    "raw_broker_data_public_git": false
   }
 }
