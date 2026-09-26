@@ -1,0 +1,167 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-26",
+  "memory_scope": "CROSS_SESSION_MANDATORY",
+  "subject": "JNU Precision Analysis Extensions",
+  "base_authoritative_framework": "config/jnu_operational_framework_current_v1_9.json",
+  "status": "RESEARCH_GOVERNANCE_ACTIVE_NOT_DIRECTIONAL_ALPHA",
+  "usage_rule": "For every future JNU / Osaka Nikkei / Osaka Micro Nikkei analysis, apply the authoritative framework first, then apply this precision-analysis checklist as mandatory context/risk/path refinement. These extensions do not create additional directional votes unless separately preregistered and validated.",
+  "non_negotiable_governance": {
+    "directional_status_remains": "NO_VALIDATED_DIRECTIONAL_EDGE",
+    "high_confidence": "PROHIBITED",
+    "terminal_failed_families": "REMAIN_PROHIBITED_NO_PARAMETER_RESCUE",
+    "no_vote_inflation": "Correlated evidence must remain within the existing four directional blocks; this file adds precision features, not extra votes.",
+    "unknown_handling": "Unavailable evidence is UNKNOWN/UNAVAILABLE, never guessed NORMAL or favorable."
+  },
+  "mandatory_precision_features": [
+    {
+      "id": "NIKKEI_BREADTH_CONCENTRATION",
+      "priority": "HIGH",
+      "role": "CONTEXT_AND_EVIDENCE_QUALITY",
+      "mandatory_checks": [
+        "Nikkei 225 advance/decline breadth",
+        "top-4 and top-10 component weight/contribution concentration",
+        "sector contribution, especially Technology",
+        "Nikkei 225 versus TOPIX divergence/residual when available"
+      ],
+      "rationale": "Nikkei 225 is price-weighted and can be moved disproportionately by a small set of high-weight components; broad participation and concentrated index movement should not receive the same interpretation.",
+      "source": "Nikkei Indexes Daily Summary and component weights",
+      "directional_vote": false
+    },
+    {
+      "id": "NIKKEI_225_VI_LOCAL_VOLATILITY",
+      "priority": "HIGH",
+      "role": "RISK_STATE_AND_CONFIDENCE_MODIFIER",
+      "mandatory_checks": [
+        "Nikkei 225 VI level",
+        "daily/intraday change in Nikkei 225 VI",
+        "price-versus-VI divergence",
+        "Nikkei 225 VI versus VIX divergence when both are available"
+      ],
+      "rationale": "Nikkei 225 VI is derived from OSE Nikkei futures/options and is a more direct local implied-volatility measure than relying on VIX alone.",
+      "source": "Nikkei Indexes Nikkei 225 VI",
+      "directional_vote": false
+    },
+    {
+      "id": "JGB_CURVE_BOJ_SURPRISE",
+      "priority": "HIGH",
+      "role": "EVENT_AND_CROSS_MARKET_REFINEMENT",
+      "mandatory_checks": [
+        "2Y/10Y/30Y JGB yield changes when available",
+        "10Y yield reaction around BOJ announcements",
+        "policy surprise versus pre-event expectations rather than event-presence only"
+      ],
+      "rationale": "BOJ surprise research finds tightening surprises negatively affect stocks and positively affect JGB yields, with strong 10Y responses in the unconventional-policy era.",
+      "source": "CARF/University of Tokyo BOJ high-frequency monetary-policy shock research",
+      "directional_vote": false
+    },
+    {
+      "id": "MACRO_SURPRISE_MAGNITUDE",
+      "priority": "HIGH",
+      "role": "EVENT_STATE_REFINEMENT",
+      "mandatory_checks": [
+        "actual minus consensus",
+        "standardized historical surprise where data rights allow",
+        "release timestamp and PIT-safe consensus snapshot",
+        "separate Japanese and U.S. macro surprises"
+      ],
+      "rationale": "The information content is the surprise magnitude, not merely whether CPI/NFP/Tankan/GDP is scheduled.",
+      "source": "Official release plus PIT-safe consensus provider",
+      "directional_vote": false
+    },
+    {
+      "id": "ORDER_FLOW_MICROPRICE_LIQUIDITY",
+      "priority": "HIGH",
+      "role": "INTRADAY_CONFIRMATION_AND_EXECUTION_FILTER",
+      "mandatory_checks": [
+        "trade/order imbalance",
+        "limit-order imbalance",
+        "spread-scaled imbalance",
+        "best-quote depth and depletion",
+        "price impact per contract amount",
+        "liquidity withdrawal and seller/buyer concentration"
+      ],
+      "rationale": "Nikkei 225 futures literature and Japan FSA granular-data analyses show order imbalance and liquidity conditions are highly informative for intraday price movement and turbulence.",
+      "source": "Peer-reviewed Nikkei 225 futures order-imbalance research and Japan FSA Analytical Notes",
+      "availability_rule": "Use only with legally authorized L1/L2 or transaction-level data; otherwise UNAVAILABLE.",
+      "directional_vote": false
+    },
+    {
+      "id": "MOF_FX_INTERVENTION_REGIME",
+      "priority": "HIGH",
+      "role": "EVENT_RISK_MODIFIER",
+      "mandatory_checks": [
+        "official MOF intervention announcements/operations",
+        "coordinated intervention statements",
+        "USDJPY movement under active intervention regime"
+      ],
+      "rationale": "Official FX intervention is a distinct policy regime and should not be treated as ordinary USDJPY volatility.",
+      "source": "Japan Ministry of Finance Foreign Exchange Intervention Operations",
+      "directional_vote": false
+    },
+    {
+      "id": "SESSION_LIQUIDITY_SEASONALITY",
+      "priority": "HIGH",
+      "role": "SIGNAL_NORMALIZATION",
+      "mandatory_checks": [
+        "day versus night session",
+        "open/close auction versus continuous trading",
+        "Japanese cash-session state",
+        "time-of-day normalized volatility/volume/spread",
+        "event-window versus ordinary-window liquidity"
+      ],
+      "rationale": "The same wick, breakout or order-flow signal has different information value across session and liquidity regimes.",
+      "source": "OSE market structure plus internally validated intraday seasonality",
+      "directional_vote": false
+    }
+  ],
+  "lower_wick_research_candidate": {
+    "id": "LOWER_WICK_FAILED_BREAKDOWN_RECLAIM_CONFIRMATION",
+    "status": "RESEARCH_CANDIDATE_NOT_A_DIRECTIONAL_VOTE",
+    "adjacency_warning": "Mechanically adjacent to a terminal-failed legacy breakout family. Promotion is prohibited unless substantive mechanism independence and a preregistered direct-Japan OOS protocol are demonstrated.",
+    "frozen_signal_definition": {
+      "lower_shadow_gte_body_multiple": 2,
+      "lower_shadow_gte_range_fraction": 0.5,
+      "signal_day_low_below_previous_day_low": true,
+      "signal_day_close_above_previous_day_close": true,
+      "confirmation": "Next trading day trades above signal-day high."
+    },
+    "exploratory_proxy_result": {
+      "dataset": "Nikkei 225 spot daily OHLC proxy, 2008-03-17 to 2024-03-15",
+      "triggered_confirmations": 31,
+      "close_above_entry": 26,
+      "exploratory_hit_rate": 0.8387,
+      "mean_close_to_entry_return": 0.009611,
+      "warning": "Small sample, multiple-testing/data-snooping exposure, proxy not exact JNU; not a tradable or calibrated probability."
+    },
+    "required_next_validation": [
+      "Freeze the specification; do not tune wick thresholds further.",
+      "Use true OSE Nikkei 225 mini individual-contract history with PIT-correct rolls and costs.",
+      "Split development and untouched OOS periods before viewing OOS results.",
+      "Compare against generic prior-high breakout baseline to estimate incremental edge.",
+      "Apply multiple-testing correction and report confidence intervals.",
+      "If OSE mini OOS survives, validate exact Micro with individual-month data.",
+      "Only after true-target and forward validation may framework role be reconsidered."
+    ]
+  },
+  "future_analysis_output_additions": [
+    "State whether Nikkei move is broad or concentrated.",
+    "State local implied-volatility condition using Nikkei 225 VI when available.",
+    "State BOJ/JGB surprise regime when relevant.",
+    "State macro surprise magnitude rather than only event name when data is available.",
+    "State official FX-intervention regime when relevant.",
+    "State session/liquidity regime and normalize intraday signals accordingly.",
+    "State order-flow/liquidity evidence only when authorized data exists; otherwise mark unavailable.",
+    "Treat long-lower-wick patterns as path evidence only; do not infer bullish edge without confirmation and validation."
+  ],
+  "source_references": [
+    "https://indexes.nikkei.co.jp/en/nkave/archives/summary",
+    "https://indexes.nikkei.co.jp/en/nkave/index/profile?idx=nk225vi",
+    "https://www.carf.e.u-tokyo.ac.jp/research/f530/",
+    "https://www.fsa.go.jp/en/about/fsaanalyticalnotes/20241121/20241121.html",
+    "https://www.fsa.go.jp/en/about/fsaanalyticalnotes/20250115/20250115.html",
+    "https://www.tandfonline.com/doi/abs/10.1080/00036840902881819",
+    "https://www.mof.go.jp/english/policy/international_policy/reference/feio/index.html"
+  ],
+  "downstream_system_note": "MARKET_AI_HUB is not the research subject. Only mature, separately validated JNU findings may later be considered for optional downstream integration."
+}
