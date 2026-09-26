@@ -131,3 +131,15 @@ See:
 JNU Research is not MARKET_AI_HUB. Mature, separately validated JNU findings may later be integrated downstream into MARKET_AI_HUB, but this repository's subject is JNU research and analysis.
 
 No broker login, trading, order execution or live production capability is enabled by this repository unless a later explicit governance amendment authorizes it.
+
+
+## Market-data cost policy
+
+JNU Research is **FREE-ONLY** unless the user explicitly reverses this decision.
+
+- Do not purchase or recommend paid JPX/OSE tick/L2 as the default path.
+- Prefer the user's existing read-only Yuanta SPARK entitlement through MARKET_AI_HUB for exact JNU individual-contract data.
+- Use free official/public/plugin sources for fallback context.
+- Local capture is maintained by `MARKET_AI_HUB_JNU_Capture_Watchdog` every five minutes on eligible OSE session dates.
+- A ChatGPT condition watch checks local availability on weekdays and reports only actionable capture failures or the first verified StockTick/FiveTick capability upgrade.
+- If the local PC is off, JNU analysis automatically degrades to free cloud/official sources; L2/order-flow remains unavailable rather than guessed.
