@@ -1,12 +1,12 @@
 ---
 name: jnu-yuanta-readonly-feed
 description: Read exact Osaka Nikkei 225 Micro (JNU) quotes, order-book depth and trades from the user's authorized Yuanta SPARK API without any trading capability. Use for JNU Research when exact OSE individual-contract live data, order-flow, microprice or freshness validation is needed.
-version: "1.0.0"
+version: "1.1.0"
 ---
 
 # JNU Yuanta Read-Only Feed
 
-This skill is the preferred exact-market-data path for JNU Research **only after the live entitlement probe passes**.
+This skill is the preferred exact-market-data path for JNU Research. Exact OSE Micro live quote and current-day tick-detail retrieval are already evidenced on the user's authorized Yuanta SPARK setup. Five/ten-level depth and streaming StockTick remain unverified until a matching live-session probe succeeds.
 
 ## Safety boundary
 
@@ -16,6 +16,7 @@ This skill is the preferred exact-market-data path for JNU Research **only after
 - Never print or persist passwords, certificate passwords or personal identifiers.
 - Credentials are supplied locally at runtime and are not stored in GitHub.
 - The exact individual JNU contract month is mandatory. Never substitute a continuous contract.
+- **Single-owner rule:** if an existing Yuanta quote owner is RUNNING/DEGRADED with `startup_stage=RUNNING`, do not create another broker login. Consume the existing hub read-only.
 
 ## Required JNU Research files
 
@@ -28,9 +29,11 @@ Read these first:
 
 ## Source decision
 
-1. Prefer an authorized Yuanta SPARK API OSE feed if the user's account returns the exact JNU contract.
-2. JPX public web futures prices are delayed by at least 15 minutes and are not acceptable as live order-flow evidence.
-3. OSE real-time/full-order historical feeds are paid, except conditional free-trial programs. Do not label them permanently free.
+1. Prefer the existing single-owner Yuanta SPARK quote hub when it is running; read its snapshot/Parquet/control outputs without another broker login.
+2. If no owner exists and the operator explicitly allows a maintenance probe, use the authorized Yuanta SPARK API exact JNU contract.
+3. Exact live quote and current-day tick-detail capability are already evidenced locally; L2/streaming-tick promotion is still gated on a matching live probe.
+4. JPX public web futures prices are delayed by at least 15 minutes and are not acceptable as live order-flow evidence.
+5. OSE real-time/full-order historical feeds are paid, except conditional free-trial programs. Do not label them permanently free.
 
 ## Yuanta fields used
 
@@ -52,7 +55,9 @@ The adapter derives:
 
 ## Local setup
 
-The user's installed Yuanta SPARK API directory must contain `YuantaSparkAPI.dll` and the vendor files required by Yuanta.
+For normal operation, prefer an already-running quote hub and do not require a second login. The existing hub directory can be supplied with `--hub-dir`.
+
+Only for an explicitly authorized standalone maintenance probe, the installed Yuanta SPARK API directory must contain `YuantaSparkAPI.dll` and the vendor files required by Yuanta.
 
 Set local environment variables only for the process/session:
 
@@ -72,28 +77,34 @@ Offline implementation selftest:
 python scripts/yuanta_jnu_readonly_feed.py selftest
 ```
 
-Live entitlement probe (read-only):
+Read an existing single-owner hub without broker mutation:
 
 ```
-python scripts/yuanta_jnu_readonly_feed.py live-probe --stock-code "<YUANTA_EXACT_JNU_STOCK_CODE>" --seconds 20
+python scripts/yuanta_jnu_readonly_feed.py hub-status --hub-dir "<YUANTA_HUB_DIR>"
 ```
 
-Optional JSONL capture:
+Standalone L2/streaming-tick probe is **disabled by default**. Run it only during an active OSE session, only if no verified owner exists, and only after explicit maintenance approval:
 
 ```
-python scripts/yuanta_jnu_readonly_feed.py live-probe --stock-code "<YUANTA_EXACT_JNU_STOCK_CODE>" --seconds 60 --jsonl "jnu_feed.jsonl"
+python scripts/yuanta_jnu_readonly_feed.py live-probe --stock-code "<YUANTA_EXACT_JNU_STOCK_CODE>" --seconds 20 --allow-standalone-login
+```
+
+Optional standalone JSONL capture (same explicit-maintenance rules):
+
+```
+python scripts/yuanta_jnu_readonly_feed.py live-probe --stock-code "<YUANTA_EXACT_JNU_STOCK_CODE>" --seconds 60 --jsonl "jnu_feed.jsonl" --allow-standalone-login
 ```
 
 ## Promotion rule
 
-Do not promote this feed to JNU authoritative exact-data status until a live probe confirms:
+Current promotion state:
 
-- MarketType is OSE,
-- the returned StockCode exactly matches the intended JNU individual month,
-- trade ticks arrive,
-- depth arrives,
-- timestamps are fresh enough,
-- no order API was invoked.
+- exact OSE Micro individual-contract live quote: **VERIFIED**;
+- exact JNU current-day `GetStkTickDetail`: **VERIFIED DATA RETURN**, with timestamp-evidence governance still enforced;
+- `SubscribeStockTick` streaming ticks: **UNVERIFIED ACCOUNT CALLBACK**;
+- `SubscribeFiveTickA` five/ten-level depth: **UNVERIFIED ACCOUNT CALLBACK**.
 
-If depth is unavailable but ticks work, mark `EXACT_JNU_L1_TICKS_ONLY`.
-If neither exact ticks nor depth works, mark `YUANTA_OSE_ENTITLEMENT_UNAVAILABLE`.
+Do not promote L2/order-flow to authoritative status until the exact-contract live callback and freshness gates pass. No order API may be invoked.
+
+If depth remains unverified, use exact live quote/current-day ticks only and label L2-derived metrics `UNAVAILABLE`.
+If a future exact-contract FiveTickA + StockTick probe passes, promote only those observed capabilities; do not infer historical L2 availability.
