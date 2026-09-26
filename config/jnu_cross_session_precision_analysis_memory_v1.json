@@ -83,8 +83,15 @@
       ],
       "rationale": "Nikkei 225 futures literature and Japan FSA granular-data analyses show order imbalance and liquidity conditions are highly informative for intraday price movement and turbulence.",
       "source": "Peer-reviewed Nikkei 225 futures order-imbalance research and Japan FSA Analytical Notes",
-      "availability_rule": "Use only with legally authorized L1/L2 or transaction-level data; otherwise UNAVAILABLE.",
-      "directional_vote": false
+      "availability_rule": "Use authorized Yuanta exact live quote/current-day tick evidence when fresh and identity-matched. Use L2/microprice/book-imbalance only after exact-contract SubscribeFiveTickA callback is live-verified. Use streaming trade-flow only after SubscribeStockTick callback is live-verified. Otherwise mark the unavailable subfeatures UNAVAILABLE.",
+      "directional_vote": false,
+      "current_source_status": {
+        "exact_live_quote": "AVAILABLE_VERIFIED_YUANTA_SPARK",
+        "current_day_tick_detail": "AVAILABLE_VERIFIED_DATA_RETURN",
+        "streaming_tick": "UNVERIFIED_ACCOUNT_CALLBACK",
+        "l2_depth": "UNVERIFIED_ACCOUNT_CALLBACK",
+        "historical_l2": "UNAVAILABLE_WITHOUT_PAID_OR_CONDITIONAL_TRIAL_DATA"
+      }
     },
     {
       "id": "MOF_FX_INTERVENTION_REGIME",
@@ -167,7 +174,8 @@
     "State session/liquidity regime and normalize intraday signals accordingly.",
     "State order-flow/liquidity evidence only when authorized data exists; otherwise mark unavailable.",
     "Treat long-lower-wick patterns as path evidence only; do not infer bullish edge without confirmation and validation.",
-    "State U.S./Japan policy-uncertainty and liquidity regime when materially elevated and supported by current evidence."
+    "State U.S./Japan policy-uncertainty and liquidity regime when materially elevated and supported by current evidence.",
+    "Prefer fresh exact-contract Yuanta SPARK JNU evidence over delayed public/proxy evidence; explicitly state which Yuanta capabilities were actually observed (L1/tick/L2) and which remain unavailable."
   ],
   "source_references": [
     "https://indexes.nikkei.co.jp/en/nkave/archives/summary",
