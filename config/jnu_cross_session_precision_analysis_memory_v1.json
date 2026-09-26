@@ -134,6 +134,64 @@
       "source": "JPX Futures & Options Report 2026 Aug/Sep; KAKEN/JSRI economic-policy-uncertainty research",
       "availability_rule": "Use only when a current/reproducible EPU measure or clearly sourced policy-uncertainty evidence is available; otherwise UNKNOWN.",
       "directional_vote": false
+    },
+    {
+      "id": "AUCTION_PROFILE_ACCEPTANCE_STRUCTURE",
+      "priority": "HIGH",
+      "role": "PATH_STATE_AND_EVIDENCE_QUALITY",
+      "mandatory_checks": [
+        "trend versus box/balance regime",
+        "POC/VAH/VAL/HVN/LVN when true volume-at-price data are available",
+        "value migration",
+        "Touch != Break != Acceptance",
+        "false break/rejection",
+        "box migration after sustained acceptance"
+      ],
+      "availability_rule": "True volume-profile features require actual volume-at-price/tick data; OHLC reconstruction must be labeled PROXY_PROFILE.",
+      "directional_vote": false
+    },
+    {
+      "id": "OPENING_RANGE_INITIAL_BALANCE",
+      "priority": "HIGH",
+      "role": "INTRADAY_PATH_AND_SESSION_STRUCTURE",
+      "mandatory_checks": [
+        "OSE opening range",
+        "Japanese cash opening range",
+        "range width normalized by volatility",
+        "first break direction",
+        "acceptance/re-entry",
+        "range extension",
+        "relation to prior day/overnight extremes and VWAP"
+      ],
+      "directional_vote": false
+    },
+    {
+      "id": "MULTITIMEFRAME_NORMALIZED_BAR_STATE",
+      "priority": "HIGH",
+      "role": "KLINE_STRUCTURE_NORMALIZATION",
+      "mandatory_checks": [
+        "5m/15m/60m/session/daily agreement",
+        "body/range",
+        "wick fractions",
+        "CLV",
+        "ATR/RV-normalized range",
+        "time-of-day normalized volume",
+        "inside/outside state",
+        "compression/expansion"
+      ],
+      "directional_vote": false
+    },
+    {
+      "id": "SIGNED_SEMIVARIANCE_JUMP_RISK",
+      "priority": "MEDIUM_HIGH",
+      "role": "VOLATILITY_AND_RISK_STATE",
+      "mandatory_checks": [
+        "upside/downside realized semivariance",
+        "signed jump state",
+        "negative jump clustering",
+        "interaction with HAR-RSV and Nikkei 225 VI"
+      ],
+      "directional_vote": false
     }
   ],
   "lower_wick_research_candidate": {
@@ -175,7 +233,13 @@
     "State order-flow/liquidity evidence only when authorized data exists; otherwise mark unavailable.",
     "Treat long-lower-wick patterns as path evidence only; do not infer bullish edge without confirmation and validation.",
     "State U.S./Japan policy-uncertainty and liquidity regime when materially elevated and supported by current evidence.",
-    "Prefer fresh exact-contract Yuanta SPARK JNU evidence over delayed public/proxy evidence; explicitly state which Yuanta capabilities were actually observed (L1/tick/L2) and which remain unavailable."
+    "Prefer fresh exact-contract Yuanta SPARK JNU evidence over delayed public/proxy evidence; explicitly state which Yuanta capabilities were actually observed (L1/tick/L2) and which remain unavailable.",
+    "State trend versus box/balance regime and whether value is migrating.",
+    "For key levels, distinguish touch, break, acceptance and rejection; a break alone is not acceptance.",
+    "State POC/VAH/VAL/HVN/LVN only when true volume-at-price data exist; label OHLC-reconstructed profiles as PROXY_PROFILE.",
+    "State opening-range/initial-balance condition when intraday data are available.",
+    "Describe K-bars numerically and volatility-normalized across multiple timeframes rather than relying on named candlestick patterns.",
+    "Use signed semivariance/jump information for risk/confidence scaling, not as a direct directional vote."
   ],
   "source_references": [
     "https://indexes.nikkei.co.jp/en/nkave/archives/summary",
@@ -189,5 +253,6 @@
     "https://kaken.nii.ac.jp/ja/grant/KAKENHI-PROJECT-20H01499/"
   ],
   "downstream_system_note": "MARKET_AI_HUB is not the research subject. Only mature, separately validated JNU findings may later be considered for optional downstream integration.",
-  "system_identity": "config/jnu_research_system_identity_v1.json"
+  "system_identity": "config/jnu_research_system_identity_v1.json",
+  "kline_market_structure_extension": "config/jnu_kline_market_structure_extension_v1.json"
 }
