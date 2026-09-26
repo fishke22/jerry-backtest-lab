@@ -1,0 +1,149 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-26",
+  "status": "MANDATORY_JNU_DATA_SOURCE_DEGRADATION_LADDER",
+  "system": "JNU Research",
+  "purpose": "Keep JNU analysis usable on desktop and mobile while preserving exact-data provenance and preventing proxy data from masquerading as live OSE order-flow.",
+  "local_bridge": {
+    "system": "D:\\MARKET_AI_HUB",
+    "role": "AUTHORIZED_LOCAL_DATA_BRIDGE_ONLY_NOT_JNU_RESEARCH_SUBJECT",
+    "preferred_owner": "MARKET_AI_HUB Yuanta live_quote_recorder / SparkRuntime",
+    "credential_rule": "Reuse MARKET_AI_HUB Windows Credential Manager and single-owner lifecycle. JNU Research must not create a second Yuanta login or store broker credentials.",
+    "observed_state_20260926": {
+      "ose_market_no": 207,
+      "exact_contract_example": "JNU2612",
+      "securities_spark_login": "VERIFIED_ACCEPTED_MSGCODE_0001",
+      "ose_subscription": "ACCEPTED_NO_STREAM_CALLBACK_ENTITLEMENT_NOT_PROVEN",
+      "exact_tick_detail": "ONE_AUTHORIZED_REAL_GetStkTickDetail_BATCH_CAPTURED_ON_2026_09_25",
+      "l2_depth": "NOT_YET_PROVEN_BY_LIVE_CALLBACK",
+      "production_orders": "PROHIBITED"
+    }
+  },
+  "modes": [
+    {
+      "id": "A_LOCAL_EXACT_FULL",
+      "rank": 1,
+      "requirements": [
+        "Local MARKET_AI_HUB is reachable.",
+        "Single-owner Yuanta recorder is healthy.",
+        "Exact active JNU individual-month contract identity is verified.",
+        "Fresh exact trade callback is present.",
+        "Fresh bid/ask depth callback is present."
+      ],
+      "allowed": [
+        "exact JNU price and path",
+        "trade imbalance",
+        "spread",
+        "L1/L5/L10 book imbalance",
+        "microprice",
+        "queue/depth interpretation"
+      ],
+      "confidence_cap": "FRAMEWORK_DEFAULT_LOW_OR_MEDIUM",
+      "orderflow_status": "ELIGIBLE_IF_FRESH"
+    },
+    {
+      "id": "B_LOCAL_EXACT_TICK_ONLY",
+      "rank": 2,
+      "requirements": [
+        "Local MARKET_AI_HUB is reachable.",
+        "Exact JNU contract-level trades/tick-detail are available.",
+        "Depth callback is absent or unverified."
+      ],
+      "allowed": [
+        "exact JNU price/ticks",
+        "trade delta / aggressor-flow when source fields support it",
+        "spread only when exact bid/ask is present"
+      ],
+      "prohibited": [
+        "book imbalance",
+        "microprice",
+        "queue depletion claims",
+        "L2 concentration claims"
+      ],
+      "confidence_cap": "FRAMEWORK_DEFAULT_LOW_OR_MEDIUM"
+    },
+    {
+      "id": "C_MOBILE_MANUAL_EXACT_ANCHOR",
+      "rank": 3,
+      "requirements": [
+        "Local computer/bridge is unavailable.",
+        "User supplies current JNU price or a current broker-app screenshot/quote."
+      ],
+      "cloud_context_sources": [
+        "Jerry Market Research",
+        "The Fly Market Intelligence",
+        "Twelve Data",
+        "Alpha Vantage",
+        "Unusual Whales",
+        "Longbridge/Fahali when relevant",
+        "official JPX/Nikkei/BOJ/MOF web sources"
+      ],
+      "allowed": [
+        "anchor support/resistance and operation scenarios to the user-supplied exact JNU price",
+        "cross-market/event/risk analysis"
+      ],
+      "prohibited": [
+        "L2/order-book claims",
+        "microprice",
+        "queue depletion",
+        "claiming user-supplied last price is a continuous feed"
+      ],
+      "confidence_cap": "LOW_OR_MEDIUM_WITH_EXPLICIT_NO_L2_LABEL"
+    },
+    {
+      "id": "D_MOBILE_CLOUD_PROXY_ONLY",
+      "rank": 4,
+      "requirements": [
+        "Local computer/bridge unavailable.",
+        "No user-supplied exact JNU current price."
+      ],
+      "source_order": [
+        "fresh individual-contract exact Micro quote from approved cloud source if it independently passes the current <=900-second identity/freshness gate",
+        "JPX delayed exact Micro only as delayed reference, never live order-flow",
+        "Nikkei futures/mini/cash, TOPIX, USDJPY, NQ/QQQ/SMH, VIX/Nikkei VI, rates, breadth, events and news as labeled proxies/context"
+      ],
+      "allowed": [
+        "conditional directional bias",
+        "expected path",
+        "relative trigger conditions",
+        "event-risk and cross-market analysis"
+      ],
+      "prohibited": [
+        "live order-flow claims",
+        "microprice/book imbalance",
+        "pretending proxy price is exact JNU",
+        "false precision in entry/stop levels"
+      ],
+      "confidence_cap": "LOW",
+      "operation_rule": "Prefer conditional/relative plans. If exact price is missing, state that exact execution levels must be re-anchored at market open or from the user's broker quote."
+    },
+    {
+      "id": "E_INSUFFICIENT_DATA_ABSTAIN",
+      "rank": 5,
+      "requirements": [
+        "Critical current market/event evidence is stale, contradictory or unavailable beyond safe fallback."
+      ],
+      "allowed": [
+        "risk summary",
+        "what evidence is missing",
+        "specific flip/refresh conditions"
+      ],
+      "directional_output": "NEUTRAL_ABSTAIN"
+    }
+  ],
+  "freshness": {
+    "exact_source_existing_hard_gate_seconds": 900,
+    "live_orderflow_preferred_max_age_seconds": 10,
+    "exact_operational_quote_preferred_max_age_seconds": 60,
+    "rule": "The 900-second gate is only an outer eligibility ceiling. L2/order-flow interpretation requires materially fresher observations; stale depth is never treated as live."
+  },
+  "mobile_rule": "Mobile use must never require the local PC to answer. If local is unavailable, automatically use the highest available nonlocal mode and disclose the mode in the answer.",
+  "no_blocking_rule": "Do not ask the user to reconnect the PC before providing a best-effort JNU analysis. Use cloud fallback first; a user-provided current JNU quote/screenshot is optional enrichment.",
+  "no_double_login_rule": "When MARKET_AI_HUB is available, reuse its existing Yuanta owner/recorder and local credential store. Never create a parallel broker session solely for JNU Research.",
+  "free_data_research_result": {
+    "permanent_free_legal_exact_ose_realtime_l2_found": false,
+    "jpx_public_futures": "DELAYED_REFERENCE_ONLY",
+    "ose_trial": "CONDITIONAL_ONE_MONTH_TRIAL_NOT_PERMANENT_FREE",
+    "conclusion": "Existing Yuanta entitlement through MARKET_AI_HUB is the best candidate for exact live JNU/tick/depth data; cloud fallback remains proxy/context unless an approved exact individual-contract source passes freshness."
+  }
+}
