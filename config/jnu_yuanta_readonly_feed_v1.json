@@ -1,11 +1,12 @@
 {
   "version": "1.0",
   "as_of": "2026-09-26",
-  "status": "IMPLEMENTED_AWAITING_LIVE_ENTITLEMENT_PROBE",
+  "status": "EXACT_LIVE_QUOTE_VERIFIED_CURRENT_DAY_TICK_DETAIL_VERIFIED_L2_STREAMING_AWAITING_LIVE_PROBE",
   "system": "JNU Research",
   "purpose": "Read-only exact OSE Nikkei 225 Micro Futures market-data bridge using the user's existing Yuanta SPARK API entitlement when available.",
   "source_priority": [
-    "YUANTA_SPARK_API_AUTHORIZED_OSE_FEED",
+    "EXISTING_SINGLE_OWNER_YUANTA_SPARK_QUOTE_HUB_READ_ONLY",
+    "YUANTA_SPARK_API_AUTHORIZED_OSE_FEED_IF_NO_EXISTING_OWNER_AND_MAINTENANCE_EXPLICITLY_ALLOWED",
     "JPX_OSE_FREE_TRIAL_IF_SEPARATELY_APPROVED",
     "PUBLIC_DELAYED_JPX_ONLY_FOR_SANITY_CHECK_NOT_LIVE_ORDER_FLOW"
   ],
@@ -16,7 +17,7 @@
     "product": "Nikkei 225 micro Futures",
     "broker_product_code": "JNU",
     "exact_contract_requirement": "Use the exact Yuanta StockCode for the active individual contract month. Never substitute a continuous symbol.",
-    "stock_code_discovery": "Read the StockCode from Yuanta SPARK API FunctionList.xls / stock-name mapping bundled with the installed API. Do not guess month-code syntax."
+    "stock_code_discovery": "Resolve dynamically from the current Yuanta FunctionList / verified contract resolver. Observed exact formats are JNU<YYMM> for day and JNUPM<YYMM> for night; examples must not be hardcoded."
   },
   "allowed_read_calls": [
     "SubscribeWatchlistAll",
@@ -61,11 +62,12 @@
     ]
   },
   "validation_gates": [
-    "Login succeeds with user's own Yuanta futures account.",
-    "Exact JNU individual-month StockCode is resolved from Yuanta-provided mapping.",
-    "SubscribeStockTick returns MarketType=OSE and the exact requested StockCode.",
-    "SubscribeFiveTickA returns nonzero bid/ask depth for that exact contract.",
-    "Provider timestamps/sequence are captured and observed age is suitable for JNU Research freshness rules.",
+    "Existing single-owner hub is checked before any standalone login attempt.",
+    "Exact JNU individual-month StockCode is dynamically resolved from current Yuanta vendor mapping/resolver.",
+    "Exact live quote has already been verified for OSE market 207 on an exact JNU contract; revalidate contract/session freshness each use.",
+    "GetStkTickDetail has already returned exact JNU current-day ticks; timestamp semantics remain subject to the frozen JNU freshness/evidence gates.",
+    "SubscribeStockTick must still receive matching MarketType=OSE and exact requested StockCode before streaming-tick promotion.",
+    "SubscribeFiveTickA must still return matching exact-contract nonzero depth before L2 promotion.",
     "No trade/order API call is present in the bridge."
   ],
   "jpX_research_result": {
@@ -74,5 +76,13 @@
     "historical_tick": "paid",
     "full_orders": "paid",
     "free_trial": "OSE may offer one-month real-time market-data trial for internal evaluation; historical tick sample/trial may be available subject to conditions."
-  }
+  },
+  "capability_evidence": "config/jnu_yuanta_feed_capability_evidence_20260926_v1.json",
+  "verified_account_capabilities": {
+    "exact_live_quote": "VERIFIED_VIA_SUBSCRIBEWATCHLISTALL_MARKET_207_EXACT_JNU_CONTRACT",
+    "current_day_tick_detail": "VERIFIED_VIA_GETSTKTICKDETAIL_EXACT_JNU_CONTRACT",
+    "five_ten_level_depth": "UNVERIFIED_ACCOUNT_CALLBACK",
+    "streaming_stock_tick": "UNVERIFIED_ACCOUNT_CALLBACK"
+  },
+  "single_owner_rule": "Never create a second Yuanta broker login while an existing verified quote owner is RUNNING/DEGRADED with startup_stage RUNNING. Consume its local snapshot/Parquet/control path read-only instead."
 }
