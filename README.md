@@ -98,17 +98,27 @@ Current directional state:
 
 This does not prevent practical market analysis. It means practical bias and operation plans must be presented as evidence-based conditional judgments, not as guaranteed or calibrated probabilities.
 
-## Internal construction status
+## Current construction status
 
-All currently specified internal synthetic/read-only construction stages are complete through the crash-recovery journal/replay stage.
+**JNU Research current-scope construction is COMPLETE.**
 
-- crash-recovery selftest: **88 / 88 PASS**
-- full integrity CI: **PASS**
-- Actionlint: **PASS**
-- public real ledger: **0 forecasts / 0 outcomes**
-- production state mutation: **false**
+Completed scope includes:
 
-Remaining progress is evidence/data driven: real entitlement, provider terms, authorized OSE history, PIT-safe consensus history and real forward validation.
+- authoritative JNU v1.9 framework and full v1.0→v1.9 coverage audit;
+- mandatory Precision Layer and preregistered research governance;
+- fixed JNU analysis output protocol;
+- local Yuanta/MARKET_AI_HUB exact-data bridge contract;
+- desktop/mobile data-source fallback ladder;
+- exact-vs-proxy provenance rules;
+- integrity, private-boundary, DR, atomicity and crash-recovery governance;
+- crash-recovery selftest: **88 / 88 PASS**;
+- full integrity CI: **PASS**;
+- Actionlint: **PASS**;
+- production trading mutation: **false**.
+
+The optional persistent Windows-cloud Yuanta bridge is **DEFERRED BY USER** because no Windows cloud host currently exists. It is not a current construction gap and must not be resumed unless the user explicitly asks to do so.
+
+Remaining work is empirical/data-rights work rather than software construction: observe live Yuanta L2 callbacks during a valid session, obtain authorized OSE historical data if desired, obtain PIT-safe consensus history if desired, and accumulate real forward-validation observations.
 
 See:
 
