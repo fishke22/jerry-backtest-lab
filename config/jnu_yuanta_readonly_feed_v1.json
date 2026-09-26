@@ -1,0 +1,78 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-26",
+  "status": "IMPLEMENTED_AWAITING_LIVE_ENTITLEMENT_PROBE",
+  "system": "JNU Research",
+  "purpose": "Read-only exact OSE Nikkei 225 Micro Futures market-data bridge using the user's existing Yuanta SPARK API entitlement when available.",
+  "source_priority": [
+    "YUANTA_SPARK_API_AUTHORIZED_OSE_FEED",
+    "JPX_OSE_FREE_TRIAL_IF_SEPARATELY_APPROVED",
+    "PUBLIC_DELAYED_JPX_ONLY_FOR_SANITY_CHECK_NOT_LIVE_ORDER_FLOW"
+  ],
+  "instrument": {
+    "exchange": "OSE",
+    "yuanta_market_enum": "OSE",
+    "yuanta_market_code": 207,
+    "product": "Nikkei 225 micro Futures",
+    "broker_product_code": "JNU",
+    "exact_contract_requirement": "Use the exact Yuanta StockCode for the active individual contract month. Never substitute a continuous symbol.",
+    "stock_code_discovery": "Read the StockCode from Yuanta SPARK API FunctionList.xls / stock-name mapping bundled with the installed API. Do not guess month-code syntax."
+  },
+  "allowed_read_calls": [
+    "SubscribeWatchlistAll",
+    "SubscribeFiveTickA",
+    "SubscribeStockTick",
+    "GetStkTickDetail",
+    "GetWatchListAll",
+    "GetQuoteList"
+  ],
+  "prohibited_calls": [
+    "all order placement",
+    "all order modification",
+    "all cancellation",
+    "all conditional-order creation",
+    "all trading actions"
+  ],
+  "expected_live_fields": {
+    "trades": [
+      "Time",
+      "DealPrice",
+      "DealVol",
+      "BuyPrice",
+      "SellPrice",
+      "SerialNo",
+      "InOutFlag"
+    ],
+    "depth": [
+      "bid_price_1_to_10",
+      "bid_size_1_to_10",
+      "ask_price_1_to_10",
+      "ask_size_1_to_10"
+    ],
+    "derived": [
+      "spread",
+      "mid",
+      "microprice",
+      "book_imbalance_l1",
+      "book_imbalance_l5",
+      "book_imbalance_l10",
+      "trade_delta",
+      "trade_imbalance"
+    ]
+  },
+  "validation_gates": [
+    "Login succeeds with user's own Yuanta futures account.",
+    "Exact JNU individual-month StockCode is resolved from Yuanta-provided mapping.",
+    "SubscribeStockTick returns MarketType=OSE and the exact requested StockCode.",
+    "SubscribeFiveTickA returns nonzero bid/ask depth for that exact contract.",
+    "Provider timestamps/sequence are captured and observed age is suitable for JNU Research freshness rules.",
+    "No trade/order API call is present in the bridge."
+  ],
+  "jpX_research_result": {
+    "permanent_free_realtime_l2_found": false,
+    "public_futures_delay": "at least 15 minutes",
+    "historical_tick": "paid",
+    "full_orders": "paid",
+    "free_trial": "OSE may offer one-month real-time market-data trial for internal evaluation; historical tick sample/trial may be available subject to conditions."
+  }
+}
