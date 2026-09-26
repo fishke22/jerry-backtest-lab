@@ -1,7 +1,7 @@
 {
-  "version": "1.0",
+  "version": "1.1",
   "as_of": "2026-09-26",
-  "status": "DESIGN_READY_NOT_REMOTE_ACTIVATED",
+  "status": "DEFERRED_BY_USER_NO_WINDOWS_CLOUD_HOST_NOT_CURRENT_CONSTRUCTION_GAP",
   "system": "JNU Research",
   "objective": "Allow mobile ChatGPT analysis to consume fresh Yuanta JNU data without storing broker credentials in GitHub repository content.",
   "hard_rules": [
@@ -83,5 +83,9 @@
     "Verify exact OSE JNU contract callbacks and freshness.",
     "Verify no order method is exposed.",
     "Only then mark REMOTE_YUANTA_EXACT_FEED_ACTIVE."
-  ]
+  ],
+  "defer_reason": "User currently has no persistent Windows cloud host and explicitly asked to postpone this optional remote capability until such a host exists.",
+  "current_scope_effect": "NONE. JNU Research remains complete for the current scope and must use the existing local/mobile fallback ladder.",
+  "resume_trigger": "Only reopen when the user explicitly says a persistent Windows cloud host is available or asks to resume remote Yuanta deployment.",
+  "activation_gate_status": "FUTURE_OPTIONAL_NOT_REQUIRED_FOR_CURRENT_COMPLETION"
 }
