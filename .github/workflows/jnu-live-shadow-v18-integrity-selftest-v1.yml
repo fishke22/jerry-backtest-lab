@@ -143,6 +143,12 @@ on:
       - "scripts/simulate_jnu_private_selection_shadow_transaction_v1.py"
       - "scripts/selftest_jnu_private_selection_shadow_transaction_v1.py"
       - "research_notes/jnu_private_selection_shadow_fault_simulation_20260909.md"
+      - "config/jnu_private_selection_shadow_crash_recovery_protocol_v1.json"
+      - "scripts/jnu_private_selection_shadow_crash_recovery_v1.py"
+      - "scripts/selftest_jnu_private_selection_shadow_crash_recovery_v1.py"
+      - "research_notes/jnu_private_selection_shadow_crash_recovery_20260926.md"
+      - "config/jnu_cross_session_precision_analysis_memory_v1.json"
+      - "config/jnu_operational_framework_cross_session_memory_v1.json"
   workflow_dispatch:
 
 permissions:
@@ -206,6 +212,9 @@ jobs:
           python -m json.tool config/jnu_private_selection_transition_commit_authorization_protocol_v1.json >/dev/null
           python -m json.tool config/jnu_private_selection_transaction_executor_noop_protocol_v1.json >/dev/null
           python -m json.tool config/jnu_private_selection_shadow_fault_simulation_protocol_v1.json >/dev/null
+          python -m json.tool config/jnu_private_selection_shadow_crash_recovery_protocol_v1.json >/dev/null
+          python -m json.tool config/jnu_cross_session_precision_analysis_memory_v1.json >/dev/null
+          python -m json.tool config/jnu_operational_framework_cross_session_memory_v1.json >/dev/null
 
       - name: Install private backup crypto dependency
         run: python -m pip install "cryptography>=42"
@@ -339,6 +348,11 @@ jobs:
         run: |
           python -m py_compile scripts/simulate_jnu_private_selection_shadow_transaction_v1.py scripts/selftest_jnu_private_selection_shadow_transaction_v1.py
           python scripts/selftest_jnu_private_selection_shadow_transaction_v1.py
+
+      - name: Private selection shadow crash-recovery journal replay selftest
+        run: |
+          python -m py_compile scripts/jnu_private_selection_shadow_crash_recovery_v1.py scripts/selftest_jnu_private_selection_shadow_crash_recovery_v1.py
+          python scripts/selftest_jnu_private_selection_shadow_crash_recovery_v1.py
 
       - name: Full v1.8 analysis-fresh chain selftest
         run: python scripts/selftest_jnu_live_shadow_v18_integrity.py
