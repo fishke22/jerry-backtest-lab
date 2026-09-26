@@ -506,5 +506,13 @@
     "rule": "For every JNU analysis, evaluate trend/box structure, acceptance/rejection, opening-range state and normalized multi-timeframe bars when data permit. Named candlestick patterns are descriptive only and never cast a directional vote by themselves.",
     "profile_rule": "POC/VAH/VAL/HVN/LVN require true volume-at-price data; OHLC-derived substitutes must be labeled PROXY_PROFILE.",
     "acceptance_rule": "Touch != Break != Acceptance; a break becomes structurally meaningful only with preregistered persistence/participation evidence."
+  },
+  "free_data_acquisition_automation": "config/jnu_free_data_acquisition_automation_v1.json",
+  "market_data_cost_policy": "FREE_ONLY_NO_PAID_DATA_UNLESS_USER_EXPLICITLY_REVERSES",
+  "automated_capture_rule": {
+    "local_watchdog": "MARKET_AI_HUB_JNU_Capture_Watchdog every 5 minutes when Windows user session is available",
+    "chatgpt_condition_watch": "JNU 資料擷取監控 hourly on weekdays",
+    "exact_jnu_microstructure": "Yuanta StockTick + FiveTickA requested for exact JNU contracts; capability remains PENDING until a real OSE-session callback is observed.",
+    "local_offline": "Automatically fall back to free cloud/official sources; do not block JNU analysis."
   }
 }
