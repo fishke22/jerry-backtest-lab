@@ -40,14 +40,22 @@
     "Read config/jnu_cross_session_precision_analysis_memory_v1.json.",
     "Read config/jnu_precision_feature_research_prereg_v1.json and respect validation status/prohibited-family rules.",
     "Use current web/official data when the requested analysis is current or future-looking.",
+    "Select and disclose the JNU data-source fallback mode before using current-market evidence.",
     "Distinguish exact JNU evidence from Nikkei mini/cash/proxy evidence.",
     "Apply all nine authoritative framework layers and all mandatory precision checks whose data are available.",
     "Do not guess unavailable inputs; mark them UNKNOWN/UNAVAILABLE.",
     "Produce the most likely directional bias as a conditional, non-calibrated market judgment unless a validated probability model exists.",
     "Always include expected path, key levels, invalidation, flip conditions, event risks, and a concrete operation plan with entry trigger, stop/invalidation, targets or exit logic, and no-trade conditions.",
-    "Do not promote research candidates or terminal-failed families to directional votes."
+    "Do not promote research candidates or terminal-failed families to directional votes.",
+    "If the local MARKET_AI_HUB bridge is unavailable, continue via cloud/public/plugin fallback; a user-supplied broker quote or screenshot may be used as an optional exact price anchor."
   ],
   "operating_objective": "Improve the practical accuracy and consistency of JNU analysis while preserving fail-closed evidence governance. The output should help the user decide how to trade, but must distinguish judgment from validated statistical edge.",
   "downstream_note": "Validated JNU findings may later be optionally integrated into MARKET_AI_HUB; MARKET_AI_HUB is not the subject of this repository.",
-  "authoritative_entrypoint": "config/jnu_operational_framework_cross_session_memory_v1.json"
+  "authoritative_entrypoint": "config/jnu_operational_framework_cross_session_memory_v1.json",
+  "local_data_bridge": {
+    "system": "MARKET_AI_HUB",
+    "path": "D:\\MARKET_AI_HUB",
+    "role": "Optional authorized local exact-data bridge; not the JNU Research subject",
+    "rule": "Reuse its single-owner Yuanta implementation when reachable; never require it for mobile analysis."
+  }
 }
