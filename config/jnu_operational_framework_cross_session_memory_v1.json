@@ -425,5 +425,37 @@
     "public_real_outcomes": 0
   },
   "precision_feature_research_preregistration": "config/jnu_precision_feature_research_prereg_v1.json",
-  "construction_status": "INTERNAL_SYNTHETIC_CONSTRUCTION_COMPLETE_EXTERNAL_EVIDENCE_AND_VALIDATION_GATES_REMAIN"
+  "construction_status": "INTERNAL_SYNTHETIC_CONSTRUCTION_COMPLETE_EXTERNAL_EVIDENCE_AND_VALIDATION_GATES_REMAIN",
+  "system_name": "JNU Research",
+  "system_identity": "config/jnu_research_system_identity_v1.json",
+  "framework_coverage_audit": "config/jnu_research_framework_coverage_audit_20260926_v1.json",
+  "mandatory_analysis_output_protocol": "config/jnu_research_analysis_output_protocol_v1.json",
+  "analysis_trigger_contract": {
+    "status": "MANDATORY_CROSS_SESSION",
+    "triggers": [
+      "分析大阪微型日經期貨",
+      "分析大阪日經",
+      "分析 JNU",
+      "分析JNU",
+      "分析禮拜一的 JNU",
+      "分析禮拜一的JNU",
+      "分析週一的 JNU",
+      "分析週一的JNU",
+      "今晚大阪微型日經怎麼走",
+      "大阪微型日經如何操作",
+      "JNU如何操作"
+    ],
+    "required_action": "Load this cross-session memory, the current authoritative JNU framework, the precision-analysis memory, the precision research preregistration, and the mandatory JNU Research output protocol before producing the analysis.",
+    "user_facing_goal": "Determine the best-supported most likely JNU path and provide a practical conditional operation plan while clearly separating observed evidence, research inference and unvalidated judgment.",
+    "current_or_future_analysis": "Must retrieve fresh public/official market information when the request is time-sensitive.",
+    "unavailable_evidence": "UNKNOWN_OR_UNAVAILABLE_NEVER_GUESSED"
+  },
+  "original_framework_coverage": {
+    "status": "PASS_FULL_ORIGINAL_FRAMEWORK_COVERAGE_IN_JNU_RESEARCH",
+    "audit": "config/jnu_research_framework_coverage_audit_20260926_v1.json",
+    "v1_0_through_v1_9_missing_layer_items": 0,
+    "v1_0_through_v1_9_missing_top_level_keys": 0,
+    "original_nine_layers_retained": true
+  },
+  "repository_design_scope": "JNU_RESEARCH_PRIMARY; MARKET_AI_HUB_DOWNSTREAM_OPTIONAL_ONLY"
 }
