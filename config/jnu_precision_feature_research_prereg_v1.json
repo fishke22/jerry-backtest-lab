@@ -12,7 +12,8 @@
     "untouched_oos_required_for_directional_promotion": true,
     "multiple_testing_accounting_required": true,
     "exact_micro_individual_month_required_for_final_true_target_validation": true,
-    "unavailable_data_is_unavailable_not_neutral": true
+    "unavailable_data_is_unavailable_not_neutral": true,
+    "policy_uncertainty_not_directional_by_itself": true
   },
   "candidates": [
     {
@@ -99,6 +100,23 @@
       "frozen_tests": [
         "Day/night, open, cash-lunch boundary, close and macro-event windows.",
         "Normalize volume, range and spread by time-of-day before comparing signals."
+      ],
+      "directional_vote": false
+    },
+    {
+      "id": "US_EPU_LIQUIDITY_REGIME",
+      "current_role": "LIQUIDITY_RISK_AND_EVIDENCE_QUALITY",
+      "current_use": "CONDITIONAL_CONTEXT_ONLY",
+      "historical_validation": "RESEARCH_EVIDENCE_PRESENT_JNU_DIRECTIONAL_VALUE_UNVALIDATED",
+      "public_sources": [
+        "https://www.jpx.co.jp/derivatives/market-report/futures-options-report/archives/2026.html",
+        "https://kaken.nii.ac.jp/ja/grant/KAKENHI-PROJECT-20H01499/"
+      ],
+      "frozen_tests": [
+        "EPU regime versus Nikkei futures liquidity/illiquidity measures.",
+        "Incremental value beyond VIX, realized volatility and event-day controls.",
+        "Separate trade/tariff and FX-policy uncertainty where reproducible subindices exist.",
+        "Do not infer direction from high EPU alone."
       ],
       "directional_vote": false
     }
