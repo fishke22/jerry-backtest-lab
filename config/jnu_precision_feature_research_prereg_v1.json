@@ -1,0 +1,134 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-26",
+  "status": "PREREGISTERED_JNU_PRECISION_FEATURE_RESEARCH_TRACK",
+  "authoritative_framework": "config/jnu_operational_framework_current_v1_9.json",
+  "companion_memory": "config/jnu_cross_session_precision_analysis_memory_v1.json",
+  "purpose": "Freeze the next evidence tests for JNU precision features without adding directional votes or rescuing terminal-failed families.",
+  "global_rules": {
+    "no_vote_inflation": true,
+    "terminal_failed_family_rescue_prohibited": true,
+    "pit_safe_required": true,
+    "untouched_oos_required_for_directional_promotion": true,
+    "multiple_testing_accounting_required": true,
+    "exact_micro_individual_month_required_for_final_true_target_validation": true,
+    "unavailable_data_is_unavailable_not_neutral": true
+  },
+  "candidates": [
+    {
+      "id": "NIKKEI_BREADTH_CONCENTRATION",
+      "current_role": "OPERATIONAL_CONTEXT_AND_EVIDENCE_QUALITY",
+      "current_use": "ALLOWED_FROM_OFFICIAL_DAILY_SUMMARY_WHEN_AVAILABLE",
+      "historical_validation": "PENDING_RIGHTS_CLEAN_BULK_HISTORY",
+      "public_source": "https://indexes.nikkei.co.jp/en/nkave/archives/summary",
+      "frozen_tests": [
+        "Advance/decline breadth versus next-session JNU return and intraday path.",
+        "Top-4/top-10 contribution concentration versus next-session continuation/reversal.",
+        "Nikkei-versus-TOPIX divergence conditional on breadth."
+      ],
+      "directional_vote": false
+    },
+    {
+      "id": "NIKKEI_225_VI_LOCAL_VOLATILITY",
+      "current_role": "RISK_STATE_AND_CONFIDENCE_MODIFIER",
+      "current_use": "ALLOWED",
+      "historical_validation": "OFFICIAL_DAILY_CSV_AVAILABLE_RESEARCH_NOT_YET_DIRECTIONAL",
+      "public_source": "https://indexes.nikkei.co.jp/nkave/historical/nikkei_stock_average_vi_daily_en.csv",
+      "frozen_tests": [
+        "VI level percentile and one-day delta versus subsequent realized JNU volatility.",
+        "Nikkei return versus VI divergence as a risk-state classifier.",
+        "Incremental value over VIX-only context."
+      ],
+      "directional_vote": false
+    },
+    {
+      "id": "JGB_CURVE_BOJ_SURPRISE",
+      "current_role": "EVENT_AND_CROSS_MARKET_REFINEMENT",
+      "current_use": "JGB_CURVE_ALLOWED_BOJ_SURPRISE_CONDITIONAL",
+      "historical_validation": "MOF_DAILY_CURVE_AVAILABLE_HIGH_FREQUENCY_SURPRISE_REQUIRES_EVENT_DATA",
+      "public_source": "https://www.mof.go.jp/english/policy/jgbs/reference/interest_rate/historical/jgbcme_all.csv",
+      "frozen_tests": [
+        "2Y/10Y/30Y daily changes and 2s10s/10s30s slope versus JNU return/volatility.",
+        "BOJ event windows separated from non-event days.",
+        "No causal claim from daily yield moves alone."
+      ],
+      "directional_vote": false
+    },
+    {
+      "id": "MACRO_SURPRISE_MAGNITUDE",
+      "current_role": "EVENT_STATE_REFINEMENT",
+      "current_use": "ONLY_WHEN_PIT_SAFE_CONSENSUS_IS_AVAILABLE",
+      "historical_validation": "BLOCKED_PIT_CONSENSUS_SOURCE_RIGHTS",
+      "frozen_tests": [
+        "Standardized actual-minus-consensus by release family.",
+        "Separate Japan and U.S. releases.",
+        "No backfilled consensus or post-release revisions."
+      ],
+      "directional_vote": false
+    },
+    {
+      "id": "ORDER_FLOW_MICROPRICE_LIQUIDITY",
+      "current_role": "INTRADAY_CONFIRMATION_AND_EXECUTION_FILTER",
+      "current_use": "UNAVAILABLE_UNLESS_AUTHORIZED_DATA",
+      "historical_validation": "BLOCKED_AUTHORIZED_OSE_TICK_OR_ORDER_BOOK_HISTORY",
+      "source_status": "JPX complete OHLC/1-minute/tick history is charged; trial historical tick data may be available subject to conditions.",
+      "frozen_tests": [
+        "Trade imbalance, limit-order imbalance and spread-scaled imbalance.",
+        "Queue depletion and best-quote depth change.",
+        "Incremental predictive value after controlling for volatility/time-of-day."
+      ],
+      "directional_vote": false
+    },
+    {
+      "id": "MOF_FX_INTERVENTION_REGIME",
+      "current_role": "EVENT_RISK_MODIFIER",
+      "current_use": "ALLOWED_FROM_OFFICIAL_MOF_RECORDS",
+      "historical_validation": "EVENT_STUDY_ALLOWED",
+      "public_source": "https://www.mof.go.jp/english/policy/international_policy/reference/feio/index.html",
+      "frozen_tests": [
+        "Separate confirmed intervention windows from ordinary USDJPY shocks.",
+        "Measure JNU/USDJPY response and persistence after official intervention dates."
+      ],
+      "directional_vote": false
+    },
+    {
+      "id": "SESSION_LIQUIDITY_SEASONALITY",
+      "current_role": "SIGNAL_NORMALIZATION",
+      "current_use": "ALLOWED_WITH_AVAILABLE_INTRADAY_DATA",
+      "historical_validation": "FINAL_EXACT_MICRO_TEST_REQUIRES_AUTHORIZED_MINUTE_OR_TICK_HISTORY",
+      "frozen_tests": [
+        "Day/night, open, cash-lunch boundary, close and macro-event windows.",
+        "Normalize volume, range and spread by time-of-day before comparing signals."
+      ],
+      "directional_vote": false
+    }
+  ],
+  "lower_wick_candidate": {
+    "id": "LOWER_WICK_FAILED_BREAKDOWN_RECLAIM_CONFIRMATION",
+    "status": "RESEARCH_CANDIDATE_NOT_DIRECTIONAL_VOTE",
+    "frozen_definition": {
+      "lower_shadow_gte_body_multiple": 2,
+      "lower_shadow_gte_range_fraction": 0.5,
+      "signal_low_below_previous_low": true,
+      "signal_close_above_previous_close": true,
+      "confirmation": "NEXT_TRADING_DAY_TRADES_ABOVE_SIGNAL_HIGH"
+    },
+    "proxy_evidence": {
+      "source": "Nikkei 225 daily proxy 2008-03-17 to 2024-03-15",
+      "confirmations": 31,
+      "wins_to_next_close": 26,
+      "exploratory_hit_rate": 0.8387,
+      "mean_close_to_entry_return": 0.009611,
+      "status": "EXPLORATORY_ONLY"
+    },
+    "required_promotion_sequence": [
+      "No further wick-threshold tuning.",
+      "True OSE Nikkei 225 mini individual-contract untouched OOS with costs and roll governance.",
+      "Compare incremental edge against generic prior-high breakout baseline.",
+      "Multiple-testing correction and confidence intervals.",
+      "Exact Micro individual-month validation.",
+      "Forward validation before any directional role."
+    ]
+  },
+  "completion_rule": "Absence of authorized or rights-clean source data is a research blocker, not a reason to infer PASS or to create synthetic directional evidence."
+}
