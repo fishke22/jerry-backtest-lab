@@ -34,9 +34,9 @@
         "exact JNU price and path",
         "trade imbalance",
         "spread",
-        "L1/L5/L10 book imbalance",
+        "L1/L5 book imbalance",
         "microprice",
-        "queue/depth interpretation"
+        "queue/depth interpretation from actually observed provider levels only"
       ],
       "confidence_cap": "FRAMEWORK_DEFAULT_LOW_OR_MEDIUM",
       "orderflow_status": "ELIGIBLE_IF_FRESH"
