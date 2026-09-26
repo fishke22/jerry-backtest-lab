@@ -496,5 +496,7 @@
       "Until FiveTickA is live-verified, label L2/microprice/book-imbalance evidence UNAVAILABLE rather than inferring it from L1.",
       "Do not treat current-day tick retrieval as historical OSE tick/L2 availability."
     ]
-  }
+  },
+  "yuanta_remote_access_security": "config/jnu_yuanta_remote_access_security_v1.json",
+  "remote_mobile_exact_feed_rule": "GitHub may store code/deployment configuration but never broker credentials. Password hashes cannot authenticate. Mobile-independent exact Yuanta requires a separately validated persistent trusted Windows runtime plus private read-only endpoint."
 }
