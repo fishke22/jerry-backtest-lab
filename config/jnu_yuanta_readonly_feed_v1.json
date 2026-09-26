@@ -1,5 +1,5 @@
 {
-  "version": "1.1",
+  "version": "1.2",
   "as_of": "2026-09-26",
   "status": "MARKET_AI_HUB_REUSE_EXACT_LIVE_QUOTE_AND_CURRENT_DAY_TICK_VERIFIED_L2_STREAMING_UNVERIFIED",
   "system": "JNU Research",
@@ -103,7 +103,22 @@
     "l2_depth": "UNVERIFIED_ACCOUNT_CALLBACK",
     "futures_quote_com_auth": "VERIFIED",
     "futures_quote_registration": "UNRESOLVED",
-    "streaming_stock_tick": "UNVERIFIED_ACCOUNT_CALLBACK"
+    "streaming_stock_tick": "UNVERIFIED_ACCOUNT_CALLBACK",
+    "stock_tick_subscription_requested_for": [
+      "JNU2612",
+      "JNU2703"
+    ],
+    "five_tick_subscription_requested_for": [
+      "JNU2612",
+      "JNU2703"
+    ],
+    "stock_tick_request_error": null,
+    "five_tick_request_error": null,
+    "live_stock_tick_callbacks": "PENDING_NEXT_OSE_SESSION",
+    "live_five_tick_callbacks": "PENDING_NEXT_OSE_SESSION",
+    "local_watchdog_task": "MARKET_AI_HUB_JNU_Capture_Watchdog"
   },
-  "fallback_protocol": "config/jnu_data_source_fallback_v1.json"
+  "fallback_protocol": "config/jnu_data_source_fallback_v1.json",
+  "free_data_automation": "config/jnu_free_data_acquisition_automation_v1.json",
+  "paid_data_policy": "NO_PAID_DATA"
 }
