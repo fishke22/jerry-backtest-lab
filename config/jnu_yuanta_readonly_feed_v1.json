@@ -1,14 +1,15 @@
 {
-  "version": "1.0",
+  "version": "1.1",
   "as_of": "2026-09-26",
-  "status": "EXACT_LIVE_QUOTE_VERIFIED_CURRENT_DAY_TICK_DETAIL_VERIFIED_L2_STREAMING_AWAITING_LIVE_PROBE",
+  "status": "MARKET_AI_HUB_REUSE_REQUIRED_PARTIAL_REAL_TICK_EVIDENCE_L2_UNVERIFIED",
   "system": "JNU Research",
-  "purpose": "Read-only exact OSE Nikkei 225 Micro Futures market-data bridge using the user's existing Yuanta SPARK API entitlement when available.",
+  "purpose": "Use the user's existing MARKET_AI_HUB Yuanta implementation as the read-only exact JNU data bridge. Do not create a duplicate broker login or credential path in JNU Research.",
   "source_priority": [
-    "EXISTING_SINGLE_OWNER_YUANTA_SPARK_QUOTE_HUB_READ_ONLY",
-    "YUANTA_SPARK_API_AUTHORIZED_OSE_FEED_IF_NO_EXISTING_OWNER_AND_MAINTENANCE_EXPLICITLY_ALLOWED",
-    "JPX_OSE_FREE_TRIAL_IF_SEPARATELY_APPROVED",
-    "PUBLIC_DELAYED_JPX_ONLY_FOR_SANITY_CHECK_NOT_LIVE_ORDER_FLOW"
+    "MARKET_AI_HUB_EXISTING_YUANTA_SINGLE_OWNER_EXACT_FEED",
+    "USER_MOBILE_EXACT_QUOTE_OR_SCREENSHOT_ANCHOR",
+    "APPROVED_FRESH_CLOUD_INDIVIDUAL_CONTRACT_SOURCE",
+    "JPX_DELAYED_EXACT_MICRO_REFERENCE_ONLY",
+    "CLOUD_PROXY_CONTEXT"
   ],
   "instrument": {
     "exchange": "OSE",
@@ -62,13 +63,12 @@
     ]
   },
   "validation_gates": [
-    "Existing single-owner hub is checked before any standalone login attempt.",
-    "Exact JNU individual-month StockCode is dynamically resolved from current Yuanta vendor mapping/resolver.",
-    "Exact live quote has already been verified for OSE market 207 on an exact JNU contract; revalidate contract/session freshness each use.",
-    "GetStkTickDetail has already returned exact JNU current-day ticks; timestamp semantics remain subject to the frozen JNU freshness/evidence gates.",
-    "SubscribeStockTick must still receive matching MarketType=OSE and exact requested StockCode before streaming-tick promotion.",
-    "SubscribeFiveTickA must still return matching exact-contract nonzero depth before L2 promotion.",
-    "No trade/order API call is present in the bridge."
+    "MARKET_AI_HUB owner/recorder is healthy and not duplicated.",
+    "Exact JNU individual-month StockCode is verified.",
+    "Exact quote/tick callback identity matches OSE MarketNo=207 and requested JNU contract.",
+    "Depth may be used only after a real depth callback is observed and fresh.",
+    "Provider timestamps/sequence are captured and pass the selected mode freshness rules.",
+    "No trade/order API call is exposed through the JNU Research path."
   ],
   "jpX_research_result": {
     "permanent_free_realtime_l2_found": false,
@@ -84,5 +84,26 @@
     "five_ten_level_depth": "UNVERIFIED_ACCOUNT_CALLBACK",
     "streaming_stock_tick": "UNVERIFIED_ACCOUNT_CALLBACK"
   },
-  "single_owner_rule": "Never create a second Yuanta broker login while an existing verified quote owner is RUNNING/DEGRADED with startup_stage RUNNING. Consume its local snapshot/Parquet/control path read-only instead."
+  "single_owner_rule": "Never create a second Yuanta broker login while an existing verified quote owner is RUNNING/DEGRADED with startup_stage RUNNING. Consume its local snapshot/Parquet/control path read-only instead.",
+  "local_implementation": {
+    "root": "D:\\MARKET_AI_HUB",
+    "runtime": "src/market_ai_hub/integrations/yuanta/spark_runtime.py",
+    "recorder": "src/market_ai_hub/integrations/yuanta/live_quote_recorder.py",
+    "exact_tick_contract": "docs/architecture/v2-tick-detail-source-contract.md",
+    "credential_store": "Windows Credential Manager through MARKET_AI_HUB credential_store.py",
+    "latest_snapshot": "data/live/yuanta/latest.json",
+    "status_snapshot": "data/live/yuanta/status.json",
+    "rule": "Reuse existing single owner. No parallel JNU Research login."
+  },
+  "observed_state_20260926": {
+    "market_no": 207,
+    "exact_contract_example": "JNU2612",
+    "spark_securities_login": "VERIFIED MsgCode=0001",
+    "spark_ose_subscription": "ACCEPTED_NO_CALLBACK_CONTINUOUS_ENTITLEMENT_UNPROVEN",
+    "exact_tick_detail": "ONE_AUTHORIZED_REAL_GetStkTickDetail_BATCH_CAPTURED_2026_09_25",
+    "l2_depth": "UNVERIFIED_UNTIL_REAL_DEPTH_CALLBACK",
+    "futures_quote_com_auth": "VERIFIED",
+    "futures_quote_registration": "UNRESOLVED"
+  },
+  "fallback_protocol": "config/jnu_data_source_fallback_v1.json"
 }
