@@ -13,7 +13,9 @@
     "multiple_testing_accounting_required": true,
     "exact_micro_individual_month_required_for_final_true_target_validation": true,
     "unavailable_data_is_unavailable_not_neutral": true,
-    "policy_uncertainty_not_directional_by_itself": true
+    "policy_uncertainty_not_directional_by_itself": true,
+    "named_candlestick_pattern_not_directional_vote": true,
+    "acceptance_thresholds_must_be_preregistered": true
   },
   "candidates": [
     {
@@ -117,6 +119,58 @@
         "Incremental value beyond VIX, realized volatility and event-day controls.",
         "Separate trade/tariff and FX-policy uncertainty where reproducible subindices exist.",
         "Do not infer direction from high EPU alone."
+      ],
+      "directional_vote": false
+    },
+    {
+      "id": "AUCTION_PROFILE_ACCEPTANCE_STRUCTURE",
+      "current_role": "PATH_STATE_AND_EVIDENCE_QUALITY",
+      "current_use": "OPERATIONAL_CONTEXT_WHEN_VALID_VOLUME_AT_PRICE_EXISTS",
+      "historical_validation": "JNU_SPECIFIC_OOS_PENDING_AUTHORIZED_INTRADAY_DATA",
+      "frozen_tests": [
+        "POC/VAH/VAL/HVN/LVN reaction conditioned on regime",
+        "acceptance versus rejection after structural breaks",
+        "value/box migration persistence",
+        "incremental value beyond VWAP/prior-high-low baselines"
+      ],
+      "directional_vote": false
+    },
+    {
+      "id": "OPENING_RANGE_INITIAL_BALANCE",
+      "current_role": "INTRADAY_PATH_AND_SESSION_STRUCTURE",
+      "current_use": "OPERATIONAL_CONTEXT_RESEARCH_CANDIDATE",
+      "historical_validation": "EXTERNAL_INDEX_FUTURES_EVIDENCE_PRESENT_JNU_OOS_PENDING",
+      "frozen_tests": [
+        "5/15/30/60-minute OSE opening range without post-hoc window selection",
+        "Japanese cash-opening range alignment",
+        "first break acceptance/re-entry",
+        "incremental value after regime/volatility controls"
+      ],
+      "directional_vote": false
+    },
+    {
+      "id": "MULTITIMEFRAME_NORMALIZED_BAR_STATE",
+      "current_role": "KLINE_STRUCTURE_NORMALIZATION",
+      "current_use": "ALLOWED_CONTEXT_FEATURE",
+      "historical_validation": "DIRECTIONAL_VALUE_UNVALIDATED",
+      "frozen_tests": [
+        "body/range and wick fractions normalized by volatility",
+        "multi-timeframe alignment/conflict",
+        "compression/expansion conditioned on session and volume",
+        "no named-pattern standalone test rescue"
+      ],
+      "directional_vote": false
+    },
+    {
+      "id": "SIGNED_SEMIVARIANCE_JUMP_RISK",
+      "current_role": "VOLATILITY_AND_RISK_STATE",
+      "current_use": "ALLOWED_WHEN_INTRADAY_DATA_EXIST",
+      "historical_validation": "EXTERNAL_EVIDENCE_STRONG_JNU_INCREMENTAL_TEST_PENDING",
+      "frozen_tests": [
+        "up/down semivariance versus next-session realized volatility",
+        "signed jump state versus subsequent volatility",
+        "incremental value beyond existing HAR-RSV/Nikkei VI",
+        "no direct direction vote"
       ],
       "directional_vote": false
     }
