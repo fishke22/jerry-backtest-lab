@@ -42,9 +42,10 @@ The local implementation already has:
 - Windows Credential Manager integration;
 - single-owner/fail-closed recorder controls;
 - typed `GetStkTickDetail` request/callback tracing;
+- exact OSE Micro live quote evidence: `JNUPM2612`, market 207, 8 matching `SubscribeWatchlistAll` callbacks on 2026-09-24;
 - one authorized real JNU2612 tick-detail capture from 2026-09-25.
 
-That real batch proves exact-contract tick-detail retrieval can work. It does **not** prove continuous realtime depth. L2 remains unavailable until a real depth callback is observed.
+The 2026-09-24 callbacks prove exact-contract live quote delivery. The real tick-detail batch proves bounded exact-contract current-day tick retrieval. Neither proves `SubscribeFiveTickA` depth or `SubscribeStockTick` streaming-tick entitlement. L2 remains unavailable until a real matching depth callback is observed.
 
 ## Data classification
 
