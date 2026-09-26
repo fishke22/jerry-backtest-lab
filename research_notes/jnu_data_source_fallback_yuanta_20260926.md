@@ -20,9 +20,9 @@ Observed local evidence as of 2026-09-26:
 - OSE market number = 207.
 - Exact JNU contract syntax is validated as `JNU\d{4}`; `JNU2612` is an observed exact contract example.
 - SPARK securities login has been accepted with MsgCode `0001`.
-- OSE JNU subscription requests have been accepted but continuous streaming callback entitlement is not yet proven.
+- Exact OSE Micro live quote delivery is verified: `JNUPM2612` (market 207) produced 8 exact-match `SubscribeWatchlistAll` callbacks on 2026-09-24.
 - One authorized real exact-contract `GetStkTickDetail` batch for JNU2612 was captured on 2026-09-25.
-- Continuous L2/depth is not considered available until a real depth callback is observed.
+- `SubscribeFiveTickA` L2/depth and `SubscribeStockTick` streaming ticks are not considered available until their own exact-contract live callbacks are observed.
 - Trading/order capability remains prohibited.
 
 Therefore JNU Research must reuse MARKET_AI_HUB's single-owner Yuanta lifecycle and must not create a second broker login.
