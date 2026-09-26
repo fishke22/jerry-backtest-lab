@@ -40,6 +40,7 @@
     "Read config/jnu_cross_session_precision_analysis_memory_v1.json.",
     "Read config/jnu_precision_feature_research_prereg_v1.json and respect validation status/prohibited-family rules.",
     "Use current web/official data when the requested analysis is current or future-looking.",
+    "If the authorized local Yuanta exact JNU feed is reachable through the connected local tool, read it before relying on public delayed/proxy JNU prices; never create a second broker owner.",
     "Select and disclose the JNU data-source fallback mode before using current-market evidence.",
     "Distinguish exact JNU evidence from Nikkei mini/cash/proxy evidence.",
     "Apply all nine authoritative framework layers and all mandatory precision checks whose data are available.",
@@ -57,5 +58,7 @@
     "path": "D:\\MARKET_AI_HUB",
     "role": "Optional authorized local exact-data bridge; not the JNU Research subject",
     "rule": "Reuse its single-owner Yuanta implementation when reachable; never require it for mobile analysis."
-  }
+  },
+  "exact_data_feed": "config/jnu_yuanta_readonly_feed_v1.json",
+  "exact_data_capability_evidence": "config/jnu_yuanta_feed_capability_evidence_20260926_v1.json"
 }
