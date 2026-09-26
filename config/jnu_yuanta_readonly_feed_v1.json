@@ -46,10 +46,9 @@
       "InOutFlag"
     ],
     "depth": [
-      "bid_price_1_to_10",
-      "bid_size_1_to_10",
-      "ask_price_1_to_10",
-      "ask_size_1_to_10"
+      "best_bid_price_and_size_levels_1_to_5",
+      "best_ask_price_and_size_levels_1_to_5",
+      "deeper_levels_only_if_the_installed_provider_callback_explicitly_returns_and_validates_them"
     ],
     "derived": [
       "spread",
@@ -57,7 +56,7 @@
       "microprice",
       "book_imbalance_l1",
       "book_imbalance_l5",
-      "book_imbalance_l10",
+      "deeper_book_imbalance_only_if_provider_depth_is_verified",
       "trade_delta",
       "trade_imbalance"
     ]
@@ -66,7 +65,7 @@
     "MARKET_AI_HUB owner/recorder is healthy and not duplicated.",
     "Exact JNU individual-month StockCode is verified.",
     "Exact quote/tick callback identity matches OSE MarketNo=207 and requested JNU contract.",
-    "Depth may be used only after a real depth callback is observed and fresh.",
+    "Depth may be used only after a real SubscribeFiveTickA callback is observed and fresh; assume five levels from public documentation, and enable deeper levels only with explicit runtime evidence.",
     "Provider timestamps/sequence are captured and pass the selected mode freshness rules.",
     "No trade/order API call is exposed through the JNU Research path."
   ],
