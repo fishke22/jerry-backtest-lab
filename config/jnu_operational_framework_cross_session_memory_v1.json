@@ -445,10 +445,11 @@
       "大阪微型日經如何操作",
       "JNU如何操作"
     ],
-    "required_action": "Load this cross-session memory, the current authoritative JNU framework, the precision-analysis memory, the precision research preregistration, and the mandatory JNU Research output protocol before producing the analysis.",
+    "required_action": "Load this cross-session memory, the current authoritative JNU framework, precision-analysis memory, precision research preregistration, data-source fallback protocol, and mandatory JNU Research output protocol before producing the analysis.",
     "user_facing_goal": "Determine the best-supported most likely JNU path and provide a practical conditional operation plan while clearly separating observed evidence, research inference and unvalidated judgment.",
     "current_or_future_analysis": "Must retrieve fresh public/official market information when the request is time-sensitive.",
-    "unavailable_evidence": "UNKNOWN_OR_UNAVAILABLE_NEVER_GUESSED"
+    "unavailable_evidence": "UNKNOWN_OR_UNAVAILABLE_NEVER_GUESSED",
+    "local_unavailable_rule": "Do not require the user to reconnect a local PC. Automatically fall back to cloud/public/plugin sources; optionally use a current user-supplied JNU quote/screenshot as an exact price anchor."
   },
   "original_framework_coverage": {
     "status": "PASS_FULL_ORIGINAL_FRAMEWORK_COVERAGE_IN_JNU_RESEARCH",
@@ -457,5 +458,22 @@
     "v1_0_through_v1_9_missing_top_level_keys": 0,
     "original_nine_layers_retained": true
   },
-  "repository_design_scope": "JNU_RESEARCH_PRIMARY; MARKET_AI_HUB_DOWNSTREAM_OPTIONAL_ONLY"
+  "repository_design_scope": "JNU_RESEARCH_PRIMARY; MARKET_AI_HUB_DOWNSTREAM_OPTIONAL_ONLY",
+  "data_source_fallback_protocol": "config/jnu_data_source_fallback_v1.json",
+  "yuanta_exact_data_bridge": "config/jnu_yuanta_readonly_feed_v1.json",
+  "data_mode_rule": {
+    "status": "MANDATORY_BEFORE_EVERY_CURRENT_OR_FORWARD_JNU_ANALYSIS",
+    "modes": [
+      "A_LOCAL_EXACT_FULL",
+      "B_LOCAL_EXACT_TICK_ONLY",
+      "C_MOBILE_MANUAL_EXACT_ANCHOR",
+      "D_MOBILE_CLOUD_PROXY_ONLY",
+      "E_INSUFFICIENT_DATA_ABSTAIN"
+    ],
+    "rule": "Select the highest eligible mode before analysis. Mobile/local unavailability must not block best-effort analysis; degrade automatically and disclose the mode.",
+    "local_owner": "D:\\MARKET_AI_HUB single-owner Yuanta recorder/runtime when reachable",
+    "no_double_login": true,
+    "no_l2_without_live_depth_callback": true,
+    "mobile_cloud_fallback": true
+  }
 }
