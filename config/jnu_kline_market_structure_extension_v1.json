@@ -1,0 +1,103 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-26",
+  "status": "MANDATORY_JNU_KLINE_MARKET_STRUCTURE_EXTENSION",
+  "system": "JNU Research",
+  "authoritative_framework": "config/jnu_operational_framework_current_v1_9.json",
+  "purpose": "Make K-line analysis explicit, quantitative and session-aware without turning visual candlestick names into unvalidated directional alpha.",
+  "principle": "K-line information is important as a compressed representation of auction/path state, but named candlestick patterns are not trusted by themselves. Use normalized structure, location, volume, acceptance/rejection, session and multi-timeframe context.",
+  "modules": [
+    {
+      "id": "AUCTION_PROFILE_ACCEPTANCE_STRUCTURE",
+      "priority": "HIGH",
+      "role": "PATH_STATE_AND_EVIDENCE_QUALITY",
+      "mandatory_checks": [
+        "trend versus balance/box regime",
+        "prior and developing POC when volume-at-price is available",
+        "VAH/VAL when a rights-clean volume-at-price profile is available",
+        "HVN/LVN and thin/accepted price zones when available",
+        "value migration higher/lower/overlap",
+        "Touch != Break != Acceptance",
+        "false break / rejection back into prior value or box",
+        "box migration after sustained acceptance outside the prior range"
+      ],
+      "operational_definitions": {
+        "touch": "Price reaches a reference level without sufficient evidence of persistence beyond it.",
+        "break": "Price trades beyond a reference level; a break alone is not acceptance.",
+        "acceptance": "Persistence beyond a reference level supported by time/closed bars and, when available, volume/participation. Exact thresholds must be preregistered per data frequency rather than chosen after the fact.",
+        "rejection": "Price trades beyond a reference level but returns into the prior value/box without sustained acceptance.",
+        "box_migration": "A prior balance area is replaced by a new accepted range after sustained trade outside the old box."
+      },
+      "directional_vote": false,
+      "data_boundary": "True volume profile requires actual volume-at-price/tick information. OHLC-derived profile is a proxy and must be labeled PROXY_PROFILE."
+    },
+    {
+      "id": "OPENING_RANGE_INITIAL_BALANCE",
+      "priority": "HIGH",
+      "role": "INTRADAY_PATH_AND_SESSION_STRUCTURE",
+      "mandatory_checks": [
+        "OSE session opening range high/low/mid",
+        "Japanese cash-market opening range high/low/mid",
+        "opening-range width normalized by recent intraday volatility/ATR",
+        "first break direction",
+        "hold/acceptance versus immediate re-entry",
+        "range extension above/below opening range",
+        "relationship to prior day high/low, overnight high/low, VWAP and value area"
+      ],
+      "research_boundary": "External index-futures research supports opening-range information, but JNU-specific directional promotion requires preregistered OSE OOS/forward validation.",
+      "directional_vote": false
+    },
+    {
+      "id": "MULTITIMEFRAME_NORMALIZED_BAR_STATE",
+      "priority": "HIGH",
+      "role": "KLINE_STRUCTURE_NORMALIZATION",
+      "mandatory_checks": [
+        "5m/15m/60m/session/daily structure when data permit",
+        "body/range ratio",
+        "upper-wick/range and lower-wick/range",
+        "close location value (CLV)",
+        "range normalized by ATR or session realized volatility",
+        "volume normalized by time-of-day baseline when available",
+        "inside/outside range state",
+        "compression versus expansion",
+        "alignment or conflict between lower and higher timeframe structure"
+      ],
+      "rule": "Do not treat named candlestick labels as directional alpha. Describe the bar numerically and condition it on location/regime.",
+      "directional_vote": false
+    },
+    {
+      "id": "SIGNED_SEMIVARIANCE_JUMP_RISK",
+      "priority": "MEDIUM_HIGH",
+      "role": "VOLATILITY_AND_RISK_STATE",
+      "mandatory_checks": [
+        "upside versus downside realized semivariance when intraday data permit",
+        "large signed intraday jumps relative to local volatility",
+        "negative-jump clustering / downside-volatility dominance",
+        "interaction with Nikkei 225 VI and HAR-RSV state"
+      ],
+      "rationale": "Signed realized variation and jump sign can contain incremental information for future volatility; use for risk/confidence and stop/target scaling, not a direct direction vote.",
+      "directional_vote": false
+    }
+  ],
+  "prohibited_shortcuts": [
+    "Do not assign a bullish/bearish vote solely because a candle is called doji, hammer, engulfing, morning star or similar.",
+    "Do not compute POC/VAH/VAL from invented volume-at-price data.",
+    "Do not call a one-tick excursion a breakout.",
+    "Do not call a breakout accepted without persistence evidence.",
+    "Do not tune acceptance/bar thresholds after seeing outcome data."
+  ],
+  "output_requirements": [
+    "State current trend/box regime.",
+    "State whether price is touching, breaking, accepting or rejecting key structure.",
+    "State opening-range/initial-balance condition when intraday data are available.",
+    "State multi-timeframe agreement/conflict.",
+    "State whether K-line observations are exact-volume/tick based or OHLC/proxy based."
+  ],
+  "research_sources": [
+    "Blume, Easley & O'Hara (1994), Journal of Finance: volume contains information not in price alone.",
+    "Holmberg, Lönnbark & Lundström (2013), Finance Research Letters: opening-range breakout evidence in futures.",
+    "Tsai et al. (2019), IEEE Access: opening/closing underlying-market periods concentrate volume/return fluctuations across index futures.",
+    "Patton & Sheppard (2015), Review of Economics and Statistics: signed realized semivariance/jumps improve volatility forecasts.",
+    "Candlestick evidence is mixed; recent out-of-sample studies do not support treating named candlestick patterns as stable standalone alpha."
+  ]
+}
