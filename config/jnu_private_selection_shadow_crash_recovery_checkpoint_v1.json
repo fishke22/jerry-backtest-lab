@@ -1,0 +1,52 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-26",
+  "status": "CI_PASS_SHADOW_CRASH_RECOVERY_JOURNAL_REPLAY_PRODUCTION_UNCHANGED",
+  "stage_name": "PRIVATE_SELECTION_TRANSACTION_SHADOW_CRASH_RECOVERY_JOURNAL_REPLAY_SYNTHETIC_ONLY",
+  "authoritative_framework": "config/jnu_operational_framework_current_v1_9.json",
+  "protocol": "config/jnu_private_selection_shadow_crash_recovery_protocol_v1.json",
+  "runtime": "scripts/jnu_private_selection_shadow_crash_recovery_v1.py",
+  "selftest_script": "scripts/selftest_jnu_private_selection_shadow_crash_recovery_v1.py",
+  "design_note": "research_notes/jnu_private_selection_shadow_crash_recovery_20260926.md",
+  "implementation_commits": [
+    "c0d919247caf90f65c8fb7a69138a289d3431df5",
+    "45fa161af4105e438736a2cb222b63c648f3de9a",
+    "6a4fb7202d69ac389cc065ff4a6bf79cb6f1121c",
+    "b08fe05a032c6e132186b18039baedb9c87bad4c"
+  ],
+  "integrity_run": 36222853289,
+  "actionlint_run": 36222853302,
+  "selftest": "PASS_88_OF_88",
+  "crash_boundaries_exercised": 14,
+  "frozen_transaction_phases": 7,
+  "recovery_decisions": [
+    "RESUME_FORWARD",
+    "ROLLBACK_TO_PREIMAGE",
+    "FINALIZE_ALREADY_COMPLETE"
+  ],
+  "journal_guarantees": {
+    "transaction_lineage_binding": true,
+    "monotonic_contiguous_sequence": true,
+    "parent_hash_chain": true,
+    "tamper_rejection": true,
+    "replay_detection": true,
+    "stale_same_lineage_lock_recovery": true,
+    "foreign_lock_fail_closed": true,
+    "checksum_verified_preimage_restore": true,
+    "exactly_once_final_receipt": true
+  },
+  "safety": {
+    "production_state_mutated": false,
+    "real_commit_capability": false,
+    "real_apply_capability": false,
+    "broker_login_used": false,
+    "trading_permission_used": false,
+    "credentials_connected": false,
+    "kms_api_called": false,
+    "real_entitlement_connected": false,
+    "public_real_forecasts": 0,
+    "public_real_outcomes": 0
+  },
+  "next_stage": "NO_FURTHER_SYNTHETIC_CONSTRUCTION_STAGE_REQUIRED",
+  "next_action": "Proceed only through external evidence/data entitlement and preregistered research/forward-validation gates. Do not extend the synthetic construction chain without a concrete newly discovered implementation defect or safety requirement."
+}
