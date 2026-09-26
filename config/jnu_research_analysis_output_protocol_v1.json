@@ -1,0 +1,104 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-26",
+  "status": "MANDATORY_JNU_RESEARCH_ANALYSIS_OUTPUT_PROTOCOL",
+  "applies_when": [
+    "User asks to analyze Osaka Nikkei Micro futures",
+    "User asks to analyze JNU",
+    "User asks for Monday/tonight/today JNU outlook",
+    "User asks how to operate/trade Osaka Nikkei Micro futures"
+  ],
+  "mandatory_inputs": [
+    "authoritative JNU framework",
+    "cross-session JNU memory",
+    "precision-analysis memory",
+    "current official/public market information for time-sensitive analysis",
+    "exact JNU evidence when available",
+    "proxy evidence only when clearly labeled"
+  ],
+  "mandatory_sections": [
+    {
+      "id": "CURRENT_STATE",
+      "content": [
+        "exact contract/session/time context",
+        "current price/location if available",
+        "data freshness and unavailable inputs"
+      ]
+    },
+    {
+      "id": "MOST_LIKELY_BIAS",
+      "content": [
+        "BULLISH/BEARISH/NEUTRAL_CONDITIONAL bias",
+        "LOW or MEDIUM confidence only under current governance",
+        "plain-language reason hierarchy"
+      ]
+    },
+    {
+      "id": "EXPECTED_PATH",
+      "content": [
+        "base-case path",
+        "secondary scenario",
+        "what would invalidate the base case",
+        "flip conditions"
+      ]
+    },
+    {
+      "id": "NINE_LAYER_AUDIT",
+      "content": [
+        "Market Regime",
+        "Event Risk State",
+        "Cross-Market Information",
+        "Dynamic Price Discovery",
+        "Intraday Price Path / Rejection",
+        "Positioning / Derivatives",
+        "Dynamic SQ Bias",
+        "Evidence Fusion",
+        "Decision Output"
+      ]
+    },
+    {
+      "id": "PRECISION_LAYER",
+      "content": [
+        "breadth/concentration",
+        "Nikkei 225 VI",
+        "JGB/BOJ surprise",
+        "macro surprise magnitude",
+        "order-flow/microprice if authorized",
+        "MOF intervention regime",
+        "session/liquidity normalization",
+        "policy-uncertainty liquidity regime"
+      ]
+    },
+    {
+      "id": "KEY_LEVELS",
+      "content": [
+        "support",
+        "resistance",
+        "breakout/rejection levels",
+        "VWAP or relevant session anchors when available"
+      ]
+    },
+    {
+      "id": "OPERATION_PLAN",
+      "content": [
+        "preferred entry trigger, not blind market entry",
+        "stop/invalidation level or explicit exit condition",
+        "first target and follow-through target or trailing-exit rule",
+        "risk/reward logic where price data permits",
+        "no-trade conditions",
+        "what to do if the initial direction is wrong"
+      ]
+    },
+    {
+      "id": "EVIDENCE_DISCIPLINE",
+      "content": [
+        "separate observed fact, official data, research inference, and model judgment",
+        "label scenario weights non-calibrated unless a validated calibrated model exists",
+        "never let terminal-failed families vote",
+        "never let research candidates masquerade as validated alpha"
+      ]
+    }
+  ],
+  "user_facing_goal": "Give the user the best-supported practical view of the most likely JNU path and a conditional operation plan while showing exactly what would make the view wrong.",
+  "prohibition": "Do not claim guaranteed profit, certain direction, or calibrated win probability without validated calibration."
+}
