@@ -1,0 +1,72 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-26",
+  "status": "EXACT_JNU_LIVE_QUOTE_AND_CURRENT_DAY_TICK_DETAIL_VERIFIED_L2_STREAMING_UNVERIFIED",
+  "system": "JNU Research",
+  "source_type": "LOCAL_YUANTA_SPARK_AUTHORIZED_ACCOUNT_EVIDENCE",
+  "evidence_summary": {
+    "exact_live_quote": {
+      "status": "VERIFIED",
+      "date": "2026-09-24",
+      "market_no": 207,
+      "representation": "OSE_NIKKEI225_MICRO_NIGHT",
+      "measured_contract": "JNUPM2612",
+      "callback_type": "SubscribeWatchlistAll",
+      "matching_callbacks": 8,
+      "note": "Direct target representation. Contract code is evidence for that date only and must never be hardcoded."
+    },
+    "current_day_tick_detail": {
+      "status": "VERIFIED_DATA_RETURN_TIMESTAMP_BASIS_NOT_YET_RUNTIME_PROMOTED",
+      "date": "2026-09-25",
+      "market_no": 207,
+      "measured_contract": "JNU2612",
+      "api_method": "GetStkTickDetail",
+      "rows_returned": 20,
+      "raw_clock_range": "15:39:47-15:45:01",
+      "note": "Confirms exact-contract current-day tick retrieval. The historical C2.2 capture was deliberately not retroactively promoted to C2.3 typed runtime timestamp evidence."
+    },
+    "five_ten_level_depth": {
+      "status": "API_DOCUMENTED_ACCOUNT_LIVE_CALLBACK_UNVERIFIED",
+      "api_method": "SubscribeFiveTickA",
+      "documented_levels": "1-10 via FiveTick index flags",
+      "promotion_gate": "Must receive matching OSE market 207 + exact JNU contract callbacks during an active OSE session."
+    },
+    "streaming_ticks": {
+      "status": "API_DOCUMENTED_ACCOUNT_LIVE_CALLBACK_UNVERIFIED",
+      "api_method": "SubscribeStockTick",
+      "promotion_gate": "Must receive matching OSE market 207 + exact JNU contract callbacks during an active OSE session."
+    }
+  },
+  "existing_single_owner": {
+    "observed_on": "2026-09-26",
+    "provider": "SPARK_SECURITIES_PROFILE",
+    "status": "RUNNING_STARTUP_STAGE_WITH_WEEKEND_NO_CALLBACK_DEGRADED",
+    "login_msg_code": "0001",
+    "subscriptions": 42,
+    "restart_policy": "MANUAL_SINGLE_OWNER",
+    "rule": "JNU Research must not create a second broker owner when this or another verified owner exists. Prefer read-only consumption of the existing hub."
+  },
+  "exact_contract_rules": {
+    "day_format_observed": "JNU<YYMM>",
+    "night_format_observed": "JNUPM<YYMM>",
+    "examples_are_not_permanent": [
+      "JNU2612",
+      "JNUPM2612"
+    ],
+    "resolution": "Resolve dynamically from the current Yuanta FunctionList / verified contract resolver."
+  },
+  "historical_data_boundary": {
+    "yuanta_get_kline_ose_history": false,
+    "get_stk_tick_detail_scope": "CURRENT_DAY_ONLY",
+    "permanent_free_historical_l2_found": false,
+    "jpX_historical_tick_and_full_order": "PAID_EXCEPT_CONDITIONAL_TRIAL"
+  },
+  "safety": {
+    "quote_only": true,
+    "orders": false,
+    "account_query": false,
+    "positions": false,
+    "balances": false,
+    "secrets_persisted": false
+  }
+}
