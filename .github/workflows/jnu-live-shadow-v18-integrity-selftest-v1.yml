@@ -159,6 +159,10 @@ on:
       - "skills/mobile-research-orchestrator/SKILL.md"
       - "skills/jnu-yuanta-readonly-feed/SKILL.md"
       - "config/jnu_yuanta_readonly_feed_v1.json"
+      - "config/jnu_yuanta_remote_access_security_v1.json"
+      - "skills/jnu-yuanta-secure-remote/SKILL.md"
+      - "research_notes/jnu_yuanta_secure_remote_access_20260926.md"
+      - "config/jnu_research_final_completion_seal_20260926_v1.json"
       - "config/jnu_yuanta_feed_capability_evidence_20260926_v1.json"
       - "scripts/selftest_jnu_yuanta_data_source_contract_v1.py"
       - "research_notes/jnu_data_source_fallback_yuanta_20260926.md"
@@ -241,6 +245,8 @@ jobs:
           python -m json.tool config/jnu_research_framework_coverage_audit_20260926_v1.json >/dev/null
           python -m json.tool config/jnu_research_analysis_output_protocol_v1.json >/dev/null
           python -m json.tool config/jnu_yuanta_readonly_feed_v1.json >/dev/null
+          python -m json.tool config/jnu_yuanta_remote_access_security_v1.json >/dev/null
+          python -m json.tool config/jnu_research_final_completion_seal_20260926_v1.json >/dev/null
           python -m json.tool config/jnu_yuanta_feed_capability_evidence_20260926_v1.json >/dev/null
           python -m json.tool config/jnu_data_source_fallback_v1.json >/dev/null
 
