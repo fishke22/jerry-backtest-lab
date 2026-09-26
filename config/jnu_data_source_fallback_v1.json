@@ -13,10 +13,12 @@
       "ose_market_no": 207,
       "exact_contract_example": "JNU2612",
       "securities_spark_login": "VERIFIED_ACCEPTED_MSGCODE_0001",
-      "ose_subscription": "ACCEPTED_NO_STREAM_CALLBACK_ENTITLEMENT_NOT_PROVEN",
+      "ose_subscription": "LIVE_CALLBACK_VERIFIED_2026_09_24_JNUPM2612_8_MATCHING_CALLBACKS",
       "exact_tick_detail": "ONE_AUTHORIZED_REAL_GetStkTickDetail_BATCH_CAPTURED_ON_2026_09_25",
-      "l2_depth": "NOT_YET_PROVEN_BY_LIVE_CALLBACK",
-      "production_orders": "PROHIBITED"
+      "l2_depth": "UNVERIFIED_ACCOUNT_CALLBACK",
+      "production_orders": "PROHIBITED",
+      "exact_live_quote": "VERIFIED_DIRECT_TARGET_REPRESENTATION",
+      "streaming_stock_tick": "UNVERIFIED_ACCOUNT_CALLBACK"
     }
   },
   "modes": [
