@@ -1106,5 +1106,17 @@
   },
   "precision_analysis_memory": "config/jnu_cross_session_precision_analysis_memory_v1.json",
   "precision_feature_research_preregistration": "config/jnu_precision_feature_research_prereg_v1.json",
-  "internal_construction_status": "COMPLETE_WITH_EXTERNAL_EVIDENCE_AND_FORWARD_VALIDATION_BLOCKERS"
+  "internal_construction_status": "COMPLETE_WITH_EXTERNAL_EVIDENCE_AND_FORWARD_VALIDATION_BLOCKERS",
+  "system_name": "JNU Research",
+  "system_identity": "config/jnu_research_system_identity_v1.json",
+  "framework_coverage_audit": "config/jnu_research_framework_coverage_audit_20260926_v1.json",
+  "mandatory_analysis_output_protocol": "config/jnu_research_analysis_output_protocol_v1.json",
+  "repository_design_scope": "JNU_RESEARCH_PRIMARY_MARKET_AI_HUB_OPTIONAL_DOWNSTREAM_ONLY",
+  "trigger_rule": "For any user request to analyze Osaka Nikkei Micro/JNU, Monday JNU, tonight JNU, or JNU operation, first load the cross-session memory, authoritative framework, precision memory, preregistration, and JNU Research output protocol.",
+  "original_framework_coverage": {
+    "status": "PASS_FULL_ORIGINAL_FRAMEWORK_COVERAGE_IN_JNU_RESEARCH",
+    "original_nine_layers_retained": true,
+    "historical_missing_layer_items": 0,
+    "historical_missing_top_level_keys": 0
+  }
 }
