@@ -1,0 +1,54 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-26",
+  "status": "FREE_AND_EXISTING_ENTITLEMENT_ONLY",
+  "user_policy": "Paid market-data products are explicitly declined. JNU Research must not recommend, purchase, or depend on paid OSE/JNU intraday, tick, L2, full-order, or historical datasets unless the user later explicitly reverses this policy.",
+  "allowed_sources": [
+    "User's existing Yuanta API market-data entitlement through D:\\MARKET_AI_HUB",
+    "Free official JPX/Nikkei/BOJ/MOF sources",
+    "Free tiers/connected plugins already available to the user",
+    "Conditionally free official trials only if no payment obligation is created and the user separately chooses to use them"
+  ],
+  "prohibited_sources": [
+    "Paid JPX/OSE historical tick data",
+    "Paid JPX/OSE full-order data",
+    "Paid real-time market-data subscriptions",
+    "Any vendor requiring payment solely to support JNU Research"
+  ],
+  "local_automation": {
+    "host": "KO-HONG-HSUAN",
+    "root": "D:\\MARKET_AI_HUB",
+    "recorder": "src/market_ai_hub/integrations/yuanta/live_quote_recorder.py",
+    "config": "config/yuanta_live_recorder.yaml",
+    "watchdog_script": "scripts/watch_yuanta_live_recorder.ps1",
+    "scheduled_task": "MARKET_AI_HUB Yuanta Recorder Watchdog",
+    "cadence": "EVERY_10_MINUTES_WHEN_USER_SESSION_AVAILABLE",
+    "subscriptions": {
+      "jnu_microstructure": true,
+      "market_no": 207,
+      "stock_tick": true,
+      "five_tick": true,
+      "contracts": 2
+    },
+    "storage": [
+      "data/live/yuanta/latest.json",
+      "data/live/yuanta/status.json",
+      "data/live/yuanta/parquet/YYYY-MM-DD/*.parquet"
+    ],
+    "behavior": [
+      "SAFE_DEFAULT_OWNER_HEALTHY/DEGRADED => no-op",
+      "BLOCKED_RUNTIME_BUILD_STALE => safe stop then start",
+      "SAFE_TO_START => start",
+      "unknown/duplicate-owner risk => fail closed"
+    ]
+  },
+  "collection_semantics": {
+    "exact_intraday": "Collect automatically from Yuanta callbacks when actually received.",
+    "streaming_tick": "Collect automatically from SubscribeStockTick when callback entitlement is present.",
+    "l2_depth": "Collect automatically from SubscribeFiveTickA when callback entitlement is present; public docs guarantee best-five class, deeper levels only if actually observed.",
+    "current_day_tick_detail": "Use bounded GetStkTickDetail only as a controlled fallback/research measurement; it is not a substitute for continuous streaming history.",
+    "raw_paid_data": "NEVER_ACQUIRE_UNDER_CURRENT_USER_POLICY"
+  },
+  "cloud_monitoring_rule": "A ChatGPT condition-watch checks local host availability, recorder health and newly observed exact-JNU tick/depth capability. Raw broker data remains local and is never committed to the public GitHub repository.",
+  "mobile_fallback": "If local host is offline, continue JNU analysis using the existing cloud/proxy fallback ladder; do not block the answer."
+}
