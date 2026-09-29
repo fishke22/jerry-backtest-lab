@@ -1,0 +1,148 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "JNU Three Engine Analysis Contract v1",
+  "type": "object",
+  "required": [
+    "contract_version",
+    "analysis_id",
+    "engine",
+    "generated_at",
+    "target",
+    "data_as_of",
+    "market_regime",
+    "directional_bias",
+    "confidence_class",
+    "unknown_fields",
+    "validation_claims"
+  ],
+  "properties": {
+    "contract_version": {
+      "const": "1.0"
+    },
+    "analysis_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "engine": {
+      "enum": [
+        "JNU_RESEARCH",
+        "MARKET_AI_HUB",
+        "CHATGPT_CONTEXT",
+        "EVIDENCE_FUSION"
+      ]
+    },
+    "generated_at": {
+      "type": "string"
+    },
+    "target": {
+      "const": "OSE_NIKKEI225_MICRO_FUTURES"
+    },
+    "contract_month": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "data_as_of": {
+      "type": "string"
+    },
+    "data_mode": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "market_regime": {
+      "enum": [
+        "TREND_UP",
+        "TREND_DOWN",
+        "BOX_BALANCE",
+        "MIXED",
+        "UNKNOWN"
+      ]
+    },
+    "directional_bias": {
+      "enum": [
+        "BULLISH_CONDITIONAL",
+        "BEARISH_CONDITIONAL",
+        "NEUTRAL_CONDITIONAL",
+        "ABSTAIN"
+      ]
+    },
+    "confidence_class": {
+      "enum": [
+        "LOW",
+        "MEDIUM"
+      ]
+    },
+    "support_zones": {
+      "type": "array"
+    },
+    "resistance_zones": {
+      "type": "array"
+    },
+    "acceptance_checks": {
+      "type": "array"
+    },
+    "expected_path": {},
+    "alternative_path": {},
+    "macro_context": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "event_risk": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "cross_market_state": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "invalidation": {},
+    "flip_conditions": {},
+    "model_evidence": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "evidence_quality": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "unknown_fields": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "validation_claims": {
+      "type": "object",
+      "required": [
+        "PREDICTIVE_GAIN",
+        "CALIBRATED",
+        "TRADING_EDGE"
+      ],
+      "properties": {
+        "PREDICTIVE_GAIN": {
+          "type": "boolean"
+        },
+        "CALIBRATED": {
+          "type": "boolean"
+        },
+        "TRADING_EDGE": {
+          "type": "boolean"
+        }
+      }
+    }
+  },
+  "additionalProperties": true
+}
