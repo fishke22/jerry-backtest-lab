@@ -1,0 +1,113 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-29",
+  "status": "AUTHORITATIVE_CROSS_SYSTEM_CONTRACT",
+  "authority": {
+    "repository": "fishke22/jerry-backtest-lab",
+    "rule": "This file is the semantic source of truth. Downstream systems implement adapters; they must not silently fork semantics."
+  },
+  "engines": {
+    "JNU_RESEARCH": {
+      "role": "FRAMEWORK_AND_RESEARCH_GOVERNANCE",
+      "may_claim_validated_edge": false
+    },
+    "MARKET_AI_HUB": {
+      "role": "LOCAL_DATA_MODEL_VALIDATION_AND_COMPUTE",
+      "may_claim_validated_edge": "ONLY_WHEN_ITS_GOVERNED_VALIDATION_GATES_PASS"
+    },
+    "CHATGPT_CONTEXT": {
+      "role": "CURRENT_EXTERNAL_MARKET_EVENT_AND_CAUSAL_CONTEXT",
+      "persistence_rule": "Persist durable analysis semantics here; model memory is a routing convenience, not source of truth."
+    }
+  },
+  "required_fields": [
+    "contract_version",
+    "analysis_id",
+    "engine",
+    "generated_at",
+    "target",
+    "contract_month",
+    "data_as_of",
+    "data_mode",
+    "market_regime",
+    "directional_bias",
+    "confidence_class",
+    "support_zones",
+    "resistance_zones",
+    "acceptance_checks",
+    "expected_path",
+    "alternative_path",
+    "macro_context",
+    "event_risk",
+    "cross_market_state",
+    "invalidation",
+    "flip_conditions",
+    "model_evidence",
+    "evidence_quality",
+    "unknown_fields",
+    "validation_claims"
+  ],
+  "enums": {
+    "directional_bias": [
+      "BULLISH_CONDITIONAL",
+      "BEARISH_CONDITIONAL",
+      "NEUTRAL_CONDITIONAL",
+      "ABSTAIN"
+    ],
+    "confidence_class": [
+      "LOW",
+      "MEDIUM"
+    ],
+    "market_regime": [
+      "TREND_UP",
+      "TREND_DOWN",
+      "BOX_BALANCE",
+      "MIXED",
+      "UNKNOWN"
+    ]
+  },
+  "acceptance": {
+    "rule": "Touch != Break != Acceptance",
+    "level_required": true,
+    "auto_support_resistance_prohibited": true,
+    "volume_profile_requires_verified_trade_volume_at_price": true
+  },
+  "evidence_fusion": {
+    "rule": "Evidence fusion is not majority voting. Correlated evidence must not be double-counted.",
+    "dimensions": [
+      "STRUCTURE",
+      "QUANT",
+      "MACRO",
+      "EVENT_RISK",
+      "DATA_QUALITY"
+    ],
+    "validated_edge_gate": "An unvalidated quant/model output cannot raise a claim to calibrated probability or trading edge.",
+    "disagreement": "Preserve engine disagreement in the fused record; never overwrite minority evidence."
+  },
+  "validation_claims": {
+    "PREDICTIVE_GAIN": false,
+    "CALIBRATED": false,
+    "TRADING_EDGE": false
+  },
+  "forward_validation": {
+    "immutable_forecast_snapshot": true,
+    "append_only_outcome": true,
+    "reanalysis_separate_from_original": true,
+    "horizons": [
+      "1h",
+      "4h",
+      "session_close",
+      "next_session",
+      "1d",
+      "5d"
+    ],
+    "metrics": [
+      "return",
+      "MFE",
+      "MAE",
+      "directional_outcome",
+      "trigger_outcome"
+    ]
+  },
+  "local_validation_boundary": "Any feature requiring D:\\MARKET_AI_HUB, Yuanta, local model weights, licensed/local-only data or local MCP runtime must remain LOCAL_VALIDATION_PENDING until tested on the user's PC."
+}
