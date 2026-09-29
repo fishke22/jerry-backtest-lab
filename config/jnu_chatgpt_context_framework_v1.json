@@ -1,0 +1,63 @@
+{
+  "version": "1.0",
+  "as_of": "2026-09-29",
+  "status": "DURABLE_CHATGPT_CONTEXT_EXTENSION",
+  "base_framework": "config/jnu_operational_framework_current_v1_9.json",
+  "rule": "This file externalizes durable ChatGPT JNU analysis semantics. Memory may point here but must not supersede committed framework files.",
+  "required_current_context": [
+    {
+      "id": "ENERGY",
+      "inputs": [
+        "Brent",
+        "WTI",
+        "Hormuz/energy supply",
+        "Saudi/Houthi material supply risk",
+        "Russia-Ukraine energy infrastructure"
+      ],
+      "role": "EVENT_AND_MACRO_CONTEXT"
+    },
+    {
+      "id": "RATES",
+      "inputs": [
+        "US 2Y",
+        "US 10Y"
+      ],
+      "role": "CROSS_MARKET_CONTEXT"
+    },
+    {
+      "id": "FX",
+      "inputs": [
+        "USDJPY",
+        "MOF intervention regime"
+      ],
+      "role": "CROSS_MARKET_AND_EVENT_CONTEXT"
+    },
+    {
+      "id": "US_TECH",
+      "inputs": [
+        "Nasdaq futures",
+        "SOX when available"
+      ],
+      "role": "CROSS_MARKET_CONTEXT"
+    },
+    {
+      "id": "JAPAN_POLICY",
+      "inputs": [
+        "BOJ",
+        "JGB curve",
+        "material Japan policy"
+      ],
+      "role": "EVENT_AND_CROSS_MARKET_CONTEXT"
+    }
+  ],
+  "market_structure": [
+    "trend versus box/balance",
+    "price-location map",
+    "Touch != Break != Acceptance",
+    "false-break/rejection",
+    "box migration only after sustained acceptance"
+  ],
+  "world_monitor_rule": "Scenario layer only. Cross-check material claims with current verifiable market/official/high-quality sources. Do not convert sentiment/risk scores into calibrated probabilities.",
+  "unavailable_rule": "UNKNOWN/UNAVAILABLE; never guess.",
+  "evidence_fusion_rule": "Do not create extra votes from correlated context. Feed evidence into existing framework layers and the common three-engine contract."
+}
